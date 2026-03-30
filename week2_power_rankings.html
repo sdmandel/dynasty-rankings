@@ -206,6 +206,41 @@
     .rank-entry { grid-template-columns: 52px 1fr; }
     .rank-num { font-size: 40px; }
   }
+ .legend {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 16px 40px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid #1e1e20;
+}
+
+.legend-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a4845;
+  margin-right: 4px;
+}
+
+@media (max-width: 600px) {
+  .legend { padding-left: 20px; padding-right: 20px; }
+}
+ .rank-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.delta-up   { color: #5d7db5; }
+.delta-down { color: #b55d5d; }
+.delta-same { color: #3a3a3c; }
 </style>
 </head>
 <body>
@@ -222,7 +257,7 @@
     to 3rd in the standings in 48 hours. The biggest riser: Rollie Fingers, 
     up three spots and leading the league. The biggest faller: John Henry Fan Club, 
     down three after trading away their entire youth pipeline for the present tense. 
-    The season is one week old and it is already unhinged.
+    The season is one week old and it is already unhinged. Or is it playing out exactly as predicted?
     <strong>Rankings powered by the Oracle.</strong>
   </p>
 </div>
@@ -235,8 +270,6 @@
   <span class="player-pill">&#9679; Everyone else</span>
 </div>
 
-<div class="rankings">
- 
 <div class="rankings">
 
   <!-- 1 -->
