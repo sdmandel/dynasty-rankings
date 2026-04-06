@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 3 Dynasty Power Rankings</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e0e0f;
+    color: #e8e6e0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .header {
+    background: #0e0e0f;
+    border-bottom: 1px solid #2a2a2c;
+    padding: 48px 40px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 88px);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: #f0ede6;
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: #c8a84b; }
+
+  .header-meta {
+    font-size: 13px;
+    color: #7a7872;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .header-meta strong {
+    color: #c8a84b;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: #c8a84b;
+    margin: 20px 0;
+  }
+
+  .rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 40px 80px;
+  }
+
+  .rank-entry {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    border-bottom: 1px solid #1e1e20;
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .rank-entry:hover { background: rgba(255,255,255,0.015); }
+
+  .rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    color: #2a2a2c;
+    line-height: 1;
+    padding-top: 4px;
+    user-select: none;
+  }
+
+  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
+  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
+
+  .rank-content { padding-left: 8px; }
+
+  .rank-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: #f0ede6;
+    line-height: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
+  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
+  .badge-up     { background: #1a1f2e; color: #5d7db5; }
+  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-return { background: #2a1a2e; color: #9b6cb5; }
+
+  .blurb {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #c2bfb8;
+    margin-bottom: 14px;
+  }
+
+  .blurb em {
+    font-style: italic;
+    color: #9a9690;
+  }
+
+  .key-players {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: #181819;
+    border: 1px solid #2a2a2c;
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #a8a59e;
+    white-space: nowrap;
+  }
+
+  .player-pill .pill-rank {
+    color: #5a5855;
+    margin-right: 3px;
+    font-size: 11px;
+  }
+
+  .player-pill.top {
+    border-color: #3a3020;
+    color: #d4b96a;
+    background: #1a1708;
+  }
+
+  .player-pill.prospect {
+    border-color: #1f2d3a;
+    color: #6a9bc4;
+    background: #0d1620;
+  }
+
+  .player-pill.warning {
+    border-color: #2e1a1a;
+    color: #9a5555;
+    background: #180d0d;
+  }
+
+  .player-pill.ghost {
+    border-color: #2d2040;
+    color: #7a5aaa;
+    background: #0f0a18;
+    font-style: italic;
+  }
+
+  .footnote {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px 40px;
+    font-size: 12px;
+    color: #4a4845;
+    font-style: italic;
+    border-top: 1px solid #1e1e20;
+    line-height: 1.8;
+  }
+
+  .legend {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #1e1e20;
+  }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4845;
+    margin-right: 4px;
+  }
+
+  .rank-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .delta-up   { color: #5d7db5; }
+  .delta-down { color: #b55d5d; }
+  .delta-same { color: #3a3a3c; }
+
+  @media (max-width: 600px) {
+    .header, .rankings, .footnote { padding-left: 20px; padding-right: 20px; }
+    .rank-entry { grid-template-columns: 52px 1fr; }
+    .rank-num { font-size: 40px; }
+    .legend { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week 3 &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Power<br><span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p class="header-meta">
+    The Oracle has been upgraded. In addition to composite scores and positional scarcity multipliers,
+    it now monitors daily lineup activity across all 12 teams. It counts the days. It remembers.
+    It does not send reminders, because reminders are not its job —
+    publishing the results is. Two managers have been issued ghost pills this week.
+    The Oracle does not judge. The Oracle simply reports.
+    <strong>Rankings powered by the Oracle.</strong>
+  </p>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill top">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost">&#9679; Manager went dark</span>
+</div>
+
+<div class="rankings">
+
+  <!-- 1 -->
+  <div class="rank-entry">
+    <div class="rank-num">1</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">John Henry Fan Club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 5th</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +4</span>
+        </div>
+      </div>
+      <p class="blurb">
+        This is the Death Star. And it is fully operational.
+        Travis acquired Kyle Schwarber, Jazz Chisholm Jr., and two future Vin Mazzaro picks this week,
+        sending Gunnar Henderson and Dustin May the other direction, and came out of it
+        with the #1 Oracle composite in the league by a margin wide enough to be uncomfortable for everyone else.
+        Brady House rose 90 spots in the Oracle. Chase Meidroth rose 85.
+        13 prospects. Average age 25.4. Konnor Griffin made his debut, which could be the equivalent of welding the thermal exhaust port shut. Too meta? go fuck yourself.
+        If you came here looking for a weakness, you are going to have to look harder.
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#12</span> Konnor Griffin</span>
+        <span class="player-pill"><span class="pill-rank">#37</span> Jhoan Duran</span>
+        <span class="player-pill prospect"><span class="pill-rank">#252</span> Brady House</span>
+        <span class="player-pill prospect"><span class="pill-rank">#246</span> Chase Meidroth</span>
+        <span class="player-pill warning"><span class="pill-rank">#727</span> Rhys Hoskins, 33</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="rank-entry">
+    <div class="rank-num">2</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Seam Heads</span>
+        <div class="badges">
+          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;105pts</span>
+          <span class="badge badge-last">Last week: 4th</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Last week we ranked this team 4th and called it editorial restraint.
+        We are now first in the standings and the restraint is gone.
+        Joey Cantillo rose 93 and Griffin Jax rose 84 in the Oracle rankings.
+        Oracle composite says #4.
+        The standings say #1. We are ranking ourselves #2 and calling it growth.
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#8</span> Roman Anthony</span>
+        <span class="player-pill"><span class="pill-rank">#323</span> Joey Cantillo</span>
+        <span class="player-pill"><span class="pill-rank">#334</span> Griffin Jax</span>
+        <span class="player-pill warning"><span class="pill-rank">#427</span> AJ Smith-Shawver</span>
+        <span class="player-pill warning"><span class="pill-rank">#811</span> T.J. Rumfield</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="rank-entry">
+    <div class="rank-num">3</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">philbell</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 1st</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        No trades. No drama. 21 lineup changes last week, most in the league after your commissioner,
+        who has a separate problem. David Bednar rose 94 spots in the Oracle; Harry Ford slipped 61.
+        Nothing about this roster changed, which is the whole strategy.
+        Philbell slides to #3 only because the rosters above them got more dangerous,
+        nothing here got worse. The quiet confidence of a manager who drafted well
+        and is simply waiting for everyone else to blink first.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#260</span> David Bednar</span>
+        <span class="player-pill"><span class="pill-rank">#274</span> Trent Grisham</span>
+        <span class="player-pill"><span class="pill-rank">#417</span> Harry Ford</span>
+        <span class="player-pill warning"><span class="pill-rank">#786</span> Paul Sewald, 36</span>
+        <span class="player-pill warning"><span class="pill-rank">#806</span> Caleb Kilian</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="rank-entry">
+    <div class="rank-num">4</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Rollie Fingers</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 2nd</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Acquired Andrew Abbott and Luis García Jr. from Vin Mazzaro fan club for Kyle Teel and Bryson Stott —
+        a deal that aged well within 48 hours. García Jr. rose 92 spots in the Oracle immediately after arriving thanks to a blazing start to the season at the plate (.324 avg 1.000 OPS, 6 RBIs).
+        Luis Gil fell 61, the one real cost of an otherwise productive week.
+        Rollie holds #3 in the Oracle composite and #2 in the actual standings,
+        and added real depth without surrendering anything he will miss.
+        The Fingers are in many cookie jars and the cookies keep getting better (is this anything?).
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#208</span> Daniel Palencia</span>
+        <span class="player-pill"><span class="pill-rank">#217</span> Luis García Jr.</span>
+        <span class="player-pill"><span class="pill-rank">#291</span> Hagen Smith</span>
+        <span class="player-pill"><span class="pill-rank">#368</span> Luis Gil</span>
+        <span class="player-pill warning"><span class="pill-rank">#713</span> Gregory Soto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="rank-entry">
+    <div class="rank-num">5</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Humongous Melonheads</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 3rd</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        No transactions this week. Oracle movement is a wash:
+        Cade Cavalli rose 87 spots while Ike Irish fell 85, netting roughly lateral.
+        For a team with this top-end, lateral is fine.
+        The Melonheads slip to 5th because the rosters above them are getting scarier,
+        not because anything went wrong here. The core is holding.
+        The bullpen veterans are aging on schedule. This is a very good team doing very steady things,
+        and very steady things may be enough. We are only just getting started, after all, and this is one team you can count on to be around in September.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#258</span> Cade Cavalli</span>
+        <span class="player-pill"><span class="pill-rank">#458</span> Emilio Pagan</span>
+        <span class="player-pill"><span class="pill-rank">#527</span> Seranthony Domínguez</span>
+        <span class="player-pill"><span class="pill-rank">#590</span> Ike Irish</span>
+        <span class="player-pill warning"><span class="pill-rank">#38</span> Kenley Jansen, 38</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="rank-entry">
+    <div class="rank-num">6</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Sam</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 6th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <p class="blurb">
+        Bobby Miller fell 175 spots in the Oracle this week. From #597 to #772.
+        That is not a decline, that is a player falling through the floorboards,
+        through the basement, and into whatever geological layer exists beneath the basement.
+        Brady Singer rose 83 spots to partially offset the damage.
+        No trades were made. No trades appear to be coming.
+        Holding at 6th, and 6th might be exactly where this team lives all season.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#251</span> Otto Lopez</span>
+        <span class="player-pill"><span class="pill-rank">#296</span> Brady Singer</span>
+        <span class="player-pill warning"><span class="pill-rank">#772</span> Bobby Miller</span>
+        <span class="player-pill warning"><span class="pill-rank">#799</span> Masataka Yoshida, 33</span>
+        <span class="player-pill warning"><span class="pill-rank">#829</span> Jon Gray, 34</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="rank-entry">
+    <div class="rank-num">7</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Millville Meteors</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 7th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <p class="blurb">
+
+                   🕯      🕯
+           🕯                       🕯
+                  2025 First-
+        🕯   round pick   🕯 
+                   Mike Trout 
+           🕯                       🕯
+                   🕯      🕯
+        The Meteors stay at 7th because Oracle #8 is Oracle #8,
+        but the internal movement here is more encouraging than the ranking implies.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#466</span> Christian Walker</span>
+        <span class="player-pill"><span class="pill-rank">#464</span> Dominic Canzone</span>
+        <span class="player-pill"><span class="pill-rank">#318</span> Christian Moore</span>
+        <span class="player-pill"><span class="pill-rank">#406</span> Aiva Arquette</span>
+        <span class="player-pill warning"><span class="pill-rank">#237</span> Mike Trout, 35</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="rank-entry">
+    <div class="rank-num">8</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Vin Mazzaro fan club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 8th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+          <span class="badge badge-new">New owner</span>
+        </div>
+      </div>
+      <p class="blurb">
+        A brief note on the Verlander-for-McCullers swap completed this week:
+        Verlander (42, Oracle #711) departed. McCullers Jr. arrived at Oracle #805.
+        This is the first transaction in recorded history where both assets declined in transit.
+        Elsewhere: Randy Vasquez rose 136 spots — the largest single-week mover in the entire league —
+        and Drew Gilbert fell 100. Gunnar Henderson arrived via the John Henry deal
+        and provides a legitimate anchor this roster needed.
+        There is more here than the standings suggest. Paul Skenes would like you to know that.
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#13</span> Gunnar Henderson</span>
+        <span class="player-pill"><span class="pill-rank">#627</span> Randy Vasquez</span>
+        <span class="player-pill"><span class="pill-rank">#635</span> Drew Gilbert</span>
+        <span class="player-pill warning"><span class="pill-rank">#805</span> Lance McCullers Jr.</span>
+        <span class="player-pill warning"><span class="pill-rank">#777</span> Max Scherzer, 42</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="rank-entry">
+    <div class="rank-num">9</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Mommy</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 9th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+          <span class="badge badge-new">New owner</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Jordan Walker rose 116 spots in the Oracle this week — the biggest single mover on the roster
+        and a genuine signal that the floor here is higher than 11th-place roto suggests.
+        Luke Raley rose 96. Adolis García rose 70. No transactions, no trades, no drama.
+        The lineup was set on 2 days this week, which the Oracle has now logged and is reporting
+        with a small purple pill. This is not a moral judgment. It is a data point.
+        The Oracle sees all. Set your lineups, people.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#321</span> Jordan Walker</span>
+        <span class="player-pill"><span class="pill-rank">#675</span> Luke Raley</span>
+        <span class="player-pill"><span class="pill-rank">#437</span> Adolis García</span>
+        <span class="player-pill ghost">😴 lineup set 2 days this week</span>
+        <span class="player-pill warning"><span class="pill-rank">#804</span> Yu Darvish, 40</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="rank-entry">
+    <div class="rank-num">10</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Inkers</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 10th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <p class="blurb">
+        Heston Kjerstad fell 205 spots in the Oracle this week — from #586 to #791 —
+        the single largest drop in the entire league. Jared Jones fell 81.
+        Matthew Liberatore rose 85 to prevent total structural collapse, but the damage is real.
+        The roster flags include 13 players ranked 700 or below.
+        In this context, Ben has been calling around the league shopping Vladimir Guerrero Jr. (#15 Oracle) —
+        which is roughly the equivalent of trying to sell your watch while the ship is going down.
+        The asks being generated are presumably not at #15.
+        The Oracle has noted the outreach. The math is not mathing.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#279</span> Bryan Abreu</span>
+        <span class="player-pill"><span class="pill-rank">#281</span> Matthew Liberatore</span>
+        <span class="player-pill"><span class="pill-rank">#247</span> Jared Jones</span>
+        <span class="player-pill warning"><span class="pill-rank">#791</span> Heston Kjerstad</span>
+        <span class="player-pill warning"><span class="pill-rank">#794</span> Miles Mikolas, 38</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="rank-entry">
+    <div class="rank-num">11</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Pat</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 11th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+          <span class="badge badge-down">Oldest roster: 30.4 avg age</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Pat set his lineup on 1 day this week. One. In a full seven-day period with daily lineups.
+        Oracle composite: 11th. Roto standings: 4th. What this means is that one player
+        is personally carrying the weight of an entire management strategy,
+        and that player knows exactly who he is, and he is tired.
+        Marcus Semien rose 84 spots in the Oracle this week. George Springer rose 67.
+        These improvements are accruing to a roster whose manager has communicated, through inaction,
+        that he is satisfied with how things are going.
+        Pat: are you satisfied? One day is not a strategy. It is a coincidence.
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#250</span> George Springer</span>
+        <span class="player-pill"><span class="pill-rank">#410</span> Marcus Semien</span>
+        <span class="player-pill ghost">🪑 lineup set 1 day this week</span>
+        <span class="player-pill warning"><span class="pill-rank">#702</span> Foster Griffin</span>
+        <span class="player-pill warning"><span class="pill-rank">#739</span> Nick Martinez, 36</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="rank-entry">
+    <div class="rank-num">12</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Trazadone</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 12th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+          <span class="badge badge-down">Full rebuild</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Jorge Polanco rose 88 spots in the Oracle this week. Louis Varland rose 84. Nick Gonzales rose 80.
+        Something is quietly stirring at the bottom.
+        The 2027 mid-second fell 124 spots, which the Oracle notes without further comment.
+        Dan, for his part, submitted a formal response to last week's coverage in the original register:
+        <em>"Steve clearly has TDS — Trazadone Derangement Syndrome!! Travis was BEGGING to make a trade with me
+        and I SECURED a deal that will UNLEASH this team's potential for years to come. SAD!"</em>
+        We believe him. Leodalis De Vries (#46 Oracle) is the reason to believe him.
+        The Oracle is watching De Vries. It does not disagree.
+      </p>
+      <div class="key-players">
+        <span class="player-pill prospect"><span class="pill-rank">#46</span> Leo De Vries</span>
+        <span class="player-pill"><span class="pill-rank">#301</span> Jorge Polanco</span>
+        <span class="player-pill"><span class="pill-rank">#604</span> Louis Varland</span>
+        <span class="player-pill warning"><span class="pill-rank">#142</span> Jacob deGrom, 38</span>
+        <span class="player-pill warning"><span class="pill-rank">#843</span> Jose Corniell</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footnote">
+  Rankings compiled using Oracle composite scores, lineup activity monitoring, and an unreasonable amount of editorial judgment that will not be audited.
+  Lineup activity reflects days with at least one roster change in the 7-day window preceding publication; period-aligned tracking is an open fix.
+  Next update: after Week 4 results.
+</div>
+
+</body>
+</html>
