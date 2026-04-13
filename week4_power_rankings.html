@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 Dynasty Power Rankings</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e0e0f;
+    color: #e8e6e0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .header {
+    background: #0e0e0f;
+    border-bottom: 1px solid #2a2a2c;
+    padding: 48px 40px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 88px);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: #f0ede6;
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: #c8a84b; }
+
+  .header-meta {
+    font-size: 13px;
+    color: #7a7872;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .header-meta strong {
+    color: #c8a84b;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: #c8a84b;
+    margin: 20px 0;
+  }
+
+  .legend {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #1e1e20;
+  }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4845;
+    margin-right: 4px;
+  }
+
+  .rank-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .delta-up   { color: #5d7db5; }
+  .delta-down { color: #b55d5d; }
+  .delta-same { color: #3a3a3c; }
+
+  .rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 40px 80px;
+  }
+
+  .rank-entry {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    border-bottom: 1px solid #1e1e20;
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .rank-entry:hover { background: rgba(255,255,255,0.015); }
+
+  .rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    color: #2a2a2c;
+    line-height: 1;
+    padding-top: 4px;
+    user-select: none;
+  }
+
+  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
+  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
+
+  .rank-content { padding-left: 8px; }
+
+  .rank-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: #f0ede6;
+    line-height: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
+  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
+  .badge-up     { background: #1a1f2e; color: #5d7db5; }
+  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-return { background: #2a1a2e; color: #9b6cb5; }
+
+  .blurb {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #c2bfb8;
+    margin-bottom: 14px;
+  }
+
+  .blurb em {
+    font-style: italic;
+    color: #9a9690;
+  }
+
+  .key-players {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: #181819;
+    border: 1px solid #2a2a2c;
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #a8a59e;
+    white-space: nowrap;
+  }
+
+  .player-pill .pill-rank {
+    color: #5a5855;
+    margin-right: 3px;
+    font-size: 11px;
+  }
+
+  .player-pill.top {
+    border-color: #3a3020;
+    color: #d4b96a;
+    background: #1a1708;
+  }
+
+  .player-pill.prospect {
+    border-color: #1f2d3a;
+    color: #6a9bc4;
+    background: #0d1620;
+  }
+
+  .player-pill.warning {
+    border-color: #2e1a1a;
+    color: #9a5555;
+    background: #180d0d;
+  }
+
+  .player-pill.ghost {
+    border-color: #2d2040;
+    color: #7a5aaa;
+    background: #0f0a18;
+    font-style: italic;
+  }
+
+  .footnote {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px 40px;
+    font-size: 12px;
+    color: #4a4845;
+    font-style: italic;
+    border-top: 1px solid #1e1e20;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .header, .rankings, .footnote, .legend { padding-left: 20px; padding-right: 20px; }
+    .rank-entry { grid-template-columns: 52px 1fr; }
+    .rank-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week 4 &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Power<br><span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p class="header-meta">
+    The rankings methodology got an upgrade this week. Oracle dynasty value and roto standings
+    now split the signal equally — because a roster full of prospects that sits fifth in the actual standings
+    is not a #1 power ranking, it is a projection. The biggest beneficiaries: the team leading the roto standings
+    (finally ranked accordingly) and Trazadone, whose ERA and WHIP dominance the Oracle has been quietly dismissing.
+    Also: one manager acquired the wrong Mason Miller.
+    The Oracle counted the sessions. It noted the trades.
+    <strong>Rankings powered by the Oracle.</strong>
+  </p>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill top">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost">&#9679; Manager went dark</span>
+</div>
+
+<div class="rankings">
+
+  <!-- 1 — Seam Heads -->
+  <div class="rank-entry">
+    <div class="rank-num">1</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Seam Heads</span>
+        <div class="badges">
+          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;105pts</span>
+          <span class="badge badge-last">Last week: 2nd</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle says #4. The roto standings say #1. The new methodology says #1, and we are choosing
+        to agree with the new methodology. Cantillo climbed another 115 spots; Nolan Gorman added 100.
+        AJ Smith-Shawver fell 93 — real sting on an otherwise upward week. The Mason Miller trade with Sam
+        converted saves surplus into Julio Rodriguez, which makes sense when you're already
+        carrying 17 closers. Leading the league by 2.5 points.
+        <em>The Oracle will come around eventually. Until then, there's a scoreboard.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#10</span> Roman Anthony</span>
+        <span class="player-pill"><span class="pill-rank">#289</span> Joey Cantillo ↑115</span>
+        <span class="player-pill"><span class="pill-rank">#429</span> AJ Smith-Shawver ↓93</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 — Rollie Fingers -->
+  <div class="rank-entry">
+    <div class="rank-num">2</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Rollie Fingers</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 4th</span>
+          <span class="badge badge-up">▲2</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #3 and roto #2 — the only team in the top four where both metrics agree without argument.
+        García Jr. kept climbing after his arrival last week, another 98 spots. Gregory Soto jumped 113;
+        Didier Fuentes 112. Luis Gil fell 67 again, a continuing cost. The Grayson Rodriguez IL acquisition
+        from Travis is a health bet that history says you should be nervous about.
+        <em>Most consistent team in the league across both signals. Rising for good reason.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#7</span> Elly De La Cruz</span>
+        <span class="player-pill"><span class="pill-rank">#220</span> Luis García Jr. ↑98</span>
+        <span class="player-pill"><span class="pill-rank">#378</span> Luis Gil ↓67</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 — John Henry Fan Club -->
+  <div class="rank-entry">
+    <div class="rank-num">3</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">John Henry Fan Club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 1st</span>
+          <span class="badge badge-down">▼2</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        The Death Star slips to #3. Oracle #1 by a margin that makes everyone else uncomfortable,
+        but roto #5 means the empire is not yet fully operational. Vladdy Jr. arrived from Inkers
+        this week, adding to a roster that already had Ramírez, Chisholm, and Schwarber. Brady House
+        climbed another 104 spots; Soriano 119. The 2028 picks paid the price. The problem remains
+        the same: dead last in the league in SVH. Jhoan Duran is on this roster. The saves are not arriving.
+        <em>Dynasty value is undeniable. Present production needs to follow.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#13</span> Konnor Griffin</span>
+        <span class="player-pill"><span class="pill-rank">#198</span> José Soriano ↑119</span>
+        <span class="player-pill"><span class="pill-rank">#242</span> Brady House ↑104</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 — Humongous Melonheads -->
+  <div class="rank-entry">
+    <div class="rank-num">4</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Humongous Melonheads</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 5th</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #5, roto #3. New movers this week: Mike Burrows climbed 94 spots; Sonny Gray 65;
+        Gabriel Moreno 64. The Melonheads lead the league in both strikeouts and quality starts —
+        12.0 roto points in each. Bobby Witt Jr. holds the #1 Oracle rank by a comfortable margin.
+        The blended signal lands them at #4 and nothing about this week suggests that's wrong.
+        <em>Steady, producing, and the most reliable floor in the league.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#1</span> Bobby Witt Jr.</span>
+        <span class="player-pill"><span class="pill-rank">#290</span> Mike Burrows ↑94</span>
+        <span class="player-pill"><span class="pill-rank">#265</span> Sonny Gray ↑65</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 — philbell -->
+  <div class="rank-entry">
+    <div class="rank-num">5</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">philbell</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 3rd</span>
+          <span class="badge badge-down">▼2</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #2, roto #6. Drops two spots because the blended methodology weights the standings
+        equally and the standings are not cooperating. Bednar climbed another 111 spots; Ford slipped
+        another 75. No transactions, no drama, and enough lineup activity that the Oracle is not
+        sending any purple pills. The gap between dynasty value and roto production keeps widening.
+        <em>Patience is the strategy. Patience is now being tested.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#2</span> Shohei Ohtani</span>
+        <span class="player-pill"><span class="pill-rank">#245</span> David Bednar ↑111</span>
+        <span class="player-pill"><span class="pill-rank">#428</span> Harry Ford ↓75</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 — Inkers -->
+  <div class="rank-entry">
+    <div class="rank-num">6</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Inkers</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 10th</span>
+          <span class="badge badge-up">▲4</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +4</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Last week Ben was demanding top-of-market value for Vladdy Jr. This week Ben traded Vladdy Jr.
+        and received Brayan Bello, Zach Neto, a collection of prospects, and
+        <em>Mason Miller (RP/KC, MiLB)</em> — not Mason Miller the elite closer.
+        The other one. A minor leaguer from Kansas City with the same name.
+        Liam Hicks surged 203 spots in the Oracle, the biggest single mover on any roster this week.
+        Jared Jones fell 80; Quinn Mathews dropped 81.
+        A PhD in foreign policy. Not in player search.
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#28</span> Zach Neto</span>
+        <span class="player-pill"><span class="pill-rank">#589</span> Liam Hicks ↑203</span>
+        <span class="player-pill warning"><span class="pill-rank">#248</span> Jared Jones ↓80</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 — Trazadone -->
+  <div class="rank-entry">
+    <div class="rank-num">7</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Trazadone</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 12th</span>
+          <span class="badge badge-up">▲5</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +5</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #12, roto #4 — and the biggest riser of the week once you give the standings
+        equal weight. ERA at 12.0 roto points: best in the league. WHIP at 12.0: also best.
+        Josh Bell jumped 138 spots this week; Nasim Nunez 103. The 2027 Mid 2nd pick fell 110.
+        The Oracle has been quietly dismissing this team for weeks and the standings have been
+        quietly disagreeing. Leodalis De Vries at #42 is the best long-term dynasty piece on the roster.
+        <em>Winning the present by burning the future. Works until the ERA regresses. It hasn't yet.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill"><span class="pill-rank">#42</span> Leo De Vries</span>
+        <span class="player-pill"><span class="pill-rank">#573</span> Josh Bell ↑138</span>
+        <span class="player-pill"><span class="pill-rank">#610</span> Nasim Nunez ↑103</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 — Vin Mazzaro Fan Club -->
+  <div class="rank-entry">
+    <div class="rank-num">8</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Vin Mazzaro Fan Club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 8th</span>
+          <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <p class="blurb">
+        Drew Gilbert fell 346 spots in the Oracle this week. Three hundred and forty-six.
+        That is not a slump, that is a geological event.
+        Andrés Giménez bounced back 99 spots; Riley O'Brien climbed 108 — not nearly enough to offset.
+        Paul Skenes and Gunnar Henderson anchor this roster and the Oracle still has them ninth,
+        which tells you everything about the depth behind those two names.
+        Kyle Teel arrived from Rollie Fingers and immediately went to the IL.
+        <em>World-class top two. Everything below them is a concern.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#4</span> Paul Skenes</span>
+        <span class="player-pill"><span class="pill-rank">#328</span> Andrés Giménez ↑99</span>
+        <span class="player-pill warning"><span class="pill-rank">#853</span> Drew Gilbert ↓346</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 — Pat -->
+  <div class="rank-entry">
+    <div class="rank-num">9</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Pat</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 11th</span>
+          <span class="badge badge-up">▲2</span>
+          <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Pat set his lineup six times this week. The Oracle noted the improvement without comment.
+        The blended methodology finally credits what roto #7 has been saying: this team is performing
+        above its Oracle rank. Foster Griffin climbed 113 spots; Jeffrey Springs 97; Nick Martinez 83.
+        All three are pitchers. All three have warning flags. Emil Morales and Senga each fell 44.
+        Average team age still 30.4. Corbin Carroll remains the one asset the Oracle believes in
+        unconditionally.
+        <em>Back at the keyboard. Up two spots. Still 9th.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#6</span> Corbin Carroll</span>
+        <span class="player-pill"><span class="pill-rank">#664</span> Foster Griffin ↑113</span>
+        <span class="player-pill warning"><span class="pill-rank">#382</span> Kodai Senga ↓44</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 — Sam -->
+  <div class="rank-entry">
+    <div class="rank-num">10</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Sam</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 6th</span>
+          <span class="badge badge-down">▼4</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -4</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #9, roto #10. The blended methodology is not gentle about this. Acquired Mason Miller —
+        the real one — from Seam Heads, finally giving this bullpen something legitimate. Gave up Julio
+        Rodriguez to do it. Helsley climbed 75 spots in the Oracle; Otto Lopez 70; O'Hearn 89.
+        The Oracle still sees 12 players ranked 700 or worse on this roster, with 11 players aged 33
+        or older. Decent instincts. Poor depth.
+        <em>Tread water or rebuild. Choosing neither remains a strategy of a kind.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#3</span> Juan Soto</span>
+        <span class="player-pill"><span class="pill-rank">#307</span> Ryan Helsley ↑75</span>
+        <span class="player-pill"><span class="pill-rank">#249</span> Otto Lopez ↑70</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 — Millville Meteors -->
+  <div class="rank-entry">
+    <div class="rank-num">11</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Millville Meteors</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 7th</span>
+          <span class="badge badge-down">▼4</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -4</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Oracle #7, roto #12. The old methodology kept Millville at 7th by leaning on dynasty value.
+        The new one gives roto last-place equal weight, and the math is not flattering.
+        Beeter climbed 93 spots; Sabrowski 83; Christian Walker 75. Jhostynxon Garcia fell 70.
+        No transactions this period. Kirby Yates is 39 years old and technically on this team,
+        which continues to be information.
+        <em>Active in lineup management. Last in roto. The effort is not the problem.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#19</span> Jackson Chourio</span>
+        <span class="player-pill"><span class="pill-rank">#462</span> Christian Walker ↑75</span>
+        <span class="player-pill warning"><span class="pill-rank">#505</span> Jhostynxon Garcia ↓70</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 — Mommy -->
+  <div class="rank-entry">
+    <div class="rank-num">12</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Mommy</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 9th</span>
+          <span class="badge badge-down">▼3</span>
+          <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -3</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Mommy got married Saturday. The entire league sends its congratulations.
+        Walker kept climbing — another 139 spots up in the Oracle this week. Garrett Mitchell added 86.
+        Gavin Fien fell 77. Fernando Tatis Jr. held down the roster while the manager had considerably
+        more important things going on. Down three spots, which is the combined effect of a methodology
+        change and roto #11. The lineup exemption stands regardless.
+        <em>Window: static. Vibes: unmatched. Lineup set twice. 💍</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top"><span class="pill-rank">#18</span> Fernando Tatis Jr.</span>
+        <span class="player-pill"><span class="pill-rank">#252</span> Jordan Walker ↑139</span>
+        <span class="player-pill ghost">💍 lineup set 2 days this week</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footnote">
+  Rankings compiled using a blended signal: 50% Oracle composite rank, 50% roto standings rank,
+  with roto used as tiebreaker. Oracle total score reflects aggregate dynasty roster value including
+  prospects and draft picks; roto standings reflect current-season production. Neither alone tells the full story.
+  Lineup activity reflects sessions with at least one roster change in the 7-day window preceding publication.
+  Next update: after Week 4 results.
+</div>
+
+</body>
+</html>
