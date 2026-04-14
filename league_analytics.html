@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>League Analytics — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Total Oracle roster value — MLB vs. farm system depth — for all 12 dynasty teams.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="League Analytics — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Total Oracle roster value — MLB vs. farm system depth — for all 12 dynasty teams.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/league_analytics.html">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="League Analytics — Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Total Oracle roster value — MLB vs. farm system depth — for all 12 dynasty teams.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -250,15 +262,34 @@ sorted.forEach(t => {
   const shortName = t.name.length > 18 ? t.name.slice(0,17)+'…' : t.name;
   const row = document.createElement('div');
   row.className = 'bar-row';
-  row.innerHTML = `
-    <div class="bar-label">
-      <span class="rank-num">#${t.oracle_rank}</span>${shortName}
-    </div>
-    <div class="bar-track">
-      <div class="bar-fill-mlb" style="width:${mlbPct}%"></div>
-      <div class="bar-fill-farm" style="left:${mlbPct}%; width:${farmPct}%"></div>
-    </div>
-    <div class="bar-value">${(t.total/1000).toFixed(1)}k</div>`;
+  // Build row safely without innerHTML
+  const labelDiv = document.createElement('div');
+  labelDiv.className = 'bar-label';
+  const rankSpan = document.createElement('span');
+  rankSpan.className = 'rank-num';
+  rankSpan.textContent = '#' + t.oracle_rank;
+  labelDiv.appendChild(rankSpan);
+  labelDiv.appendChild(document.createTextNode(shortName));
+
+  const trackDiv = document.createElement('div');
+  trackDiv.className = 'bar-track';
+  const fillMlb = document.createElement('div');
+  fillMlb.className = 'bar-fill-mlb';
+  fillMlb.style.width = mlbPct + '%';
+  const fillFarm = document.createElement('div');
+  fillFarm.className = 'bar-fill-farm';
+  fillFarm.style.left = mlbPct + '%';
+  fillFarm.style.width = farmPct + '%';
+  trackDiv.appendChild(fillMlb);
+  trackDiv.appendChild(fillFarm);
+
+  const valDiv = document.createElement('div');
+  valDiv.className = 'bar-value';
+  valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
+
+  row.appendChild(labelDiv);
+  row.appendChild(trackDiv);
+  row.appendChild(valDiv);
   row.addEventListener('mousemove', e => {
     ttName.textContent = t.name;
     ttAge.textContent  = `MLB: ${t.mlb.toLocaleString()}`;

@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Backyard Dynasty — Roster Depth Chart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Full positional depth chart by Oracle tier for all 12 dynasty teams.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roster Depth Chart — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Full positional depth chart by Oracle tier for all 12 dynasty teams.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/roster_depth.html">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Roster Depth Chart — Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Full positional depth chart by Oracle tier for all 12 dynasty teams.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -219,6 +231,24 @@ tr:hover { background: rgba(255,255,255,0.012); }
 @media (max-width: 700px) {
   .header, .table-wrap, .legend, .footnote { padding-left: 16px; padding-right: 16px; }
 }
+
+/* ── PILL TOOLTIP ── */
+#pill-tooltip {
+  position: fixed;
+  background: #1a1a1c;
+  border: 1px solid #2a2a2c;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  color: #c2bfb8;
+  pointer-events: none;
+  display: none;
+  z-index: 200;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  max-width: 240px;
+}
 </style>
 </head>
 <body>
@@ -366,5 +396,26 @@ tr:hover { background: rgba(255,255,255,0.012); }
   fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots
 </div>
 
+<div id="pill-tooltip"></div>
+
+<script>
+(function() {
+  const tip = document.getElementById('pill-tooltip');
+  document.querySelectorAll('.pill[title]').forEach(function(pill) {
+    var label = pill.getAttribute('title');
+    pill.addEventListener('mouseenter', function(e) {
+      tip.textContent = label;
+      tip.style.display = 'block';
+    });
+    pill.addEventListener('mousemove', function(e) {
+      tip.style.left = (e.clientX + 14) + 'px';
+      tip.style.top  = (e.clientY - 10) + 'px';
+    });
+    pill.addEventListener('mouseleave', function() {
+      tip.style.display = 'none';
+    });
+  });
+})();
+</script>
 </body>
 </html>

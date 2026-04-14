@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Backyard Dynasty Baseball — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Hub — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
+<meta property="og:url" content="https://baseball.stephenmandella.com">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Hub — Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -453,8 +465,15 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
     rankEl.textContent = '#' + t.oracle_rank;
     const track = document.createElement('div');
     track.className = 'mb-track';
-    track.innerHTML = `<div class="mb-fill-mlb" style="width:${mlbPct}%"></div>`
-                    + `<div class="mb-fill-farm" style="left:${mlbPct}%;width:${farmPct}%"></div>`;
+    const mMlb = document.createElement('div');
+    mMlb.className = 'mb-fill-mlb';
+    mMlb.style.width = mlbPct + '%';
+    const mFarm = document.createElement('div');
+    mFarm.className = 'mb-fill-farm';
+    mFarm.style.left = mlbPct + '%';
+    mFarm.style.width = farmPct + '%';
+    track.appendChild(mMlb);
+    track.appendChild(mFarm);
     row.appendChild(rankEl);
     row.appendChild(track);
     el.appendChild(row);
