@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 :root {
   --bg: #0e0e0f;
@@ -129,7 +130,6 @@ body {
 .card.featured .card-eyebrow { color: var(--gold); }
 .card.featured .card-title   { color: var(--gold); }
 .card.featured:hover { border-color: var(--gold); }
-
 .card-arrow {
   display: inline-block;
   margin-top: 14px;
@@ -140,6 +140,122 @@ body {
   color: var(--text-dead);
 }
 .card.featured .card-arrow { color: var(--gold); }
+
+/* ── TOOL TILES ── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.tool-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.tool-tile:hover { border-color: var(--border2); background: #1a1a1c; }
+.tile-preview {
+  height: 240px;
+  padding: 16px 14px 10px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.tile-footer {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tile-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 4px;
+}
+.tile-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+.tile-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.tile-arrow {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+}
+.tool-tile:hover .tile-arrow { color: var(--text-muted); }
+
+/* Depth chart preview — tier distribution stacked bars */
+.dp-list { display: flex; flex-direction: column; gap: 4px; }
+.dp-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
+.dp-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--text-dead);
+  text-align: right;
+  line-height: 1;
+}
+.dp-track {
+  height: 13px;
+  background: #0e0e0f;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  border: 1px solid #1a1a1c;
+}
+.dp-seg { height: 100%; }
+
+/* Mini bar chart (League Analytics tile) */
+.mb-list { display: flex; flex-direction: column; gap: 4px; }
+.mb-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
+.mb-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--text-dead);
+  text-align: right;
+  line-height: 1;
+}
+.mb-track {
+  height: 13px;
+  background: #0e0e0f;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #1a1a1c;
+}
+.mb-fill-mlb {
+  height: 100%;
+  background: #8b2a1e;
+  position: absolute;
+  left: 0; top: 0;
+  border-radius: 1px;
+}
+.mb-fill-farm {
+  height: 100%;
+  background: #c8856e;
+  position: absolute;
+  top: 0;
+  border-radius: 0 1px 1px 0;
+}
 
 /* ── SECTION DIVIDER ── */
 .section-hr {
@@ -329,6 +445,10 @@ body {
   line-height: 1.8;
 }
 
+@media (max-width: 860px) {
+  .tool-grid { grid-template-columns: 1fr; }
+  .tile-preview { height: 200px; }
+}
 @media (max-width: 680px) {
   .site-header, .nav-section, .charts-section, .site-footer {
     padding-left: 20px; padding-right: 20px;
@@ -382,19 +502,53 @@ body {
   </div>
 
   <div class="section-label">Tools</div>
-  <div class="card-grid">
-    <a href="roster_depth.html" class="card">
-      <div class="card-eyebrow">Live &nbsp;·&nbsp; Week 4</div>
-      <div class="card-title">Roster Depth Chart</div>
-      <div class="card-meta">Positional breakdown · Oracle tiers · All 12 teams</div>
-      <div class="card-arrow">View →</div>
+  <div class="tool-grid">
+
+    <!-- ── Depth Chart tile ── -->
+    <a href="roster_depth.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="dp-list" id="depthPreviewChart"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Live &nbsp;·&nbsp; All 12 Teams</div>
+        <div class="tile-title">Roster Depth Chart</div>
+        <div class="tile-meta">Positional breakdown by Oracle tier. Every rostered player.</div>
+        <span class="tile-arrow">Open full chart →</span>
+      </div>
     </a>
+
+    <!-- ── League Analytics tile ── -->
+    <a href="#analytics" class="tool-tile">
+      <div class="tile-preview">
+        <div class="mb-list" id="miniBarChart"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Oracle Scores &nbsp;·&nbsp; MLB vs Farm</div>
+        <div class="tile-title">League Analytics</div>
+        <div class="tile-meta">Total roster value by Oracle composite. Dark = MLB, light = farm.</div>
+        <span class="tile-arrow">View full chart ↓</span>
+      </div>
+    </a>
+
+    <!-- ── Win Window tile ── -->
+    <a href="#age-chart" class="tool-tile">
+      <div class="tile-preview" style="padding:8px;">
+        <svg id="miniScatterSvg" style="width:100%;display:block;"></svg>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Age vs. Oracle Value</div>
+        <div class="tile-title">Win Window</div>
+        <div class="tile-meta">Where each team sits on the age–value curve.</div>
+        <span class="tile-arrow">View full chart ↓</span>
+      </div>
+    </a>
+
   </div>
 </div>
 
 <hr class="section-hr">
 
-<div class="charts-section">
+<div class="charts-section" id="analytics">
   <div class="charts-header">
     <h2>League Analytics</h2>
     <p>Oracle roster value and age profiles across all 12 teams. Updated after each weekly rankings cycle.</p>
@@ -411,7 +565,7 @@ body {
   </div>
 
   <!-- ── SCATTER ── -->
-  <div class="chart-block">
+  <div class="chart-block" id="age-chart">
     <h3>Roster Age vs. Oracle Value — Win Window Quadrant</h3>
     <div class="scatter-wrap">
       <svg id="scatterSvg" class="scatter-canvas"></svg>
@@ -438,18 +592,18 @@ body {
 
 <script>
 const TEAMS = [
-  {name:"John Henry Fan Club", total:83034, mlb:65233, farm:17801, avg_age:27.3, oracle_rank:1},
-  {name:"Rollie Fingers",      total:73994, mlb:58609, farm:15385, avg_age:28.0, oracle_rank:2},
-  {name:"Seam heads",          total:67296, mlb:56534, farm:10762, avg_age:28.7, oracle_rank:3},
-  {name:"Humongous Melonheads",total:63666, mlb:56442, farm:7224,  avg_age:28.1, oracle_rank:4},
-  {name:"philbell",            total:74647, mlb:64459, farm:10188, avg_age:27.8, oracle_rank:5},
-  {name:"Inkers",              total:44136, mlb:31377, farm:12759, avg_age:28.6, oracle_rank:6},
-  {name:"Vin Mazzaro fan club",total:42304, mlb:38906, farm:3398,  avg_age:28.3, oracle_rank:7},
-  {name:"Millville Meteors",   total:43174, mlb:40708, farm:2466,  avg_age:29.4, oracle_rank:8},
-  {name:"Trazadone",           total:27414, mlb:20259, farm:7155,  avg_age:30.2, oracle_rank:9},
-  {name:"Mommy",               total:37685, mlb:36530, farm:1155,  avg_age:30.5, oracle_rank:10},
-  {name:"Sam",                 total:40852, mlb:37712, farm:3140,  avg_age:29.9, oracle_rank:11},
-  {name:"Pat",                 total:30642, mlb:29740, farm:902,   avg_age:31.2, oracle_rank:12},
+  {name:"John Henry Fan Club", total:35777.0, mlb:24934.3, farm:10842.7, avg_age:27.3, oracle_rank:1},
+  {name:"Rollie Fingers", total:35362.6, mlb:28024.6, farm:7338.0, avg_age:28.0, oracle_rank:2},
+  {name:"Seam heads", total:33387.7, mlb:26732.1, farm:6655.6, avg_age:28.7, oracle_rank:3},
+  {name:"Humongous Melonheads", total:31778.0, mlb:27481.5, farm:4296.5, avg_age:28.1, oracle_rank:4},
+  {name:"philbell", total:31419.7, mlb:25292.6, farm:6127.1, avg_age:27.8, oracle_rank:5},
+  {name:"Inkers", total:28426.3, mlb:20811.2, farm:7615.1, avg_age:28.6, oracle_rank:6},
+  {name:"Vin Mazzaro fan club", total:25664.1, mlb:22356.6, farm:3307.5, avg_age:28.3, oracle_rank:7},
+  {name:"Millville Meteors", total:24831.6, mlb:22648.3, farm:2183.3, avg_age:29.4, oracle_rank:8},
+  {name:"Trazadone", total:22979.9, mlb:18682.0, farm:4297.9, avg_age:30.2, oracle_rank:9},
+  {name:"Mommy", total:22107.0, mlb:21122.6, farm:984.4, avg_age:30.5, oracle_rank:10},
+  {name:"Sam", total:21301.5, mlb:19086.7, farm:2214.8, avg_age:29.9, oracle_rank:11},
+  {name:"Pat", total:21243.3, mlb:20316.2, farm:927.1, avg_age:31.2, oracle_rank:12},
 ];
 
 // ─── BAR CHART ───────────────────────────────────────────────
@@ -472,8 +626,7 @@ sorted.forEach(t => {
       <div class="bar-fill-mlb" style="width:${mlbPct}%"></div>
       <div class="bar-fill-farm" style="left:${mlbPct}%; width:${farmPct}%"></div>
     </div>
-    <div class="bar-value">${(t.total/1000).toFixed(0)}k</div>`;
-  // bar hover tooltip
+    <div class="bar-value">${(t.total/1000).toFixed(1)}k</div>`;
   const tooltip = document.getElementById('tooltip');
   const ttName  = document.getElementById('tt-name');
   const ttAge   = document.getElementById('tt-age');
@@ -520,7 +673,6 @@ function buildScatter() {
 
   const ns = 'http://www.w3.org/2000/svg';
 
-  // Quadrant lines
   const qx = scaleX(midAge);
   const qy = scaleY(midVal);
 
@@ -535,8 +687,7 @@ function buildScatter() {
   mkLine(qx, PAD.top, qx, PAD.top + plotH);
   mkLine(PAD.left, qy, PAD.left + plotW, qy);
 
-  // Axis tick labels
-  const mkText = (txt, x, y, anchor='middle', cls='') => {
+  const mkText = (txt, x, y, anchor='middle') => {
     const t = document.createElementNS(ns,'text');
     t.setAttribute('x',x); t.setAttribute('y',y);
     t.setAttribute('text-anchor',anchor);
@@ -544,20 +695,17 @@ function buildScatter() {
     t.setAttribute('font-size','10');
     t.setAttribute('fill','#4a4845');
     t.textContent = txt;
-    if(cls) t.setAttribute('class',cls);
     svg.appendChild(t);
     return t;
   };
 
-  // X ticks
   for(let a = Math.ceil(minAge*2)/2; a <= maxAge; a += 0.5) {
     const x = scaleX(a);
     mkText(a.toFixed(1), x, PAD.top + plotH + 16);
   }
   mkText('Average Age', PAD.left + plotW/2, H - 4);
 
-  // Y ticks
-  const yStep = 15000;
+  const yStep = 5000;
   for(let v = 0; v <= maxVal2; v += yStep) {
     const y = scaleY(v);
     if(y >= PAD.top && y <= PAD.top + plotH) {
@@ -570,7 +718,6 @@ function buildScatter() {
     }
   }
 
-  // Dots + labels
   const tooltip = document.getElementById('tooltip');
   const ttName  = document.getElementById('tt-name');
   const ttAge   = document.getElementById('tt-age');
@@ -583,7 +730,6 @@ function buildScatter() {
     const g = document.createElementNS(ns,'g');
     g.style.cursor = 'default';
 
-    // glow ring
     const ring = document.createElementNS(ns,'circle');
     ring.setAttribute('cx', cx); ring.setAttribute('cy', cy);
     ring.setAttribute('r', 12);
@@ -591,7 +737,6 @@ function buildScatter() {
     ring.setAttribute('opacity', '0.06');
     g.appendChild(ring);
 
-    // dot
     const c = document.createElementNS(ns,'circle');
     c.setAttribute('cx', cx); c.setAttribute('cy', cy);
     c.setAttribute('r', 7);
@@ -600,7 +745,6 @@ function buildScatter() {
     c.setAttribute('stroke-width', '1.5');
     g.appendChild(c);
 
-    // rank badge
     const rk = document.createElementNS(ns,'text');
     rk.setAttribute('x', cx); rk.setAttribute('y', cy + 4);
     rk.setAttribute('text-anchor','middle');
@@ -611,7 +755,6 @@ function buildScatter() {
     rk.textContent = t.oracle_rank;
     g.appendChild(rk);
 
-    // name label — offset to avoid overlap
     const shortName = t.name.length > 12 ? t.name.split(' ').slice(0,2).join(' ') : t.name;
     const lbl = document.createElementNS(ns,'text');
     const lblX = cx > PAD.left + plotW * 0.75 ? cx - 11 : cx + 11;
@@ -625,7 +768,6 @@ function buildScatter() {
     lbl.textContent = shortName;
     g.appendChild(lbl);
 
-    // hover
     const hitZone = document.createElementNS(ns,'circle');
     hitZone.setAttribute('cx', cx); hitZone.setAttribute('cy', cy);
     hitZone.setAttribute('r', 20);
@@ -648,6 +790,144 @@ function buildScatter() {
 
 buildScatter();
 window.addEventListener('resize', buildScatter);
+
+// ─── DEPTH PREVIEW DATA ──────────────────────────────────────
+const DEPTH_PREVIEW = [
+  {name:"John Henry Fan Club", rank:1, tiers:[11,9,15,14,6]},
+  {name:"Rollie Fingers", rank:2, tiers:[4,16,18,10,4]},
+  {name:"Seam heads", rank:3, tiers:[6,11,12,17,9]},
+  {name:"Humongous Melonheads", rank:4, tiers:[6,12,15,11,4]},
+  {name:"philbell", rank:5, tiers:[6,8,13,15,9]},
+  {name:"Inkers", rank:6, tiers:[2,8,15,14,13]},
+  {name:"Vin Mazzaro fan club", rank:7, tiers:[4,4,11,12,19]},
+  {name:"Millville Meteors", rank:8, tiers:[2,8,13,10,10]},
+  {name:"Trazadone", rank:9, tiers:[0,5,9,16,17]},
+  {name:"Mommy", rank:10, tiers:[3,7,9,10,10]},
+  {name:"Sam", rank:11, tiers:[5,5,6,7,21]},
+  {name:"Pat", rank:12, tiers:[1,7,9,9,17]},
+];
+
+// ─── DEPTH PREVIEW END ───────────────────────────────────────
+
+// ─── DEPTH CHART TILE ────────────────────────────────────────
+const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
+
+(function buildDepthPreview() {
+  const el = document.getElementById('depthPreviewChart');
+  if (!el) return;
+  DEPTH_PREVIEW.forEach(t => {
+    const total = t.tiers.reduce((a,b) => a+b, 0);
+    if (total === 0) return;
+    const row = document.createElement('div');
+    row.className = 'dp-row';
+    const rankEl = document.createElement('div');
+    rankEl.className = 'dp-rank';
+    rankEl.textContent = '#' + t.rank;
+    const track = document.createElement('div');
+    track.className = 'dp-track';
+    t.tiers.forEach((count, i) => {
+      if (count === 0) return;
+      const seg = document.createElement('div');
+      seg.className = 'dp-seg';
+      seg.style.width = (count / total * 100).toFixed(1) + '%';
+      seg.style.background = TIER_COLORS[i];
+      track.appendChild(seg);
+    });
+    row.appendChild(rankEl);
+    row.appendChild(track);
+    el.appendChild(row);
+  });
+})();
+
+// ─── MINI BAR TILE ───────────────────────────────────────────
+(function buildMiniBar() {
+  const el = document.getElementById('miniBarChart');
+  if (!el) return;
+  const max = Math.max(...TEAMS.map(t => t.total));
+  [...TEAMS].sort((a,b) => a.oracle_rank - b.oracle_rank).forEach(t => {
+    const mlbPct  = (t.mlb  / max * 100).toFixed(1);
+    const farmPct = (t.farm / max * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'mb-row';
+    const rankEl = document.createElement('div');
+    rankEl.className = 'mb-rank';
+    rankEl.textContent = '#' + t.oracle_rank;
+    const track = document.createElement('div');
+    track.className = 'mb-track';
+    track.innerHTML = `<div class="mb-fill-mlb" style="width:${mlbPct}%"></div>`
+                    + `<div class="mb-fill-farm" style="left:${mlbPct}%;width:${farmPct}%"></div>`;
+    row.appendChild(rankEl);
+    row.appendChild(track);
+    el.appendChild(row);
+  });
+})();
+
+// ─── MINI SCATTER TILE ───────────────────────────────────────
+(function buildMiniScatter() {
+  const svgEl = document.getElementById('miniScatterSvg');
+  if (!svgEl) return;
+
+  const W = svgEl.parentElement.clientWidth  || 280;
+  const H = svgEl.parentElement.clientHeight || 220;
+  svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svgEl.setAttribute('width',  W);
+  svgEl.setAttribute('height', H);
+
+  const PAD = {top:14, right:14, bottom:14, left:14};
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top  - PAD.bottom;
+
+  const ages = TEAMS.map(t => t.avg_age);
+  const vals = TEAMS.map(t => t.total);
+  const minAge = Math.min(...ages) - 0.3;
+  const maxAge = Math.max(...ages) + 0.3;
+  const maxVal = Math.max(...vals) * 1.08;
+
+  const sx = a => PAD.left + (a - minAge) / (maxAge - minAge) * plotW;
+  const sy = v => PAD.top  + (1 - v / maxVal) * plotH;
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const midAge = (minAge + maxAge) / 2;
+  const midVal = maxVal / 2;
+
+  // Quadrant lines
+  [[sx(midAge), PAD.top, sx(midAge), PAD.top+plotH],
+   [PAD.left, sy(midVal), PAD.left+plotW, sy(midVal)]].forEach(([x1,y1,x2,y2]) => {
+    const l = document.createElementNS(ns,'line');
+    l.setAttribute('x1',x1); l.setAttribute('y1',y1);
+    l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+    l.setAttribute('stroke','#1e1e20'); l.setAttribute('stroke-width','1');
+    l.setAttribute('stroke-dasharray','3 3');
+    svgEl.appendChild(l);
+  });
+
+  TEAMS.forEach(t => {
+    const cx = sx(t.avg_age);
+    const cy = sy(t.total);
+    const g = document.createElementNS(ns,'g');
+
+    const ring = document.createElementNS(ns,'circle');
+    ring.setAttribute('cx',cx); ring.setAttribute('cy',cy); ring.setAttribute('r',10);
+    ring.setAttribute('fill','#c8a84b'); ring.setAttribute('opacity','0.07');
+    g.appendChild(ring);
+
+    const dot = document.createElementNS(ns,'circle');
+    dot.setAttribute('cx',cx); dot.setAttribute('cy',cy); dot.setAttribute('r',6);
+    dot.setAttribute('fill','#8b2a1e'); dot.setAttribute('stroke','#c8856e'); dot.setAttribute('stroke-width','1.5');
+    g.appendChild(dot);
+
+    const lbl = document.createElementNS(ns,'text');
+    lbl.setAttribute('x',cx); lbl.setAttribute('y',cy+3.5);
+    lbl.setAttribute('text-anchor','middle');
+    lbl.setAttribute('font-family','DM Sans, sans-serif');
+    lbl.setAttribute('font-size','7.5'); lbl.setAttribute('font-weight','700');
+    lbl.setAttribute('fill','#f0ede6');
+    lbl.textContent = t.oracle_rank;
+    g.appendChild(lbl);
+
+    svgEl.appendChild(g);
+  });
+})();
 </script>
 </body>
 </html>
