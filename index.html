@@ -94,6 +94,12 @@ body {
   color: var(--text-dead);
   margin-bottom: 16px;
 }
+.section-label a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.section-label a:hover { color: var(--text-muted); }
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -305,7 +311,7 @@ body {
 </div>
 
 <div class="nav-section">
-  <div class="section-label">Power Rankings — 2026</div>
+  <div class="section-label"><a href="power_rankings.html">Power Rankings — 2026</a></div>
   <div class="card-grid">
     <a href="week4_power_rankings.html" class="card featured">
       <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 4</div>
@@ -325,11 +331,11 @@ body {
       <div class="card-meta">Mar 31, 2026</div>
       <div class="card-arrow">Read →</div>
     </a>
-    <a href="week1_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 1</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Mar 27, 2026</div>
-      <div class="card-arrow">Read →</div>
+    <a href="power_rankings.html" class="card">
+      <div class="card-eyebrow">All Articles</div>
+      <div class="card-title">Archive</div>
+      <div class="card-meta">Week 1 &amp; earlier</div>
+      <div class="card-arrow">View all →</div>
     </a>
   </div>
 
