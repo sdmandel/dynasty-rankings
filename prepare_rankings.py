@@ -129,48 +129,43 @@ def parse_last_standings(value: str) -> dict[str, int]:
 
 
 def format_standings(rows: list[dict], last_standings: dict[str, int] | None = None) -> str:
-    """Format roto standings into a text table."""
+    """Format roto standings into a text table.
+
+    Rank deltas are taken from last_standings if provided, otherwise from the
+    prev_rank field already embedded in each row by fetch_standings_from_db.
+    """
     if not rows:
         return "(Standings not yet available — preseason)"
 
     date_label = rows[0].get("snapshot_date", "")
 
-    if last_standings:
-        lines = [
-            f"As of {date_label}",
-            f"{'Rank':<5} {'Team':<28} {'Pts':<7} {'Chg (rank)':<18} {'R':<5} {'HR':<5} {'RBI':<5} {'SB':<5} {'OPS':<5} {'QS':<5} {'K':<5} {'ERA':<5} {'WHIP':<5} {'SVH':<5}",
-            "-" * 125,
-        ]
-        for r in rows:
+    lines = [
+        f"As of {date_label}",
+        f"{'Rank':<5} {'Team':<28} {'Pts':<7} {'Chg (rank)':<18} {'R':<5} {'HR':<5} {'RBI':<5} {'SB':<5} {'OPS':<5} {'QS':<5} {'K':<5} {'ERA':<5} {'WHIP':<5} {'SVH':<5}",
+        "-" * 125,
+    ]
+    for r in rows:
+        if last_standings:
             prev_rank = last_standings.get(r["team_name"])
-            if prev_rank and prev_rank != r["rank"]:
-                delta = prev_rank - r["rank"]
-                sign = "+" if delta > 0 else ""
-                chg = f"{sign}{delta} (was {_ordinal(prev_rank)})"
-            elif prev_rank:
-                chg = "— (no change)"
-            else:
-                chg = "— (N/A)"
-            lines.append(
-                f"#{r['rank']:<4} {r['team_name']:<28} {r['roto_pts']:<7.1f} {chg:<18}"
-                f" {r['cat_r']:<5} {r['cat_hr']:<5} {r['cat_rbi']:<5} {r['cat_sb']:<5}"
-                f" {r['cat_ops']:<5} {r['cat_qs']:<5} {r['cat_k']:<5}"
-                f" {r['cat_era']:<5} {r['cat_whip']:<5} {r['cat_svh']:<5}"
-            )
-        lines.append("")
-    else:
-        lines = [
-            f"As of {date_label} (week-over-week delta unavailable — pass --last-standings for rank change)",
-            f"{'Rank':<5} {'Team':<28} {'Pts':<7} {'R':<5} {'HR':<5} {'RBI':<5} {'SB':<5} {'OPS':<5} {'QS':<5} {'K':<5} {'ERA':<5} {'WHIP':<5} {'SVH':<5}",
-            "-" * 110,
-        ]
-        for r in rows:
-            lines.append(
-                f"#{r['rank']:<4} {r['team_name']:<28} {r['roto_pts']:<7.1f}"
-                f" {r['cat_r']:<5} {r['cat_hr']:<5} {r['cat_rbi']:<5} {r['cat_sb']:<5}"
-                f" {r['cat_ops']:<5} {r['cat_qs']:<5} {r['cat_k']:<5}"
-                f" {r['cat_era']:<5} {r['cat_whip']:<5} {r['cat_svh']:<5}"
-            )
+        else:
+            prev_rank = r.get("prev_rank")
+
+        if prev_rank and prev_rank != r["rank"]:
+            delta = prev_rank - r["rank"]
+            sign = "+" if delta > 0 else ""
+            chg = f"{sign}{delta} (was {_ordinal(prev_rank)})"
+        elif prev_rank:
+            chg = "— (no change)"
+        else:
+            chg = "— (N/A)"
+
+        lines.append(
+            f"#{r['rank']:<4} {r['team_name']:<28} {r['roto_pts']:<7.1f} {chg:<18}"
+            f" {r['cat_r']:<5} {r['cat_hr']:<5} {r['cat_rbi']:<5} {r['cat_sb']:<5}"
+            f" {r['cat_ops']:<5} {r['cat_qs']:<5} {r['cat_k']:<5}"
+            f" {r['cat_era']:<5} {r['cat_whip']:<5} {r['cat_svh']:<5}"
+        )
+    lines.append("")
 
     return "\n".join(lines)
 
@@ -294,8 +289,11 @@ def format_lineup_activity(
 # ── Recent trades ────────────────────────────────────────────────────────────
 
 
-def fetch_trades(session) -> list[dict]:
-    """Fetch executed trades from the Fantrax API."""
+def fetch_trades(session, week_start: date | None = None, week_end: date | None = None) -> list[dict]:
+    """Fetch executed trades from the Fantrax API.
+
+    If week_start/week_end are provided, only returns trades within that window.
+    """
     league_id = FANTRAX_LEAGUE_ID
     url = f"https://www.fantrax.com/fxpa/req?leagueId={league_id}"
     payload = {
@@ -364,6 +362,17 @@ def fetch_trades(session) -> list[dict]:
                     period = c
 
             moves.append((label, from_t, to_t))
+
+        # Apply date window filter if requested
+        if (week_start or week_end) and date_str:
+            try:
+                trade_dt = datetime.strptime(date_str, "%a %b %d, %Y, %I:%M%p").date()
+                if week_start and trade_dt < week_start:
+                    continue
+                if week_end and trade_dt > week_end:
+                    continue
+            except ValueError:
+                pass  # unparseable date → include it
 
         # Summarize as two-sided trade
         receiving: dict[str, list[str]] = defaultdict(list)
@@ -474,6 +483,67 @@ def format_hkb_rankings(teams: list[dict]) -> str:
     for t in teams:
         lines.append(
             f"  {t['hkb_power_rank']:>2}  {t['team_name']:<35}  {t['total_value']:>8,}  "
+            f"{t['player_count']:>7}  #{t['top_rank']} {t['top_player']:<20}"
+        )
+    return "\n".join(lines)
+
+
+# ── Algo team rankings (from dynasty rankings CSV) ───────────────────────────
+
+
+def compute_algo_team_rankings(csv_rows: list[dict]) -> list[dict]:
+    """Sum composite Score per team from the dynasty rankings CSV.
+
+    Returns a list of dicts sorted by total score descending, with:
+      team_name, total_score, player_count, top_player, top_rank
+    """
+    teams: dict[str, list[dict]] = defaultdict(list)
+    for row in csv_rows:
+        owner = row.get("Owned By", "").strip()
+        if not owner:
+            continue
+        teams[owner].append(row)
+
+    result = []
+    for team_name, players in teams.items():
+        scores = []
+        for p in players:
+            try:
+                scores.append(float(p.get("Score", 0) or 0))
+            except (ValueError, TypeError):
+                pass
+        total_score = sum(scores)
+
+        # Top player by Overall Rank (lowest number = best)
+        ranked = [p for p in players if _safe_int(p.get("Overall Rank"))]
+        ranked.sort(key=lambda p: _safe_int(p.get("Overall Rank")) or 9999)
+        top = ranked[0] if ranked else {}
+
+        result.append({
+            "team_name": team_name,
+            "total_score": total_score,
+            "player_count": len(players),
+            "top_player": top.get("Player", ""),
+            "top_rank": _safe_int(top.get("Overall Rank")) or 0,
+        })
+
+    result.sort(key=lambda t: t["total_score"], reverse=True)
+    for i, t in enumerate(result, 1):
+        t["algo_power_rank"] = i
+    return result
+
+
+def format_algo_rankings(teams: list[dict]) -> str:
+    """Format algo composite team rankings into text."""
+    if not teams:
+        return "(Algo ranking data not available)"
+    lines = [
+        f"{'#':>3}  {'Team':<35}  {'Score':>8}  {'Players':>7}  {'Top Player':<25}"
+    ]
+    lines.append("-" * 85)
+    for t in teams:
+        lines.append(
+            f"  {t['algo_power_rank']:>2}  {t['team_name']:<35}  {t['total_score']:>8.1f}  "
             f"{t['player_count']:>7}  #{t['top_rank']} {t['top_player']:<20}"
         )
     return "\n".join(lines)
@@ -690,7 +760,7 @@ def _safe_float(val) -> float | None:
 def build_prompt(
     week: int,
     standings_text: str,
-    hkb_text: str,
+    algo_rankings_text: str,
     lineup_activity_text: str,
     roster_text: str,
 ) -> str:
@@ -702,8 +772,8 @@ WEEK {week} DYNASTY POWER RANKINGS — DATA DUMP
 CURRENT STANDINGS (roto points, 5x5):
 {standings_text}
 
-ORACLE LEAGUE POWER RANKINGS:
-{hkb_text}
+ALGO COMPOSITE TEAM RANKINGS (sum of dynasty composite scores per roster):
+{algo_rankings_text}
 
 LINEUP MANAGEMENT ACTIVITY:
 {lineup_activity_text}
@@ -750,9 +820,6 @@ def main():
     parser.add_argument("--week", type=int, required=True, help="Week number")
     parser.add_argument(
         "--no-standings", action="store_true", help="Skip standings fetch"
-    )
-    parser.add_argument(
-        "--no-hkb", action="store_true", help="Skip HKB power rankings fetch"
     )
     parser.add_argument(
         "--last-standings",
@@ -809,26 +876,25 @@ def main():
             log.warning("Could not read standings: %s", e)
             standings_text = f"(Error reading standings: {e})"
 
-    # HKB / Oracle power rankings
-    hkb_teams: list[dict] = []
-    if args.no_hkb:
-        hkb_text = "(Skipped)"
-    else:
-        log.info("Fetching Oracle league power rankings…")
-        try:
-            hkb_teams = fetch_hkb_power_rankings()
-            hkb_text = format_hkb_rankings(hkb_teams)
-            known_teams.update(t["team_name"] for t in hkb_teams)
-        except Exception as e:
-            log.warning("Could not fetch Oracle rankings: %s", e)
-            hkb_text = f"(Error fetching Oracle rankings: {e})"
+    # Algo composite team rankings (computed from dynasty CSV)
+    # Load CSV rows now so we can reuse them for roster breakdowns below
+    csv_rows = load_rankings_csv(csv_path)
+    log.info("Computing algo composite team rankings from CSV…")
+    try:
+        algo_teams = compute_algo_team_rankings(csv_rows)
+        algo_rankings_text = format_algo_rankings(algo_teams)
+        known_teams.update(t["team_name"] for t in algo_teams)
+    except Exception as e:
+        log.warning("Could not compute algo rankings: %s", e)
+        algo_rankings_text = f"(Error computing algo rankings: {e})"
 
-    # Per-team transactions — auto-fetch trades, optionally supplement with manual JSON
+    # Per-team transactions — auto-fetch trades within the completed week window
+    week_start, week_end = _completed_week_range()
     transactions: dict[str, list[str]] = defaultdict(list)
-    log.info("Fetching trades from Fantrax…")
+    log.info("Fetching trades from Fantrax (window: %s–%s)…", week_start, week_end)
     try:
         trade_session = get_requests_session()
-        fetched_trades = fetch_trades(trade_session)
+        fetched_trades = fetch_trades(trade_session, week_start=week_start, week_end=week_end)
         for trade in fetched_trades:
             period = trade.get("period", "?")
             date_str = trade.get("date", "")
@@ -855,11 +921,10 @@ def main():
 
     transactions = dict(transactions) if transactions else None
 
-    # Lineup activity
+    # Lineup activity (reuses the same week_start/week_end window as trades)
     if args.no_lineup_activity:
         lineup_activity_text = "(Skipped)"
     else:
-        week_start, week_end = _completed_week_range()
         log.info("Fetching lineup activity for %s–%s…", week_start, week_end)
         try:
             activity_session = get_requests_session()
@@ -871,13 +936,12 @@ def main():
             log.warning("Could not fetch lineup activity: %s", e)
             lineup_activity_text = f"(Error fetching lineup activity: {e})"
 
-    # Roster breakdowns
+    # Roster breakdowns (csv_rows already loaded above)
     log.info("Processing roster breakdowns…")
-    csv_rows = load_rankings_csv(csv_path)
     roster_text = build_team_breakdowns(csv_rows, transactions)
 
     # Build prompt
-    prompt = build_prompt(args.week, standings_text, hkb_text, lineup_activity_text, roster_text)
+    prompt = build_prompt(args.week, standings_text, algo_rankings_text, lineup_activity_text, roster_text)
 
     # Output
     print(prompt)
