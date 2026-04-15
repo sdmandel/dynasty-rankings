@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Standings — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Live roto standings and category breakdown for all 12 teams in Backyard Dynasty Baseball 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Standings — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Live roto standings and category breakdown for all 12 teams.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/standings.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --red: #b55d5d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 40px 36px;
+  border-bottom: 1px solid var(--border2);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-muted); }
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.site-header h1 span { color: var(--gold); }
+.divider {
+  width: 40px; height: 2px;
+  background: var(--gold);
+  margin: 20px 0;
+}
+.site-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 40px 60px;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 16px;
+}
+
+/* ── SUMMARY TABLE ── */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 52px;
+  font-size: 14px;
+}
+.summary-table thead th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding: 0 12px 10px 0;
+  border-bottom: 1px solid var(--border2);
+}
+.summary-table thead th:first-child { padding-left: 0; }
+.summary-table thead th.right { text-align: right; }
+.summary-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.summary-table tbody tr:hover { background: var(--bg2); }
+.summary-table tbody td {
+  padding: 11px 12px 11px 0;
+  color: var(--text);
+}
+.summary-table tbody td:first-child { padding-left: 0; }
+.summary-table tbody td.right { text-align: right; }
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--text-dead);
+  width: 36px;
+  display: inline-block;
+  text-align: right;
+}
+.rank-num.top3 { color: var(--gold); }
+.team-name {
+  font-weight: 500;
+}
+.pts-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--text);
+}
+.pts-first { color: var(--gold); }
+.pts-behind {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.pts-change {
+  font-size: 12px;
+}
+.pts-change.up   { color: #5da87a; }
+.pts-change.down { color: var(--red); }
+.pts-change.flat { color: var(--text-dead); }
+
+/* ── CATEGORY TABLE ── */
+.cat-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 12px;
+}
+.cat-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.cat-table thead th {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding: 0 6px 10px;
+  border-bottom: 1px solid var(--border2);
+}
+.cat-table thead th.team-col { text-align: left; padding-left: 0; }
+.cat-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.cat-table tbody tr:hover { background: var(--bg2); }
+.cat-table tbody td {
+  padding: 9px 6px;
+  text-align: center;
+  color: var(--text-mid);
+}
+.cat-table tbody td.team-col {
+  text-align: left;
+  padding-left: 0;
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cat-table tbody td .rank-sm {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--text-dead);
+  margin-right: 6px;
+  display: inline-block;
+  width: 22px;
+  text-align: right;
+}
+.cat-leader {
+  background: rgba(200, 168, 75, 0.12);
+  color: var(--gold) !important;
+  font-weight: 600;
+  border-radius: 3px;
+}
+.cat-last {
+  color: var(--red) !important;
+  opacity: 0.75;
+}
+
+/* ── CATEGORY LEADERS STRIP ── */
+.leaders-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+.leader-chip {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+.leader-chip .chip-cat {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 2px;
+}
+.leader-chip .chip-team {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+/* loading / error state */
+.state-msg {
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 680px) {
+  .site-header, .content, .site-footer {
+    padding-left: 20px; padding-right: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Roto<br><span>Standings</span></h1>
+  <div class="divider"></div>
+  <p>5&times;5 roto points. Category leaders highlighted in gold. Updated daily after the 9:30 AM standings snapshot.</p>
+</div>
+
+<div class="content">
+
+  <div id="loadingMsg" class="state-msg">Loading standings…</div>
+
+  <div id="mainContent" style="display:none;">
+
+    <!-- ── CATEGORY LEADERS ── -->
+    <div class="section-label">Category Leaders</div>
+    <div class="leaders-strip" id="leadersStrip"></div>
+
+    <!-- ── SUMMARY TABLE ── -->
+    <div class="section-label">Overall Standings</div>
+    <table class="summary-table" id="summaryTable">
+      <thead>
+        <tr>
+          <th style="width:36px;"></th>
+          <th>Team</th>
+          <th class="right">Roto Pts</th>
+          <th class="right">Behind</th>
+          <th class="right">Change</th>
+          <th class="right">Waiver</th>
+        </tr>
+      </thead>
+      <tbody id="summaryBody"></tbody>
+    </table>
+
+    <!-- ── CATEGORY BREAKDOWN ── -->
+    <div class="section-label">Category Breakdown</div>
+    <div class="cat-scroll">
+      <table class="cat-table" id="catTable">
+        <thead id="catHead"></thead>
+        <tbody id="catBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="site-footer" id="footerEl">
+  Standings data from Fantrax. Updated daily via automated snapshot.
+</div>
+
+<script>
+fetch('data/standings.json')
+  .then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(data => {
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('mainContent').style.display = '';
+    renderLeaders(data);
+    renderSummary(data);
+    renderCategories(data);
+    document.getElementById('footerEl').textContent =
+      'Last updated: ' + data.generated + (data.week ? '  ·  Scoring period ' + data.week : '') +
+      '  ·  Standings from Fantrax.';
+  })
+  .catch(err => {
+    document.getElementById('loadingMsg').textContent = 'Could not load standings data. (' + err.message + ')';
+  });
+
+function renderLeaders(data) {
+  const strip = document.getElementById('leadersStrip');
+  const cats = data.category_order || [];
+  cats.forEach(cat => {
+    const leader = (data.category_leaders || {})[cat];
+    if (!leader) return;
+    const chip = document.createElement('div');
+    chip.className = 'leader-chip';
+    chip.innerHTML = `<div class="chip-cat">${cat}</div><div class="chip-team">${leader}</div>`;
+    strip.appendChild(chip);
+  });
+}
+
+function renderSummary(data) {
+  const tbody = document.getElementById('summaryBody');
+  data.teams.forEach(t => {
+    const isFirst = t.rank === 1;
+    const changeNum = t.pts_change || 0;
+    const changeClass = changeNum > 0 ? 'up' : changeNum < 0 ? 'down' : 'flat';
+    const changeStr = changeNum > 0 ? '+' + changeNum.toFixed(1) : changeNum.toFixed(1);
+    tbody.innerHTML += `
+      <tr>
+        <td><span class="rank-num${t.rank <= 3 ? ' top3' : ''}">#${t.rank}</span></td>
+        <td class="team-name">${esc(t.team)}</td>
+        <td class="right"><span class="pts-val${isFirst ? ' pts-first' : ''}">${fmt(t.total_pts)}</span></td>
+        <td class="right"><span class="pts-behind">${isFirst ? '—' : '-' + t.pts_behind.toFixed(1)}</span></td>
+        <td class="right"><span class="pts-change ${changeClass}">${changeStr}</span></td>
+        <td class="right" style="color:var(--text-muted);font-size:13px;">${t.waiver_order != null ? '#' + t.waiver_order : '—'}</td>
+      </tr>`;
+  });
+}
+
+function renderCategories(data) {
+  const cats = data.category_order || [];
+
+  // Header
+  const headRow = document.createElement('tr');
+  headRow.innerHTML = '<th class="team-col">Team</th>' +
+    cats.map(c => `<th>${c}</th>`).join('');
+  document.getElementById('catHead').appendChild(headRow);
+
+  // Body — sorted by roto rank
+  const tbody = document.getElementById('catBody');
+  data.teams.forEach(t => {
+    const tr = document.createElement('tr');
+    let html = `<td class="team-col"><span class="rank-sm">#${t.rank}</span>${esc(t.team)}</td>`;
+    cats.forEach(cat => {
+      const info = (t.categories || {})[cat] || {};
+      const val  = info.pts != null ? info.pts.toFixed(1) : '—';
+      let cls = '';
+      if (info.leader) cls = 'cat-leader';
+      else if (info.last) cls = 'cat-last';
+      html += `<td class="${cls}">${val}</td>`;
+    });
+    tr.innerHTML = html;
+    tbody.appendChild(tr);
+  });
+}
+
+function fmt(v)  { return v != null ? v.toFixed(1) : '—'; }
+function esc(s)  { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>

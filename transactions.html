@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Transactions — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Recent adds, drops, and trades across all 12 teams in Backyard Dynasty Baseball 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Transactions — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Recent adds, drops, and trades across all 12 teams.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/transactions.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --red: #b55d5d;
+  --green: #5da87a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 40px 36px;
+  border-bottom: 1px solid var(--border2);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-muted); }
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.site-header h1 span { color: var(--gold); }
+.divider {
+  width: 40px; height: 2px;
+  background: var(--gold);
+  margin: 20px 0;
+}
+.site-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 40px 60px;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.filter-btn {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.filter-btn:hover  { color: var(--text); border-color: var(--border2); }
+.filter-btn.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ── TRANSACTION LIST ── */
+.txn-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.txn-row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg2);
+  transition: border-color 0.1s;
+}
+.txn-row:hover { border-color: var(--border2); }
+
+.txn-type-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.type-pill {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.type-ADD   { background: rgba(93, 168, 122, 0.15); color: var(--green); }
+.type-DROP  { background: rgba(181, 93, 93, 0.15);  color: var(--red); }
+.type-TRADE { background: rgba(200, 168, 75, 0.15); color: var(--gold); }
+
+.badge-pill {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.badge-trade   { background: rgba(200, 168, 75, 0.2); color: var(--gold); }
+.badge-notable { background: rgba(181, 93, 93, 0.2);  color: var(--red); }
+.badge-prospect { background: rgba(93, 125, 181, 0.2); color: var(--blue); }
+
+.txn-main {
+  min-width: 0;
+}
+.txn-player {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.txn-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+.txn-detail .pos {
+  color: var(--text-dead);
+  font-size: 11px;
+  margin-right: 6px;
+}
+.txn-date {
+  font-size: 11px;
+  color: var(--text-dead);
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ── EMPTY STATE ── */
+.empty-msg {
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+.state-msg {
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 680px) {
+  .site-header, .content, .site-footer {
+    padding-left: 20px; padding-right: 20px;
+  }
+  .txn-row {
+    grid-template-columns: 60px 1fr auto;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Trans<br><span>actions</span></h1>
+  <div class="divider"></div>
+  <p>Recent adds, drops, and trades across all 12 teams. Updated every 6 hours. Minor leaguer adds are tagged as prospects.</p>
+</div>
+
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading transactions…</div>
+
+  <div id="mainContent" style="display:none;">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="ALL">All</button>
+      <button class="filter-btn" data-filter="ADD">Adds</button>
+      <button class="filter-btn" data-filter="DROP">Drops</button>
+      <button class="filter-btn" data-filter="TRADE">Trades</button>
+      <button class="filter-btn" data-filter="prospect">Prospects</button>
+      <button class="filter-btn" data-filter="notable">Notable</button>
+    </div>
+
+    <div class="txn-list" id="txnList"></div>
+  </div>
+</div>
+
+<div class="site-footer" id="footerEl">
+  Transaction data from Fantrax. Updated every 6 hours via automated export.
+</div>
+
+<script>
+let ALL_TXNS = [];
+let activeFilter = 'ALL';
+
+fetch('data/transactions.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    ALL_TXNS = data.transactions || [];
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('mainContent').style.display = '';
+    document.getElementById('footerEl').textContent =
+      'Last updated: ' + data.generated + '  ·  Showing last ' + ALL_TXNS.length + ' transactions.';
+    renderList(ALL_TXNS);
+    setupFilters();
+  })
+  .catch(err => {
+    document.getElementById('loadingMsg').textContent = 'Could not load transaction data. (' + err.message + ')';
+  });
+
+function setupFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      const filtered = filterTxns(ALL_TXNS, activeFilter);
+      renderList(filtered);
+    });
+  });
+}
+
+function filterTxns(txns, filter) {
+  if (filter === 'ALL') return txns;
+  if (filter === 'prospect' || filter === 'notable' || filter === 'trade') {
+    return txns.filter(t => t.badge === filter);
+  }
+  return txns.filter(t => t.type === filter);
+}
+
+function renderList(txns) {
+  const list = document.getElementById('txnList');
+  list.innerHTML = '';
+  if (!txns.length) {
+    list.innerHTML = '<div class="empty-msg">No transactions match this filter.</div>';
+    return;
+  }
+  txns.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'txn-row';
+
+    // Type + badge column
+    const typeCol = document.createElement('div');
+    typeCol.className = 'txn-type-col';
+    typeCol.innerHTML = `<span class="type-pill type-${esc(t.type)}">${esc(t.type)}</span>`;
+    if (t.badge) {
+      typeCol.innerHTML += `<span class="badge-pill badge-${esc(t.badge)}">${esc(t.badge)}</span>`;
+    }
+
+    // Main info column
+    const mainCol = document.createElement('div');
+    mainCol.className = 'txn-main';
+    let detailParts = [];
+    if (t.team) detailParts.push(t.type === 'DROP' ? `dropped by ${esc(t.team)}` : `${esc(t.team)}`);
+    if (t.from_team) detailParts.push(`from ${esc(t.from_team)}`);
+    mainCol.innerHTML = `
+      <div class="txn-player">${esc(t.player)}</div>
+      <div class="txn-detail">
+        <span class="pos">${esc(t.position || '')}</span>${detailParts.join(' · ')}
+      </div>`;
+
+    // Date column
+    const dateCol = document.createElement('div');
+    dateCol.className = 'txn-date';
+    dateCol.textContent = relativeDate(t.date);
+
+    row.appendChild(typeCol);
+    row.appendChild(mainCol);
+    row.appendChild(dateCol);
+    list.appendChild(row);
+  });
+}
+
+function relativeDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const now = new Date();
+  const days = Math.floor((now - d) / 86400000);
+  if (days === 0) return 'Today';
+  if (days === 1) return 'Yesterday';
+  if (days <= 6) return days + 'd ago';
+  return dateStr;
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
