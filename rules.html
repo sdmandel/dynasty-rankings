@@ -97,18 +97,26 @@ body {
   gap: 5px;
 }
 
-.toc-list a {
+.toc-link {
   color: var(--text-mid);
   text-decoration: none;
   font-size: 12px;
   line-height: 1.45;
   transition: color 0.15s;
+  display: inline-block;
 }
 
-.toc-list a:hover { color: var(--gold); }
-.toc-sublist a {
+.toc-link:hover { color: var(--gold); }
+.toc-sublink {
   font-size: 11px;
   color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+
+.toc-sublink:hover {
+  color: var(--gold);
 }
 
 .content-head {
@@ -432,11 +440,11 @@ function renderToc(sections) {
   toc.innerHTML = sections.map(section => {
     const sublinks = (section.blocks || [])
       .filter(block => block.title && block.anchor)
-      .map(block => `<li><a href="#${esc(block.anchor)}">${esc(block.title)}</a></li>`)
+      .map(block => `<li><a class="toc-sublink" href="#${esc(block.anchor)}">${esc(block.title)}</a></li>`)
       .join('');
     return `
       <li>
-        <a href="#${esc(section.anchor)}">${esc(section.number)}. ${esc(section.title)}</a>
+        <a class="toc-link" href="#${esc(section.anchor)}">${esc(section.number)}. ${esc(section.title)}</a>
         ${sublinks ? `<ul class="toc-sublist">${sublinks}</ul>` : ''}
       </li>`;
   }).join('');
