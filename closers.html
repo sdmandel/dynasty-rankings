@@ -53,6 +53,22 @@ table { width:100%; min-width:680px; border-collapse:collapse; font-size:13px; }
 th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
 td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
 td:first-child { color:var(--text); }
+.board-row.rostered { background:rgba(93,125,181,0.10); }
+.board-row.available { background:rgba(93,168,122,0.10); }
+.board-row.rostered td,
+.board-row.available td { color:var(--text-mid); }
+.owner-pill {
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1px solid;
+  border-radius:999px;
+  padding:2px 7px;
+}
+.board-row.rostered .owner-pill { color:#8ca7d4; border-color:#314b78; background:rgba(93,125,181,0.14); }
+.board-row.available .owner-pill { color:#5da87a; border-color:#2a5a3c; background:rgba(93,168,122,0.14); }
 .state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
 .site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
 @media (max-width:900px){ .closer-grid,.dynasty-closers{grid-template-columns:1fr 1fr;} }
@@ -65,7 +81,7 @@ td:first-child { color:var(--text); }
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Closer<br><span>Carousel</span></h1>
   <div class="divider"></div>
-  <p>Current save leaders by MLB bullpen. Confidence derived from season save totals and blown-save rate. Dynasty ownership from the Oracle rankings CSV.</p>
+  <p>Current save leaders by MLB bullpen. Confidence sourced from real-world projections.</p>
 </div>
 <div class="content">
   <div id="loadingMsg" class="state-msg">Loading closer data...</div>
@@ -90,7 +106,7 @@ td:first-child { color:var(--text); }
 
   </div>
 </div>
-<div class="site-footer" id="footerEl">Closer data from MLB Stats API season save leaders. Dynasty ownership from Oracle rankings.</div>
+<div class="site-footer" id="footerEl">Closer data from MLB Stats API season save leaders + FantasyPros/FanGraphs role confidence. Dynasty ownership from Oracle rankings.</div>
 <script>
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function pct(v){return Math.round(Number(v||0));}
@@ -133,17 +149,22 @@ function render(data){
       </div>`).join('')
     :'<div class="state-msg">No dynasty team ownership data.</div>';
 
-  document.getElementById('boardBody').innerHTML=closers.map(c=>`<tr>
+  document.getElementById('boardBody').innerHTML=closers.map(c=>{
+    const available = !c.dynasty_team;
+    const rowCls = available ? 'available' : 'rostered';
+    const ownerTxt = available ? 'Available' : esc(c.dynasty_team);
+    return `<tr class="board-row ${rowCls}">
     <td>${esc(c.closer_name||'—')}</td>
     <td>${esc(c.bullpen_team||'—')}</td>
-    <td>${esc(c.dynasty_team||'FA')}</td>
+    <td><span class="owner-pill">${ownerTxt}</span></td>
     <td>${c.recent_saves}</td>
     <td>${pct(c.confidence_score)} <span style="font-size:10px;color:var(--text-dead)">(${confLabel(c.confidence_score)})</span></td>
     <td>${c.role_share}%</td>
     <td>${c.unstable_flag?'<span style="color:var(--red);font-size:11px">⚠ Unstable</span>':''}</td>
-  </tr>`).join('')||'<tr><td colspan="7">No closer data.</td></tr>';
+  </tr>`;
+  }).join('')||'<tr><td colspan="7">No closer data.</td></tr>';
 
-  document.getElementById('footerEl').textContent=`Last updated: ${data.generated||'—'} · Save data from MLB Stats API.`;
+  document.getElementById('footerEl').textContent=`Last updated: ${data.generated||'—'} · Save data from MLB Stats API with FantasyPros/FanGraphs confidence.`;
 }
 
 fetch('data/closers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
