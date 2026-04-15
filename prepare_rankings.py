@@ -2,9 +2,10 @@
 """
 prepare_rankings.py — Generate weekly dynasty power rankings prompt data.
 
-Gathers standings from standings.db (roto), HKB league power rankings, recent
-trades, and roster breakdowns from the dynasty rankings CSV, then formats a
-ready-to-paste prompt block for Claude.
+Gathers standings from standings.db (roto), Oracle composite team rankings from
+the dynasty rankings CSV, recent trades, lineup activity, and optional weekly
+intelligence snippets from local site exports, then formats a ready-to-paste
+prompt block for Claude.
 
 Usage:
     python -m powerrankings.prepare_rankings --week 1
@@ -16,6 +17,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import csv
+import json
 import logging
 import sqlite3
 import subprocess
@@ -35,6 +37,7 @@ from src.shared.constants import USER_AGENT
 log = logging.getLogger(__name__)
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+SITE_DATA_DIR = SCRIPT_DIR / "data"
 RANKINGS_CSV = Path(DATA_DIR) / "rankings_latest.csv"
 
 
@@ -427,6 +430,52 @@ def format_trades(trades: list[dict]) -> str:
     return "\n".join(lines).rstrip()
 
 
+def build_trade_notes_from_site_transactions(
+    known_teams: set[str],
+    week_start: date | None = None,
+    week_end: date | None = None,
+) -> dict[str, list[str]]:
+    """Fallback trade notes from local transactions.json when live fetch is skipped."""
+    data = _load_site_json("transactions")
+    if not data:
+        return {}
+    rows = data.get("transactions") or []
+    if not rows:
+        return {}
+
+    by_trade_id: dict[str, list[dict]] = defaultdict(list)
+    for row in rows:
+        if str(row.get("type", "")).upper() != "TRADE":
+            continue
+        tx_date = row.get("date")
+        if tx_date and (week_start or week_end):
+            try:
+                d = datetime.strptime(str(tx_date), "%Y-%m-%d").date()
+                if week_start and d < week_start:
+                    continue
+                if week_end and d > week_end:
+                    continue
+            except ValueError:
+                pass
+        by_trade_id[str(row.get("id") or f"missing_{len(by_trade_id)}")].append(row)
+
+    notes: dict[str, list[str]] = defaultdict(list)
+    for tx_id, trade_rows in by_trade_id.items():
+        if not trade_rows:
+            continue
+        tx_date = trade_rows[0].get("date", "")
+        teams = sorted({str(r.get("team") or "").strip() for r in trade_rows if r.get("team")})
+        for team in teams:
+            canonical_team = _canonical_team_name(team, known_teams)
+            acquired = [r.get("player", "?") for r in trade_rows if str(r.get("team") or "").strip() == team]
+            others = [t for t in teams if t != team]
+            src = " & ".join(others) if others else "?"
+            notes[canonical_team].append(
+                f"Trade {tx_id} ({tx_date}): acquired {' + '.join(acquired)} from {src}"
+            )
+    return dict(notes)
+
+
 # ── HKB league power rankings ───────────────────────────────────────────────
 
 
@@ -560,6 +609,134 @@ def format_algo_rankings(teams: list[dict]) -> str:
         lines.append(
             f"  {t['algo_power_rank']:>2}  {t['team_name']:<35}  {t['total_score']:>8.1f}  "
             f"{t['player_count']:>7}  #{t['top_rank']} {t['top_player']:<20}"
+        )
+    return "\n".join(lines)
+
+
+# ── Weekly context from site exports ─────────────────────────────────────────
+
+
+def _load_site_json(name: str) -> dict | None:
+    path = SITE_DATA_DIR / f"{name}.json"
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        log.warning("Could not parse %s: %s", path.name, e)
+        return None
+
+
+def _fmt_signed(val: float | int | None, digits: int = 1) -> str:
+    if val is None:
+        return "n/a"
+    n = float(val)
+    return f"{n:+.{digits}f}"
+
+
+def build_intel_snapshot() -> str:
+    data = _load_site_json("league_intelligence")
+    if not data:
+        return "(Team Intel snapshot unavailable)"
+    teams = data.get("teams") or []
+    if not teams:
+        return "(Team Intel snapshot unavailable)"
+
+    contenders = [t for t in teams if str(t.get("tier", "")).lower() == "contender"]
+    top_luck = sorted(
+        teams,
+        key=lambda t: float((t.get("luck") or {}).get("delta") or -999),
+        reverse=True,
+    )[:3]
+    top_vol = sorted(
+        teams,
+        key=lambda t: float((t.get("volatility") or {}).get("team_volatility_score") or -999),
+        reverse=True,
+    )[:3]
+
+    lines = [f"Snapshot date: {data.get('snapshot_date', 'n/a')}"]
+    lines.append(
+        "Contenders: " + (", ".join(t.get("team", "?") for t in contenders) if contenders else "none")
+    )
+    lines.append("Luck (best deltas):")
+    for t in top_luck:
+        delta = (t.get("luck") or {}).get("delta")
+        lines.append(f"  - {t.get('team', '?')}: { _fmt_signed(delta) }")
+    lines.append("Volatility watch:")
+    for t in top_vol:
+        score = (t.get("volatility") or {}).get("team_volatility_score")
+        lines.append(f"  - {t.get('team', '?')}: {score if score is not None else 'n/a'}")
+    return "\n".join(lines)
+
+
+def build_feed_highlights(limit: int = 10) -> str:
+    data = _load_site_json("feed")
+    if not data:
+        return "(Feed highlights unavailable)"
+    events = data.get("events") or []
+    if not events:
+        return "(No feed events available)"
+    lines = [f"Generated: {data.get('generated', 'n/a')}"]
+    for e in events[:limit]:
+        date_label = e.get("date") or "n/a"
+        title = e.get("title") or ""
+        detail = e.get("detail") or ""
+        lines.append(f"  - {date_label}: {title} — {detail}".strip())
+    return "\n".join(lines)
+
+
+def build_manager_snapshot(limit: int = 5) -> str:
+    data = _load_site_json("managers")
+    if not data:
+        return "(Manager profile snapshot unavailable)"
+    managers = data.get("managers") or []
+    if not managers:
+        return "(Manager profile snapshot unavailable)"
+    sorted_mgr = sorted(managers, key=lambda m: float(m.get("roster_churn") or 0), reverse=True)
+    lines = [f"Season: {data.get('season', 'n/a')}"]
+    for m in sorted_mgr[:limit]:
+        lines.append(
+            f"  - {m.get('team', '?')}: churn {m.get('roster_churn', 'n/a')}, "
+            f"trades {m.get('trade_count', 'n/a')}, archetype {m.get('archetype', 'n/a')}"
+        )
+    return "\n".join(lines)
+
+
+def build_closer_snapshot(limit: int = 8) -> str:
+    data = _load_site_json("closers")
+    if not data:
+        return "(Closer snapshot unavailable)"
+    closers = data.get("closers") or []
+    if not closers:
+        return "(Closer snapshot unavailable)"
+    stable = sorted(
+        closers,
+        key=lambda c: (float(c.get("confidence_score") or 0), float(c.get("recent_saves") or 0)),
+        reverse=True,
+    )
+    lines = [f"Snapshot date: {data.get('snapshot_date', 'n/a')}"]
+    for c in stable[:limit]:
+        unstable = "unstable" if c.get("unstable_flag") else "stable"
+        lines.append(
+            f"  - {c.get('bullpen_team', '?')}: {c.get('closer_name', '?')} "
+            f"({c.get('dynasty_team') or 'FA'}) saves={c.get('recent_saves', 'n/a')} {unstable}"
+        )
+    return "\n".join(lines)
+
+
+def build_rivalry_watch(limit: int = 5) -> str:
+    data = _load_site_json("rivalries")
+    if not data:
+        return "(Rivalry snapshot unavailable)"
+    leaders = data.get("leaders") or []
+    if not leaders:
+        return "(Rivalry snapshot unavailable)"
+    lines = [f"Season: {data.get('season', 'n/a')}"]
+    for r in leaders[:limit]:
+        tags = ", ".join(r.get("tags") or [])
+        lines.append(
+            f"  - {r.get('team', '?')} vs {r.get('rival_team', '?')}: "
+            f"score {r.get('rivalry_score', 'n/a')} [{tags}]"
         )
     return "\n".join(lines)
 
@@ -807,6 +984,11 @@ def build_prompt(
     algo_rankings_text: str,
     lineup_activity_text: str,
     roster_text: str,
+    intel_snapshot_text: str,
+    feed_highlights_text: str,
+    manager_snapshot_text: str,
+    closer_snapshot_text: str,
+    rivalry_watch_text: str,
 ) -> str:
     today = date.today().strftime("%B %d, %Y")
     return f"""---
@@ -816,11 +998,26 @@ WEEK {week} DYNASTY POWER RANKINGS — DATA DUMP
 CURRENT STANDINGS (roto points, 5x5):
 {standings_text}
 
-ALGO COMPOSITE TEAM RANKINGS (sum of dynasty composite scores per roster):
+ORACLE COMPOSITE TEAM RANKINGS (CSV Score sum per roster; not HKB values):
 {algo_rankings_text}
 
 LINEUP MANAGEMENT ACTIVITY:
 {lineup_activity_text}
+
+TEAM INTEL SNAPSHOT:
+{intel_snapshot_text}
+
+RIVALRY WATCH:
+{rivalry_watch_text}
+
+CLOSER CAROUSEL SNAPSHOT:
+{closer_snapshot_text}
+
+MANAGER PROFILE SNAPSHOT:
+{manager_snapshot_text}
+
+RECENT FEED HIGHLIGHTS:
+{feed_highlights_text}
 
 ROSTER BREAKDOWN BY TEAM:
 (sorted by composite score descending; includes Oracle rank movers and transactions per team)
@@ -885,6 +1082,16 @@ def main():
         action="store_true",
         help="Skip lineup change activity fetch",
     )
+    parser.add_argument(
+        "--no-live-fetch",
+        action="store_true",
+        help="Skip live Fantrax network calls (trades + lineup activity)",
+    )
+    parser.add_argument(
+        "--no-site-context",
+        action="store_true",
+        help="Skip local site JSON context snippets (intel/feed/managers/closers/rivalries)",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -940,25 +1147,36 @@ def main():
     # Per-team transactions — auto-fetch trades within the completed week window
     week_start, week_end = _completed_week_range()
     transactions: dict[str, list[str]] = defaultdict(list)
-    log.info("Fetching trades from Fantrax (window: %s–%s)…", week_start, week_end)
-    try:
-        trade_session = get_requests_session()
-        fetched_trades = fetch_trades(trade_session, week_start=week_start, week_end=week_end)
-        for trade in fetched_trades:
-            period = trade.get("period", "?")
-            date_str = trade.get("date", "")
-            receiving = trade.get("receiving", {})
-            # Build the two sides of the trade for labeling
-            all_teams = list(receiving.keys())
-            for team, players in receiving.items():
-                canonical_team = _canonical_team_name(team, known_teams)
-                other_teams = [t for t in all_teams if t != team]
-                other = " & ".join(other_teams) if other_teams else "?"
-                label = f"Period {period} ({date_str}): acquired {' + '.join(players)} from {other}"
-                transactions[canonical_team].append(label)
-        log.info("Fetched %d trade(s)", len(fetched_trades))
-    except Exception as e:
-        log.warning("Could not fetch trades: %s", e)
+    if args.no_live_fetch:
+        log.info("Skipping live trades fetch (--no-live-fetch)")
+        site_trade_notes = build_trade_notes_from_site_transactions(
+            known_teams=known_teams,
+            week_start=week_start,
+            week_end=week_end,
+        )
+        for team, notes in site_trade_notes.items():
+            transactions[team].extend(notes)
+        log.info("Loaded %d teams of trade notes from local transactions.json", len(site_trade_notes))
+    else:
+        log.info("Fetching trades from Fantrax (window: %s–%s)…", week_start, week_end)
+        try:
+            trade_session = get_requests_session()
+            fetched_trades = fetch_trades(trade_session, week_start=week_start, week_end=week_end)
+            for trade in fetched_trades:
+                period = trade.get("period", "?")
+                date_str = trade.get("date", "")
+                receiving = trade.get("receiving", {})
+                # Build the two sides of the trade for labeling
+                all_teams = list(receiving.keys())
+                for team, players in receiving.items():
+                    canonical_team = _canonical_team_name(team, known_teams)
+                    other_teams = [t for t in all_teams if t != team]
+                    other = " & ".join(other_teams) if other_teams else "?"
+                    label = f"Period {period} ({date_str}): acquired {' + '.join(players)} from {other}"
+                    transactions[canonical_team].append(label)
+            log.info("Fetched %d trade(s)", len(fetched_trades))
+        except Exception as e:
+            log.warning("Could not fetch trades: %s", e)
 
     if args.transactions:
         try:
@@ -973,7 +1191,7 @@ def main():
     transactions = dict(transactions) if transactions else None
 
     # Lineup activity (reuses the same week_start/week_end window as trades)
-    if args.no_lineup_activity:
+    if args.no_lineup_activity or args.no_live_fetch:
         lineup_activity_text = "(Skipped)"
     else:
         log.info("Fetching lineup activity for %s–%s…", week_start, week_end)
@@ -991,8 +1209,33 @@ def main():
     log.info("Processing roster breakdowns…")
     roster_text = build_team_breakdowns(csv_rows, transactions)
 
+    if args.no_site_context:
+        intel_snapshot_text = "(Skipped)"
+        feed_highlights_text = "(Skipped)"
+        manager_snapshot_text = "(Skipped)"
+        closer_snapshot_text = "(Skipped)"
+        rivalry_watch_text = "(Skipped)"
+    else:
+        log.info("Loading local site context snapshots…")
+        intel_snapshot_text = build_intel_snapshot()
+        feed_highlights_text = build_feed_highlights()
+        manager_snapshot_text = build_manager_snapshot()
+        closer_snapshot_text = build_closer_snapshot()
+        rivalry_watch_text = build_rivalry_watch()
+
     # Build prompt
-    prompt = build_prompt(args.week, standings_text, algo_rankings_text, lineup_activity_text, roster_text)
+    prompt = build_prompt(
+        args.week,
+        standings_text,
+        algo_rankings_text,
+        lineup_activity_text,
+        roster_text,
+        intel_snapshot_text,
+        feed_highlights_text,
+        manager_snapshot_text,
+        closer_snapshot_text,
+        rivalry_watch_text,
+    )
 
     print(prompt)
 
