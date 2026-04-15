@@ -1,0 +1,20 @@
+name: Feature Request
+description: Share an idea for the site
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What's your idea?
+      description: Describe what you'd like to see.
+      placeholder: e.g. "Show head-to-head records on the standings page"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it useful?
+      description: Help us understand the benefit.
+    validations:
+      required: false

@@ -1,0 +1,107 @@
+"""Static site smoke tests for the powerrankings GH Pages site."""
+from __future__ import annotations
+
+import json
+import re
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import urlparse
+
+import pytest
+
+ROOT = Path(__file__).resolve().parent.parent
+HTML_FILES = sorted(ROOT.glob("*.html"))
+META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
+REQUIRED_META = {"og:title", "og:image"}
+FEEDBACK_REPO = "sdmandel/dynasty-rankings"
+
+
+class StrictHTMLParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.errors: list[str] = []
+
+    def error(self, message: str) -> None:
+        self.errors.append(message)
+
+
+def _read(p: Path) -> str:
+    return p.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("html_file", HTML_FILES, ids=lambda p: p.name)
+def test_html_parses(html_file: Path) -> None:
+    parser = StrictHTMLParser()
+    parser.feed(_read(html_file))
+    parser.close()
+    assert not parser.errors, f"parse errors: {parser.errors}"
+
+
+@pytest.mark.parametrize("html_file", META_HTML_FILES, ids=lambda p: p.name)
+def test_meta_tags(html_file: Path) -> None:
+    html = _read(html_file)
+    assert re.search(r"<title>[^<]+</title>", html), "missing <title>"
+    assert re.search(
+        r'<meta[^>]+name=["\']viewport["\']', html
+    ), "missing viewport meta"
+    assert re.search(r'<link[^>]+rel=["\']icon["\']', html), "missing favicon link"
+    for prop in REQUIRED_META:
+        assert re.search(
+            rf'<meta[^>]+property=["\']{re.escape(prop)}["\']', html
+        ), f"missing og meta: {prop}"
+
+
+@pytest.mark.parametrize("html_file", HTML_FILES, ids=lambda p: p.name)
+def test_relative_links_resolve(html_file: Path) -> None:
+    html = _read(html_file)
+    href_pattern = re.compile(r'(?:href|src)=["\']([^"\']+)["\']')
+    for raw in href_pattern.findall(html):
+        if not raw or raw.startswith(("#", "data:", "mailto:", "javascript:")):
+            continue
+        parsed = urlparse(raw)
+        if parsed.scheme or parsed.netloc:
+            continue
+        path = raw.split("#", 1)[0].split("?", 1)[0]
+        if not path:
+            continue
+        if path.startswith("/"):
+            target = (ROOT / path.lstrip("/")).resolve()
+        else:
+            target = (html_file.parent / path).resolve()
+        assert target.exists(), f"{html_file.name} references missing {raw}"
+
+
+def test_standings_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "standings.json"))
+    assert "generated" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+    assert data["teams"], "standings has no teams"
+    for team in data["teams"]:
+        assert "rank" in team
+        assert "team" in team or "name" in team
+
+
+def test_transactions_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "transactions.json"))
+    assert "generated" in data
+    assert "transactions" in data and isinstance(data["transactions"], list)
+    if data["transactions"]:
+        first = data["transactions"][0]
+        for key in ("type", "team", "player"):
+            assert key in first, f"transaction missing {key}"
+
+
+def test_prospects_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "prospects.json"))
+    assert "generated" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+
+
+def test_feedback_js_points_at_repo() -> None:
+    js = _read(ROOT / "assets" / "feedback.js") if (ROOT / "assets" / "feedback.js").exists() else _read(ROOT / "feedback.js")
+    assert FEEDBACK_REPO in js, f"feedback.js should reference {FEEDBACK_REPO}"
+
+
+def test_issue_templates_exist() -> None:
+    assert (ROOT / ".github" / "ISSUE_TEMPLATE" / "bug.yml").exists()
+    assert (ROOT / ".github" / "ISSUE_TEMPLATE" / "feature.yml").exists()

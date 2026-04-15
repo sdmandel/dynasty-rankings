@@ -1,0 +1,245 @@
+/* ── site.css ──────────────────────────────────────────────────────────────
+   Shared styles for hub-style pages: index, power_rankings, standings,
+   transactions, prospects, league_analytics, roster_depth, win_window, 404.
+   Week snapshot pages (week{N}_power_rankings.html) use their own bespoke
+   styles and should NOT load this file.
+   ───────────────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --red: #b55d5d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ────────────────────────────────────────────────────────────── */
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 40px 36px;
+  border-bottom: 1px solid var(--border2);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.site-header h1 span { color: var(--gold); }
+.divider {
+  width: 40px; height: 2px;
+  background: var(--gold);
+  margin: 20px 0;
+}
+.site-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+}
+.site-header p strong { color: var(--gold); font-weight: 500; }
+
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-muted); }
+
+/* ── NAV CARDS ─────────────────────────────────────────────────────────── */
+.nav-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 16px;
+}
+.section-label a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.section-label a:hover { color: var(--text-muted); }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.card {
+  display: block;
+  text-decoration: none;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 22px;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.card:hover {
+  border-color: var(--border2);
+  background: #1a1a1c;
+}
+.card-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 6px;
+}
+.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.card-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.card.featured {
+  border-color: var(--gold-dim);
+  background: #141208;
+}
+.card.featured .card-eyebrow { color: var(--gold); }
+.card.featured .card-title   { color: var(--gold); }
+.card.featured:hover { border-color: var(--gold); }
+.card-arrow {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+}
+.card.featured .card-arrow { color: var(--gold); }
+
+/* ── TOOL TILES ────────────────────────────────────────────────────────── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.tool-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.tool-tile:hover { border-color: var(--border2); background: #1a1a1c; }
+.tile-preview {
+  height: 240px;
+  padding: 16px 14px 10px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.tile-footer {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tile-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 4px;
+}
+.tile-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+.tile-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.tile-arrow {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+}
+.tool-tile:hover .tile-arrow { color: var(--text-muted); }
+
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+/* ── MEDIA QUERIES ─────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .tool-grid { grid-template-columns: 1fr; }
+  .tile-preview { height: 200px; }
+}
+@media (max-width: 680px) {
+  .site-header, .nav-section, .site-footer {
+    padding-left: 20px; padding-right: 20px;
+  }
+}
