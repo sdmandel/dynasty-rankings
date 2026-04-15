@@ -143,6 +143,19 @@ def test_rivalries_schema() -> None:
                 assert key in rival
 
 
+def test_league_intelligence_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "league_intelligence.json"))
+    assert "generated" in data
+    assert "snapshot_date" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+    for key in ("contention", "luck", "volatility"):
+        assert key in data and isinstance(data[key], list)
+    if data["teams"]:
+        first = data["teams"][0]
+        for key in ("team", "tier", "points_back", "reachable_points", "tight_categories", "luck", "volatility"):
+            assert key in first
+
+
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data

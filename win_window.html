@@ -138,6 +138,125 @@ body {
   margin-bottom: 4px;
 }
 .tooltip .tt-line { display: block; color: var(--text-muted); font-size: 11px; }
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.intel-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.intel-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 5px;
+}
+.intel-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+}
+.intel-meta { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+.intel-help {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.help-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.help-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 4px;
+}
+.help-copy { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+.table-wrap { overflow-x: auto; margin-top: 14px; }
+table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding: 0 10px 10px 0;
+  border-bottom: 1px solid var(--border2);
+}
+td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid var(--border); }
+.cat-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-height: 26px;
+}
+.cat-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+}
+.cat-chip.tight-critical {
+  background: rgba(200,168,75,0.18);
+  border-color: rgba(200,168,75,0.45);
+  color: var(--gold);
+}
+.cat-chip.tight-hot {
+  background: rgba(200,133,110,0.15);
+  border-color: rgba(200,133,110,0.45);
+  color: #c8856e;
+}
+.cat-chip.tight-watch {
+  background: rgba(93,125,181,0.14);
+  border-color: rgba(93,125,181,0.45);
+  color: #8ca7d4;
+}
+.cat-chip.tight-loose {
+  background: rgba(122,120,114,0.15);
+  border-color: rgba(122,120,114,0.4);
+  color: var(--text-muted);
+}
+.cat-overflow {
+  font-size: 11px;
+  color: var(--text-dead);
+}
+.tier-pill {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+.tier-contender { color: #5da87a; }
+.tier-fringe { color: #c8a84b; }
+.tier-stagnating { color: #c8856e; }
+.tier-rebuilding { color: #b55d5d; }
 
 .site-footer {
   max-width: 1100px;
@@ -152,6 +271,8 @@ body {
 
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
+  .intel-grid { grid-template-columns: 1fr; }
+  .intel-help { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -170,6 +291,24 @@ body {
     <h3>Roster Age vs. Oracle Value — Win Window Quadrant (Upper half is best)</h3>
     <div class="scatter-wrap">
       <svg id="scatterSvg" class="scatter-canvas"></svg>
+    </div>
+  </div>
+  <div class="chart-block">
+    <h3>Roto Contention Board</h3>
+    <div class="intel-help">
+      <div class="help-card"><div class="help-title">Tier</div><div class="help-copy">Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.</div></div>
+      <div class="help-card"><div class="help-title">Reachable Points</div><div class="help-copy">How many categories are close enough to gain a point soon. Gain-gap threshold means the max gap to the next team up in a category (currently 2.0 points).</div></div>
+      <div class="help-card"><div class="help-title">Luck Delta</div><div class="help-copy">Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline.</div></div>
+      <div class="help-card"><div class="help-title">Volatility</div><div class="help-copy">Movement from rank changes and category swings during the season.</div></div>
+    </div>
+    <div class="intel-grid" id="intelCards"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Team</th><th>Tier</th><th>Points Back</th><th>Reachable Points</th><th>Tight Categories (Top 3)</th><th>Luck Delta</th><th>Volatility</th></tr>
+        </thead>
+        <tbody id="intelBody"></tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -464,6 +603,75 @@ function buildScatter() {
 
 buildScatter();
 window.addEventListener('resize', buildScatter);
+
+function esc(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt(v, digits = 1) {
+  if (v === null || v === undefined || Number.isNaN(Number(v))) return '-';
+  return Number(v).toFixed(digits);
+}
+function tierClass(tier) {
+  if (tier === 'contender') return 'tier-contender';
+  if (tier === 'fringe') return 'tier-fringe';
+  if (tier === 'stagnating') return 'tier-stagnating';
+  return 'tier-rebuilding';
+}
+const CAT_LABELS = {
+  cat_r: 'R', cat_hr: 'HR', cat_rbi: 'RBI', cat_sb: 'SB', cat_ops: 'OPS',
+  cat_qs: 'QS', cat_k: 'K', cat_era: 'ERA', cat_whip: 'WHIP', cat_svh: 'SVH'
+};
+function tightClass(gap) {
+  if (gap <= 0.5) return 'tight-critical';
+  if (gap <= 1.0) return 'tight-hot';
+  if (gap <= 1.5) return 'tight-watch';
+  return 'tight-loose';
+}
+function renderTightCategories(team) {
+  const gaps = team.category_gaps || {};
+  const rows = Object.keys(gaps).map(cat => {
+    const g = gaps[cat] || {};
+    const values = [g.to_gain, g.to_loss].filter(v => v !== null && v !== undefined).map(Number);
+    const tightness = values.length ? Math.min(...values) : 99;
+    return { cat, tightness };
+  }).filter(row => Number.isFinite(row.tightness) && row.tightness <= 2.0)
+    .sort((a, b) => a.tightness - b.tightness || a.cat.localeCompare(b.cat));
+  if (!rows.length) return '<span class="cat-overflow">-</span>';
+  const top = rows.slice(0, 3);
+  const chips = top.map(row => `<span class="cat-chip ${tightClass(row.tightness)}" title="${esc(CAT_LABELS[row.cat] || row.cat)} gap ${row.tightness.toFixed(1)}">${esc(CAT_LABELS[row.cat] || row.cat)}</span>`).join('');
+  return `<div class="cat-cell">${chips}</div>`;
+}
+fetch('data/league_intelligence.json').then(r => r.json()).then(data => {
+  const teams = data.teams || [];
+  const contenders = teams.filter(t => t.tier === 'contender').length;
+  const fringes = teams.filter(t => t.tier === 'fringe').length;
+  const stagnating = teams.filter(t => t.tier === 'stagnating').length;
+  const rebuilding = teams.filter(t => t.tier === 'rebuilding').length;
+  const avgLuckSwing = teams.length ? teams.reduce((sum, t) => sum + Math.abs(Number(t.luck?.delta || 0)), 0) / teams.length : 0;
+  const netLuckTilt = teams.length ? teams.reduce((sum, t) => sum + Number(t.luck?.delta || 0), 0) / teams.length : 0;
+  const avgVol = teams.length ? teams.reduce((sum, t) => sum + Number(t.volatility?.team_volatility_score || 0), 0) / teams.length : 0;
+  document.getElementById('intelCards').innerHTML = [
+    ['Contenders', contenders, `${fringes} fringe · ${stagnating} stagnating · ${rebuilding} rebuilding`],
+    ['Avg Luck Swing', fmt(avgLuckSwing, 2), `Absolute luck movement · net tilt ${fmt(netLuckTilt, 2)}`],
+    ['Avg Volatility', fmt(avgVol, 1), 'Team volatility score (0-100)']
+  ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');
+  document.getElementById('intelBody').innerHTML = teams.map(team => (
+    `<tr>` +
+    `<td>${esc(team.team)}</td>` +
+    `<td><span class="tier-pill ${tierClass(team.tier)}">${esc(team.tier)}</span></td>` +
+    `<td>${fmt(team.points_back, 1)}</td>` +
+    `<td>${fmt(team.reachable_points, 0)}</td>` +
+    `<td>${renderTightCategories(team)}</td>` +
+    `<td>${fmt(team.luck?.delta, 2)}</td>` +
+    `<td>${fmt(team.volatility?.team_volatility_score, 1)}</td>` +
+    `</tr>`
+  )).join('') || '<tr><td colspan="7">No league intelligence rows found.</td></tr>';
+  const footer = document.querySelector('.site-footer');
+  if (footer && data.snapshot_date) {
+    footer.textContent = `Average age computed across active MLB-rostered players only. Win-window chart uses Oracle value; contention board uses standings snapshot ${data.snapshot_date}. Efficiency component is scaffolded until raw AB/IP totals are available.`;
+  }
+}).catch(() => {
+  const body = document.getElementById('intelBody');
+  if (body) body.innerHTML = '<tr><td colspan="7">League intelligence data not available.</td></tr>';
+});
 </script>
 <script src="assets/feedback.js"></script>
 </body>
