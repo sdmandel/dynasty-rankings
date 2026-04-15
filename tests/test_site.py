@@ -97,6 +97,30 @@ def test_prospects_schema() -> None:
     assert "teams" in data and isinstance(data["teams"], list)
 
 
+def test_franchises_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "franchises.json"))
+    assert "generated" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+    if data["teams"]:
+        first = data["teams"][0]
+        for key in ("team", "season_summaries", "snapshots", "transactions", "insights_2025"):
+            assert key in first
+        if first["insights_2025"]:
+            insight = first["insights_2025"][0]
+            for key in ("type", "label", "value", "detail"):
+                assert key in insight
+
+
+def test_feed_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "feed.json"))
+    assert "generated" in data
+    assert "events" in data and isinstance(data["events"], list)
+    if data["events"]:
+        first = data["events"][0]
+        for key in ("event_id", "date", "event_type", "title", "detail"):
+            assert key in first
+
+
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data

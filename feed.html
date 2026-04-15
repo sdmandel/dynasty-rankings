@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>League Feed — Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="Chronological league feed with transactions and standings movement events for Backyard Dynasty Baseball.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="League Feed — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Chronological league feed with transactions and standings movement events.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/feed.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --red:#b55d5d; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+.content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
+.filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+.filter-btn { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; background:var(--bg2); border:1px solid var(--border); border-radius:4px; padding:6px 14px; color:var(--text-muted); cursor:pointer; }
+.filter-btn.active { background:#4a3c18; border-color:var(--gold); color:var(--gold); }
+.feed-list { display:flex; flex-direction:column; gap:8px; }
+.feed-row { display:grid; grid-template-columns: 120px 1fr auto; gap:14px; align-items:center; background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:12px 16px; }
+.feed-type { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+.feed-title { font-weight:500; font-size:14px; color:var(--text); }
+.feed-detail { font-size:12px; color:var(--text-muted); margin-top:2px; }
+.feed-team { font-size:11px; color:var(--text-dead); text-align:right; }
+.state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
+@media (max-width: 680px) { .content,.site-footer{padding-left:20px;padding-right:20px;} .feed-row{grid-template-columns:1fr; gap:8px;} .feed-team{text-align:left;} }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>League<br><span>Feed</span></h1>
+  <div class="divider"></div>
+  <p>Chronological league feed covering transactions and standings movement. No realtime infra required; refreshed from local exports.</p>
+</div>
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading feed…</div>
+  <div id="mainContent" style="display:none;">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="ALL">All</button>
+      <button class="filter-btn" data-filter="add">Adds</button>
+      <button class="filter-btn" data-filter="drop">Drops</button>
+      <button class="filter-btn" data-filter="trade">Trades</button>
+      <button class="filter-btn" data-filter="standings_rise">Rises</button>
+      <button class="filter-btn" data-filter="standings_fall">Falls</button>
+    </div>
+    <div class="feed-list" id="feedList"></div>
+  </div>
+</div>
+<div class="site-footer" id="footerEl">League feed generated from local site metrics.</div>
+<script>
+let ALL_EVENTS = [];
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function render(events){
+  const el=document.getElementById('feedList');
+  el.innerHTML = events.length ? events.map(event => `<div class="feed-row"><div class="feed-type">${esc(event.event_type.replaceAll('_',' '))}</div><div><div class="feed-title">${esc(event.title)}</div><div class="feed-detail">${esc(event.detail)}</div></div><div class="feed-team">${esc(event.team || event.date)}</div></div>`).join('') : '<div class="state-msg">No events match this filter.</div>';
+}
+function setupFilters(){
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    render(filter === 'ALL' ? ALL_EVENTS : ALL_EVENTS.filter(event => event.event_type === filter));
+  }));
+}
+fetch('data/feed.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_EVENTS = data.events || []; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + ' · ' + ALL_EVENTS.length + ' events shown.'; render(ALL_EVENTS); setupFilters(); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load feed. ('+err.message+')'; });
+</script>
+</body>
+</html>

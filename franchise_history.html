@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Franchise History — Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="Table-first franchise histories, season summaries, standings snapshots, and transaction logs for Backyard Dynasty Baseball.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Franchise History — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Season summaries, standings snapshots, and transaction logs for every franchise.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/franchise_history.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+.content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
+.picker { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.picker button { font-size:12px; font-weight:500; background:var(--bg2); border:1px solid var(--border); border-radius:4px; padding:6px 14px; color:var(--text-muted); cursor:pointer; }
+.picker button.active { background:#4a3c18; border-color:var(--gold); color:var(--gold); }
+.filter-bar { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.filter-pill { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--bg2); border:1px solid var(--border); border-radius:999px; padding:6px 12px; color:var(--text-muted); cursor:pointer; }
+.filter-pill.active { background:#4a3c18; border-color:var(--gold); color:var(--gold); }
+.section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin: 0 0 14px; }
+.summary-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:28px; }
+.summary-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px 18px; }
+.summary-card .label { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); margin-bottom:6px; }
+.summary-card .value { font-family:'Bebas Neue', sans-serif; font-size:30px; line-height:.95; letter-spacing:.04em; color:var(--gold); }
+.summary-card .meta { font-size:11px; color:var(--text-muted); margin-top:8px; }
+.insight-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin:0 0 28px; }
+.insight-card { position:relative; overflow:hidden; min-height:128px; background:linear-gradient(145deg,#171717 0%,#111112 62%,#221b0b 100%); border:1px solid var(--border2); border-radius:10px; padding:16px 18px; }
+.insight-card::after { content:""; position:absolute; width:80px; height:80px; right:-28px; bottom:-32px; border:1px solid rgba(200,168,75,.24); border-radius:999px; }
+.insight-card .label { font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--text-dead); margin-bottom:10px; }
+.insight-card .value { font-family:'Bebas Neue', sans-serif; font-size:42px; line-height:.9; letter-spacing:.04em; color:var(--gold); }
+.insight-card .detail { position:relative; z-index:1; font-size:12px; color:var(--text-mid); margin-top:10px; line-height:1.45; }
+.table-wrap { overflow-x:auto; margin-bottom:28px; }
+table { width:100%; min-width:720px; border-collapse:collapse; font-size:13px; }
+th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
+td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
+td:first-child, th:first-child { padding-left:0; }
+.team-title { font-family:'Bebas Neue', sans-serif; font-size:42px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:18px; }
+.trade-card { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:12px 14px; margin-bottom:10px; }
+.trade-title { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.trade-assets { font-size:12px; color:var(--text-mid); }
+.state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.site-footer { padding-top: 24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
+@media (max-width: 900px) { .insight-grid{grid-template-columns: repeat(2, minmax(0,1fr));} }
+@media (max-width: 680px) { .content,.site-footer{padding-left:20px;padding-right:20px;} .summary-grid,.insight-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Franchise<br><span>History</span></h1>
+  <div class="divider"></div>
+  <p>Current-season franchise snapshots, yearly summaries, and transaction history.</p>
+</div>
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading franchise history…</div>
+  <div id="mainContent" style="display:none;">
+    <div class="picker" id="teamPicker"></div>
+    <div class="team-title" id="teamTitle"></div>
+    <div class="summary-grid" id="summaryGrid"></div>
+    <div class="section-label">2025 Records</div>
+    <div class="insight-grid" id="insightGrid"></div>
+    <div class="section-label">Season Summary</div>
+    <div class="table-wrap"><table><thead><tr><th>Season</th><th>Final</th><th>Best</th><th>Worst</th><th>Best Pts</th><th>Days In 1st</th><th>Days Top 3</th></tr></thead><tbody id="summaryBody"></tbody></table></div>
+    <div class="section-label">Standings Snapshots</div>
+    <div class="filter-bar" id="lookbackBar">
+      <button class="filter-pill active" data-lookback="7">7D</button>
+      <button class="filter-pill" data-lookback="14">14D</button>
+      <button class="filter-pill" data-lookback="30">30D</button>
+      <button class="filter-pill" data-lookback="YTD">YTD</button>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Date</th><th>Rank</th><th>Roto Pts</th><th>R</th><th>HR</th><th>RBI</th><th>SB</th><th>OPS</th><th>QS</th><th>K</th><th>ERA</th><th>WHIP</th><th>SVH</th></tr></thead><tbody id="snapshotBody"></tbody></table></div>
+    <div class="section-label">Transactions</div>
+    <div class="filter-bar" id="txLookbackBar">
+      <button class="filter-pill active" data-lookback="7">7D</button>
+      <button class="filter-pill" data-lookback="14">14D</button>
+      <button class="filter-pill" data-lookback="30">30D</button>
+      <button class="filter-pill" data-lookback="YTD">YTD</button>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Date</th><th>Type</th><th>Player</th><th>Pos</th><th>Level</th><th>Badge</th></tr></thead><tbody id="txBody"></tbody></table></div>
+  </div>
+</div>
+<div class="site-footer" id="footerEl">Franchise history from local site metrics tables.</div>
+<script>
+let ALL_TEAMS = [];
+let ACTIVE_TEAM = null;
+let ACTIVE_LOOKBACK = '7';
+let ACTIVE_TX_LOOKBACK = '7';
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function filterByLookback(rows, key, lookback) {
+  if (lookback === 'YTD' || !rows.length) return rows;
+  const sorted = [...rows].sort((a, b) => String(a[key]).localeCompare(String(b[key])));
+  const latest = new Date(String(sorted[sorted.length - 1][key]) + 'T00:00:00');
+  const days = Number(lookback);
+  return sorted.filter(row => {
+    const current = new Date(String(row[key]) + 'T00:00:00');
+    const diff = (latest - current) / 86400000;
+    return diff <= days - 1;
+  });
+}
+function renderTeam(team){
+  ACTIVE_TEAM = team;
+  document.getElementById('teamTitle').textContent = team.team;
+  document.getElementById('summaryGrid').innerHTML = [
+    ['Best Season', team.best_season ? '#' + team.best_season.final_rank : 'N/A', team.best_season ? 'Season ' + team.best_season.season : 'No history'],
+    ['Worst Season', team.worst_season ? '#' + team.worst_season.final_rank : 'N/A', team.worst_season ? 'Season ' + team.worst_season.season : 'No history']
+  ].map(card => `<div class="summary-card"><div class="label">${esc(card[0])}</div><div class="value">${esc(card[1])}</div><div class="meta">${esc(card[2])}</div></div>`).join('');
+  const insights = team.insights_2025 || [];
+  document.getElementById('insightGrid').innerHTML = insights.length
+    ? insights.map(item => `<div class="insight-card"><div class="label">${esc(item.label)}</div><div class="value">${esc(item.value)}</div><div class="detail">${esc(item.detail)}</div></div>`).join('')
+    : '<div class="insight-card"><div class="label">2025 Records</div><div class="value">N/A</div><div class="detail">No 2025 backfill rows are attached to this franchise name yet.</div></div>';
+  document.getElementById('summaryBody').innerHTML = team.season_summaries.map(row => `<tr><td>${row.season}</td><td>#${row.final_rank ?? '-'}</td><td>#${row.best_rank ?? '-'}</td><td>#${row.worst_rank ?? '-'}</td><td>${row.best_roto_pts ?? '-'}</td><td>${row.days_in_first}</td><td>${row.days_in_top3}</td></tr>`).join('');
+  const snapshots = filterByLookback(team.snapshots || [], 'snapshot_date', ACTIVE_LOOKBACK);
+  document.getElementById('snapshotBody').innerHTML = snapshots.map(row => `<tr><td>${esc(row.snapshot_date)}</td><td>#${row.rank ?? '-'}</td><td>${row.roto_pts ?? '-'}</td><td>${row.cat_r ?? '-'}</td><td>${row.cat_hr ?? '-'}</td><td>${row.cat_rbi ?? '-'}</td><td>${row.cat_sb ?? '-'}</td><td>${row.cat_ops ?? '-'}</td><td>${row.cat_qs ?? '-'}</td><td>${row.cat_k ?? '-'}</td><td>${row.cat_era ?? '-'}</td><td>${row.cat_whip ?? '-'}</td><td>${row.cat_svh ?? '-'}</td></tr>`).join('') || '<tr><td colspan="13">No snapshots in this range.</td></tr>';
+  const transactions = filterByLookback(team.transactions || [], 'txn_date', ACTIVE_TX_LOOKBACK);
+  document.getElementById('txBody').innerHTML = transactions.map(row => `<tr><td>${esc(row.txn_date)}</td><td>${esc(row.type)}</td><td>${esc(row.player)}</td><td>${esc(row.position || '')}</td><td>${esc(row.level || '')}</td><td>${esc(row.badge || '')}</td></tr>`).join('') || '<tr><td colspan="6">No transactions in this range.</td></tr>';
+}
+function renderPicker(){
+  const picker=document.getElementById('teamPicker');
+  picker.innerHTML='';
+  ALL_TEAMS.forEach((team, i)=>{ const btn=document.createElement('button'); btn.textContent=team.team; if(i===0) btn.classList.add('active'); btn.addEventListener('click', ()=>{ document.querySelectorAll('#teamPicker button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderTeam(team); }); picker.appendChild(btn); });
+}
+function setupLookback() {
+  document.querySelectorAll('#lookbackBar .filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#lookbackBar .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      ACTIVE_LOOKBACK = btn.dataset.lookback;
+      if (ACTIVE_TEAM) renderTeam(ACTIVE_TEAM);
+    });
+  });
+}
+function setupTxLookback() {
+  document.querySelectorAll('#txLookbackBar .filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#txLookbackBar .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      ACTIVE_TX_LOOKBACK = btn.dataset.lookback;
+      if (ACTIVE_TEAM) renderTeam(ACTIVE_TEAM);
+    });
+  });
+}
+fetch('data/franchises.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_TEAMS = data.teams || []; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + ' · ' + data.backfill_status.replaceAll('_',' ') + '.'; renderPicker(); if (ALL_TEAMS.length) renderTeam(ALL_TEAMS[0]); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load franchise history. ('+err.message+')'; });
+setupLookback();
+setupTxLookback();
+</script>
+</body>
+</html>
