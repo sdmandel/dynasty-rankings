@@ -1,0 +1,526 @@
+{
+  "generated": "2026-04-15",
+  "season": 2026,
+  "seasons": [
+    2025,
+    2026
+  ],
+  "method": {
+    "finish_proximity": "Mean rank distance across shared standings snapshots.",
+    "category_similarity": "Mean distance between category roto-point vectors.",
+    "points_stolen": "Share of category snapshots where teams are within one roto point.",
+    "weights": {
+      "finish_proximity": 0.45,
+      "category_similarity": 0.35,
+      "points_stolen": 0.2
+    }
+  },
+  "teams": [
+    {
+      "team": "Rollie Fingers",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Seam heads",
+          "source_rival_team": "Seam heads",
+          "finish_proximity_score": 89.47,
+          "category_similarity_score": 68.23,
+          "points_stolen_score": 20.0,
+          "rivalry_score": 68.14,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Trazadone",
+          "source_rival_team": "Trazadone",
+          "finish_proximity_score": 64.11,
+          "category_similarity_score": 67.15,
+          "points_stolen_score": 25.26,
+          "rivalry_score": 57.4,
+          "tags": [
+            "frequent category pressure"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Seam heads",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Rollie Fingers",
+          "source_rival_team": "Rollie Fingers",
+          "finish_proximity_score": 89.47,
+          "category_similarity_score": 68.23,
+          "points_stolen_score": 20.0,
+          "rivalry_score": 68.14,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Humongous Melonheads",
+          "source_rival_team": "Humongous Melonheads",
+          "finish_proximity_score": 73.68,
+          "category_similarity_score": 66.6,
+          "points_stolen_score": 12.11,
+          "rivalry_score": 58.89,
+          "tags": [
+            "watch list"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Sam",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Vin Mazzaro fan club",
+          "source_rival_team": "Vin Mazzaro fan club",
+          "finish_proximity_score": 77.99,
+          "category_similarity_score": 71.15,
+          "points_stolen_score": 20.53,
+          "rivalry_score": 64.1,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 71.77,
+          "category_similarity_score": 70.38,
+          "points_stolen_score": 22.63,
+          "rivalry_score": 61.46,
+          "tags": [
+            "watch list"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Sam",
+          "source_rival_team": "Sam",
+          "finish_proximity_score": 77.99,
+          "category_similarity_score": 71.15,
+          "points_stolen_score": 20.53,
+          "rivalry_score": 64.1,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Mommy",
+          "source_rival_team": "Mommy",
+          "finish_proximity_score": 83.25,
+          "category_similarity_score": 64.78,
+          "points_stolen_score": 14.74,
+          "rivalry_score": 63.08,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Pat",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Trazadone",
+          "source_rival_team": "Trazadone",
+          "finish_proximity_score": 72.73,
+          "category_similarity_score": 75.0,
+          "points_stolen_score": 24.21,
+          "rivalry_score": 63.82,
+          "tags": [
+            "same-category build"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "John Henry Fan Club",
+          "source_rival_team": "John Henry Fan Club",
+          "finish_proximity_score": 73.21,
+          "category_similarity_score": 66.27,
+          "points_stolen_score": 17.89,
+          "rivalry_score": 59.72,
+          "tags": [
+            "watch list"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Trazadone",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Pat",
+          "source_rival_team": "Pat",
+          "finish_proximity_score": 72.73,
+          "category_similarity_score": 75.0,
+          "points_stolen_score": 24.21,
+          "rivalry_score": 63.82,
+          "tags": [
+            "same-category build"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "John Henry Fan Club",
+          "source_rival_team": "John Henry Fan Club",
+          "finish_proximity_score": 78.47,
+          "category_similarity_score": 63.85,
+          "points_stolen_score": 13.16,
+          "rivalry_score": 60.29,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Humongous Melonheads",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 80.38,
+          "category_similarity_score": 67.49,
+          "points_stolen_score": 18.95,
+          "rivalry_score": 63.58,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "John Henry Fan Club",
+          "source_rival_team": "John Henry Fan Club",
+          "finish_proximity_score": 71.77,
+          "category_similarity_score": 74.64,
+          "points_stolen_score": 20.53,
+          "rivalry_score": 62.53,
+          "tags": [
+            "watch list"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "philbell",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Humongous Melonheads",
+          "source_rival_team": "Humongous Melonheads",
+          "finish_proximity_score": 80.38,
+          "category_similarity_score": 67.49,
+          "points_stolen_score": 18.95,
+          "rivalry_score": 63.58,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "John Henry Fan Club",
+          "source_rival_team": "John Henry Fan Club",
+          "finish_proximity_score": 78.95,
+          "category_similarity_score": 65.1,
+          "points_stolen_score": 17.89,
+          "rivalry_score": 61.89,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Mommy",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Vin Mazzaro fan club",
+          "source_rival_team": "Vin Mazzaro fan club",
+          "finish_proximity_score": 83.25,
+          "category_similarity_score": 64.78,
+          "points_stolen_score": 14.74,
+          "rivalry_score": 63.08,
+          "tags": [
+            "close standings"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Millville Meteors",
+          "source_rival_team": "Millville Meteors",
+          "finish_proximity_score": 70.81,
+          "category_similarity_score": 71.75,
+          "points_stolen_score": 28.42,
+          "rivalry_score": 62.66,
+          "tags": [
+            "frequent category pressure"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Millville Meteors",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Mommy",
+          "source_rival_team": "Mommy",
+          "finish_proximity_score": 70.81,
+          "category_similarity_score": 71.75,
+          "points_stolen_score": 28.42,
+          "rivalry_score": 62.66,
+          "tags": [
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Vin Mazzaro fan club",
+          "source_rival_team": "Vin Mazzaro fan club",
+          "finish_proximity_score": 68.42,
+          "category_similarity_score": 70.12,
+          "points_stolen_score": 19.47,
+          "rivalry_score": 59.23,
+          "tags": [
+            "watch list"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "John Henry Fan Club",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Humongous Melonheads",
+          "source_rival_team": "Humongous Melonheads",
+          "finish_proximity_score": 71.77,
+          "category_similarity_score": 74.64,
+          "points_stolen_score": 20.53,
+          "rivalry_score": 62.53,
+          "tags": [
+            "watch list"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 78.95,
+          "category_similarity_score": 65.1,
+          "points_stolen_score": 17.89,
+          "rivalry_score": 61.89,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Inkers",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Sam",
+          "source_rival_team": "Sam",
+          "finish_proximity_score": 70.33,
+          "category_similarity_score": 67.99,
+          "points_stolen_score": 26.32,
+          "rivalry_score": 60.71,
+          "tags": [
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Mommy",
+          "source_rival_team": "Mommy",
+          "finish_proximity_score": 78.47,
+          "category_similarity_score": 57.13,
+          "points_stolen_score": 14.74,
+          "rivalry_score": 58.26,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    }
+  ],
+  "leaders": [
+    {
+      "team": "Rollie Fingers",
+      "season": 2026,
+      "rival_team": "Seam heads",
+      "source_rival_team": "Seam heads",
+      "finish_proximity_score": 89.47,
+      "category_similarity_score": 68.23,
+      "points_stolen_score": 20.0,
+      "rivalry_score": 68.14,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Sam",
+      "season": 2026,
+      "rival_team": "Vin Mazzaro fan club",
+      "source_rival_team": "Vin Mazzaro fan club",
+      "finish_proximity_score": 77.99,
+      "category_similarity_score": 71.15,
+      "points_stolen_score": 20.53,
+      "rivalry_score": 64.1,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Pat",
+      "season": 2026,
+      "rival_team": "Trazadone",
+      "source_rival_team": "Trazadone",
+      "finish_proximity_score": 72.73,
+      "category_similarity_score": 75.0,
+      "points_stolen_score": 24.21,
+      "rivalry_score": 63.82,
+      "tags": [
+        "same-category build"
+      ]
+    },
+    {
+      "team": "Humongous Melonheads",
+      "season": 2026,
+      "rival_team": "philbell",
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 80.38,
+      "category_similarity_score": 67.49,
+      "points_stolen_score": 18.95,
+      "rivalry_score": 63.58,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "season": 2026,
+      "rival_team": "Mommy",
+      "source_rival_team": "Mommy",
+      "finish_proximity_score": 83.25,
+      "category_similarity_score": 64.78,
+      "points_stolen_score": 14.74,
+      "rivalry_score": 63.08,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Mommy",
+      "season": 2026,
+      "rival_team": "Millville Meteors",
+      "source_rival_team": "Millville Meteors",
+      "finish_proximity_score": 70.81,
+      "category_similarity_score": 71.75,
+      "points_stolen_score": 28.42,
+      "rivalry_score": 62.66,
+      "tags": [
+        "frequent category pressure"
+      ]
+    },
+    {
+      "team": "Humongous Melonheads",
+      "season": 2026,
+      "rival_team": "John Henry Fan Club",
+      "source_rival_team": "John Henry Fan Club",
+      "finish_proximity_score": 71.77,
+      "category_similarity_score": 74.64,
+      "points_stolen_score": 20.53,
+      "rivalry_score": 62.53,
+      "tags": [
+        "watch list"
+      ]
+    },
+    {
+      "team": "philbell",
+      "season": 2026,
+      "rival_team": "John Henry Fan Club",
+      "source_rival_team": "John Henry Fan Club",
+      "finish_proximity_score": 78.95,
+      "category_similarity_score": 65.1,
+      "points_stolen_score": 17.89,
+      "rivalry_score": 61.89,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Sam",
+      "season": 2026,
+      "rival_team": "philbell",
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 71.77,
+      "category_similarity_score": 70.38,
+      "points_stolen_score": 22.63,
+      "rivalry_score": 61.46,
+      "tags": [
+        "watch list"
+      ]
+    },
+    {
+      "team": "Inkers",
+      "season": 2026,
+      "rival_team": "Sam",
+      "source_rival_team": "Sam",
+      "finish_proximity_score": 70.33,
+      "category_similarity_score": 67.99,
+      "points_stolen_score": 26.32,
+      "rivalry_score": 60.71,
+      "tags": [
+        "frequent category pressure"
+      ]
+    },
+    {
+      "team": "Trazadone",
+      "season": 2026,
+      "rival_team": "John Henry Fan Club",
+      "source_rival_team": "John Henry Fan Club",
+      "finish_proximity_score": 78.47,
+      "category_similarity_score": 63.85,
+      "points_stolen_score": 13.16,
+      "rivalry_score": 60.29,
+      "tags": [
+        "close standings"
+      ]
+    },
+    {
+      "team": "Pat",
+      "season": 2026,
+      "rival_team": "John Henry Fan Club",
+      "source_rival_team": "John Henry Fan Club",
+      "finish_proximity_score": 73.21,
+      "category_similarity_score": 66.27,
+      "points_stolen_score": 17.89,
+      "rivalry_score": 59.72,
+      "tags": [
+        "watch list"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Rivalries - Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="Standings proximity, category similarity, and category pressure rivalry scores for Backyard Dynasty Baseball.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rivalries - Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Top deterministic rivalry pairings from standings snapshots and category roto points.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/rivalries.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+.content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
+.leader-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:34px; }
+.rival-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px 18px; min-height:160px; }
+.rival-card.top { border-color:#4a3c18; background:#141208; }
+.rival-title { font-family:'Bebas Neue', sans-serif; font-size:26px; line-height:1; letter-spacing:.04em; color:var(--text); margin-bottom:10px; }
+.rival-score { font-family:'Bebas Neue', sans-serif; font-size:38px; line-height:.9; letter-spacing:.04em; color:var(--gold); margin-bottom:12px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.tag { font-size:9.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--border2); border-radius:999px; padding:4px 8px; color:var(--text-muted); }
+.metric-list { display:grid; gap:7px; }
+.metric-row { display:grid; grid-template-columns:112px 1fr 42px; gap:8px; align-items:center; }
+.metric-label { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.track { height:8px; background:#0e0e0f; border:1px solid #1a1a1c; border-radius:2px; overflow:hidden; }
+.fill { height:100%; background:var(--gold); }
+.metric-value { font-family:'Bebas Neue', sans-serif; font-size:16px; line-height:1; color:var(--text-muted); text-align:right; }
+.team-section { margin-bottom:32px; }
+.team-title { font-family:'Bebas Neue', sans-serif; font-size:36px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:14px; }
+.team-rivals { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; }
+.table-wrap { overflow-x:auto; margin-bottom:30px; }
+table { width:100%; min-width:760px; border-collapse:collapse; font-size:13px; }
+th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
+td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
+.state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
+@media (max-width: 900px) { .leader-grid,.team-rivals{grid-template-columns:1fr;} }
+@media (max-width: 680px) { .content,.site-footer{padding-left:20px;padding-right:20px;} .metric-row{grid-template-columns:92px 1fr 36px;} }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>League<br><span>Rivalries</span></h1>
+  <div class="divider"></div>
+  <p>Rivalry scores from rank proximity, category-point similarity, and repeated category pressure.</p>
+</div>
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading rivalry board...</div>
+  <div id="mainContent" style="display:none;">
+    <div class="section-label">Top Pairings</div>
+    <div class="leader-grid" id="leaderGrid"></div>
+    <div class="section-label">By Team</div>
+    <div id="teamSections"></div>
+    <div class="section-label">Full Board</div>
+    <div class="table-wrap"><table><thead><tr><th>Team</th><th>Rival</th><th>Score</th><th>Rank Proximity</th><th>Category Similarity</th><th>Category Pressure</th><th>Tags</th></tr></thead><tbody id="boardBody"></tbody></table></div>
+  </div>
+</div>
+<div class="site-footer" id="footerEl">Rivalries from local standings snapshots.</div>
+<script>
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function pct(v){return Math.round(Number(v || 0));}
+function metricRows(item){
+  const metrics = [
+    ['Rank', item.finish_proximity_score],
+    ['Categories', item.category_similarity_score],
+    ['Pressure', item.points_stolen_score]
+  ];
+  return `<div class="metric-list">${metrics.map(([label,value]) => `<div class="metric-row"><div class="metric-label">${label}</div><div class="track"><div class="fill" style="width:${pct(value)}%"></div></div><div class="metric-value">${pct(value)}</div></div>`).join('')}</div>`;
+}
+function tags(item){ return `<div class="tag-row">${(item.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>`; }
+function card(team, item, top){
+  return `<div class="rival-card ${top ? 'top' : ''}"><div class="rival-title">${esc(team)} vs ${esc(item.rival_team)}</div><div class="rival-score">${pct(item.rivalry_score)}</div>${metricRows(item)}${tags(item)}</div>`;
+}
+function render(data){
+  document.getElementById('leaderGrid').innerHTML = (data.leaders || []).slice(0,6).map(item => card(item.team, item, true)).join('') || '<div class="state-msg">No rivalry metrics available.</div>';
+  document.getElementById('teamSections').innerHTML = (data.teams || []).map(team => `<div class="team-section"><div class="team-title">${esc(team.team)}</div><div class="team-rivals">${team.rivals.map(item => card(team.team, item, false)).join('')}</div></div>`).join('');
+  const rows = [];
+  (data.teams || []).forEach(team => (team.rivals || []).forEach(item => rows.push({team: team.team, ...item})));
+  rows.sort((a,b) => Number(b.rivalry_score) - Number(a.rivalry_score) || a.team.localeCompare(b.team));
+  document.getElementById('boardBody').innerHTML = rows.map(item => `<tr><td>${esc(item.team)}</td><td>${esc(item.rival_team)}</td><td>${pct(item.rivalry_score)}</td><td>${pct(item.finish_proximity_score)}</td><td>${pct(item.category_similarity_score)}</td><td>${pct(item.points_stolen_score)}</td><td>${esc((item.tags || []).join(', '))}</td></tr>`).join('') || '<tr><td colspan="7">No rivalry metrics available.</td></tr>';
+  document.getElementById('footerEl').textContent = `Last updated: ${data.generated} · Season ${data.season || 'N/A'}.`;
+}
+fetch('data/rivalries.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; render(data); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load rivalries. ('+err.message+')'; });
+</script>
+</body>
+</html>
