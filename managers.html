@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Manager Profiles - Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="Manager activity profiles for Backyard Dynasty Baseball — trade counts, roster churn, and archetypes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Manager Profiles - Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Trade counts, roster churn, and activity archetypes for all managers.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/managers.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+.content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
+.manager-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:40px; }
+.mgr-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+.mgr-card.archetype-trader  { border-color:#1e2f4a; background:#0f1624; }
+.mgr-card.archetype-grinder { border-color:#4a3c18; background:#141208; }
+.mgr-card.archetype-prospect-hoarder { border-color:#1a3226; background:#0e1a14; }
+.mgr-name { font-family:'Bebas Neue', sans-serif; font-size:28px; line-height:.95; letter-spacing:.04em; color:var(--text); margin-bottom:10px; }
+.archetype-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:9.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  border-radius:999px; padding:4px 10px; margin-bottom:14px; border:1px solid;
+}
+.archetype-badge.trader        { color:var(--blue);  border-color:#1e2f4a; background:rgba(93,125,181,0.1); }
+.archetype-badge.grinder       { color:var(--gold);  border-color:#4a3c18; background:rgba(200,168,75,0.08); }
+.archetype-badge.prospect-hoarder { color:var(--green); border-color:#1a3226; background:rgba(93,168,122,0.1); }
+.archetype-badge.steady        { color:var(--text-muted); border-color:var(--border2); background:transparent; }
+.stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px; }
+.stat-item { text-align:center; }
+.stat-value { font-family:'Bebas Neue', sans-serif; font-size:28px; line-height:1; color:var(--text); }
+.stat-label { font-size:9.5px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.churn-row { display:grid; grid-template-columns:60px 1fr 36px; gap:8px; align-items:center; }
+.churn-label { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.track { height:8px; background:#0e0e0f; border:1px solid #1a1a1c; border-radius:2px; overflow:hidden; }
+.fill { height:100%; }
+.fill-trader        { background:var(--blue); }
+.fill-grinder       { background:var(--gold); }
+.fill-prospect-hoarder { background:var(--green); }
+.fill-steady        { background:var(--text-dead); }
+.churn-value { font-family:'Bebas Neue', sans-serif; font-size:15px; line-height:1; color:var(--text-muted); text-align:right; }
+.table-wrap { overflow-x:auto; margin-bottom:30px; }
+table { width:100%; min-width:640px; border-collapse:collapse; font-size:13px; }
+th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
+td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
+td:first-child { color:var(--text); }
+.badge-cell { padding:4px 0; }
+.state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.archetype-def { display:grid; grid-template-columns: repeat(4,1fr); gap:10px; margin-bottom:40px; }
+.def-item { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:14px 16px; }
+.def-title { font-family:'Bebas Neue', sans-serif; font-size:18px; color:var(--text); margin-bottom:4px; }
+.def-desc { font-size:11.5px; color:var(--text-muted); line-height:1.5; }
+.site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
+@media (max-width: 900px) { .manager-grid,.archetype-def { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px) { .manager-grid,.archetype-def { grid-template-columns: 1fr; } .content,.site-footer{padding-left:20px;padding-right:20px;} }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Manager<br><span>Profiles</span></h1>
+  <div class="divider"></div>
+  <p>Roster activity by team — trade frequency, waiver churn, and deterministic archetypes from the current season's transaction log.</p>
+</div>
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading manager profiles...</div>
+  <div id="mainContent" style="display:none;">
+
+    <div class="section-label">Archetypes</div>
+    <div class="archetype-def">
+      <div class="def-item">
+        <div class="def-title" style="color:var(--blue)">Trader</div>
+        <div class="def-desc">2+ trades this season. Actively reshaping the roster through deal-making.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-title" style="color:var(--gold)">Grinder</div>
+        <div class="def-desc">10+ waiver adds/drops. Constant roster cycling to squeeze weekly value.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-title" style="color:var(--green)">Prospect Hoarder</div>
+        <div class="def-desc">3+ prospect-badged transactions. Building through the farm system.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-title" style="color:var(--text-muted)">Steady</div>
+        <div class="def-desc">Low activity, no dominant pattern. Letting the roster ride.</div>
+      </div>
+    </div>
+
+    <div class="section-label">All Managers</div>
+    <div class="manager-grid" id="managerGrid"></div>
+
+    <div class="section-label">Activity Board</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Manager</th><th>Archetype</th><th>Trades</th><th>Adds</th><th>Drops</th><th>Churn</th></tr></thead>
+        <tbody id="boardBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<div class="site-footer" id="footerEl">Manager data from season transaction log.</div>
+<script>
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function archetypeClass(a){return (a||'steady').toLowerCase().replace(/\s+/g,'-');}
+function archetypeLabel(a){
+  const labels={'trader':'Trader','grinder':'Grinder','prospect hoarder':'Prospect Hoarder','steady':'Steady'};
+  return labels[a]||a||'Steady';
+}
+function badgeHtml(a){
+  const cls=archetypeClass(a);
+  return `<span class="archetype-badge ${cls}">${esc(archetypeLabel(a))}</span>`;
+}
+function managerCard(m){
+  const cls=archetypeClass(m.archetype);
+  const fillClass='fill-'+cls;
+  return `<div class="mgr-card archetype-${cls}">
+    <div class="mgr-name">${esc(m.team)}</div>
+    ${badgeHtml(m.archetype)}
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-value">${m.trade_count}</div><div class="stat-label">Trades</div></div>
+      <div class="stat-item"><div class="stat-value">${m.add_count}</div><div class="stat-label">Adds</div></div>
+      <div class="stat-item"><div class="stat-value">${m.drop_count}</div><div class="stat-label">Drops</div></div>
+    </div>
+    <div class="churn-row">
+      <div class="churn-label">Churn</div>
+      <div class="track"><div class="fill ${fillClass}" style="width:${m.churn_pct||0}%"></div></div>
+      <div class="churn-value">${m.roster_churn}</div>
+    </div>
+  </div>`;
+}
+function render(data){
+  const managers=data.managers||[];
+  document.getElementById('managerGrid').innerHTML=managers.map(m=>managerCard(m)).join('')||'<div class="state-msg">No manager data available.</div>';
+  document.getElementById('boardBody').innerHTML=managers.map(m=>`<tr>
+    <td>${esc(m.team)}</td>
+    <td class="badge-cell">${badgeHtml(m.archetype)}</td>
+    <td>${m.trade_count}</td>
+    <td>${m.add_count}</td>
+    <td>${m.drop_count}</td>
+    <td>${m.roster_churn}</td>
+  </tr>`).join('')||'<tr><td colspan="6">No data.</td></tr>';
+  document.getElementById('footerEl').textContent=`Last updated: ${data.generated} · Season ${data.season||'N/A'}.`;
+}
+fetch('data/managers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
+  document.getElementById('loadingMsg').style.display='none';
+  document.getElementById('mainContent').style.display='';
+  render(data);
+}).catch(err=>{
+  document.getElementById('loadingMsg').textContent='Could not load manager profiles. ('+err.message+')';
+});
+</script>
+<script src="assets/feedback.js"></script>
+</body>
+</html>

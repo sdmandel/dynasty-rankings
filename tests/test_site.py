@@ -179,6 +179,29 @@ def test_rules_page_toc_links_match_sections() -> None:
                 assert block["anchor"]
 
 
+def test_managers_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "managers.json"))
+    assert "generated" in data
+    assert "season" in data
+    assert "managers" in data and isinstance(data["managers"], list)
+    if data["managers"]:
+        first = data["managers"][0]
+        for key in ("team", "archetype", "trade_count", "add_count", "drop_count", "roster_churn"):
+            assert key in first, f"manager missing {key}"
+
+
+def test_closers_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "closers.json"))
+    assert "generated" in data
+    assert "snapshot_date" in data
+    assert "closers" in data and isinstance(data["closers"], list)
+    assert "by_dynasty_team" in data and isinstance(data["by_dynasty_team"], dict)
+    if data["closers"]:
+        first = data["closers"][0]
+        for key in ("closer_name", "bullpen_team", "dynasty_team", "recent_saves", "confidence_score", "unstable_flag"):
+            assert key in first, f"closer missing {key}"
+
+
 def test_feedback_js_points_at_repo() -> None:
     js = _read(ROOT / "assets" / "feedback.js") if (ROOT / "assets" / "feedback.js").exists() else _read(ROOT / "feedback.js")
     assert FEEDBACK_REPO in js, f"feedback.js should reference {FEEDBACK_REPO}"

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Closer Carousel - Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="Current closer roles by MLB bullpen team, with dynasty ownership and role confidence for Backyard Dynasty Baseball.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Closer Carousel - Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Save leaders, role confidence, and dynasty ownership for every MLB bullpen.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/closers.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+.content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
+.closer-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:40px; }
+.closer-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:18px 20px; }
+.closer-card.unstable { border-color:#4a1e1e; background:#150e0e; }
+.closer-card.high-conf { border-color:#1e3226; background:#0e1810; }
+.bullpen-team { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); margin-bottom:4px; }
+.closer-name { font-family:'Bebas Neue', sans-serif; font-size:26px; line-height:1; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
+.closer-card.high-conf .closer-name { color:var(--green); }
+.dynasty-owner { font-size:12px; color:var(--text-muted); margin-bottom:10px; }
+.dynasty-owner span { color:var(--gold); }
+.dynasty-owner.no-owner { color:var(--text-dead); font-style:italic; }
+.conf-row { display:grid; grid-template-columns:80px 1fr 36px; gap:8px; align-items:center; margin-bottom:8px; }
+.conf-label { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.track { height:8px; background:#0e0e0f; border:1px solid #1a1a1c; border-radius:2px; overflow:hidden; }
+.fill { height:100%; }
+.fill-high { background:var(--green); }
+.fill-mid  { background:var(--gold); }
+.fill-low  { background:var(--text-dead); }
+.conf-value { font-family:'Bebas Neue', sans-serif; font-size:15px; line-height:1; color:var(--text-muted); text-align:right; }
+.tag-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.tag { font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--border2); border-radius:999px; padding:3px 8px; color:var(--text-muted); }
+.tag.unstable { color:var(--red); border-color:#4a1e1e; }
+.tag.saves    { color:var(--text-mid); border-color:var(--border2); }
+.stat-pill { font-size:11px; color:var(--text-muted); }
+.dynasty-section { margin-bottom:32px; }
+.dynasty-title { font-family:'Bebas Neue', sans-serif; font-size:32px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:14px; }
+.dynasty-closers { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
+.table-wrap { overflow-x:auto; margin-bottom:30px; }
+table { width:100%; min-width:680px; border-collapse:collapse; font-size:13px; }
+th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
+td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
+td:first-child { color:var(--text); }
+.state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
+@media (max-width:900px){ .closer-grid,.dynasty-closers{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .closer-grid,.dynasty-closers{grid-template-columns:1fr;} .content,.site-footer{padding-left:20px;padding-right:20px;} }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Closer<br><span>Carousel</span></h1>
+  <div class="divider"></div>
+  <p>Current save leaders by MLB bullpen. Confidence derived from season save totals and blown-save rate. Dynasty ownership from the Oracle rankings CSV.</p>
+</div>
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading closer data...</div>
+  <div id="mainContent" style="display:none;">
+
+    <div class="section-label">High Confidence Closers</div>
+    <div class="closer-grid" id="topClosers"></div>
+
+    <div class="section-label">By Dynasty Team</div>
+    <div id="dynastySections"></div>
+
+    <div class="section-label">Full Board</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Closer</th><th>MLB Team</th><th>Dynasty Team</th>
+          <th>Saves</th><th>Confidence</th><th>Role Share</th><th>Flags</th>
+        </tr></thead>
+        <tbody id="boardBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<div class="site-footer" id="footerEl">Closer data from MLB Stats API season save leaders. Dynasty ownership from Oracle rankings.</div>
+<script>
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function pct(v){return Math.round(Number(v||0));}
+function confClass(c){ return c>=65?'high':c>=35?'mid':'low'; }
+function fillClass(c){ return 'fill-'+confClass(c); }
+function confLabel(c){ return c>=65?'Strong':c>=35?'Medium':'Weak'; }
+
+function closerCard(item, highlight){
+  const cc=confClass(item.confidence_score);
+  const unstable=item.unstable_flag;
+  const hasDynasty=item.dynasty_team&&item.dynasty_team.trim();
+  const cardCls=(unstable?'unstable':(cc==='high'?'high-conf':''));
+  const tags=[];
+  if(unstable) tags.push(`<span class="tag unstable">Unstable Bullpen</span>`);
+  if(item.recent_saves) tags.push(`<span class="tag saves">${item.recent_saves} SV</span>`);
+  return `<div class="closer-card ${cardCls}">
+    <div class="bullpen-team">${esc(item.bullpen_team||'')}</div>
+    <div class="closer-name">${esc(item.closer_name||'Unknown')}</div>
+    <div class="${hasDynasty?'dynasty-owner':'dynasty-owner no-owner'}">${hasDynasty?`Owned by <span>${esc(item.dynasty_team)}</span>`:'Unowned / Free Agent'}</div>
+    <div class="conf-row">
+      <div class="conf-label">Confidence</div>
+      <div class="track"><div class="fill ${fillClass(item.confidence_score)}" style="width:${pct(item.confidence_score)}%"></div></div>
+      <div class="conf-value">${pct(item.confidence_score)}</div>
+    </div>
+    ${tags.length?`<div class="tag-row">${tags.join('')}</div>`:''}
+  </div>`;
+}
+
+function render(data){
+  const closers=data.closers||[];
+  const topN=closers.filter(c=>!c.unstable_flag&&c.confidence_score>=65).slice(0,6);
+  document.getElementById('topClosers').innerHTML=topN.map(c=>closerCard(c,true)).join('')||'<div class="state-msg">No high-confidence closers yet.</div>';
+
+  const byTeam=data.by_dynasty_team||{};
+  const teamNames=Object.keys(byTeam).sort();
+  document.getElementById('dynastySections').innerHTML=teamNames.length
+    ?teamNames.map(team=>`<div class="dynasty-section">
+        <div class="dynasty-title">${esc(team)}</div>
+        <div class="dynasty-closers">${byTeam[team].map(c=>closerCard(c,false)).join('')}</div>
+      </div>`).join('')
+    :'<div class="state-msg">No dynasty team ownership data.</div>';
+
+  document.getElementById('boardBody').innerHTML=closers.map(c=>`<tr>
+    <td>${esc(c.closer_name||'—')}</td>
+    <td>${esc(c.bullpen_team||'—')}</td>
+    <td>${esc(c.dynasty_team||'FA')}</td>
+    <td>${c.recent_saves}</td>
+    <td>${pct(c.confidence_score)} <span style="font-size:10px;color:var(--text-dead)">(${confLabel(c.confidence_score)})</span></td>
+    <td>${c.role_share}%</td>
+    <td>${c.unstable_flag?'<span style="color:var(--red);font-size:11px">⚠ Unstable</span>':''}</td>
+  </tr>`).join('')||'<tr><td colspan="7">No closer data.</td></tr>';
+
+  document.getElementById('footerEl').textContent=`Last updated: ${data.generated||'—'} · Save data from MLB Stats API.`;
+}
+
+fetch('data/closers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
+  document.getElementById('loadingMsg').style.display='none';
+  document.getElementById('mainContent').style.display='';
+  render(data);
+}).catch(err=>{
+  document.getElementById('loadingMsg').textContent='Could not load closer data. ('+err.message+')';
+});
+</script>
+<script src="assets/feedback.js"></script>
+</body>
+</html>
