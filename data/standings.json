@@ -20,8 +20,8 @@
     "SB": "Humongous Melonheads",
     "OPS": "Rollie Fingers",
     "QS": "Humongous Melonheads",
-    "ERA": "Rollie Fingers",
-    "WHIP": "Inkers",
+    "ERA": "Trazadone",
+    "WHIP": "Trazadone",
     "K": "Seam heads",
     "SVH": "Seam heads"
   },
@@ -32,8 +32,8 @@
     "SB": "Millville Meteors",
     "OPS": "Vin Mazzaro fan club",
     "QS": "Inkers",
-    "ERA": "Trazadone",
-    "WHIP": "Trazadone",
+    "ERA": "Rollie Fingers",
+    "WHIP": "Inkers",
     "K": "Mommy",
     "SVH": "John Henry Fan Club"
   },
@@ -138,8 +138,8 @@
         },
         "ERA": {
           "pts": 1.0,
-          "leader": true,
-          "last": false
+          "leader": false,
+          "last": true
         },
         "WHIP": {
           "pts": 4.0,
@@ -318,13 +318,13 @@
         },
         "ERA": {
           "pts": 12.0,
-          "leader": false,
-          "last": true
+          "leader": true,
+          "last": false
         },
         "WHIP": {
           "pts": 12.0,
-          "leader": false,
-          "last": true
+          "leader": true,
+          "last": false
         },
         "K": {
           "pts": 6.0,
@@ -563,8 +563,8 @@
         },
         "WHIP": {
           "pts": 1.0,
-          "leader": true,
-          "last": false
+          "leader": false,
+          "last": true
         },
         "K": {
           "pts": 4.0,

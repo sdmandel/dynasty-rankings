@@ -278,6 +278,70 @@ body {
   border-radius: 0 1px 1px 0;
 }
 
+/* ── STANDINGS TILE PREVIEW ── */
+.st-list { display: flex; flex-direction: column; gap: 3px; }
+.st-row  { display: grid; grid-template-columns: 22px 1fr 34px; gap: 5px; align-items: center; }
+.st-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--text-dead);
+  text-align: right;
+  line-height: 1;
+}
+.st-track {
+  height: 12px;
+  background: #0e0e0f;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid #1a1a1c;
+}
+.st-fill {
+  height: 100%;
+  background: var(--gold-dim);
+  border-radius: 1px;
+}
+.st-row.rank1 .st-fill { background: var(--gold); }
+.st-pts {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  color: var(--text-dead);
+  text-align: right;
+  line-height: 1;
+}
+.st-row.rank1 .st-pts { color: var(--gold); }
+
+/* ── TRANSACTIONS TILE PREVIEW ── */
+.tx-list { display: flex; flex-direction: column; gap: 5px; }
+.tx-row  { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.tx-badge {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.tx-badge.add   { background: rgba(93,168,122,0.18); color: #5da87a; }
+.tx-badge.drop  { background: rgba(181,93,93,0.15);  color: var(--red); }
+.tx-badge.trade { background: rgba(93,125,181,0.18); color: var(--blue); }
+.tx-info { display: flex; flex-direction: column; min-width: 0; }
+.tx-player { font-size: 11.5px; color: var(--text-mid); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tx-team   { font-size: 10px; color: var(--text-dead); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── PROSPECTS TILE PREVIEW ── */
+.pr-list { display: flex; flex-direction: column; gap: 3px; }
+.pr-row  { display: grid; grid-template-columns: 30px 1fr auto; gap: 5px; align-items: center; }
+.pr-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--text-dead);
+  text-align: right;
+  line-height: 1;
+}
+.pr-name  { font-size: 11.5px; color: var(--text-mid); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-level { font-size: 9.5px; color: var(--text-dead); flex-shrink: 0; text-align: right; }
+
 /* ── FOOTER ── */
 .site-footer {
   max-width: 1100px;
@@ -338,31 +402,52 @@ body {
     <a href="power_rankings.html" class="card">
       <div class="card-eyebrow">All Articles</div>
       <div class="card-title">Archive</div>
-      <div class="card-meta">Week 1 &amp; earlier</div>
       <div class="card-arrow">View all →</div>
     </a>
   </div>
 
   <div class="section-label">League</div>
-  <div class="card-grid">
-    <a href="standings.html" class="card featured">
-      <div class="card-eyebrow">Live &nbsp;·&nbsp; Roto 5&times;5</div>
-      <div class="card-title">Standings</div>
-      <div class="card-meta">Category breakdown for all 12 teams. Updated daily.</div>
-      <div class="card-arrow">View →</div>
+  <div class="tool-grid">
+
+    <!-- ── Standings tile ── -->
+    <a href="standings.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="st-list" id="standingsPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Live &nbsp;·&nbsp; Roto 5&times;5</div>
+        <div class="tile-title">Standings</div>
+        <div class="tile-meta">Category breakdown for all 12 teams. Updated daily.</div>
+        <span class="tile-arrow">View standings →</span>
+      </div>
     </a>
-    <a href="transactions.html" class="card">
-      <div class="card-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
-      <div class="card-title">Transactions</div>
-      <div class="card-meta">Adds, drops, and trades. Prospect and notable badges.</div>
-      <div class="card-arrow">View →</div>
+
+    <!-- ── Transactions tile ── -->
+    <a href="transactions.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="tx-list" id="transactionsPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
+        <div class="tile-title">Transactions</div>
+        <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
+        <span class="tile-arrow">View transactions →</span>
+      </div>
     </a>
-    <a href="prospects.html" class="card">
-      <div class="card-eyebrow">Farm Systems &nbsp;·&nbsp; All 12 Teams</div>
-      <div class="card-title">Prospect Radar</div>
-      <div class="card-meta">Every rostered minor leaguer, sorted by Oracle rank.</div>
-      <div class="card-arrow">View →</div>
+
+    <!-- ── Prospect Radar tile ── -->
+    <a href="prospects.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="pr-list" id="prospectsPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Farm Systems &nbsp;·&nbsp; All 12 Teams</div>
+        <div class="tile-title">Prospect Radar</div>
+        <div class="tile-meta">Every rostered minor leaguer, sorted by Oracle rank.</div>
+        <span class="tile-arrow">View prospects →</span>
+      </div>
     </a>
+
   </div>
 
   <div class="section-label">Tools</div>
@@ -512,6 +597,66 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
   });
 })();
 
+// ─── LEAGUE TILE PREVIEWS ────────────────────────────────────
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Standings preview
+fetch('data/standings.json').then(r => r.json()).then(data => {
+  const el = document.getElementById('standingsPreview');
+  if (!el) return;
+  const teams = data.teams || [];
+  const max = Math.max(...teams.map(t => t.total_pts));
+  teams.forEach(t => {
+    const pct = (t.total_pts / max * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'st-row' + (t.rank === 1 ? ' rank1' : '');
+    row.innerHTML =
+      `<div class="st-rank">#${t.rank}</div>` +
+      `<div class="st-track"><div class="st-fill" style="width:${pct}%"></div></div>` +
+      `<div class="st-pts">${t.total_pts.toFixed(1)}</div>`;
+    el.appendChild(row);
+  });
+}).catch(() => {});
+
+// Transactions preview
+fetch('data/transactions.json').then(r => r.json()).then(data => {
+  const el = document.getElementById('transactionsPreview');
+  if (!el) return;
+  const txs = (data.transactions || []).slice(0, 9);
+  txs.forEach(tx => {
+    const type = (tx.type || 'ADD').toUpperCase();
+    const cls  = type === 'ADD' ? 'add' : type === 'DROP' ? 'drop' : 'trade';
+    const row  = document.createElement('div');
+    row.className = 'tx-row';
+    row.innerHTML =
+      `<span class="tx-badge ${cls}">${type}</span>` +
+      `<div class="tx-info">` +
+        `<div class="tx-player">${esc(tx.player)}</div>` +
+        `<div class="tx-team">${esc(tx.team)}</div>` +
+      `</div>`;
+    el.appendChild(row);
+  });
+}).catch(() => {});
+
+// Prospects preview
+fetch('data/prospects.json').then(r => r.json()).then(data => {
+  const el = document.getElementById('prospectsPreview');
+  if (!el) return;
+  const all = [];
+  (data.teams || []).forEach(t => (t.prospects || []).forEach(p => all.push(p)));
+  all.sort((a, b) => (a.rank || 9999) - (b.rank || 9999));
+  all.slice(0, 10).forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'pr-row';
+    row.innerHTML =
+      `<div class="pr-rank">#${p.rank || '—'}</div>` +
+      `<div class="pr-name">${esc(p.name)}</div>` +
+      `<div class="pr-level">${esc(p.level || '')}</div>`;
+    el.appendChild(row);
+  });
+}).catch(() => {});
+
 // ─── MINI SCATTER TILE ───────────────────────────────────────
 (function buildMiniScatter() {
   const svgEl = document.getElementById('miniScatterSvg');
@@ -579,5 +724,6 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
   });
 })();
 </script>
+<script src="feedback.js"></script>
 </body>
 </html>

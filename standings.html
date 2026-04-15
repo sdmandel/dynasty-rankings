@@ -187,8 +187,15 @@ body {
   color: var(--text-dead);
   padding: 0 6px 10px;
   border-bottom: 1px solid var(--border2);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.12s;
+  white-space: nowrap;
 }
+.cat-table thead th:hover { color: var(--text-muted); }
+.cat-table thead th.sort-active { color: var(--text); }
 .cat-table thead th.team-col { text-align: left; padding-left: 0; }
+.sort-arrow { margin-left: 3px; font-size: 8px; }
 .cat-table tbody tr {
   border-bottom: 1px solid var(--border);
   transition: background 0.1s;
@@ -215,42 +222,81 @@ body {
   width: 22px;
   text-align: right;
 }
-.cat-leader {
-  background: rgba(200, 168, 75, 0.12);
-  color: var(--gold) !important;
-  font-weight: 600;
-  border-radius: 3px;
+/* cell coloring now done via inline styles from cellAttrs() */
+
+/* ── CATEGORY LEGEND ── */
+.cat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
 }
-.cat-last {
-  color: var(--red) !important;
-  opacity: 0.75;
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.legend-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.legend-hint {
+  font-size: 11px;
+  color: var(--text-dead);
 }
 
 /* ── CATEGORY LEADERS STRIP ── */
-.leaders-strip {
-  display: flex;
-  flex-wrap: wrap;
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   margin-bottom: 48px;
 }
+.leaders-row-label {
+  grid-column: 1 / -1;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding-top: 4px;
+}
+.leaders-row-label:first-child { padding-top: 0; }
 .leader-chip {
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 7px 12px;
-  font-size: 12px;
+  border-radius: 6px;
+  padding: 12px 14px;
 }
 .leader-chip .chip-cat {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dead);
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
 .leader-chip .chip-team {
+  font-size: 14px;
   color: var(--gold);
   font-weight: 500;
+  line-height: 1.3;
+}
+@media (max-width: 680px) {
+  .leaders-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+  }
+  .leader-chip {
+    padding: 8px 8px;
+  }
+  .leader-chip .chip-cat { font-size: 9px; margin-bottom: 4px; }
+  .leader-chip .chip-team { font-size: 11px; }
 }
 
 /* ── FOOTER ── */
@@ -297,7 +343,7 @@ body {
 
     <!-- ── CATEGORY LEADERS ── -->
     <div class="section-label">Category Leaders</div>
-    <div class="leaders-strip" id="leadersStrip"></div>
+    <div class="leaders-grid" id="leadersStrip"></div>
 
     <!-- ── SUMMARY TABLE ── -->
     <div class="section-label">Overall Standings</div>
@@ -317,6 +363,17 @@ body {
 
     <!-- ── CATEGORY BREAKDOWN ── -->
     <div class="section-label">Category Breakdown</div>
+    <div class="cat-legend">
+      <div class="legend-item">
+        <span class="legend-swatch" style="background:rgba(200,168,75,0.25);border:1px solid var(--gold);"></span>
+        Category Leader
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background:rgba(181,93,93,0.2);border:1px solid var(--red);"></span>
+        Last in Category
+      </div>
+      <span class="legend-hint">· Click a column to sort ·</span>
+    </div>
     <div class="cat-scroll">
       <table class="cat-table" id="catTable">
         <thead id="catHead"></thead>
@@ -353,16 +410,30 @@ fetch('data/standings.json')
   });
 
 function renderLeaders(data) {
-  const strip = document.getElementById('leadersStrip');
-  const cats = data.category_order || [];
-  cats.forEach(cat => {
+  const grid  = document.getElementById('leadersStrip');
+  const cats  = data.category_order || [];
+  const hits  = cats.slice(0, 5);
+  const pitch = cats.slice(5);
+
+  function addLabel(text) {
+    const d = document.createElement('div');
+    d.className = 'leaders-row-label';
+    d.textContent = text;
+    grid.appendChild(d);
+  }
+  function addChip(cat) {
     const leader = (data.category_leaders || {})[cat];
     if (!leader) return;
-    const chip = document.createElement('div');
-    chip.className = 'leader-chip';
-    chip.innerHTML = `<div class="chip-cat">${cat}</div><div class="chip-team">${leader}</div>`;
-    strip.appendChild(chip);
-  });
+    const d = document.createElement('div');
+    d.className = 'leader-chip';
+    d.innerHTML = `<div class="chip-cat">${cat}</div><div class="chip-team">${esc(leader)}</div>`;
+    grid.appendChild(d);
+  }
+
+  addLabel('Hitting');
+  hits.forEach(addChip);
+  addLabel('Pitching');
+  pitch.forEach(addChip);
 }
 
 function renderSummary(data) {
@@ -384,27 +455,96 @@ function renderSummary(data) {
   });
 }
 
+let _catState = null;
+let _sortCol  = null;  // null = default roto rank order
+let _sortDir  = -1;    // -1 = desc (highest pts first), 1 = asc
+
 function renderCategories(data) {
   const cats = data.category_order || [];
+  _catState = { cats, teams: data.teams };
 
-  // Header
   const headRow = document.createElement('tr');
-  headRow.innerHTML = '<th class="team-col">Team</th>' +
-    cats.map(c => `<th>${c}</th>`).join('');
+  headRow.innerHTML =
+    '<th class="team-col" data-col="rank">Team</th>' +
+    cats.map(c => `<th data-col="${c}">${c}</th>`).join('');
   document.getElementById('catHead').appendChild(headRow);
 
-  // Body — sorted by roto rank
+  headRow.querySelectorAll('th').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (_sortCol !== col) {
+        // New column: start desc
+        _sortCol = col; _sortDir = -1;
+      } else if (_sortDir === -1) {
+        // Second click: flip to asc
+        _sortDir = 1;
+      } else {
+        // Third click: reset to roto rank
+        _sortCol = null;
+      }
+      _updateSortHeaders();
+      _renderCatBody();
+    });
+  });
+
+  _updateSortHeaders();
+  _renderCatBody();
+}
+
+function _updateSortHeaders() {
+  document.querySelectorAll('.cat-table thead th').forEach(th => {
+    const arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.remove();
+    th.classList.remove('sort-active');
+    if (_sortCol && th.dataset.col === _sortCol) {
+      th.classList.add('sort-active');
+      const sp = document.createElement('span');
+      sp.className = 'sort-arrow';
+      sp.textContent = _sortDir < 0 ? '↓' : '↑';
+      th.appendChild(sp);
+    }
+  });
+}
+
+function lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+
+function cellAttrs(pts) {
+  if (pts == null) return '';
+  const t = (pts - 1) / 11; // 0 = 1pt (last), 1 = 12pt (leader)
+  // Interpolate: red(181,93,93) → neutral(194,191,184) → gold(200,168,75)
+  let r, g, b;
+  if (t >= 0.5) {
+    const u = (t - 0.5) * 2;
+    r = lerp(194, 200, u); g = lerp(191, 168, u); b = lerp(184, 75, u);
+  } else {
+    const u = t * 2;
+    r = lerp(181, 194, u); g = lerp(93, 191, u); b = lerp(93, 184, u);
+  }
+  const bg  = t >= 0.88 ? 'background:rgba(200,168,75,0.13);'
+            : t <= 0.12 ? 'background:rgba(181,93,93,0.10);' : '';
+  const fw  = t >= 0.88 ? 'font-weight:600;' : '';
+  return `style="${bg}color:rgb(${r},${g},${b});${fw}"`;
+}
+
+function _renderCatBody() {
+  const { cats, teams } = _catState;
   const tbody = document.getElementById('catBody');
-  data.teams.forEach(t => {
+  tbody.innerHTML = '';
+
+  const rows = [...teams].sort((a, b) => {
+    if (!_sortCol || _sortCol === 'rank') return a.rank - b.rank;
+    const av = ((a.categories || {})[_sortCol] || {}).pts ?? -Infinity;
+    const bv = ((b.categories || {})[_sortCol] || {}).pts ?? -Infinity;
+    return _sortDir * (bv - av);
+  });
+
+  rows.forEach(t => {
     const tr = document.createElement('tr');
     let html = `<td class="team-col"><span class="rank-sm">#${t.rank}</span>${esc(t.team)}</td>`;
     cats.forEach(cat => {
       const info = (t.categories || {})[cat] || {};
       const val  = info.pts != null ? info.pts.toFixed(1) : '—';
-      let cls = '';
-      if (info.leader) cls = 'cat-leader';
-      else if (info.last) cls = 'cat-last';
-      html += `<td class="${cls}">${val}</td>`;
+      html += `<td ${cellAttrs(info.pts)}>${val}</td>`;
     });
     tr.innerHTML = html;
     tbody.appendChild(tr);
@@ -414,5 +554,6 @@ function renderCategories(data) {
 function fmt(v)  { return v != null ? v.toFixed(1) : '—'; }
 function esc(s)  { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 </script>
+<script src="feedback.js"></script>
 </body>
 </html>
