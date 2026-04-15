@@ -754,7 +754,22 @@ def _safe_float(val) -> float | None:
         return None
 
 
-# ── Output ───────────────────────────────────────────────────────────────────
+
+# ── Badge classification for transactions ──
+def classify_badge(txn, top_rank_threshold=250):
+    """Classify badge for a transaction row. Returns 'trade', 'prospect', 'notable', or None."""
+    if txn.get('type') == 'TRADE':
+        return 'trade'
+    if txn.get('badge') == 'prospect':
+        return 'prospect'
+    # Notable: top-ranked adds/drops
+    try:
+        rank = int(txn.get('rank', 9999))
+    except Exception:
+        rank = 9999
+    if txn.get('type') in ('ADD', 'DROP') and rank <= top_rank_threshold:
+        return 'notable'
+    return None
 
 
 def build_prompt(
@@ -943,7 +958,12 @@ def main():
     # Build prompt
     prompt = build_prompt(args.week, standings_text, algo_rankings_text, lineup_activity_text, roster_text)
 
-    # Output
+
+    # Example: update transaction badge assignment (for exporter scripts)
+    # Lower threshold for notable badge
+    # This is a placeholder for where you would update the exporter logic
+    # If you have a script that generates transactions.json, ensure it uses classify_badge()
+
     print(prompt)
 
     output_path = SCRIPT_DIR / "weekly_prompt.txt"

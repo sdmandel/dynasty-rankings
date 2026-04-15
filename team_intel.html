@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Team Intel — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Team Intel — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/team_intel.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview.png">
+<meta name="twitter:image" content="https://baseball.stephenmandella.com/preview.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --red: #b55d5d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 40px 36px;
+  border-bottom: 1px solid var(--border2);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-muted); }
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.site-header h1 span { color: var(--gold); }
+.divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
+.site-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+.charts-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 40px 60px;
+}
+.chart-block { margin-bottom: 52px; }
+.chart-block h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 20px;
+}
+
+.scatter-wrap {
+  position: relative;
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.scatter-canvas { width: 100%; display: block; }
+
+.tooltip {
+  position: fixed;
+  background: #1a1a1c;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-mid);
+  pointer-events: none;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  max-width: 200px;
+}
+.tooltip .tt-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 4px;
+}
+.tooltip .tt-line { display: block; color: var(--text-muted); font-size: 11px; }
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.intel-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.intel-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 5px;
+}
+.intel-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+}
+.intel-meta { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+.intel-help {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.help-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.help-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 4px;
+}
+.help-copy { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+.table-wrap { overflow-x: auto; margin-top: 14px; }
+table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding: 0 10px 10px 0;
+  border-bottom: 1px solid var(--border2);
+}
+td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid var(--border); }
+.cat-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-height: 26px;
+}
+.cat-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+}
+.cat-chip.tight-critical {
+  background: rgba(200,168,75,0.18);
+  border-color: rgba(200,168,75,0.45);
+  color: var(--gold);
+}
+.cat-chip.tight-hot {
+  background: rgba(200,133,110,0.15);
+  border-color: rgba(200,133,110,0.45);
+  color: #c8856e;
+}
+.cat-chip.tight-watch {
+  background: rgba(93,125,181,0.14);
+  border-color: rgba(93,125,181,0.45);
+  color: #8ca7d4;
+}
+.cat-chip.tight-loose {
+  background: rgba(122,120,114,0.15);
+  border-color: rgba(122,120,114,0.4);
+  color: var(--text-muted);
+}
+.cat-overflow {
+  font-size: 11px;
+  color: var(--text-dead);
+}
+.tier-pill {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+.tier-contender { color: #5da87a; }
+.tier-fringe { color: #c8a84b; }
+.tier-stagnating { color: #c8856e; }
+.tier-rebuilding { color: #b55d5d; }
+
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+@media (max-width: 680px) {
+  .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
+  .intel-grid { grid-template-columns: 1fr; }
+  .intel-help { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a href="index.html" class="back-link">← The Hub</a>
+  <div class="eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</a></div>
+  <h1>Team<br><span>Intel</span></h1>
+  <div class="divider"></div>
+  <p>Roster age vs. Oracle value across all 12 teams. Younger rosters with high value are building toward a window; older rosters are cashing in or aging out.</p>
+</div>
+
+<div class="charts-section">
+  <div class="chart-block">
+    <h3>Roster Age vs. Oracle Value — Team Intel Quadrant (Upper half is best)</h3>
+    <div class="scatter-wrap">
+      <svg id="scatterSvg" class="scatter-canvas"></svg>
+    </div>
+  </div>
+  <div class="chart-block">
+    <h3>Roto Contention Board</h3>
+    <div class="intel-help">
+      <div class="help-card"><div class="help-title">Tier</div><div class="help-copy">Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.</div></div>
+      <div class="help-card"><div class="help-title">Reachable Points</div><div class="help-copy">How many categories are close enough to gain a point soon. Gain-gap threshold means the max gap to the next team up in a category (currently 2.0 points).</div></div>
+      <div class="help-card"><div class="help-title">Luck Delta</div><div class="help-copy">Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline.</div></div>
+      <div class="help-card"><div class="help-title">Volatility</div><div class="help-copy">Movement from rank changes and category swings during the season.</div></div>
+    </div>
+    <div class="intel-grid" id="intelCards"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Team</th><th>Tier</th><th>Points Back</th><th>Reachable Points</th><th>Tight Categories (Top 3)</th><th>Luck Delta</th><th>Volatility</th></tr>
+        </thead>
+        <tbody id="intelBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  Average age computed across active MLB-rostered players only. Oracle value reflects aggregate dynasty composite scores.
+  Quadrant boundaries: age 28.5 (league youth threshold) and Oracle value 25,000 (editorial midpoint).
+  Next Oracle update: after Week 4 results.
+</div>
+
+<div class="tooltip" id="tooltip">
+  <span class="tt-name" id="tt-name"></span>
+  <span class="tt-line" id="tt-age"></span>
+  <span class="tt-line" id="tt-val"></span>
+</div>
+
+<script>
+const TEAMS = [
+  {name:"John Henry Fan Club", total:35777.0, mlb:24934.3, farm:10842.7, avg_age:27.3, oracle_rank:1},
+  {name:"Rollie Fingers",      total:35362.6, mlb:28024.6, farm:7338.0,  avg_age:28.0, oracle_rank:2},
+  {name:"Seam heads",          total:33387.7, mlb:26732.1, farm:6655.6,  avg_age:28.7, oracle_rank:3},
+  {name:"Humongous Melonheads",total:31778.0, mlb:27481.5, farm:4296.5,  avg_age:28.1, oracle_rank:4},
+  {name:"philbell",            total:31419.7, mlb:25292.6, farm:6127.1,  avg_age:27.8, oracle_rank:5},
+  {name:"Inkers",              total:28426.3, mlb:20811.2, farm:7615.1,  avg_age:28.6, oracle_rank:6},
+  {name:"Vin Mazzaro fan club",total:25664.1, mlb:22356.6, farm:3307.5,  avg_age:28.3, oracle_rank:7},
+  {name:"Millville Meteors",   total:24831.6, mlb:22648.3, farm:2183.3,  avg_age:29.4, oracle_rank:8},
+  {name:"Trazadone",           total:22979.9, mlb:18682.0, farm:4297.9,  avg_age:30.2, oracle_rank:9},
+  {name:"Mommy",               total:22107.0, mlb:21122.6, farm:984.4,   avg_age:30.5, oracle_rank:10},
+  {name:"Sam",                 total:21301.5, mlb:19086.7, farm:2214.8,  avg_age:29.9, oracle_rank:11},
+  {name:"Pat",                 total:21243.3, mlb:20316.2, farm:927.1,   avg_age:31.2, oracle_rank:12},
+];
+
+const svg = document.getElementById('scatterSvg');
+const tooltip = document.getElementById('tooltip');
+const ttName  = document.getElementById('tt-name');
+const ttAge   = document.getElementById('tt-age');
+const ttVal   = document.getElementById('tt-val');
+
+function buildScatter() {
+  const W = svg.parentElement.clientWidth;
+  const H = Math.max(380, Math.min(520, W * 0.58));
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.innerHTML = '';
+
+  const PAD = {top: 48, right: 48, bottom: 52, left: 64};
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  const ages = TEAMS.map(t => t.avg_age);
+  const vals = TEAMS.map(t => t.total);
+  const minAge = Math.min(...ages) - 0.5;
+  const maxAge = Math.max(...ages) + 0.5;
+  const minVal = 0;
+  const maxVal = Math.max(...vals) * 1.08;
+
+  // Editorial thresholds — not midpoints of data range
+  const midAge = 28.5;
+  const midVal = 25000;
+
+  const scaleX = a => PAD.left + (a - minAge) / (maxAge - minAge) * plotW;
+  const scaleY = v => PAD.top  + (1 - (v - minVal) / (maxVal - minVal)) * plotH;
+
+  const ns = 'http://www.w3.org/2000/svg';
+
+  // Quadrant fill regions (subtle tinting)
+  const qMidX = scaleX(midAge);
+  const qMidY = scaleY(midVal);
+
+  const quadrants = [
+    { x: PAD.left, y: PAD.top,  w: qMidX - PAD.left,         h: qMidY - PAD.top,           fill: '#5d7db5', label: 'REBUILDING' },
+    { x: qMidX,    y: PAD.top,  w: PAD.left + plotW - qMidX,  h: qMidY - PAD.top,           fill: '#c8a84b', label: 'WIN NOW'    },
+    { x: PAD.left, y: qMidY,    w: qMidX - PAD.left,         h: PAD.top + plotH - qMidY,    fill: '#b55d5d', label: 'NEEDS WORK' },
+    { x: qMidX,    y: qMidY,    w: PAD.left + plotW - qMidX,  h: PAD.top + plotH - qMidY,   fill: '#b55d5d', label: 'AGING OUT'  },
+  ];
+
+  // Center each label within its quadrant
+  quadrants.forEach(q => {
+    q.lx = q.x + q.w / 2;
+    q.ly = q.y + q.h / 2;
+  });
+
+  quadrants.forEach(q => {
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('x', q.x); rect.setAttribute('y', q.y);
+    rect.setAttribute('width', q.w); rect.setAttribute('height', q.h);
+    rect.setAttribute('fill', q.fill); rect.setAttribute('opacity', '0.03');
+    svg.appendChild(rect);
+
+    const lbl = document.createElementNS(ns, 'text');
+    lbl.setAttribute('x', q.lx); lbl.setAttribute('y', q.ly);
+    lbl.setAttribute('text-anchor', 'middle');
+    lbl.setAttribute('dominant-baseline', 'middle');
+    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-size', '11');
+    lbl.setAttribute('font-weight', '700');
+    lbl.setAttribute('letter-spacing', '0.12em');
+    lbl.setAttribute('fill', q.fill);
+    lbl.setAttribute('opacity', '0.25');
+    lbl.textContent = q.label;
+    svg.appendChild(lbl);
+  });
+
+  // Grid lines
+  const mkLine = (x1, y1, x2, y2, dash = true) => {
+    const l = document.createElementNS(ns, 'line');
+    l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+    l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+    l.setAttribute('stroke', '#1e1e20'); l.setAttribute('stroke-width', '1');
+    if (dash) l.setAttribute('stroke-dasharray', '4 4');
+    svg.appendChild(l);
+  };
+
+  // Horizontal gridlines at value intervals
+  for (let v = 0; v <= maxVal; v += 5000) {
+    const y = scaleY(v);
+    if (y >= PAD.top && y <= PAD.top + plotH) {
+      mkLine(PAD.left, y, PAD.left + plotW, y);
+    }
+  }
+
+  // Midpoint dividers (slightly brighter)
+  const vLine = document.createElementNS(ns, 'line');
+  vLine.setAttribute('x1', scaleX(midAge)); vLine.setAttribute('y1', PAD.top);
+  vLine.setAttribute('x2', scaleX(midAge)); vLine.setAttribute('y2', PAD.top + plotH);
+  vLine.setAttribute('stroke', '#2e2e32'); vLine.setAttribute('stroke-width', '1');
+  vLine.setAttribute('stroke-dasharray', '5 4');
+  svg.appendChild(vLine);
+
+  const hLine = document.createElementNS(ns, 'line');
+  hLine.setAttribute('x1', PAD.left);           hLine.setAttribute('y1', scaleY(midVal));
+  hLine.setAttribute('x2', PAD.left + plotW);   hLine.setAttribute('y2', scaleY(midVal));
+  hLine.setAttribute('stroke', '#2e2e32'); hLine.setAttribute('stroke-width', '1');
+  hLine.setAttribute('stroke-dasharray', '5 4');
+  svg.appendChild(hLine);
+
+  // Axis tick labels
+  const mkText = (txt, x, y, anchor = 'middle', size = 12, color = '#4a4845') => {
+    const t = document.createElementNS(ns, 'text');
+    t.setAttribute('x', x); t.setAttribute('y', y);
+    t.setAttribute('text-anchor', anchor);
+    t.setAttribute('font-family', 'DM Sans, sans-serif');
+    t.setAttribute('font-size', size);
+    t.setAttribute('fill', color);
+    t.textContent = txt;
+    svg.appendChild(t);
+  };
+
+  // X axis — age ticks
+  for (let a = Math.ceil(minAge * 2) / 2; a <= maxAge; a += 0.5) {
+    const x = scaleX(a);
+    if (x >= PAD.left && x <= PAD.left + plotW) {
+      mkText(a.toFixed(1), x, PAD.top + plotH + 20);
+    }
+  }
+  mkText('Average Age', PAD.left + plotW / 2, H - 6, 'middle', 12, '#3a3a3c');
+
+  // Y axis — value ticks
+  for (let v = 0; v <= maxVal; v += 5000) {
+    const y = scaleY(v);
+    if (y >= PAD.top && y <= PAD.top + plotH) {
+      mkText(`${(v / 1000).toFixed(0)}k`, PAD.left - 10, y + 4, 'end', 12);
+    }
+  }
+
+  // --- Phase 1: Compute all dot positions ---
+  const DOT_R   = 8;
+  const LBL_H   = 16;
+  const CHAR_W  = 7.2;  // approx px per char at 12.5px DM Sans
+  const LBL_GAP = 4;
+
+  const dots = TEAMS.map(t => ({
+    t,
+    cx: scaleX(t.avg_age),
+    cy: scaleY(t.total),
+    shortName: t.name.length > 16 ? t.name.split(' ').slice(0, 2).join(' ') : t.name,
+  }));
+
+  // Seed blocked regions: quadrant labels first, then dot footprints
+  const Q_CW = 7.8; // approx px per char at font-size 11 + letter-spacing
+  const placed = [
+    ...quadrants.map(q => {
+      const lw = q.label.length * Q_CW;
+      return { x: q.lx - lw / 2 - 4, y: q.ly - 10, w: lw + 8, h: 16 };
+    }),
+    ...dots.map(d => ({
+      x: d.cx - DOT_R - 3, y: d.cy - DOT_R - 3,
+      w: (DOT_R + 3) * 2,  h: (DOT_R + 3) * 2,
+    })),
+  ];
+
+  const overlaps = (a, b) => !(
+    a.x + a.w + 3 < b.x || b.x + b.w + 3 < a.x ||
+    a.y + a.h + 3 < b.y || b.y + b.h + 3 < a.y
+  );
+
+  // --- Phase 2: Draw all dot circles first ---
+  dots.forEach(d => {
+    const g = document.createElementNS(ns, 'g');
+    g.style.cursor = 'default';
+
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('cx', d.cx); ring.setAttribute('cy', d.cy);
+    ring.setAttribute('r', 14); ring.setAttribute('fill', '#c8a84b'); ring.setAttribute('opacity', '0.06');
+    g.appendChild(ring);
+
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', d.cx); c.setAttribute('cy', d.cy); c.setAttribute('r', DOT_R);
+    c.setAttribute('fill', '#8b2a1e'); c.setAttribute('stroke', '#c8856e'); c.setAttribute('stroke-width', '1.5');
+    g.appendChild(c);
+
+    const rk = document.createElementNS(ns, 'text');
+    rk.setAttribute('x', d.cx); rk.setAttribute('y', d.cy + 4.5);
+    rk.setAttribute('text-anchor', 'middle');
+    rk.setAttribute('font-family', 'DM Sans, sans-serif');
+    rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', '#f0ede6');
+    rk.textContent = d.t.oracle_rank;
+    g.appendChild(rk);
+
+    const hit = document.createElementNS(ns, 'circle');
+    hit.setAttribute('cx', d.cx); hit.setAttribute('cy', d.cy); hit.setAttribute('r', 22);
+    hit.setAttribute('fill', 'transparent');
+    g.appendChild(hit);
+
+    g.addEventListener('mousemove', e => {
+      ttName.textContent = d.t.name;
+      ttAge.textContent  = `Avg age: ${d.t.avg_age}`;
+      ttVal.textContent  = `Oracle value: ${d.t.total.toLocaleString()}`;
+      tooltip.style.display = 'block';
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top  = (e.clientY - 10) + 'px';
+    });
+    g.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+
+    svg.appendChild(g);
+  });
+
+  // --- Phase 3: Place labels with greedy collision avoidance ---
+  // Each candidate: [dx, dy, anchor] offset from dot center
+  const candidates = [
+    [ DOT_R + LBL_GAP,              0,                'start'],  // right
+    [-(DOT_R + LBL_GAP),             0,                'end'  ],  // left
+    [ 0,                -(DOT_R + LBL_GAP + 6),        'middle'],  // above
+    [ 0,                  DOT_R + LBL_GAP + 12,        'middle'],  // below
+    [ DOT_R + 2,         -(DOT_R + 4),                 'start'],  // top-right
+    [-(DOT_R + 2),       -(DOT_R + 4),                 'end'  ],  // top-left
+    [ DOT_R + 2,          DOT_R + 8,                   'start'],  // bottom-right
+    [-(DOT_R + 2),        DOT_R + 8,                   'end'  ],  // bottom-left
+  ];
+
+  dots.forEach(d => {
+    const lblW = d.shortName.length * CHAR_W;
+
+    const bboxFor = (dx, dy, anchor) => {
+      const tx = d.cx + dx;
+      const ty = d.cy + dy;
+      const bx = anchor === 'start' ? tx : anchor === 'end' ? tx - lblW : tx - lblW / 2;
+      return { x: bx - 2, y: ty - LBL_H, w: lblW + 4, h: LBL_H + 2 };
+    };
+
+    let chosen = null;
+    let bestScore = Infinity;
+
+    for (const [dx, dy, anchor] of candidates) {
+      const bbox = bboxFor(dx, dy, anchor);
+      // Skip if out of SVG bounds
+      if (bbox.x < 2 || bbox.x + bbox.w > W - 2) continue;
+      if (bbox.y < 2 || bbox.y + bbox.h > H - 6) continue;
+      const score = placed.filter(p => overlaps(bbox, p)).length;
+      if (score < bestScore) { bestScore = score; chosen = {dx, dy, anchor}; }
+      if (score === 0) break;
+    }
+
+    if (!chosen) chosen = { dx: candidates[0][0], dy: candidates[0][1], anchor: candidates[0][2] };
+
+    const finalBbox = bboxFor(chosen.dx, chosen.dy, chosen.anchor);
+    placed.push(finalBbox);
+
+    const lbl = document.createElementNS(ns, 'text');
+    lbl.setAttribute('x', d.cx + chosen.dx);
+    lbl.setAttribute('y', d.cy + chosen.dy + 4);
+    lbl.setAttribute('text-anchor', chosen.anchor);
+    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-size', '12.5');
+    lbl.setAttribute('font-weight', '500');
+    lbl.setAttribute('fill', '#c2bfb8');
+    lbl.textContent = d.shortName;
+    svg.appendChild(lbl);
+  });
+}
+
+buildScatter();
+window.addEventListener('resize', buildScatter);
+
+function esc(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt(v, digits = 1) {
+  if (v === null || v === undefined || Number.isNaN(Number(v))) return '-';
+  return Number(v).toFixed(digits);
+}
+function tierClass(tier) {
+  if (tier === 'contender') return 'tier-contender';
+  if (tier === 'fringe') return 'tier-fringe';
+  if (tier === 'stagnating') return 'tier-stagnating';
+  return 'tier-rebuilding';
+}
+const CAT_LABELS = {
+  cat_r: 'R', cat_hr: 'HR', cat_rbi: 'RBI', cat_sb: 'SB', cat_ops: 'OPS',
+  cat_qs: 'QS', cat_k: 'K', cat_era: 'ERA', cat_whip: 'WHIP', cat_svh: 'SVH'
+};
+function tightClass(gap) {
+  if (gap <= 0.5) return 'tight-critical';
+  if (gap <= 1.0) return 'tight-hot';
+  if (gap <= 1.5) return 'tight-watch';
+  return 'tight-loose';
+}
+function renderTightCategories(team) {
+  const gaps = team.category_gaps || {};
+  const rows = Object.keys(gaps).map(cat => {
+    const g = gaps[cat] || {};
+    const values = [g.to_gain, g.to_loss].filter(v => v !== null && v !== undefined).map(Number);
+    const tightness = values.length ? Math.min(...values) : 99;
+    return { cat, tightness };
+  }).filter(row => Number.isFinite(row.tightness) && row.tightness <= 2.0)
+    .sort((a, b) => a.tightness - b.tightness || a.cat.localeCompare(b.cat));
+  if (!rows.length) return '<span class="cat-overflow">-</span>';
+  const top = rows.slice(0, 3);
+  const chips = top.map(row => `<span class="cat-chip ${tightClass(row.tightness)}" title="${esc(CAT_LABELS[row.cat] || row.cat)} gap ${row.tightness.toFixed(1)}">${esc(CAT_LABELS[row.cat] || row.cat)}</span>`).join('');
+  return `<div class="cat-cell">${chips}</div>`;
+}
+fetch('data/league_intelligence.json').then(r => r.json()).then(data => {
+  const teams = data.teams || [];
+  const contenders = teams.filter(t => t.tier === 'contender').length;
+  const fringes = teams.filter(t => t.tier === 'fringe').length;
+  const stagnating = teams.filter(t => t.tier === 'stagnating').length;
+  const rebuilding = teams.filter(t => t.tier === 'rebuilding').length;
+  const avgLuckSwing = teams.length ? teams.reduce((sum, t) => sum + Math.abs(Number(t.luck?.delta || 0)), 0) / teams.length : 0;
+  const netLuckTilt = teams.length ? teams.reduce((sum, t) => sum + Number(t.luck?.delta || 0), 0) / teams.length : 0;
+  const avgVol = teams.length ? teams.reduce((sum, t) => sum + Number(t.volatility?.team_volatility_score || 0), 0) / teams.length : 0;
+  document.getElementById('intelCards').innerHTML = [
+    ['Contenders', contenders, `${fringes} fringe · ${stagnating} stagnating · ${rebuilding} rebuilding`],
+    ['Avg Luck Swing', fmt(avgLuckSwing, 2), `Absolute luck movement · net tilt ${fmt(netLuckTilt, 2)}`],
+    ['Avg Volatility', fmt(avgVol, 1), 'Team volatility score (0-100)']
+  ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');
+  document.getElementById('intelBody').innerHTML = teams.map(team => (
+    `<tr>` +
+    `<td>${esc(team.team)}</td>` +
+    `<td><span class="tier-pill ${tierClass(team.tier)}">${esc(team.tier)}</span></td>` +
+    `<td>${fmt(team.points_back, 1)}</td>` +
+    `<td>${fmt(team.reachable_points, 0)}</td>` +
+    `<td>${renderTightCategories(team)}</td>` +
+    `<td>${fmt(team.luck?.delta, 2)}</td>` +
+    `<td>${fmt(team.volatility?.team_volatility_score, 1)}</td>` +
+    `</tr>`
+  )).join('') || '<tr><td colspan="7">No league intelligence rows found.</td></tr>';
+  const footer = document.querySelector('.site-footer');
+  if (footer && data.snapshot_date) {
+    footer.textContent = `Average age computed across active MLB-rostered players only. Win-window chart uses Oracle value; contention board uses standings snapshot ${data.snapshot_date}. Efficiency component is scaffolded until raw AB/IP totals are available.`;
+  }
+}).catch(() => {
+  const body = document.getElementById('intelBody');
+  if (body) body.innerHTML = '<tr><td colspan="7">League intelligence data not available.</td></tr>';
+});
+</script>
+<script src="assets/feedback.js"></script>
+</body>
+</html>

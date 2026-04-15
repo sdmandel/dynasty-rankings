@@ -127,6 +127,12 @@ body {
   gap: 12px;
   margin-bottom: 48px;
 }
+.card-grid.analysis-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.card-grid.combined-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
 .card {
   display: block;
   text-decoration: none;
@@ -185,6 +191,9 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 48px;
+}
+.tool-grid.tools-grid-compact {
+  grid-template-columns: repeat(2, 1fr);
 }
 .tool-tile {
   display: flex;
@@ -396,8 +405,6 @@ body {
   <div class="header-links">
     <a href="rules.html">League Rules →</a>
     <a href="franchise_history.html">Franchise History →</a>
-    <a href="rivalries.html">Rivalries →</a>
-    <a href="feed.html">League Feed →</a>
   </div>
 </div>
 
@@ -473,24 +480,12 @@ body {
 
   </div>
 
-  <div class="section-label">Analysis</div>
-  <div class="card-grid">
-    <a href="rivalries.html" class="card">
-      <div class="card-eyebrow">Standings Snapshots</div>
-      <div class="card-title">Rivalries</div>
-      <div class="card-meta">Rank proximity, category similarity, and repeated pressure scores.</div>
-      <div class="card-arrow">View →</div>
-    </a>
-    <a href="win_window.html" class="card">
+  <div class="section-label">Analysis &amp; Tools</div>
+  <div class="card-grid combined-grid">
+    <a href="team_intel.html" class="card">
       <div class="card-eyebrow">Contention &amp; Luck</div>
-      <div class="card-title">League Intel</div>
+      <div class="card-title">Team Intel</div>
       <div class="card-meta">Tier standings, category gaps, luck index, and volatility.</div>
-      <div class="card-arrow">View →</div>
-    </a>
-    <a href="managers.html" class="card">
-      <div class="card-eyebrow">Transaction Activity</div>
-      <div class="card-title">Manager Profiles</div>
-      <div class="card-meta">Trade counts, roster churn, and activity archetypes.</div>
       <div class="card-arrow">View →</div>
     </a>
     <a href="closers.html" class="card">
@@ -499,48 +494,19 @@ body {
       <div class="card-meta">Current save leaders with confidence scores and dynasty ownership.</div>
       <div class="card-arrow">View →</div>
     </a>
-  </div>
 
-  <div class="section-label">Tools</div>
-  <div class="tool-grid">
-
-    <!-- ── Depth Chart tile ── -->
-    <a href="roster_depth.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="dp-list" id="depthPreviewChart"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Live &nbsp;·&nbsp; All 12 Teams</div>
-        <div class="tile-title">Roster Depth Chart</div>
-        <div class="tile-meta">Positional breakdown by Oracle tier. Every rostered player.</div>
-        <span class="tile-arrow">Open full chart →</span>
-      </div>
+    <a href="roster_depth.html" class="card">
+      <div class="card-eyebrow">Live &nbsp;·&nbsp; All 12 Teams</div>
+      <div class="card-title">Roster Depth Chart</div>
+      <div class="card-meta">Positional breakdown by Oracle tier. Every rostered player.</div>
+      <div class="card-arrow">Open →</div>
     </a>
 
-    <!-- ── League Analytics tile ── -->
-    <a href="league_analytics.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="mb-list" id="miniBarChart"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Oracle Scores &nbsp;·&nbsp; MLB vs Farm</div>
-        <div class="tile-title">League Analytics</div>
-        <div class="tile-meta">Total roster value by Oracle composite. Dark = MLB, light = farm.</div>
-        <span class="tile-arrow">Open full chart →</span>
-      </div>
-    </a>
-
-    <!-- ── Win Window tile ── -->
-    <a href="win_window.html" class="tool-tile">
-      <div class="tile-preview" style="padding:8px;">
-        <svg id="miniScatterSvg" style="width:100%;display:block;"></svg>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Age vs. Oracle Value</div>
-        <div class="tile-title">Win Window</div>
-        <div class="tile-meta">Where each team sits on the age–value curve.</div>
-        <span class="tile-arrow">Open full chart →</span>
-      </div>
+    <a href="league_analytics.html" class="card">
+      <div class="card-eyebrow">Oracle Scores &nbsp;·&nbsp; MLB vs Farm</div>
+      <div class="card-title">League Analytics</div>
+      <div class="card-meta">Total roster value by Oracle composite. Dark = MLB, light = farm.</div>
+      <div class="card-arrow">Open →</div>
     </a>
 
   </div>

@@ -106,7 +106,7 @@ body {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 10px;
 }
 .filter-btn {
   font-size: 11px;
@@ -176,7 +176,7 @@ body {
   white-space: nowrap;
 }
 .badge-trade   { background: rgba(200, 168, 75, 0.2); color: var(--gold); }
-.badge-notable { background: rgba(181, 93, 93, 0.2);  color: var(--red); }
+.badge-notable { background: rgba(192, 198, 208, 0.18); color: #c8ced8; border: 1px solid rgba(192, 198, 208, 0.35); }
 .badge-prospect { background: rgba(93, 125, 181, 0.2); color: var(--blue); }
 
 .txn-main {
@@ -207,12 +207,108 @@ body {
   text-align: right;
 }
 
+/* ── GROUPED ROWS ── */
+.txn-row--grouped { align-items: start; }
+
+/* Trade group */
+.trade-sides { display: flex; flex-direction: column; gap: 6px; }
+.trade-side-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1px;
+}
+.trade-side-players {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+.trade-player-chip {
+  display: inline;
+  white-space: nowrap;
+}
+.trade-player-chip + .trade-player-chip::before {
+  content: ' · ';
+  color: var(--text-dead);
+}
+
+/* Add/drop pair */
+.add-drop-player {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.add-drop-player--add { color: var(--green); }
+.add-drop-player--drop { color: var(--red); }
+.add-drop-prefix {
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 5px;
+  opacity: 0.8;
+}
+
+/* ── MANAGER PROFILES ── */
+.mgr-section { margin-bottom: 48px; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
+.arch-def-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:28px; }
+.arch-def { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:12px 14px; }
+.arch-def-title { font-family:'Bebas Neue',sans-serif; font-size:17px; margin-bottom:3px; }
+.arch-def-desc { font-size:11px; color:var(--text-muted); line-height:1.5; }
+.mgr-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.mgr-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:18px 20px; }
+.mgr-card.at-trader  { border-color:#1e2f4a; background:#0f1624; }
+.mgr-card.at-grinder { border-color:#4a3c18; background:#141208; }
+.mgr-card.at-prospect-hoarder { border-color:#1a3226; background:#0e1a14; }
+.mgr-card.at-asleep-at-the-wheel { border-color:#4a1e1e; background:#150e0e; }
+.mgr-name { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:.95; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
+.arch-badges { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; }
+.arch-badge { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:3px 9px; border:1px solid; }
+.arch-badge.ab-trader         { color:var(--blue);  border-color:#1e2f4a; background:rgba(93,125,181,0.1); }
+.arch-badge.ab-grinder        { color:var(--gold);  border-color:#4a3c18; background:rgba(200,168,75,0.08); }
+.arch-badge.ab-prospect-hoarder { color:var(--green); border-color:#1a3226; background:rgba(93,168,122,0.1); }
+.arch-badge.ab-steady         { color:var(--text-muted); border-color:var(--border2); }
+.arch-badge.ab-asleep-at-the-wheel { color:var(--red); border-color:#4a1e1e; background:rgba(181,93,93,0.08); }
+.mgr-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
+.mgr-stat-val { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; color:var(--text); }
+.mgr-stat-lbl { font-size:9px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.churn-row { display:grid; grid-template-columns:52px 1fr 32px; gap:7px; align-items:center; }
+.churn-lbl { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
+.churn-track { position:relative; height:8px; background:#0e0e0f; border:1px solid #1a1a1c; border-radius:2px; overflow:hidden; }
+.churn-track::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to right, transparent 24.5%, rgba(240,237,230,0.12) 24.5%, rgba(240,237,230,0.12) 25.5%, transparent 25.5%),
+    linear-gradient(to right, transparent 49.5%, rgba(240,237,230,0.12) 49.5%, rgba(240,237,230,0.12) 50.5%, transparent 50.5%),
+    linear-gradient(to right, transparent 74.5%, rgba(240,237,230,0.12) 74.5%, rgba(240,237,230,0.12) 75.5%, transparent 75.5%);
+  pointer-events:none;
+}
+.churn-fill { height:100%; }
+.cf-trader { background:var(--blue); } .cf-grinder { background:var(--gold); }
+.cf-prospect-hoarder { background:var(--green); } .cf-steady { background:var(--text-dead); }
+.cf-asleep-at-the-wheel { background:var(--red); }
+.churn-val { font-family:'Bebas Neue',sans-serif; font-size:14px; color:var(--text-muted); text-align:right; }
+.churn-meta { margin-top:6px; font-size:10px; color:var(--text-dead); letter-spacing:.02em; }
+@media (max-width:900px) { .arch-def-grid { grid-template-columns:repeat(3,1fr); } .mgr-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px) { .arch-def-grid { grid-template-columns:1fr 1fr; } .mgr-grid { grid-template-columns:1fr; } }
+
 /* ── EMPTY STATE ── */
 .empty-msg {
   padding: 40px 0;
   color: var(--text-muted);
   font-size: 14px;
   text-align: center;
+}
+
+.filter-note {
+  font-size: 11px;
+  color: var(--text-dead);
+  margin: 0 0 18px;
 }
 
 /* ── FOOTER ── */
@@ -258,17 +354,33 @@ body {
 <div class="content">
   <div id="loadingMsg" class="state-msg">Loading transactions…</div>
 
+  <div class="mgr-section" id="mgrSection" style="display:none;">
+    <div class="section-label">Manager Profiles</div>
+    <div class="arch-def-grid">
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">4+ trades this season.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--gold)">Grinder</div><div class="arch-def-desc">20+ waiver adds/drops.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--green)">Prospect Hoarder</div><div class="arch-def-desc">3+ prospect transactions.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--text-muted)">Steady</div><div class="arch-def-desc">Low activity, no dominant pattern.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--red)">Asleep at the Wheel</div><div class="arch-def-desc">Below the weekly activity threshold.</div></div>
+    </div>
+    <div class="mgr-grid" id="mgrGrid"></div>
+  </div>
+
   <div id="mainContent" style="display:none;">
+    <div class="section-label" style="margin-top:40px;margin-bottom:16px;">Recent Transactions</div>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="ALL">All</button>
-      <button class="filter-btn" data-filter="ADD">Adds</button>
-      <button class="filter-btn" data-filter="DROP">Drops</button>
+      <button class="filter-btn" data-filter="WAIVER">Waivers</button>
       <button class="filter-btn" data-filter="TRADE">Trades</button>
       <button class="filter-btn" data-filter="prospect">Prospects</button>
       <button class="filter-btn" data-filter="notable">Notable</button>
     </div>
+    <div class="filter-note">Notable criteria: Oracle rank ≤ 300.</div>
 
     <div class="txn-list" id="txnList"></div>
+    <div id="showMoreWrap" style="margin-top:16px;text-align:center;display:none;">
+      <button id="showMoreBtn" class="filter-btn">Show More</button>
+    </div>
   </div>
 </div>
 
@@ -277,9 +389,56 @@ body {
 </div>
 
 <script>
+const PAGE_SIZE = 50;
 let ALL_TXNS = [];
 let activeFilter = 'ALL';
+let visibleCount = PAGE_SIZE;
 
+// ── MANAGER PROFILES ─────────────────────────────────────────────────────────
+fetch('data/managers.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    const managers = data.managers || [];
+    if (!managers.length) return;
+    const churnValues = managers.map(m => Number(m.roster_churn) || 0);
+    const sortedChurn = [...churnValues].sort((a, b) => b - a);
+    const leagueAvg = churnValues.reduce((sum, n) => sum + n, 0) / churnValues.length;
+    const CHURN_SCALE_MAX = 40;
+    document.getElementById('mgrGrid').innerHTML = managers.map(m => {
+      const archetypes = m.archetypes || [m.archetype || 'steady'];
+      const primary = (archetypes[0] || 'steady').toLowerCase().replace(/\s+/g, '-');
+      const churn = Number(m.roster_churn) || 0;
+      const churnPct = Math.min((churn / CHURN_SCALE_MAX) * 100, 100).toFixed(1);
+      const churnRank = sortedChurn.indexOf(churn) + 1;
+      const churnBand = churn >= 20 ? 'High churn' : churn >= 10 ? 'Moderate churn' : 'Low churn';
+      const delta = churn - leagueAvg;
+      const deltaLabel = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)} vs avg`;
+      const badges = archetypes.map(a => {
+        const cls = a.toLowerCase().replace(/\s+/g, '-');
+        const label = {'trader':'Trader','grinder':'Grinder','prospect hoarder':'Prospect Hoarder','steady':'Steady','asleep at the wheel':'Asleep at the Wheel'}[a] || a;
+        return `<span class="arch-badge ab-${cls}">${esc(label)}</span>`;
+      }).join('');
+      return `<div class="mgr-card at-${primary}">
+        <div class="mgr-name">${esc(m.team)}</div>
+        <div class="arch-badges">${badges}</div>
+        <div class="mgr-stats">
+          <div><div class="mgr-stat-val">${m.trade_count}</div><div class="mgr-stat-lbl">Trades</div></div>
+          <div><div class="mgr-stat-val">${m.add_count}</div><div class="mgr-stat-lbl">Adds</div></div>
+          <div><div class="mgr-stat-val">${m.drop_count}</div><div class="mgr-stat-lbl">Drops</div></div>
+        </div>
+        <div class="churn-row">
+          <div class="churn-lbl">Churn</div>
+          <div class="churn-track" title="Scale: 0-40 transactions (markers at 10/20/30)"><div class="churn-fill cf-${primary}" style="width:${churnPct}%"></div></div>
+          <div class="churn-val">${churn.toFixed(0)}</div>
+        </div>
+        <div class="churn-meta">${churnBand} · #${churnRank}/${managers.length} · ${deltaLabel}</div>
+      </div>`;
+    }).join('');
+    document.getElementById('mgrSection').style.display = '';
+  })
+  .catch(() => {});
+
+// ── TRANSACTIONS ─────────────────────────────────────────────────────────────
 fetch('data/transactions.json')
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
   .then(data => {
@@ -287,22 +446,26 @@ fetch('data/transactions.json')
     document.getElementById('loadingMsg').style.display = 'none';
     document.getElementById('mainContent').style.display = '';
     document.getElementById('footerEl').textContent =
-      'Last updated: ' + data.generated + '  ·  Showing last ' + ALL_TXNS.length + ' transactions.';
-    renderList(ALL_TXNS);
+      'Last updated: ' + data.generated + '  ·  ' + ALL_TXNS.length + ' transactions on record.';
+    renderList(filterTxns(ALL_TXNS, activeFilter));
     setupFilters();
+    document.getElementById('showMoreBtn').addEventListener('click', () => {
+      visibleCount += PAGE_SIZE;
+      renderList(filterTxns(ALL_TXNS, activeFilter));
+    });
   })
   .catch(err => {
     document.getElementById('loadingMsg').textContent = 'Could not load transaction data. (' + err.message + ')';
   });
 
 function setupFilters() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
-      const filtered = filterTxns(ALL_TXNS, activeFilter);
-      renderList(filtered);
+      visibleCount = PAGE_SIZE;
+      renderList(filterTxns(ALL_TXNS, activeFilter));
     });
   });
 }
@@ -312,50 +475,186 @@ function filterTxns(txns, filter) {
   if (filter === 'prospect' || filter === 'notable' || filter === 'trade') {
     return txns.filter(t => t.badge === filter);
   }
+  if (filter === 'WAIVER') {
+    // Waiver = all ADD/DROP (not TRADE)
+    return txns.filter(t => t.type === 'ADD' || t.type === 'DROP');
+  }
   return txns.filter(t => t.type === filter);
+}
+
+// Collapse flat rows into grouped display items.
+// Trades sharing an id become one 'trade' item; a paired ADD+DROP with the
+// same id becomes one 'add_drop' item; everything else stays 'single'.
+function groupTransactions(txns) {
+  const byId = new Map();
+  const idOrder = [];
+  txns.forEach(t => {
+    if (!byId.has(t.id)) { byId.set(t.id, []); idOrder.push(t.id); }
+    byId.get(t.id).push(t);
+  });
+
+  const result = [];
+  idOrder.forEach(id => {
+    const group = byId.get(id);
+    const tradeLegs = group.filter(r => r.type === 'TRADE');
+    if (tradeLegs.length) {
+      // Only one trade row per side (deduped by team)
+      const teams = new Set();
+      const uniqueLegs = [];
+      tradeLegs.forEach(leg => {
+        const key = leg.team + ':' + leg.player;
+        if (!teams.has(key)) {
+          uniqueLegs.push(leg);
+          teams.add(key);
+        }
+      });
+      result.push({ kind: 'trade', id, date: tradeLegs[0].date, legs: uniqueLegs });
+      group.filter(r => r.type !== 'TRADE').forEach(r => result.push({ kind: 'single', ...r }));
+    } else {
+      const adds  = group.filter(r => r.type === 'ADD');
+      const drops = group.filter(r => r.type === 'DROP');
+      if (adds.length === 1 && drops.length === 1) {
+        result.push({ kind: 'add_drop', id, date: group[0].date,
+                      add: adds[0], drop: drops[0], team: group[0].team });
+      } else {
+        group.forEach(r => result.push({ kind: 'single', ...r }));
+      }
+    }
+  });
+  return result;
 }
 
 function renderList(txns) {
   const list = document.getElementById('txnList');
+  const showMoreWrap = document.getElementById('showMoreWrap');
   list.innerHTML = '';
-  if (!txns.length) {
+
+  const grouped = groupTransactions(txns);
+
+  if (!grouped.length) {
     list.innerHTML = '<div class="empty-msg">No transactions match this filter.</div>';
+    showMoreWrap.style.display = 'none';
     return;
   }
-  txns.forEach(t => {
-    const row = document.createElement('div');
-    row.className = 'txn-row';
 
-    // Type + badge column
-    const typeCol = document.createElement('div');
-    typeCol.className = 'txn-type-col';
-    typeCol.innerHTML = `<span class="type-pill type-${esc(t.type)}">${esc(t.type)}</span>`;
-    if (t.badge) {
-      typeCol.innerHTML += `<span class="badge-pill badge-${esc(t.badge)}">${esc(t.badge)}</span>`;
+  const slice = grouped.slice(0, visibleCount);
+  slice.forEach(item => {
+    const row = document.createElement('div');
+
+    if (item.kind === 'trade') {
+      row.className = 'txn-row txn-row--grouped';
+
+      // Type col
+      const typeCol = document.createElement('div');
+      typeCol.className = 'txn-type-col';
+      typeCol.innerHTML = `<span class="type-pill type-TRADE">TRADE</span>`;
+      const tradeBadges = [...new Set(item.legs.map(leg => leg.badge).filter(b => b && b !== 'trade'))];
+      if (tradeBadges.length) {
+        typeCol.innerHTML += tradeBadges.map(b => `<span class="badge-pill badge-${esc(b)}">${esc(b)}</span>`).join('');
+      }
+
+      // Main col — group legs by receiving team
+      const bySide = new Map();
+      item.legs.forEach(leg => {
+        const team = leg.team || '?';
+        if (!bySide.has(team)) bySide.set(team, []);
+        bySide.get(team).push(leg);
+      });
+      const sidesHtml = [...bySide.entries()].map(([team, legs]) => {
+        const chips = legs.map(l => `<span class="trade-player-chip">${esc(l.player)}</span>`).join('');
+        return `<div>
+          <div class="trade-side-label">${esc(team)} received</div>
+          <div class="trade-side-players">${chips}</div>
+        </div>`;
+      }).join('');
+      const mainCol = document.createElement('div');
+      mainCol.className = 'txn-main';
+      mainCol.innerHTML = `<div class="trade-sides">${sidesHtml}</div>`;
+
+      // Date col
+      const dateCol = document.createElement('div');
+      dateCol.className = 'txn-date';
+      dateCol.textContent = relativeDate(item.date);
+
+      row.appendChild(typeCol);
+      row.appendChild(mainCol);
+      row.appendChild(dateCol);
+
+    } else if (item.kind === 'add_drop') {
+      row.className = 'txn-row txn-row--grouped';
+
+      // Type col — show both pills
+      const typeCol = document.createElement('div');
+      typeCol.className = 'txn-type-col';
+      typeCol.innerHTML = `<span class="type-pill type-ADD">ADD</span>
+                           <span class="type-pill type-DROP">DROP</span>`;
+
+      // Main col
+      const a = item.add, d = item.drop;
+      const aPos = esc(a.position || '');
+      const dPos = esc(d.position || '');
+      const mainCol = document.createElement('div');
+      mainCol.className = 'txn-main';
+      mainCol.innerHTML = `
+        <div class="add-drop-player add-drop-player--add">
+          <span class="add-drop-prefix">+</span>${esc(a.player)}${aPos ? ` <span style="font-size:11px;color:var(--text-dead)">${aPos}</span>` : ''}
+        </div>
+        <div class="add-drop-player add-drop-player--drop">
+          <span class="add-drop-prefix">−</span>${esc(d.player)}${dPos ? ` <span style="font-size:11px;color:var(--text-dead)">${dPos}</span>` : ''}
+        </div>
+        <div class="txn-detail" style="margin-top:3px">${esc(item.team || '')}</div>`;
+
+      // Date col
+      const dateCol = document.createElement('div');
+      dateCol.className = 'txn-date';
+      dateCol.textContent = relativeDate(item.date);
+
+      row.appendChild(typeCol);
+      row.appendChild(mainCol);
+      row.appendChild(dateCol);
+
+    } else {
+      // Single row — original rendering
+      const t = item;
+      row.className = 'txn-row';
+
+      const typeCol = document.createElement('div');
+      typeCol.className = 'txn-type-col';
+      typeCol.innerHTML = `<span class="type-pill type-${esc(t.type)}">${esc(t.type)}</span>`;
+      if (t.badge) {
+        typeCol.innerHTML += `<span class="badge-pill badge-${esc(t.badge)}">${esc(t.badge)}</span>`;
+      }
+
+      const mainCol = document.createElement('div');
+      mainCol.className = 'txn-main';
+      let detailParts = [];
+      if (t.team) detailParts.push(t.type === 'DROP' ? `dropped by ${esc(t.team)}` : `${esc(t.team)}`);
+      if (t.from_team) detailParts.push(`from ${esc(t.from_team)}`);
+      mainCol.innerHTML = `
+        <div class="txn-player">${esc(t.player)}</div>
+        <div class="txn-detail">
+          <span class="pos">${esc(t.position || '')}</span>${detailParts.join(' · ')}
+        </div>`;
+
+      const dateCol = document.createElement('div');
+      dateCol.className = 'txn-date';
+      dateCol.textContent = relativeDate(t.date);
+
+      row.appendChild(typeCol);
+      row.appendChild(mainCol);
+      row.appendChild(dateCol);
     }
 
-    // Main info column
-    const mainCol = document.createElement('div');
-    mainCol.className = 'txn-main';
-    let detailParts = [];
-    if (t.team) detailParts.push(t.type === 'DROP' ? `dropped by ${esc(t.team)}` : `${esc(t.team)}`);
-    if (t.from_team) detailParts.push(`from ${esc(t.from_team)}`);
-    mainCol.innerHTML = `
-      <div class="txn-player">${esc(t.player)}</div>
-      <div class="txn-detail">
-        <span class="pos">${esc(t.position || '')}</span>${detailParts.join(' · ')}
-      </div>`;
-
-    // Date column
-    const dateCol = document.createElement('div');
-    dateCol.className = 'txn-date';
-    dateCol.textContent = relativeDate(t.date);
-
-    row.appendChild(typeCol);
-    row.appendChild(mainCol);
-    row.appendChild(dateCol);
     list.appendChild(row);
   });
+
+  if (grouped.length > visibleCount) {
+    showMoreWrap.style.display = '';
+    document.getElementById('showMoreBtn').textContent =
+      'Show More (' + (grouped.length - visibleCount) + ' remaining)';
+  } else {
+    showMoreWrap.style.display = 'none';
+  }
 }
 
 function relativeDate(dateStr) {
