@@ -121,6 +121,28 @@ def test_feed_schema() -> None:
             assert key in first
 
 
+def test_rivalries_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "rivalries.json"))
+    assert "generated" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+    assert "leaders" in data and isinstance(data["leaders"], list)
+    if data["teams"]:
+        first = data["teams"][0]
+        for key in ("team", "rivals"):
+            assert key in first
+        if first["rivals"]:
+            rival = first["rivals"][0]
+            for key in (
+                "rival_team",
+                "rivalry_score",
+                "finish_proximity_score",
+                "category_similarity_score",
+                "points_stolen_score",
+                "tags",
+            ):
+                assert key in rival
+
+
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data

@@ -346,6 +346,20 @@ body {
 .tx-player { font-size: 11.5px; color: var(--text-mid); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tx-team   { font-size: 10px; color: var(--text-dead); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* Rivalries tile preview */
+.rv-list { display: flex; flex-direction: column; gap: 8px; }
+.rv-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: center; }
+.rv-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--gold);
+  text-align: right;
+}
+.rv-info { min-width: 0; }
+.rv-match { font-size: 11px; color: var(--text-mid); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rv-tags { font-size: 9.5px; color: var(--text-dead); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 /* ── PROSPECTS TILE PREVIEW ── */
 .pr-list { display: flex; flex-direction: column; gap: 3px; }
 .pr-row  { display: grid; grid-template-columns: 30px 1fr auto; gap: 5px; align-items: center; }
@@ -397,6 +411,7 @@ body {
     <a href="rules.html">League Rules →</a>
     <a href="franchise_history.html">Franchise History →</a>
     <a href="feed.html">League Feed →</a>
+    <a href="rivalries.html">Rivalries →</a>
   </div>
 </div>
 
@@ -467,6 +482,19 @@ body {
         <div class="tile-title">Prospect Radar</div>
         <div class="tile-meta">Every rostered minor leaguer, sorted by Oracle rank.</div>
         <span class="tile-arrow">View prospects →</span>
+      </div>
+    </a>
+
+    <!-- Rivalries tile -->
+    <a href="rivalries.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="rv-list" id="rivalriesPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Snapshots &nbsp;·&nbsp; Category Pressure</div>
+        <div class="tile-title">Rivalries</div>
+        <div class="tile-meta">Top head-to-head pressure points from standings history.</div>
+        <span class="tile-arrow">View rivalries →</span>
       </div>
     </a>
 
@@ -622,6 +650,26 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
 // ─── LEAGUE TILE PREVIEWS ────────────────────────────────────
 
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Rivalries preview
+fetch('data/rivalries.json').then(r => r.json()).then(data => {
+  const el = document.getElementById('rivalriesPreview');
+  if (!el) return;
+  (data.leaders || []).slice(0, 8).forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'rv-row';
+    row.innerHTML =
+      `<div class="rv-score">${Math.round(Number(item.rivalry_score || 0))}</div>` +
+      `<div class="rv-info">` +
+        `<div class="rv-match">${esc(item.team)} vs ${esc(item.rival_team)}</div>` +
+        `<div class="rv-tags">${esc((item.tags || []).join(' · '))}</div>` +
+      `</div>`;
+    el.appendChild(row);
+  });
+}).catch(() => {
+  const el = document.getElementById('rivalriesPreview');
+  if (el) el.innerHTML = '<div class="tx-team">Rivalry metrics pending.</div>';
+});
 
 // Standings preview
 fetch('data/standings.json').then(r => r.json()).then(data => {
