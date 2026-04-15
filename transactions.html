@@ -436,7 +436,14 @@ fetch('data/managers.json')
     }).join('');
     document.getElementById('mgrSection').style.display = '';
   })
-  .catch(() => {});
+  .catch(() => {
+    const section = document.getElementById('mgrSection');
+    const grid = document.getElementById('mgrGrid');
+    if (section && grid) {
+      section.style.display = '';
+      grid.innerHTML = '<div class="state-msg">Manager profile data unavailable.</div>';
+    }
+  });
 
 // ── TRANSACTIONS ─────────────────────────────────────────────────────────────
 fetch('data/transactions.json')

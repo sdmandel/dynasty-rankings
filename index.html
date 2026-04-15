@@ -262,7 +262,11 @@ body {
   margin-bottom: 48px;
 }
 .tool-grid.tools-grid-compact {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 760px;
+}
+.tool-grid.tools-grid-compact .tile-preview {
+  height: 190px;
 }
 .tool-tile {
   display: flex;
@@ -514,7 +518,7 @@ body {
   </div>
 
   <div class="section-label">League</div>
-  <div class="tool-grid">
+  <div class="tool-grid tools-grid-compact">
 
     <!-- ── Standings tile ── -->
     <a href="standings.html" class="tool-tile">
@@ -539,19 +543,6 @@ body {
         <div class="tile-title">Transactions</div>
         <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
         <span class="tile-arrow">View transactions →</span>
-      </div>
-    </a>
-
-    <!-- ── Prospect Radar tile ── -->
-    <a href="prospects.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="pr-list" id="prospectsPreview"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Farm Systems &nbsp;·&nbsp; All 12 Teams</div>
-        <div class="tile-title">Prospect Radar</div>
-        <div class="tile-meta">Every rostered minor leaguer, sorted by Oracle rank.</div>
-        <span class="tile-arrow">View prospects →</span>
       </div>
     </a>
 
@@ -583,6 +574,12 @@ body {
       <div class="card-eyebrow">Oracle Scores &nbsp;·&nbsp; MLB vs Farm</div>
       <div class="card-title">League Analytics</div>
       <div class="card-meta">Total roster value by Oracle composite. Dark = MLB, light = farm.</div>
+      <div class="card-arrow">Open →</div>
+    </a>
+    <a href="prospects.html" class="card">
+      <div class="card-eyebrow">Farm Systems &nbsp;·&nbsp; All 12 Teams</div>
+      <div class="card-title">Prospect Radar</div>
+      <div class="card-meta">Every rostered minor leaguer, sorted by Oracle rank.</div>
       <div class="card-arrow">Open →</div>
     </a>
 
@@ -692,13 +689,26 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
 // ─── LEAGUE TILE PREVIEWS ────────────────────────────────────
 
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function setPreviewUnavailable(id, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = `<div class="state-msg">${label} preview unavailable.</div>`;
+}
 
 // Standings preview
-fetch('data/standings.json').then(r => r.json()).then(data => {
+fetch('data/standings.json').then(r => {
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}).then(data => {
   const el = document.getElementById('standingsPreview');
   const lb = document.getElementById('leaderboardList');
   if (!el) return;
   const teams = data.teams || [];
+  if (!teams.length) {
+    setPreviewUnavailable('standingsPreview', 'Standings');
+    if (lb) lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
+    return;
+  }
   const max = Math.max(...teams.map(t => t.total_pts));
   teams.forEach(t => {
     const pct = (t.total_pts / max * 100).toFixed(1);
@@ -725,13 +735,22 @@ fetch('data/standings.json').then(r => r.json()).then(data => {
       </div>`;
     }).join('');
   }
-}).catch(() => {});
+}).catch(() => {
+  setPreviewUnavailable('standingsPreview', 'Standings');
+});
 
 // Transactions preview
-fetch('data/transactions.json').then(r => r.json()).then(data => {
+fetch('data/transactions.json').then(r => {
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}).then(data => {
   const el = document.getElementById('transactionsPreview');
   if (!el) return;
   const txs = (data.transactions || []).slice(0, 9);
+  if (!txs.length) {
+    setPreviewUnavailable('transactionsPreview', 'Transactions');
+    return;
+  }
   txs.forEach(tx => {
     const type = (tx.type || 'ADD').toUpperCase();
     const cls  = type === 'ADD' ? 'add' : type === 'DROP' ? 'drop' : 'trade';
@@ -745,25 +764,9 @@ fetch('data/transactions.json').then(r => r.json()).then(data => {
       `</div>`;
     el.appendChild(row);
   });
-}).catch(() => {});
-
-// Prospects preview
-fetch('data/prospects.json').then(r => r.json()).then(data => {
-  const el = document.getElementById('prospectsPreview');
-  if (!el) return;
-  const all = [];
-  (data.teams || []).forEach(t => (t.prospects || []).forEach(p => all.push(p)));
-  all.sort((a, b) => (a.rank || 9999) - (b.rank || 9999));
-  all.slice(0, 10).forEach(p => {
-    const row = document.createElement('div');
-    row.className = 'pr-row';
-    row.innerHTML =
-      `<div class="pr-rank">#${p.rank || '—'}</div>` +
-      `<div class="pr-name">${esc(p.name)}</div>` +
-      `<div class="pr-level">${esc(p.level || '')}</div>`;
-    el.appendChild(row);
-  });
-}).catch(() => {});
+}).catch(() => {
+  setPreviewUnavailable('transactionsPreview', 'Transactions');
+});
 
 // ─── MINI SCATTER TILE ───────────────────────────────────────
 (function buildMiniScatter() {

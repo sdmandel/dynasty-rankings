@@ -269,10 +269,16 @@
 
   // ── Init ────────────────────────────────────────────────────────────────────
   function init() {
+    if (document.getElementById('fb-pill') || document.getElementById('fb-overlay')) return;
+
     // Inject styles
-    const style = document.createElement('style');
-    style.textContent = CSS;
-    document.head.appendChild(style);
+    let style = document.getElementById('fb-style');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'fb-style';
+      style.textContent = CSS;
+      document.head.appendChild(style);
+    }
 
     const pill    = buildPill();
     const overlay = buildOverlay();

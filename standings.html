@@ -427,7 +427,14 @@ function renderLeaders(data) {
     if (!leader) return;
     const d = document.createElement('div');
     d.className = 'leader-chip';
-    d.innerHTML = `<div class="chip-cat">${cat}</div><div class="chip-team">${esc(leader)}</div>`;
+    const catEl = document.createElement('div');
+    catEl.className = 'chip-cat';
+    catEl.textContent = cat;
+    const teamEl = document.createElement('div');
+    teamEl.className = 'chip-team';
+    teamEl.textContent = leader;
+    d.appendChild(catEl);
+    d.appendChild(teamEl);
     grid.appendChild(d);
   }
 
@@ -465,9 +472,17 @@ function renderCategories(data) {
   _catState = { cats, teams: data.teams };
 
   const headRow = document.createElement('tr');
-  headRow.innerHTML =
-    '<th class="team-col" data-col="rank">Team</th>' +
-    cats.map(c => `<th data-col="${c}">${c}</th>`).join('');
+  const teamTh = document.createElement('th');
+  teamTh.className = 'team-col';
+  teamTh.dataset.col = 'rank';
+  teamTh.textContent = 'Team';
+  headRow.appendChild(teamTh);
+  cats.forEach(c => {
+    const th = document.createElement('th');
+    th.dataset.col = c;
+    th.textContent = c;
+    headRow.appendChild(th);
+  });
   document.getElementById('catHead').appendChild(headRow);
 
   headRow.querySelectorAll('th').forEach(th => {
@@ -536,7 +551,7 @@ function _renderCatBody() {
     if (!_sortCol || _sortCol === 'rank') return a.rank - b.rank;
     const av = ((a.categories || {})[_sortCol] || {}).pts ?? -Infinity;
     const bv = ((b.categories || {})[_sortCol] || {}).pts ?? -Infinity;
-    return _sortDir * (bv - av);
+    return _sortDir * (av - bv);
   });
 
   rows.forEach(t => {

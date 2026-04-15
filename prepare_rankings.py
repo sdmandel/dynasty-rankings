@@ -183,8 +183,10 @@ def _completed_week_range() -> tuple[date, date]:
 
     today = date.today()
     # weekday(): Mon=0 … Sat=5, Sun=6
-    # Days elapsed since last Saturday (0 if today IS Saturday, 1 if Sunday, 2 if Monday, …)
+    # If today is Saturday, that week is still in progress; use the prior Saturday.
     days_since_sat = (today.weekday() - 5) % 7
+    if days_since_sat == 0:
+        days_since_sat = 7
     last_saturday = today - timedelta(days=days_since_sat)
     last_sunday = last_saturday - timedelta(days=6)
     return last_sunday, last_saturday
@@ -258,6 +260,14 @@ def format_lineup_activity(
     known_teams: full league team list — teams absent from the API response
     are assumed to have 0 sessions and are shown with a ⚠ flag.
     """
+    # Normalize API names onto known team names where possible.
+    normalized_activity: dict[str, int] = defaultdict(int)
+    if known_teams:
+        for team, count in activity.items():
+            canonical_team = _canonical_team_name(team, known_teams)
+            normalized_activity[canonical_team] += count
+        activity = dict(normalized_activity)
+
     # Fill in zeros for any known team that had no changes (absent from API)
     if known_teams:
         for team in known_teams:
@@ -296,29 +306,40 @@ def fetch_trades(session, week_start: date | None = None, week_end: date | None 
     """
     league_id = FANTRAX_LEAGUE_ID
     url = f"https://www.fantrax.com/fxpa/req?leagueId={league_id}"
-    payload = {
-        "msgs": [
-            {
-                "method": "getTransactionDetailsHistory",
-                "data": {
-                    "maxResultsPerPage": "200",
-                    "statusOrDate": "PROCESSED",
-                    "view": "TRADE",
-                },
-            }
-        ]
-    }
-    try:
-        resp = session.post(url, json=payload, timeout=15)
-        rows = resp.json().get("responses", [{}])[0].get("data", {}).get("table", {}).get("rows", [])
-    except Exception as e:
-        log.warning("Could not fetch trades: %s", e)
-        return []
+    all_rows: list[dict] = []
+    for page in range(1, 5):  # cap at 4 pages (800 rows) to avoid runaway
+        payload = {
+            "msgs": [
+                {
+                    "method": "getTransactionDetailsHistory",
+                    "data": {
+                        "maxResultsPerPage": "200",
+                        "statusOrDate": "PROCESSED",
+                        "view": "TRADE",
+                        "pageNumber": str(page),
+                    },
+                }
+            ]
+        }
+        try:
+            resp = session.post(url, json=payload, timeout=15)
+            data = resp.json().get("responses", [{}])[0].get("data", {})
+            rows = data.get("table", {}).get("rows", [])
+            all_rows.extend(rows)
+            total_pages = data.get("paginatedResultSet", {}).get("totalNumPages", 1)
+            if page >= total_pages:
+                break
+        except Exception as e:
+            log.warning("Could not fetch trades (page %d): %s", page, e)
+            break
 
     # Group rows by txSetId
     groups: dict[str, list] = defaultdict(list)
-    for row in rows:
-        groups[row["txSetId"]].append(row)
+    for i, row in enumerate(all_rows):
+        tx_id = str(row.get("txSetId") or "").strip()
+        if not tx_id:
+            tx_id = f"_missing_txsetid_{i}"
+        groups[tx_id].append(row)
 
     trades = []
     for tx_id, tx_rows in groups.items():
@@ -506,13 +527,7 @@ def compute_algo_team_rankings(csv_rows: list[dict]) -> list[dict]:
 
     result = []
     for team_name, players in teams.items():
-        scores = []
-        for p in players:
-            try:
-                scores.append(float(p.get("Score", 0) or 0))
-            except (ValueError, TypeError):
-                pass
-        total_score = sum(scores)
+        total_score = _team_total_score(players)
 
         # Top player by Overall Rank (lowest number = best)
         ranked = [p for p in players if _safe_int(p.get("Overall Rank"))]
@@ -616,32 +631,23 @@ def build_team_breakdowns(
         if owner:
             teams[owner].append(row)
 
-    # Sort teams by sum of top player scores (descending)
-    def team_sort_key(item):
-        _name, players = item
-        scores = []
-        for p in players:
-            try:
-                scores.append(float(p.get("Score", 0)))
-            except (ValueError, TypeError):
-                pass
-        return sum(sorted(scores, reverse=True)[:10])
-
-    sorted_teams = sorted(teams.items(), key=team_sort_key, reverse=True)
+    sorted_teams = sorted(
+        teams.items(),
+        key=lambda item: _team_total_score(item[1]),
+        reverse=True,
+    )
 
     # Compute algo rank for each team (1 = best total score)
     team_ranks = {name: rank for rank, (name, _) in enumerate(sorted_teams, 1)}
 
+    normalized_txns: dict[str, list[str]] = defaultdict(list)
+    for team, notes in (transactions or {}).items():
+        normalized_txns[_normalize_team_name(team)].extend(notes)
+
     blocks = []
     for team_name, players in sorted_teams:
         # Sort players by score descending
-        def safe_score(p):
-            try:
-                return float(p.get("Score", 0))
-            except (ValueError, TypeError):
-                return 0.0
-
-        players.sort(key=safe_score, reverse=True)
+        players.sort(key=lambda p: _safe_float(p.get("Score")) or 0.0, reverse=True)
 
         # Avg age
         ages = []
@@ -702,7 +708,7 @@ def build_team_breakdowns(
             block.append("  ↓ Fallers: none")
 
         # Transactions
-        team_txns = (transactions or {}).get(team_name, [])
+        team_txns = normalized_txns.get(_normalize_team_name(team_name), [])
         if team_txns:
             block.append("Transactions this period:")
             for txn in team_txns:
@@ -752,6 +758,29 @@ def _safe_float(val) -> float | None:
         return float(val)
     except (ValueError, TypeError):
         return None
+
+
+def _normalize_team_name(name: str) -> str:
+    """Normalize team names for cross-source joins."""
+    normalized = (name or "").strip().lower()
+    normalized = "".join(ch for ch in normalized if ch.isalnum() or ch.isspace())
+    return " ".join(normalized.split())
+
+
+def _team_total_score(players: list[dict]) -> float:
+    """Shared algo score methodology for team ranking."""
+    return sum((_safe_float(p.get("Score")) or 0.0) for p in players)
+
+
+def _canonical_team_name(name: str, known_teams: set[str]) -> str:
+    """Map incoming team names to known canonical names when possible."""
+    n = _normalize_team_name(name)
+    if not n:
+        return name
+    for team in known_teams:
+        if _normalize_team_name(team) == n:
+            return team
+    return name
 
 
 
@@ -902,6 +931,11 @@ def main():
     except Exception as e:
         log.warning("Could not compute algo rankings: %s", e)
         algo_rankings_text = f"(Error computing algo rankings: {e})"
+    known_teams.update(
+        row.get("Owned By", "").strip()
+        for row in csv_rows
+        if row.get("Owned By", "").strip()
+    )
 
     # Per-team transactions — auto-fetch trades within the completed week window
     week_start, week_end = _completed_week_range()
@@ -917,10 +951,11 @@ def main():
             # Build the two sides of the trade for labeling
             all_teams = list(receiving.keys())
             for team, players in receiving.items():
+                canonical_team = _canonical_team_name(team, known_teams)
                 other_teams = [t for t in all_teams if t != team]
                 other = " & ".join(other_teams) if other_teams else "?"
                 label = f"Period {period} ({date_str}): acquired {' + '.join(players)} from {other}"
-                transactions[team].append(label)
+                transactions[canonical_team].append(label)
         log.info("Fetched %d trade(s)", len(fetched_trades))
     except Exception as e:
         log.warning("Could not fetch trades: %s", e)
@@ -929,7 +964,8 @@ def main():
         try:
             manual = json.loads(Path(args.transactions).read_text())
             for team, notes in manual.items():
-                transactions[team].extend(notes)
+                canonical_team = _canonical_team_name(team, known_teams)
+                transactions[canonical_team].extend(notes)
             log.info("Merged manual transactions for %d teams", len(manual))
         except Exception as e:
             log.warning("Could not load --transactions file: %s", e)
@@ -957,12 +993,6 @@ def main():
 
     # Build prompt
     prompt = build_prompt(args.week, standings_text, algo_rankings_text, lineup_activity_text, roster_text)
-
-
-    # Example: update transaction badge assignment (for exporter scripts)
-    # Lower threshold for notable badge
-    # This is a placeholder for where you would update the exporter logic
-    # If you have a script that generates transactions.json, ensure it uses classify_badge()
 
     print(prompt)
 

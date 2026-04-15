@@ -74,27 +74,43 @@ def test_relative_links_resolve(html_file: Path) -> None:
 def test_standings_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "standings.json"))
     assert "generated" in data
+    assert "week" in data
+    assert "category_order" in data and isinstance(data["category_order"], list)
+    assert "category_leaders" in data and isinstance(data["category_leaders"], dict)
     assert "teams" in data and isinstance(data["teams"], list)
     assert data["teams"], "standings has no teams"
+    for cat in data["category_order"]:
+        assert cat in data["category_leaders"], f"missing category leader for {cat}"
     for team in data["teams"]:
-        assert "rank" in team
-        assert "team" in team or "name" in team
+        for key in ("rank", "team", "total_pts", "pts_behind", "pts_change", "categories"):
+            assert key in team, f"standings team missing {key}"
+        assert isinstance(team["categories"], dict)
+        for cat in data["category_order"]:
+            assert cat in team["categories"], f"{team['team']} missing category {cat}"
+            assert "pts" in team["categories"][cat], f"{team['team']} missing pts for {cat}"
 
 
 def test_transactions_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "transactions.json"))
     assert "generated" in data
     assert "transactions" in data and isinstance(data["transactions"], list)
-    if data["transactions"]:
-        first = data["transactions"][0]
-        for key in ("type", "team", "player"):
-            assert key in first, f"transaction missing {key}"
+    for txn in data["transactions"]:
+        for key in ("id", "date", "type", "team", "player", "badge"):
+            assert key in txn, f"transaction missing {key}"
 
 
 def test_prospects_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "prospects.json"))
     assert "generated" in data
     assert "teams" in data and isinstance(data["teams"], list)
+    for team in data["teams"]:
+        for key in ("team", "count", "prospects"):
+            assert key in team, f"prospect team missing {key}"
+        assert isinstance(team["prospects"], list)
+        if team["prospects"]:
+            first = team["prospects"][0]
+            for key in ("rank", "name", "org", "level", "positions", "age"):
+                assert key in first, f"prospect missing {key}"
 
 
 def test_franchises_schema() -> None:
@@ -170,13 +186,26 @@ def test_rules_schema() -> None:
 def test_rules_page_toc_links_match_sections() -> None:
     html = _read(ROOT / "rules.html")
     data = json.loads(_read(ROOT / "data" / "rules.json"))
+    assert 'id="tocList"' in html, "rules page missing TOC container"
+    assert 'id="sections"' in html, "rules page missing sections container"
+    assert 'href="#${esc(section.anchor)}"' in html, "rules TOC template missing section anchor href"
+    assert 'id="${esc(section.anchor)}"' in html, "rules section template missing section anchor id"
+
+    section_anchors: list[str] = []
+    block_anchors: list[str] = []
     for section in data["sections"]:
         anchor = section["anchor"]
-        assert f'href="#{anchor}"' in html or "tocList" in html
-        assert f'id="{anchor}"' in html or "renderSections" in html
+        assert isinstance(anchor, str) and anchor, "rules section anchor missing"
+        assert re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", anchor), f"invalid section anchor: {anchor}"
+        section_anchors.append(anchor)
         for block in section.get("blocks", []):
             if block.get("title") and block.get("anchor"):
-                assert block["anchor"]
+                block_anchor = block["anchor"]
+                assert re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", block_anchor), f"invalid block anchor: {block_anchor}"
+                block_anchors.append(block_anchor)
+
+    assert len(section_anchors) == len(set(section_anchors)), "duplicate rules section anchors"
+    assert len(block_anchors) == len(set(block_anchors)), "duplicate rules block anchors"
 
 
 def test_managers_schema() -> None:

@@ -61,16 +61,20 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 <script>
 let ALL_EVENTS = [];
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function normalizeEventType(event){ return String(event?.event_type || 'unknown'); }
 function render(events){
   const el=document.getElementById('feedList');
-  el.innerHTML = events.length ? events.map(event => `<div class="feed-row"><div class="feed-type">${esc(event.event_type.replaceAll('_',' '))}</div><div><div class="feed-title">${esc(event.title)}</div><div class="feed-detail">${esc(event.detail)}</div></div><div class="feed-team">${esc(event.team || event.date)}</div></div>`).join('') : '<div class="state-msg">No events match this filter.</div>';
+  el.innerHTML = events.length ? events.map(event => {
+    const type = normalizeEventType(event);
+    return `<div class="feed-row"><div class="feed-type">${esc(type.replaceAll('_',' '))}</div><div><div class="feed-title">${esc(event.title || '')}</div><div class="feed-detail">${esc(event.detail || '')}</div></div><div class="feed-team">${esc(event.team || event.date || '')}</div></div>`;
+  }).join('') : '<div class="state-msg">No events match this filter.</div>';
 }
 function setupFilters(){
   document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter=btn.dataset.filter;
-    render(filter === 'ALL' ? ALL_EVENTS : ALL_EVENTS.filter(event => event.event_type === filter));
+    render(filter === 'ALL' ? ALL_EVENTS : ALL_EVENTS.filter(event => normalizeEventType(event) === filter));
   }));
 }
 fetch('data/feed.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_EVENTS = data.events || []; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + ' · ' + ALL_EVENTS.length + ' events shown.'; render(ALL_EVENTS); setupFilters(); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load feed. ('+err.message+')'; });
