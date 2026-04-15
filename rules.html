@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>League Rules — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Structured league rules for Backyard Dynasty Baseball 2026 with a hyperlinked table of contents and machine-readable settings.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="League Rules — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Structured league rules with hyperlinked sections and clean formatting.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/rules.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --panel: #121214;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 56px;
+}
+
+.rules-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 28px;
+  padding-top: 32px;
+}
+
+.toc {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 18px 16px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.toc h2,
+.content-head h2 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 14px;
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toc-sublist {
+  list-style: none;
+  margin-top: 6px;
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.toc-list a {
+  color: var(--text-mid);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.45;
+  transition: color 0.15s;
+}
+
+.toc-list a:hover { color: var(--gold); }
+.toc-sublist a {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.content-head {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.summary-card .label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 6px;
+}
+
+.summary-card .value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.summary-card .meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.section-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.section-head {
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.section-body {
+  padding: 0 20px 20px;
+}
+
+.rules-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rules-table tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.rules-table tr:last-child {
+  border-bottom: 0;
+}
+
+.rules-table th,
+.rules-table td {
+  padding: 11px 0;
+  vertical-align: top;
+}
+
+.rules-table th {
+  width: 38%;
+  text-align: left;
+  color: var(--text-mid);
+  font-size: 12px;
+  font-weight: 500;
+  padding-right: 18px;
+}
+
+.rules-table td {
+  color: var(--text);
+  font-size: 12.5px;
+}
+
+.subhead-row td {
+  padding-top: 16px;
+  padding-bottom: 6px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.block {
+  padding-top: 18px;
+}
+
+.block + .block {
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.block-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.block-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rule-list {
+  list-style: decimal;
+  padding-left: 20px;
+  color: var(--text-mid);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.matrix-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.matrix-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.matrix-table th,
+.matrix-table td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.matrix-table thead th {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(200, 168, 75, 0.08);
+}
+
+.matrix-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.matrix-table tbody td {
+  color: var(--text-mid);
+}
+
+.matrix-table tbody td:first-child {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+.state-msg {
+  padding: 32px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .rules-layout {
+    grid-template-columns: 1fr;
+  }
+  .toc {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .page, .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .content-head {
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 28px;
+  }
+  .rules-table th,
+  .rules-table td {
+    display: block;
+    width: 100%;
+  }
+  .rules-table th {
+    padding-bottom: 2px;
+  }
+  .rules-table td {
+    padding-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a href="index.html" class="back-link">← The Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>League<br><span>Rules</span></h1>
+  <div class="divider"></div>
+  <p>Structured league settings with section anchors, plain-language formatting, and machine-readable keys for site features that need to reference league context.</p>
+</div>
+
+<div class="page">
+  <div id="loadingMsg" class="state-msg">Loading rulebook…</div>
+
+  <div id="mainContent" class="rules-layout" style="display:none;">
+    <aside class="toc">
+      <h2>Table Of Contents</h2>
+      <ul class="toc-list" id="tocList"></ul>
+    </aside>
+
+    <main>
+      <div class="content-head">
+        <div class="summary-card">
+          <div class="label">League</div>
+          <div class="value" id="leagueName">-</div>
+          <div class="meta" id="leagueMeta">-</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Version</div>
+          <div class="value" id="versionLabel">-</div>
+          <div class="meta" id="effectiveDate">-</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Format</div>
+          <div class="value" id="leagueFormat">-</div>
+          <div class="meta" id="leagueLimits">-</div>
+        </div>
+      </div>
+
+      <div class="sections" id="sections"></div>
+    </main>
+  </div>
+</div>
+
+<div class="footer" id="footerEl">
+  League rules loaded from the normalized Fantrax export and versioned for future diffs.
+</div>
+
+<script>
+function esc(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderSummary(data) {
+  const rules = data.programmatic_rules || {};
+  document.getElementById('leagueName').textContent = rules.league_name || 'Backyard Dynasty Baseball';
+  document.getElementById('leagueMeta').textContent =
+    (rules.league_id ? 'League ID: ' + rules.league_id + ' · ' : '') +
+    (rules.max_teams ? rules.max_teams + ' teams' : 'Dynasty league');
+  document.getElementById('versionLabel').textContent = data.version_label || 'Current';
+  document.getElementById('effectiveDate').textContent =
+    data.effective_date ? 'Effective ' + data.effective_date : 'Current version';
+  document.getElementById('leagueFormat').textContent = rules.scoring_system || 'Rotisserie';
+  document.getElementById('leagueLimits').textContent =
+    '35-man roster · 10 minors · 10 IL';
+}
+
+function renderToc(sections) {
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = sections.map(section => {
+    const sublinks = (section.blocks || [])
+      .filter(block => block.title && block.anchor)
+      .map(block => `<li><a href="#${esc(block.anchor)}">${esc(block.title)}</a></li>`)
+      .join('');
+    return `
+      <li>
+        <a href="#${esc(section.anchor)}">${esc(section.number)}. ${esc(section.title)}</a>
+        ${sublinks ? `<ul class="toc-sublist">${sublinks}</ul>` : ''}
+      </li>`;
+  }).join('');
+}
+
+function rowHtml(item) {
+  if (item.type === 'kv') {
+    return `
+      <tr>
+        <th>${esc(item.label)}</th>
+        <td>${esc(item.value)}</td>
+      </tr>`;
+  }
+  return `
+    <tr class="subhead-row">
+      <td colspan="2">${esc(item.value)}</td>
+    </tr>`;
+}
+
+function blockHtml(block) {
+  const title = block.title
+    ? `<div class="block-title" id="${esc(block.anchor || '')}"><a href="#${esc(block.anchor || '')}">${esc(block.title)}</a></div>`
+    : '';
+
+  if (block.type === 'table') {
+    return `
+      <div class="block">
+        ${title}
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>${block.columns.map(col => `<th>${esc(col)}</th>`).join('')}</tr>
+            </thead>
+            <tbody>
+              ${block.rows.map(row => `
+                <tr>${block.columns.map(col => `<td>${esc(row[col] ?? '')}</td>`).join('')}</tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  if (block.type === 'list') {
+    return `
+      <div class="block">
+        ${title}
+        <ol class="rule-list">
+          ${block.items.map(item => `<li>${esc(item)}</li>`).join('')}
+        </ol>
+      </div>`;
+  }
+
+  return `
+    <div class="block">
+      ${title}
+      <table class="rules-table">
+        <tbody>
+          ${block.items.map(rowHtml).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderSections(sections) {
+  const container = document.getElementById('sections');
+  container.innerHTML = sections.map(section => `
+    <section class="section-card" id="${esc(section.anchor)}">
+      <div class="section-head">
+        <div class="section-num">Section ${esc(section.number)}</div>
+        <h2 class="section-title">${esc(section.title)}</h2>
+      </div>
+      <div class="section-body">
+        ${(section.blocks || []).map(blockHtml).join('')}
+      </div>
+    </section>
+  `).join('');
+}
+
+fetch('data/rules.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'grid';
+    document.getElementById('footerEl').textContent =
+      'Last updated: ' + (data.effective_date || data.version_label || 'current') +
+      ' · ' + data.sections.length + ' sections.';
+    renderSummary(data);
+    renderToc(data.sections || []);
+    renderSections(data.sections || []);
+  })
+  .catch(err => {
+    document.getElementById('loadingMsg').textContent = 'Could not load rules. (' + err.message + ')';
+  });
+</script>
+
+</body>
+</html>

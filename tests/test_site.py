@@ -97,6 +97,29 @@ def test_prospects_schema() -> None:
     assert "teams" in data and isinstance(data["teams"], list)
 
 
+def test_rules_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "rules.json"))
+    assert "version_label" in data
+    assert "sections" in data and isinstance(data["sections"], list)
+    assert data["sections"], "rules has no sections"
+    first = data["sections"][0]
+    for key in ("number", "title", "anchor", "items"):
+        assert key in first, f"rules section missing {key}"
+    assert "blocks" in first and isinstance(first["blocks"], list)
+
+
+def test_rules_page_toc_links_match_sections() -> None:
+    html = _read(ROOT / "rules.html")
+    data = json.loads(_read(ROOT / "data" / "rules.json"))
+    for section in data["sections"]:
+        anchor = section["anchor"]
+        assert f'href="#{anchor}"' in html or "tocList" in html
+        assert f'id="{anchor}"' in html or "renderSections" in html
+        for block in section.get("blocks", []):
+            if block.get("title") and block.get("anchor"):
+                assert block["anchor"]
+
+
 def test_feedback_js_points_at_repo() -> None:
     js = _read(ROOT / "assets" / "feedback.js") if (ROOT / "assets" / "feedback.js").exists() else _read(ROOT / "feedback.js")
     assert FEEDBACK_REPO in js, f"feedback.js should reference {FEEDBACK_REPO}"

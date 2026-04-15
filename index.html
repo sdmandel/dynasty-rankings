@@ -84,6 +84,22 @@ body {
   line-height: 1.75;
 }
 .site-header p strong { color: var(--gold); font-weight: 500; }
+.header-links {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+}
+.header-links a {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.header-links a:hover { color: var(--gold); }
 
 /* ── NAV CARDS ── */
 .nav-section {
@@ -377,6 +393,9 @@ body {
     Power rankings drop every Monday. Depth chart updates after the weekly Oracle run.
     <strong>All rankings powered by the Oracle.</strong>
   </p>
+  <div class="header-links">
+    <a href="rules.html">League Rules →</a>
+  </div>
 </div>
 
 <div class="nav-section">
