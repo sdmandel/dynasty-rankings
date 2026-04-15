@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Prospect Radar — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Farm system depth for all 12 teams in Backyard Dynasty Baseball 2026. Oracle-ranked prospects only.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Prospect Radar — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Farm system depth for all 12 teams. Oracle-ranked prospects only.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/prospects.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --blue-dim: #1e2a3a;
+  --red: #b55d5d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 40px 36px;
+  border-bottom: 1px solid var(--border2);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-muted); }
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 100px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.site-header h1 span { color: var(--gold); }
+.divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
+.site-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 40px 60px;
+}
+
+/* ── TEAM TABS ── */
+.tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.tab-btn {
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.tab-btn:hover  { color: var(--text); border-color: var(--border2); }
+.tab-btn.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.tab-count {
+  font-size: 10px;
+  margin-left: 5px;
+  opacity: 0.7;
+}
+
+/* ── TEAM PANEL ── */
+.team-panel { display: none; }
+.team-panel.active { display: block; }
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.panel-team {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.panel-count {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── PROSPECT TABLE ── */
+.prospect-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.prospect-table thead th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  padding: 0 12px 10px 0;
+  border-bottom: 1px solid var(--border2);
+}
+.prospect-table thead th.right { text-align: right; }
+.prospect-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.prospect-table tbody tr:hover { background: var(--bg2); }
+.prospect-table tbody td {
+  padding: 10px 12px 10px 0;
+  color: var(--text);
+}
+.prospect-table tbody td.right {
+  text-align: right;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.p-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--text-dead);
+  min-width: 44px;
+  display: inline-block;
+  text-align: right;
+}
+.p-rank.top100 { color: var(--gold); }
+.p-rank.top200 { color: var(--text-mid); }
+.p-rank.unranked { color: var(--text-dead); font-size: 12px; }
+
+.level-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.level-AAA  { color: #8fba9a; border-color: #2a3d2e; background: rgba(143,186,154,0.08); }
+.level-AA   { color: var(--blue); border-color: #1e2a3a; background: rgba(93,125,181,0.08); }
+.level-Ap   { color: #9a8fba; border-color: #2e2a3d; background: rgba(154,143,186,0.08); }
+.level-A    { color: var(--text-muted); border-color: var(--border); background: transparent; }
+.level-Rk   { color: var(--text-dead); border-color: var(--border); background: transparent; }
+
+.p-name {
+  font-weight: 500;
+}
+.p-org {
+  font-size: 12px;
+  color: var(--text-dead);
+  margin-left: 6px;
+}
+.p-pos {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  font-size: 12px;
+  color: var(--text-dead);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+.state-msg {
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 680px) {
+  .site-header, .content, .site-footer {
+    padding-left: 20px; padding-right: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a class="back-link" href="index.html">← Hub</a>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
+  <h1>Prospect<br><span>Radar</span></h1>
+  <div class="divider"></div>
+  <p>Every rostered minor leaguer, sorted by Oracle rank. No scores — rank only. Gold = top 100. Updated after each Oracle run.</p>
+</div>
+
+<div class="content">
+  <div id="loadingMsg" class="state-msg">Loading prospect data…</div>
+  <div id="mainContent" style="display:none;">
+    <div class="tab-bar" id="tabBar"></div>
+    <div id="panels"></div>
+  </div>
+</div>
+
+<div class="site-footer" id="footerEl">
+  Prospect data from Oracle rankings. Updated after each weekly Oracle run.
+</div>
+
+<script>
+fetch('data/prospects.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('mainContent').style.display = '';
+    document.getElementById('footerEl').textContent =
+      'Last updated: ' + data.generated + '  ·  Oracle prospect rankings. No composite scores shown.';
+    buildUI(data);
+  })
+  .catch(err => {
+    document.getElementById('loadingMsg').textContent = 'Could not load prospect data. (' + err.message + ')';
+  });
+
+function buildUI(data) {
+  const tabBar = document.getElementById('tabBar');
+  const panels = document.getElementById('panels');
+  let firstActive = true;
+
+  data.teams.forEach((team, i) => {
+    // Tab button
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (firstActive ? ' active' : '');
+    btn.dataset.idx = i;
+    btn.innerHTML = esc(team.team) + `<span class="tab-count">${team.count}</span>`;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.team-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + i).classList.add('active');
+    });
+    tabBar.appendChild(btn);
+
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'team-panel' + (firstActive ? ' active' : '');
+    panel.id = 'panel-' + i;
+    panel.innerHTML = `
+      <div class="panel-header">
+        <div class="panel-team">${esc(team.team)}</div>
+        <div class="panel-count">${team.count} prospect${team.count !== 1 ? 's' : ''}</div>
+      </div>
+      ${buildTable(team.prospects)}`;
+    panels.appendChild(panel);
+
+    firstActive = false;
+  });
+}
+
+function buildTable(prospects) {
+  if (!prospects.length) return '<p style="color:var(--text-muted);padding:20px 0">No prospects rostered.</p>';
+
+  let rows = '';
+  prospects.forEach(p => {
+    const rankClass = !p.rank ? 'unranked' : p.rank <= 100 ? 'top100' : p.rank <= 200 ? 'top200' : '';
+    const rankStr   = p.rank ? '#' + p.rank : 'NR';
+    const lvlClass  = levelClass(p.level);
+    rows += `
+      <tr>
+        <td><span class="p-rank ${rankClass}">${rankStr}</span></td>
+        <td>
+          <span class="p-name">${esc(p.name)}</span>
+          <span class="p-org">${esc(p.org)}</span>
+        </td>
+        <td><span class="level-badge ${lvlClass}">${esc(p.level)}</span></td>
+        <td class="p-pos right">${esc(p.positions)}</td>
+        <td class="right">${p.age ? p.age + ' yrs' : '—'}</td>
+      </tr>`;
+  });
+
+  return `
+    <table class="prospect-table">
+      <thead>
+        <tr>
+          <th style="width:52px;">Rank</th>
+          <th>Player</th>
+          <th style="width:60px;">Level</th>
+          <th class="right" style="width:80px;">Pos</th>
+          <th class="right" style="width:72px;">Age</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function levelClass(level) {
+  if (level === 'AAA')  return 'level-AAA';
+  if (level === 'AA')   return 'level-AA';
+  if (level === 'A+')   return 'level-Ap';
+  if (level === 'A')    return 'level-A';
+  if (level === 'Rk')   return 'level-Rk';
+  return '';
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
