@@ -3,6 +3,31 @@ description: Share an idea for the site
 title: "[Idea] "
 labels: ["enhancement"]
 body:
+  - type: dropdown
+    id: impact_repo
+    attributes:
+      label: Impacts repo(s)
+      description: Use one issue list here even when implementation is in fantrax-bot.
+      options:
+        - site (sdmandel/dynasty-rankings)
+        - bot (sdmandel/fantrax-bot)
+        - both
+    validations:
+      required: true
+  - type: dropdown
+    id: impact_area
+    attributes:
+      label: Area
+      options:
+        - site
+        - bot
+        - pipeline
+        - prompt-gen
+        - data
+        - deploy
+        - infra
+    validations:
+      required: true
   - type: textarea
     id: idea
     attributes:

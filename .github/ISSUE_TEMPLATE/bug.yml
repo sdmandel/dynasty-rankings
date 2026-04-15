@@ -3,6 +3,31 @@ description: Something isn't working right
 title: "[Bug] "
 labels: ["bug"]
 body:
+  - type: dropdown
+    id: impact_repo
+    attributes:
+      label: Impacts repo(s)
+      description: Use one issue list here even when work lands in fantrax-bot.
+      options:
+        - site (sdmandel/dynasty-rankings)
+        - bot (sdmandel/fantrax-bot)
+        - both
+    validations:
+      required: true
+  - type: dropdown
+    id: impact_area
+    attributes:
+      label: Area
+      options:
+        - site
+        - bot
+        - pipeline
+        - prompt-gen
+        - data
+        - deploy
+        - infra
+    validations:
+      required: true
   - type: textarea
     id: what-happened
     attributes:

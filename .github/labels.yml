@@ -1,0 +1,39 @@
+- name: repo:site
+  color: "1d76db"
+  description: Change primarily in sdmandel/dynasty-rankings
+
+- name: repo:bot
+  color: "5319e7"
+  description: Change primarily in sdmandel/fantrax-bot
+
+- name: repo:both
+  color: "d93f0b"
+  description: Coordinated change across site and bot repos
+
+- name: area:site
+  color: "0052cc"
+  description: Page/UI/static site behavior
+
+- name: area:bot
+  color: "6f42c1"
+  description: Lineup optimizer, alerts, and bot runtime
+
+- name: area:pipeline
+  color: "0366d6"
+  description: Export/build pipelines and script orchestration
+
+- name: area:prompt-gen
+  color: "0e8a16"
+  description: weekly_prompt/prepare_rankings prompt generation
+
+- name: area:data
+  color: "fbca04"
+  description: Data contracts, schema, and snapshot quality
+
+- name: area:deploy
+  color: "e99695"
+  description: CI/CD, Pages, and release/deploy operations
+
+- name: area:infra
+  color: "cfd3d7"
+  description: Environment, tooling, shell, and local automation
