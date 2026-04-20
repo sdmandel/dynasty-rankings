@@ -333,7 +333,7 @@ body {
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Roto<br><span>Standings</span></h1>
   <div class="divider"></div>
-  <p>5&times;5 roto points. Category leaders highlighted in gold. Updated daily after the 9:30 AM standings snapshot.</p>
+  <p>5&times;5 roto points. Category leaders highlighted in gold. Updated three times daily after automated Fantrax snapshots.</p>
 </div>
 
 <div class="content">
@@ -387,11 +387,13 @@ body {
 </div>
 
 <div class="site-footer" id="footerEl">
-  Standings data from Fantrax. Updated daily via automated snapshot.
+  Standings data from Fantrax. Updated multiple times per day via automated snapshots.
 </div>
 
 <script>
-fetch('data/standings.json')
+const standingsUrl = 'data/standings.json?ts=' + Date.now();
+
+fetch(standingsUrl, { cache: 'no-store' })
   .then(r => {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
@@ -403,7 +405,7 @@ fetch('data/standings.json')
     renderSummary(data);
     renderCategories(data);
     document.getElementById('footerEl').textContent =
-      'Last updated: ' + data.generated + (data.week ? '  ·  Scoring period ' + data.week : '') +
+      'Last updated: ' + (data.generated_at || data.generated) + (data.week ? '  ·  Scoring period ' + data.week : '') +
       '  ·  Standings from Fantrax.';
   })
   .catch(err => {

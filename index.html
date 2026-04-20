@@ -542,7 +542,7 @@ body {
       <div class="tile-footer">
         <div class="tile-eyebrow">Live &nbsp;·&nbsp; Roto 5&times;5</div>
         <div class="tile-title">Standings</div>
-        <div class="tile-meta">Category breakdown for all 12 teams. Updated daily.</div>
+        <div class="tile-meta">Category breakdown for all 12 teams. Updated multiple times per day.</div>
         <span class="tile-arrow">View standings →</span>
       </div>
     </a>
@@ -570,6 +570,38 @@ body {
         <div class="tile-title">Transactions</div>
         <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
         <span class="tile-arrow">View transactions →</span>
+      </div>
+    </a>
+
+    <a href="polls.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="mb-list">
+          <div class="mb-row">
+            <div class="mb-rank">1</div>
+            <div class="mb-track">
+              <span class="mb-fill-mlb" style="width:68%;"></span>
+            </div>
+          </div>
+          <div class="mb-row">
+            <div class="mb-rank">2</div>
+            <div class="mb-track">
+              <span class="mb-fill-mlb" style="width:56%;"></span>
+            </div>
+          </div>
+          <div class="mb-row">
+            <div class="mb-rank">3</div>
+            <div class="mb-track">
+              <span class="mb-fill-mlb" style="width:49%;"></span>
+            </div>
+          </div>
+        </div>
+        <div class="preview-note">Rule votes · live turnout</div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">League Governance &nbsp;·&nbsp; Ballots</div>
+        <div class="tile-title">League Votes</div>
+        <div class="tile-meta">Native poll page for rule changes, one ballot per manager, live results.</div>
+        <span class="tile-arrow">Open ballot →</span>
       </div>
     </a>
 
@@ -711,7 +743,8 @@ function setPreviewUnavailable(id, label) {
 }
 
 // Standings preview
-fetch('data/standings.json').then(r => {
+const standingsUrl = 'data/standings.json?ts=' + Date.now();
+fetch(standingsUrl, { cache: 'no-store' }).then(r => {
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }).then(data => {
