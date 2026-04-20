@@ -179,7 +179,7 @@ def test_rules_schema() -> None:
     assert "sections" in data and isinstance(data["sections"], list)
     assert data["sections"], "rules has no sections"
     first = data["sections"][0]
-    for key in ("number", "title", "anchor", "items", "source"):
+    for key in ("number", "title", "anchor", "items", "source", "summary", "highlights"):
         assert key in first, f"rules section missing {key}"
     assert "blocks" in first and isinstance(first["blocks"], list)
 
@@ -198,6 +198,8 @@ def test_rules_page_toc_links_match_sections() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert 'id="tocList"' in html, "rules page missing TOC container"
     assert 'id="sections"' in html, "rules page missing sections container"
+    assert 'class="section-summary"' in html, "rules page missing section summary hook"
+    assert 'class="section-source"' in html, "rules page missing source badge hook"
     assert 'href="#${esc(section.anchor)}"' in html, "rules TOC template missing section anchor href"
     assert 'id="${esc(section.anchor)}"' in html, "rules section template missing section anchor id"
 

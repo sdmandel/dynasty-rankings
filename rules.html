@@ -174,13 +174,33 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+.section-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
 .section-num {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 6px;
+}
+
+.section-source {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-dim);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section-title {
@@ -193,6 +213,44 @@ body {
 
 .section-body {
   padding: 0 20px 20px;
+}
+
+.section-summary {
+  color: var(--text-mid);
+  font-size: 14px;
+  line-height: 1.75;
+  padding-top: 18px;
+}
+
+.section-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 16px;
+}
+
+.highlight-chip {
+  min-width: 110px;
+  padding: 10px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.highlight-chip .label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 5px;
+}
+
+.highlight-chip .value {
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .rules-table {
@@ -511,13 +569,30 @@ function blockHtml(block) {
 
 function renderSections(sections) {
   const container = document.getElementById('sections');
+  const sourceLabel = source => source === 'constitution' ? 'League Constitution' : 'Fantrax Export';
+  const summaryHtml = section => section.summary
+    ? `<p class="section-summary">${esc(section.summary)}</p>`
+    : '';
+  const highlightsHtml = section => (section.highlights || []).length
+    ? `<div class="section-highlights">${section.highlights.map(item => `
+        <div class="highlight-chip">
+          <span class="label">${esc(item.label)}</span>
+          <span class="value">${esc(item.value)}</span>
+        </div>
+      `).join('')}</div>`
+    : '';
   container.innerHTML = sections.map(section => `
     <section class="section-card" id="${esc(section.anchor)}">
       <div class="section-head">
-        <div class="section-num">Section ${esc(section.number)}</div>
+        <div class="section-kicker">
+          <div class="section-num">Section ${esc(section.number)}</div>
+          <div class="section-source">${esc(sourceLabel(section.source))}</div>
+        </div>
         <h2 class="section-title">${esc(section.title)}</h2>
       </div>
       <div class="section-body">
+        ${summaryHtml(section)}
+        ${highlightsHtml(section)}
         ${(section.blocks || []).map(blockHtml).join('')}
       </div>
     </section>
