@@ -92,6 +92,85 @@
     border-bottom: 1px solid #1e1e20;
   }
 
+  .feature-strip {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 18px 40px 0;
+  }
+
+  .feature-box {
+    border: 1px solid #242426;
+    background: linear-gradient(180deg, #141416 0%, #101012 100%);
+    border-radius: 6px;
+    padding: 18px 20px 20px;
+  }
+
+  .feature-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 10px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .feature-card {
+    background: #171719;
+    border: 1px solid #262629;
+    border-radius: 5px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .feature-card-link {
+    display: block;
+    padding: 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .feature-card-link:visited {
+    color: inherit;
+  }
+
+  .feature-card-link .feature-title {
+    color: #f0ede6;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-within {
+    border-color: #4a3c18;
+    background: #1b1b1e;
+  }
+
+  .feature-card:hover .feature-title,
+  .feature-card:focus-within .feature-title {
+    color: #c8a84b;
+  }
+
+  .feature-card-link:focus-visible {
+    outline: 2px solid #c8a84b;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #9e9a93;
+  }
+
   .legend-label {
     font-size: 11px;
     font-weight: 500;
@@ -273,6 +352,8 @@
     .header, .rankings, .footnote, .legend { padding-left: 20px; padding-right: 20px; }
     .rank-entry { grid-template-columns: 52px 1fr; }
     .rank-num { font-size: 40px; }
+    .feature-strip { padding-left: 20px; padding-right: 20px; }
+    .feature-grid { grid-template-columns: 1fr; }
   }
 
   .back-link {
@@ -306,6 +387,32 @@
   <video autoplay loop muted playsinline preload="none" style="width:100%; border-radius:6px; display:block;">
     <source src="https://baseball.stephenmandella.com/standings_race.mp4" type="video/mp4">
   </video>
+</div>
+
+<div class="feature-strip">
+  <div class="feature-box">
+    <div class="feature-kicker">New Website Features!</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/franchise_history.html">
+          <span class="feature-title">Franchise History</span>
+          <p>Season arcs, rank ranges, days in first, and the accumulated evidence needed to talk shit.</p>
+        </a>
+      </div>
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/team_intel.html">
+          <span class="feature-title">Team Intel</span>
+          <p>Contender tiers, volatility, category pressure, and a cleaner read on which teams are actually stable.</p>
+        </a>
+      </div>
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/transactions.html">
+          <span class="feature-title">Transactions</span>
+          <p>League movement in one place, including trades, churn, and the permanent written record of questionable ideas or absent fathers.</p>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="legend">
