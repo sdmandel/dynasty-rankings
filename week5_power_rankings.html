@@ -124,12 +124,22 @@
     background: #171719;
     border: 1px solid #262629;
     border-radius: 5px;
-    padding: 14px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
   }
 
-  .feature-card a {
-    color: #f0ede6;
+  .feature-card-link {
+    display: block;
+    padding: 14px;
+    color: inherit;
     text-decoration: none;
+  }
+
+  .feature-card-link:visited {
+    color: inherit;
+  }
+
+  .feature-card-link .feature-title {
+    color: #f0ede6;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
     letter-spacing: 0.03em;
@@ -138,7 +148,22 @@
     margin-bottom: 8px;
   }
 
-  .feature-card a:hover { color: #c8a84b; }
+  .feature-card:hover,
+  .feature-card:focus-within {
+    border-color: #4a3c18;
+    background: #1b1b1e;
+  }
+
+  .feature-card:hover .feature-title,
+  .feature-card:focus-within .feature-title {
+    color: #c8a84b;
+  }
+
+  .feature-card-link:focus-visible {
+    outline: 2px solid #c8a84b;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 
   .feature-card p {
     font-size: 13px;
@@ -365,16 +390,22 @@
     <div class="feature-kicker">New Website Features!</div>
     <div class="feature-grid">
       <div class="feature-card">
-        <a href="https://baseball.stephenmandella.com/franchise_history.html">Franchise History</a>
-        <p>Season arcs, rank ranges, days in first, and the accumulated evidence needed to talk shit.</p>
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/franchise_history.html">
+          <span class="feature-title">Franchise History</span>
+          <p>Season arcs, rank ranges, days in first, and the accumulated evidence needed to talk shit.</p>
+        </a>
       </div>
       <div class="feature-card">
-        <a href="https://baseball.stephenmandella.com/team_intel.html">Team Intel</a>
-        <p>Contender tiers, volatility, category pressure, and a cleaner read on which teams are actually stable.</p>
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/team_intel.html">
+          <span class="feature-title">Team Intel</span>
+          <p>Contender tiers, volatility, category pressure, and a cleaner read on which teams are actually stable.</p>
+        </a>
       </div>
       <div class="feature-card">
-        <a href="https://baseball.stephenmandella.com/transactions.html">Transactions</a>
-        <p>League movement in one place, including trades, churn, and the permanent written record of questionable ideas or absent fathers.</p>
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/transactions.html">
+          <span class="feature-title">Transactions</span>
+          <p>League movement in one place, including trades, churn, and the permanent written record of questionable ideas or absent fathers.</p>
+        </a>
       </div>
     </div>
   </div>
@@ -400,7 +431,7 @@
       <div class="rank-header">
         <span class="team-name">Seam Heads</span>
         <div class="badges">
-          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;94.0pts</span>
+          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;105pts</span>
           <span class="badge badge-last">Last week: 1st</span>
         </div>
       </div>
