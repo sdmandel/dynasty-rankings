@@ -255,5 +255,7 @@ def test_issue_templates_exist() -> None:
 
 def test_roster_depth_keeps_position_header_visible() -> None:
     html = _read(ROOT / "roster_depth.html")
-    assert 'class="sticky-pos-header"' in html
+    assert 'class="sticky-bar-wrap"' in html
+    assert 'id="stickyBarScroll"' in html
+    assert 'id="tableScroll"' in html
     assert 'position: sticky;' in html
