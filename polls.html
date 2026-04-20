@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>League Votes — Backyard Dynasty Baseball 2026</title>
+<meta name="description" content="League ballot and live rule-change vote tracker for Backyard Dynasty Baseball.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="League Votes — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Native ballot page for offseason rule proposals and league votes.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/polls.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --panel: #121214;
+  --panel-2: #171719;
+  --line: #252529;
+  --ok: #5da87a;
+  --warn: #c8a84b;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 56px;
+}
+
+.state-msg {
+  padding: 36px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.poll-grid {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 28px;
+  padding-top: 32px;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+}
+
+.panel-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+  margin-bottom: 10px;
+}
+
+.summary-stack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.summary-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.summary-card .value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.summary-card .meta {
+  margin-top: 7px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.auth-copy {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.auth-input {
+  width: 100%;
+  background: #0e0e0f;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
+
+.auth-btn,
+.submit-btn {
+  border: 0;
+  border-radius: 6px;
+  background: var(--gold);
+  color: #0e0e0f;
+  padding: 11px 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit-btn[disabled] {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.auth-status,
+.submit-state,
+.backend-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.auth-status.ok,
+.submit-state.ok {
+  color: var(--ok);
+}
+
+.auth-status.warn {
+  color: var(--warn);
+}
+
+.auth-status.error,
+.submit-state.error {
+  color: var(--red);
+}
+
+.rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rule-list li {
+  font-size: 12.5px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  padding-left: 14px;
+  position: relative;
+}
+
+.rule-list li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--gold);
+  position: absolute;
+  left: 0;
+  top: 9px;
+}
+
+.content-col {
+  min-width: 0;
+}
+
+.question-list,
+.result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.question-card,
+.result-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px 20px;
+}
+
+.question-number {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+
+.question-card h3,
+.result-question {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.question-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 13px;
+}
+
+.option-row input {
+  margin-top: 2px;
+}
+
+.option-label {
+  display: block;
+  color: var(--text-mid);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.submit-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+
+.results-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.results-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+}
+
+.results-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.result-row + .result-row {
+  margin-top: 10px;
+}
+
+.result-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-mid);
+  margin-bottom: 6px;
+}
+
+.result-bar {
+  height: 10px;
+  background: #0e0e0f;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.result-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #8f722b 0%, #c8a84b 100%);
+}
+
+@media (max-width: 920px) {
+  .poll-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .summary-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-row,
+  .submit-row,
+  .results-head {
+    display: block;
+  }
+
+  .auth-btn,
+  .submit-btn {
+    margin-top: 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <a href="index.html" class="back-link">← The Hub</a>
+  <div class="eyebrow" id="pollEyebrow">League Votes</div>
+  <h1>League<br><span>Votes</span></h1>
+  <div class="divider"></div>
+  <p id="pollDescription">Offseason proposals, one ballot per manager, and live results that update as votes come in.</p>
+</div>
+
+<div class="page">
+  <div id="loadingMsg" class="state-msg">Loading league ballot…</div>
+
+  <div id="pollShell" style="display:none;">
+    <div class="summary-stack">
+      <div class="summary-card">
+        <div class="panel-label">Ballot</div>
+        <div class="value" id="pollTitle">League Votes</div>
+        <div class="meta">Current poll loaded from local site data.</div>
+      </div>
+      <div class="summary-card">
+        <div class="panel-label">Opens</div>
+        <div class="value" id="pollOpens">-</div>
+        <div class="meta">Poll start time</div>
+      </div>
+      <div class="summary-card">
+        <div class="panel-label">Turnout</div>
+        <div class="value" id="pollTurnout">0 / 12</div>
+        <div class="meta" id="pollCloses">-</div>
+      </div>
+    </div>
+
+    <div class="poll-grid">
+      <aside class="rail">
+        <div class="panel" id="authPanel">
+          <div class="panel-label">Manager Ballot</div>
+          <div class="auth-copy">
+            Each manager should get a unique ballot link or code. That token is the validation layer. It is cleaner than asking people to type their name and easier to lock to one response.
+          </div>
+          <div class="auth-row">
+            <input id="ballotCode" class="auth-input" type="text" placeholder="Paste ballot code">
+            <button id="ballotBtn" class="auth-btn" type="button">Unlock</button>
+          </div>
+          <div id="authStatus" class="auth-status"></div>
+          <div id="backendNote" class="backend-note"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-label">Validation Model</div>
+          <ul class="rule-list">
+            <li>One generated token per manager per poll.</li>
+            <li>Backend resolves token to a single manager identity.</li>
+            <li>Unique database constraint blocks duplicate manager ballots.</li>
+            <li>Optional resubmission means edits overwrite prior answers until the deadline.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="content-col">
+        <form id="ballotForm">
+          <div id="questionList" class="question-list"></div>
+          <div class="submit-row">
+            <button id="submitBtn" class="submit-btn" type="submit">Submit Ballot</button>
+            <div id="submitState" class="submit-state"></div>
+          </div>
+        </form>
+
+        <div class="results-head">
+          <div class="results-title">Live Results</div>
+          <div id="resultMeta" class="results-meta"></div>
+        </div>
+        <div id="resultList" class="result-list"></div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  Native static page, local question file, external vote storage. The page stays simple because the backend only has to do three things: resolve a ballot token, accept a ballot, and return aggregates.
+</div>
+
+<script>
+window.POLLS_CONFIG = {
+  backendBaseUrl: '',
+  ballotParam: 'ballot',
+  pollDataUrl: 'data/polls.json'
+};
+</script>
+<script src="assets/polls.js"></script>
+<script src="assets/feedback.js"></script>
+</body>
+</html>

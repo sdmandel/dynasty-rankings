@@ -1,0 +1,126 @@
+{
+  "poll": {
+    "id": "2026-offseason-rules",
+    "title": "2027 Rule Change Ballot",
+    "eyebrow": "League Votes · Offseason",
+    "description": "Ten proposed changes for next season. Each manager gets one ballot. Results update live after each valid submission.",
+    "status": "open",
+    "season": 2026,
+    "opens_at": "2026-10-01T12:00:00Z",
+    "closes_at": "2026-10-08T04:59:00Z",
+    "expected_voters": 12,
+    "show_live_results": true,
+    "allow_resubmission": true
+  },
+  "questions": [
+    {
+      "id": "keep_il_at_10",
+      "prompt": "Keep the injured list cap at 10 slots?",
+      "description": "Current structure stays in place unless a majority wants a tighter roster environment.",
+      "required": true,
+      "options": [
+        { "id": "yes", "label": "Yes, keep 10 IL slots" },
+        { "id": "no", "label": "No, reduce the IL cap" }
+      ]
+    },
+    {
+      "id": "minors_slots",
+      "prompt": "What should the minors cap be next season?",
+      "description": "This changes how aggressively teams can stash long-range prospects.",
+      "required": true,
+      "options": [
+        { "id": "8", "label": "8 slots" },
+        { "id": "10", "label": "10 slots" },
+        { "id": "12", "label": "12 slots" }
+      ]
+    },
+    {
+      "id": "trade_deadline",
+      "prompt": "Move the trade deadline later in the season?",
+      "description": "A later deadline gives contenders more runway but compresses the final market.",
+      "required": true,
+      "options": [
+        { "id": "keep", "label": "Keep the current deadline" },
+        { "id": "push_1_week", "label": "Push it back one week" },
+        { "id": "push_2_weeks", "label": "Push it back two weeks" }
+      ]
+    },
+    {
+      "id": "faab_budget",
+      "prompt": "Should FAAB increase from the current budget?",
+      "description": "Higher FAAB creates more tradeoffs during the season and can reward active churn.",
+      "required": true,
+      "options": [
+        { "id": "keep", "label": "Keep the current budget" },
+        { "id": "raise_small", "label": "Increase it a little" },
+        { "id": "raise_large", "label": "Increase it a lot" }
+      ]
+    },
+    {
+      "id": "innings_floor",
+      "prompt": "Adjust the league innings minimum?",
+      "description": "Pitching volume rules shape how viable extreme ratios builds can be.",
+      "required": true,
+      "options": [
+        { "id": "keep", "label": "Keep the current floor" },
+        { "id": "lower", "label": "Lower the innings minimum" },
+        { "id": "raise", "label": "Raise the innings minimum" }
+      ]
+    },
+    {
+      "id": "prospect_eligibility",
+      "prompt": "Tighten minor-league eligibility rules?",
+      "description": "This would make it harder to keep fringe MLB contributors parked in minors slots.",
+      "required": true,
+      "options": [
+        { "id": "keep", "label": "Keep the current rules" },
+        { "id": "slightly_tighter", "label": "Slightly tighter eligibility" },
+        { "id": "much_tighter", "label": "Much tighter eligibility" }
+      ]
+    },
+    {
+      "id": "draft_order",
+      "prompt": "Change how the first-year player draft order is set?",
+      "description": "This covers whether to keep the current order logic or introduce a lottery element.",
+      "required": true,
+      "options": [
+        { "id": "current", "label": "Keep the current system" },
+        { "id": "lottery_top3", "label": "Lottery for the top 3 picks" },
+        { "id": "lottery_top6", "label": "Lottery for the top 6 picks" }
+      ]
+    },
+    {
+      "id": "playoff_payout",
+      "prompt": "Should payout weighting shift more toward the champion?",
+      "description": "Higher top-end payout increases title equity and reduces spread across the standings.",
+      "required": true,
+      "options": [
+        { "id": "keep", "label": "Keep the current payout split" },
+        { "id": "slightly_top_heavy", "label": "Make it slightly more top heavy" },
+        { "id": "very_top_heavy", "label": "Make it much more top heavy" }
+      ]
+    },
+    {
+      "id": "weekly_lineups",
+      "prompt": "Move to weekly lineup locks instead of daily moves?",
+      "description": "This is the largest format change on the ballot and would materially change roster management.",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No, keep daily lineups" },
+        { "id": "hybrid", "label": "Hybrid lock for hitters only" },
+        { "id": "yes", "label": "Yes, switch to weekly locks" }
+      ]
+    },
+    {
+      "id": "constitutional_veto",
+      "prompt": "Require a supermajority for future constitutional rule changes?",
+      "description": "A supermajority threshold makes structural rules harder to change once adopted.",
+      "required": true,
+      "options": [
+        { "id": "simple_majority", "label": "Keep simple majority" },
+        { "id": "two_thirds", "label": "Require two-thirds approval" },
+        { "id": "three_quarters", "label": "Require three-quarters approval" }
+      ]
+    }
+  ]
+}
