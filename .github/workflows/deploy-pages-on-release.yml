@@ -9,6 +9,15 @@ on:
         default: "main"
   release:
     types: [published]
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "standings.html"
+      - "data/standings.json"
+      - "assets/**"
+      - "tests/**"
+      - ".github/workflows/deploy-pages-on-release.yml"
 
 permissions:
   contents: read
