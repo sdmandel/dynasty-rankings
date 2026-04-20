@@ -175,12 +175,22 @@ def test_league_intelligence_schema() -> None:
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data
+    assert "supplemental_version_label" in data
     assert "sections" in data and isinstance(data["sections"], list)
     assert data["sections"], "rules has no sections"
     first = data["sections"][0]
-    for key in ("number", "title", "anchor", "items"):
+    for key in ("number", "title", "anchor", "items", "source"):
         assert key in first, f"rules section missing {key}"
     assert "blocks" in first and isinstance(first["blocks"], list)
+
+
+def test_rules_include_constitution_sections() -> None:
+    data = json.loads(_read(ROOT / "data" / "rules.json"))
+    constitution_sections = [section for section in data["sections"] if section.get("source") == "constitution"]
+    assert constitution_sections, "expected at least one constitution section in rules payload"
+    assert data["supplemental_version_label"], "expected supplemental constitution version label"
+    for section in constitution_sections:
+        assert section["summary"], f"constitution section {section['title']} missing summary"
 
 
 def test_rules_page_toc_links_match_sections() -> None:
