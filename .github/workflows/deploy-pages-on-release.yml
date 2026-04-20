@@ -1,7 +1,12 @@
-
 name: Deploy GitHub Pages on Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag or branch to deploy"
+        required: true
+        default: "main"
   release:
     types: [published]
 
@@ -20,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -29,19 +34,25 @@ jobs:
       - name: Run site tests
         run: python -m pytest tests/ -x -q
       - name: Validate JSON data files
-        run: python -c "
-import json, sys
-from pathlib import Path
-errors = []
-for f in Path('data').glob('*.json'):
-    try:
-        json.loads(f.read_text(encoding='utf-8'))
-    except json.JSONDecodeError as e:
-        errors.append(f'{f.name}: {e}')
-if errors:
-    print('\\n'.join(errors)); sys.exit(1)
-print(f'OK: {len(list(Path(\"data\").glob(\"*.json\")))} JSON files valid')
-"
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          errors = []
+          for f in Path("data").glob("*.json"):
+              try:
+                  json.loads(f.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as e:
+                  errors.append(f"{f.name}: {e}")
+
+          if errors:
+              print("\n".join(errors))
+              sys.exit(1)
+
+          print(f"OK: {len(list(Path('data').glob('*.json')))} JSON files valid")
+          PY
 
   deploy:
     needs: gate
@@ -54,7 +65,7 @@ print(f'OK: {len(list(Path(\"data\").glob(\"*.json\")))} JSON files valid')
       - name: Checkout tagged release commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.ref || github.ref_name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
