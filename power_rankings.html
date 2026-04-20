@@ -102,53 +102,75 @@ body {
   color: var(--text-dead);
   margin-bottom: 16px;
 }
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
   margin-bottom: 48px;
 }
-.card {
-  display: block;
+.archive-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
   text-decoration: none;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 20px 22px;
-  transition: border-color 0.15s, background 0.15s;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s, border-color 0.15s;
 }
-.card:hover { border-color: var(--border2); background: #1a1a1c; }
-.card.featured { border-color: var(--gold-dim); background: #141208; }
-.card.featured .card-eyebrow { color: var(--gold); }
-.card.featured .card-title   { color: var(--gold); }
-.card.featured:hover { border-color: var(--gold); }
-.card-eyebrow {
+.archive-row:hover {
+  background: rgba(255,255,255,0.015);
+  border-bottom-color: var(--border2);
+}
+.archive-row.featured .archive-kicker,
+.archive-row.featured .archive-title,
+.archive-row.featured .archive-arrow {
+  color: var(--gold);
+}
+.archive-main {
+  min-width: 0;
+}
+.archive-kicker {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dead);
-  margin-bottom: 6px;
-}
-.card-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  line-height: 1.1;
   margin-bottom: 8px;
 }
-.card-meta { font-size: 12px; color: var(--text-muted); }
-.card-arrow {
-  display: inline-block;
-  margin-top: 14px;
+.archive-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.archive-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 780px;
+}
+.archive-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding-top: 2px;
+  white-space: nowrap;
+}
+.archive-date {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.archive-arrow {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-dead);
 }
-.card.featured .card-arrow { color: var(--gold); }
 
 .site-footer {
   max-width: 1100px;
@@ -163,6 +185,13 @@ body {
 
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer { padding-left: 20px; padding-right: 20px; }
+  .archive-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .archive-side {
+    align-items: flex-start;
+  }
 }
 </style>
 </head>
@@ -173,39 +202,71 @@ body {
   <div class="eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</a></div>
   <h1>Power<br><span>Rankings</span></h1>
   <div class="divider"></div>
-  <p>All Oracle power rankings articles for the 2026 dynasty season. Latest issue first.</p>
+  <p>All Oracle power rankings articles for the 2026 dynasty season. Latest issue first, with each row carrying the original deck.</p>
 </div>
 
 <div class="nav-section">
   <div class="year-label">2026 Season — All Issues</div>
-  <div class="card-grid">
+  <div class="archive-list">
 
-    <a href="week4_power_rankings.html" class="card featured">
-      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 4</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Apr 14, 2026</div>
-      <div class="card-arrow">Read →</div>
+    <a href="week5_power_rankings.html" class="archive-row featured">
+      <div class="archive-main">
+        <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 5</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">The top tier is no longer theoretical. Well, I mean it hasn't been theoretical since week 1, have you seen the Seam Heads? They have now spent 16 of 26 days in first. The rest of the board looks a bit more interesting, however, as John Henry finally pushed the standings closer to what the Oracle has been screaming for a month, and philbell keeps climbing by behaving like the only adult in a league otherwise run by traders, obsessives, and people who appear to set lineups by lunar cycle. Rankings powered by the Oracle.</div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Apr 20, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
     </a>
 
-    <a href="week3_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 3</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Apr 7, 2026</div>
-      <div class="card-arrow">Read →</div>
+    <a href="week4_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 4</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">Did we just witness the most expensive typo in league history? Acquiring a minor leaguer from Kansas City named Mason Miller instead of, you know, the other one. In other news, we would like to be the first to congratulate Mommy on getting married Saturday! As a reward for finally popping his cherry, we are extending exactly one courtesy exemption from the ghost designation this week. I do not typically do courtesies. This is a special occasion. Nearing a month in, the standings are starting to look suspiciously similar to last year's final standings... which is either a sign of a well-balanced, consistently competitive league, or a sign that half of you have already given up and are running the same lineup on autopilot. I have reviewed the session logs. It is the second thing. Rankings powered by the Oracle.</div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Apr 14, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
     </a>
 
-    <a href="week2_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 2</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Mar 31, 2026</div>
-      <div class="card-arrow">Read →</div>
+    <a href="week3_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 3</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">The Oracle has been upgraded. In addition to composite scores and positional scarcity multipliers, it now monitors daily lineup activity across all 12 teams. It counts the days. It remembers. It does not send reminders, because reminders are not its job, publishing the results is. Two managers have been issued ghost pills this week. The Oracle does not judge. The Oracle simply reports. Rankings powered by the Oracle.</div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Apr 7, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
     </a>
 
-    <a href="week1_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 1</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Mar 27, 2026</div>
-      <div class="card-arrow">Read →</div>
+    <a href="week2_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 2</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">Is anyone reading this? Are you paying attention? Do you even know what you're looking at? Good. Six trades in two weeks, three of them on the same Thursday, and one team somehow acquired Jose Ramirez, Jhoan Duran, and a restraining order against its own future. Millville Meteors went from 11th to 3rd in the standings in 48 hours. The biggest riser: Rollie Fingers, up three spots and leading the league. The biggest faller: John Henry Fan Club, down three after trading away their entire youth pipeline for the present tense. The season is one week old and it is already unhinged. Or is it playing out exactly as predicted? Rankings powered by the Oracle.</div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Mar 31, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
+    </a>
+
+    <a href="week1_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 1</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">The winter is over. Two new owners have entered the building. One old villain returned with a new identity. And the reigning champion is now running the whole operation, which feels vaguely like letting the 2024 Dodgers write the 2025 playoff bracket. Rankings powered by my totally objective algorithmrithm i built on company time and with company property. Scores are final. Arguments are welcome. Refunds are not available.</div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Mar 27, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
     </a>
 
   </div>

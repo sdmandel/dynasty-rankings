@@ -262,8 +262,7 @@ body {
   margin-bottom: 48px;
 }
 .tool-grid.tools-grid-compact {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 760px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .tool-grid.tools-grid-compact .tile-preview {
   height: 190px;
@@ -323,6 +322,15 @@ body {
   color: var(--text-dead);
 }
 .tool-tile:hover .tile-arrow { color: var(--text-muted); }
+.preview-note {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+}
 
 /* Depth chart preview — tier distribution stacked bars */
 .dp-list { display: flex; flex-direction: column; gap: 4px; }
@@ -375,6 +383,11 @@ body {
   position: absolute;
   top: 0;
   border-radius: 0 1px 1px 0;
+}
+.mini-scatter {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* ── STANDINGS TILE PREVIEW ── */
@@ -492,8 +505,14 @@ body {
 
   <div class="section-label"><a href="power_rankings.html">Power Rankings — 2026</a></div>
   <div class="card-grid">
-    <a href="week4_power_rankings.html" class="card featured">
-      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 4</div>
+    <a href="week5_power_rankings.html" class="card featured">
+      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 5</div>
+      <div class="card-title">Power Rankings</div>
+      <div class="card-meta">Apr 20, 2026</div>
+      <div class="card-arrow">Read →</div>
+    </a>
+    <a href="week4_power_rankings.html" class="card">
+      <div class="card-eyebrow">Week 4</div>
       <div class="card-title">Power Rankings</div>
       <div class="card-meta">Apr 14, 2026</div>
       <div class="card-arrow">Read →</div>
@@ -504,15 +523,10 @@ body {
       <div class="card-meta">Apr 7, 2026</div>
       <div class="card-arrow">Read →</div>
     </a>
-    <a href="week2_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 2</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Mar 31, 2026</div>
-      <div class="card-arrow">Read →</div>
-    </a>
     <a href="power_rankings.html" class="card">
       <div class="card-eyebrow">All Articles</div>
       <div class="card-title">Archive</div>
+      <div class="card-meta">Full list of every weekly post</div>
       <div class="card-arrow">View all →</div>
     </a>
   </div>
@@ -533,6 +547,19 @@ body {
       </div>
     </a>
 
+    <a href="team_intel.html" class="tool-tile">
+      <div class="tile-preview">
+        <svg id="miniScatterSvg" class="mini-scatter"></svg>
+        <div class="preview-note">Age vs Oracle value</div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Contention &nbsp;·&nbsp; Oracle Split</div>
+        <div class="tile-title">Team Intel</div>
+        <div class="tile-meta">Roster window, standings pressure, luck, volatility, and valuation in one place.</div>
+        <span class="tile-arrow">View team intel →</span>
+      </div>
+    </a>
+
     <!-- ── Transactions tile ── -->
     <a href="transactions.html" class="tool-tile">
       <div class="tile-preview">
@@ -550,12 +577,6 @@ body {
 
   <div class="section-label">Analysis &amp; Tools</div>
   <div class="card-grid combined-grid">
-    <a href="team_intel.html" class="card">
-      <div class="card-eyebrow">Contention &amp; Luck</div>
-      <div class="card-title">Team Intel</div>
-      <div class="card-meta">Tier standings, category gaps, luck index, and volatility.</div>
-      <div class="card-arrow">View →</div>
-    </a>
     <a href="closers.html" class="card">
       <div class="card-eyebrow">Bullpen Roles</div>
       <div class="card-title">Closer Carousel</div>
@@ -570,12 +591,6 @@ body {
       <div class="card-arrow">Open →</div>
     </a>
 
-    <a href="league_analytics.html" class="card">
-      <div class="card-eyebrow">Oracle Scores &nbsp;·&nbsp; MLB vs Farm</div>
-      <div class="card-title">League Analytics</div>
-      <div class="card-meta">Total roster value by Oracle composite. Dark = MLB, light = farm.</div>
-      <div class="card-arrow">Open →</div>
-    </a>
     <a href="prospects.html" class="card">
       <div class="card-eyebrow">Farm Systems &nbsp;·&nbsp; All 12 Teams</div>
       <div class="card-title">Prospect Radar</div>

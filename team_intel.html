@@ -8,18 +8,18 @@
 <title>Team Intel — Backyard Dynasty Baseball 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<meta name="description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<meta name="description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Team Intel — Backyard Dynasty Baseball 2026">
-<meta property="og:description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<meta property="og:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
 <meta property="og:url" content="https://baseball.stephenmandella.com/team_intel.html">
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview.png">
 <meta name="twitter:image" content="https://baseball.stephenmandella.com/preview.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
-<meta name="twitter:description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
 <link rel="stylesheet" href="assets/site.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -103,6 +103,13 @@ body {
   text-transform: uppercase;
   color: var(--text-dead);
   margin-bottom: 20px;
+}
+.section-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 720px;
+  line-height: 1.7;
+  margin: -6px 0 18px;
 }
 
 .scatter-wrap {
@@ -257,6 +264,76 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 .tier-fringe { color: #c8a84b; }
 .tier-stagnating { color: #c8856e; }
 .tier-rebuilding { color: #b55d5d; }
+.bar-list { display: flex; flex-direction: column; gap: 8px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 80px;
+  align-items: center;
+  gap: 12px;
+}
+.bar-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-mid);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-label .rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--text-dead);
+  margin-right: 6px;
+}
+.bar-track {
+  height: 22px;
+  background: #141416;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+}
+.bar-fill-mlb {
+  height: 100%;
+  background: #8b2a1e;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+.bar-fill-farm {
+  height: 100%;
+  background: #c8856e;
+  position: absolute;
+  top: 0;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.6s ease;
+}
+.bar-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+.bar-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 14px;
+  padding-left: 172px;
+}
+.bar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dead);
+}
+.leg-dot { width: 10px; height: 10px; border-radius: 2px; }
+.leg-mlb  { background: #8b2a1e; }
+.leg-farm { background: #c8856e; }
 
 .site-footer {
   max-width: 1100px;
@@ -273,6 +350,9 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
   .intel-grid { grid-template-columns: 1fr; }
   .intel-help { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 110px 1fr 60px; }
+  .bar-label { font-size: 11px; }
+  .bar-legend { padding-left: 122px; }
 }
 </style>
 </head>
@@ -283,7 +363,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   <div class="eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</a></div>
   <h1>Team<br><span>Intel</span></h1>
   <div class="divider"></div>
-  <p>Roster age vs. Oracle value across all 12 teams. Younger rosters with high value are building toward a window; older rosters are cashing in or aging out.</p>
+  <p>Roster age vs. Oracle value across all 12 teams, plus contention signals and MLB-vs-farm valuation splits. Younger rosters with high value are building toward a window; older rosters are cashing in or aging out.</p>
 </div>
 
 <div class="charts-section">
@@ -309,6 +389,15 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
         </thead>
         <tbody id="intelBody"></tbody>
       </table>
+    </div>
+  </div>
+  <div class="chart-block">
+    <h3>League Analytics</h3>
+    <p class="section-copy">Total Oracle roster value by team, split between active MLB roster value and farm-system depth. This keeps the valuation view on the same page as the roster-window and standings-context reads.</p>
+    <div class="bar-list" id="barChart"></div>
+    <div class="bar-legend">
+      <span class="bar-legend-item"><span class="leg-dot leg-mlb"></span>MLB roster</span>
+      <span class="bar-legend-item"><span class="leg-dot leg-farm"></span>Farm system</span>
     </div>
   </div>
 </div>
@@ -603,6 +692,62 @@ function buildScatter() {
 
 buildScatter();
 window.addEventListener('resize', buildScatter);
+
+function buildValueBars() {
+  const sorted = [...TEAMS].sort((a, b) => a.oracle_rank - b.oracle_rank);
+  const maxVal = Math.max(...sorted.map(t => t.total));
+  const barEl = document.getElementById('barChart');
+  if (!barEl) return;
+  barEl.innerHTML = '';
+
+  sorted.forEach(t => {
+    const mlbPct = (t.mlb / maxVal * 100).toFixed(1);
+    const farmPct = (t.farm / maxVal * 100).toFixed(1);
+    const shortName = t.name.length > 18 ? t.name.slice(0, 17) + '…' : t.name;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'bar-label';
+    const rankSpan = document.createElement('span');
+    rankSpan.className = 'rank-num';
+    rankSpan.textContent = '#' + t.oracle_rank;
+    labelDiv.appendChild(rankSpan);
+    labelDiv.appendChild(document.createTextNode(shortName));
+
+    const trackDiv = document.createElement('div');
+    trackDiv.className = 'bar-track';
+    const fillMlb = document.createElement('div');
+    fillMlb.className = 'bar-fill-mlb';
+    fillMlb.style.width = mlbPct + '%';
+    const fillFarm = document.createElement('div');
+    fillFarm.className = 'bar-fill-farm';
+    fillFarm.style.left = mlbPct + '%';
+    fillFarm.style.width = farmPct + '%';
+    trackDiv.appendChild(fillMlb);
+    trackDiv.appendChild(fillFarm);
+
+    const valDiv = document.createElement('div');
+    valDiv.className = 'bar-value';
+    valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
+
+    row.appendChild(labelDiv);
+    row.appendChild(trackDiv);
+    row.appendChild(valDiv);
+    row.addEventListener('mousemove', e => {
+      ttName.textContent = t.name;
+      ttAge.textContent = `MLB: ${t.mlb.toLocaleString()}`;
+      ttVal.textContent = `Farm: ${t.farm.toLocaleString()}  ·  Total: ${t.total.toLocaleString()}`;
+      tooltip.style.display = 'block';
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    });
+    row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    barEl.appendChild(row);
+  });
+}
+
+buildValueBars();
 
 function esc(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function fmt(v, digits = 1) {

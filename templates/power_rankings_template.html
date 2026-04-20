@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Week {{WEEK}} Dynasty Power Rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Week {{WEEK}} Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Week {{WEEK}} Power Rankings — Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Week {{WEEK}} Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/week{{WEEK}}_power_rankings.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta name="twitter:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week {{WEEK}} Power Rankings — Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Week {{WEEK}} Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e0e0f;
+    color: #e8e6e0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .header {
+    background: #0e0e0f;
+    border-bottom: 1px solid #2a2a2c;
+    padding: 48px 40px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 88px);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: #f0ede6;
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: #c8a84b; }
+
+  .header-meta {
+    font-size: 13px;
+    color: #7a7872;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .header-meta strong {
+    color: #c8a84b;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: #c8a84b;
+    margin: 20px 0;
+  }
+
+  .legend {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #1e1e20;
+  }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4845;
+    margin-right: 4px;
+  }
+
+  .rank-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .delta-up   { color: #5d7db5; }
+  .delta-down { color: #b55d5d; }
+  .delta-same { color: #3a3a3c; }
+
+  .rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 40px 80px;
+  }
+
+  .rank-entry {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    border-bottom: 1px solid #1e1e20;
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .rank-entry:hover { background: rgba(255,255,255,0.015); }
+
+  .rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    color: #2a2a2c;
+    line-height: 1;
+    padding-top: 4px;
+    user-select: none;
+  }
+
+  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
+  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
+
+  .rank-content { padding-left: 8px; }
+
+  .rank-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: #f0ede6;
+    line-height: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
+  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
+  .badge-up     { background: #1a1f2e; color: #5d7db5; }
+  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-return { background: #2a1a2e; color: #9b6cb5; }
+
+  .blurb {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #c2bfb8;
+    margin-bottom: 14px;
+  }
+
+  .blurb em {
+    font-style: italic;
+    color: #9a9690;
+  }
+
+  .key-players {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: #181819;
+    border: 1px solid #2a2a2c;
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #a8a59e;
+    white-space: nowrap;
+  }
+
+  .player-pill .pill-rank {
+    color: #5a5855;
+    margin-right: 3px;
+    font-size: 11px;
+  }
+
+  .player-pill.top {
+    border-color: #3a3020;
+    color: #d4b96a;
+    background: #1a1708;
+  }
+
+  .player-pill.hot {
+    border-color: #4a2416;
+    color: #f0b28f;
+    background: #1d110c;
+  }
+
+  .player-pill.prospect {
+    border-color: #1f2d3a;
+    color: #6a9bc4;
+    background: #0d1620;
+  }
+
+  .player-pill.warning {
+    border-color: #2e1a1a;
+    color: #9a5555;
+    background: #180d0d;
+  }
+
+  .player-pill.cold {
+    border-color: #203246;
+    color: #8fb6d9;
+    background: #0c141d;
+  }
+
+  .player-pill.ghost {
+    border-color: #2d2040;
+    color: #7a5aaa;
+    background: #0f0a18;
+    font-style: italic;
+  }
+
+  .footnote {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px 40px;
+    font-size: 12px;
+    color: #4a4845;
+    font-style: italic;
+    border-top: 1px solid #1e1e20;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .header, .rankings, .footnote, .legend { padding-left: 20px; padding-right: 20px; }
+    .rank-entry { grid-template-columns: 52px 1fr; }
+    .rank-num { font-size: 40px; }
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4a4845;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #7a7872; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" class="back-link">← The Hub</a>
+  <div class="header-eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week {{WEEK}} &nbsp;&#183;&nbsp; 2026 Season</a></div>
+  <h1>Power<br><span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p class="header-meta">
+    {{HEADER_META}}
+    <strong>Rankings powered by the Oracle.</strong>
+  </p>
+</div>
+
+<div style="max-width:860px; margin:0 auto; padding:32px 40px 0;">
+  <video autoplay loop muted playsinline preload="none" style="width:100%; border-radius:6px; display:block;">
+    <source src="https://baseball.stephenmandella.com/standings_race.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill hot">🔥 Hot week</span>
+  <span class="player-pill top">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill cold">🧊 Cold week</span>
+  <span class="player-pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost">👻 Manager went dark</span>
+</div>
+
+<div class="rankings">
+{{RANK_ENTRIES}}
+</div>
+
+<div class="footnote">
+  {{FOOTNOTE}}
+</div>
+
+</body>
+</html>
