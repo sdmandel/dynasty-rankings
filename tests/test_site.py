@@ -251,3 +251,9 @@ def test_feedback_js_points_at_repo() -> None:
 def test_issue_templates_exist() -> None:
     assert (ROOT / ".github" / "ISSUE_TEMPLATE" / "bug.yml").exists()
     assert (ROOT / ".github" / "ISSUE_TEMPLATE" / "feature.yml").exists()
+
+
+def test_roster_depth_keeps_position_header_visible() -> None:
+    html = _read(ROOT / "roster_depth.html")
+    assert 'class="sticky-pos-header"' in html
+    assert 'position: sticky;' in html
