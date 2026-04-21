@@ -1,0 +1,15 @@
+.site-shell-back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--text-dead, #4a4845);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
+}
+
+.site-shell-back-link:hover {
+  color: var(--text-muted, #7a7872);
+}

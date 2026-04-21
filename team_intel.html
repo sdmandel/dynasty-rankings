@@ -21,6 +21,7 @@
 <meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site-shell.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,18 +62,6 @@ body {
   color: var(--gold);
   margin-bottom: 14px;
 }
-.back-link {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dead);
-  text-decoration: none;
-  margin-bottom: 20px;
-  transition: color 0.15s;
-}
-.back-link:hover { color: var(--text-muted); }
 .site-header h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(56px, 8vw, 100px);
@@ -819,5 +808,6 @@ fetch('data/league_intelligence.json').then(r => r.json()).then(data => {
 });
 </script>
 <script src="assets/feedback.js"></script>
+<script src="assets/site-shell.js" defer></script>
 </body>
 </html>

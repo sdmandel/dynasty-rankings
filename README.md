@@ -20,3 +20,9 @@ Static GH Pages site for league-facing pages and JSON payloads.
 
 - Prefer non-breaking organization changes first (docs/conventions/tests).
 - Avoid moving route files unless redirects and references are updated together.
+
+## Shared shell convention
+
+- Every non-hub page should load `assets/site-shell.css` and `assets/site-shell.js`.
+- The shared shell injects and normalizes the `"← The Hub"` backlink for `.site-header` and `.header` layouts.
+- New weekly pages inherit this automatically from `templates/power_rankings_template.html`.

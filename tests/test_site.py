@@ -12,6 +12,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 HTML_FILES = sorted(ROOT.glob("*.html"))
 META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
+SHELL_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
 REQUIRED_META = {"og:title", "og:image"}
 FEEDBACK_REPO = "sdmandel/dynasty-rankings"
 
@@ -69,6 +70,13 @@ def test_relative_links_resolve(html_file: Path) -> None:
         else:
             target = (html_file.parent / path).resolve()
         assert target.exists(), f"{html_file.name} references missing {raw}"
+
+
+@pytest.mark.parametrize("html_file", SHELL_HTML_FILES, ids=lambda p: p.name)
+def test_pages_include_shared_hub_shell(html_file: Path) -> None:
+    html = _read(html_file)
+    assert 'href="assets/site-shell.css"' in html, f"{html_file.name} missing shared shell CSS"
+    assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
 
 
 def test_standings_schema() -> None:

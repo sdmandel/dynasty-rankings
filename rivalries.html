@@ -15,6 +15,7 @@
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site-shell.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,7 +51,7 @@ td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid va
 </head>
 <body>
 <div class="site-header">
-  <a class="back-link" href="index.html">← Hub</a>
+  <a class="back-link" href="index.html">← The Hub</a>
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>League<br><span>Rivalries</span></h1>
   <div class="divider"></div>
@@ -94,5 +95,6 @@ function render(data){
 }
 fetch('data/rivalries.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; render(data); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load rivalries. ('+err.message+')'; });
 </script>
+<script src="assets/site-shell.js" defer></script>
 </body>
 </html>
