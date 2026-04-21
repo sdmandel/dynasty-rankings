@@ -602,26 +602,13 @@ body {
 </div>
 
 
-<div class="site-footer">
-  Data compiled using Oracle composite scores. Complaints? Go fuck yourself.
-  Next Oracle update: after Week 4 results.
+<div class="site-footer" id="footerEl">
+  Data compiled using Oracle composite scores and public league snapshots.
 </div>
 
+<script src="assets/oracle-public.js"></script>
 <script>
-const TEAMS = [
-  {name:"John Henry Fan Club", total:35777.0, mlb:24934.3, farm:10842.7, avg_age:27.3, oracle_rank:1},
-  {name:"Rollie Fingers", total:35362.6, mlb:28024.6, farm:7338.0, avg_age:28.0, oracle_rank:2},
-  {name:"Seam heads", total:33387.7, mlb:26732.1, farm:6655.6, avg_age:28.7, oracle_rank:3},
-  {name:"Humongous Melonheads", total:31778.0, mlb:27481.5, farm:4296.5, avg_age:28.1, oracle_rank:4},
-  {name:"philbell", total:31419.7, mlb:25292.6, farm:6127.1, avg_age:27.8, oracle_rank:5},
-  {name:"Inkers", total:28426.3, mlb:20811.2, farm:7615.1, avg_age:28.6, oracle_rank:6},
-  {name:"Vin Mazzaro fan club", total:25664.1, mlb:22356.6, farm:3307.5, avg_age:28.3, oracle_rank:7},
-  {name:"Millville Meteors", total:24831.6, mlb:22648.3, farm:2183.3, avg_age:29.4, oracle_rank:8},
-  {name:"Trazadone", total:22979.9, mlb:18682.0, farm:4297.9, avg_age:30.2, oracle_rank:9},
-  {name:"Mommy", total:22107.0, mlb:21122.6, farm:984.4, avg_age:30.5, oracle_rank:10},
-  {name:"Sam", total:21301.5, mlb:19086.7, farm:2214.8, avg_age:29.9, oracle_rank:11},
-  {name:"Pat", total:21243.3, mlb:20316.2, farm:927.1, avg_age:31.2, oracle_rank:12},
-];
+let TEAMS = [];
 
 // ─── DEPTH PREVIEW DATA ──────────────────────────────────────
 const DEPTH_PREVIEW = [
@@ -629,7 +616,7 @@ const DEPTH_PREVIEW = [
   {name:"Rollie Fingers", rank:2, tiers:[4,16,18,10,4]},
   {name:"Seam heads", rank:3, tiers:[6,11,12,17,9]},
   {name:"Humongous Melonheads", rank:4, tiers:[6,12,15,11,4]},
-  {name:"philbell", rank:5, tiers:[6,8,13,15,9]},
+  {name:"Acuña Matata", rank:5, tiers:[6,8,13,15,9]},
   {name:"Inkers", rank:6, tiers:[2,8,15,14,13]},
   {name:"Vin Mazzaro fan club", rank:7, tiers:[4,4,11,12,19]},
   {name:"Millville Meteors", rank:8, tiers:[2,8,13,10,10]},
@@ -672,9 +659,10 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
 })();
 
 // ─── MINI BAR TILE ───────────────────────────────────────────
-(function buildMiniBar() {
+function buildMiniBar() {
   const el = document.getElementById('miniBarChart');
-  if (!el) return;
+  if (!el || !TEAMS.length) return;
+  el.innerHTML = '';
   const max = Math.max(...TEAMS.map(t => t.total));
   [...TEAMS].sort((a,b) => a.oracle_rank - b.oracle_rank).forEach(t => {
     const mlbPct  = (t.mlb  / max * 100).toFixed(1);
@@ -699,7 +687,7 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
     row.appendChild(track);
     el.appendChild(row);
   });
-})();
+}
 
 // ─── LEAGUE TILE PREVIEWS ────────────────────────────────────
 
@@ -785,9 +773,10 @@ fetch('data/transactions.json').then(r => {
 });
 
 // ─── MINI SCATTER TILE ───────────────────────────────────────
-(function buildMiniScatter() {
+function buildMiniScatter() {
   const svgEl = document.getElementById('miniScatterSvg');
-  if (!svgEl) return;
+  if (!svgEl || !TEAMS.length) return;
+  svgEl.innerHTML = '';
 
   const W = svgEl.parentElement.clientWidth  || 280;
   const H = svgEl.parentElement.clientHeight || 220;
@@ -849,7 +838,24 @@ fetch('data/transactions.json').then(r => {
 
     svgEl.appendChild(g);
   });
-})();
+}
+
+fetchOraclePublic().then(data => {
+  TEAMS = (data.teams || []).map(team => ({
+    ...team,
+    name: team.team,
+    total: team.total_value,
+    mlb: team.mlb_value,
+    farm: team.farm_value,
+    avg_age: team.avg_age,
+  }));
+  buildMiniBar();
+  buildMiniScatter();
+  const footer = document.getElementById('footerEl');
+  if (footer) {
+    footer.textContent = `Last updated: ${formatOracleDate(data.generated_at || data.generated)} · Snapshot ${formatOracleDate(data.snapshot_date)}.`;
+  }
+}).catch(() => {});
 </script>
 <script src="assets/feedback.js"></script>
 </body>

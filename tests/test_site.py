@@ -180,6 +180,37 @@ def test_league_intelligence_schema() -> None:
             assert key in first
 
 
+def test_oracle_public_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "oracle_public.json"))
+    assert "generated" in data
+    assert "season" in data
+    assert "snapshot_date" in data
+    assert "sources" in data and isinstance(data["sources"], dict)
+    assert "teams" in data and isinstance(data["teams"], list)
+    assert data["teams"], "oracle_public has no teams"
+    first = data["teams"][0]
+    for key in (
+        "team",
+        "oracle_rank",
+        "standings_rank",
+        "total_value",
+        "mlb_value",
+        "farm_value",
+        "avg_age",
+        "public_archetypes",
+        "pressure",
+        "trade_needs",
+        "trend",
+    ):
+        assert key in first, f"oracle_public team missing {key}"
+    assert isinstance(first["public_archetypes"], list)
+    assert isinstance(first["trade_needs"], list)
+    for key in ("score", "gain_target", "loss_risk", "summary"):
+        assert key in first["pressure"], f"oracle_public pressure missing {key}"
+    for key in ("pts_change", "stock", "summary"):
+        assert key in first["trend"], f"oracle_public trend missing {key}"
+
+
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data
@@ -249,6 +280,50 @@ def test_closers_schema() -> None:
         first = data["closers"][0]
         for key in ("closer_name", "bullpen_team", "dynasty_team", "recent_saves", "confidence_score", "unstable_flag"):
             assert key in first, f"closer missing {key}"
+
+
+def test_team_registry_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "team_registry.json"))
+    assert "generated" in data
+    assert "season" in data
+    assert "teams" in data and isinstance(data["teams"], list)
+    aliases: list[str] = []
+    keys: list[str] = []
+    for team in data["teams"]:
+        for key in ("team_key", "display_name", "aliases"):
+            assert key in team, f"team registry entry missing {key}"
+        assert isinstance(team["aliases"], list) and team["aliases"], "team registry aliases missing"
+        aliases.extend(team["aliases"])
+        keys.append(team["team_key"])
+    assert len(keys) == len(set(keys)), "duplicate team registry keys"
+    assert len(aliases) == len(set(aliases)), "duplicate team registry aliases"
+
+
+def test_oracle_public_schema() -> None:
+    data = json.loads(_read(ROOT / "data" / "oracle_public.json"))
+    assert "generated" in data
+    assert "season" in data
+    assert "sources" in data and isinstance(data["sources"], dict)
+    assert "teams" in data and isinstance(data["teams"], list)
+    if data["teams"]:
+        first = data["teams"][0]
+        for key in (
+            "team",
+            "oracle_rank",
+            "standings_rank",
+            "total_value",
+            "mlb_value",
+            "farm_value",
+            "avg_age",
+            "contention_tier",
+            "public_archetypes",
+            "pressure",
+            "trade_needs",
+            "trend",
+        ):
+            assert key in first, f"oracle_public team missing {key}"
+        assert isinstance(first["public_archetypes"], list)
+        assert isinstance(first["trade_needs"], list)
 
 
 def test_feedback_js_points_at_repo() -> None:

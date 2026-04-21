@@ -99,6 +99,29 @@ body {
   border-radius: 2px;
   display: inline-block;
 }
+.leg-delta {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  color: #8a8680;
+}
+.leg-up {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  color: #5d7db5;
+}
+.leg-down {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  color: #b55d5d;
+}
+.leg-move {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
 .sw1 { background: #8b1a1a; }
 .sw2 { background: #b44a3a; }
 .sw3 { background: #c87a5a; }
@@ -314,6 +337,8 @@ tr:hover { background: rgba(255,255,255,0.012); }
   <span class="leg-pill"><span class="leg-swatch sw3"></span>#151–300 Solid</span>
   <span class="leg-pill"><span class="leg-swatch sw4"></span>#301–500 Depth</span>
   <span class="leg-pill"><span class="leg-swatch sw5"></span>#500+ Fringe</span>
+  <span class="leg-pill"><span class="leg-delta">Δ</span>Week-over-week rank change</span>
+  <span class="leg-pill"><span class="leg-move"><span class="leg-up">↑</span><span class="leg-down">↓</span></span>Risers and fallers shown on pills that moved 100+ spots</span>
 </div>
 
 <div class="depth-shell">
@@ -467,10 +492,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 </div>
 
 <div class="footnote">
-  Generated April 20, 2026 &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings &nbsp;·&nbsp;
-  Δ indicates week-over-week rank change &nbsp;·&nbsp;
-  Risers <span style="color:#5d7db5;font-style:normal">↑</span> and
-  fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots
+  Generated April 20, 2026 &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings
 </div>
 
 <script>

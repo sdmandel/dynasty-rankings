@@ -24,61 +24,6 @@
 <link rel="stylesheet" href="assets/site-shell.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-  --blue: #5d7db5;
-  --red: #b55d5d;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.site-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 52px 40px 36px;
-  border-bottom: 1px solid var(--border2);
-}
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-.site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(56px, 8vw, 100px);
-  line-height: 0.88;
-  letter-spacing: 0.02em;
-  color: var(--text);
-  margin-bottom: 22px;
-}
-.site-header h1 span { color: var(--gold); }
-.divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
-.site-header p {
-  font-size: 13px;
-  color: var(--text-muted);
-  max-width: 620px;
-  line-height: 1.75;
-}
-
 .charts-section {
   max-width: 1100px;
   margin: 0 auto;
@@ -247,17 +192,6 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 .tier-stagnating { color: #c8856e; }
 .tier-rebuilding { color: #b55d5d; }
 
-.site-footer {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 40px 40px;
-  font-size: 12px;
-  color: var(--text-dead);
-  font-style: italic;
-  border-top: 1px solid var(--border);
-  line-height: 1.8;
-}
-
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
   .intel-grid { grid-template-columns: 1fr; }
@@ -302,10 +236,8 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   </div>
 </div>
 
-<div class="site-footer">
+<div class="site-footer" id="footerEl">
   Average age computed across active MLB-rostered players only. Oracle value reflects aggregate dynasty composite scores.
-  Quadrant boundaries: age 28.5 (league youth threshold) and Oracle value 25,000 (editorial midpoint).
-  Next Oracle update: after Week 4 results.
 </div>
 
 <div class="tooltip" id="tooltip">
@@ -314,21 +246,9 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   <span class="tt-line" id="tt-val"></span>
 </div>
 
+<script src="assets/oracle-public.js"></script>
 <script>
-const TEAMS = [
-  {name:"John Henry Fan Club", total:35777.0, mlb:24934.3, farm:10842.7, avg_age:27.3, oracle_rank:1},
-  {name:"Rollie Fingers",      total:35362.6, mlb:28024.6, farm:7338.0,  avg_age:28.0, oracle_rank:2},
-  {name:"Seam heads",          total:33387.7, mlb:26732.1, farm:6655.6,  avg_age:28.7, oracle_rank:3},
-  {name:"Humongous Melonheads",total:31778.0, mlb:27481.5, farm:4296.5,  avg_age:28.1, oracle_rank:4},
-  {name:"philbell",            total:31419.7, mlb:25292.6, farm:6127.1,  avg_age:27.8, oracle_rank:5},
-  {name:"Inkers",              total:28426.3, mlb:20811.2, farm:7615.1,  avg_age:28.6, oracle_rank:6},
-  {name:"Vin Mazzaro fan club",total:25664.1, mlb:22356.6, farm:3307.5,  avg_age:28.3, oracle_rank:7},
-  {name:"Millville Meteors",   total:24831.6, mlb:22648.3, farm:2183.3,  avg_age:29.4, oracle_rank:8},
-  {name:"Trazadone",           total:22979.9, mlb:18682.0, farm:4297.9,  avg_age:30.2, oracle_rank:9},
-  {name:"Mommy",               total:22107.0, mlb:21122.6, farm:984.4,   avg_age:30.5, oracle_rank:10},
-  {name:"Sam",                 total:21301.5, mlb:19086.7, farm:2214.8,  avg_age:29.9, oracle_rank:11},
-  {name:"Pat",                 total:21243.3, mlb:20316.2, farm:927.1,   avg_age:31.2, oracle_rank:12},
-];
+let TEAMS = [];
 
 const svg = document.getElementById('scatterSvg');
 const tooltip = document.getElementById('tooltip');
@@ -337,6 +257,7 @@ const ttAge   = document.getElementById('tt-age');
 const ttVal   = document.getElementById('tt-val');
 
 function buildScatter() {
+  if (!TEAMS.length) return;
   const W = svg.parentElement.clientWidth;
   const H = Math.max(380, Math.min(520, W * 0.58));
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
@@ -590,7 +511,6 @@ function buildScatter() {
   });
 }
 
-buildScatter();
 window.addEventListener('resize', buildScatter);
 
 function esc(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -628,38 +548,51 @@ function renderTightCategories(team) {
   const chips = top.map(row => `<span class="cat-chip ${tightClass(row.tightness)}" title="${esc(CAT_LABELS[row.cat] || row.cat)} gap ${row.tightness.toFixed(1)}">${esc(CAT_LABELS[row.cat] || row.cat)}</span>`).join('');
   return `<div class="cat-cell">${chips}</div>`;
 }
-fetch('data/league_intelligence.json').then(r => r.json()).then(data => {
+fetchOraclePublic().then(data => {
   const teams = data.teams || [];
-  const contenders = teams.filter(t => t.tier === 'contender').length;
-  const fringes = teams.filter(t => t.tier === 'fringe').length;
-  const stagnating = teams.filter(t => t.tier === 'stagnating').length;
-  const rebuilding = teams.filter(t => t.tier === 'rebuilding').length;
-  const avgLuckSwing = teams.length ? teams.reduce((sum, t) => sum + Math.abs(Number(t.luck?.delta || 0)), 0) / teams.length : 0;
-  const netLuckTilt = teams.length ? teams.reduce((sum, t) => sum + Number(t.luck?.delta || 0), 0) / teams.length : 0;
-  const avgVol = teams.length ? teams.reduce((sum, t) => sum + Number(t.volatility?.team_volatility_score || 0), 0) / teams.length : 0;
+  const standingsOrderedTeams = [...teams].sort((a, b) => a.standings_rank - b.standings_rank || a.oracle_rank - b.oracle_rank);
+  TEAMS = teams.map(team => ({
+    ...team,
+    name: team.team,
+    total: team.total_value,
+    mlb: team.mlb_value,
+    farm: team.farm_value,
+    avg_age: team.avg_age,
+  }));
+  buildScatter();
+
+  const contenders = teams.filter(t => t.contention_tier === 'contender').length;
+  const fringes = teams.filter(t => t.contention_tier === 'fringe').length;
+  const stagnating = teams.filter(t => t.contention_tier === 'stagnating').length;
+  const rebuilding = teams.filter(t => t.contention_tier === 'rebuilding').length;
+  const avgLuckSwing = teams.length ? teams.reduce((sum, t) => sum + Math.abs(Number(t.luck_delta || 0)), 0) / teams.length : 0;
+  const netLuckTilt = teams.length ? teams.reduce((sum, t) => sum + Number(t.luck_delta || 0), 0) / teams.length : 0;
+  const avgVol = teams.length ? teams.reduce((sum, t) => sum + Number(t.volatility || 0), 0) / teams.length : 0;
   document.getElementById('intelCards').innerHTML = [
     ['Contenders', contenders, `${fringes} fringe · ${stagnating} stagnating · ${rebuilding} rebuilding`],
     ['Avg Luck Swing', fmt(avgLuckSwing, 2), `Absolute luck movement · net tilt ${fmt(netLuckTilt, 2)}`],
     ['Avg Volatility', fmt(avgVol, 1), 'Team volatility score (0-100)']
   ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');
-  document.getElementById('intelBody').innerHTML = teams.map(team => (
+  document.getElementById('intelBody').innerHTML = standingsOrderedTeams.map(team => (
     `<tr>` +
     `<td>${esc(team.team)}</td>` +
-    `<td><span class="tier-pill ${tierClass(team.tier)}">${esc(team.tier)}</span></td>` +
+    `<td><span class="tier-pill ${tierClass(team.contention_tier)}">${esc(team.contention_tier)}</span></td>` +
     `<td>${fmt(team.points_back, 1)}</td>` +
     `<td>${fmt(team.reachable_points, 0)}</td>` +
     `<td>${renderTightCategories(team)}</td>` +
-    `<td>${fmt(team.luck?.delta, 2)}</td>` +
-    `<td>${fmt(team.volatility?.team_volatility_score, 1)}</td>` +
+    `<td>${fmt(team.luck_delta, 2)}</td>` +
+    `<td>${fmt(team.volatility, 1)}</td>` +
     `</tr>`
   )).join('') || '<tr><td colspan="7">No league intelligence rows found.</td></tr>';
-  const footer = document.querySelector('.site-footer');
-  if (footer && data.snapshot_date) {
-    footer.textContent = `Average age computed across active MLB-rostered players only. Win-window chart uses Oracle value; contention board uses standings snapshot ${data.snapshot_date}. Efficiency component is scaffolded until raw AB/IP totals are available.`;
+  const footer = document.getElementById('footerEl');
+  if (footer) {
+    footer.textContent = `Last updated: ${formatOracleDate(data.generated_at || data.generated)} · Snapshot ${formatOracleDate(data.snapshot_date)} · Quadrant boundaries: age 28.5 and Oracle value 25,000.`;
   }
-}).catch(() => {
+}).catch((err) => {
   const body = document.getElementById('intelBody');
   if (body) body.innerHTML = '<tr><td colspan="7">League intelligence data not available.</td></tr>';
+  const footer = document.getElementById('footerEl');
+  if (footer) footer.textContent = `Could not load win-window data. (${err.message})`;
 });
 </script>
 <script src="assets/feedback.js"></script>

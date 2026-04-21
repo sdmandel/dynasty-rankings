@@ -24,59 +24,6 @@
 <link rel="stylesheet" href="assets/site-shell.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.site-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 52px 40px 36px;
-  border-bottom: 1px solid var(--border2);
-}
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-.site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(56px, 8vw, 100px);
-  line-height: 0.88;
-  letter-spacing: 0.02em;
-  color: var(--text);
-  margin-bottom: 22px;
-}
-.site-header h1 span { color: var(--gold); }
-.divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
-.site-header p {
-  font-size: 13px;
-  color: var(--text-muted);
-  max-width: 620px;
-  line-height: 1.75;
-}
-
 .charts-section {
   max-width: 1100px;
   margin: 0 auto;
@@ -175,17 +122,6 @@ body {
 }
 .tooltip .tt-line { display: block; color: var(--text-muted); font-size: 11px; }
 
-.site-footer {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 40px 40px;
-  font-size: 12px;
-  color: var(--text-dead);
-  font-style: italic;
-  border-top: 1px solid var(--border);
-  line-height: 1.8;
-}
-
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
   .bar-row { grid-template-columns: 110px 1fr 60px; }
@@ -215,9 +151,8 @@ body {
   </div>
 </div>
 
-<div class="site-footer">
+<div class="site-footer" id="footerEl">
   Rankings compiled using Oracle composite scores. MLB value = active roster players only. Farm value = minor league players and draft picks.
-  Next Oracle update: after Week 4 results.
 </div>
 
 <div class="tooltip" id="tooltip">
@@ -226,75 +161,73 @@ body {
   <span class="tt-line" id="tt-val"></span>
 </div>
 
+<script src="assets/oracle-public.js"></script>
 <script>
-const TEAMS = [
-  {name:"John Henry Fan Club", total:35777.0, mlb:24934.3, farm:10842.7, avg_age:27.3, oracle_rank:1},
-  {name:"Rollie Fingers", total:35362.6, mlb:28024.6, farm:7338.0, avg_age:28.0, oracle_rank:2},
-  {name:"Seam heads", total:33387.7, mlb:26732.1, farm:6655.6, avg_age:28.7, oracle_rank:3},
-  {name:"Humongous Melonheads", total:31778.0, mlb:27481.5, farm:4296.5, avg_age:28.1, oracle_rank:4},
-  {name:"philbell", total:31419.7, mlb:25292.6, farm:6127.1, avg_age:27.8, oracle_rank:5},
-  {name:"Inkers", total:28426.3, mlb:20811.2, farm:7615.1, avg_age:28.6, oracle_rank:6},
-  {name:"Vin Mazzaro fan club", total:25664.1, mlb:22356.6, farm:3307.5, avg_age:28.3, oracle_rank:7},
-  {name:"Millville Meteors", total:24831.6, mlb:22648.3, farm:2183.3, avg_age:29.4, oracle_rank:8},
-  {name:"Trazadone", total:22979.9, mlb:18682.0, farm:4297.9, avg_age:30.2, oracle_rank:9},
-  {name:"Mommy", total:22107.0, mlb:21122.6, farm:984.4, avg_age:30.5, oracle_rank:10},
-  {name:"Sam", total:21301.5, mlb:19086.7, farm:2214.8, avg_age:29.9, oracle_rank:11},
-  {name:"Pat", total:21243.3, mlb:20316.2, farm:927.1, avg_age:31.2, oracle_rank:12},
-];
-
-const sorted = [...TEAMS].sort((a,b) => a.oracle_rank - b.oracle_rank);
-const maxVal = Math.max(...sorted.map(t => t.total));
 const barEl  = document.getElementById('barChart');
 const tooltip = document.getElementById('tooltip');
 const ttName  = document.getElementById('tt-name');
 const ttAge   = document.getElementById('tt-age');
 const ttVal   = document.getElementById('tt-val');
 
-sorted.forEach(t => {
-  const mlbPct  = (t.mlb  / maxVal * 100).toFixed(1);
-  const farmPct = (t.farm / maxVal * 100).toFixed(1);
-  const shortName = t.name.length > 18 ? t.name.slice(0,17)+'…' : t.name;
-  const row = document.createElement('div');
-  row.className = 'bar-row';
-  // Build row safely without innerHTML
-  const labelDiv = document.createElement('div');
-  labelDiv.className = 'bar-label';
-  const rankSpan = document.createElement('span');
-  rankSpan.className = 'rank-num';
-  rankSpan.textContent = '#' + t.oracle_rank;
-  labelDiv.appendChild(rankSpan);
-  labelDiv.appendChild(document.createTextNode(shortName));
+function renderBars(teams) {
+  const sorted = [...teams].sort((a, b) => a.oracle_rank - b.oracle_rank);
+  const maxVal = Math.max(...sorted.map(team => team.total_value));
+  sorted.forEach(team => {
+    const mlbPct = (team.mlb_value / maxVal * 100).toFixed(1);
+    const farmPct = (team.farm_value / maxVal * 100).toFixed(1);
+    const shortName = team.team.length > 18 ? `${team.team.slice(0, 17)}…` : team.team;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
 
-  const trackDiv = document.createElement('div');
-  trackDiv.className = 'bar-track';
-  const fillMlb = document.createElement('div');
-  fillMlb.className = 'bar-fill-mlb';
-  fillMlb.style.width = mlbPct + '%';
-  const fillFarm = document.createElement('div');
-  fillFarm.className = 'bar-fill-farm';
-  fillFarm.style.left = mlbPct + '%';
-  fillFarm.style.width = farmPct + '%';
-  trackDiv.appendChild(fillMlb);
-  trackDiv.appendChild(fillFarm);
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'bar-label';
+    const rankSpan = document.createElement('span');
+    rankSpan.className = 'rank-num';
+    rankSpan.textContent = `#${team.oracle_rank}`;
+    labelDiv.appendChild(rankSpan);
+    labelDiv.appendChild(document.createTextNode(shortName));
 
-  const valDiv = document.createElement('div');
-  valDiv.className = 'bar-value';
-  valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
+    const trackDiv = document.createElement('div');
+    trackDiv.className = 'bar-track';
+    const fillMlb = document.createElement('div');
+    fillMlb.className = 'bar-fill-mlb';
+    fillMlb.style.width = `${mlbPct}%`;
+    const fillFarm = document.createElement('div');
+    fillFarm.className = 'bar-fill-farm';
+    fillFarm.style.left = `${mlbPct}%`;
+    fillFarm.style.width = `${farmPct}%`;
+    trackDiv.appendChild(fillMlb);
+    trackDiv.appendChild(fillFarm);
 
-  row.appendChild(labelDiv);
-  row.appendChild(trackDiv);
-  row.appendChild(valDiv);
-  row.addEventListener('mousemove', e => {
-    ttName.textContent = t.name;
-    ttAge.textContent  = `MLB: ${t.mlb.toLocaleString()}`;
-    ttVal.textContent  = `Farm: ${t.farm.toLocaleString()}  ·  Total: ${t.total.toLocaleString()}`;
-    tooltip.style.display = 'block';
-    tooltip.style.left = (e.clientX + 14) + 'px';
-    tooltip.style.top  = (e.clientY - 10) + 'px';
+    const valDiv = document.createElement('div');
+    valDiv.className = 'bar-value';
+    valDiv.textContent = `${(team.total_value / 1000).toFixed(1)}k`;
+
+    row.appendChild(labelDiv);
+    row.appendChild(trackDiv);
+    row.appendChild(valDiv);
+    row.addEventListener('mousemove', e => {
+      ttName.textContent = team.team;
+      ttAge.textContent = `MLB: ${team.mlb_value.toLocaleString()} · Farm share: ${(team.farm_share * 100).toFixed(1)}%`;
+      ttVal.textContent = `Farm: ${team.farm_value.toLocaleString()} · Total: ${team.total_value.toLocaleString()}`;
+      tooltip.style.display = 'block';
+      tooltip.style.left = `${e.clientX + 14}px`;
+      tooltip.style.top = `${e.clientY - 10}px`;
+    });
+    row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    barEl.appendChild(row);
   });
-  row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-  barEl.appendChild(row);
-});
+}
+
+fetchOraclePublic()
+  .then(data => {
+    renderBars(data.teams || []);
+    document.getElementById('footerEl').textContent =
+      `Last updated: ${formatOracleDate(data.generated_at || data.generated)} · Snapshot ${formatOracleDate(data.snapshot_date)}.`;
+  })
+  .catch(err => {
+    barEl.innerHTML = `<div class="state-msg">Could not load Oracle public data. (${escHtml(err.message)})</div>`;
+  });
 </script>
 <script src="assets/feedback.js"></script>
 <script src="assets/site-shell.js" defer></script>

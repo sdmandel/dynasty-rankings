@@ -26,3 +26,8 @@ Static GH Pages site for league-facing pages and JSON payloads.
 - Every non-hub page should load `assets/site-shell.css` and `assets/site-shell.js`.
 - The shared shell injects and normalizes the `"← The Hub"` backlink for `.site-header` and `.header` layouts.
 - New weekly pages inherit this automatically from `templates/power_rankings_template.html`.
+
+## Public Oracle payload
+
+- `scripts/build_oracle_public.py` generates `data/oracle_public.json`.
+- The public payload is team-level only and is intended to power public-facing Oracle views without exposing the private rankings CSV.

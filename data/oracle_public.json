@@ -1,0 +1,1097 @@
+{
+  "generated": "2026-04-20",
+  "generated_at": "2026-04-20T21:00:04-05:00",
+  "season": 2026,
+  "season_label": "2026 Season",
+  "week": 28,
+  "snapshot_date": "2026-04-14",
+  "sources": {
+    "standings": "2026-04-20T21:00:04-05:00",
+    "intelligence": "2026-04-15",
+    "managers": "2026-04-15",
+    "oracle_values": "weekly_oracle_export"
+  },
+  "notes": {
+    "privacy": "Private rankings CSV remains unpublished. This payload contains only derived/public summaries.",
+    "oracle_window": "Oracle value = public team-level aggregate, not player-level valuations."
+  },
+  "teams": [
+    {
+      "team": "John Henry Fan Club",
+      "oracle_rank": 1,
+      "standings_rank": 4,
+      "total_value": 35777.0,
+      "mlb_value": 24934.3,
+      "farm_value": 10842.7,
+      "avg_age": 27.3,
+      "farm_share": 0.3031,
+      "contention_tier": "fringe",
+      "points_back": 21.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "QS"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 2.0,
+          "to_loss": null
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.5,
+      "volatility": 50.42,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: QS (0.0)"
+      },
+      "public_archetypes": [
+        "fringe",
+        "soft retool",
+        "asset hoarder"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "trend": {
+        "stock": "retool",
+        "summary": "Soft retool path",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Rollie Fingers",
+      "oracle_rank": 2,
+      "standings_rank": 5,
+      "total_value": 35362.6,
+      "mlb_value": 28024.6,
+      "farm_value": 7338.0,
+      "avg_age": 28.0,
+      "farm_share": 0.2075,
+      "contention_tier": "contender",
+      "points_back": 9.0,
+      "reachable_points": 7.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "HR": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.5,
+          "to_loss": 1.5
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": null,
+          "to_loss": 1.5
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 1.0,
+      "volatility": 32.82,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "SVH",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SVH (0.0)"
+      },
+      "public_archetypes": [
+        "contender",
+        "category specialist",
+        "bullpen-dependent"
+      ],
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB",
+        "can trade prospects"
+      ],
+      "trend": {
+        "stock": "push",
+        "summary": "Window open \u00b7 pressure in ERA",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Seam heads",
+      "oracle_rank": 3,
+      "standings_rank": 1,
+      "total_value": 33387.7,
+      "mlb_value": 26732.1,
+      "farm_value": 6655.6,
+      "avg_age": 28.7,
+      "farm_share": 0.1993,
+      "contention_tier": "contender",
+      "points_back": 0.0,
+      "reachable_points": 7.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "QS"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "R": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.5,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": 1.5
+        },
+        "SVH": {
+          "to_gain": null,
+          "to_loss": 1.5
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 1.5,
+      "volatility": 27.19,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: QS (0.0)"
+      },
+      "public_archetypes": [
+        "contender",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "trend": {
+        "stock": "push",
+        "summary": "Window open \u00b7 pressure in ERA",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Humongous Melonheads",
+      "oracle_rank": 4,
+      "standings_rank": 3,
+      "total_value": 31778.0,
+      "mlb_value": 27481.5,
+      "farm_value": 4296.5,
+      "avg_age": 28.1,
+      "farm_share": 0.1352,
+      "contention_tier": "contender",
+      "points_back": 9.0,
+      "reachable_points": 8.0,
+      "tight_categories": [
+        "ERA",
+        "K",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.5,
+          "to_loss": 1.5
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": null,
+          "to_loss": 1.5
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 1.0,
+      "volatility": 52.13,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "SVH",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SVH (0.0)"
+      },
+      "public_archetypes": [
+        "contender",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "trend": {
+        "stock": "push",
+        "summary": "Window open \u00b7 pressure in ERA",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Acu\u00f1a Matata",
+      "oracle_rank": 5,
+      "standings_rank": 2,
+      "total_value": 31419.7,
+      "mlb_value": 25292.6,
+      "farm_value": 6127.1,
+      "avg_age": 27.8,
+      "farm_share": 0.195,
+      "contention_tier": "fringe",
+      "points_back": 22.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "RBI"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "SB": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.5,
+      "volatility": 37.92,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "summary": "closest gain: QS (0.0) \u00b7 closest loss: HR (0.0)"
+      },
+      "public_archetypes": [
+        "fringe",
+        "soft retool",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "trend": {
+        "stock": "retool",
+        "summary": "Soft retool path",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Inkers",
+      "oracle_rank": 6,
+      "standings_rank": 11,
+      "total_value": 28426.3,
+      "mlb_value": 20811.2,
+      "farm_value": 7615.1,
+      "avg_age": 28.6,
+      "farm_share": 0.2679,
+      "contention_tier": "rebuilding",
+      "points_back": 43.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "RBI"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "SB": {
+          "to_gain": 0.0,
+          "to_loss": 0.0
+        },
+        "SVH": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": null
+        }
+      },
+      "luck_delta": -0.5,
+      "volatility": 37.77,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "summary": "closest gain: HR (0.0) \u00b7 closest loss: QS (0.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "asset hoarder",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "fragile SP depth",
+        "can trade prospects",
+        "needs impact bats"
+      ],
+      "trend": {
+        "stock": "build",
+        "summary": "Farm-forward build",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "oracle_rank": 7,
+      "standings_rank": 6,
+      "total_value": 25664.1,
+      "mlb_value": 22356.6,
+      "farm_value": 3307.5,
+      "avg_age": 28.3,
+      "farm_share": 0.1289,
+      "contention_tier": "stagnating",
+      "points_back": 39.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "QS": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.5,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -0.5,
+      "volatility": 57.29,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "summary": "closest gain: QS (0.0) \u00b7 closest loss: HR (0.0)"
+      },
+      "public_archetypes": [
+        "stagnating",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "trend": {
+        "stock": "edge",
+        "summary": "One move from gaining QS",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Millville Meteors",
+      "oracle_rank": 8,
+      "standings_rank": 8,
+      "total_value": 24831.6,
+      "mlb_value": 22648.3,
+      "farm_value": 2183.3,
+      "avg_age": 29.4,
+      "farm_share": 0.0879,
+      "contention_tier": "rebuilding",
+      "points_back": 58.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "RBI"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 0.0,
+          "to_loss": null
+        },
+        "SB": {
+          "to_gain": 2.0,
+          "to_loss": null
+        },
+        "SVH": {
+          "to_gain": 1.5,
+          "to_loss": 2.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -1.5,
+      "volatility": 91.24,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: HR (0.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth",
+        "needs impact bats"
+      ],
+      "trend": {
+        "stock": "edge",
+        "summary": "One move from gaining HR",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Trazadone",
+      "oracle_rank": 9,
+      "standings_rank": 9,
+      "total_value": 22979.9,
+      "mlb_value": 18682.0,
+      "farm_value": 4297.9,
+      "avg_age": 30.2,
+      "farm_share": 0.187,
+      "contention_tier": "fringe",
+      "points_back": 21.5,
+      "reachable_points": 8.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "SB"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "SVH": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "WHIP": {
+          "to_gain": null,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 3.0,
+      "volatility": 51.07,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "K",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "summary": "closest gain: K (1.0) \u00b7 closest loss: HR (0.0)"
+      },
+      "public_archetypes": [
+        "fringe",
+        "category specialist"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "trend": {
+        "stock": "risk",
+        "summary": "Protecting HR",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Mommy",
+      "oracle_rank": 10,
+      "standings_rank": 12,
+      "total_value": 22107.0,
+      "mlb_value": 21122.6,
+      "farm_value": 984.4,
+      "avg_age": 30.5,
+      "farm_share": 0.0445,
+      "contention_tier": "rebuilding",
+      "points_back": 55.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "HR",
+        "QS",
+        "SB"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 0.0,
+          "to_loss": null
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.5
+        },
+        "SB": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -3.5,
+      "volatility": 56.47,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "HR",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: HR (0.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "category specialist",
+        "aging core"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth",
+        "needs impact bats"
+      ],
+      "trend": {
+        "stock": "age",
+        "summary": "Aging core under pressure",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Sam",
+      "oracle_rank": 11,
+      "standings_rank": 10,
+      "total_value": 21301.5,
+      "mlb_value": 19086.7,
+      "farm_value": 2214.8,
+      "avg_age": 29.9,
+      "farm_share": 0.104,
+      "contention_tier": "rebuilding",
+      "points_back": 45.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "QS",
+        "SB",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.5,
+          "to_loss": null
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -1.5,
+      "volatility": 39.4,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: QS (0.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "category specialist",
+        "aging core"
+      ],
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "trend": {
+        "stock": "age",
+        "summary": "Aging core under pressure",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    },
+    {
+      "team": "Pat",
+      "oracle_rank": 12,
+      "standings_rank": 7,
+      "total_value": 21243.3,
+      "mlb_value": 20316.2,
+      "farm_value": 927.1,
+      "avg_age": 31.2,
+      "farm_share": 0.0436,
+      "contention_tier": "stagnating",
+      "points_back": 30.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "QS",
+        "RBI",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.5
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": 2.0
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 0.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.0,
+      "volatility": 57.61,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "SVH",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "QS",
+          "gap": 0.0
+        },
+        "summary": "closest gain: SVH (0.0) \u00b7 closest loss: QS (0.0)"
+      },
+      "public_archetypes": [
+        "stagnating",
+        "category specialist",
+        "aging core"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "trend": {
+        "stock": "age",
+        "summary": "Aging core under pressure",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      }
+    }
+  ]
+}
