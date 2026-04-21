@@ -59,40 +59,105 @@ def load_team_registry() -> tuple[dict[str, str], dict[str, str]]:
     return alias_to_display, display_to_key
 
 
+def _category_points(categories: dict, labels: tuple[str, ...]) -> float:
+    return sum(float(categories.get(label, {}).get("pts", 0)) for label in labels)
+
+
+def _category_profile(categories: dict) -> dict:
+    rows = [
+        (label, float(info.get("pts", 0)))
+        for label, info in categories.items()
+    ]
+    rows.sort(key=lambda item: (item[1], item[0]), reverse=True)
+    strong = [label for label, pts in rows if pts >= 9.5]
+    weak = [label for label, pts in rows if pts <= 3.5]
+    spread = (rows[0][1] - rows[-1][1]) if rows else 0.0
+
+    offense_score = _category_points(categories, ("R", "HR", "RBI", "SB", "OPS"))
+    pitching_score = _category_points(categories, ("QS", "K", "ERA", "WHIP", "SVH"))
+    power_score = _category_points(categories, ("HR", "RBI", "OPS"))
+    speed_score = _category_points(categories, ("R", "SB"))
+    ratio_score = _category_points(categories, ("ERA", "WHIP"))
+    volume_score = _category_points(categories, ("QS", "K"))
+
+    return {
+        "rows": rows,
+        "top": [label for label, _pts in rows[:3]],
+        "strong": strong,
+        "weak": weak,
+        "spread": spread,
+        "offense_score": offense_score,
+        "pitching_score": pitching_score,
+        "power_score": power_score,
+        "speed_score": speed_score,
+        "ratio_score": ratio_score,
+        "volume_score": volume_score,
+    }
+
+
 def derive_public_archetypes(team: dict, manager: dict | None, standings_row: dict, median_total: float) -> list[str]:
     farm_share = team["farm_share"]
     avg_age = team["avg_age"]
     tier = team["contention_tier"]
     categories = standings_row.get("categories", {})
+    profile = _category_profile(categories)
     svh_pts = float(categories.get("SVH", {}).get("pts", 0))
     sb_pts = float(categories.get("SB", {}).get("pts", 0))
-    ops_pts = float(categories.get("OPS", {}).get("pts", 0))
-    qs_pts = float(categories.get("QS", {}).get("pts", 0))
-    era_pts = float(categories.get("ERA", {}).get("pts", 0))
 
     archetypes: list[str] = [tier]
 
-    if tier in {"fringe", "stagnating"} and farm_share >= 0.19 and avg_age <= 29.2:
-        archetypes.append("soft retool")
-    if farm_share >= 0.22:
-        archetypes.append("asset hoarder")
+    construction_label = None
+    if tier == "rebuilding" and farm_share >= 0.24:
+        construction_label = "farm-forward build"
+    elif tier in {"fringe", "stagnating"} and farm_share >= 0.19 and avg_age <= 29.2:
+        construction_label = "soft retool"
+    elif avg_age >= 30.0 and farm_share <= 0.10:
+        construction_label = "aging core"
+    elif avg_age >= 29.8 and farm_share <= 0.15 and team["total_value"] >= median_total * 0.85:
+        construction_label = "win-now veteran"
+    elif farm_share >= 0.22:
+        construction_label = "prospect stockpile"
 
-    category_values = [float(info.get("pts", 0)) for info in categories.values()]
-    if category_values:
-        spread = max(category_values) - min(category_values)
-        if spread >= 5 or max(svh_pts, sb_pts, ops_pts) >= 10.5:
-            archetypes.append("category specialist")
+    if construction_label:
+        archetypes.append(construction_label)
 
-    if svh_pts >= 9.5 and (team["pressure"]["loss_risk"]["category"] == "SVH" or team["pressure"]["gain_target"]["category"] == "SVH"):
-        archetypes.append("bullpen-dependent")
+    identity_candidates: list[str] = []
+    if profile["spread"] <= 4.0 and len([label for label, pts in profile["rows"] if pts >= 6.0]) >= 8:
+        identity_candidates.append("balanced build")
+    if profile["ratio_score"] >= 19.0 and profile["volume_score"] <= 18.0:
+        identity_candidates.append("ratio-first staff")
+    if profile["volume_score"] >= 19.0:
+        identity_candidates.append("volume arms")
+    if profile["power_score"] >= 29.0:
+        identity_candidates.append("power bat backbone")
+    if profile["speed_score"] >= 18.0 and sb_pts >= 9.0:
+        identity_candidates.append("speed pressure offense")
+    if svh_pts >= 9.5:
+        identity_candidates.append("bullpen-backed")
+    if profile["spread"] >= 8.0 and len(profile["strong"]) >= 3 and len(profile["weak"]) >= 3:
+        identity_candidates.append("high-variance build")
+    if profile["offense_score"] - profile["pitching_score"] >= 7.0:
+        identity_candidates.append("bat-first build")
+    if profile["pitching_score"] - profile["offense_score"] >= 7.0:
+        identity_candidates.append("pitching-led build")
+    if profile["power_score"] <= 16.0 and float(categories.get("R", {}).get("pts", 0)) <= 4.0:
+        identity_candidates.append("offense-starved")
 
-    if avg_age >= 29.8 and team["farm_share"] <= 0.15 and team["total_value"] >= median_total * 0.78:
-        archetypes.append("aging core")
+    for label in identity_candidates:
+        if label not in archetypes:
+            archetypes.append(label)
+            break
 
-    if manager and manager.get("archetype") == "trader" and "soft retool" not in archetypes and tier == "fringe":
-        archetypes.append("soft retool")
-    if manager and manager.get("archetype") == "grinder" and qs_pts + era_pts >= 15 and "category specialist" not in archetypes:
-        archetypes.append("category specialist")
+    manager_label = None
+    if manager and len(archetypes) < 3:
+        if manager.get("archetype") == "trader":
+            manager_label = "trade-driven"
+        elif manager.get("archetype") == "grinder":
+            manager_label = "waiver churn"
+        elif manager.get("archetype") == "asleep at the wheel":
+            manager_label = "quiet roster"
+    if manager_label and manager_label not in archetypes:
+        archetypes.append(manager_label)
 
     deduped: list[str] = []
     for item in archetypes:
