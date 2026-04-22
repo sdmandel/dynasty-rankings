@@ -469,10 +469,19 @@ body {
 @media (max-width: 860px) {
   .tool-grid { grid-template-columns: 1fr; }
   .tile-preview { height: 200px; }
+  .tool-grid.tools-grid-compact { grid-template-columns: 1fr; }
+  .tool-grid.tools-grid-compact .tile-preview { height: 170px; }
+  .tool-grid.tools-grid-compact .tile-footer { padding: 12px 16px 16px; }
 }
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer {
     padding-left: 20px; padding-right: 20px;
+  }
+  .tool-grid.tools-grid-compact { gap: 12px; }
+  .tool-grid.tools-grid-compact .tile-title { margin-bottom: 6px; }
+  .tool-grid.tools-grid-compact .tile-meta {
+    font-size: 12px;
+    line-height: 1.45;
   }
 }
 </style>
