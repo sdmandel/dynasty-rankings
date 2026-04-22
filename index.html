@@ -797,8 +797,14 @@ function buildMiniScatter() {
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top  - PAD.bottom;
 
-  const ages = TEAMS.map(t => t.avg_age);
-  const vals = TEAMS.map(t => t.total);
+  const ages = TEAMS.flatMap(t => [
+    t.avg_age,
+    Number.isFinite(Number(t.scatter_move?.previous_avg_age)) ? Number(t.scatter_move.previous_avg_age) : null,
+  ].filter(v => v !== null));
+  const vals = TEAMS.flatMap(t => [
+    t.total,
+    Number.isFinite(Number(t.scatter_move?.previous_total_value)) ? Number(t.scatter_move.previous_total_value) : null,
+  ].filter(v => v !== null));
   const minAge = Math.min(...ages) - 0.3;
   const maxAge = Math.max(...ages) + 0.3;
   const maxVal = Math.max(...vals) * 1.08;
@@ -807,8 +813,41 @@ function buildMiniScatter() {
   const sy = v => PAD.top  + (1 - v / maxVal) * plotH;
 
   const ns = 'http://www.w3.org/2000/svg';
-  const midAge = (minAge + maxAge) / 2;
-  const midVal = maxVal / 2;
+  const midAge = 28.5;
+  const midVal = 25000;
+
+  const defs = document.createElementNS(ns, 'defs');
+  const marker = document.createElementNS(ns, 'marker');
+  marker.setAttribute('id', 'miniScatterArrow');
+  marker.setAttribute('markerWidth', '6');
+  marker.setAttribute('markerHeight', '6');
+  marker.setAttribute('refX', '5');
+  marker.setAttribute('refY', '3');
+  marker.setAttribute('orient', 'auto');
+  marker.setAttribute('markerUnits', 'strokeWidth');
+  const arrowHead = document.createElementNS(ns, 'path');
+  arrowHead.setAttribute('d', 'M 0 0 L 6 3 L 0 6 z');
+  arrowHead.setAttribute('fill', '#c8a84b');
+  arrowHead.setAttribute('opacity', '0.9');
+  marker.appendChild(arrowHead);
+  defs.appendChild(marker);
+  svgEl.appendChild(defs);
+
+  [
+    { x: PAD.left, y: PAD.top, w: sx(midAge) - PAD.left, h: sy(midVal) - PAD.top, fill: '#5d7db5' },
+    { x: sx(midAge), y: PAD.top, w: PAD.left + plotW - sx(midAge), h: sy(midVal) - PAD.top, fill: '#c8a84b' },
+    { x: PAD.left, y: sy(midVal), w: sx(midAge) - PAD.left, h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
+    { x: sx(midAge), y: sy(midVal), w: PAD.left + plotW - sx(midAge), h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
+  ].forEach(q => {
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('x', q.x);
+    rect.setAttribute('y', q.y);
+    rect.setAttribute('width', q.w);
+    rect.setAttribute('height', q.h);
+    rect.setAttribute('fill', q.fill);
+    rect.setAttribute('opacity', '0.035');
+    svgEl.appendChild(rect);
+  });
 
   // Quadrant lines
   [[sx(midAge), PAD.top, sx(midAge), PAD.top+plotH],
@@ -816,7 +855,7 @@ function buildMiniScatter() {
     const l = document.createElementNS(ns,'line');
     l.setAttribute('x1',x1); l.setAttribute('y1',y1);
     l.setAttribute('x2',x2); l.setAttribute('y2',y2);
-    l.setAttribute('stroke','#1e1e20'); l.setAttribute('stroke-width','1');
+    l.setAttribute('stroke','#2e2e32'); l.setAttribute('stroke-width','1');
     l.setAttribute('stroke-dasharray','3 3');
     svgEl.appendChild(l);
   });
@@ -825,6 +864,40 @@ function buildMiniScatter() {
     const cx = sx(t.avg_age);
     const cy = sy(t.total);
     const g = document.createElementNS(ns,'g');
+    const prevAge = Number(t.scatter_move?.previous_avg_age);
+    const prevTotal = Number(t.scatter_move?.previous_total_value);
+    const hasPrev = Number.isFinite(prevAge) && Number.isFinite(prevTotal);
+
+    if (hasPrev) {
+      const prevCx = sx(prevAge);
+      const prevCy = sy(prevTotal);
+      const dx = cx - prevCx;
+      const dy = cy - prevCy;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist >= 4) {
+        const path = document.createElementNS(ns, 'line');
+        path.setAttribute('x1', prevCx);
+        path.setAttribute('y1', prevCy);
+        path.setAttribute('x2', cx);
+        path.setAttribute('y2', cy);
+        path.setAttribute('stroke', '#c8a84b');
+        path.setAttribute('stroke-width', '1.2');
+        path.setAttribute('opacity', '0.75');
+        path.setAttribute('marker-end', 'url(#miniScatterArrow)');
+        g.appendChild(path);
+      }
+
+      const origin = document.createElementNS(ns, 'circle');
+      origin.setAttribute('cx', prevCx);
+      origin.setAttribute('cy', prevCy);
+      origin.setAttribute('r', '3.5');
+      origin.setAttribute('fill', '#111112');
+      origin.setAttribute('stroke', '#6f8a79');
+      origin.setAttribute('stroke-width', '1');
+      origin.setAttribute('opacity', '0.85');
+      g.appendChild(origin);
+    }
 
     const ring = document.createElementNS(ns,'circle');
     ring.setAttribute('cx',cx); ring.setAttribute('cy',cy); ring.setAttribute('r',10);
@@ -833,7 +906,7 @@ function buildMiniScatter() {
 
     const dot = document.createElementNS(ns,'circle');
     dot.setAttribute('cx',cx); dot.setAttribute('cy',cy); dot.setAttribute('r',6);
-    dot.setAttribute('fill','#8b2a1e'); dot.setAttribute('stroke','#c8856e'); dot.setAttribute('stroke-width','1.5');
+    dot.setAttribute('fill','#4e6e58'); dot.setAttribute('stroke','#98BDA4'); dot.setAttribute('stroke-width','1.4');
     g.appendChild(dot);
 
     const lbl = document.createElementNS(ns,'text');
