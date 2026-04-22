@@ -12,9 +12,9 @@ from pathlib import Path
 from statistics import median
 
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
-BOT_ROOT = ROOT.parent
+SITE_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_DATA_DIR = SITE_ROOT / "data"
+BOT_ROOT = SITE_ROOT.parent
 RANKINGS_CSV = BOT_ROOT / "data" / "rankings_latest.csv"
 
 SEASON = 2026
@@ -34,15 +34,15 @@ CATEGORY_CODE_TO_LABEL = {
     "cat_svh": "SVH",
 }
 
-def load_json(name: str) -> dict:
-    return json.loads((DATA_DIR / name).read_text(encoding="utf-8"))
+def load_json(name: str, data_dir: Path = DEFAULT_DATA_DIR) -> dict:
+    return json.loads((data_dir / name).read_text(encoding="utf-8"))
 
 
-def load_previous_oracle_public() -> dict:
+def load_previous_oracle_public(site_root: Path = SITE_ROOT) -> dict:
     try:
         result = subprocess.run(
             ["git", "show", "HEAD:data/oracle_public.json"],
-            cwd=ROOT,
+            cwd=site_root,
             check=True,
             capture_output=True,
             text=True,
@@ -56,8 +56,8 @@ def load_previous_oracle_public() -> dict:
         return {}
 
 
-def load_team_registry() -> tuple[dict[str, str], dict[str, str]]:
-    data = load_json("team_registry.json")
+def load_team_registry(data_dir: Path = DEFAULT_DATA_DIR) -> tuple[dict[str, str], dict[str, str]]:
+    data = load_json("team_registry.json", data_dir)
     alias_to_display: dict[str, str] = {}
     display_to_key: dict[str, str] = {}
     for row in data.get("teams", []):
@@ -369,13 +369,14 @@ def derive_scatter_move(team: dict, previous_row: dict | None) -> dict:
     }
 
 
-def main() -> None:
+def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None = None) -> dict:
     global CATEGORIES
-    standings = load_json("standings.json")
-    intelligence = load_json("league_intelligence.json")
-    managers = load_json("managers.json")
-    previous_payload = load_previous_oracle_public()
-    alias_to_display, _display_to_key = load_team_registry()
+    data_dir = site_root / "data"
+    standings = load_json("standings.json", data_dir)
+    intelligence = load_json("league_intelligence.json", data_dir)
+    managers = load_json("managers.json", data_dir)
+    previous_payload = load_previous_oracle_public(site_root)
+    alias_to_display, _display_to_key = load_team_registry(data_dir)
     value_input = load_live_team_values(alias_to_display, _display_to_key)
 
     standings_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in standings["teams"]}
@@ -440,8 +441,14 @@ def main() -> None:
         "teams": teams,
     }
 
-    output = DATA_DIR / "oracle_public.json"
+    output = output_path or (data_dir / "oracle_public.json")
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return payload
+
+
+def main() -> None:
+    export_oracle_public()
 
 
 if __name__ == "__main__":
