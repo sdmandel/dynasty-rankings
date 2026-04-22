@@ -5,30 +5,21 @@ the private rankings CSV or player-level valuation inputs.
 """
 from __future__ import annotations
 
+import csv
 import json
+import subprocess
 from pathlib import Path
 from statistics import median
 
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
+BOT_ROOT = ROOT.parent
+RANKINGS_CSV = BOT_ROOT / "data" / "rankings_latest.csv"
 
 SEASON = 2026
-
-VALUE_INPUT = {
-    "John Henry Fan Club": {"oracle_rank": 1, "total_value": 35777.0, "mlb_value": 24934.3, "farm_value": 10842.7, "avg_age": 27.3},
-    "Rollie Fingers": {"oracle_rank": 2, "total_value": 35362.6, "mlb_value": 28024.6, "farm_value": 7338.0, "avg_age": 28.0},
-    "Seam heads": {"oracle_rank": 3, "total_value": 33387.7, "mlb_value": 26732.1, "farm_value": 6655.6, "avg_age": 28.7},
-    "Humongous Melonheads": {"oracle_rank": 4, "total_value": 31778.0, "mlb_value": 27481.5, "farm_value": 4296.5, "avg_age": 28.1},
-    "Acuña Matata": {"oracle_rank": 5, "total_value": 31419.7, "mlb_value": 25292.6, "farm_value": 6127.1, "avg_age": 27.8},
-    "Inkers": {"oracle_rank": 6, "total_value": 28426.3, "mlb_value": 20811.2, "farm_value": 7615.1, "avg_age": 28.6},
-    "Vin Mazzaro fan club": {"oracle_rank": 7, "total_value": 25664.1, "mlb_value": 22356.6, "farm_value": 3307.5, "avg_age": 28.3},
-    "Millville Meteors": {"oracle_rank": 8, "total_value": 24831.6, "mlb_value": 22648.3, "farm_value": 2183.3, "avg_age": 29.4},
-    "Trazadone": {"oracle_rank": 9, "total_value": 22979.9, "mlb_value": 18682.0, "farm_value": 4297.9, "avg_age": 30.2},
-    "Mommy": {"oracle_rank": 10, "total_value": 22107.0, "mlb_value": 21122.6, "farm_value": 984.4, "avg_age": 30.5},
-    "Sam": {"oracle_rank": 11, "total_value": 21301.5, "mlb_value": 19086.7, "farm_value": 2214.8, "avg_age": 29.9},
-    "Pat": {"oracle_rank": 12, "total_value": 21243.3, "mlb_value": 20316.2, "farm_value": 927.1, "avg_age": 31.2},
-}
+MID_AGE = 28.5
+MID_VALUE = 25000
 
 CATEGORY_CODE_TO_LABEL = {
     "cat_r": "R",
@@ -47,6 +38,24 @@ def load_json(name: str) -> dict:
     return json.loads((DATA_DIR / name).read_text(encoding="utf-8"))
 
 
+def load_previous_oracle_public() -> dict:
+    try:
+        result = subprocess.run(
+            ["git", "show", "HEAD:data/oracle_public.json"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return {}
+
+    try:
+        return json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return {}
+
+
 def load_team_registry() -> tuple[dict[str, str], dict[str, str]]:
     data = load_json("team_registry.json")
     alias_to_display: dict[str, str] = {}
@@ -57,6 +66,64 @@ def load_team_registry() -> tuple[dict[str, str], dict[str, str]]:
         for alias in row.get("aliases", []):
             alias_to_display[alias] = display_name
     return alias_to_display, display_to_key
+
+
+def load_live_team_values(alias_to_display: dict[str, str], display_to_key: dict[str, str]) -> dict[str, dict]:
+    if not RANKINGS_CSV.exists():
+        raise FileNotFoundError(f"rankings_latest.csv not found at {RANKINGS_CSV}")
+
+    accum: dict[str, dict] = {
+        display_name: {"total_value": 0.0, "mlb_value": 0.0, "ages": []}
+        for display_name in display_to_key
+    }
+
+    with RANKINGS_CSV.open(newline="", encoding="utf-8") as handle:
+        rows = csv.DictReader(handle)
+        for row in rows:
+            owner = (row.get("Owned By") or "").strip()
+            if not owner:
+                continue
+            team_name = alias_to_display.get(owner)
+            if not team_name:
+                continue
+
+            try:
+                score = float(row.get("Score") or 0)
+            except (TypeError, ValueError):
+                score = 0.0
+
+            level = (row.get("Level") or "").strip().upper()
+            positions = (row.get("Positions") or "").strip()
+            is_mlb_active = level == "MLB" and bool(positions)
+
+            accum[team_name]["total_value"] += score
+            if is_mlb_active:
+                accum[team_name]["mlb_value"] += score
+                try:
+                    age = float(row.get("Age") or 0)
+                except (TypeError, ValueError):
+                    age = 0.0
+                if age > 0:
+                    accum[team_name]["ages"].append(age)
+
+    ranked = sorted(
+        accum.items(),
+        key=lambda item: (-item[1]["total_value"], item[0]),
+    )
+
+    result: dict[str, dict] = {}
+    for idx, (team_name, values) in enumerate(ranked, start=1):
+        total_value = round(values["total_value"], 1)
+        mlb_value = round(values["mlb_value"], 1)
+        avg_age = round(sum(values["ages"]) / len(values["ages"]), 1) if values["ages"] else 0.0
+        result[team_name] = {
+            "oracle_rank": idx,
+            "total_value": total_value,
+            "mlb_value": mlb_value,
+            "farm_value": round(total_value - mlb_value, 1),
+            "avg_age": avg_age,
+        }
+    return result
 
 
 def _category_points(categories: dict, labels: tuple[str, ...]) -> float:
@@ -231,7 +298,6 @@ def derive_trade_needs(team: dict, standings_row: dict) -> list[str]:
 
 
 def derive_trend(team: dict, standings_row: dict) -> dict:
-    del standings_row
     tier = team["contention_tier"]
     gain_cat = team["pressure"]["gain_target"]["category"]
     gain_gap = team["pressure"]["gain_target"]["gap"]
@@ -239,6 +305,7 @@ def derive_trend(team: dict, standings_row: dict) -> dict:
     loss_gap = team["pressure"]["loss_risk"]["gap"]
     farm_share = team["farm_share"]
     avg_age = team["avg_age"]
+    pts_change = standings_row.get("pts_change")
 
     if tier == "contender":
         stock = "push"
@@ -263,6 +330,7 @@ def derive_trend(team: dict, standings_row: dict) -> dict:
         summary = "Holding current shape"
 
     return {
+        "pts_change": pts_change,
         "stock": stock,
         "summary": summary,
         "rank_delta": None,
@@ -271,21 +339,58 @@ def derive_trend(team: dict, standings_row: dict) -> dict:
     }
 
 
+def _quadrant_label(avg_age: float | None, total_value: float | None) -> str | None:
+    if avg_age is None or total_value is None:
+        return None
+    if total_value >= MID_VALUE and avg_age < MID_AGE:
+        return "REBUILDING"
+    if total_value >= MID_VALUE and avg_age >= MID_AGE:
+        return "WIN NOW"
+    if total_value < MID_VALUE and avg_age < MID_AGE:
+        return "NEEDS WORK"
+    return "AGING OUT"
+
+
+def derive_scatter_move(team: dict, previous_row: dict | None) -> dict:
+    current_age = team["avg_age"]
+    current_value = team["total_value"]
+    previous_age = previous_row.get("avg_age") if previous_row else None
+    previous_value = previous_row.get("total_value") if previous_row else None
+    age_delta = round(current_age - previous_age, 2) if previous_age is not None else None
+    value_delta = round(current_value - previous_value, 1) if previous_value is not None else None
+
+    return {
+        "previous_avg_age": previous_age,
+        "previous_total_value": previous_value,
+        "age_delta": age_delta,
+        "value_delta": value_delta,
+        "previous_quadrant": _quadrant_label(previous_age, previous_value),
+        "current_quadrant": _quadrant_label(current_age, current_value),
+    }
+
+
 def main() -> None:
     global CATEGORIES
     standings = load_json("standings.json")
     intelligence = load_json("league_intelligence.json")
     managers = load_json("managers.json")
+    previous_payload = load_previous_oracle_public()
     alias_to_display, _display_to_key = load_team_registry()
+    value_input = load_live_team_values(alias_to_display, _display_to_key)
 
     standings_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in standings["teams"]}
     intel_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in intelligence["teams"]}
     manager_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in managers["managers"]}
-    median_total = median(team["total_value"] for team in VALUE_INPUT.values())
+    previous_by_team = {
+        row.get("team"): row
+        for row in previous_payload.get("teams", [])
+        if row.get("team")
+    }
+    median_total = median(team["total_value"] for team in value_input.values())
 
     CATEGORIES = CATEGORY_CODE_TO_LABEL
     teams: list[dict] = []
-    for team_name, raw in sorted(VALUE_INPUT.items(), key=lambda item: item[1]["oracle_rank"]):
+    for team_name, raw in sorted(value_input.items(), key=lambda item: item[1]["oracle_rank"]):
         standings_row = standings_by_team[team_name]
         intel_row = intel_by_team[team_name]
 
@@ -312,6 +417,7 @@ def main() -> None:
         team["public_archetypes"] = derive_public_archetypes(team, manager_by_team.get(team_name), standings_row, median_total)
         team["trade_needs"] = derive_trade_needs(team, standings_row)
         team["trend"] = derive_trend(team, standings_row)
+        team["scatter_move"] = derive_scatter_move(team, previous_by_team.get(team_name))
         teams.append(team)
 
     payload = {
@@ -325,7 +431,7 @@ def main() -> None:
             "standings": standings.get("generated_at") or standings.get("generated"),
             "intelligence": intelligence.get("generated"),
             "managers": managers.get("generated"),
-            "oracle_values": "weekly_oracle_export",
+            "oracle_values": str(RANKINGS_CSV.relative_to(BOT_ROOT)),
         },
         "notes": {
             "privacy": "Private rankings CSV remains unpublished. This payload contains only derived/public summaries.",

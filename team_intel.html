@@ -179,6 +179,7 @@
   font-size: 12px;
   line-height: 1.55;
   color: var(--text-mid);
+  white-space: pre-line;
 }
 .signal-copy strong {
   color: var(--text);
@@ -233,9 +234,34 @@
   background: rgba(200,133,110,0.08);
 }
 .signal-chip.surplus {
-  color: #8ca7d4;
-  border-color: rgba(93,125,181,0.35);
-  background: rgba(93,125,181,0.1);
+  color: #98BDA4;
+  border-color: rgba(152,189,164,0.38);
+  background: rgba(152,189,164,0.12);
+}
+.signal-chip.leverage {
+  color: #a7b8d8;
+  border-color: rgba(167,184,216,0.36);
+  background: rgba(167,184,216,0.12);
+}
+.signal-chip.needs-bats {
+  color: #d5b467;
+  border-color: rgba(213,180,103,0.36);
+  background: rgba(213,180,103,0.1);
+}
+.signal-chip.needs-pitching {
+  color: #86a9be;
+  border-color: rgba(134,169,190,0.36);
+  background: rgba(134,169,190,0.12);
+}
+.signal-chip.needs-general {
+  color: #c6bba7;
+  border-color: rgba(198,187,167,0.28);
+  background: rgba(198,187,167,0.08);
+}
+.signal-chip.hold {
+  color: var(--text-muted);
+  border-color: rgba(122,120,114,0.3);
+  background: rgba(122,120,114,0.08);
 }
 table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 13px; }
 th {
@@ -306,6 +332,114 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 .tier-fringe { color: #c8a84b; }
 .tier-stagnating { color: #c8856e; }
 .tier-rebuilding { color: #b55d5d; }
+.projected-table { min-width: 920px; }
+.proj-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+.proj-rank-badge.top {
+  color: var(--gold);
+  border-color: rgba(200,168,75,0.38);
+  background: rgba(200,168,75,0.12);
+}
+.proj-rank-badge.chase {
+  color: #98BDA4;
+  border-color: rgba(152,189,164,0.34);
+  background: rgba(152,189,164,0.12);
+}
+.proj-rank-badge.pack {
+  color: #c6bba7;
+  border-color: rgba(198,187,167,0.26);
+  background: rgba(198,187,167,0.08);
+}
+.proj-team-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.proj-team-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.proj-team-meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dead);
+}
+.proj-points {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.proj-points strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.proj-range {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.proj-swing {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.proj-swing.up { color: #98BDA4; }
+.proj-swing.down { color: #8ea2b2; }
+.proj-swing.flat { color: #c6bba7; }
+.proj-read {
+  min-width: 260px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.proj-note-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 8px;
+  margin-bottom: 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--text-mid);
+  background: rgba(255,255,255,0.03);
+}
+.proj-note-chip.push {
+  color: #98BDA4;
+  border-color: rgba(152,189,164,0.34);
+  background: rgba(152,189,164,0.11);
+}
+.proj-note-chip.hold {
+  color: var(--gold);
+  border-color: rgba(200,168,75,0.34);
+  background: rgba(200,168,75,0.1);
+}
+.proj-note-chip.watch {
+  color: #a7b8d8;
+  border-color: rgba(167,184,216,0.34);
+  background: rgba(167,184,216,0.1);
+}
+.proj-note-chip.variance {
+  color: #c6bba7;
+  border-color: rgba(198,187,167,0.28);
+  background: rgba(198,187,167,0.08);
+}
 .bar-list { display: flex; flex-direction: column; gap: 8px; }
 .bar-row {
   display: grid;
@@ -338,7 +472,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .bar-fill-mlb {
   height: 100%;
-  background: #8b2a1e;
+  background: #4e6e58;
   position: absolute;
   left: 0;
   top: 0;
@@ -347,7 +481,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .bar-fill-farm {
   height: 100%;
-  background: #c8856e;
+  background: #98BDA4;
   position: absolute;
   top: 0;
   border-radius: 0 2px 2px 0;
@@ -374,8 +508,8 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   color: var(--text-dead);
 }
 .leg-dot { width: 10px; height: 10px; border-radius: 2px; }
-.leg-mlb  { background: #8b2a1e; }
-.leg-farm { background: #c8856e; }
+.leg-mlb  { background: #4e6e58; }
+.leg-farm { background: #98BDA4; }
 
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
@@ -406,7 +540,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   </div>
   <div class="chart-block">
     <h3>League Analytics</h3>
-    <p class="section-copy">Total Oracle roster value by team, split between active MLB roster value and farm-system depth. This keeps the valuation view on the same page as the roster-window and standings-context reads.</p>
+    <p class="section-copy">Total Oracle roster value by team, split between active MLB roster value and farm-system depth.</p>
     <div class="bar-list" id="barChart"></div>
     <div class="bar-legend">
       <span class="bar-legend-item"><span class="leg-dot leg-mlb"></span>MLB roster</span>
@@ -418,7 +552,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     <div class="intel-help">
       <div class="help-card"><div class="help-title">Tier</div><div class="help-copy">Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.</div></div>
       <div class="help-card"><div class="help-title">Reachable Points</div><div class="help-copy">Categories where a team is within 2.0 points of the next team up, making the next standings point realistically attainable. Higher totals usually mean a team is more live and competitive in the current race.</div></div>
-      <div class="help-card"><div class="help-title">Luck Delta</div><div class="help-copy">Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline.</div></div>
+      <div class="help-card"><div class="help-title">Luck Delta</div><div class="help-copy">Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline. Negative means if you set your lineup you'd be doing better.</div></div>
       <div class="help-card"><div class="help-title">Volatility</div><div class="help-copy">Movement from rank changes and category swings during the season. A lower value means more stable performance.</div></div>
     </div>
     <div class="intel-grid" id="intelCards"></div>
@@ -432,13 +566,32 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     </div>
   </div>
   <div class="chart-block">
+    <h3>Projected Final Standings</h3>
+    <p class="section-copy">Directional finish forecast built from current roto points, reachable category lanes, luck regression, volatility, and present MLB Oracle strength. It is a weighted read, not a simulation.</p>
+    <div class="intel-help">
+      <div class="help-card"><div class="help-title">Baseline</div><div class="help-copy">Starts from today’s roto points, then moves each team up or down from that base.</div></div>
+      <div class="help-card"><div class="help-title">Upside</div><div class="help-copy">Reachable category points, recent roster-value gains, and standings momentum all add lift.</div></div>
+      <div class="help-card"><div class="help-title">Regression</div><div class="help-copy">Positive luck gets pulled back, while unlucky teams get a small rebound credit.</div></div>
+      <div class="help-card"><div class="help-title">Range</div><div class="help-copy">Higher volatility widens the finish band. MLB value matters more than farm depth for this-year projection.</div></div>
+    </div>
+    <div class="intel-grid" id="projectionCards"></div>
+    <div class="table-wrap">
+      <table class="projected-table">
+        <thead>
+          <tr><th>Proj</th><th>Team</th><th>Current</th><th>Projected</th><th>Range</th><th>Swing</th><th>Read</th></tr>
+        </thead>
+        <tbody id="projectionBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="chart-block">
     <h3>Archetypes · Next Move · Trade Posture</h3>
     <p class="section-copy">One card per team with the cleanest editorial read on roster shape, the clearest action to consider next, and the most obvious deal angle.</p>
     <div class="intel-help">
-      <div class="help-card"><div class="help-title">Archetypes</div><div class="help-copy">Roster-shape tags only. These describe how the build behaves without repeating the contention tier already shown above.</div></div>
-      <div class="help-card"><div class="help-title">Next Move</div><div class="help-copy">A short interpreted read on the roster’s clearest action, using the pressure points and roster context without restating the contention table.</div></div>
-      <div class="help-card"><div class="help-title">Trade Posture</div><div class="help-copy">The clearest deal signals right now: categories to address, surplus to move, or whether the roster can afford to trade prospects.</div></div>
-      <div class="help-card"><div class="help-title">Outlook</div><div class="help-copy">A slower-moving editorial read on direction: pushing to win now, soft retooling, building through the farm, or protecting a fragile edge.</div></div>
+      <div class="help-card"><div class="help-title">Archetypes</div><div class="help-copy">Roster-shape tags only. These describe how the build behaves without repeating the contention tier.</div></div>
+      <div class="help-card"><div class="help-title">Next Move</div><div class="help-copy">A short editorial read on the roster’s clearest action, based on category pressure, roster shape, and timing.</div></div>
+      <div class="help-card"><div class="help-title">Trade Posture</div><div class="help-copy">The most obvious deal signal right now: what to target, what can be moved, and how aggressive the team can afford to be.</div></div>
+      <div class="help-card"><div class="help-title">Outlook</div><div class="help-copy">A slower-moving read on direction: pushing to win now, soft retooling, building through the farm, or protecting a narrow edge.</div></div>
     </div>
     <div class="team-board-grid" id="teamBoards"></div>
   </div>
@@ -452,6 +605,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   <span class="tt-name" id="tt-name"></span>
   <span class="tt-line" id="tt-age"></span>
   <span class="tt-line" id="tt-val"></span>
+  <span class="tt-line" id="tt-trend"></span>
 </div>
 
 <script src="assets/oracle-public.js"></script>
@@ -463,6 +617,175 @@ const tooltip = document.getElementById('tooltip');
 const ttName  = document.getElementById('tt-name');
 const ttAge   = document.getElementById('tt-age');
 const ttVal   = document.getElementById('tt-val');
+const ttTrend = document.getElementById('tt-trend');
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function compactTeamName(name, maxChars) {
+  if (!name) return '';
+  if (name.length <= maxChars) return name;
+
+  const words = name.split(/\s+/).filter(Boolean);
+  const firstTwo = words.slice(0, 2).join(' ');
+  if (firstTwo && firstTwo.length <= maxChars) return firstTwo;
+
+  if (words.length >= 2) {
+    const abbreviated = `${words[0]} ${words[1].charAt(0)}.`;
+    if (abbreviated.length <= maxChars) return abbreviated;
+  }
+
+  return name.slice(0, Math.max(4, maxChars - 1)) + '…';
+}
+
+function isFiniteNumber(value) {
+  return Number.isFinite(Number(value));
+}
+
+function formatSigned(value, digits = 1) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return null;
+  return `${numeric > 0 ? '+' : ''}${numeric.toFixed(digits)}`;
+}
+
+function formatScatterMove(move) {
+  if (!move || !isFiniteNumber(move.previous_avg_age) || !isFiniteNumber(move.previous_total_value)) {
+    return 'Scatter move: no prior oracle snapshot';
+  }
+
+  const ageDelta = Number(move.age_delta || 0);
+  const valueDelta = Number(move.value_delta || 0);
+  const xDir = ageDelta > 0.02 ? 'right' : ageDelta < -0.02 ? 'left' : 'flat';
+  const yDir = valueDelta > 25 ? 'up' : valueDelta < -25 ? 'down' : 'flat';
+  const quadrantShift = move.previous_quadrant && move.current_quadrant && move.previous_quadrant !== move.current_quadrant
+    ? ` · ${move.previous_quadrant} → ${move.current_quadrant}`
+    : '';
+  const ageText = formatSigned(ageDelta, 1) || '0.0';
+  const valueText = formatSigned(valueDelta, 0) || '0';
+  return `Scatter move: ${yDir}/${xDir} · value ${valueText} · age ${ageText}${quadrantShift}`;
+}
+
+function setMoveTooltip(move) {
+  if (!ttTrend) return;
+  ttTrend.textContent = formatScatterMove(move);
+}
+
+function resolveScatterLabels(dots, bounds, obstacles = []) {
+  const LABEL_H = 18;
+  const labels = dots.map(dot => {
+    const w = dot.shortName.length * dot.charWidth + 10;
+    let anchor = 'middle';
+    let targetX = dot.cx - w / 2;
+    let targetY = dot.cy - dot.dotRadius - 24;
+
+    if (dot.cx <= bounds.left + bounds.width * 0.36) {
+      anchor = 'start';
+      targetX = dot.cx + dot.dotRadius + 12;
+      targetY = dot.cy - 14;
+    } else if (dot.cx >= bounds.left + bounds.width * 0.64) {
+      anchor = 'end';
+      targetX = dot.cx - dot.dotRadius - 12 - w;
+      targetY = dot.cy - 14;
+    } else if (dot.cy <= bounds.top + bounds.height * 0.46) {
+      anchor = 'middle';
+      targetX = dot.cx - w / 2;
+      targetY = dot.cy + dot.dotRadius + 12;
+    }
+
+    return {
+      dot,
+      anchor,
+      w,
+      h: LABEL_H,
+      x: clamp(targetX, bounds.left, bounds.right - w),
+      y: clamp(targetY, bounds.top, bounds.bottom - LABEL_H),
+      targetX,
+      targetY,
+      vx: 0,
+      vy: 0,
+    };
+  });
+
+  for (let i = 0; i < 220; i += 1) {
+    labels.forEach(label => {
+      label.vx += (label.targetX - label.x) * 0.018;
+      label.vy += (label.targetY - label.y) * 0.03;
+    });
+
+    for (let a = 0; a < labels.length; a += 1) {
+      for (let b = a + 1; b < labels.length; b += 1) {
+        const one = labels[a];
+        const two = labels[b];
+        const overlapX = Math.min(one.x + one.w, two.x + two.w) - Math.max(one.x, two.x);
+        const overlapY = Math.min(one.y + one.h, two.y + two.h) - Math.max(one.y, two.y);
+        if (overlapX <= -2 || overlapY <= -2) continue;
+
+        let dx = (one.x + one.w / 2) - (two.x + two.w / 2);
+        let dy = (one.y + one.h / 2) - (two.y + two.h / 2);
+        if (dx === 0 && dy === 0) dx = a % 2 === 0 ? 1 : -1;
+
+        const dist = Math.hypot(dx, dy) || 1;
+        const force = (Math.min(overlapX, overlapY) + 6) * 0.11;
+        const ux = dx / dist;
+        const uy = dy / dist;
+
+        one.vx += ux * force;
+        one.vy += uy * force;
+        two.vx -= ux * force;
+        two.vy -= uy * force;
+      }
+    }
+
+    labels.forEach(label => {
+      obstacles.forEach(obstacle => {
+        const overlapX = Math.min(label.x + label.w, obstacle.x + obstacle.w) - Math.max(label.x, obstacle.x);
+        const overlapY = Math.min(label.y + label.h, obstacle.y + obstacle.h) - Math.max(label.y, obstacle.y);
+        if (overlapX <= -2 || overlapY <= -2) return;
+
+        const labelCx = label.x + label.w / 2;
+        const labelCy = label.y + label.h / 2;
+        const obstacleCx = obstacle.x + obstacle.w / 2;
+        const obstacleCy = obstacle.y + obstacle.h / 2;
+        let dx = labelCx - obstacleCx;
+        let dy = labelCy - obstacleCy;
+        if (dx === 0 && dy === 0) dx = 1;
+
+        const dist = Math.hypot(dx, dy) || 1;
+        const force = (Math.min(overlapX, overlapY) + 8) * 0.12;
+        label.vx += (dx / dist) * force;
+        label.vy += (dy / dist) * force;
+      });
+
+      dots.forEach(dot => {
+        const nearestX = clamp(dot.cx, label.x, label.x + label.w);
+        const nearestY = clamp(dot.cy, label.y, label.y + label.h);
+        let dx = nearestX - dot.cx;
+        let dy = nearestY - dot.cy;
+        let dist = Math.hypot(dx, dy);
+        const minDist = dot === label.dot ? dot.dotRadius + 12 : dot.dotRadius + 6;
+
+        if (dist < minDist) {
+          if (!dist) {
+            dx = (label.x + label.w / 2) >= dot.cx ? 1 : -1;
+            dy = (label.y + label.h / 2) >= dot.cy ? 1 : -1;
+            dist = Math.hypot(dx, dy);
+          }
+          const push = (minDist - dist) * 0.2;
+          label.vx += (dx / dist) * push;
+          label.vy += (dy / dist) * push;
+        }
+      });
+
+      label.x = clamp(label.x + label.vx, bounds.left, bounds.right - label.w);
+      label.y = clamp(label.y + label.vy, bounds.top, bounds.bottom - label.h);
+      label.vx *= 0.72;
+      label.vy *= 0.72;
+    });
+  }
+
+  return labels;
+}
 
 function buildScatter() {
   if (!TEAMS.length) return;
@@ -477,8 +800,14 @@ function buildScatter() {
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
 
-  const ages = TEAMS.map(t => t.avg_age);
-  const vals = TEAMS.map(t => t.total);
+  const ages = TEAMS.flatMap(t => [
+    t.avg_age,
+    isFiniteNumber(t.scatter_move?.previous_avg_age) ? Number(t.scatter_move.previous_avg_age) : null,
+  ].filter(v => v !== null));
+  const vals = TEAMS.flatMap(t => [
+    t.total,
+    isFiniteNumber(t.scatter_move?.previous_total_value) ? Number(t.scatter_move.previous_total_value) : null,
+  ].filter(v => v !== null));
   const minAge = Math.min(...ages) - 0.5;
   const maxAge = Math.max(...ages) + 0.5;
   const minVal = 0;
@@ -492,6 +821,23 @@ function buildScatter() {
   const scaleY = v => PAD.top  + (1 - (v - minVal) / (maxVal - minVal)) * plotH;
 
   const ns = 'http://www.w3.org/2000/svg';
+
+  const defs = document.createElementNS(ns, 'defs');
+  const marker = document.createElementNS(ns, 'marker');
+  marker.setAttribute('id', 'scatterMoveArrow');
+  marker.setAttribute('markerWidth', '8');
+  marker.setAttribute('markerHeight', '8');
+  marker.setAttribute('refX', '6');
+  marker.setAttribute('refY', '4');
+  marker.setAttribute('orient', 'auto');
+  marker.setAttribute('markerUnits', 'strokeWidth');
+  const arrowHead = document.createElementNS(ns, 'path');
+  arrowHead.setAttribute('d', 'M 0 0 L 8 4 L 0 8 z');
+  arrowHead.setAttribute('fill', '#c8a84b');
+  arrowHead.setAttribute('opacity', '0.85');
+  marker.appendChild(arrowHead);
+  defs.appendChild(marker);
+  svg.appendChild(defs);
 
   // Quadrant fill regions (subtle tinting)
   const qMidX = scaleX(midAge);
@@ -594,35 +940,87 @@ function buildScatter() {
   }
 
   // --- Phase 1: Compute all dot positions ---
-  const DOT_R   = 8;
-  const LBL_H   = 16;
-  const CHAR_W  = 7.2;  // approx px per char at 12.5px DM Sans
-  const LBL_GAP = 4;
+  const DOT_R  = 8;
+  const CHAR_W = W < 560 ? 6.2 : 7.0;
+  const MAX_LABEL_CHARS = W < 520 ? 12 : W < 760 ? 15 : 18;
 
   const dots = TEAMS.map(t => ({
     t,
     cx: scaleX(t.avg_age),
     cy: scaleY(t.total),
-    shortName: t.name.length > 16 ? t.name.split(' ').slice(0, 2).join(' ') : t.name,
+    dotRadius: DOT_R,
+    prevCx: isFiniteNumber(t.scatter_move?.previous_avg_age) ? scaleX(Number(t.scatter_move.previous_avg_age)) : null,
+    prevCy: isFiniteNumber(t.scatter_move?.previous_total_value) ? scaleY(Number(t.scatter_move.previous_total_value)) : null,
+    move: t.scatter_move || null,
+    shortName: compactTeamName(t.name, MAX_LABEL_CHARS),
+    charWidth: CHAR_W,
   }));
 
-  // Seed blocked regions: quadrant labels first, then dot footprints
-  const Q_CW = 7.8; // approx px per char at font-size 11 + letter-spacing
-  const placed = [
-    ...quadrants.map(q => {
-      const lw = q.label.length * Q_CW;
-      return { x: q.lx - lw / 2 - 4, y: q.ly - 10, w: lw + 8, h: 16 };
-    }),
-    ...dots.map(d => ({
-      x: d.cx - DOT_R - 3, y: d.cy - DOT_R - 3,
-      w: (DOT_R + 3) * 2,  h: (DOT_R + 3) * 2,
-    })),
-  ];
+  const labelObstacles = quadrants.map(q => {
+    const width = q.label.length * 7.8 + 14;
+    return {
+      x: q.lx - width / 2,
+      y: q.ly - 12,
+      w: width,
+      h: 20,
+    };
+  });
 
-  const overlaps = (a, b) => !(
-    a.x + a.w + 3 < b.x || b.x + b.w + 3 < a.x ||
-    a.y + a.h + 3 < b.y || b.y + b.h + 3 < a.y
-  );
+  const labels = resolveScatterLabels(dots, {
+    left: PAD.left + 8,
+    right: PAD.left + plotW - 8,
+    top: PAD.top + 8,
+    bottom: PAD.top + plotH - 8,
+    width: plotW - 16,
+    height: plotH - 16,
+  }, labelObstacles);
+
+  labels.forEach(label => {
+    const endX = clamp(label.dot.cx, label.x, label.x + label.w);
+    const endY = clamp(label.dot.cy, label.y, label.y + label.h);
+    const lineLength = Math.hypot(endX - label.dot.cx, endY - label.dot.cy);
+    if (lineLength <= DOT_R + 10) return;
+
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', label.dot.cx);
+    line.setAttribute('y1', label.dot.cy);
+    line.setAttribute('x2', endX);
+    line.setAttribute('y2', endY);
+    line.setAttribute('stroke', '#4c4944');
+    line.setAttribute('stroke-width', '1');
+    line.setAttribute('opacity', '0.55');
+    svg.appendChild(line);
+  });
+
+  dots.forEach(d => {
+    if (!isFiniteNumber(d.prevCx) || !isFiniteNumber(d.prevCy)) return;
+
+    const dx = d.cx - d.prevCx;
+    const dy = d.cy - d.prevCy;
+    const dist = Math.hypot(dx, dy);
+    if (dist < 6) return;
+
+    const path = document.createElementNS(ns, 'line');
+    path.setAttribute('x1', d.prevCx);
+    path.setAttribute('y1', d.prevCy);
+    path.setAttribute('x2', d.cx);
+    path.setAttribute('y2', d.cy);
+    path.setAttribute('stroke', '#c8a84b');
+    path.setAttribute('stroke-width', '1.7');
+    path.setAttribute('opacity', '0.8');
+    path.setAttribute('marker-end', 'url(#scatterMoveArrow)');
+    svg.appendChild(path);
+
+    const origin = document.createElementNS(ns, 'circle');
+    origin.setAttribute('cx', d.prevCx);
+    origin.setAttribute('cy', d.prevCy);
+    origin.setAttribute('r', '4.5');
+    origin.setAttribute('fill', '#111112');
+    origin.setAttribute('stroke', '#6f8a79');
+    origin.setAttribute('stroke-width', '1.1');
+    origin.setAttribute('opacity', '0.9');
+    svg.appendChild(origin);
+  });
 
   // --- Phase 2: Draw all dot circles first ---
   dots.forEach(d => {
@@ -636,7 +1034,7 @@ function buildScatter() {
 
     const c = document.createElementNS(ns, 'circle');
     c.setAttribute('cx', d.cx); c.setAttribute('cy', d.cy); c.setAttribute('r', DOT_R);
-    c.setAttribute('fill', '#8b2a1e'); c.setAttribute('stroke', '#c8856e'); c.setAttribute('stroke-width', '1.5');
+    c.setAttribute('fill', '#4e6e58'); c.setAttribute('stroke', '#98BDA4'); c.setAttribute('stroke-width', '1.5');
     g.appendChild(c);
 
     const rk = document.createElementNS(ns, 'text');
@@ -656,6 +1054,7 @@ function buildScatter() {
       ttName.textContent = d.t.name;
       ttAge.textContent  = `Avg age: ${d.t.avg_age}`;
       ttVal.textContent  = `Oracle value: ${d.t.total.toLocaleString()}`;
+      setMoveTooltip(d.move);
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top  = (e.clientY - 10) + 'px';
@@ -665,56 +1064,26 @@ function buildScatter() {
     svg.appendChild(g);
   });
 
-  // --- Phase 3: Place labels with greedy collision avoidance ---
-  // Each candidate: [dx, dy, anchor] offset from dot center
-  const candidates = [
-    [ DOT_R + LBL_GAP,              0,                'start'],  // right
-    [-(DOT_R + LBL_GAP),             0,                'end'  ],  // left
-    [ 0,                -(DOT_R + LBL_GAP + 6),        'middle'],  // above
-    [ 0,                  DOT_R + LBL_GAP + 12,        'middle'],  // below
-    [ DOT_R + 2,         -(DOT_R + 4),                 'start'],  // top-right
-    [-(DOT_R + 2),       -(DOT_R + 4),                 'end'  ],  // top-left
-    [ DOT_R + 2,          DOT_R + 8,                   'start'],  // bottom-right
-    [-(DOT_R + 2),        DOT_R + 8,                   'end'  ],  // bottom-left
-  ];
-
-  dots.forEach(d => {
-    const lblW = d.shortName.length * CHAR_W;
-
-    const bboxFor = (dx, dy, anchor) => {
-      const tx = d.cx + dx;
-      const ty = d.cy + dy;
-      const bx = anchor === 'start' ? tx : anchor === 'end' ? tx - lblW : tx - lblW / 2;
-      return { x: bx - 2, y: ty - LBL_H, w: lblW + 4, h: LBL_H + 2 };
-    };
-
-    let chosen = null;
-    let bestScore = Infinity;
-
-    for (const [dx, dy, anchor] of candidates) {
-      const bbox = bboxFor(dx, dy, anchor);
-      // Skip if out of SVG bounds
-      if (bbox.x < 2 || bbox.x + bbox.w > W - 2) continue;
-      if (bbox.y < 2 || bbox.y + bbox.h > H - 6) continue;
-      const score = placed.filter(p => overlaps(bbox, p)).length;
-      if (score < bestScore) { bestScore = score; chosen = {dx, dy, anchor}; }
-      if (score === 0) break;
-    }
-
-    if (!chosen) chosen = { dx: candidates[0][0], dy: candidates[0][1], anchor: candidates[0][2] };
-
-    const finalBbox = bboxFor(chosen.dx, chosen.dy, chosen.anchor);
-    placed.push(finalBbox);
-
+  // --- Phase 3: Draw the relaxed labels ---
+  labels.forEach(label => {
     const lbl = document.createElementNS(ns, 'text');
-    lbl.setAttribute('x', d.cx + chosen.dx);
-    lbl.setAttribute('y', d.cy + chosen.dy + 4);
-    lbl.setAttribute('text-anchor', chosen.anchor);
+    const textX = label.anchor === 'start'
+      ? label.x + 2
+      : label.anchor === 'end'
+        ? label.x + label.w - 2
+        : label.x + label.w / 2;
+    lbl.setAttribute('x', textX);
+    lbl.setAttribute('y', label.y + label.h - 4);
+    lbl.setAttribute('text-anchor', label.anchor);
     lbl.setAttribute('font-family', 'DM Sans, sans-serif');
-    lbl.setAttribute('font-size', '12.5');
+    lbl.setAttribute('font-size', W < 560 ? '11.5' : '12.5');
     lbl.setAttribute('font-weight', '500');
     lbl.setAttribute('fill', '#c2bfb8');
-    lbl.textContent = d.shortName;
+    lbl.setAttribute('stroke', '#111112');
+    lbl.setAttribute('stroke-width', '3');
+    lbl.setAttribute('paint-order', 'stroke');
+    lbl.textContent = label.dot.shortName;
+    lbl.style.pointerEvents = 'none';
     svg.appendChild(lbl);
   });
 }
@@ -767,6 +1136,7 @@ function buildValueBars() {
       ttName.textContent = t.name;
       ttAge.textContent = `MLB: ${t.mlb.toLocaleString()}`;
       ttVal.textContent = `Farm: ${t.farm.toLocaleString()}  ·  Total: ${t.total.toLocaleString()}`;
+      setMoveTooltip(t.scatter_move);
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top = (e.clientY - 10) + 'px';
@@ -780,6 +1150,12 @@ function esc(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt
 function fmt(v, digits = 1) {
   if (v === null || v === undefined || Number.isNaN(Number(v))) return '-';
   return Number(v).toFixed(digits);
+}
+function fetchStandingsData() {
+  return fetch(`data/standings.json?ts=${Date.now()}`, { cache: 'no-store' }).then((response) => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  });
 }
 function tierClass(tier) {
   if (tier === 'contender') return 'tier-contender';
@@ -811,6 +1187,19 @@ function renderTightCategories(team) {
   const chips = top.map(row => `<span class="cat-chip ${tightClass(row.tightness)}" title="${esc(CAT_LABELS[row.cat] || row.cat)} gap ${row.tightness.toFixed(1)}">${esc(CAT_LABELS[row.cat] || row.cat)}</span>`).join('');
   return `<div class="cat-cell">${chips}</div>`;
 }
+function nextMoveLabel(item) {
+  const text = String(item || '').trim();
+  if (!text) return '';
+  if (/fragile SP depth/i.test(text)) return 'SP depth';
+  if (/needs impact bats/i.test(text)) return 'impact bats';
+  if (/needs saves/i.test(text)) return 'saves';
+  if (/surplus SB/i.test(text)) return 'SB surplus';
+  if (/can trade prospects/i.test(text)) return 'prospect capital';
+  return text
+    .replace(/^needs\s+/i, '')
+    .replace(/^surplus\s+/i, '')
+    .replace(/^can trade\s+/i, '');
+}
 function buildNextMove(team) {
   const gain = team.pressure?.gain_target;
   const loss = team.pressure?.loss_risk;
@@ -820,45 +1209,54 @@ function buildNextMove(team) {
 
   if (stock === 'push') {
     if (needs.length && surplus.length) {
-      return `Push the major-league edge now: shop ${surplus[0]} into ${needs[0]} while the roster is live in the race.`;
+      return `Push now: turn ${nextMoveLabel(surplus[0])} into ${nextMoveLabel(needs[0])}.`;
     }
     if (needs.length && gain?.category) {
-      return `Treat ${gain.category} as the fastest path to gain and reinforce ${needs[0]} before the window narrows.`;
+      return `Push ${gain.category}: fix ${nextMoveLabel(needs[0])}.`;
     }
     if (loss?.category) {
-      return `Protect ${loss.category} first; the roster is good enough to win if it avoids giving back easy roto points.`;
+      return `Protect ${loss.category} first.`;
     }
   }
 
   if (stock === 'retool') {
     if (surplus.length && needs.length) {
-      return `Lean into the retool: move ${surplus[0]} toward ${needs[0]} without paying a full win-now tax.`;
+      return `Retool: move ${nextMoveLabel(surplus[0])} into ${nextMoveLabel(needs[0])}.`;
     }
     if (gain?.category) {
-      return `Stay flexible and target incremental gains in ${gain.category} rather than forcing a full push.`;
+      return `Retool quietly: chase ${gain.category}.`;
     }
   }
 
   if (stock === 'build') {
     if (surplus.length) {
-      return `Keep the build patient: convert ${surplus[0]} into longer-term value instead of chasing short-term category swings.`;
+      return `Stay patient: cash ${nextMoveLabel(surplus[0])} into future value.`;
     }
-    return 'Keep prioritizing future value over short-term category churn.';
+    return 'Stay patient. Keep future value first.';
   }
 
   if (needs.length && surplus.length) {
-    return `The clearest deal angle is simple: flip ${surplus[0]} into ${needs[0]}.`;
+    return `Flip ${nextMoveLabel(surplus[0])} into ${nextMoveLabel(needs[0])}.`;
   }
   if (needs.length && gain?.category) {
-    return `The cleanest move is to address ${needs[0]} with an eye on gaining ground in ${gain.category}.`;
+    return `Top fix: ${nextMoveLabel(needs[0])}.\nTop gain: ${gain.category}.`;
   }
   if (loss?.category) {
-    return `The priority is defensive: avoid leaking points in ${loss.category} before chasing upside elsewhere.`;
+    return `Protect ${loss.category} first.`;
   }
   if (gain?.category) {
-    return `Look for a small upgrade that turns ${gain.category} into the next category gain.`;
+    return `Make a small move for ${gain.category}.`;
   }
-  return 'No obvious forced move right now; keep optionality and wait for the next standings swing.';
+  return 'No forced move. Keep flexibility.';
+}
+function tradePostureClass(item) {
+  const text = String(item || '').toLowerCase();
+  if (!text || text === 'hold and monitor') return ' hold';
+  if (/can trade prospects/.test(text)) return ' leverage';
+  if (/surplus/.test(text)) return ' surplus';
+  if (/saves|sp|pitch|bullpen/.test(text)) return ' needs-pitching';
+  if (/bats|offense|power/.test(text)) return ' needs-bats';
+  return ' needs-general';
 }
 function renderTeamBoards(teams) {
   const grid = document.getElementById('teamBoards');
@@ -882,7 +1280,7 @@ function renderTeamBoards(teams) {
         <div class="signal-label">Trade Posture</div>
         <div class="signal-chip-list">
           ${(team.trade_needs || []).map((item) => {
-            const cls = /surplus|can trade prospects/i.test(item) ? ' surplus' : ' needs';
+            const cls = tradePostureClass(item);
             return `<span class="signal-chip${cls}">${esc(item)}</span>`;
           }).join('')}
         </div>
@@ -895,7 +1293,189 @@ function renderTeamBoards(teams) {
   `).join('');
 }
 
-fetchOraclePublic().then(data => {
+function mean(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+function stdDev(values) {
+  if (!values.length) return 1;
+  const avg = mean(values);
+  const variance = values.reduce((sum, value) => sum + ((value - avg) ** 2), 0) / values.length;
+  return Math.sqrt(variance) || 1;
+}
+function countCategoryLanes(gaps, key, threshold) {
+  return Object.values(gaps || {}).reduce((count, gap) => {
+    const value = Number(gap?.[key]);
+    if (!Number.isFinite(value)) return count;
+    return count + (value <= threshold ? 1 : 0);
+  }, 0);
+}
+function projectionChipClass(note) {
+  if (/title|rise|climb/i.test(note)) return 'push';
+  if (/hold|edge|favorite|podium/i.test(note)) return 'hold';
+  if (/watch|slip|thin/i.test(note)) return 'watch';
+  return 'variance';
+}
+function projectionRankClass(rank) {
+  if (rank <= 3) return 'top';
+  if (rank <= 6) return 'chase';
+  return 'pack';
+}
+function describeProjectionStatus(row) {
+  if (row.projected_rank === 1 && row.swing >= 3) return 'Title track';
+  if (row.current_rank - row.projected_rank >= 2) return 'Climbing lane';
+  if (row.projected_rank - row.current_rank >= 2) return 'Slip watch';
+  if (row.projected_rank <= 3) return 'Podium lane';
+  if (row.band >= 3.4) return 'Wide range';
+  return 'Hold range';
+}
+function topProjectionTags(row) {
+  const positives = [];
+  const negatives = [];
+
+  if (row.components.mlb_strength >= 1.0) positives.push('strong MLB core');
+  if (row.components.reach >= 2.6) positives.push('live category upside');
+  if (row.components.momentum >= 0.8) positives.push('recent standings momentum');
+  if (row.components.value_trend >= 0.35) positives.push('roster value rising');
+  if (row.components.stability >= 0.6) positives.push('stable weekly profile');
+  if (row.components.luck >= 0.7) positives.push('bad-luck rebound');
+  if (row.components.category_edge >= 0.45) positives.push('several gain lanes');
+
+  if (row.components.luck <= -0.7) negatives.push('some luck giveback');
+  if (row.components.stability <= -0.6) negatives.push('wide volatility');
+  if (row.components.mlb_strength <= -1.0) negatives.push('thin MLB base');
+  if (row.risk_lanes >= 5) negatives.push('several categories to defend');
+  if (row.farm_share >= 0.38) negatives.push('farm-heavy for a current chase');
+
+  const positiveText = positives.slice(0, 2).join(' + ');
+  if (positiveText && negatives.length) return `${positiveText}; ${negatives[0]}.`;
+  if (positiveText) return `${positiveText}.`;
+  if (negatives.length) return `${negatives[0]}.`;
+  return 'Balanced profile with no single driver overwhelming the read.';
+}
+function computeProjectionRows(teams, standingsData) {
+  const standingsMap = new Map((standingsData?.teams || []).map(team => [team.team, team]));
+  const mlbValues = teams.map(team => Number(team.mlb_value ?? team.mlb ?? 0)).filter(Number.isFinite);
+  const mlbMean = mean(mlbValues);
+  const mlbStd = stdDev(mlbValues);
+
+  const rows = teams.map(team => {
+    const standings = standingsMap.get(team.team) || {};
+    const currentPoints = Number(standings.total_pts);
+    if (!Number.isFinite(currentPoints)) return null;
+
+    const volatility = Number(team.volatility || 45);
+    const farmShare = Number(team.farm_share || 0);
+    const mlbValue = Number(team.mlb_value ?? team.mlb ?? 0);
+    const ptsChange = Number(team.trend?.pts_change ?? standings.pts_change ?? 0);
+    const valueDelta = Number(team.scatter_move?.value_delta || 0);
+    const liveLanes = countCategoryLanes(team.category_gaps, 'to_gain', 1.0);
+    const riskLanes = countCategoryLanes(team.category_gaps, 'to_loss', 1.0);
+
+    const components = {
+      reach: clamp(Number(team.reachable_points || 0) * 0.30, 0, 3.4),
+      luck: clamp(-Number(team.luck_delta || 0) * 0.55, -2.2, 2.2),
+      stability: clamp((45 - volatility) / 18, -1.4, 1.4),
+      mlb_strength: clamp(((mlbValue - mlbMean) / mlbStd) * 1.85, -2.4, 2.4),
+      momentum: clamp(ptsChange * 0.22, -1.6, 1.6),
+      value_trend: clamp((valueDelta / 1000) * 0.28, -0.8, 0.8),
+      category_edge: clamp((liveLanes * 0.18) - (riskLanes * 0.16), -1.2, 1.2),
+      farm_penalty: clamp((farmShare - 0.33) * -4, -0.8, 0.6),
+      tier_bias: {
+        contender: 0.55,
+        fringe: 0.15,
+        stagnating: -0.2,
+        rebuilding: -0.55,
+      }[team.contention_tier] ?? 0,
+    };
+
+    const swing = Object.values(components).reduce((sum, value) => sum + value, 0);
+    const projected = currentPoints + swing;
+    const band = clamp(volatility / 22, 1.8, 5.8);
+
+    return {
+      ...team,
+      current_points: currentPoints,
+      current_rank: Number(team.standings_rank || standings.rank || 0),
+      swing,
+      projected,
+      band,
+      low: projected - band,
+      high: projected + band,
+      live_lanes: liveLanes,
+      risk_lanes: riskLanes,
+      farm_share: farmShare,
+      components,
+    };
+  }).filter(Boolean);
+
+  rows.sort((a, b) => b.projected - a.projected || b.current_points - a.current_points || a.team.localeCompare(b.team));
+  return rows.map((row, index) => ({
+    ...row,
+    projected_rank: index + 1,
+    projected_gap: index === 0 ? 0 : rows[0].projected - row.projected,
+    rank_delta: row.current_rank - (index + 1),
+    note: describeProjectionStatus({ ...row, projected_rank: index + 1 }),
+    read: topProjectionTags({ ...row, projected_rank: index + 1 }),
+  }));
+}
+function renderProjectionCards(rows) {
+  const cards = document.getElementById('projectionCards');
+  if (!cards) return;
+  if (!rows.length) {
+    cards.innerHTML = '';
+    return;
+  }
+
+  const leader = rows[0];
+  const closestRace = rows.slice(1).reduce((best, row, index) => {
+    const prev = rows[index];
+    const gap = Math.abs(prev.projected - row.projected);
+    if (!best || gap < best.gap) {
+      return { gap, pair: [prev, row] };
+    }
+    return best;
+  }, null);
+  const biggestMover = rows.reduce((best, row) => {
+    if (!best || Math.abs(row.rank_delta) > Math.abs(best.rank_delta)) return row;
+    return best;
+  }, null);
+
+  cards.innerHTML = [
+    ['Projected Leader', leader.team, `${fmt(leader.projected, 1)} pts · current #${leader.current_rank}`],
+    closestRace
+      ? ['Tightest Race', `${closestRace.pair[0].team} vs ${closestRace.pair[1].team}`, `${fmt(closestRace.gap, 1)} projected points apart`]
+      : ['Tightest Race', '-', 'Not enough rows'],
+    biggestMover
+      ? ['Biggest Mover', biggestMover.team, `${biggestMover.rank_delta > 0 ? '+' : ''}${biggestMover.rank_delta} projected places`]
+      : ['Biggest Mover', '-', 'No movement yet'],
+  ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');
+}
+function renderProjectionTable(rows) {
+  const body = document.getElementById('projectionBody');
+  if (!body) return;
+  if (!rows.length) {
+    body.innerHTML = '<tr><td colspan="7">Projected standings unavailable.</td></tr>';
+    return;
+  }
+
+  body.innerHTML = rows.map(row => {
+    const swingClass = row.swing > 0.2 ? 'up' : row.swing < -0.2 ? 'down' : 'flat';
+    return (
+      '<tr>' +
+      `<td><span class="proj-rank-badge ${projectionRankClass(row.projected_rank)}">#${row.projected_rank}</span></td>` +
+      `<td><div class="proj-team-cell"><span class="proj-team-name">${esc(row.team)}</span><span class="proj-team-meta">Now #${esc(row.current_rank)} · ${esc(row.contention_tier || 'open race')}</span></div></td>` +
+      `<td class="proj-points">${fmt(row.current_points, 1)}</td>` +
+      `<td class="proj-points"><strong>${fmt(row.projected, 1)}</strong></td>` +
+      `<td class="proj-range">${fmt(row.low, 1)} to ${fmt(row.high, 1)}</td>` +
+      `<td><span class="proj-swing ${swingClass}">${formatSigned(row.swing, 1)}</span></td>` +
+      `<td class="proj-read"><span class="proj-note-chip ${projectionChipClass(row.note)}">${esc(row.note)}</span><div>${esc(row.read)}</div></td>` +
+      '</tr>'
+    );
+  }).join('');
+}
+
+Promise.all([fetchOraclePublic(), fetchStandingsData().catch(() => null)]).then(([data, standingsData]) => {
   const teams = data.teams || [];
   const standingsOrderedTeams = [...teams].sort((a, b) => a.standings_rank - b.standings_rank || a.oracle_rank - b.oracle_rank);
   TEAMS = teams.map(team => ({
@@ -932,6 +1512,9 @@ fetchOraclePublic().then(data => {
     `<td>${fmt(team.volatility, 1)}</td>` +
     `</tr>`
   )).join('') || '<tr><td colspan="7">No league intelligence rows found.</td></tr>';
+  const projectionRows = computeProjectionRows(teams, standingsData);
+  renderProjectionCards(projectionRows);
+  renderProjectionTable(projectionRows);
   renderTeamBoards(teams);
   const footer = document.getElementById('footerEl');
   if (footer) {
@@ -940,6 +1523,8 @@ fetchOraclePublic().then(data => {
 }).catch((err) => {
   const body = document.getElementById('intelBody');
   if (body) body.innerHTML = '<tr><td colspan="7">League intelligence data not available.</td></tr>';
+  const projectionBody = document.getElementById('projectionBody');
+  if (projectionBody) projectionBody.innerHTML = '<tr><td colspan="7">Projected standings unavailable.</td></tr>';
   const boards = document.getElementById('teamBoards');
   if (boards) boards.innerHTML = `<div class="state-msg">Could not load team intel. (${esc(err.message)})</div>`;
 });
