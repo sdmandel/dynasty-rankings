@@ -141,7 +141,9 @@ body {
   letter-spacing: .04em;
   line-height: 1;
   color: var(--gold);
+  text-decoration: none;
 }
+.leaderboard-title:hover { color: #d9ba63; }
 .leaderboard-link {
   font-size: 10px;
   font-weight: 700;
@@ -262,7 +264,7 @@ body {
   margin-bottom: 48px;
 }
 .tool-grid.tools-grid-compact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .tool-grid.tools-grid-compact .tile-preview {
   height: 190px;
@@ -506,8 +508,7 @@ body {
 <div class="nav-section">
   <div class="leaderboard">
     <div class="leaderboard-head">
-      <div class="leaderboard-title">Top 6 Leaderboard</div>
-      <a class="leaderboard-link" href="standings.html">Full Standings →</a>
+      <a class="leaderboard-title" href="standings.html">Leaderboard</a>
     </div>
     <div class="lb-list" id="leaderboardList"></div>
   </div>
@@ -542,19 +543,6 @@ body {
 
   <div class="section-label">League</div>
   <div class="tool-grid tools-grid-compact">
-
-    <!-- ── Standings tile ── -->
-    <a href="standings.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="st-list" id="standingsPreview"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Live &nbsp;·&nbsp; Roto 5&times;5</div>
-        <div class="tile-title">Standings</div>
-        <div class="tile-meta">Category breakdown for all 12 teams. Updated multiple times per day.</div>
-        <span class="tile-arrow">View standings →</span>
-      </div>
-    </a>
 
     <a href="team_intel.html" class="tool-tile">
       <div class="tile-preview">
@@ -713,43 +701,28 @@ fetch(standingsUrl, { cache: 'no-store' }).then(r => {
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }).then(data => {
-  const el = document.getElementById('standingsPreview');
   const lb = document.getElementById('leaderboardList');
-  if (!el) return;
+  if (!lb) return;
   const teams = data.teams || [];
   if (!teams.length) {
-    setPreviewUnavailable('standingsPreview', 'Standings');
-    if (lb) lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
+    lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
     return;
   }
-  const max = Math.max(...teams.map(t => t.total_pts));
-  teams.forEach(t => {
-    const pct = (t.total_pts / max * 100).toFixed(1);
-    const row = document.createElement('div');
-    row.className = 'st-row' + (t.rank === 1 ? ' rank1' : '');
-    row.innerHTML =
-      `<div class="st-rank">#${t.rank}</div>` +
-      `<div class="st-track"><div class="st-fill" style="width:${pct}%"></div></div>` +
-      `<div class="st-pts">${t.total_pts.toFixed(1)}</div>`;
-    el.appendChild(row);
-  });
-
-  if (lb) {
-    const top = [...teams].sort((a,b) => (a.rank || 99) - (b.rank || 99)).slice(0, 6);
-    lb.innerHTML = top.map(t => {
-      const change = Number(t.pts_change || 0);
-      const changeCls = change > 0 ? 'up' : change < 0 ? 'down' : '';
-      const changeTxt = change > 0 ? `+${change.toFixed(1)}` : change.toFixed(1);
-      return `<div class="lb-row">
-        <div class="lb-rank">#${t.rank}</div>
-        <div class="lb-team">${esc(t.team)}</div>
-        <div class="lb-pts">${Number(t.total_pts).toFixed(1)}</div>
-        <div class="lb-change ${changeCls}">${changeTxt}</div>
-      </div>`;
-    }).join('');
-  }
+  const top = [...teams].sort((a,b) => (a.rank || 99) - (b.rank || 99)).slice(0, 6);
+  lb.innerHTML = top.map(t => {
+    const change = Number(t.pts_change || 0);
+    const changeCls = change > 0 ? 'up' : change < 0 ? 'down' : '';
+    const changeTxt = change > 0 ? `+${change.toFixed(1)}` : change.toFixed(1);
+    return `<div class="lb-row">
+      <div class="lb-rank">#${t.rank}</div>
+      <div class="lb-team">${esc(t.team)}</div>
+      <div class="lb-pts">${Number(t.total_pts).toFixed(1)}</div>
+      <div class="lb-change ${changeCls}">${changeTxt}</div>
+    </div>`;
+  }).join('');
 }).catch(() => {
-  setPreviewUnavailable('standingsPreview', 'Standings');
+  const lb = document.getElementById('leaderboardList');
+  if (lb) lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
 });
 
 // Transactions preview
