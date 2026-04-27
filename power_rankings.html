@@ -141,6 +141,45 @@ body {
   line-height: 1.7;
   max-width: 780px;
 }
+.archive-summary-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.summary-pill {
+  font-size: 12px;
+  font-weight: 500;
+  background: #181819;
+  border: 1px solid #2a2a2c;
+  border-radius: 4px;
+  padding: 3px 10px;
+  color: #a8a59e;
+  white-space: nowrap;
+}
+.summary-rank {
+  color: #5a5855;
+  margin-right: 3px;
+  font-size: 11px;
+}
+.summary-pill.rank-1 {
+  border-color: #3a3020;
+  color: #d4b96a;
+  background: #1a1708;
+}
+.summary-pill.rank-1 .summary-rank { color: #c8a84b; }
+.summary-pill.rank-2 {
+  border-color: #343230;
+  color: #beb9b0;
+  background: #171716;
+}
+.summary-pill.rank-2 .summary-rank { color: #8a8680; }
+.summary-pill.rank-3 {
+  border-color: #332515;
+  color: #c29663;
+  background: #18110a;
+}
+.summary-pill.rank-3 .summary-rank { color: #7a5c38; }
 .archive-side {
   display: flex;
   flex-direction: column;
@@ -198,11 +237,33 @@ body {
   <div class="year-label">2026 Season — All Issues</div>
   <div class="archive-list">
 
-    <a href="week5_power_rankings.html" class="archive-row featured">
+    <a href="week6_power_rankings.html" class="archive-row featured">
       <div class="archive-main">
-        <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 5</div>
+        <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 6</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">The group chat radicalized in a very unfair way and the Oracle once again found a way to make everyone feel seen, personally attacked, or both. The top tightened, the middle and basement played a boring game of musical chairs, which means the movement had to come from ego, grievance, and selective math. Rankings powered by the Oracle.</div>
+        <div class="archive-summary-pills" aria-label="Week 6 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>Seam Heads</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>Acu&ntilde;a Matata</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>Rollie Fingers</span>
+        </div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">Apr 27, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
+    </a>
+
+    <a href="week5_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 5</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">The top tier is no longer theoretical. Well, I mean it hasn't been theoretical since week 1, have you seen the Seam Heads? They have now spent 16 of 26 days in first. The rest of the board looks a bit more interesting, however, as John Henry finally pushed the standings closer to what the Oracle has been screaming for a month, and philbell keeps climbing by behaving like the only adult in a league otherwise run by traders, obsessives, and people who appear to set lineups by lunar cycle. Rankings powered by the Oracle.</div>
+        <div class="archive-summary-pills" aria-label="Week 5 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>Seam Heads</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>John Henry Fan Club</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>philbell</span>
+        </div>
       </div>
       <div class="archive-side">
         <div class="archive-date">Apr 20, 2026</div>
@@ -215,6 +276,11 @@ body {
         <div class="archive-kicker">Week 4</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">Did we just witness the most expensive typo in league history? Acquiring a minor leaguer from Kansas City named Mason Miller instead of, you know, the other one. In other news, we would like to be the first to congratulate Mommy on getting married Saturday! As a reward for finally popping his cherry, we are extending exactly one courtesy exemption from the ghost designation this week. I do not typically do courtesies. This is a special occasion. Nearing a month in, the standings are starting to look suspiciously similar to last year's final standings... which is either a sign of a well-balanced, consistently competitive league, or a sign that half of you have already given up and are running the same lineup on autopilot. I have reviewed the session logs. It is the second thing. Rankings powered by the Oracle.</div>
+        <div class="archive-summary-pills" aria-label="Week 4 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>Seam Heads</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>Rollie Fingers</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>John Henry Fan Club</span>
+        </div>
       </div>
       <div class="archive-side">
         <div class="archive-date">Apr 14, 2026</div>
@@ -227,6 +293,11 @@ body {
         <div class="archive-kicker">Week 3</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">The Oracle has been upgraded. In addition to composite scores and positional scarcity multipliers, it now monitors daily lineup activity across all 12 teams. It counts the days. It remembers. It does not send reminders, because reminders are not its job, publishing the results is. Two managers have been issued ghost pills this week. The Oracle does not judge. The Oracle simply reports. Rankings powered by the Oracle.</div>
+        <div class="archive-summary-pills" aria-label="Week 3 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>John Henry Fan Club</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>Seam Heads</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>philbell</span>
+        </div>
       </div>
       <div class="archive-side">
         <div class="archive-date">Apr 7, 2026</div>
@@ -239,6 +310,11 @@ body {
         <div class="archive-kicker">Week 2</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">Is anyone reading this? Are you paying attention? Do you even know what you're looking at? Good. Six trades in two weeks, three of them on the same Thursday, and one team somehow acquired Jose Ramirez, Jhoan Duran, and a restraining order against its own future. Millville Meteors went from 11th to 3rd in the standings in 48 hours. The biggest riser: Rollie Fingers, up three spots and leading the league. The biggest faller: John Henry Fan Club, down three after trading away their entire youth pipeline for the present tense. The season is one week old and it is already unhinged. Or is it playing out exactly as predicted? Rankings powered by the Oracle.</div>
+        <div class="archive-summary-pills" aria-label="Week 2 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>philbell</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>Rollie Fingers</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>Humongous Melonheads</span>
+        </div>
       </div>
       <div class="archive-side">
         <div class="archive-date">Mar 31, 2026</div>
@@ -251,6 +327,11 @@ body {
         <div class="archive-kicker">Week 1</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">The winter is over. Two new owners have entered the building. One old villain returned with a new identity. And the reigning champion is now running the whole operation, which feels vaguely like letting the 2024 Dodgers write the 2025 playoff bracket. Rankings powered by my totally objective algorithmrithm i built on company time and with company property. Scores are final. Arguments are welcome. Refunds are not available.</div>
+        <div class="archive-summary-pills" aria-label="Week 1 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>philbell</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>John Henry Fan Club</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>Humongous Melonheads</span>
+        </div>
       </div>
       <div class="archive-side">
         <div class="archive-date">Mar 27, 2026</div>
