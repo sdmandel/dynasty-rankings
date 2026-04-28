@@ -13,8 +13,10 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "roster_depth.html"
       - "standings.html"
       - "data/standings.json"
+      - "data/trade_block.json"
       - "assets/**"
       - "tests/**"
       - ".github/workflows/deploy-pages-on-release.yml"
