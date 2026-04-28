@@ -1,12 +1,12 @@
 {
   "generated": "2026-04-28",
-  "generated_at": "2026-04-28T13:00:07-05:00",
+  "generated_at": "2026-04-28T14:00:02-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 35,
   "snapshot_date": "2026-04-28",
   "sources": {
-    "standings": "2026-04-28T13:00:07-05:00",
+    "standings": "2026-04-28T14:00:02-05:00",
     "intelligence": "2026-04-28",
     "managers": "2026-04-28",
     "oracle_values": "data/rankings_latest.csv"
@@ -17,14 +17,112 @@
   },
   "teams": [
     {
-      "team": "John Henry Fan Club",
+      "team": "Rollie Fingers",
       "oracle_rank": 1,
+      "standings_rank": 3,
+      "total_value": 36966.2,
+      "mlb_value": 31559.9,
+      "farm_value": 5406.3,
+      "avg_age": 27.6,
+      "farm_share": 0.1462,
+      "contention_tier": "fringe",
+      "points_back": 11.5,
+      "reachable_points": 8.0,
+      "tight_categories": [
+        "RBI",
+        "SB",
+        "SVH"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": null,
+          "to_loss": 0.0
+        },
+        "SB": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "SVH": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.0,
+      "volatility": 32.13,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "SB",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "RBI",
+          "gap": 0.0
+        },
+        "summary": "closest gain: SB (0.0) \u00b7 closest loss: RBI (0.0)"
+      },
+      "public_archetypes": [
+        "fringe",
+        "power bat backbone",
+        "trade-driven"
+      ],
+      "trade_needs": [
+        "hold and monitor"
+      ],
+      "trend": {
+        "pts_change": 3.5,
+        "stock": "edge",
+        "summary": "One move from gaining SB",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 27.6,
+        "previous_total_value": 36764.1,
+        "age_delta": 0.0,
+        "value_delta": 202.1,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "John Henry Fan Club",
+      "oracle_rank": 2,
       "standings_rank": 5,
-      "total_value": 37349.4,
-      "mlb_value": 25820.6,
-      "farm_value": 11528.8,
+      "total_value": 35530.6,
+      "mlb_value": 26228.5,
+      "farm_value": 9302.1,
       "avg_age": 27.2,
-      "farm_share": 0.3087,
+      "farm_share": 0.2618,
       "contention_tier": "fringe",
       "points_back": 20.0,
       "reachable_points": 10.0,
@@ -109,107 +207,9 @@
       },
       "scatter_move": {
         "previous_avg_age": 27.2,
-        "previous_total_value": 37458.6,
+        "previous_total_value": 37349.4,
         "age_delta": 0.0,
-        "value_delta": -109.2,
-        "previous_quadrant": "REBUILDING",
-        "current_quadrant": "REBUILDING"
-      }
-    },
-    {
-      "team": "Rollie Fingers",
-      "oracle_rank": 2,
-      "standings_rank": 3,
-      "total_value": 36764.1,
-      "mlb_value": 31374.6,
-      "farm_value": 5389.5,
-      "avg_age": 27.6,
-      "farm_share": 0.1466,
-      "contention_tier": "fringe",
-      "points_back": 11.5,
-      "reachable_points": 8.0,
-      "tight_categories": [
-        "RBI",
-        "SB",
-        "SVH"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": null,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "RBI": {
-          "to_gain": null,
-          "to_loss": 0.0
-        },
-        "SB": {
-          "to_gain": 0.0,
-          "to_loss": 2.0
-        },
-        "SVH": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": 0.0,
-      "volatility": 32.13,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "SB",
-          "gap": 0.0
-        },
-        "loss_risk": {
-          "category": "RBI",
-          "gap": 0.0
-        },
-        "summary": "closest gain: SB (0.0) \u00b7 closest loss: RBI (0.0)"
-      },
-      "public_archetypes": [
-        "fringe",
-        "power bat backbone",
-        "trade-driven"
-      ],
-      "trade_needs": [
-        "hold and monitor"
-      ],
-      "trend": {
-        "pts_change": 3.5,
-        "stock": "edge",
-        "summary": "One move from gaining SB",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 27.5,
-        "previous_total_value": 36974.4,
-        "age_delta": 0.1,
-        "value_delta": -210.3,
+        "value_delta": -1818.8,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       }
@@ -218,11 +218,11 @@
       "team": "Humongous Melonheads",
       "oracle_rank": 3,
       "standings_rank": 4,
-      "total_value": 34819.6,
-      "mlb_value": 30394.5,
-      "farm_value": 4425.1,
+      "total_value": 35069.0,
+      "mlb_value": 30633.5,
+      "farm_value": 4435.5,
       "avg_age": 27.9,
-      "farm_share": 0.1271,
+      "farm_share": 0.1265,
       "contention_tier": "fringe",
       "points_back": 16.0,
       "reachable_points": 7.0,
@@ -290,7 +290,7 @@
       "public_archetypes": [
         "fringe",
         "volume arms",
-        "quiet roster"
+        "trade-driven"
       ],
       "trade_needs": [
         "fragile SP depth",
@@ -305,10 +305,10 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.0,
-        "previous_total_value": 34142.0,
-        "age_delta": -0.1,
-        "value_delta": 677.6,
+        "previous_avg_age": 27.9,
+        "previous_total_value": 34819.6,
+        "age_delta": 0.0,
+        "value_delta": 249.4,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       }
@@ -317,11 +317,11 @@
       "team": "Seam heads",
       "oracle_rank": 4,
       "standings_rank": 2,
-      "total_value": 34375.4,
-      "mlb_value": 28110.1,
-      "farm_value": 6265.3,
+      "total_value": 34618.6,
+      "mlb_value": 28338.0,
+      "farm_value": 6280.6,
       "avg_age": 29.0,
-      "farm_share": 0.1823,
+      "farm_share": 0.1814,
       "contention_tier": "contender",
       "points_back": 3.5,
       "reachable_points": 8.0,
@@ -389,7 +389,7 @@
       "public_archetypes": [
         "contender",
         "volume arms",
-        "waiver churn"
+        "trade-driven"
       ],
       "trade_needs": [
         "fragile SP depth"
@@ -403,10 +403,10 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.8,
-        "previous_total_value": 34323.7,
-        "age_delta": 0.2,
-        "value_delta": 51.7,
+        "previous_avg_age": 29.0,
+        "previous_total_value": 34375.4,
+        "age_delta": 0.0,
+        "value_delta": 243.2,
         "previous_quadrant": "WIN NOW",
         "current_quadrant": "WIN NOW"
       }
@@ -415,11 +415,11 @@
       "team": "Acu\u00f1a Matata",
       "oracle_rank": 5,
       "standings_rank": 1,
-      "total_value": 32668.8,
-      "mlb_value": 27320.1,
-      "farm_value": 5348.7,
+      "total_value": 33236.1,
+      "mlb_value": 27819.3,
+      "farm_value": 5416.8,
       "avg_age": 27.9,
-      "farm_share": 0.1637,
+      "farm_share": 0.163,
       "contention_tier": "contender",
       "points_back": 0.0,
       "reachable_points": 9.0,
@@ -503,9 +503,9 @@
       },
       "scatter_move": {
         "previous_avg_age": 27.9,
-        "previous_total_value": 32341.6,
+        "previous_total_value": 32668.8,
         "age_delta": 0.0,
-        "value_delta": 327.2,
+        "value_delta": 567.3,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       }
@@ -514,11 +514,11 @@
       "team": "Vin Mazzaro fan club",
       "oracle_rank": 6,
       "standings_rank": 6,
-      "total_value": 29007.5,
-      "mlb_value": 24316.8,
-      "farm_value": 4690.7,
+      "total_value": 29191.6,
+      "mlb_value": 24528.9,
+      "farm_value": 4662.7,
       "avg_age": 28.6,
-      "farm_share": 0.1617,
+      "farm_share": 0.1597,
       "contention_tier": "fringe",
       "points_back": 22.5,
       "reachable_points": 9.0,
@@ -600,11 +600,11 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.3,
-        "previous_total_value": 27326.0,
-        "age_delta": 0.3,
-        "value_delta": 1681.5,
-        "previous_quadrant": "REBUILDING",
+        "previous_avg_age": 28.6,
+        "previous_total_value": 29007.5,
+        "age_delta": 0.0,
+        "value_delta": 184.1,
+        "previous_quadrant": "WIN NOW",
         "current_quadrant": "WIN NOW"
       }
     },
@@ -612,11 +612,11 @@
       "team": "Inkers",
       "oracle_rank": 7,
       "standings_rank": 11,
-      "total_value": 28488.6,
-      "mlb_value": 21492.2,
-      "farm_value": 6996.4,
+      "total_value": 28232.4,
+      "mlb_value": 21225.6,
+      "farm_value": 7006.8,
       "avg_age": 28.1,
-      "farm_share": 0.2456,
+      "farm_share": 0.2482,
       "contention_tier": "rebuilding",
       "points_back": 52.0,
       "reachable_points": 10.0,
@@ -700,10 +700,10 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.3,
-        "previous_total_value": 29010.2,
-        "age_delta": -0.2,
-        "value_delta": -521.6,
+        "previous_avg_age": 28.1,
+        "previous_total_value": 28488.6,
+        "age_delta": 0.0,
+        "value_delta": -256.2,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       }
@@ -712,11 +712,11 @@
       "team": "Millville Meteors",
       "oracle_rank": 8,
       "standings_rank": 7,
-      "total_value": 26121.6,
-      "mlb_value": 23878.9,
-      "farm_value": 2242.7,
+      "total_value": 26571.8,
+      "mlb_value": 24235.4,
+      "farm_value": 2336.4,
       "avg_age": 29.1,
-      "farm_share": 0.0859,
+      "farm_share": 0.0879,
       "contention_tier": "rebuilding",
       "points_back": 42.5,
       "reachable_points": 10.0,
@@ -783,7 +783,7 @@
       },
       "public_archetypes": [
         "rebuilding",
-        "quiet roster"
+        "waiver churn"
       ],
       "trade_needs": [
         "needs saves",
@@ -791,7 +791,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": -0.5,
         "stock": "edge",
         "summary": "One move from gaining HR",
         "rank_delta": null,
@@ -799,10 +799,10 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 29.2,
-        "previous_total_value": 26169.2,
-        "age_delta": -0.1,
-        "value_delta": -47.6,
+        "previous_avg_age": 29.1,
+        "previous_total_value": 26121.6,
+        "age_delta": 0.0,
+        "value_delta": 450.2,
         "previous_quadrant": "WIN NOW",
         "current_quadrant": "WIN NOW"
       }
@@ -811,11 +811,11 @@
       "team": "Trazadone",
       "oracle_rank": 9,
       "standings_rank": 10,
-      "total_value": 25154.6,
-      "mlb_value": 19433.4,
-      "farm_value": 5721.2,
+      "total_value": 25310.9,
+      "mlb_value": 19954.3,
+      "farm_value": 5356.6,
       "avg_age": 29.8,
-      "farm_share": 0.2274,
+      "farm_share": 0.2116,
       "contention_tier": "rebuilding",
       "points_back": 48.0,
       "reachable_points": 9.0,
@@ -882,8 +882,8 @@
       },
       "public_archetypes": [
         "rebuilding",
-        "prospect stockpile",
-        "ratio-first staff"
+        "ratio-first staff",
+        "trade-driven"
       ],
       "trade_needs": [
         "needs saves",
@@ -899,11 +899,11 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 30.2,
-        "previous_total_value": 24425.7,
-        "age_delta": -0.4,
-        "value_delta": 728.9,
-        "previous_quadrant": "AGING OUT",
+        "previous_avg_age": 29.8,
+        "previous_total_value": 25154.6,
+        "age_delta": 0.0,
+        "value_delta": 156.3,
+        "previous_quadrant": "WIN NOW",
         "current_quadrant": "WIN NOW"
       }
     },
@@ -911,11 +911,11 @@
       "team": "Sam",
       "oracle_rank": 10,
       "standings_rank": 9,
-      "total_value": 23957.6,
-      "mlb_value": 20834.2,
-      "farm_value": 3123.4,
+      "total_value": 24325.8,
+      "mlb_value": 21158.8,
+      "farm_value": 3167.0,
       "avg_age": 30.2,
-      "farm_share": 0.1304,
+      "farm_share": 0.1302,
       "contention_tier": "rebuilding",
       "points_back": 47.5,
       "reachable_points": 10.0,
@@ -989,7 +989,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -998,9 +998,9 @@
       },
       "scatter_move": {
         "previous_avg_age": 30.2,
-        "previous_total_value": 24170.2,
+        "previous_total_value": 23957.6,
         "age_delta": 0.0,
-        "value_delta": -212.6,
+        "value_delta": 368.2,
         "previous_quadrant": "AGING OUT",
         "current_quadrant": "AGING OUT"
       }
@@ -1009,11 +1009,11 @@
       "team": "Mommy",
       "oracle_rank": 11,
       "standings_rank": 12,
-      "total_value": 23133.6,
-      "mlb_value": 22103.7,
-      "farm_value": 1029.9,
+      "total_value": 23559.3,
+      "mlb_value": 22515.9,
+      "farm_value": 1043.4,
       "avg_age": 30.4,
-      "farm_share": 0.0445,
+      "farm_share": 0.0443,
       "contention_tier": "rebuilding",
       "points_back": 65.0,
       "reachable_points": 10.0,
@@ -1097,9 +1097,9 @@
       },
       "scatter_move": {
         "previous_avg_age": 30.4,
-        "previous_total_value": 23442.4,
+        "previous_total_value": 23133.6,
         "age_delta": 0.0,
-        "value_delta": -308.8,
+        "value_delta": 425.7,
         "previous_quadrant": "AGING OUT",
         "current_quadrant": "AGING OUT"
       }
@@ -1108,11 +1108,11 @@
       "team": "Pat",
       "oracle_rank": 12,
       "standings_rank": 8,
-      "total_value": 22251.2,
-      "mlb_value": 21291.6,
-      "farm_value": 959.6,
+      "total_value": 22774.8,
+      "mlb_value": 21767.7,
+      "farm_value": 1007.1,
       "avg_age": 31.3,
-      "farm_share": 0.0431,
+      "farm_share": 0.0442,
       "contention_tier": "rebuilding",
       "points_back": 43.5,
       "reachable_points": 10.0,
@@ -1196,10 +1196,10 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 31.2,
-        "previous_total_value": 22588.5,
-        "age_delta": 0.1,
-        "value_delta": -337.3,
+        "previous_avg_age": 31.3,
+        "previous_total_value": 22251.2,
+        "age_delta": 0.0,
+        "value_delta": 523.6,
         "previous_quadrant": "AGING OUT",
         "current_quadrant": "AGING OUT"
       }
