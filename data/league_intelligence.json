@@ -41,16 +41,16 @@
           "to_loss": 0.0
         },
         "cat_qs": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 0.5,
+          "to_loss": 1.0
         },
         "cat_r": {
           "to_gain": 1.0,
           "to_loss": 1.5
         },
         "cat_rbi": {
-          "to_gain": 0.5,
-          "to_loss": 1.0
+          "to_gain": 1.0,
+          "to_loss": 0.5
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -66,25 +66,25 @@
         }
       },
       "luck": {
-        "actual_points": 96.0,
-        "expected_points": 95.5,
-        "delta": 0.5,
-        "cluster_sensitivity": 75.0,
+        "actual_points": 94.5,
+        "expected_points": 94.5,
+        "delta": 0.0,
+        "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 16.64,
+        "team_volatility_score": 16.27,
         "category_volatility": {
           "cat_era": 0.0,
           "cat_hr": 0.208,
           "cat_k": 0.471,
           "cat_ops": 1.397,
-          "cat_qs": 1.012,
+          "cat_qs": 0.994,
           "cat_r": 1.133,
-          "cat_rbi": 0.471,
+          "cat_rbi": 0.657,
           "cat_sb": 1.021,
-          "cat_svh": 0.533,
-          "cat_whip": 0.0
+          "cat_svh": 0.471,
+          "cat_whip": 0.314
         }
       }
     },
@@ -92,12 +92,12 @@
       "team": "Seam heads",
       "source_team": "Seam heads",
       "tier": "contender",
-      "points_back": 6.0,
+      "points_back": 4.0,
       "reachable_points": 8.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
-        "cat_k"
+        "cat_k",
+        "cat_rbi"
       ],
       "category_gaps": {
         "cat_era": {
@@ -125,8 +125,8 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -142,14 +142,14 @@
         }
       },
       "luck": {
-        "actual_points": 90.0,
+        "actual_points": 90.5,
         "expected_points": 90.0,
-        "delta": 0.0,
-        "cluster_sensitivity": 70.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 65.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 23.62,
+        "team_volatility_score": 23.63,
         "category_volatility": {
           "cat_era": 1.768,
           "cat_hr": 2.749,
@@ -157,7 +157,7 @@
           "cat_ops": 2.483,
           "cat_qs": 1.648,
           "cat_r": 1.576,
-          "cat_rbi": 2.842,
+          "cat_rbi": 2.856,
           "cat_sb": 1.479,
           "cat_svh": 1.055,
           "cat_whip": 2.731
@@ -168,7 +168,7 @@
       "team": "Rollie Fingers",
       "source_team": "Rollie Fingers",
       "tier": "contender",
-      "points_back": 7.5,
+      "points_back": 7.0,
       "reachable_points": 8.0,
       "tight_categories": [
         "cat_era",
@@ -202,7 +202,7 @@
         },
         "cat_rbi": {
           "to_gain": null,
-          "to_loss": 1.0
+          "to_loss": 1.5
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -210,7 +210,7 @@
         },
         "cat_svh": {
           "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_loss": 0.5
         },
         "cat_whip": {
           "to_gain": 1.0,
@@ -218,14 +218,14 @@
         }
       },
       "luck": {
-        "actual_points": 88.5,
-        "expected_points": 88.0,
+        "actual_points": 87.5,
+        "expected_points": 87.0,
         "delta": 0.5,
         "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 32.28,
+        "team_volatility_score": 32.23,
         "category_volatility": {
           "cat_era": 1.492,
           "cat_hr": 0.087,
@@ -235,7 +235,7 @@
           "cat_r": 0.63,
           "cat_rbi": 0.901,
           "cat_sb": 3.146,
-          "cat_svh": 1.747,
+          "cat_svh": 1.731,
           "cat_whip": 2.358
         }
       }
@@ -244,7 +244,7 @@
       "team": "Humongous Melonheads",
       "source_team": "Humongous Melonheads",
       "tier": "fringe",
-      "points_back": 15.5,
+      "points_back": 14.0,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -277,7 +277,7 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "cat_sb": {
@@ -295,9 +295,9 @@
       },
       "luck": {
         "actual_points": 80.5,
-        "expected_points": 79.5,
-        "delta": 1.0,
-        "cluster_sensitivity": 70.0,
+        "expected_points": 79.0,
+        "delta": 1.5,
+        "cluster_sensitivity": 65.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -320,7 +320,7 @@
       "team": "Vin Mazzaro fan club",
       "source_team": "Vin Mazzaro fan club",
       "tier": "fringe",
-      "points_back": 21.5,
+      "points_back": 20.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_hr",
@@ -345,16 +345,16 @@
           "to_loss": 1.0
         },
         "cat_qs": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 2.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.5,
-          "to_loss": 0.5
+          "to_gain": 0.5,
+          "to_loss": 1.5
         },
         "cat_sb": {
           "to_gain": 1.5,
@@ -371,9 +371,9 @@
       },
       "luck": {
         "actual_points": 74.5,
-        "expected_points": 72.5,
-        "delta": 2.0,
-        "cluster_sensitivity": 60.0,
+        "expected_points": 74.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 65.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -396,7 +396,7 @@
       "team": "John Henry Fan Club",
       "source_team": "John Henry Fan Club",
       "tier": "fringe",
-      "points_back": 23.0,
+      "points_back": 21.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -430,7 +430,7 @@
         },
         "cat_rbi": {
           "to_gain": 1.0,
-          "to_loss": 2.0
+          "to_loss": 1.5
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -472,7 +472,7 @@
       "team": "Millville Meteors",
       "source_team": "Millville Meteors",
       "tier": "rebuilding",
-      "points_back": 42.5,
+      "points_back": 41.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -497,12 +497,12 @@
           "to_loss": 1.0
         },
         "cat_qs": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.5,
+          "to_loss": 0.5
         },
         "cat_r": {
           "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_loss": 0.5
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -523,8 +523,8 @@
       },
       "luck": {
         "actual_points": 53.5,
-        "expected_points": 54.0,
-        "delta": -0.5,
+        "expected_points": 53.0,
+        "delta": 0.5,
         "cluster_sensitivity": 65.0,
         "efficiency_score": null
       },
@@ -548,7 +548,7 @@
       "team": "Pat",
       "source_team": "Pat",
       "tier": "rebuilding",
-      "points_back": 45.0,
+      "points_back": 43.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -581,8 +581,8 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_gain": 1.5,
+          "to_loss": 1.0
         },
         "cat_sb": {
           "to_gain": 2.0,
@@ -599,8 +599,8 @@
       },
       "luck": {
         "actual_points": 51.0,
-        "expected_points": 50.5,
-        "delta": 0.5,
+        "expected_points": 49.5,
+        "delta": 1.5,
         "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
@@ -621,86 +621,10 @@
       }
     },
     {
-      "team": "Sam",
-      "source_team": "Sam",
-      "tier": "rebuilding",
-      "points_back": 49.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "cat_era",
-        "cat_ops",
-        "cat_sb"
-      ],
-      "category_gaps": {
-        "cat_era": {
-          "to_gain": 0.0,
-          "to_loss": 1.0
-        },
-        "cat_hr": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_k": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_ops": {
-          "to_gain": 0.0,
-          "to_loss": 1.0
-        },
-        "cat_qs": {
-          "to_gain": 0.5,
-          "to_loss": 2.0
-        },
-        "cat_r": {
-          "to_gain": 1.0,
-          "to_loss": 0.5
-        },
-        "cat_rbi": {
-          "to_gain": 0.5,
-          "to_loss": 0.5
-        },
-        "cat_sb": {
-          "to_gain": 0.0,
-          "to_loss": 2.0
-        },
-        "cat_svh": {
-          "to_gain": 1.5,
-          "to_loss": 1.0
-        },
-        "cat_whip": {
-          "to_gain": 2.0,
-          "to_loss": 0.0
-        }
-      },
-      "luck": {
-        "actual_points": 47.0,
-        "expected_points": 47.0,
-        "delta": 0.0,
-        "cluster_sensitivity": 80.0,
-        "efficiency_score": null
-      },
-      "volatility": {
-        "team_volatility_score": 46.57,
-        "category_volatility": {
-          "cat_era": 2.156,
-          "cat_hr": 0.8,
-          "cat_k": 1.747,
-          "cat_ops": 1.635,
-          "cat_qs": 1.027,
-          "cat_r": 1.636,
-          "cat_rbi": 2.755,
-          "cat_sb": 1.772,
-          "cat_svh": 0.993,
-          "cat_whip": 3.539
-        }
-      }
-    },
-    {
       "team": "Trazadone",
       "source_team": "Trazadone",
       "tier": "rebuilding",
-      "points_back": 49.0,
+      "points_back": 47.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_r",
@@ -733,8 +657,8 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 2.0,
-          "to_loss": 0.5
+          "to_gain": 1.5,
+          "to_loss": 1.0
         },
         "cat_sb": {
           "to_gain": 0.0,
@@ -750,14 +674,14 @@
         }
       },
       "luck": {
-        "actual_points": 47.0,
-        "expected_points": 47.5,
+        "actual_points": 47.5,
+        "expected_points": 48.0,
         "delta": -0.5,
         "cluster_sensitivity": 75.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 59.63,
+        "team_volatility_score": 59.59,
         "category_volatility": {
           "cat_era": 4.069,
           "cat_hr": 3.627,
@@ -765,7 +689,7 @@
           "cat_ops": 3.721,
           "cat_qs": 2.118,
           "cat_r": 3.252,
-          "cat_rbi": 3.687,
+          "cat_rbi": 3.664,
           "cat_sb": 2.698,
           "cat_svh": 0.694,
           "cat_whip": 4.012
@@ -773,14 +697,90 @@
       }
     },
     {
+      "team": "Sam",
+      "source_team": "Sam",
+      "tier": "rebuilding",
+      "points_back": 47.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "cat_era",
+        "cat_ops",
+        "cat_sb"
+      ],
+      "category_gaps": {
+        "cat_era": {
+          "to_gain": 0.0,
+          "to_loss": 1.0
+        },
+        "cat_hr": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_k": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_ops": {
+          "to_gain": 0.0,
+          "to_loss": 1.0
+        },
+        "cat_qs": {
+          "to_gain": 0.5,
+          "to_loss": 2.0
+        },
+        "cat_r": {
+          "to_gain": 1.0,
+          "to_loss": 0.5
+        },
+        "cat_rbi": {
+          "to_gain": 1.0,
+          "to_loss": 0.5
+        },
+        "cat_sb": {
+          "to_gain": 0.0,
+          "to_loss": 2.0
+        },
+        "cat_svh": {
+          "to_gain": 0.5,
+          "to_loss": 1.0
+        },
+        "cat_whip": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        }
+      },
+      "luck": {
+        "actual_points": 47.0,
+        "expected_points": 47.5,
+        "delta": -0.5,
+        "cluster_sensitivity": 85.0,
+        "efficiency_score": null
+      },
+      "volatility": {
+        "team_volatility_score": 46.57,
+        "category_volatility": {
+          "cat_era": 2.156,
+          "cat_hr": 0.8,
+          "cat_k": 1.747,
+          "cat_ops": 1.635,
+          "cat_qs": 1.027,
+          "cat_r": 1.636,
+          "cat_rbi": 2.755,
+          "cat_sb": 1.772,
+          "cat_svh": 0.993,
+          "cat_whip": 3.539
+        }
+      }
+    },
+    {
       "team": "Inkers",
       "source_team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 54.5,
+      "points_back": 54.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_qs",
-        "cat_r",
+        "cat_rbi",
         "cat_sb"
       ],
       "category_gaps": {
@@ -805,12 +805,12 @@
           "to_loss": 0.0
         },
         "cat_r": {
-          "to_gain": 0.0,
-          "to_loss": 2.0
+          "to_gain": 0.5,
+          "to_loss": 1.5
         },
         "cat_rbi": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": 1.5
         },
         "cat_sb": {
           "to_gain": 2.0,
@@ -826,22 +826,22 @@
         }
       },
       "luck": {
-        "actual_points": 41.5,
-        "expected_points": 41.0,
-        "delta": 0.5,
-        "cluster_sensitivity": 65.0,
+        "actual_points": 40.5,
+        "expected_points": 40.5,
+        "delta": 0.0,
+        "cluster_sensitivity": 60.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 31.19,
+        "team_volatility_score": 31.2,
         "category_volatility": {
           "cat_era": 2.622,
           "cat_hr": 2.679,
           "cat_k": 1.018,
           "cat_ops": 2.537,
           "cat_qs": 0.812,
-          "cat_r": 2.305,
-          "cat_rbi": 3.537,
+          "cat_r": 2.301,
+          "cat_rbi": 3.525,
           "cat_sb": 0.968,
           "cat_svh": 1.369,
           "cat_whip": 1.356
@@ -852,7 +852,7 @@
       "team": "Mommy",
       "source_team": "Mommy",
       "tier": "rebuilding",
-      "points_back": 66.0,
+      "points_back": 63.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_qs",
@@ -902,14 +902,14 @@
         }
       },
       "luck": {
-        "actual_points": 30.0,
-        "expected_points": 33.5,
+        "actual_points": 31.0,
+        "expected_points": 34.5,
         "delta": -3.5,
         "cluster_sensitivity": 65.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 54.47,
+        "team_volatility_score": 54.41,
         "category_volatility": {
           "cat_era": 2.15,
           "cat_hr": 2.592,
@@ -920,7 +920,7 @@
           "cat_rbi": 1.804,
           "cat_sb": 1.151,
           "cat_svh": 0.545,
-          "cat_whip": 1.853
+          "cat_whip": 1.828
         }
       }
     }
@@ -940,18 +940,18 @@
     {
       "team": "Seam heads",
       "tier": "contender",
-      "points_back": 6.0,
+      "points_back": 4.0,
       "reachable_points": 8.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
-        "cat_k"
+        "cat_k",
+        "cat_rbi"
       ]
     },
     {
       "team": "Rollie Fingers",
       "tier": "contender",
-      "points_back": 7.5,
+      "points_back": 7.0,
       "reachable_points": 8.0,
       "tight_categories": [
         "cat_era",
@@ -962,7 +962,7 @@
     {
       "team": "Humongous Melonheads",
       "tier": "fringe",
-      "points_back": 15.5,
+      "points_back": 14.0,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -973,7 +973,7 @@
     {
       "team": "Vin Mazzaro fan club",
       "tier": "fringe",
-      "points_back": 21.5,
+      "points_back": 20.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_hr",
@@ -984,7 +984,7 @@
     {
       "team": "John Henry Fan Club",
       "tier": "fringe",
-      "points_back": 23.0,
+      "points_back": 21.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -995,7 +995,7 @@
     {
       "team": "Millville Meteors",
       "tier": "rebuilding",
-      "points_back": 42.5,
+      "points_back": 41.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -1006,7 +1006,7 @@
     {
       "team": "Pat",
       "tier": "rebuilding",
-      "points_back": 45.0,
+      "points_back": 43.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -1015,20 +1015,9 @@
       ]
     },
     {
-      "team": "Sam",
-      "tier": "rebuilding",
-      "points_back": 49.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "cat_era",
-        "cat_ops",
-        "cat_sb"
-      ]
-    },
-    {
       "team": "Trazadone",
       "tier": "rebuilding",
-      "points_back": 49.0,
+      "points_back": 47.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_r",
@@ -1037,20 +1026,31 @@
       ]
     },
     {
+      "team": "Sam",
+      "tier": "rebuilding",
+      "points_back": 47.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "cat_era",
+        "cat_ops",
+        "cat_sb"
+      ]
+    },
+    {
       "team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 54.5,
+      "points_back": 54.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_qs",
-        "cat_r",
+        "cat_rbi",
         "cat_sb"
       ]
     },
     {
       "team": "Mommy",
       "tier": "rebuilding",
-      "points_back": 66.0,
+      "points_back": 63.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_qs",
@@ -1062,8 +1062,8 @@
   "luck": [
     {
       "team": "Mommy",
-      "actual_points": 30.0,
-      "expected_points": 33.5,
+      "actual_points": 31.0,
+      "expected_points": 34.5,
       "delta": -3.5,
       "cluster_sensitivity": 65.0,
       "efficiency_score": null,
@@ -1079,72 +1079,72 @@
       "badge": "neutral"
     },
     {
-      "team": "Millville Meteors",
-      "actual_points": 53.5,
-      "expected_points": 54.0,
-      "delta": -0.5,
-      "cluster_sensitivity": 65.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
       "team": "Trazadone",
-      "actual_points": 47.0,
-      "expected_points": 47.5,
+      "actual_points": 47.5,
+      "expected_points": 48.0,
       "delta": -0.5,
       "cluster_sensitivity": 75.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Seam heads",
-      "actual_points": 90.0,
-      "expected_points": 90.0,
-      "delta": 0.0,
-      "cluster_sensitivity": 70.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
       "team": "Sam",
       "actual_points": 47.0,
-      "expected_points": 47.0,
+      "expected_points": 47.5,
+      "delta": -0.5,
+      "cluster_sensitivity": 85.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Acu\u00f1a Matata",
+      "actual_points": 94.5,
+      "expected_points": 94.5,
       "delta": 0.0,
       "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Acu\u00f1a Matata",
-      "actual_points": 96.0,
-      "expected_points": 95.5,
+      "team": "Inkers",
+      "actual_points": 40.5,
+      "expected_points": 40.5,
+      "delta": 0.0,
+      "cluster_sensitivity": 60.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Seam heads",
+      "actual_points": 90.5,
+      "expected_points": 90.0,
       "delta": 0.5,
-      "cluster_sensitivity": 75.0,
+      "cluster_sensitivity": 65.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
       "team": "Rollie Fingers",
-      "actual_points": 88.5,
-      "expected_points": 88.0,
+      "actual_points": 87.5,
+      "expected_points": 87.0,
       "delta": 0.5,
       "cluster_sensitivity": 85.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Pat",
-      "actual_points": 51.0,
-      "expected_points": 50.5,
+      "team": "Vin Mazzaro fan club",
+      "actual_points": 74.5,
+      "expected_points": 74.0,
       "delta": 0.5,
-      "cluster_sensitivity": 85.0,
+      "cluster_sensitivity": 65.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Inkers",
-      "actual_points": 41.5,
-      "expected_points": 41.0,
+      "team": "Millville Meteors",
+      "actual_points": 53.5,
+      "expected_points": 53.0,
       "delta": 0.5,
       "cluster_sensitivity": 65.0,
       "efficiency_score": null,
@@ -1153,20 +1153,20 @@
     {
       "team": "Humongous Melonheads",
       "actual_points": 80.5,
-      "expected_points": 79.5,
-      "delta": 1.0,
-      "cluster_sensitivity": 70.0,
+      "expected_points": 79.0,
+      "delta": 1.5,
+      "cluster_sensitivity": 65.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Vin Mazzaro fan club",
-      "actual_points": 74.5,
-      "expected_points": 72.5,
-      "delta": 2.0,
-      "cluster_sensitivity": 60.0,
+      "team": "Pat",
+      "actual_points": 51.0,
+      "expected_points": 49.5,
+      "delta": 1.5,
+      "cluster_sensitivity": 85.0,
       "efficiency_score": null,
-      "badge": "negative-variance"
+      "badge": "neutral"
     }
   ],
   "volatility": [
@@ -1188,7 +1188,7 @@
     },
     {
       "team": "Trazadone",
-      "team_volatility_score": 59.63,
+      "team_volatility_score": 59.59,
       "category_volatility": {
         "cat_era": 4.069,
         "cat_hr": 3.627,
@@ -1196,7 +1196,7 @@
         "cat_ops": 3.721,
         "cat_qs": 2.118,
         "cat_r": 3.252,
-        "cat_rbi": 3.687,
+        "cat_rbi": 3.664,
         "cat_sb": 2.698,
         "cat_svh": 0.694,
         "cat_whip": 4.012
@@ -1220,7 +1220,7 @@
     },
     {
       "team": "Mommy",
-      "team_volatility_score": 54.47,
+      "team_volatility_score": 54.41,
       "category_volatility": {
         "cat_era": 2.15,
         "cat_hr": 2.592,
@@ -1231,7 +1231,7 @@
         "cat_rbi": 1.804,
         "cat_sb": 1.151,
         "cat_svh": 0.545,
-        "cat_whip": 1.853
+        "cat_whip": 1.828
       }
     },
     {
@@ -1300,7 +1300,7 @@
     },
     {
       "team": "Rollie Fingers",
-      "team_volatility_score": 32.28,
+      "team_volatility_score": 32.23,
       "category_volatility": {
         "cat_era": 1.492,
         "cat_hr": 0.087,
@@ -1310,21 +1310,21 @@
         "cat_r": 0.63,
         "cat_rbi": 0.901,
         "cat_sb": 3.146,
-        "cat_svh": 1.747,
+        "cat_svh": 1.731,
         "cat_whip": 2.358
       }
     },
     {
       "team": "Inkers",
-      "team_volatility_score": 31.19,
+      "team_volatility_score": 31.2,
       "category_volatility": {
         "cat_era": 2.622,
         "cat_hr": 2.679,
         "cat_k": 1.018,
         "cat_ops": 2.537,
         "cat_qs": 0.812,
-        "cat_r": 2.305,
-        "cat_rbi": 3.537,
+        "cat_r": 2.301,
+        "cat_rbi": 3.525,
         "cat_sb": 0.968,
         "cat_svh": 1.369,
         "cat_whip": 1.356
@@ -1332,7 +1332,7 @@
     },
     {
       "team": "Seam heads",
-      "team_volatility_score": 23.62,
+      "team_volatility_score": 23.63,
       "category_volatility": {
         "cat_era": 1.768,
         "cat_hr": 2.749,
@@ -1340,7 +1340,7 @@
         "cat_ops": 2.483,
         "cat_qs": 1.648,
         "cat_r": 1.576,
-        "cat_rbi": 2.842,
+        "cat_rbi": 2.856,
         "cat_sb": 1.479,
         "cat_svh": 1.055,
         "cat_whip": 2.731
@@ -1348,18 +1348,18 @@
     },
     {
       "team": "Acu\u00f1a Matata",
-      "team_volatility_score": 16.64,
+      "team_volatility_score": 16.27,
       "category_volatility": {
         "cat_era": 0.0,
         "cat_hr": 0.208,
         "cat_k": 0.471,
         "cat_ops": 1.397,
-        "cat_qs": 1.012,
+        "cat_qs": 0.994,
         "cat_r": 1.133,
-        "cat_rbi": 0.471,
+        "cat_rbi": 0.657,
         "cat_sb": 1.021,
-        "cat_svh": 0.533,
-        "cat_whip": 0.0
+        "cat_svh": 0.471,
+        "cat_whip": 0.314
       }
     }
   ]
