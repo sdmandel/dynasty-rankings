@@ -20,7 +20,6 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Hub — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
-<link rel="stylesheet" href="assets/site.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,21 +84,57 @@ body {
 }
 .site-header p strong { color: var(--gold); font-weight: 500; }
 .header-links {
-  display: flex;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(170px, 260px));
+  gap: 10px;
+  align-items: stretch;
+  margin-top: 24px;
+}
+.header-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
   align-items: center;
-  margin-top: 10px;
-}
-.header-links a {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dead);
+  min-height: 62px;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg2);
+  color: var(--text);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
 }
-.header-links a:hover { color: var(--gold); }
+.header-link:hover {
+  border-color: var(--gold-dim);
+  background: #16140d;
+  transform: translateY(-1px);
+}
+.header-link-title {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.header-link-meta {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.header-link-arrow {
+  color: var(--text-dead);
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.15s, transform 0.15s;
+}
+.header-link:hover .header-link-arrow {
+  color: var(--gold);
+  transform: translateX(2px);
+}
 
 /* ── NAV CARDS ── */
 .nav-section {
@@ -192,6 +227,11 @@ body {
 }
 .lb-change.up { color: #5da87a; }
 .lb-change.down { color: var(--red); }
+.state-msg {
+  padding: 20px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -479,6 +519,9 @@ body {
   .site-header, .nav-section, .site-footer {
     padding-left: 20px; padding-right: 20px;
   }
+  .header-links {
+    grid-template-columns: 1fr;
+  }
   .tool-grid.tools-grid-compact { gap: 12px; }
   .tool-grid.tools-grid-compact .tile-title { margin-bottom: 6px; }
   .tool-grid.tools-grid-compact .tile-meta {
@@ -499,10 +542,22 @@ body {
     Power rankings drop every Monday. Depth chart updates after the weekly Oracle run.
     <strong>All rankings powered by the Oracle.</strong>
   </p>
-  <div class="header-links">
-    <a href="rules.html">League Rules →</a>
-    <a href="franchise_history.html">Franchise History →</a>
-  </div>
+  <nav class="header-links" aria-label="League reference">
+    <a class="header-link" href="rules.html">
+      <span>
+        <span class="header-link-title">League Rules</span>
+        <span class="header-link-meta">Settings, rosters, scoring, payouts</span>
+      </span>
+      <span class="header-link-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="header-link" href="franchise_history.html">
+      <span>
+        <span class="header-link-title">Franchise History</span>
+        <span class="header-link-meta">Records, finishes, titles, eras</span>
+      </span>
+      <span class="header-link-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
 </div>
 
 <div class="nav-section">
@@ -510,7 +565,44 @@ body {
     <div class="leaderboard-head">
       <a class="leaderboard-title" href="standings.html">Leaderboard</a>
     </div>
-    <div class="lb-list" id="leaderboardList"></div>
+    <div class="lb-list" id="leaderboardList">
+      <div class="lb-row">
+        <div class="lb-rank">#1</div>
+        <div class="lb-team">Acuña Matata</div>
+        <div class="lb-pts">94.0</div>
+        <div class="lb-change down">-2.0</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">#2</div>
+        <div class="lb-team">Seam heads</div>
+        <div class="lb-pts">90.0</div>
+        <div class="lb-change down">-2.5</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">#3</div>
+        <div class="lb-team">Rollie Fingers</div>
+        <div class="lb-pts">87.5</div>
+        <div class="lb-change up">+3.0</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">#4</div>
+        <div class="lb-team">Humongous Melonheads</div>
+        <div class="lb-pts">85.0</div>
+        <div class="lb-change up">+5.0</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">#5</div>
+        <div class="lb-team">Vin Mazzaro fan club</div>
+        <div class="lb-pts">74.0</div>
+        <div class="lb-change up">+0.5</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">#6</div>
+        <div class="lb-team">John Henry Fan Club</div>
+        <div class="lb-pts">73.0</div>
+        <div class="lb-change down">-3.0</div>
+      </div>
+    </div>
   </div>
 
   <div class="section-label"><a href="power_rankings.html">Power Rankings — 2026</a></div>
@@ -603,7 +695,6 @@ body {
   Data compiled using Oracle composite scores and public league snapshots.
 </div>
 
-<script src="assets/oracle-public.js"></script>
 <script>
 let TEAMS = [];
 
@@ -695,21 +786,27 @@ function setPreviewUnavailable(id, label) {
   el.innerHTML = `<div class="state-msg">${label} preview unavailable.</div>`;
 }
 
-// Standings preview
-const standingsUrl = 'data/standings.json?ts=' + Date.now();
-fetch(standingsUrl, { cache: 'no-store' }).then(r => {
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  return r.json();
-}).then(data => {
+function formatHomeDate(value) {
+  if (!value) return 'Unknown';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return date.toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: value.includes('T') ? 'numeric' : undefined,
+    minute: value.includes('T') ? '2-digit' : undefined,
+  });
+}
+
+function renderLeaderboard(teams) {
   const lb = document.getElementById('leaderboardList');
   if (!lb) return;
-  const teams = data.teams || [];
   if (!teams.length) {
     lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
     return;
   }
-  const top = [...teams].sort((a,b) => (a.rank || 99) - (b.rank || 99)).slice(0, 6);
-  lb.innerHTML = top.map(t => {
+  lb.innerHTML = teams.map(t => {
     const change = Number(t.pts_change || 0);
     const changeCls = change > 0 ? 'up' : change < 0 ? 'down' : '';
     const changeTxt = change > 0 ? `+${change.toFixed(1)}` : change.toFixed(1);
@@ -720,23 +817,16 @@ fetch(standingsUrl, { cache: 'no-store' }).then(r => {
       <div class="lb-change ${changeCls}">${changeTxt}</div>
     </div>`;
   }).join('');
-}).catch(() => {
-  const lb = document.getElementById('leaderboardList');
-  if (lb) lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
-});
+}
 
-// Transactions preview
-fetch('data/transactions.json').then(r => {
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  return r.json();
-}).then(data => {
+function renderTransactions(txs) {
   const el = document.getElementById('transactionsPreview');
   if (!el) return;
-  const txs = (data.transactions || []).slice(0, 9);
   if (!txs.length) {
     setPreviewUnavailable('transactionsPreview', 'Transactions');
     return;
   }
+  el.innerHTML = '';
   txs.forEach(tx => {
     const type = (tx.type || 'ADD').toUpperCase();
     const cls  = type === 'ADD' ? 'add' : type === 'DROP' ? 'drop' : 'trade';
@@ -750,9 +840,7 @@ fetch('data/transactions.json').then(r => {
       `</div>`;
     el.appendChild(row);
   });
-}).catch(() => {
-  setPreviewUnavailable('transactionsPreview', 'Transactions');
-});
+}
 
 // ─── MINI SCATTER TILE ───────────────────────────────────────
 function buildMiniScatter() {
@@ -895,25 +983,40 @@ function buildMiniScatter() {
   });
 }
 
-fetchOraclePublic().then(data => {
-  TEAMS = (data.teams || []).map(team => ({
-    ...team,
-    name: team.team,
-    total: team.total_value,
-    mlb: team.mlb_value,
-    farm: team.farm_value,
-    avg_age: team.avg_age,
-  }));
-  buildMiniBar();
-  buildMiniScatter();
-  const footer = document.getElementById('footerEl');
-  if (footer) {
-    footer.textContent = `Last updated: ${formatOracleDate(data.generated_at || data.generated)} · Snapshot ${formatOracleDate(data.snapshot_date)}.`;
-  }
-}).catch(() => {});
+function loadHomePreview() {
+  fetch('data/home_preview.json').then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(data => {
+    renderLeaderboard(data.leaderboard || []);
+    renderTransactions(data.transactions || []);
+    TEAMS = (data.oracle_teams || []).map(team => ({
+      ...team,
+      name: team.team,
+      total: team.total_value,
+      mlb: team.mlb_value,
+      farm: team.farm_value,
+      avg_age: team.avg_age,
+    }));
+    buildMiniBar();
+    buildMiniScatter();
+    const footer = document.getElementById('footerEl');
+    if (footer) {
+      footer.textContent = `Last updated: ${formatHomeDate(data.generated_at || data.generated)} · Snapshot ${formatHomeDate(data.snapshot_date)}.`;
+    }
+  }).catch(() => {
+    setPreviewUnavailable('transactionsPreview', 'Transactions');
+  });
+}
+
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(loadHomePreview, { timeout: 2000 });
+} else {
+  window.setTimeout(loadHomePreview, 250);
+}
 </script>
-<script src="assets/feedback.js"></script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e14a66458e824e24805b097c66200b3d"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="assets/analytics.js" defer></script>
+<script src="assets/feedback.js" defer></script>
 
 </body>
 </html>

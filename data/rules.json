@@ -6,43 +6,6 @@
       "number": "1",
       "title": "General",
       "anchor": "1-general",
-      "items": [
-        {
-          "type": "kv",
-          "label": "League Name",
-          "value": "Backyard Dynasty Baseball"
-        },
-        {
-          "type": "kv",
-          "label": "Duplicate Player Allowance",
-          "value": "Not Used"
-        },
-        {
-          "type": "kv",
-          "label": "Scoring System",
-          "value": "Rotisserie"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum # of teams",
-          "value": "12"
-        },
-        {
-          "type": "kv",
-          "label": "League Creator Username",
-          "value": "travis_dm"
-        },
-        {
-          "type": "kv",
-          "label": "Commissioner Team Name",
-          "value": "Seam heads"
-        },
-        {
-          "type": "kv",
-          "label": "League ID",
-          "value": "4kj8oxldmjx1h380"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -56,11 +19,6 @@
             },
             {
               "type": "kv",
-              "label": "Duplicate Player Allowance",
-              "value": "Not Used"
-            },
-            {
-              "type": "kv",
               "label": "Scoring System",
               "value": "Rotisserie"
             },
@@ -68,11 +26,6 @@
               "type": "kv",
               "label": "Maximum # of teams",
               "value": "12"
-            },
-            {
-              "type": "kv",
-              "label": "League Creator Username",
-              "value": "travis_dm"
             },
             {
               "type": "kv",
@@ -87,40 +40,15 @@
           ]
         }
       ],
-      "body_text": "League Name: Backyard Dynasty Baseball\nDuplicate Player Allowance: Not Used\nScoring System: Rotisserie\nMaximum # of teams: 12\nLeague Creator Username: travis_dm\nCommissioner Team Name: Seam heads\nLeague ID: 4kj8oxldmjx1h380",
+      "body_text": "League Name: Backyard Dynasty Baseball\nScoring System: Rotisserie\nMaximum # of teams: 12\nLeague Creator Username: travis_dm\nCommissioner Team Name: Seam heads\n",
       "source": "fantrax",
-      "summary": "Backyard Dynasty Baseball, uses rotisserie scoring, with room for 12 teams.",
-      "highlights": [
-        {
-          "label": "Scoring",
-          "value": "Rotisserie"
-        },
-        {
-          "label": "League ID",
-          "value": "4kj8oxldmjx1h380"
-        },
-        {
-          "label": "Teams",
-          "value": "12"
-        }
-      ]
+      "summary": "Backyard Dynasty Baseball is a 12-team rotisserie league commissioned by Seam heads.",
+      "highlights": []
     },
     {
       "number": "2",
       "title": "Schedule",
       "anchor": "2-schedule",
-      "items": [
-        {
-          "type": "kv",
-          "label": "Your league stats begin accumulating on",
-          "value": "Wed Mar 25, 2026"
-        },
-        {
-          "type": "kv",
-          "label": "Your league stats end accumulating on",
-          "value": "Sun Sep 27, 2026"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -143,43 +71,12 @@
       "body_text": "Your league stats begin accumulating on: Wed Mar 25, 2026\nYour league stats end accumulating on: Sun Sep 27, 2026",
       "source": "fantrax",
       "summary": "The scoring calendar runs from Wed Mar 25, 2026 through Sun Sep 27, 2026.",
-      "highlights": [
-        {
-          "label": "Start",
-          "value": "Wed Mar 25, 2026"
-        },
-        {
-          "label": "End",
-          "value": "Sun Sep 27, 2026"
-        }
-      ]
+      "highlights": []
     },
     {
       "number": "3",
       "title": "Player Pool",
       "anchor": "3-player-pool",
-      "items": [
-        {
-          "type": "kv",
-          "label": "Player Pool",
-          "value": "All teams"
-        },
-        {
-          "type": "kv",
-          "label": "Players traded out of league's player pool continue to accumulate stats",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Only include players associated with a MLB team in the player pool",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Lock Player Pool",
-          "value": "Yes"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -188,403 +85,26 @@
           "items": [
             {
               "type": "kv",
-              "label": "Player Pool",
-              "value": "All teams"
-            },
-            {
-              "type": "kv",
-              "label": "Players traded out of league's player pool continue to accumulate stats",
-              "value": "Yes"
-            },
-            {
-              "type": "kv",
-              "label": "Only include players associated with a MLB team in the player pool",
-              "value": "No"
+              "label": "Player pool eligibility",
+              "value": "All teams and all active players as of Jan 1, 2026 (even those not currently associated with a MLB team)."
             },
             {
               "type": "kv",
               "label": "Lock Player Pool",
-              "value": "Yes"
+              "value": "Player pool is locked: no new players will be added to the pool (available on waivers)."
             }
           ]
         }
       ],
-      "body_text": "Player Pool: All teams\nPlayers traded out of league's player pool continue to accumulate stats: Yes\nOnly include players associated with a MLB team in the player pool: No\nLock Player Pool: Yes",
+      "body_text": "Player Pool: All teams and all active players as of Jan 1, 2026 (even those not currently associated with a MLB team)",
       "source": "fantrax",
-      "summary": "Player Pool: All teams. Players traded out of league's player pool continue to accumulate stats: Yes.",
+      "summary": "Player Pool: All teams and all active players as of Jan 1, 2026 (even those not currently associated with a MLB team).",
       "highlights": []
     },
     {
       "number": "4",
       "title": "Rosters",
       "anchor": "4-rosters",
-      "items": [
-        {
-          "type": "text",
-          "label": "",
-          "value": "Restrictions"
-        },
-        {
-          "type": "kv",
-          "label": "Minimum Total Players",
-          "value": "0"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Total Players",
-          "value": "35"
-        },
-        {
-          "type": "kv",
-          "label": "Minimum Active Players",
-          "value": "0"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Active Players",
-          "value": "23"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Reserve Players",
-          "value": "12"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Injury Reserve Players",
-          "value": "10"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Minor League Players",
-          "value": "10"
-        },
-        {
-          "type": "kv",
-          "label": "Prevent any transaction that would cause a roster to become illegal",
-          "value": "Never"
-        },
-        {
-          "type": "kv",
-          "label": "Allow suspended players to be moved to Injured Reserve",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Allow players on a bye week to be moved to Injured Reserve",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Injured Reserve players count toward roster limitation rules",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Only players on the MLB Injured List may be moved to the Injured Reserve slot",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Minor League players count toward roster limitation rules",
-          "value": "No"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Minor League Eligibility"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Condition"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Constraint"
-        },
-        {
-          "type": "kv",
-          "label": "Hitting",
-          "value": "Career regular season total AB is >= 135"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Makes ineligible if met"
-        },
-        {
-          "type": "kv",
-          "label": "Pitching",
-          "value": "Career regular season total IP is >= 50"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Makes ineligible if met"
-        },
-        {
-          "type": "kv",
-          "label": "Injured Reserve Enforcement type",
-          "value": "Lock all transactions"
-        },
-        {
-          "type": "kv",
-          "label": "Number of Lineup Periods until Injured Reserve Enforcement takes effect",
-          "value": "2"
-        },
-        {
-          "type": "kv",
-          "label": "Prorate Min/Max according to period length",
-          "value": "Yes"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pos"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Min Active"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Max Active"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Total Max"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Catcher (C)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1st Base (1B)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "2nd Base (2B)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "3rd Base (3B)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Shortstop (SS)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Corner Infield (CI)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Middle Infield (MI)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Outfield (OF)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "4"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "4"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Utility (Any Hitter) (UT)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "2"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "2"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitcher (P)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "0"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "10"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "10"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Minor League Eligibility Options"
-        },
-        {
-          "type": "kv",
-          "label": "Minors roster slot eligibility type",
-          "value": "Advanced - many options for determining eligibility for Minors roster slots"
-        },
-        {
-          "type": "kv",
-          "label": "Prevent moving players out of Minors slots",
-          "value": "Never"
-        },
-        {
-          "type": "kv",
-          "label": "Minors Enforcement type",
-          "value": "Lock all transactions"
-        },
-        {
-          "type": "kv",
-          "label": "Number of Lineup Periods until Minors Enforcement takes effect",
-          "value": "3"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -817,48 +337,6 @@
       "number": "5",
       "title": "Position Eligibility",
       "anchor": "5-position-eligibility",
-      "items": [
-        {
-          "type": "kv",
-          "label": "Games needed from previous season for a player to qualify at a specific hitting position",
-          "value": "20"
-        },
-        {
-          "type": "kv",
-          "label": "Games needed from current season for a player to qualify at a specific hitting position",
-          "value": "10"
-        },
-        {
-          "type": "kv",
-          "label": "Starts needed from previous season for a player to qualify as a Starting Pitcher",
-          "value": "5"
-        },
-        {
-          "type": "kv",
-          "label": "Starts needed from current season for a player to qualify as a Starting Pitcher",
-          "value": "3"
-        },
-        {
-          "type": "kv",
-          "label": "Relief appearances needed from previous season for a player to qualify as a Relief Pitcher",
-          "value": "8"
-        },
-        {
-          "type": "kv",
-          "label": "Relief appearances needed from current season for a player to qualify as a Relief Pitcher",
-          "value": "5"
-        },
-        {
-          "type": "kv",
-          "label": "Use Fantrax's default position(s) in addition to any position(s) a player qualifies for based on above criteria",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Note",
-          "value": "If a player does not qualify for any positions based on the above selections, he will qualify at the position(s) played most in the previous MLB season. If he did not play at all last season, then his default position, plus any other positions in the system, will be used."
-        }
-      ],
       "blocks": [
         {
           "type": "table",
@@ -931,238 +409,6 @@
       "number": "6",
       "title": "Scoring",
       "anchor": "6-scoring",
-      "items": [
-        {
-          "type": "text",
-          "label": "",
-          "value": "Scoring Group"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Scoring Category"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Weight"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Hitting"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Home Runs (HR)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Hitting"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "RBI (RBI)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Hitting"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Runs Scored (R)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Hitting"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Stolen Bases (SB)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Hitting"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "On Base + Slugging Percentage (OPS)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Quality Starts (QS)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Strikeouts Pitched (K)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Earned Run Average (ERA)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Saves + Holds (SVH)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "WHIP Ratio (WHIP)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Team Minimum and Maximum Requirements (Season)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Scoring Category"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Min"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Max"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Innings Pitched - Pitching"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1000"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "None"
-        },
-        {
-          "type": "kv",
-          "label": "If a maximum has been met or exceeded",
-          "value": "Do nothing."
-        },
-        {
-          "type": "kv",
-          "label": "If a minimum has not been met by end of season",
-          "value": "All averaged hitting stats (e.g., Avg, Slg, etc.) or pitching stats (e.g., ERA, WHIP, etc.), depending on the scoring category whose minimum has not been met, are lost for the entire season, and standings are adjusted accordingly."
-        },
-        {
-          "type": "kv",
-          "label": "Prorate Min/Max according to period length",
-          "value": "Yes"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Other Scoring Preferences"
-        },
-        {
-          "type": "kv",
-          "label": "Players will accumulate all stats in all scoring category groups",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Stat Correction Handling",
-          "value": "No Official Scoring changes will affect your league beyond the default stat freeze time. Official corrections will be applied to your league if they come in within 7 days (168 hours) after the end of that game. Any Official Scoring changes which come in after this time will not be reflected in your league stats/scores and standings."
-        }
-      ],
       "blocks": [
         {
           "type": "table",
@@ -1301,188 +547,6 @@
       "number": "7",
       "title": "Transactions",
       "anchor": "7-transactions",
-      "items": [
-        {
-          "type": "text",
-          "label": "",
-          "value": "Lineups"
-        },
-        {
-          "type": "kv",
-          "label": "Lineup Change System",
-          "value": "Managers enter lineup changes"
-        },
-        {
-          "type": "kv",
-          "label": "Lineup changes are executed",
-          "value": "Daily"
-        },
-        {
-          "type": "kv",
-          "label": "Lineups will become locked 0",
-          "value": "05 (hours:minutes) before scheduled start-time of game"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Trades"
-        },
-        {
-          "type": "kv",
-          "label": "Trade System",
-          "value": "Managers propose their own trades"
-        },
-        {
-          "type": "kv",
-          "label": "Trading Period",
-          "value": "All Year"
-        },
-        {
-          "type": "kv",
-          "label": "Maximum Trades per Team",
-          "value": "Unlimited"
-        },
-        {
-          "type": "kv",
-          "label": "Trade Deadline Date",
-          "value": "Mon Aug 3, 2026 10:59 PM CDT"
-        },
-        {
-          "type": "kv",
-          "label": "Trade Voting System",
-          "value": "None"
-        },
-        {
-          "type": "kv",
-          "label": "Allow trading of claim budget",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Allow trading of salary cap space",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Allow trading of draft Picks",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "\u2022 Number of future years for draft pick trading",
-          "value": "3"
-        },
-        {
-          "type": "kv",
-          "label": "\u2022 Number of rounds available for draft pick trading",
-          "value": "5"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Claims/Drops"
-        },
-        {
-          "type": "kv",
-          "label": "Claim/Drop System",
-          "value": "Managers perform their own claims & drops"
-        },
-        {
-          "type": "kv",
-          "label": "Max # of claims per season",
-          "value": "Unlimited"
-        },
-        {
-          "type": "kv",
-          "label": "Max # of claims per week",
-          "value": "Unlimited"
-        },
-        {
-          "type": "kv",
-          "label": "Use Waiver Wire process",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Allow claims/drops before the draft",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Allow drops during draft",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Can't drop list",
-          "value": "Fantrax"
-        },
-        {
-          "type": "kv",
-          "label": "Pending claims/drops are viewable by",
-          "value": "One's own team"
-        },
-        {
-          "type": "kv",
-          "label": "Failed claims/drops viewable by",
-          "value": "One's own team"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Free Agents"
-        },
-        {
-          "type": "kv",
-          "label": "Free Agent Claim System",
-          "value": "Free for all (1st come 1st serve)"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Waiver Wire"
-        },
-        {
-          "type": "kv",
-          "label": "Waiver Wire claim system",
-          "value": "Automated Priority Order"
-        },
-        {
-          "type": "kv",
-          "label": "Rotate Waiver Wire Claim Order After Each Claim",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Waiver Wire players are processed",
-          "value": "After a selected # of Days"
-        },
-        {
-          "type": "kv",
-          "label": "# of days players remain on waivers for",
-          "value": "2"
-        },
-        {
-          "type": "kv",
-          "label": "Change to bulk waiver process time if player playing",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Bypass Waivers for new pool entrants",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Ensure 23+ hour waiver period",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Prevent Waiver \"Churning\"",
-          "value": "Yes"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -1553,12 +617,12 @@
             },
             {
               "type": "kv",
-              "label": "\u2022 Number of future years for draft pick trading",
+              "label": "• Number of future years for draft pick trading",
               "value": "3"
             },
             {
               "type": "kv",
-              "label": "\u2022 Number of rounds available for draft pick trading",
+              "label": "• Number of rounds available for draft pick trading",
               "value": "5"
             }
           ]
@@ -1675,7 +739,7 @@
           ]
         }
       ],
-      "body_text": "Lineups\nLineup Change System: Managers enter lineup changes\nLineup changes are executed: Daily\nLineups will become locked 0:05 (hours:minutes) before scheduled start-time of game\nTrades\nTrade System: Managers propose their own trades\nTrading Period: All Year\nMaximum Trades per Team: Unlimited\nTrade Deadline Date: Mon Aug 3, 2026 10:59 PM CDT\nTrade Voting System: None\nAllow trading of claim budget: No\nAllow trading of salary cap space: No\nAllow trading of draft Picks: Yes\n\u2022 Number of future years for draft pick trading: 3\n\u2022 Number of rounds available for draft pick trading: 5\nClaims/Drops\nClaim/Drop System: Managers perform their own claims & drops\nMax # of claims per season: Unlimited\nMax # of claims per week: Unlimited\nUse Waiver Wire process: Yes\nAllow claims/drops before the draft: Yes\nAllow drops during draft: Yes\nCan't drop list: Fantrax\nPending claims/drops are viewable by: One's own team\nFailed claims/drops viewable by: One's own team\nFree Agents\nFree Agent Claim System: Free for all (1st come 1st serve)\nWaiver Wire\nWaiver Wire claim system: Automated Priority Order\nRotate Waiver Wire Claim Order After Each Claim: Yes\nWaiver Wire players are processed: After a selected # of Days\n# of days players remain on waivers for: 2\nChange to bulk waiver process time if player playing: No\nBypass Waivers for new pool entrants: No\nEnsure 23+ hour waiver period: Yes\nPrevent Waiver \"Churning\": Yes",
+      "body_text": "Lineups\nLineup Change System: Managers enter lineup changes\nLineup changes are executed: Daily\nLineups will become locked 0:05 (hours:minutes) before scheduled start-time of game\nTrades\nTrade System: Managers propose their own trades\nTrading Period: All Year\nMaximum Trades per Team: Unlimited\nTrade Deadline Date: Mon Aug 3, 2026 10:59 PM CDT\nTrade Voting System: None\nAllow trading of claim budget: No\nAllow trading of salary cap space: No\nAllow trading of draft Picks: Yes\n• Number of future years for draft pick trading: 3\n• Number of rounds available for draft pick trading: 5\nClaims/Drops\nClaim/Drop System: Managers perform their own claims & drops\nMax # of claims per season: Unlimited\nMax # of claims per week: Unlimited\nUse Waiver Wire process: Yes\nAllow claims/drops before the draft: Yes\nAllow drops during draft: Yes\nCan't drop list: Fantrax\nPending claims/drops are viewable by: One's own team\nFailed claims/drops viewable by: One's own team\nFree Agents\nFree Agent Claim System: Free for all (1st come 1st serve)\nWaiver Wire\nWaiver Wire claim system: Automated Priority Order\nRotate Waiver Wire Claim Order After Each Claim: Yes\nWaiver Wire players are processed: After a selected # of Days\n# of days players remain on waivers for: 2\nChange to bulk waiver process time if player playing: No\nBypass Waivers for new pool entrants: No\nEnsure 23+ hour waiver period: Yes\nPrevent Waiver \"Churning\": Yes",
       "source": "fantrax",
       "summary": "Managers set daily lineups, trade year-round, and use automated waiver priority. Standard waivers run for 2 days. The current trade deadline is Mon Aug 3, 2026 10:59 PM CDT.",
       "highlights": [
@@ -1693,63 +757,6 @@
       "number": "8",
       "title": "Draft",
       "anchor": "8-draft",
-      "items": [
-        {
-          "type": "kv",
-          "label": "Draft Date",
-          "value": "Tue Mar 10, 8:00 PM CDT"
-        },
-        {
-          "type": "kv",
-          "label": "Draft Type",
-          "value": "Live Online Standard"
-        },
-        {
-          "type": "kv",
-          "label": "# of rounds",
-          "value": "5"
-        },
-        {
-          "type": "kv",
-          "label": "Draft Date (detailed)",
-          "value": "Tue Mar 10 2026, 8:00PM CDT"
-        },
-        {
-          "type": "kv",
-          "label": "Time limit per pick",
-          "value": "30 seconds"
-        },
-        {
-          "type": "kv",
-          "label": "All teams will have the same # of players as the # of rounds when draft ends",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Immediately pick for managers not present in draft room",
-          "value": "Yes"
-        },
-        {
-          "type": "kv",
-          "label": "Fill rosters legally when drafting",
-          "value": "No"
-        },
-        {
-          "type": "kv",
-          "label": "Draft Order creation",
-          "value": "Manual - Snake/Serpentine"
-        },
-        {
-          "type": "kv",
-          "label": "Draft Order",
-          "value": "Vin Mazzaro fan club, Sam, John Henry Fan Club, Inkers, Trazadone, Millville Meteors, Mommy, Pat, Acu\u00f1a Matata, Rollie Fingers, Humongous Melonheads, Seam heads"
-        },
-        {
-          "type": "kv",
-          "label": "Undrafted players go to the",
-          "value": "Free Agent pool"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -1804,7 +811,7 @@
             {
               "type": "kv",
               "label": "Draft Order",
-              "value": "Vin Mazzaro fan club, Sam, John Henry Fan Club, Inkers, Trazadone, Millville Meteors, Mommy, Pat, Acu\u00f1a Matata, Rollie Fingers, Humongous Melonheads, Seam heads"
+              "value": "Vin Mazzaro fan club, Sam, John Henry Fan Club, Inkers, Trazadone, Millville Meteors, Mommy, Pat, Acuña Matata, Rollie Fingers, Humongous Melonheads, Seam heads"
             },
             {
               "type": "kv",
@@ -1814,7 +821,7 @@
           ]
         }
       ],
-      "body_text": "Draft Date: Tue Mar 10, 8:00 PM CDT\nDraft Type: Live Online Standard\n# of rounds: 5\nDraft Date (detailed): Tue Mar 10 2026, 8:00PM CDT\nTime limit per pick: 30 seconds\nAll teams will have the same # of players as the # of rounds when draft ends: No\nImmediately pick for managers not present in draft room: Yes\nFill rosters legally when drafting: No\nDraft Order creation: Manual - Snake/Serpentine\nDraft Order: Vin Mazzaro fan club, Sam, John Henry Fan Club, Inkers, Trazadone, Millville Meteors, Mommy, Pat, Acu\u00f1a Matata, Rollie Fingers, Humongous Melonheads, Seam heads\nUndrafted players go to the: Free Agent pool",
+      "body_text": "Draft Date: Tue Mar 10, 8:00 PM CDT\nDraft Type: Live Online Standard\n# of rounds: 5\nDraft Date (detailed): Tue Mar 10 2026, 8:00PM CDT\nTime limit per pick: 30 seconds\nAll teams will have the same # of players as the # of rounds when draft ends: No\nImmediately pick for managers not present in draft room: Yes\nFill rosters legally when drafting: No\nDraft Order creation: Manual - Snake/Serpentine\nDraft Order: Vin Mazzaro fan club, Sam, John Henry Fan Club, Inkers, Trazadone, Millville Meteors, Mommy, Pat, Acuña Matata, Rollie Fingers, Humongous Melonheads, Seam heads\nUndrafted players go to the: Free Agent pool",
       "source": "fantrax",
       "summary": "The current draft is a 5-round live draft with manual - snake/serpentine.",
       "highlights": [
@@ -1832,53 +839,6 @@
       "number": "9",
       "title": "Miscellaneous",
       "anchor": "9-miscellaneous",
-      "items": [
-        {
-          "type": "text",
-          "label": "",
-          "value": "Tie Breakers"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "1. Ahead in more scoring categories"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "2. 1st place in more scoring categories"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "3. Ahead in specific scoring category"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Home Runs"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "4. Ahead in specific scoring category"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "RBI"
-        },
-        {
-          "type": "text",
-          "label": "",
-          "value": "Keeper League"
-        },
-        {
-          "type": "kv",
-          "label": "Keeper league Type",
-          "value": "Dynasty"
-        }
-      ],
       "blocks": [
         {
           "type": "list",
@@ -1920,13 +880,6 @@
       "number": "10",
       "title": "Prizes",
       "anchor": "10-prizes",
-      "items": [
-        {
-          "type": "text",
-          "label": "",
-          "value": "This league does not use prizes (or they have not been configured yet)"
-        }
-      ],
       "blocks": [
         {
           "type": "kv",
@@ -1950,7 +903,6 @@
       "number": "11",
       "title": "League Constitution",
       "anchor": "11-league-constitution",
-      "items": [],
       "blocks": [
         {
           "type": "kv",
@@ -2003,7 +955,6 @@
       "number": "12",
       "title": "Documented Offline Context",
       "anchor": "12-documented-offline-context",
-      "items": [],
       "blocks": [
         {
           "type": "kv",

@@ -1,4 +1,12 @@
 (() => {
+  const analyticsSrc = "assets/analytics.js";
+  if (!document.querySelector(`script[src="${analyticsSrc}"]`)) {
+    const analytics = document.createElement("script");
+    analytics.src = analyticsSrc;
+    analytics.async = true;
+    (document.head || document.body || document.documentElement).appendChild(analytics);
+  }
+
   const body = document.body;
   if (!body || body.dataset.hubLink === "off") {
     return;

@@ -79,6 +79,24 @@ def test_pages_include_shared_hub_shell(html_file: Path) -> None:
     assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
 
 
+def test_analytics_loader_is_present_everywhere() -> None:
+    shell_js = _read(ROOT / "assets" / "site-shell.js")
+    analytics_js = _read(ROOT / "assets" / "analytics.js")
+
+    assert "assets/analytics.js" in shell_js
+    assert "window.siteAnalytics" in analytics_js
+    assert "nav_click" in analytics_js
+    assert "cloudflareinsights.com/beacon.min.js" in analytics_js
+
+    for html_file in HTML_FILES:
+        html = _read(html_file)
+        if html_file.name in {"index.html", "404.html"}:
+            assert 'src="assets/analytics.js"' in html, f"{html_file.name} missing analytics wrapper"
+            assert "data-cf-beacon" not in html, f"{html_file.name} still embeds a beacon inline"
+        else:
+            assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
+
+
 def test_standings_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "standings.json"))
     assert "generated" in data
@@ -211,6 +229,54 @@ def test_oracle_public_schema() -> None:
         assert key in first["trend"], f"oracle_public trend missing {key}"
 
 
+def test_home_preview_schema_and_freshness() -> None:
+    data = json.loads(_read(ROOT / "data" / "home_preview.json"))
+    standings = json.loads(_read(ROOT / "data" / "standings.json"))
+    transactions = json.loads(_read(ROOT / "data" / "transactions.json"))
+    oracle = json.loads(_read(ROOT / "data" / "oracle_public.json"))
+
+    assert data["generated"] == standings["generated"]
+    assert data["generated_at"] == standings["generated_at"]
+    assert data["snapshot_date"] == oracle["snapshot_date"]
+    assert "leaderboard" in data and isinstance(data["leaderboard"], list)
+    assert "transactions" in data and isinstance(data["transactions"], list)
+    assert "oracle_teams" in data and isinstance(data["oracle_teams"], list)
+    assert len(data["leaderboard"]) == 6
+    assert len(data["transactions"]) <= 9
+    assert len(data["oracle_teams"]) == len(oracle["teams"])
+
+    expected_leaderboard = [
+        {
+            "rank": team["rank"],
+            "team": team["team"],
+            "total_pts": team["total_pts"],
+            "pts_change": team["pts_change"],
+        }
+        for team in sorted(standings["teams"], key=lambda team: team.get("rank") or 99)[:6]
+    ]
+    expected_transactions = [
+        {
+            "type": txn["type"],
+            "team": txn["team"],
+            "player": txn["player"],
+        }
+        for txn in transactions["transactions"][:9]
+    ]
+    assert data["leaderboard"] == expected_leaderboard
+    assert data["transactions"] == expected_transactions
+    html = _read(ROOT / "index.html")
+    for team in expected_leaderboard:
+        change = float(team["pts_change"] or 0)
+        change_txt = f"+{change:.1f}" if change > 0 else f"{change:.1f}"
+        assert f'<div class="lb-rank">#{team["rank"]}</div>' in html
+        assert f'<div class="lb-team">{team["team"]}</div>' in html
+        assert f'<div class="lb-pts">{float(team["total_pts"]):.1f}</div>' in html
+        assert f">{change_txt}</div>" in html
+    for team in data["oracle_teams"]:
+        for key in ("team", "oracle_rank", "total_value", "mlb_value", "farm_value", "avg_age", "scatter_move"):
+            assert key in team, f"home preview oracle team missing {key}"
+
+
 def test_rules_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "rules.json"))
     assert "version_label" in data
@@ -218,7 +284,7 @@ def test_rules_schema() -> None:
     assert "sections" in data and isinstance(data["sections"], list)
     assert data["sections"], "rules has no sections"
     first = data["sections"][0]
-    for key in ("number", "title", "anchor", "items", "source", "summary", "highlights"):
+    for key in ("number", "title", "anchor", "source", "summary", "highlights", "blocks"):
         assert key in first, f"rules section missing {key}"
     assert "blocks" in first and isinstance(first["blocks"], list)
 
@@ -239,12 +305,15 @@ def test_rules_page_toc_links_match_sections() -> None:
     assert 'id="sections"' in html, "rules page missing sections container"
     assert 'class="section-summary"' in html, "rules page missing section summary hook"
     assert 'class="section-source"' in html, "rules page missing source badge hook"
+    assert 'class="rule-block-grid"' in html, "rules page should render kv blocks as block cards"
+    assert 'class="rules-table"' not in html, "rules page should not render kv blocks as tables"
     assert 'href="#${esc(section.anchor)}"' in html, "rules TOC template missing section anchor href"
     assert 'id="${esc(section.anchor)}"' in html, "rules section template missing section anchor id"
 
     section_anchors: list[str] = []
     block_anchors: list[str] = []
     for section in data["sections"]:
+        assert "items" not in section, f"{section['title']} still has redundant top-level items"
         anchor = section["anchor"]
         assert isinstance(anchor, str) and anchor, "rules section anchor missing"
         assert re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", anchor), f"invalid section anchor: {anchor}"

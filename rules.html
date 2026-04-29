@@ -254,42 +254,41 @@ body {
   line-height: 1.5;
 }
 
-.rules-table {
-  width: 100%;
-  border-collapse: collapse;
+.rule-block-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
 }
 
-.rules-table tr {
-  border-bottom: 1px solid var(--border);
+.rule-kv-card {
+  min-height: 86px;
+  padding: 16px 17px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
 }
 
-.rules-table tr:last-child {
-  border-bottom: 0;
+.rule-kv-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.rules-table th,
-.rules-table td {
-  padding: 11px 0;
-  vertical-align: top;
-}
-
-.rules-table th {
-  width: 38%;
-  text-align: left;
-  color: var(--text-mid);
-  font-size: 12px;
-  font-weight: 500;
-  padding-right: 18px;
-}
-
-.rules-table td {
+.rule-kv-value {
   color: var(--text);
-  font-size: 12.5px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
-.subhead-row td {
-  padding-top: 16px;
-  padding-bottom: 6px;
+.rule-subhead {
+  grid-column: 1 / -1;
+  padding-top: 6px;
   color: var(--gold);
   font-size: 11px;
   font-weight: 700;
@@ -410,16 +409,11 @@ body {
   .section-title {
     font-size: 28px;
   }
-  .rules-table th,
-  .rules-table td {
-    display: block;
-    width: 100%;
+  .rule-block-grid {
+    grid-template-columns: 1fr;
   }
-  .rules-table th {
-    padding-bottom: 2px;
-  }
-  .rules-table td {
-    padding-top: 0;
+  .rule-kv-card {
+    min-height: 0;
   }
 }
 </style>
@@ -431,7 +425,7 @@ body {
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>League<br><span>Rules</span></h1>
   <div class="divider"></div>
-  <p>Structured league settings with section anchors, plain-language formatting, and machine-readable keys for site features that need to reference league context.</p>
+  <p>League Rules and guidelines, from fantrax and our agreed upon standards.</p>
 </div>
 
 <div class="page">
@@ -512,15 +506,13 @@ function renderToc(sections) {
 function rowHtml(item) {
   if (item.type === 'kv') {
     return `
-      <tr>
-        <th>${esc(item.label)}</th>
-        <td>${esc(item.value)}</td>
-      </tr>`;
+      <div class="rule-kv-card">
+        <span class="rule-kv-label">${esc(item.label)}</span>
+        <span class="rule-kv-value">${esc(item.value)}</span>
+      </div>`;
   }
   return `
-    <tr class="subhead-row">
-      <td colspan="2">${esc(item.value)}</td>
-    </tr>`;
+    <div class="rule-subhead">${esc(item.value)}</div>`;
 }
 
 function blockHtml(block) {
@@ -560,17 +552,15 @@ function blockHtml(block) {
   return `
     <div class="block">
       ${title}
-      <table class="rules-table">
-        <tbody>
-          ${block.items.map(rowHtml).join('')}
-        </tbody>
-      </table>
+      <div class="rule-block-grid">
+        ${block.items.map(rowHtml).join('')}
+      </div>
     </div>`;
 }
 
 function renderSections(sections) {
   const container = document.getElementById('sections');
-  const sourceLabel = source => source === 'constitution' ? 'League Constitution' : 'Fantrax Export';
+    const sourceLabel = source => source === 'constitution' ? 'League Constitution' : 'fantrax';
   const summaryHtml = section => section.summary
     ? `<p class="section-summary">${esc(section.summary)}</p>`
     : '';
