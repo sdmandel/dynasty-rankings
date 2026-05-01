@@ -12,14 +12,15 @@ DATA = ROOT / "data"
 INDEX = ROOT / "index.html"
 
 
-def load_json(name: str) -> dict:
-    return json.loads((DATA / name).read_text(encoding="utf-8"))
+def load_json(name: str, *, data_dir: Path = DATA) -> dict:
+    return json.loads((data_dir / name).read_text(encoding="utf-8"))
 
 
-def build_home_preview() -> dict:
-    standings = load_json("standings.json")
-    transactions = load_json("transactions.json")
-    oracle = load_json("oracle_public.json")
+def build_home_preview(site_root: Path = ROOT) -> dict:
+    data_dir = site_root / "data"
+    standings = load_json("standings.json", data_dir=data_dir)
+    transactions = load_json("transactions.json", data_dir=data_dir)
+    oracle = load_json("oracle_public.json", data_dir=data_dir)
 
     leaderboard = [
         {
@@ -88,8 +89,9 @@ def render_leaderboard_rows(leaderboard: list[dict]) -> str:
     return "\n".join(rows)
 
 
-def update_index_fallback(preview: dict) -> None:
-    html = INDEX.read_text(encoding="utf-8")
+def update_index_fallback(preview: dict, site_root: Path = ROOT) -> None:
+    index = site_root / "index.html"
+    html = index.read_text(encoding="utf-8")
     pattern = re.compile(
         r'(?P<start>    <div class="lb-list" id="leaderboardList">\n)'
         r".*?"
@@ -103,17 +105,22 @@ def update_index_fallback(preview: dict) -> None:
     )
     if count != 1:
         raise RuntimeError("Could not locate homepage leaderboard fallback block")
-    INDEX.write_text(updated, encoding="utf-8")
+    index.write_text(updated, encoding="utf-8")
 
 
-def main() -> None:
-    preview = build_home_preview()
-    output = DATA / "home_preview.json"
+def write_home_preview(site_root: Path = ROOT) -> tuple[Path, Path]:
+    preview = build_home_preview(site_root)
+    output = site_root / "data" / "home_preview.json"
     output.write_text(
         json.dumps(preview, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    update_index_fallback(preview)
+    update_index_fallback(preview, site_root)
+    return output, site_root / "index.html"
+
+
+def main() -> None:
+    write_home_preview()
 
 
 if __name__ == "__main__":
