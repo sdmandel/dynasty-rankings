@@ -44,6 +44,11 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Humongous Melonheads",
+      "player": "Alec Bohm"
+    },
+    {
+      "type": "ADD",
       "team": "Trazadone",
       "player": "Edouard Julien"
     },
@@ -81,11 +86,6 @@
       "type": "ADD",
       "team": "Vin Mazzaro fan club",
       "player": "Jake Latz"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Isaac Mattson"
     }
   ],
   "oracle_teams": [
