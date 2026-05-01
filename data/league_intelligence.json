@@ -92,11 +92,11 @@
       "team": "Acu\u00f1a Matata",
       "source_team": "Acu\u00f1a Matata",
       "tier": "contender",
-      "points_back": 6.0,
+      "points_back": 6.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_rbi",
+        "cat_hr",
         "cat_svh"
       ],
       "category_gaps": {
@@ -125,8 +125,8 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -142,14 +142,14 @@
         }
       },
       "luck": {
-        "actual_points": 90.0,
+        "actual_points": 89.5,
         "expected_points": 90.0,
-        "delta": 0.0,
-        "cluster_sensitivity": 80.0,
+        "delta": -0.5,
+        "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 14.19,
+        "team_volatility_score": 14.18,
         "category_volatility": {
           "cat_era": 0.276,
           "cat_hr": 0.186,
@@ -157,7 +157,7 @@
           "cat_ops": 1.291,
           "cat_qs": 0.913,
           "cat_r": 1.346,
-          "cat_rbi": 0.582,
+          "cat_rbi": 0.607,
           "cat_sb": 0.9,
           "cat_svh": 0.607,
           "cat_whip": 0.373
@@ -396,7 +396,7 @@
       "team": "Vin Mazzaro fan club",
       "source_team": "Vin Mazzaro fan club",
       "tier": "fringe",
-      "points_back": 29.0,
+      "points_back": 28.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_hr",
@@ -429,8 +429,8 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -446,14 +446,14 @@
         }
       },
       "luck": {
-        "actual_points": 67.0,
+        "actual_points": 67.5,
         "expected_points": 69.5,
-        "delta": -2.5,
-        "cluster_sensitivity": 75.0,
+        "delta": -2.0,
+        "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 53.85,
+        "team_volatility_score": 53.86,
         "category_volatility": {
           "cat_era": 2.668,
           "cat_hr": 2.336,
@@ -461,7 +461,7 @@
           "cat_ops": 3.008,
           "cat_qs": 2.419,
           "cat_r": 2.26,
-          "cat_rbi": 1.441,
+          "cat_rbi": 1.438,
           "cat_sb": 1.187,
           "cat_svh": 0.754,
           "cat_whip": 3.711
@@ -581,7 +581,7 @@
           "to_loss": 1.0
         },
         "cat_rbi": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_sb": {
@@ -599,9 +599,9 @@
       },
       "luck": {
         "actual_points": 54.0,
-        "expected_points": 55.0,
-        "delta": -1.0,
-        "cluster_sensitivity": 80.0,
+        "expected_points": 55.5,
+        "delta": -1.5,
+        "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -658,7 +658,7 @@
         },
         "cat_rbi": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "cat_sb": {
           "to_gain": 1.0,
@@ -675,9 +675,9 @@
       },
       "luck": {
         "actual_points": 51.5,
-        "expected_points": 51.5,
-        "delta": 0.0,
-        "cluster_sensitivity": 90.0,
+        "expected_points": 51.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -940,11 +940,11 @@
     {
       "team": "Acu\u00f1a Matata",
       "tier": "contender",
-      "points_back": 6.0,
+      "points_back": 6.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_rbi",
+        "cat_hr",
         "cat_svh"
       ]
     },
@@ -984,7 +984,7 @@
     {
       "team": "Vin Mazzaro fan club",
       "tier": "fringe",
-      "points_back": 29.0,
+      "points_back": 28.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_hr",
@@ -1062,10 +1062,10 @@
   "luck": [
     {
       "team": "Vin Mazzaro fan club",
-      "actual_points": 67.0,
+      "actual_points": 67.5,
       "expected_points": 69.5,
-      "delta": -2.5,
-      "cluster_sensitivity": 75.0,
+      "delta": -2.0,
+      "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "positive-variance"
     },
@@ -1081,18 +1081,18 @@
     {
       "team": "Millville Meteors",
       "actual_points": 54.0,
-      "expected_points": 55.0,
-      "delta": -1.0,
-      "cluster_sensitivity": 80.0,
+      "expected_points": 55.5,
+      "delta": -1.5,
+      "cluster_sensitivity": 85.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
       "team": "Acu\u00f1a Matata",
-      "actual_points": 90.0,
+      "actual_points": 89.5,
       "expected_points": 90.0,
-      "delta": 0.0,
-      "cluster_sensitivity": 80.0,
+      "delta": -0.5,
+      "cluster_sensitivity": 85.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1115,20 +1115,20 @@
       "badge": "neutral"
     },
     {
-      "team": "Pat",
-      "actual_points": 51.5,
-      "expected_points": 51.5,
-      "delta": 0.0,
-      "cluster_sensitivity": 90.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
       "team": "Trazadone",
       "actual_points": 46.0,
       "expected_points": 46.0,
       "delta": 0.0,
       "cluster_sensitivity": 80.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Pat",
+      "actual_points": 51.5,
+      "expected_points": 51.0,
+      "delta": 0.5,
+      "cluster_sensitivity": 95.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1204,7 +1204,7 @@
     },
     {
       "team": "Vin Mazzaro fan club",
-      "team_volatility_score": 53.85,
+      "team_volatility_score": 53.86,
       "category_volatility": {
         "cat_era": 2.668,
         "cat_hr": 2.336,
@@ -1212,7 +1212,7 @@
         "cat_ops": 3.008,
         "cat_qs": 2.419,
         "cat_r": 2.26,
-        "cat_rbi": 1.441,
+        "cat_rbi": 1.438,
         "cat_sb": 1.187,
         "cat_svh": 0.754,
         "cat_whip": 3.711
@@ -1348,7 +1348,7 @@
     },
     {
       "team": "Acu\u00f1a Matata",
-      "team_volatility_score": 14.19,
+      "team_volatility_score": 14.18,
       "category_volatility": {
         "cat_era": 0.276,
         "cat_hr": 0.186,
@@ -1356,7 +1356,7 @@
         "cat_ops": 1.291,
         "cat_qs": 0.913,
         "cat_r": 1.346,
-        "cat_rbi": 0.582,
+        "cat_rbi": 0.607,
         "cat_sb": 0.9,
         "cat_svh": 0.607,
         "cat_whip": 0.373
