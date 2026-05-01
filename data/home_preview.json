@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Willi Castro"
+    },
+    {
+      "type": "ADD",
+      "team": "Seam heads",
+      "player": "Jose Ferrer"
+    },
+    {
       "type": "ADD",
       "team": "Humongous Melonheads",
       "player": "Alec Bohm"
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Millville Meteors",
       "player": "Brandon Young"
-    },
-    {
-      "type": "DROP",
-      "team": "Millville Meteors",
-      "player": "Keider Montero"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Jake Latz"
     }
   ],
   "oracle_teams": [
