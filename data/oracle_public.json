@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-01",
-  "generated_at": "2026-05-01T14:00:02-05:00",
+  "generated_at": "2026-05-01T15:00:03-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 38,
   "snapshot_date": "2026-05-01",
   "sources": {
-    "standings": "2026-05-01T14:00:02-05:00",
+    "standings": "2026-05-01T15:00:03-05:00",
     "intelligence": "2026-05-01",
     "managers": "2026-05-01",
     "oracle_values": "data/rankings_latest.csv"
@@ -272,10 +272,10 @@
         },
         "WHIP": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 2.0
         }
       },
-      "luck_delta": 2.5,
+      "luck_delta": 2.0,
       "volatility": 43.24,
       "pressure": {
         "score": 100.0,
@@ -712,7 +712,7 @@
     {
       "team": "Millville Meteors",
       "oracle_rank": 8,
-      "standings_rank": 8,
+      "standings_rank": 7,
       "total_value": 25927.7,
       "mlb_value": 22816.2,
       "farm_value": 3111.5,
@@ -724,7 +724,7 @@
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "WHIP"
       ],
       "category_gaps": {
         "ERA": {
@@ -764,11 +764,11 @@
           "to_loss": 1.5
         },
         "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 2.0,
+          "to_loss": 0.0
         }
       },
-      "luck_delta": -1.5,
+      "luck_delta": -1.0,
       "volatility": 68.2,
       "pressure": {
         "score": 100.0,
@@ -777,10 +777,10 @@
           "gap": 0.0
         },
         "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "WHIP",
+          "gap": 0.0
         },
-        "summary": "closest gain: HR (0.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: HR (0.0) \u00b7 closest loss: WHIP (0.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -792,7 +792,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "edge",
         "summary": "One move from gaining HR",
         "rank_delta": null,
@@ -811,19 +811,19 @@
     {
       "team": "Sam",
       "oracle_rank": 9,
-      "standings_rank": 7,
+      "standings_rank": 8,
       "total_value": 24453.2,
       "mlb_value": 22121.7,
       "farm_value": 2331.5,
       "avg_age": 30.0,
       "farm_share": 0.0953,
       "contention_tier": "rebuilding",
-      "points_back": 41.0,
+      "points_back": 42.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "WHIP"
       ],
       "category_gaps": {
         "ERA": {
@@ -863,23 +863,23 @@
           "to_loss": 1.0
         },
         "WHIP": {
-          "to_gain": 1.0,
+          "to_gain": 0.0,
           "to_loss": 1.0
         }
       },
       "luck_delta": 0.0,
-      "volatility": 45.05,
+      "volatility": 44.75,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "WHIP",
+          "gap": 0.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: WHIP (0.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -890,7 +890,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
