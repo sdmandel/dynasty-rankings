@@ -15,6 +15,7 @@ META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
 SHELL_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
 REQUIRED_META = {"og:title", "og:image"}
 FEEDBACK_REPO = "sdmandel/dynasty-rankings"
+DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "deploy-pages-on-release.yml"
 
 
 class StrictHTMLParser(HTMLParser):
@@ -28,6 +29,23 @@ class StrictHTMLParser(HTMLParser):
 
 def _read(p: Path) -> str:
     return p.read_text(encoding="utf-8")
+
+
+def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
+    workflow = _read(DEPLOY_WORKFLOW)
+    for path in (
+        "data/standings.json",
+        "data/transactions.json",
+        "data/trade_block.json",
+        "data/franchises.json",
+        "data/home_preview.json",
+        "data/league_intelligence.json",
+        "data/managers.json",
+        "data/oracle_public.json",
+        "data/rivalries.json",
+        "index.html",
+    ):
+        assert f'- "{path}"' in workflow, f"Pages deploy workflow must include {path}"
 
 
 @pytest.mark.parametrize("html_file", HTML_FILES, ids=lambda p: p.name)
