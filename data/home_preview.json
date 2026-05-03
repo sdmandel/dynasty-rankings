@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Vin Mazzaro fan club",
+      "player": "Jack Kochanowicz"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Mike Burrows"
+    },
+    {
       "type": "DROP",
       "team": "Vin Mazzaro fan club",
       "player": "Kumar Rocker"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Seam heads",
       "player": "Willi Castro"
-    },
-    {
-      "type": "DROP",
-      "team": "Trazadone",
-      "player": "Braxton Fulford"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Jose Ferrer"
     }
   ],
   "oracle_teams": [
