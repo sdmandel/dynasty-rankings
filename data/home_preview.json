@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Seam heads",
+      "player": "Adrian Morejon"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "JoJo Romero"
+    },
+    {
+      "type": "ADD",
       "team": "Vin Mazzaro fan club",
       "player": "Jack Kochanowicz"
     },
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Seam heads",
       "player": "Jack Perkins"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Hogan Harris"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Willi Castro"
     }
   ],
   "oracle_teams": [
