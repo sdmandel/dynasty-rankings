@@ -1,770 +1,608 @@
 {
-  "generated": "2026-04-27",
+  "generated": "2026-05-04",
   "season": 2026,
   "window": {
-    "start": "2026-04-19",
-    "end": "2026-04-26",
-    "label": "2026-04-19 to 2026-04-26",
+    "start": "2026-04-26",
+    "end": "2026-05-03",
+    "label": "2026-04-26 to 2026-05-03",
     "mode": "sunday_to_sunday"
   },
   "teams": {
     "acua matata": {
       "team": "Acu\u00f1a Matata",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
-          "player": "Sal Stewart",
+          "player": "Casey Schmitt",
           "group": "hitting",
           "team_owner": "Acu\u00f1a Matata",
-          "overall_rank": 96,
-          "heat_score": 42.5,
-          "cold_score": 16.2,
-          "sample_size": {
-            "pa": 33
-          },
-          "stats": {
-            "PA": 33,
-            "AVG": ".276",
-            "OBP": ".333",
-            "OPS": ".850",
-            "HR": 2,
-            "RBI": 11,
-            "R": 3,
-            "SB": 3,
-            "K": 6,
-            "H": 8
-          },
-          "pill_label": ".850 OPS, 2 HR, 3 SB",
-          "summary": ".276 AVG / .333 OBP / .850 OPS, 2 HR, 11 RBI, 3 R, 3 SB in 33 PA"
-        },
-        {
-          "player": "Junior Caminero",
-          "group": "hitting",
-          "team_owner": "Acu\u00f1a Matata",
-          "overall_rank": 14,
-          "heat_score": 41.29,
-          "cold_score": 6.2,
-          "sample_size": {
-            "pa": 29
-          },
-          "stats": {
-            "PA": 29,
-            "AVG": ".286",
-            "OBP": ".310",
-            "OPS": "1.024",
-            "HR": 4,
-            "RBI": 6,
-            "R": 6,
-            "SB": 0,
-            "K": 1,
-            "H": 8
-          },
-          "pill_label": "1.024 OPS, 4 HR, 6 RBI",
-          "summary": ".286 AVG / .310 OBP / 1.024 OPS, 4 HR, 6 RBI, 6 R, 0 SB in 29 PA"
-        }
-      ],
-      "cold_players": [
-        {
-          "player": "Bubba Chandler",
-          "group": "pitching",
-          "team_owner": "Acu\u00f1a Matata",
-          "overall_rank": 74,
-          "heat_score": -5.8,
-          "cold_score": 36.4,
-          "sample_size": {
-            "ip": "4.0"
-          },
-          "stats": {
-            "IP": "4.0",
-            "ERA": "13.50",
-            "WHIP": "2.50",
-            "K": 4,
-            "QS": 0,
-            "SVH": 0,
-            "W": 0,
-            "ER": 6
-          },
-          "pill_label": "4.0 IP, 13.50 ERA, 4 K",
-          "summary": "4.0 IP, 13.50 ERA, 2.50 WHIP, 4 K, 0 QS, 0 SVH"
-        }
-      ],
-      "matched_player_count": 35
-    },
-    "humongous melonheads": {
-      "team": "Humongous Melonheads",
-      "window": "2026-04-19 to 2026-04-26",
-      "hot_players": [
-        {
-          "player": "Isaac Paredes",
-          "group": "hitting",
-          "team_owner": "Humongous Melonheads",
-          "overall_rank": 191,
-          "heat_score": 40.99,
-          "cold_score": 3.4,
+          "overall_rank": 646,
+          "heat_score": 26.87,
+          "cold_score": 5.8,
           "sample_size": {
             "pa": 28
           },
           "stats": {
             "PA": 28,
-            "AVG": ".333",
-            "OBP": ".357",
-            "OPS": "1.024",
-            "HR": 3,
-            "RBI": 8,
-            "R": 6,
-            "SB": 0,
-            "K": 2,
+            "AVG": ".346",
+            "OBP": ".393",
+            "OPS": ".931",
+            "HR": 1,
+            "RBI": 5,
+            "R": 4,
+            "SB": 1,
+            "K": 4,
             "H": 9
           },
-          "pill_label": "1.024 OPS, 3 HR, 8 RBI",
-          "summary": ".333 AVG / .357 OBP / 1.024 OPS, 3 HR, 8 RBI, 6 R, 0 SB in 28 PA"
+          "pill_label": ".931 OPS, 1 HR, 1 SB",
+          "summary": ".346 AVG / .393 OBP / .931 OPS, 1 HR, 5 RBI, 4 R, 1 SB in 28 PA"
         },
         {
-          "player": "Coby Mayo",
+          "player": "Moises Ballesteros",
           "group": "hitting",
-          "team_owner": "Humongous Melonheads",
-          "overall_rank": 189,
-          "heat_score": 37.59,
-          "cold_score": 10.0,
-          "sample_size": {
-            "pa": 19
-          },
-          "stats": {
-            "PA": 19,
-            "AVG": ".278",
-            "OBP": ".316",
-            "OPS": "1.149",
-            "HR": 3,
-            "RBI": 7,
-            "R": 5,
-            "SB": 0,
-            "K": 5,
-            "H": 5
-          },
-          "pill_label": "1.149 OPS, 3 HR, 7 RBI",
-          "summary": ".278 AVG / .316 OBP / 1.149 OPS, 3 HR, 7 RBI, 5 R, 0 SB in 19 PA"
-        }
-      ],
-      "cold_players": [
-        {
-          "player": "Cam Smith",
-          "group": "hitting",
-          "team_owner": "Humongous Melonheads",
-          "overall_rank": 132,
-          "heat_score": 9.2,
-          "cold_score": 39.49,
+          "team_owner": "Acu\u00f1a Matata",
+          "overall_rank": 198,
+          "heat_score": 23.0,
+          "cold_score": 22.34,
           "sample_size": {
             "pa": 27
           },
           "stats": {
             "PA": 27,
-            "AVG": ".087",
-            "OBP": ".185",
-            "OPS": ".272",
+            "AVG": ".125",
+            "OBP": ".222",
+            "OPS": ".597",
+            "HR": 2,
+            "RBI": 6,
+            "R": 3,
+            "SB": 0,
+            "K": 3,
+            "H": 3
+          },
+          "pill_label": ".597 OPS, 2 HR, 6 RBI",
+          "summary": ".125 AVG / .222 OBP / .597 OPS, 2 HR, 6 RBI, 3 R, 0 SB in 27 PA"
+        }
+      ],
+      "cold_players": [
+        {
+          "player": "Sal Stewart",
+          "group": "hitting",
+          "team_owner": "Acu\u00f1a Matata",
+          "overall_rank": 81,
+          "heat_score": 3.6,
+          "cold_score": 35.16,
+          "sample_size": {
+            "pa": 29
+          },
+          "stats": {
+            "PA": 29,
+            "AVG": ".071",
+            "OBP": ".103",
+            "OPS": ".210",
             "HR": 0,
-            "RBI": 2,
+            "RBI": 0,
             "R": 2,
-            "SB": 1,
-            "K": 11,
+            "SB": 0,
+            "K": 5,
             "H": 2
           },
-          "pill_label": ".272 OPS, 1 SB, 2 RBI",
-          "summary": ".087 AVG / .185 OBP / .272 OPS, 0 HR, 2 RBI, 2 R, 1 SB in 27 PA"
+          "pill_label": ".210 OPS",
+          "summary": ".071 AVG / .103 OBP / .210 OPS, 0 HR, 0 RBI, 2 R, 0 SB in 29 PA"
         }
       ],
       "matched_player_count": 36
     },
+    "humongous melonheads": {
+      "team": "Humongous Melonheads",
+      "window": "2026-04-26 to 2026-05-03",
+      "hot_players": [
+        {
+          "player": "Pete Alonso",
+          "group": "hitting",
+          "team_owner": "Humongous Melonheads",
+          "overall_rank": 35,
+          "heat_score": 38.31,
+          "cold_score": 13.8,
+          "sample_size": {
+            "pa": 27
+          },
+          "stats": {
+            "PA": 27,
+            "AVG": ".261",
+            "OBP": ".370",
+            "OPS": "1.109",
+            "HR": 3,
+            "RBI": 5,
+            "R": 8,
+            "SB": 0,
+            "K": 4,
+            "H": 6
+          },
+          "pill_label": "1.109 OPS, 3 HR, 5 RBI",
+          "summary": ".261 AVG / .370 OBP / 1.109 OPS, 3 HR, 5 RBI, 8 R, 0 SB in 27 PA"
+        },
+        {
+          "player": "Hunter Goodman",
+          "group": "hitting",
+          "team_owner": "Humongous Melonheads",
+          "overall_rank": 131,
+          "heat_score": 32.13,
+          "cold_score": 33.8,
+          "sample_size": {
+            "pa": 32
+          },
+          "stats": {
+            "PA": 32,
+            "AVG": ".167",
+            "OBP": ".219",
+            "OPS": ".719",
+            "HR": 3,
+            "RBI": 6,
+            "R": 6,
+            "SB": 0,
+            "K": 14,
+            "H": 5
+          },
+          "pill_label": ".719 OPS, 3 HR, 6 RBI",
+          "summary": ".167 AVG / .219 OBP / .719 OPS, 3 HR, 6 RBI, 6 R, 0 SB in 32 PA"
+        }
+      ],
+      "cold_players": [
+        {
+          "player": "Jakob Marsee",
+          "group": "hitting",
+          "team_owner": "Humongous Melonheads",
+          "overall_rank": 162,
+          "heat_score": 4.1,
+          "cold_score": 37.06,
+          "sample_size": {
+            "pa": 29
+          },
+          "stats": {
+            "PA": 29,
+            "AVG": ".130",
+            "OBP": ".286",
+            "OPS": ".460",
+            "HR": 0,
+            "RBI": 0,
+            "R": 2,
+            "SB": 0,
+            "K": 12,
+            "H": 3
+          },
+          "pill_label": ".460 OPS",
+          "summary": ".130 AVG / .286 OBP / .460 OPS, 0 HR, 0 RBI, 2 R, 0 SB in 29 PA"
+        }
+      ],
+      "matched_player_count": 34
+    },
     "inkers": {
       "team": "Inkers",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
           "player": "Kazuma Okamoto",
           "group": "hitting",
           "team_owner": "Inkers",
-          "overall_rank": 183,
-          "heat_score": 39.82,
+          "overall_rank": 179,
+          "heat_score": 47.73,
+          "cold_score": 19.2,
+          "sample_size": {
+            "pa": 33
+          },
+          "stats": {
+            "PA": 33,
+            "AVG": ".233",
+            "OBP": ".303",
+            "OPS": ".936",
+            "HR": 4,
+            "RBI": 11,
+            "R": 6,
+            "SB": 0,
+            "K": 6,
+            "H": 7
+          },
+          "pill_label": ".936 OPS, 4 HR, 11 RBI",
+          "summary": ".233 AVG / .303 OBP / .936 OPS, 4 HR, 11 RBI, 6 R, 0 SB in 33 PA"
+        },
+        {
+          "player": "Jorge Soler",
+          "group": "hitting",
+          "team_owner": "Inkers",
+          "overall_rank": 557,
+          "heat_score": 30.56,
+          "cold_score": 16.4,
+          "sample_size": {
+            "pa": 32
+          },
+          "stats": {
+            "PA": 32,
+            "AVG": ".286",
+            "OBP": ".344",
+            "OPS": ".880",
+            "HR": 2,
+            "RBI": 7,
+            "R": 4,
+            "SB": 0,
+            "K": 7,
+            "H": 8
+          },
+          "pill_label": ".880 OPS, 2 HR, 7 RBI",
+          "summary": ".286 AVG / .344 OBP / .880 OPS, 2 HR, 7 RBI, 4 R, 0 SB in 32 PA"
+        }
+      ],
+      "cold_players": [
+        {
+          "player": "Zach Neto",
+          "group": "hitting",
+          "team_owner": "Inkers",
+          "overall_rank": 19,
+          "heat_score": 19.7,
+          "cold_score": 37.9,
+          "sample_size": {
+            "pa": 33
+          },
+          "stats": {
+            "PA": 33,
+            "AVG": ".172",
+            "OBP": ".273",
+            "OPS": ".514",
+            "HR": 0,
+            "RBI": 3,
+            "R": 4,
+            "SB": 3,
+            "K": 15,
+            "H": 5
+          },
+          "pill_label": ".514 OPS, 3 SB, 3 RBI",
+          "summary": ".172 AVG / .273 OBP / .514 OPS, 0 HR, 3 RBI, 4 R, 3 SB in 33 PA"
+        }
+      ],
+      "matched_player_count": 31
+    },
+    "john henry fan club": {
+      "team": "John Henry Fan Club",
+      "window": "2026-04-26 to 2026-05-03",
+      "hot_players": [
+        {
+          "player": "Kyle Schwarber",
+          "group": "hitting",
+          "team_owner": "John Henry Fan Club",
+          "overall_rank": 31,
+          "heat_score": 38.71,
           "cold_score": 16.6,
+          "sample_size": {
+            "pa": 31
+          },
+          "stats": {
+            "PA": 31,
+            "AVG": ".333",
+            "OBP": ".484",
+            "OPS": "1.276",
+            "HR": 3,
+            "RBI": 5,
+            "R": 6,
+            "SB": 0,
+            "K": 8,
+            "H": 8
+          },
+          "pill_label": "1.276 OPS, 3 HR, 5 RBI",
+          "summary": ".333 AVG / .484 OBP / 1.276 OPS, 3 HR, 5 RBI, 6 R, 0 SB in 31 PA"
+        },
+        {
+          "player": "Brice Matthews",
+          "group": "hitting",
+          "team_owner": "John Henry Fan Club",
+          "overall_rank": 434,
+          "heat_score": 35.3,
+          "cold_score": 10.6,
           "sample_size": {
             "pa": 28
           },
           "stats": {
             "PA": 28,
-            "AVG": ".304",
-            "OBP": ".429",
-            "OPS": "1.168",
-            "HR": 3,
-            "RBI": 6,
-            "R": 7,
-            "SB": 0,
+            "AVG": ".360",
+            "OBP": ".393",
+            "OPS": "1.033",
+            "HR": 2,
+            "RBI": 7,
+            "R": 4,
+            "SB": 1,
             "K": 8,
-            "H": 7
-          },
-          "pill_label": "1.168 OPS, 3 HR, 6 RBI",
-          "summary": ".304 AVG / .429 OBP / 1.168 OPS, 3 HR, 6 RBI, 7 R, 0 SB in 28 PA"
-        },
-        {
-          "player": "Drake Baldwin",
-          "group": "hitting",
-          "team_owner": "Inkers",
-          "overall_rank": 100,
-          "heat_score": 37.74,
-          "cold_score": 21.8,
-          "sample_size": {
-            "pa": 38
-          },
-          "stats": {
-            "PA": 38,
-            "AVG": ".290",
-            "OBP": ".421",
-            "OPS": ".937",
-            "HR": 2,
-            "RBI": 6,
-            "R": 8,
-            "SB": 1,
-            "K": 9,
             "H": 9
           },
-          "pill_label": ".937 OPS, 2 HR, 1 SB",
-          "summary": ".290 AVG / .421 OBP / .937 OPS, 2 HR, 6 RBI, 8 R, 1 SB in 38 PA"
+          "pill_label": "1.033 OPS, 2 HR, 1 SB",
+          "summary": ".360 AVG / .393 OBP / 1.033 OPS, 2 HR, 7 RBI, 4 R, 1 SB in 28 PA"
         }
       ],
       "cold_players": [
         {
-          "player": "Brayan Bello",
-          "group": "pitching",
-          "team_owner": "Inkers",
-          "overall_rank": 257,
-          "heat_score": -11.97,
-          "cold_score": 57.55,
-          "sample_size": {
-            "ip": "3.1"
-          },
-          "stats": {
-            "IP": "3.1",
-            "ERA": "21.60",
-            "WHIP": "4.20",
-            "K": 2,
-            "QS": 0,
-            "SVH": 0,
-            "W": 0,
-            "ER": 8
-          },
-          "pill_label": "3.1 IP, 21.60 ERA, 2 K",
-          "summary": "3.1 IP, 21.60 ERA, 4.20 WHIP, 2 K, 0 QS, 0 SVH"
-        }
-      ],
-      "matched_player_count": 27
-    },
-    "john henry fan club": {
-      "team": "John Henry Fan Club",
-      "window": "2026-04-19 to 2026-04-26",
-      "hot_players": [
-        {
-          "player": "Jazz Chisholm Jr.",
+          "player": "Evan Carter",
           "group": "hitting",
           "team_owner": "John Henry Fan Club",
-          "overall_rank": 26,
-          "heat_score": 36.48,
-          "cold_score": 8.4,
+          "overall_rank": 261,
+          "heat_score": 3.7,
+          "cold_score": 36.83,
           "sample_size": {
-            "pa": 26
+            "pa": 23
           },
           "stats": {
-            "PA": 26,
-            "AVG": ".375",
-            "OBP": ".423",
-            "OPS": "1.048",
-            "HR": 2,
-            "RBI": 6,
-            "R": 6,
+            "PA": 23,
+            "AVG": ".000",
+            "OBP": ".091",
+            "OPS": ".091",
+            "HR": 0,
+            "RBI": 0,
+            "R": 1,
             "SB": 1,
-            "K": 7,
-            "H": 9
+            "K": 5,
+            "H": 0
           },
-          "pill_label": "1.048 OPS, 2 HR, 1 SB",
-          "summary": ".375 AVG / .423 OBP / 1.048 OPS, 2 HR, 6 RBI, 6 R, 1 SB in 26 PA"
-        },
-        {
-          "player": "Riley Greene",
-          "group": "hitting",
-          "team_owner": "John Henry Fan Club",
-          "overall_rank": 44,
-          "heat_score": 36.47,
-          "cold_score": 10.8,
-          "sample_size": {
-            "pa": 35
-          },
-          "stats": {
-            "PA": 35,
-            "AVG": ".433",
-            "OBP": ".514",
-            "OPS": "1.214",
-            "HR": 2,
-            "RBI": 5,
-            "R": 6,
-            "SB": 0,
-            "K": 9,
-            "H": 13
-          },
-          "pill_label": "1.214 OPS, 2 HR, 5 RBI",
-          "summary": ".433 AVG / .514 OBP / 1.214 OPS, 2 HR, 5 RBI, 6 R, 0 SB in 35 PA"
+          "pill_label": ".091 OPS, 1 SB",
+          "summary": ".000 AVG / .091 OBP / .091 OPS, 0 HR, 0 RBI, 1 R, 1 SB in 23 PA"
         }
       ],
-      "cold_players": [
-        {
-          "player": "Cole Ragans",
-          "group": "pitching",
-          "team_owner": "John Henry Fan Club",
-          "overall_rank": 43,
-          "heat_score": 11.18,
-          "cold_score": 34.5,
-          "sample_size": {
-            "ip": "10.1"
-          },
-          "stats": {
-            "IP": "10.1",
-            "ERA": "6.97",
-            "WHIP": "1.65",
-            "K": 17,
-            "QS": 1,
-            "SVH": 0,
-            "W": 1,
-            "ER": 8
-          },
-          "pill_label": "10.1 IP, 6.97 ERA, 17 K",
-          "summary": "10.1 IP, 6.97 ERA, 1.65 WHIP, 17 K, 1 QS, 0 SVH"
-        }
-      ],
-      "matched_player_count": 29
+      "matched_player_count": 30
     },
     "millville meteors": {
       "team": "Millville Meteors",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
-          "player": "Spencer Torkelson",
+          "player": "Ozzie Albies",
           "group": "hitting",
           "team_owner": "Millville Meteors",
-          "overall_rank": 163,
-          "heat_score": 51.15,
-          "cold_score": 12.6,
+          "overall_rank": 184,
+          "heat_score": 39.53,
+          "cold_score": 3.4,
           "sample_size": {
-            "pa": 30
+            "pa": 31
           },
           "stats": {
-            "PA": 30,
-            "AVG": ".346",
-            "OBP": ".433",
-            "OPS": "1.471",
-            "HR": 5,
+            "PA": 31,
+            "AVG": ".400",
+            "OBP": ".484",
+            "OPS": "1.244",
+            "HR": 2,
             "RBI": 6,
-            "R": 6,
+            "R": 8,
             "SB": 0,
-            "K": 8,
-            "H": 9
+            "K": 2,
+            "H": 10
           },
-          "pill_label": "1.471 OPS, 5 HR, 6 RBI",
-          "summary": ".346 AVG / .433 OBP / 1.471 OPS, 5 HR, 6 RBI, 6 R, 0 SB in 30 PA"
+          "pill_label": "1.244 OPS, 2 HR, 6 RBI",
+          "summary": ".400 AVG / .484 OBP / 1.244 OPS, 2 HR, 6 RBI, 8 R, 0 SB in 31 PA"
         },
         {
           "player": "Christian Walker",
           "group": "hitting",
           "team_owner": "Millville Meteors",
-          "overall_rank": 508,
-          "heat_score": 42.13,
-          "cold_score": 8.4,
+          "overall_rank": 403,
+          "heat_score": 39.53,
+          "cold_score": 4.8,
           "sample_size": {
             "pa": 30
           },
           "stats": {
             "PA": 30,
-            "AVG": ".370",
-            "OBP": ".433",
-            "OPS": "1.211",
-            "HR": 3,
+            "AVG": ".481",
+            "OBP": ".533",
+            "OPS": "1.311",
+            "HR": 2,
             "RBI": 7,
-            "R": 6,
+            "R": 5,
             "SB": 0,
-            "K": 7,
-            "H": 10
+            "K": 4,
+            "H": 13
           },
-          "pill_label": "1.211 OPS, 3 HR, 7 RBI",
-          "summary": ".370 AVG / .433 OBP / 1.211 OPS, 3 HR, 7 RBI, 6 R, 0 SB in 30 PA"
+          "pill_label": "1.311 OPS, 2 HR, 7 RBI",
+          "summary": ".481 AVG / .533 OBP / 1.311 OPS, 2 HR, 7 RBI, 5 R, 0 SB in 30 PA"
         }
       ],
       "cold_players": [
         {
-          "player": "Austin Riley",
-          "group": "hitting",
+          "player": "Pete Fairbanks",
+          "group": "pitching",
           "team_owner": "Millville Meteors",
-          "overall_rank": 50,
-          "heat_score": 10.2,
-          "cold_score": 36.76,
+          "overall_rank": 335,
+          "heat_score": -2.27,
+          "cold_score": 168.45,
           "sample_size": {
-            "pa": 35
+            "ip": "0.1"
           },
           "stats": {
-            "PA": 35,
-            "AVG": ".100",
-            "OBP": ".229",
-            "OPS": ".396",
-            "HR": 0,
-            "RBI": 3,
-            "R": 3,
-            "SB": 0,
-            "K": 6,
-            "H": 3
+            "IP": "0.1",
+            "ERA": "81.00",
+            "WHIP": "12.00",
+            "K": 0,
+            "QS": 0,
+            "SVH": 1,
+            "W": 0,
+            "ER": 3
           },
-          "pill_label": ".396 OPS, 3 RBI",
-          "summary": ".100 AVG / .229 OBP / .396 OPS, 0 HR, 3 RBI, 3 R, 0 SB in 35 PA"
+          "pill_label": "1 SVH, 81.00 ERA",
+          "summary": "0.1 IP, 81.00 ERA, 12.00 WHIP, 0 K, 0 QS, 1 SVH"
         }
       ],
       "matched_player_count": 31
     },
     "mommy": {
       "team": "Mommy",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
-          "player": "Matt McLain",
+          "player": "Jordan Walker",
           "group": "hitting",
           "team_owner": "Mommy",
-          "overall_rank": 179,
-          "heat_score": 33.14,
-          "cold_score": 19.6,
-          "sample_size": {
-            "pa": 34
-          },
-          "stats": {
-            "PA": 34,
-            "AVG": ".267",
-            "OBP": ".353",
-            "OPS": ".920",
-            "HR": 2,
-            "RBI": 6,
-            "R": 5,
-            "SB": 1,
-            "K": 8,
-            "H": 8
-          },
-          "pill_label": ".920 OPS, 2 HR, 1 SB",
-          "summary": ".267 AVG / .353 OBP / .920 OPS, 2 HR, 6 RBI, 5 R, 1 SB in 34 PA"
-        },
-        {
-          "player": "Manny Machado",
-          "group": "hitting",
-          "team_owner": "Mommy",
-          "overall_rank": 79,
-          "heat_score": 27.69,
-          "cold_score": 14.0,
-          "sample_size": {
-            "pa": 26
-          },
-          "stats": {
-            "PA": 26,
-            "AVG": ".240",
-            "OBP": ".269",
-            "OPS": ".749",
-            "HR": 2,
-            "RBI": 6,
-            "R": 5,
-            "SB": 0,
-            "K": 5,
-            "H": 6
-          },
-          "pill_label": ".749 OPS, 2 HR, 6 RBI",
-          "summary": ".240 AVG / .269 OBP / .749 OPS, 2 HR, 6 RBI, 5 R, 0 SB in 26 PA"
-        }
-      ],
-      "cold_players": [
-        {
-          "player": "Ryne Nelson",
-          "group": "pitching",
-          "team_owner": "Mommy",
-          "overall_rank": 349,
-          "heat_score": -20.02,
-          "cold_score": 74.31,
-          "sample_size": {
-            "ip": "5.1"
-          },
-          "stats": {
-            "IP": "5.1",
-            "ERA": "23.63",
-            "WHIP": "3.38",
-            "K": 5,
-            "QS": 0,
-            "SVH": 0,
-            "W": 0,
-            "ER": 14
-          },
-          "pill_label": "5.1 IP, 23.63 ERA, 5 K",
-          "summary": "5.1 IP, 23.63 ERA, 3.38 WHIP, 5 K, 0 QS, 0 SVH"
-        }
-      ],
-      "matched_player_count": 33
-    },
-    "pat": {
-      "team": "Pat",
-      "window": "2026-04-19 to 2026-04-26",
-      "hot_players": [
-        {
-          "player": "Matt Olson",
-          "group": "hitting",
-          "team_owner": "Pat",
-          "overall_rank": 67,
-          "heat_score": 46.3,
-          "cold_score": 14.2,
-          "sample_size": {
-            "pa": 37
-          },
-          "stats": {
-            "PA": 37,
-            "AVG": ".294",
-            "OBP": ".324",
-            "OPS": ".942",
-            "HR": 3,
-            "RBI": 10,
-            "R": 8,
-            "SB": 0,
-            "K": 6,
-            "H": 10
-          },
-          "pill_label": ".942 OPS, 3 HR, 10 RBI",
-          "summary": ".294 AVG / .324 OBP / .942 OPS, 3 HR, 10 RBI, 8 R, 0 SB in 37 PA"
-        },
-        {
-          "player": "Max Muncy",
-          "group": "hitting",
-          "team_owner": "Pat",
-          "overall_rank": 453,
-          "heat_score": 44.42,
-          "cold_score": 2.4,
-          "sample_size": {
-            "pa": 29
-          },
-          "stats": {
-            "PA": 29,
-            "AVG": ".478",
-            "OBP": ".586",
-            "OPS": "1.543",
-            "HR": 3,
-            "RBI": 4,
-            "R": 8,
-            "SB": 0,
-            "K": 2,
-            "H": 11
-          },
-          "pill_label": "1.543 OPS, 3 HR, 4 RBI",
-          "summary": ".478 AVG / .586 OBP / 1.543 OPS, 3 HR, 4 RBI, 8 R, 0 SB in 29 PA"
-        }
-      ],
-      "cold_players": [
-        {
-          "player": "Jack Flaherty",
-          "group": "pitching",
-          "team_owner": "Pat",
-          "overall_rank": 298,
-          "heat_score": -2.32,
-          "cold_score": 39.84,
-          "sample_size": {
-            "ip": "5.1"
-          },
-          "stats": {
-            "IP": "5.1",
-            "ERA": "10.13",
-            "WHIP": "3.00",
-            "K": 7,
-            "QS": 0,
-            "SVH": 0,
-            "W": 0,
-            "ER": 6
-          },
-          "pill_label": "5.1 IP, 10.13 ERA, 7 K",
-          "summary": "5.1 IP, 10.13 ERA, 3.00 WHIP, 7 K, 0 QS, 0 SVH"
-        }
-      ],
-      "matched_player_count": 31
-    },
-    "rollie fingers": {
-      "team": "Rollie Fingers",
-      "window": "2026-04-19 to 2026-04-26",
-      "hot_players": [
-        {
-          "player": "Elly De La Cruz",
-          "group": "hitting",
-          "team_owner": "Rollie Fingers",
-          "overall_rank": 9,
-          "heat_score": 45.66,
-          "cold_score": 14.4,
-          "sample_size": {
-            "pa": 33
-          },
-          "stats": {
-            "PA": 33,
-            "AVG": ".300",
-            "OBP": ".364",
-            "OPS": ".997",
-            "HR": 3,
-            "RBI": 8,
-            "R": 8,
-            "SB": 1,
-            "K": 7,
-            "H": 9
-          },
-          "pill_label": ".997 OPS, 3 HR, 1 SB",
-          "summary": ".300 AVG / .364 OBP / .997 OPS, 3 HR, 8 RBI, 8 R, 1 SB in 33 PA"
-        },
-        {
-          "player": "Adley Rutschman",
-          "group": "hitting",
-          "team_owner": "Rollie Fingers",
-          "overall_rank": 144,
-          "heat_score": 40.04,
-          "cold_score": 1.2,
-          "sample_size": {
-            "pa": 17
-          },
-          "stats": {
-            "PA": 17,
-            "AVG": ".412",
-            "OBP": ".412",
-            "OPS": "1.353",
-            "HR": 3,
-            "RBI": 8,
-            "R": 3,
-            "SB": 0,
-            "K": 1,
-            "H": 7
-          },
-          "pill_label": "1.353 OPS, 3 HR, 8 RBI",
-          "summary": ".412 AVG / .412 OBP / 1.353 OPS, 3 HR, 8 RBI, 3 R, 0 SB in 17 PA"
-        }
-      ],
-      "cold_players": [
-        {
-          "player": "Ezequiel Tovar",
-          "group": "hitting",
-          "team_owner": "Rollie Fingers",
-          "overall_rank": 228,
-          "heat_score": 3.4,
-          "cold_score": 38.37,
-          "sample_size": {
-            "pa": 26
-          },
-          "stats": {
-            "PA": 26,
-            "AVG": ".080",
-            "OBP": ".115",
-            "OPS": ".195",
-            "HR": 0,
-            "RBI": 0,
-            "R": 0,
-            "SB": 1,
-            "K": 10,
-            "H": 2
-          },
-          "pill_label": ".195 OPS, 1 SB",
-          "summary": ".080 AVG / .115 OBP / .195 OPS, 0 HR, 0 RBI, 0 R, 1 SB in 26 PA"
-        }
-      ],
-      "matched_player_count": 36
-    },
-    "sam": {
-      "team": "Sam",
-      "window": "2026-04-19 to 2026-04-26",
-      "hot_players": [
-        {
-          "player": "Nathaniel Lowe",
-          "group": "hitting",
-          "team_owner": "Sam",
-          "overall_rank": 800,
-          "heat_score": 41.9,
-          "cold_score": 5.4,
-          "sample_size": {
-            "pa": 18
-          },
-          "stats": {
-            "PA": 18,
-            "AVG": ".294",
-            "OBP": ".333",
-            "OPS": "1.333",
-            "HR": 4,
-            "RBI": 5,
-            "R": 6,
-            "SB": 0,
-            "K": 2,
-            "H": 5
-          },
-          "pill_label": "1.333 OPS, 4 HR, 5 RBI",
-          "summary": ".294 AVG / .333 OBP / 1.333 OPS, 4 HR, 5 RBI, 6 R, 0 SB in 18 PA"
-        },
-        {
-          "player": "Bryce Harper",
-          "group": "hitting",
-          "team_owner": "Sam",
-          "overall_rank": 53,
-          "heat_score": 29.76,
-          "cold_score": 22.4,
+          "overall_rank": 191,
+          "heat_score": 49.29,
+          "cold_score": 7.2,
           "sample_size": {
             "pa": 35
           },
           "stats": {
             "PA": 35,
-            "AVG": ".233",
-            "OBP": ".314",
-            "OPS": ".747",
+            "AVG": ".400",
+            "OBP": ".457",
+            "OPS": "1.124",
             "HR": 2,
-            "RBI": 7,
-            "R": 5,
-            "SB": 0,
-            "K": 7,
-            "H": 7
+            "RBI": 11,
+            "R": 6,
+            "SB": 2,
+            "K": 6,
+            "H": 12
           },
-          "pill_label": ".747 OPS, 2 HR, 7 RBI",
-          "summary": ".233 AVG / .314 OBP / .747 OPS, 2 HR, 7 RBI, 5 R, 0 SB in 35 PA"
+          "pill_label": "1.124 OPS, 2 HR, 2 SB",
+          "summary": ".400 AVG / .457 OBP / 1.124 OPS, 2 HR, 11 RBI, 6 R, 2 SB in 35 PA"
+        },
+        {
+          "player": "Manny Machado",
+          "group": "hitting",
+          "team_owner": "Mommy",
+          "overall_rank": 74,
+          "heat_score": 41.31,
+          "cold_score": 8.2,
+          "sample_size": {
+            "pa": 25
+          },
+          "stats": {
+            "PA": 25,
+            "AVG": ".348",
+            "OBP": ".400",
+            "OPS": "1.226",
+            "HR": 3,
+            "RBI": 7,
+            "R": 6,
+            "SB": 0,
+            "K": 6,
+            "H": 8
+          },
+          "pill_label": "1.226 OPS, 3 HR, 7 RBI",
+          "summary": ".348 AVG / .400 OBP / 1.226 OPS, 3 HR, 7 RBI, 6 R, 0 SB in 25 PA"
         }
       ],
       "cold_players": [
         {
-          "player": "CJ Abrams",
+          "player": "David Peterson",
+          "group": "pitching",
+          "team_owner": "Mommy",
+          "overall_rank": 442,
+          "heat_score": -7.18,
+          "cold_score": 43.04,
+          "sample_size": {
+            "ip": "3.2"
+          },
+          "stats": {
+            "IP": "3.2",
+            "ERA": "17.18",
+            "WHIP": "2.18",
+            "K": 5,
+            "QS": 0,
+            "SVH": 0,
+            "W": 0,
+            "ER": 7
+          },
+          "pill_label": "3.2 IP, 17.18 ERA, 5 K",
+          "summary": "3.2 IP, 17.18 ERA, 2.18 WHIP, 5 K, 0 QS, 0 SVH"
+        }
+      ],
+      "matched_player_count": 32
+    },
+    "pat": {
+      "team": "Pat",
+      "window": "2026-04-26 to 2026-05-03",
+      "hot_players": [
+        {
+          "player": "Matt Olson",
           "group": "hitting",
-          "team_owner": "Sam",
-          "overall_rank": 33,
-          "heat_score": 14.5,
-          "cold_score": 38.3,
+          "team_owner": "Pat",
+          "overall_rank": 55,
+          "heat_score": 51.66,
+          "cold_score": 13.0,
           "sample_size": {
             "pa": 31
           },
           "stats": {
             "PA": 31,
-            "AVG": ".077",
-            "OBP": ".194",
-            "OPS": ".386",
-            "HR": 1,
-            "RBI": 2,
-            "R": 3,
-            "SB": 1,
-            "K": 8,
-            "H": 2
+            "AVG": ".308",
+            "OBP": ".387",
+            "OPS": "1.272",
+            "HR": 4,
+            "RBI": 9,
+            "R": 8,
+            "SB": 0,
+            "K": 5,
+            "H": 8
           },
-          "pill_label": ".386 OPS, 1 HR, 1 SB",
-          "summary": ".077 AVG / .194 OBP / .386 OPS, 1 HR, 2 RBI, 3 R, 1 SB in 31 PA"
+          "pill_label": "1.272 OPS, 4 HR, 9 RBI",
+          "summary": ".308 AVG / .387 OBP / 1.272 OPS, 4 HR, 9 RBI, 8 R, 0 SB in 31 PA"
+        },
+        {
+          "player": "William Contreras",
+          "group": "hitting",
+          "team_owner": "Pat",
+          "overall_rank": 76,
+          "heat_score": 38.65,
+          "cold_score": 2.4,
+          "sample_size": {
+            "pa": 32
+          },
+          "stats": {
+            "PA": 32,
+            "AVG": ".414",
+            "OBP": ".469",
+            "OPS": "1.021",
+            "HR": 1,
+            "RBI": 9,
+            "R": 8,
+            "SB": 0,
+            "K": 2,
+            "H": 12
+          },
+          "pill_label": "1.021 OPS, 1 HR, 9 RBI",
+          "summary": ".414 AVG / .469 OBP / 1.021 OPS, 1 HR, 9 RBI, 8 R, 0 SB in 32 PA"
         }
       ],
-      "matched_player_count": 34
+      "cold_players": [
+        {
+          "player": "Matt Chapman",
+          "group": "hitting",
+          "team_owner": "Pat",
+          "overall_rank": 258,
+          "heat_score": 3.6,
+          "cold_score": 44.41,
+          "sample_size": {
+            "pa": 31
+          },
+          "stats": {
+            "PA": 31,
+            "AVG": ".080",
+            "OBP": ".258",
+            "OPS": ".378",
+            "HR": 0,
+            "RBI": 0,
+            "R": 2,
+            "SB": 0,
+            "K": 13,
+            "H": 2
+          },
+          "pill_label": ".378 OPS",
+          "summary": ".080 AVG / .258 OBP / .378 OPS, 0 HR, 0 RBI, 2 R, 0 SB in 31 PA"
+        }
+      ],
+      "matched_player_count": 33
     },
-    "seam heads": {
-      "team": "Seam heads",
-      "window": "2026-04-19 to 2026-04-26",
+    "rollie fingers": {
+      "team": "Rollie Fingers",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
-          "player": "Cal Raleigh",
+          "player": "Byron Buxton",
           "group": "hitting",
-          "team_owner": "Seam heads",
-          "overall_rank": 23,
-          "heat_score": 43.59,
-          "cold_score": 10.4,
+          "team_owner": "Rollie Fingers",
+          "overall_rank": 118,
+          "heat_score": 56.04,
+          "cold_score": 6.8,
           "sample_size": {
             "pa": 32
           },
@@ -772,254 +610,408 @@
             "PA": 32,
             "AVG": ".345",
             "OBP": ".406",
-            "OPS": "1.199",
-            "HR": 4,
-            "RBI": 4,
+            "OPS": "1.303",
+            "HR": 5,
+            "RBI": 7,
             "R": 6,
-            "SB": 1,
-            "K": 7,
+            "SB": 2,
+            "K": 4,
             "H": 10
           },
-          "pill_label": "1.199 OPS, 4 HR, 1 SB",
-          "summary": ".345 AVG / .406 OBP / 1.199 OPS, 4 HR, 4 RBI, 6 R, 1 SB in 32 PA"
+          "pill_label": "1.303 OPS, 5 HR, 2 SB",
+          "summary": ".345 AVG / .406 OBP / 1.303 OPS, 5 HR, 7 RBI, 6 R, 2 SB in 32 PA"
         },
         {
-          "player": "Mickey Moniak",
+          "player": "JJ Wetherholt",
+          "group": "hitting",
+          "team_owner": "Rollie Fingers",
+          "overall_rank": 45,
+          "heat_score": 33.72,
+          "cold_score": 19.0,
+          "sample_size": {
+            "pa": 37
+          },
+          "stats": {
+            "PA": 37,
+            "AVG": ".235",
+            "OBP": ".297",
+            "OPS": ".885",
+            "HR": 3,
+            "RBI": 4,
+            "R": 7,
+            "SB": 0,
+            "K": 5,
+            "H": 8
+          },
+          "pill_label": ".885 OPS, 3 HR, 4 RBI",
+          "summary": ".235 AVG / .297 OBP / .885 OPS, 3 HR, 4 RBI, 7 R, 0 SB in 37 PA"
+        }
+      ],
+      "cold_players": [
+        {
+          "player": "Carter Jensen",
+          "group": "hitting",
+          "team_owner": "Rollie Fingers",
+          "overall_rank": 80,
+          "heat_score": 3.4,
+          "cold_score": 40.78,
+          "sample_size": {
+            "pa": 26
+          },
+          "stats": {
+            "PA": 26,
+            "AVG": ".045",
+            "OBP": ".192",
+            "OPS": ".237",
+            "HR": 0,
+            "RBI": 1,
+            "R": 1,
+            "SB": 0,
+            "K": 10,
+            "H": 1
+          },
+          "pill_label": ".237 OPS, 1 RBI",
+          "summary": ".045 AVG / .192 OBP / .237 OPS, 0 HR, 1 RBI, 1 R, 0 SB in 26 PA"
+        }
+      ],
+      "matched_player_count": 34
+    },
+    "sam": {
+      "team": "Sam",
+      "window": "2026-04-26 to 2026-05-03",
+      "hot_players": [
+        {
+          "player": "Shea Langeliers",
+          "group": "hitting",
+          "team_owner": "Sam",
+          "overall_rank": 107,
+          "heat_score": 35.87,
+          "cold_score": 1.2,
+          "sample_size": {
+            "pa": 29
+          },
+          "stats": {
+            "PA": 29,
+            "AVG": ".481",
+            "OBP": ".517",
+            "OPS": "1.406",
+            "HR": 2,
+            "RBI": 4,
+            "R": 5,
+            "SB": 0,
+            "K": 1,
+            "H": 13
+          },
+          "pill_label": "1.406 OPS, 2 HR, 4 RBI",
+          "summary": ".481 AVG / .517 OBP / 1.406 OPS, 2 HR, 4 RBI, 5 R, 0 SB in 29 PA"
+        },
+        {
+          "player": "CJ Abrams",
+          "group": "hitting",
+          "team_owner": "Sam",
+          "overall_rank": 32,
+          "heat_score": 30.78,
+          "cold_score": 8.0,
+          "sample_size": {
+            "pa": 29
+          },
+          "stats": {
+            "PA": 29,
+            "AVG": ".375",
+            "OBP": ".448",
+            "OPS": ".990",
+            "HR": 1,
+            "RBI": 7,
+            "R": 4,
+            "SB": 1,
+            "K": 5,
+            "H": 9
+          },
+          "pill_label": ".990 OPS, 1 HR, 1 SB",
+          "summary": ".375 AVG / .448 OBP / .990 OPS, 1 HR, 7 RBI, 4 R, 1 SB in 29 PA"
+        }
+      ],
+      "cold_players": [
+        {
+          "player": "Zac Gallen",
+          "group": "pitching",
+          "team_owner": "Sam",
+          "overall_rank": 236,
+          "heat_score": -6.88,
+          "cold_score": 39.16,
+          "sample_size": {
+            "ip": "3.2"
+          },
+          "stats": {
+            "IP": "3.2",
+            "ERA": "14.73",
+            "WHIP": "2.73",
+            "K": 3,
+            "QS": 0,
+            "SVH": 0,
+            "W": 0,
+            "ER": 6
+          },
+          "pill_label": "3.2 IP, 14.73 ERA, 3 K",
+          "summary": "3.2 IP, 14.73 ERA, 2.73 WHIP, 3 K, 0 QS, 0 SVH"
+        }
+      ],
+      "matched_player_count": 35
+    },
+    "seam heads": {
+      "team": "Seam heads",
+      "window": "2026-04-26 to 2026-05-03",
+      "hot_players": [
+        {
+          "player": "Aaron Judge",
           "group": "hitting",
           "team_owner": "Seam heads",
-          "overall_rank": 395,
-          "heat_score": 41.94,
-          "cold_score": 7.2,
+          "overall_rank": 8,
+          "heat_score": 51.61,
+          "cold_score": 10.6,
           "sample_size": {
             "pa": 31
           },
           "stats": {
             "PA": 31,
-            "AVG": ".414",
-            "OBP": ".452",
-            "OPS": "1.245",
+            "AVG": ".400",
+            "OBP": ".516",
+            "OPS": "1.476",
+            "HR": 4,
+            "RBI": 6,
+            "R": 9,
+            "SB": 0,
+            "K": 8,
+            "H": 10
+          },
+          "pill_label": "1.476 OPS, 4 HR, 6 RBI",
+          "summary": ".400 AVG / .516 OBP / 1.476 OPS, 4 HR, 6 RBI, 9 R, 0 SB in 31 PA"
+        },
+        {
+          "player": "Ben Rice",
+          "group": "hitting",
+          "team_owner": "Seam heads",
+          "overall_rank": 73,
+          "heat_score": 41.1,
+          "cold_score": 4.4,
+          "sample_size": {
+            "pa": 29
+          },
+          "stats": {
+            "PA": 29,
+            "AVG": ".360",
+            "OBP": ".448",
+            "OPS": "1.208",
             "HR": 3,
             "RBI": 6,
-            "R": 6,
-            "SB": 0,
-            "K": 6,
-            "H": 12
+            "R": 5,
+            "SB": 1,
+            "K": 2,
+            "H": 9
           },
-          "pill_label": "1.245 OPS, 3 HR, 6 RBI",
-          "summary": ".414 AVG / .452 OBP / 1.245 OPS, 3 HR, 6 RBI, 6 R, 0 SB in 31 PA"
+          "pill_label": "1.208 OPS, 3 HR, 1 SB",
+          "summary": ".360 AVG / .448 OBP / 1.208 OPS, 3 HR, 6 RBI, 5 R, 1 SB in 29 PA"
         }
       ],
       "cold_players": [
         {
-          "player": "JoJo Romero",
-          "group": "pitching",
+          "player": "Daylen Lile",
+          "group": "hitting",
           "team_owner": "Seam heads",
-          "overall_rank": 612,
-          "heat_score": -5.17,
-          "cold_score": 48.54,
+          "overall_rank": 196,
+          "heat_score": 4.9,
+          "cold_score": 40.05,
           "sample_size": {
-            "ip": "2.1"
+            "pa": 28
           },
           "stats": {
-            "IP": "2.1",
-            "ERA": "23.14",
-            "WHIP": "2.57",
-            "K": 2,
-            "QS": 0,
-            "SVH": 1,
-            "W": 0,
-            "ER": 6
+            "PA": 28,
+            "AVG": ".074",
+            "OBP": ".107",
+            "OPS": ".218",
+            "HR": 0,
+            "RBI": 0,
+            "R": 3,
+            "SB": 0,
+            "K": 10,
+            "H": 2
           },
-          "pill_label": "1 SVH, 23.14 ERA",
-          "summary": "2.1 IP, 23.14 ERA, 2.57 WHIP, 2 K, 0 QS, 1 SVH"
+          "pill_label": ".218 OPS",
+          "summary": ".074 AVG / .107 OBP / .218 OPS, 0 HR, 0 RBI, 3 R, 0 SB in 28 PA"
         }
       ],
       "matched_player_count": 36
     },
     "trazadone": {
       "team": "Trazadone",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
         {
-          "player": "Miguel Vargas",
+          "player": "Mark Vientos",
           "group": "hitting",
           "team_owner": "Trazadone",
-          "overall_rank": 389,
-          "heat_score": 47.37,
-          "cold_score": 11.8,
+          "overall_rank": 342,
+          "heat_score": 28.16,
+          "cold_score": 13.4,
           "sample_size": {
-            "pa": 34
+            "pa": 20
           },
           "stats": {
-            "PA": 34,
-            "AVG": ".346",
-            "OBP": ".500",
-            "OPS": "1.231",
-            "HR": 3,
+            "PA": 20,
+            "AVG": ".278",
+            "OBP": ".350",
+            "OPS": "1.072",
+            "HR": 2,
             "RBI": 5,
-            "R": 9,
-            "SB": 2,
-            "K": 4,
-            "H": 9
+            "R": 4,
+            "SB": 0,
+            "K": 7,
+            "H": 5
           },
-          "pill_label": "1.231 OPS, 3 HR, 2 SB",
-          "summary": ".346 AVG / .500 OBP / 1.231 OPS, 3 HR, 5 RBI, 9 R, 2 SB in 34 PA"
+          "pill_label": "1.072 OPS, 2 HR, 5 RBI",
+          "summary": ".278 AVG / .350 OBP / 1.072 OPS, 2 HR, 5 RBI, 4 R, 0 SB in 20 PA"
         },
         {
-          "player": "Nasim Nunez",
+          "player": "Yandy D\u00edaz",
           "group": "hitting",
           "team_owner": "Trazadone",
-          "overall_rank": 608,
-          "heat_score": 28.0,
-          "cold_score": 14.6,
+          "overall_rank": 334,
+          "heat_score": 25.41,
+          "cold_score": 6.4,
           "sample_size": {
-            "pa": 26
+            "pa": 19
           },
           "stats": {
-            "PA": 26,
-            "AVG": ".261",
-            "OBP": ".346",
-            "OPS": ".607",
-            "HR": 0,
-            "RBI": 5,
-            "R": 2,
-            "SB": 6,
-            "K": 5,
-            "H": 6
+            "PA": 19,
+            "AVG": ".313",
+            "OBP": ".421",
+            "OPS": "1.109",
+            "HR": 2,
+            "RBI": 3,
+            "R": 4,
+            "SB": 0,
+            "K": 2,
+            "H": 5
           },
-          "pill_label": ".607 OPS, 6 SB, 5 RBI",
-          "summary": ".261 AVG / .346 OBP / .607 OPS, 0 HR, 5 RBI, 2 R, 6 SB in 26 PA"
+          "pill_label": "1.109 OPS, 2 HR, 3 RBI",
+          "summary": ".313 AVG / .421 OBP / 1.109 OPS, 2 HR, 3 RBI, 4 R, 0 SB in 19 PA"
         }
       ],
       "cold_players": [
         {
-          "player": "Aaron Nola",
+          "player": "Merrill Kelly",
           "group": "pitching",
           "team_owner": "Trazadone",
-          "overall_rank": 256,
-          "heat_score": -6.35,
-          "cold_score": 48.73,
+          "overall_rank": 476,
+          "heat_score": -10.37,
+          "cold_score": 50.0,
           "sample_size": {
-            "ip": "9.0"
+            "ip": "9.1"
           },
           "stats": {
-            "IP": "9.0",
-            "ERA": "11.00",
-            "WHIP": "2.22",
-            "K": 11,
+            "IP": "9.1",
+            "ERA": "10.61",
+            "WHIP": "2.36",
+            "K": 6,
             "QS": 0,
             "SVH": 0,
             "W": 0,
             "ER": 11
           },
-          "pill_label": "9.0 IP, 11.00 ERA, 11 K",
-          "summary": "9.0 IP, 11.00 ERA, 2.22 WHIP, 11 K, 0 QS, 0 SVH"
+          "pill_label": "9.1 IP, 10.61 ERA, 6 K",
+          "summary": "9.1 IP, 10.61 ERA, 2.36 WHIP, 6 K, 0 QS, 0 SVH"
         }
       ],
-      "matched_player_count": 26
+      "matched_player_count": 29
     },
     "vin mazzaro fan club": {
       "team": "Vin Mazzaro fan club",
-      "window": "2026-04-19 to 2026-04-26",
+      "window": "2026-04-26 to 2026-05-03",
       "hot_players": [
-        {
-          "player": "Michael Harris II",
-          "group": "hitting",
-          "team_owner": "Vin Mazzaro fan club",
-          "overall_rank": 93,
-          "heat_score": 51.61,
-          "cold_score": 2.4,
-          "sample_size": {
-            "pa": 30
-          },
-          "stats": {
-            "PA": 30,
-            "AVG": ".481",
-            "OBP": ".500",
-            "OPS": "1.426",
-            "HR": 3,
-            "RBI": 12,
-            "R": 4,
-            "SB": 0,
-            "K": 2,
-            "H": 13
-          },
-          "pill_label": "1.426 OPS, 3 HR, 12 RBI",
-          "summary": ".481 AVG / .500 OBP / 1.426 OPS, 3 HR, 12 RBI, 4 R, 0 SB in 30 PA"
-        },
-        {
-          "player": "Seiya Suzuki",
-          "group": "hitting",
-          "team_owner": "Vin Mazzaro fan club",
-          "overall_rank": 115,
-          "heat_score": 42.9,
-          "cold_score": 13.8,
-          "sample_size": {
-            "pa": 33
-          },
-          "stats": {
-            "PA": 33,
-            "AVG": ".345",
-            "OBP": ".424",
-            "OPS": "1.183",
-            "HR": 4,
-            "RBI": 6,
-            "R": 5,
-            "SB": 0,
-            "K": 9,
-            "H": 10
-          },
-          "pill_label": "1.183 OPS, 4 HR, 6 RBI",
-          "summary": ".345 AVG / .424 OBP / 1.183 OPS, 4 HR, 6 RBI, 5 R, 0 SB in 33 PA"
-        }
-      ],
-      "cold_players": [
         {
           "player": "Alec Burleson",
           "group": "hitting",
           "team_owner": "Vin Mazzaro fan club",
-          "overall_rank": 204,
-          "heat_score": 5.5,
-          "cold_score": 33.01,
+          "overall_rank": 176,
+          "heat_score": 45.99,
+          "cold_score": 8.0,
           "sample_size": {
-            "pa": 26
+            "pa": 35
           },
           "stats": {
-            "PA": 26,
-            "AVG": ".080",
-            "OBP": ".115",
-            "OPS": ".235",
-            "HR": 0,
-            "RBI": 2,
-            "R": 1,
+            "PA": 35,
+            "AVG": ".355",
+            "OBP": ".429",
+            "OPS": "1.074",
+            "HR": 2,
+            "RBI": 11,
+            "R": 8,
             "SB": 0,
-            "K": 6,
-            "H": 2
+            "K": 5,
+            "H": 11
           },
-          "pill_label": ".235 OPS, 2 RBI",
-          "summary": ".080 AVG / .115 OBP / .235 OPS, 0 HR, 2 RBI, 1 R, 0 SB in 26 PA"
+          "pill_label": "1.074 OPS, 2 HR, 11 RBI",
+          "summary": ".355 AVG / .429 OBP / 1.074 OPS, 2 HR, 11 RBI, 8 R, 0 SB in 35 PA"
+        },
+        {
+          "player": "Bryson Stott",
+          "group": "hitting",
+          "team_owner": "Vin Mazzaro fan club",
+          "overall_rank": 305,
+          "heat_score": 28.79,
+          "cold_score": 24.4,
+          "sample_size": {
+            "pa": 25
+          },
+          "stats": {
+            "PA": 25,
+            "AVG": ".143",
+            "OBP": ".217",
+            "OPS": ".741",
+            "HR": 2,
+            "RBI": 7,
+            "R": 4,
+            "SB": 1,
+            "K": 7,
+            "H": 3
+          },
+          "pill_label": ".741 OPS, 2 HR, 1 SB",
+          "summary": ".143 AVG / .217 OBP / .741 OPS, 2 HR, 7 RBI, 4 R, 1 SB in 25 PA"
         }
       ],
-      "matched_player_count": 36
+      "cold_players": [
+        {
+          "player": "Michael Soroka",
+          "group": "pitching",
+          "team_owner": "Vin Mazzaro fan club",
+          "overall_rank": 492,
+          "heat_score": -12.2,
+          "cold_score": 61.65,
+          "sample_size": {
+            "ip": "3.0"
+          },
+          "stats": {
+            "IP": "3.0",
+            "ERA": "24.00",
+            "WHIP": "4.00",
+            "K": 2,
+            "QS": 0,
+            "SVH": 0,
+            "W": 0,
+            "ER": 8
+          },
+          "pill_label": "3.0 IP, 24.00 ERA, 2 K",
+          "summary": "3.0 IP, 24.00 ERA, 4.00 WHIP, 2 K, 0 QS, 0 SVH"
+        }
+      ],
+      "matched_player_count": 34
     }
   },
   "unmatched_players": [
     {
-      "player": "Jackson Chourio",
-      "team_owner": "Millville Meteors",
-      "mlb_team": "MIL",
-      "group": "hitting"
-    },
-    {
       "player": "Hunter Greene",
       "team_owner": "Rollie Fingers",
       "mlb_team": "CIN",
-      "group": "pitching"
-    },
-    {
-      "player": "Spencer Strider",
-      "team_owner": "Rollie Fingers",
-      "mlb_team": "ATL",
       "group": "pitching"
     },
     {
@@ -1029,10 +1021,10 @@
       "group": "pitching"
     },
     {
-      "player": "Jordan Westburg",
-      "team_owner": "Sam",
-      "mlb_team": "BAL",
-      "group": "hitting"
+      "player": "Nick Lodolo",
+      "team_owner": "Pat",
+      "mlb_team": "CIN",
+      "group": "pitching"
     },
     {
       "player": "Blake Snell",
@@ -1041,27 +1033,15 @@
       "group": "pitching"
     },
     {
-      "player": "Nick Lodolo",
-      "team_owner": "Pat",
-      "mlb_team": "CIN",
-      "group": "pitching"
+      "player": "Jordan Westburg",
+      "team_owner": "Sam",
+      "mlb_team": "BAL",
+      "group": "hitting"
     },
     {
       "player": "Jackson Jobe",
       "team_owner": "Inkers",
       "mlb_team": "DET",
-      "group": "pitching"
-    },
-    {
-      "player": "Pablo L\u00f3pez",
-      "team_owner": "Inkers",
-      "mlb_team": "MIN",
-      "group": "pitching"
-    },
-    {
-      "player": "Jared Jones",
-      "team_owner": "Inkers",
-      "mlb_team": "PIT",
       "group": "pitching"
     },
     {
@@ -1071,9 +1051,9 @@
       "group": "pitching"
     },
     {
-      "player": "Bryce Miller",
-      "team_owner": "Seam heads",
-      "mlb_team": "SEA",
+      "player": "Pablo L\u00f3pez",
+      "team_owner": "Inkers",
+      "mlb_team": "MIN",
       "group": "pitching"
     },
     {
@@ -1083,15 +1063,21 @@
       "group": "pitching"
     },
     {
-      "player": "Corbin Burnes",
-      "team_owner": "Trazadone",
-      "mlb_team": "AZ",
+      "player": "Bryce Miller",
+      "team_owner": "Seam heads",
+      "mlb_team": "SEA",
       "group": "pitching"
     },
     {
       "player": "Carlos Rod\u00f3n",
       "team_owner": "Acu\u00f1a Matata",
       "mlb_team": "NYY",
+      "group": "pitching"
+    },
+    {
+      "player": "Corbin Burnes",
+      "team_owner": "Trazadone",
+      "mlb_team": "AZ",
       "group": "pitching"
     },
     {
@@ -1107,21 +1093,9 @@
       "group": "pitching"
     },
     {
-      "player": "Reese Olson",
-      "team_owner": "John Henry Fan Club",
-      "mlb_team": "DET",
-      "group": "pitching"
-    },
-    {
       "player": "Shane Bieber",
       "team_owner": "Trazadone",
       "mlb_team": "TOR",
-      "group": "pitching"
-    },
-    {
-      "player": "J.R. Ritchie",
-      "team_owner": "Rollie Fingers",
-      "mlb_team": "ATL",
       "group": "pitching"
     },
     {
@@ -1131,9 +1105,21 @@
       "group": "pitching"
     },
     {
+      "player": "J.R. Ritchie",
+      "team_owner": "Rollie Fingers",
+      "mlb_team": "ATL",
+      "group": "pitching"
+    },
+    {
       "player": "River Ryan",
       "team_owner": "Vin Mazzaro fan club",
       "mlb_team": "LAD",
+      "group": "pitching"
+    },
+    {
+      "player": "Reese Olson",
+      "team_owner": "John Henry Fan Club",
+      "mlb_team": "DET",
       "group": "pitching"
     },
     {
@@ -1143,9 +1129,9 @@
       "group": "hitting"
     },
     {
-      "player": "Clarke Schmidt",
-      "team_owner": "Pat",
-      "mlb_team": "NYY",
+      "player": "Joe Musgrove",
+      "team_owner": "Humongous Melonheads",
+      "mlb_team": "SD",
       "group": "pitching"
     },
     {
@@ -1153,18 +1139,6 @@
       "team_owner": "Millville Meteors",
       "mlb_team": "STL",
       "group": "hitting"
-    },
-    {
-      "player": "Joe Musgrove",
-      "team_owner": "Humongous Melonheads",
-      "mlb_team": "SD",
-      "group": "pitching"
-    },
-    {
-      "player": "Ben Joyce",
-      "team_owner": "Humongous Melonheads",
-      "mlb_team": "LAA",
-      "group": "pitching"
     },
     {
       "player": "Braxton Garrett",
@@ -1179,15 +1153,9 @@
       "group": "hitting"
     },
     {
-      "player": "Drew Thorpe",
-      "team_owner": "Vin Mazzaro fan club",
-      "mlb_team": "CWS",
-      "group": "pitching"
-    },
-    {
-      "player": "Jos\u00e9 Berr\u00edos",
-      "team_owner": "Mommy",
-      "mlb_team": "TOR",
+      "player": "Clarke Schmidt",
+      "team_owner": "Pat",
+      "mlb_team": "NYY",
       "group": "pitching"
     },
     {
@@ -1197,15 +1165,27 @@
       "group": "hitting"
     },
     {
-      "player": "F\u00e9lix Bautista",
-      "team_owner": "Sam",
-      "mlb_team": "BAL",
+      "player": "Jos\u00e9 Berr\u00edos",
+      "team_owner": "Mommy",
+      "mlb_team": "TOR",
+      "group": "pitching"
+    },
+    {
+      "player": "Drew Thorpe",
+      "team_owner": "Vin Mazzaro fan club",
+      "mlb_team": "CWS",
       "group": "pitching"
     },
     {
       "player": "Lucas Giolito",
       "team_owner": "Trazadone",
       "mlb_team": "SD",
+      "group": "pitching"
+    },
+    {
+      "player": "F\u00e9lix Bautista",
+      "team_owner": "Sam",
+      "mlb_team": "BAL",
       "group": "pitching"
     },
     {
@@ -1221,6 +1201,12 @@
       "group": "pitching"
     },
     {
+      "player": "Kutter Crawford",
+      "team_owner": "Inkers",
+      "mlb_team": "BOS",
+      "group": "pitching"
+    },
+    {
       "player": "Josiah Gray",
       "team_owner": "Sam",
       "mlb_team": "WSH",
@@ -1233,15 +1219,9 @@
       "group": "pitching"
     },
     {
-      "player": "Jon Gray",
+      "player": "Bobby Miller",
       "team_owner": "Sam",
-      "mlb_team": "FA",
-      "group": "pitching"
-    },
-    {
-      "player": "Kutter Crawford",
-      "team_owner": "Inkers",
-      "mlb_team": "BOS",
+      "mlb_team": "LAD",
       "group": "pitching"
     },
     {
@@ -1251,9 +1231,9 @@
       "group": "pitching"
     },
     {
-      "player": "Bobby Miller",
-      "team_owner": "Sam",
-      "mlb_team": "LAD",
+      "player": "Jason Foley",
+      "team_owner": "Pat",
+      "mlb_team": "SF",
       "group": "pitching"
     },
     {
@@ -1263,12 +1243,12 @@
       "group": "pitching"
     },
     {
-      "player": "Jason Foley",
-      "team_owner": "Pat",
-      "mlb_team": "SF",
+      "player": "Jon Gray",
+      "team_owner": "Sam",
+      "mlb_team": "FA",
       "group": "pitching"
     }
   ],
-  "matched_player_count": 442,
-  "unmatched_player_count": 44
+  "matched_player_count": 447,
+  "unmatched_player_count": 40
 }
