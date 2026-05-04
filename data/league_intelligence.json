@@ -547,8 +547,8 @@
     {
       "team": "Sam",
       "source_team": "Sam",
-      "tier": "stagnating",
-      "points_back": 40.0,
+      "tier": "rebuilding",
+      "points_back": 41.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_hr",
@@ -594,18 +594,18 @@
         },
         "cat_whip": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": null
         }
       },
       "luck": {
-        "actual_points": 54.5,
-        "expected_points": 53.5,
-        "delta": 1.0,
-        "cluster_sensitivity": 80.0,
+        "actual_points": 53.5,
+        "expected_points": 53.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 75.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 43.61,
+        "team_volatility_score": 43.62,
         "category_volatility": {
           "cat_era": 2.047,
           "cat_hr": 0.758,
@@ -616,7 +616,7 @@
           "cat_rbi": 2.611,
           "cat_sb": 1.74,
           "cat_svh": 1.36,
-          "cat_whip": 3.46
+          "cat_whip": 3.482
         }
       }
     },
@@ -700,7 +700,7 @@
       "team": "Inkers",
       "source_team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 47.5,
+      "points_back": 46.5,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
@@ -746,18 +746,18 @@
         },
         "cat_whip": {
           "to_gain": 1.0,
-          "to_loss": null
+          "to_loss": 1.0
         }
       },
       "luck": {
-        "actual_points": 47.0,
-        "expected_points": 48.5,
-        "delta": -1.5,
-        "cluster_sensitivity": 75.0,
+        "actual_points": 48.0,
+        "expected_points": 49.0,
+        "delta": -1.0,
+        "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 29.44,
+        "team_volatility_score": 29.46,
         "category_volatility": {
           "cat_era": 2.532,
           "cat_hr": 2.517,
@@ -768,7 +768,7 @@
           "cat_rbi": 3.38,
           "cat_sb": 0.917,
           "cat_svh": 1.407,
-          "cat_whip": 1.279
+          "cat_whip": 1.277
         }
       }
     },
@@ -1005,8 +1005,8 @@
     },
     {
       "team": "Sam",
-      "tier": "stagnating",
-      "points_back": 40.0,
+      "tier": "rebuilding",
+      "points_back": 41.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_hr",
@@ -1028,7 +1028,7 @@
     {
       "team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 47.5,
+      "points_back": 46.5,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
@@ -1071,10 +1071,10 @@
     },
     {
       "team": "Inkers",
-      "actual_points": 47.0,
-      "expected_points": 48.5,
-      "delta": -1.5,
-      "cluster_sensitivity": 75.0,
+      "actual_points": 48.0,
+      "expected_points": 49.0,
+      "delta": -1.0,
+      "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1133,6 +1133,15 @@
       "badge": "neutral"
     },
     {
+      "team": "Sam",
+      "actual_points": 53.5,
+      "expected_points": 53.0,
+      "delta": 0.5,
+      "cluster_sensitivity": 75.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
       "team": "Trazadone",
       "actual_points": 45.5,
       "expected_points": 45.0,
@@ -1145,15 +1154,6 @@
       "team": "Seam heads",
       "actual_points": 94.5,
       "expected_points": 93.5,
-      "delta": 1.0,
-      "cluster_sensitivity": 80.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Sam",
-      "actual_points": 54.5,
-      "expected_points": 53.5,
       "delta": 1.0,
       "cluster_sensitivity": 80.0,
       "efficiency_score": null,
@@ -1252,7 +1252,7 @@
     },
     {
       "team": "Sam",
-      "team_volatility_score": 43.61,
+      "team_volatility_score": 43.62,
       "category_volatility": {
         "cat_era": 2.047,
         "cat_hr": 0.758,
@@ -1263,7 +1263,7 @@
         "cat_rbi": 2.611,
         "cat_sb": 1.74,
         "cat_svh": 1.36,
-        "cat_whip": 3.46
+        "cat_whip": 3.482
       }
     },
     {
@@ -1316,7 +1316,7 @@
     },
     {
       "team": "Inkers",
-      "team_volatility_score": 29.44,
+      "team_volatility_score": 29.46,
       "category_volatility": {
         "cat_era": 2.532,
         "cat_hr": 2.517,
@@ -1327,7 +1327,7 @@
         "cat_rbi": 3.38,
         "cat_sb": 0.917,
         "cat_svh": 1.407,
-        "cat_whip": 1.279
+        "cat_whip": 1.277
       }
     },
     {

@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-03",
-  "generated_at": "2026-05-03T18:00:03-05:00",
+  "generated_at": "2026-05-03T19:00:03-05:00",
   "season": 2026,
   "season_label": "2026 Season",
-  "week": 40,
+  "week": 41,
   "snapshot_date": "2026-05-03",
   "sources": {
-    "standings": "2026-05-03T18:00:03-05:00",
+    "standings": "2026-05-03T19:00:03-05:00",
     "intelligence": "2026-05-03",
     "managers": "2026-05-03",
     "oracle_values": "data/rankings_latest.csv"
@@ -620,7 +620,7 @@
       "avg_age": 28.2,
       "farm_share": 0.2669,
       "contention_tier": "rebuilding",
-      "points_back": 47.5,
+      "points_back": 46.5,
       "reachable_points": 9.0,
       "tight_categories": [
         "ERA",
@@ -666,11 +666,11 @@
         },
         "WHIP": {
           "to_gain": 1.0,
-          "to_loss": null
+          "to_loss": 1.0
         }
       },
-      "luck_delta": -1.5,
-      "volatility": 29.44,
+      "luck_delta": -1.0,
+      "volatility": 29.46,
       "pressure": {
         "score": 100.0,
         "gain_target": {
@@ -694,7 +694,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": 1.5,
         "stock": "build",
         "summary": "Farm-forward build",
         "rank_delta": null,
@@ -817,8 +817,8 @@
       "farm_value": 2331.5,
       "avg_age": 30.0,
       "farm_share": 0.0953,
-      "contention_tier": "stagnating",
-      "points_back": 40.0,
+      "contention_tier": "rebuilding",
+      "points_back": 41.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "HR",
@@ -864,11 +864,11 @@
         },
         "WHIP": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": null
         }
       },
-      "luck_delta": 1.0,
-      "volatility": 43.61,
+      "luck_delta": 0.5,
+      "volatility": 43.62,
       "pressure": {
         "score": 100.0,
         "gain_target": {
@@ -882,7 +882,7 @@
         "summary": "closest gain: SB (0.0) \u00b7 closest loss: HR (0.0)"
       },
       "public_archetypes": [
-        "stagnating",
+        "rebuilding",
         "aging core",
         "bullpen-backed"
       ],
@@ -890,7 +890,7 @@
         "hold and monitor"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
