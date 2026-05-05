@@ -43,9 +43,39 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "John Henry Fan Club",
+      "player": "Braydon Fisher"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "AJ Smith-Shawver"
+    },
+    {
+      "type": "TRADE",
+      "team": "Inkers",
+      "player": "Andrew Painter"
+    },
+    {
+      "type": "TRADE",
+      "team": "Humongous Melonheads",
+      "player": "Brent Rooker"
+    },
+    {
       "type": "ADD",
       "team": "Seam heads",
       "player": "Jovani Moran"
+    },
+    {
+      "type": "ADD",
+      "team": "Rollie Fingers",
+      "player": "Nolan Arenado"
+    },
+    {
+      "type": "DROP",
+      "team": "Trazadone",
+      "player": "Adael Amador"
     },
     {
       "type": "DROP",
@@ -56,36 +86,6 @@
       "type": "DROP",
       "team": "Millville Meteors",
       "player": "Brooks Raley"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Zach McKinstry"
-    },
-    {
-      "type": "ADD",
-      "team": "Millville Meteors",
-      "player": "Brooks Raley"
-    },
-    {
-      "type": "ADD",
-      "team": "Inkers",
-      "player": "Keaton Winn"
-    },
-    {
-      "type": "ADD",
-      "team": "Millville Meteors",
-      "player": "John King"
-    },
-    {
-      "type": "TRADE",
-      "team": "Seam heads",
-      "player": "Dax Kilby"
-    },
-    {
-      "type": "TRADE",
-      "team": "Seam heads",
-      "player": "Zack Wheeler"
     }
   ],
   "oracle_teams": [
