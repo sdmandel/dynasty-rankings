@@ -27,7 +27,7 @@
           "final_rank": 1,
           "best_rank": 1,
           "worst_rank": 5,
-          "best_roto_pts": 96.0,
+          "best_roto_pts": 95.5,
           "worst_roto_pts": 68.0,
           "days_in_first": 25,
           "days_in_top3": 38
@@ -4220,10 +4220,10 @@
           "team_id": "jcit2s5ymjx1h38d",
           "team_name": "Seam heads",
           "rank": 1,
-          "roto_pts": 96.0,
+          "roto_pts": 95.5,
           "cat_r": 12.0,
           "cat_hr": 11.0,
-          "cat_rbi": 11.0,
+          "cat_rbi": 10.5,
           "cat_sb": 8.0,
           "cat_ops": 12.0,
           "cat_qs": 8.0,
@@ -5480,7 +5480,7 @@
         "final_rank": 1,
         "best_rank": 1,
         "worst_rank": 5,
-        "best_roto_pts": 96.0,
+        "best_roto_pts": 95.5,
         "worst_roto_pts": 68.0,
         "days_in_first": 25,
         "days_in_top3": 38
@@ -14261,7 +14261,7 @@
           "team_id": "soj5yvv3mjx1h38d",
           "team_name": "Rollie Fingers",
           "rank": 2,
-          "roto_pts": 91.0,
+          "roto_pts": 90.0,
           "cat_r": 11.0,
           "cat_hr": 12.0,
           "cat_rbi": 12.0,
@@ -14269,7 +14269,7 @@
           "cat_ops": 9.0,
           "cat_qs": 6.0,
           "cat_k": 8.0,
-          "cat_era": 4.0,
+          "cat_era": 3.0,
           "cat_whip": 8.0,
           "cat_svh": 11.0,
           "source_team_name": "Rollie Fingers"
@@ -19100,9 +19100,9 @@
           "team_id": "9xcr9pq5mjx1h38d",
           "team_name": "Humongous Melonheads",
           "rank": 4,
-          "roto_pts": 81.0,
+          "roto_pts": 82.0,
           "cat_r": 10.0,
-          "cat_hr": 5.0,
+          "cat_hr": 6.0,
           "cat_rbi": 7.0,
           "cat_sb": 12.0,
           "cat_ops": 5.0,
@@ -23786,9 +23786,9 @@
           "team_id": "t9kigi6smjx1h38d",
           "team_name": "John Henry Fan Club",
           "rank": 5,
-          "roto_pts": 73.0,
+          "roto_pts": 72.0,
           "cat_r": 9.0,
-          "cat_hr": 7.0,
+          "cat_hr": 6.0,
           "cat_rbi": 4.0,
           "cat_sb": 11.0,
           "cat_ops": 7.0,
@@ -28618,9 +28618,9 @@
           "team_id": "138du58zmjx1h38d",
           "team_name": "Vin Mazzaro fan club",
           "rank": 6,
-          "roto_pts": 72.0,
+          "roto_pts": 71.0,
           "cat_r": 3.0,
-          "cat_hr": 7.0,
+          "cat_hr": 6.0,
           "cat_rbi": 8.0,
           "cat_sb": 6.0,
           "cat_ops": 2.0,
@@ -43786,7 +43786,7 @@
           "team_id": "y1ebh2dxmjx1h38d",
           "team_name": "Pat",
           "rank": 9,
-          "roto_pts": 52.0,
+          "roto_pts": 53.0,
           "cat_r": 8.0,
           "cat_hr": 4.0,
           "cat_rbi": 9.0,
@@ -43794,7 +43794,7 @@
           "cat_ops": 8.0,
           "cat_qs": 4.0,
           "cat_k": 3.0,
-          "cat_era": 3.0,
+          "cat_era": 4.0,
           "cat_whip": 4.0,
           "cat_svh": 4.0,
           "source_team_name": "Pat"
@@ -48195,14 +48195,14 @@
           "team_id": "6gqx3zl1mjx1h38c",
           "team_name": "Inkers",
           "rank": 10,
-          "roto_pts": 46.0,
+          "roto_pts": 46.5,
           "cat_r": 5.0,
-          "cat_hr": 7.0,
-          "cat_rbi": 10.0,
+          "cat_hr": 8.0,
+          "cat_rbi": 10.5,
           "cat_sb": 3.0,
           "cat_ops": 4.0,
           "cat_qs": 3.0,
-          "cat_k": 5.0,
+          "cat_k": 4.0,
           "cat_era": 1.0,
           "cat_whip": 2.0,
           "cat_svh": 6.0,
@@ -48221,6 +48221,19 @@
           "level": "MLB",
           "badge": "notable",
           "from_team": "Humongous Melonheads",
+          "source_team": "Inkers"
+        },
+        {
+          "txn_id": "ms6xmcxemorzxaf0",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Inkers",
+          "player": "Carson Benge",
+          "position": "OF",
+          "level": "MLB",
+          "badge": "notable",
+          "from_team": "Mommy",
           "source_team": "Inkers"
         },
         {
@@ -48831,6 +48844,33 @@
           ]
         },
         {
+          "txn_id": "ms6xmcxemorzxaf0",
+          "date": "2026-05-05",
+          "assets": [
+            {
+              "team": "Mommy",
+              "player": "Xander Bogaerts",
+              "position": "SS",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Mommy",
+              "player": "Dansby Swanson",
+              "position": "SS",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Inkers",
+              "player": "Carson Benge",
+              "position": "OF",
+              "level": "MLB",
+              "badge": "notable"
+            }
+          ]
+        },
+        {
           "txn_id": "jojb9nejmorpmnaj",
           "date": "2026-05-04",
           "assets": [
@@ -48924,19 +48964,6 @@
               "badge": "notable"
             }
           ]
-        },
-        {
-          "txn_id": "gk6hp2chmn7inzuf",
-          "date": "2026-03-26",
-          "assets": [
-            {
-              "team": "Inkers",
-              "player": "Zyhir Hope",
-              "position": "OF",
-              "level": "AA",
-              "badge": "prospect"
-            }
-          ]
         }
       ],
       "best_season": {
@@ -49028,7 +49055,7 @@
           "best_rank": 3,
           "worst_rank": 11,
           "best_roto_pts": 80.0,
-          "worst_roto_pts": 43.5,
+          "worst_roto_pts": 44.5,
           "days_in_first": 0,
           "days_in_top3": 2
         }
@@ -53220,14 +53247,14 @@
           "team_id": "d38lciuymjx1h38d",
           "team_name": "Trazadone",
           "rank": 11,
-          "roto_pts": 43.5,
+          "roto_pts": 44.5,
           "cat_r": 2.0,
           "cat_hr": 1.0,
           "cat_rbi": 2.0,
           "cat_sb": 4.0,
           "cat_ops": 3.0,
           "cat_qs": 5.0,
-          "cat_k": 4.0,
+          "cat_k": 5.0,
           "cat_era": 11.0,
           "cat_whip": 9.0,
           "cat_svh": 2.5,
@@ -53681,7 +53708,7 @@
         "best_rank": 3,
         "worst_rank": 11,
         "best_roto_pts": 80.0,
-        "worst_roto_pts": 43.5,
+        "worst_roto_pts": 44.5,
         "days_in_first": 0,
         "days_in_top3": 2
       },
@@ -57954,6 +57981,71 @@
       ],
       "transactions": [
         {
+          "txn_id": "ndg6f8j8mot638bo",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "DROP",
+          "team": "Mommy",
+          "player": "Patrick Bailey",
+          "position": "C",
+          "level": "MLB",
+          "badge": null,
+          "from_team": null,
+          "source_team": "Mommy"
+        },
+        {
+          "txn_id": "ms6xmcxemorzxaf0",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Mommy",
+          "player": "Xander Bogaerts",
+          "position": "SS",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Inkers",
+          "source_team": "Mommy"
+        },
+        {
+          "txn_id": "ms6xmcxemorzxaf0",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Mommy",
+          "player": "Dansby Swanson",
+          "position": "SS",
+          "level": "MLB",
+          "badge": "notable",
+          "from_team": "Inkers",
+          "source_team": "Mommy"
+        },
+        {
+          "txn_id": "jm27voiqmot5upx1",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "DROP",
+          "team": "Mommy",
+          "player": "Tyler Stephenson",
+          "position": "C",
+          "level": "MLB",
+          "badge": null,
+          "from_team": null,
+          "source_team": "Mommy"
+        },
+        {
+          "txn_id": "hpm7n4kfmot4qhc7",
+          "txn_date": "2026-05-05",
+          "season": 2026,
+          "type": "DROP",
+          "team": "Mommy",
+          "player": "David Peterson",
+          "position": "SP",
+          "level": "MLB",
+          "badge": null,
+          "from_team": null,
+          "source_team": "Mommy"
+        },
+        {
           "txn_id": "kvi13ihnmollbvsq",
           "txn_date": "2026-04-30",
           "season": 2026,
@@ -58032,7 +58124,35 @@
           "source_team": "Mommy"
         }
       ],
-      "notable_trades": [],
+      "notable_trades": [
+        {
+          "txn_id": "ms6xmcxemorzxaf0",
+          "date": "2026-05-05",
+          "assets": [
+            {
+              "team": "Mommy",
+              "player": "Xander Bogaerts",
+              "position": "SS",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Mommy",
+              "player": "Dansby Swanson",
+              "position": "SS",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Inkers",
+              "player": "Carson Benge",
+              "position": "OF",
+              "level": "MLB",
+              "badge": "notable"
+            }
+          ]
+        }
+      ],
       "best_season": {
         "season": 2025,
         "source_team_name": "Micah",
