@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Seam heads",
+      "player": "Jovani Moran"
+    },
+    {
       "type": "DROP",
       "team": "Millville Meteors",
       "player": "Kai-Wei Teng"
@@ -81,11 +86,6 @@
       "type": "TRADE",
       "team": "Seam heads",
       "player": "Zack Wheeler"
-    },
-    {
-      "type": "TRADE",
-      "team": "Inkers",
-      "player": "Luis Pena"
     }
   ],
   "oracle_teams": [
