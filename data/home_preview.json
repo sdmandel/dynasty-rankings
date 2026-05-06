@@ -43,6 +43,21 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Mommy",
+      "player": "Trevor McDonald"
+    },
+    {
+      "type": "DROP",
+      "team": "Mommy",
+      "player": "Erick Fedde"
+    },
+    {
+      "type": "DROP",
+      "team": "John Henry Fan Club",
+      "player": "TJ Friedl"
+    },
+    {
       "type": "DROP",
       "team": "John Henry Fan Club",
       "player": "Braydon Fisher"
@@ -71,21 +86,6 @@
       "type": "DROP",
       "team": "Mommy",
       "player": "Patrick Bailey"
-    },
-    {
-      "type": "TRADE",
-      "team": "Mommy",
-      "player": "Xander Bogaerts"
-    },
-    {
-      "type": "TRADE",
-      "team": "Mommy",
-      "player": "Dansby Swanson"
-    },
-    {
-      "type": "TRADE",
-      "team": "Inkers",
-      "player": "Carson Benge"
     }
   ],
   "oracle_teams": [
