@@ -89,82 +89,6 @@
       }
     },
     {
-      "team": "Acu\u00f1a Matata",
-      "source_team": "Acu\u00f1a Matata",
-      "tier": "contender",
-      "points_back": 10.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "cat_era",
-        "cat_hr",
-        "cat_qs"
-      ],
-      "category_gaps": {
-        "cat_era": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_hr": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_k": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_ops": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_qs": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
-        },
-        "cat_r": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_rbi": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_sb": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_svh": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_whip": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck": {
-        "actual_points": 87.5,
-        "expected_points": 87.0,
-        "delta": 0.5,
-        "cluster_sensitivity": 95.0,
-        "efficiency_score": null
-      },
-      "volatility": {
-        "team_volatility_score": 16.26,
-        "category_volatility": {
-          "cat_era": 0.524,
-          "cat_hr": 0.157,
-          "cat_k": 0.458,
-          "cat_ops": 1.483,
-          "cat_qs": 0.792,
-          "cat_r": 1.196,
-          "cat_rbi": 0.567,
-          "cat_sb": 0.764,
-          "cat_svh": 0.831,
-          "cat_whip": 0.577
-        }
-      }
-    },
-    {
       "team": "Rollie Fingers",
       "source_team": "Rollie Fingers",
       "tier": "fringe",
@@ -241,10 +165,86 @@
       }
     },
     {
+      "team": "Acu\u00f1a Matata",
+      "source_team": "Acu\u00f1a Matata",
+      "tier": "fringe",
+      "points_back": 12.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "cat_era",
+        "cat_hr",
+        "cat_qs"
+      ],
+      "category_gaps": {
+        "cat_era": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_hr": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_k": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_ops": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_qs": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "cat_r": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_rbi": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_sb": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_svh": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_whip": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck": {
+        "actual_points": 85.5,
+        "expected_points": 85.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
+        "efficiency_score": null
+      },
+      "volatility": {
+        "team_volatility_score": 16.67,
+        "category_volatility": {
+          "cat_era": 0.524,
+          "cat_hr": 0.157,
+          "cat_k": 0.458,
+          "cat_ops": 1.641,
+          "cat_qs": 0.792,
+          "cat_r": 1.196,
+          "cat_rbi": 0.567,
+          "cat_sb": 0.764,
+          "cat_svh": 0.831,
+          "cat_whip": 0.577
+        }
+      }
+    },
+    {
       "team": "Humongous Melonheads",
       "source_team": "Humongous Melonheads",
       "tier": "fringe",
-      "points_back": 16.5,
+      "points_back": 15.5,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -294,19 +294,19 @@
         }
       },
       "luck": {
-        "actual_points": 81.0,
-        "expected_points": 80.0,
+        "actual_points": 82.0,
+        "expected_points": 81.0,
         "delta": 1.0,
         "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 40.09,
+        "team_volatility_score": 40.11,
         "category_volatility": {
           "cat_era": 1.748,
           "cat_hr": 1.109,
           "cat_k": 0.635,
-          "cat_ops": 1.595,
+          "cat_ops": 1.624,
           "cat_qs": 0.861,
           "cat_r": 1.943,
           "cat_rbi": 2.021,
@@ -776,7 +776,7 @@
       "team": "Inkers",
       "source_team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 51.5,
+      "points_back": 50.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -826,19 +826,19 @@
         }
       },
       "luck": {
-        "actual_points": 46.0,
-        "expected_points": 46.0,
+        "actual_points": 47.0,
+        "expected_points": 47.0,
         "delta": 0.0,
         "cluster_sensitivity": 100.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 28.38,
+        "team_volatility_score": 28.4,
         "category_volatility": {
           "cat_era": 2.427,
           "cat_hr": 2.46,
           "cat_k": 0.994,
-          "cat_ops": 2.401,
+          "cat_ops": 2.388,
           "cat_qs": 0.867,
           "cat_r": 2.045,
           "cat_rbi": 3.255,
@@ -938,17 +938,6 @@
       ]
     },
     {
-      "team": "Acu\u00f1a Matata",
-      "tier": "contender",
-      "points_back": 10.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "cat_era",
-        "cat_hr",
-        "cat_qs"
-      ]
-    },
-    {
       "team": "Rollie Fingers",
       "tier": "fringe",
       "points_back": 10.5,
@@ -960,9 +949,20 @@
       ]
     },
     {
+      "team": "Acu\u00f1a Matata",
+      "tier": "fringe",
+      "points_back": 12.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "cat_era",
+        "cat_hr",
+        "cat_qs"
+      ]
+    },
+    {
       "team": "Humongous Melonheads",
       "tier": "fringe",
-      "points_back": 16.5,
+      "points_back": 15.5,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -1039,7 +1039,7 @@
     {
       "team": "Inkers",
       "tier": "rebuilding",
-      "points_back": 51.5,
+      "points_back": 50.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -1116,8 +1116,8 @@
     },
     {
       "team": "Inkers",
-      "actual_points": 46.0,
-      "expected_points": 46.0,
+      "actual_points": 47.0,
+      "expected_points": 47.0,
       "delta": 0.0,
       "cluster_sensitivity": 100.0,
       "efficiency_score": null,
@@ -1125,8 +1125,8 @@
     },
     {
       "team": "Acu\u00f1a Matata",
-      "actual_points": 87.5,
-      "expected_points": 87.0,
+      "actual_points": 85.5,
+      "expected_points": 85.0,
       "delta": 0.5,
       "cluster_sensitivity": 95.0,
       "efficiency_score": null,
@@ -1143,8 +1143,8 @@
     },
     {
       "team": "Humongous Melonheads",
-      "actual_points": 81.0,
-      "expected_points": 80.0,
+      "actual_points": 82.0,
+      "expected_points": 81.0,
       "delta": 1.0,
       "cluster_sensitivity": 80.0,
       "efficiency_score": null,
@@ -1268,12 +1268,12 @@
     },
     {
       "team": "Humongous Melonheads",
-      "team_volatility_score": 40.09,
+      "team_volatility_score": 40.11,
       "category_volatility": {
         "cat_era": 1.748,
         "cat_hr": 1.109,
         "cat_k": 0.635,
-        "cat_ops": 1.595,
+        "cat_ops": 1.624,
         "cat_qs": 0.861,
         "cat_r": 1.943,
         "cat_rbi": 2.021,
@@ -1316,12 +1316,12 @@
     },
     {
       "team": "Inkers",
-      "team_volatility_score": 28.38,
+      "team_volatility_score": 28.4,
       "category_volatility": {
         "cat_era": 2.427,
         "cat_hr": 2.46,
         "cat_k": 0.994,
-        "cat_ops": 2.401,
+        "cat_ops": 2.388,
         "cat_qs": 0.867,
         "cat_r": 2.045,
         "cat_rbi": 3.255,
@@ -1348,12 +1348,12 @@
     },
     {
       "team": "Acu\u00f1a Matata",
-      "team_volatility_score": 16.26,
+      "team_volatility_score": 16.67,
       "category_volatility": {
         "cat_era": 0.524,
         "cat_hr": 0.157,
         "cat_k": 0.458,
-        "cat_ops": 1.483,
+        "cat_ops": 1.641,
         "cat_qs": 0.792,
         "cat_r": 1.196,
         "cat_rbi": 0.567,
