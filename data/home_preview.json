@@ -44,8 +44,28 @@
   "transactions": [
     {
       "type": "DROP",
+      "team": "Millville Meteors",
+      "player": "Brandon Young"
+    },
+    {
+      "type": "ADD",
+      "team": "Millville Meteors",
+      "player": "Matthew Liberatore"
+    },
+    {
+      "type": "DROP",
       "team": "Inkers",
       "player": "Mason Miller"
+    },
+    {
+      "type": "ADD",
+      "team": "Millville Meteors",
+      "player": "Jake Irvin"
+    },
+    {
+      "type": "DROP",
+      "team": "Millville Meteors",
+      "player": "Eric Lauer"
     },
     {
       "type": "ADD",
@@ -66,26 +86,6 @@
       "type": "TRADE",
       "team": "Trazadone",
       "player": "Ryan Waldschmidt"
-    },
-    {
-      "type": "TRADE",
-      "team": "John Henry Fan Club",
-      "player": "Jacob deGrom"
-    },
-    {
-      "type": "ADD",
-      "team": "Inkers",
-      "player": "Anthony Eyanson"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Nolan Gorman"
-    },
-    {
-      "type": "DROP",
-      "team": "John Henry Fan Club",
-      "player": "TJ Friedl"
     }
   ],
   "oracle_teams": [
