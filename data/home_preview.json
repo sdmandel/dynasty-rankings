@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Inkers",
+      "player": "Mason Miller"
+    },
+    {
       "type": "ADD",
       "team": "Mommy",
       "player": "Trevor McDonald"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "John Henry Fan Club",
       "player": "TJ Friedl"
-    },
-    {
-      "type": "ADD",
-      "team": "Humongous Melonheads",
-      "player": "JoJo Romero"
     }
   ],
   "oracle_teams": [
