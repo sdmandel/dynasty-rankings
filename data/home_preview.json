@@ -44,8 +44,33 @@
   "transactions": [
     {
       "type": "DROP",
+      "team": "Pat",
+      "player": "Gary Sanchez"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Brenton Doyle"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Drew Romo"
+    },
+    {
+      "type": "DROP",
       "team": "Humongous Melonheads",
       "player": "Noah Cameron"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "David Hamilton"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Ezequiel Duran"
     },
     {
       "type": "DROP",
@@ -61,31 +86,6 @@
       "type": "DROP",
       "team": "Inkers",
       "player": "Mason Miller"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Ian Seymour"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Jovani Moran"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Curtis Mead"
-    },
-    {
-      "type": "ADD",
-      "team": "Trazadone",
-      "player": "Carlos Narvaez"
-    },
-    {
-      "type": "ADD",
-      "team": "Millville Meteors",
-      "player": "Jake Irvin"
     }
   ],
   "oracle_teams": [
