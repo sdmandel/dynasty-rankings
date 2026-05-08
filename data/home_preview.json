@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Zack Gelof"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Matt Chapman"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Gary Sanchez"
@@ -58,34 +68,24 @@
       "player": "Drew Romo"
     },
     {
-      "type": "DROP",
-      "team": "Humongous Melonheads",
-      "player": "Noah Cameron"
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Amed Rosario"
     },
     {
       "type": "DROP",
       "team": "Pat",
-      "player": "David Hamilton"
+      "player": "Trevor Story"
     },
     {
-      "type": "ADD",
+      "type": "DROP",
       "team": "Pat",
-      "player": "Ezequiel Duran"
+      "player": "Sean Murphy"
     },
     {
       "type": "DROP",
-      "team": "Millville Meteors",
-      "player": "Brandon Young"
-    },
-    {
-      "type": "ADD",
-      "team": "Millville Meteors",
-      "player": "Matthew Liberatore"
-    },
-    {
-      "type": "DROP",
-      "team": "Inkers",
-      "player": "Mason Miller"
+      "team": "Pat",
+      "player": "Marcell Ozuna"
     }
   ],
   "oracle_teams": [
