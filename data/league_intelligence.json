@@ -26,7 +26,7 @@
       "category_gaps": {
         "cat_era": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 2.0
         },
         "cat_hr": {
           "to_gain": 1.0,
@@ -67,9 +67,9 @@
       },
       "luck": {
         "actual_points": 97.5,
-        "expected_points": 96.0,
-        "delta": 1.5,
-        "cluster_sensitivity": 85.0,
+        "expected_points": 96.5,
+        "delta": 1.0,
+        "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -396,17 +396,17 @@
       "team": "John Henry Fan Club",
       "source_team": "John Henry Fan Club",
       "tier": "fringe",
-      "points_back": 25.0,
+      "points_back": 26.0,
       "reachable_points": 10.0,
       "tight_categories": [
+        "cat_era",
         "cat_qs",
-        "cat_rbi",
-        "cat_sb"
+        "cat_rbi"
       ],
       "category_gaps": {
         "cat_era": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 2.0,
+          "to_loss": 0.0
         },
         "cat_hr": {
           "to_gain": 1.0,
@@ -446,16 +446,16 @@
         }
       },
       "luck": {
-        "actual_points": 72.5,
-        "expected_points": 73.0,
-        "delta": -0.5,
-        "cluster_sensitivity": 75.0,
+        "actual_points": 71.5,
+        "expected_points": 71.5,
+        "delta": 0.0,
+        "cluster_sensitivity": 70.0,
         "efficiency_score": null
       },
       "volatility": {
         "team_volatility_score": 37.74,
         "category_volatility": {
-          "cat_era": 2.796,
+          "cat_era": 2.786,
           "cat_hr": 1.383,
           "cat_k": 1.639,
           "cat_ops": 1.72,
@@ -529,7 +529,7 @@
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 61.84,
+        "team_volatility_score": 61.76,
         "category_volatility": {
           "cat_era": 3.238,
           "cat_hr": 1.773,
@@ -551,13 +551,13 @@
       "points_back": 43.5,
       "reachable_points": 10.0,
       "tight_categories": [
+        "cat_era",
         "cat_r",
-        "cat_rbi",
-        "cat_svh"
+        "cat_rbi"
       ],
       "category_gaps": {
         "cat_era": {
-          "to_gain": 1.0,
+          "to_gain": 0.0,
           "to_loss": 1.0
         },
         "cat_hr": {
@@ -984,12 +984,12 @@
     {
       "team": "John Henry Fan Club",
       "tier": "fringe",
-      "points_back": 25.0,
+      "points_back": 26.0,
       "reachable_points": 10.0,
       "tight_categories": [
+        "cat_era",
         "cat_qs",
-        "cat_rbi",
-        "cat_sb"
+        "cat_rbi"
       ]
     },
     {
@@ -1009,9 +1009,9 @@
       "points_back": 43.5,
       "reachable_points": 10.0,
       "tight_categories": [
+        "cat_era",
         "cat_r",
-        "cat_rbi",
-        "cat_svh"
+        "cat_rbi"
       ]
     },
     {
@@ -1097,18 +1097,18 @@
       "badge": "neutral"
     },
     {
-      "team": "John Henry Fan Club",
-      "actual_points": 72.5,
-      "expected_points": 73.0,
-      "delta": -0.5,
-      "cluster_sensitivity": 75.0,
+      "team": "Humongous Melonheads",
+      "actual_points": 87.0,
+      "expected_points": 87.0,
+      "delta": 0.0,
+      "cluster_sensitivity": 70.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Humongous Melonheads",
-      "actual_points": 87.0,
-      "expected_points": 87.0,
+      "team": "John Henry Fan Club",
+      "actual_points": 71.5,
+      "expected_points": 71.5,
       "delta": 0.0,
       "cluster_sensitivity": 70.0,
       "efficiency_score": null,
@@ -1144,9 +1144,9 @@
     {
       "team": "Seam heads",
       "actual_points": 97.5,
-      "expected_points": 96.0,
-      "delta": 1.5,
-      "cluster_sensitivity": 85.0,
+      "expected_points": 96.5,
+      "delta": 1.0,
+      "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1188,7 +1188,7 @@
     },
     {
       "team": "Millville Meteors",
-      "team_volatility_score": 61.84,
+      "team_volatility_score": 61.76,
       "category_volatility": {
         "cat_era": 3.238,
         "cat_hr": 1.773,
@@ -1286,7 +1286,7 @@
       "team": "John Henry Fan Club",
       "team_volatility_score": 37.74,
       "category_volatility": {
-        "cat_era": 2.796,
+        "cat_era": 2.786,
         "cat_hr": 1.383,
         "cat_k": 1.639,
         "cat_ops": 1.72,
