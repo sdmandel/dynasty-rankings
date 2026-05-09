@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Vin Mazzaro fan club",
+      "player": "Mike Burrows"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Carmen Mlodzinski"
+    },
+    {
+      "type": "ADD",
       "team": "Pat",
       "player": "Zack Gelof"
     },
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Pat",
       "player": "Gary Sanchez"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Brenton Doyle"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Drew Romo"
     }
   ],
   "oracle_teams": [
