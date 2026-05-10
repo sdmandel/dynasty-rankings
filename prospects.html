@@ -322,6 +322,25 @@ body {
 }
 .prospect-table thead th.right { text-align: right; }
 .prospect-table thead th.center { text-align: center; }
+.sort-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+.sort-btn:hover { color: var(--text-mid); }
+.sort-btn.active { color: var(--gold); }
+.sort-indicator {
+  display: inline-block;
+  width: 10px;
+  margin-left: 4px;
+  color: var(--gold);
+}
 .prospect-table tbody tr {
   border-bottom: 1px solid var(--border);
   transition: background 0.1s;
@@ -592,6 +611,7 @@ let currentFilter = 'all';
 let selectedCategory = 'OPS';
 const selectedOwners = new Set();
 let prospectData = null;
+let radarSort = { key: 'rank', dir: 'asc' };
 
 const CATEGORY_META = {
   OPS:  { title: 'OPS Leaders',  sub: 'Top OPS · last 14 days · min 30 PA', group: 'hitting',  fmt: fmt3,  note: p => `${p.stats_last14?.pa ?? '—'} PA` },
@@ -673,6 +693,11 @@ function buildUI(data) {
 
   const panels = document.getElementById('panels');
   panels.innerHTML = '<div class="team-panel active" id="radarPanel"></div>';
+  panels.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sort-btn[data-sort]');
+    if (!btn) return;
+    applyRadarSort(btn.dataset.sort);
+  });
   renderRadarPanel();
 
   wireDeskToRadar();
@@ -743,7 +768,7 @@ function filteredPlayers() {
 function renderRadarPanel() {
   const panel = document.getElementById('radarPanel');
   if (!panel) return;
-  const filtered = filteredPlayers();
+  const filtered = sortPlayers(filteredPlayers());
   const total = prospectData.players.length;
   const shown = filtered.length;
   const ownerLabel = selectedOwners.size
@@ -759,6 +784,83 @@ function renderRadarPanel() {
       <div class="panel-count">${esc(ownerLabel)}</div>
     </div>
     ${buildTable(filtered, currentFilter, true)}`;
+}
+
+function applyRadarSort(key) {
+  if (radarSort.key === key) {
+    radarSort = { key, dir: radarSort.dir === 'asc' ? 'desc' : 'asc' };
+  } else {
+    radarSort = { key, dir: defaultSortDir(key) };
+  }
+  renderRadarPanel();
+}
+
+function defaultSortDir(key) {
+  if (['rank', 'name', 'owner', 'level', 'positions', 'eta', 'group'].includes(key)) return 'asc';
+  if (['era', 'whip'].includes(key)) return 'asc';
+  return 'desc';
+}
+
+function sortPlayers(players) {
+  const key = radarSort.key || 'rank';
+  const dir = radarSort.dir === 'desc' ? -1 : 1;
+  return [...players].sort((a, b) => {
+    const av = sortValue(a, key);
+    const bv = sortValue(b, key);
+    const cmp = compareSortValues(av, bv, dir);
+    if (cmp !== 0) return cmp;
+    return compareSortValues(sortValue(a, 'rank'), sortValue(b, 'rank'), 1)
+      || compareSortValues(sortValue(a, 'name'), sortValue(b, 'name'), 1);
+  });
+}
+
+function compareSortValues(a, b, dir = 1) {
+  const aMissing = a == null || a === '';
+  const bMissing = b == null || b === '';
+  if (aMissing && bMissing) return 0;
+  if (aMissing) return 1;
+  if (bMissing) return -1;
+  if (typeof a === 'number' && typeof b === 'number') return (a - b) * dir;
+  return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }) * dir;
+}
+
+function sortValue(p, key) {
+  const season = p.stats_season || {};
+  const last = p.stats_last14 || {};
+  switch (key) {
+    case 'rank': return p.rank || 999999;
+    case 'name': return p.name || '';
+    case 'owner': return p.owner || '';
+    case 'level': return levelSortValue(p.level);
+    case 'positions': return p.positions || '';
+    case 'eta': return p.eta || '';
+    case 'group': return p.group || '';
+    case 'pa': return season.pa;
+    case 'avg': return season.avg;
+    case 'obp': return season.obp;
+    case 'slg': return season.slg;
+    case 'ops': return season.ops;
+    case 'hr': return season.hr;
+    case 'r': return season.r;
+    case 'rbi': return season.rbi;
+    case 'sb': return season.sb;
+    case 'bb_pct': return season.bb_pct;
+    case 'k_pct': return season.k_pct;
+    case 'l14_ops': return last.ops;
+    case 'ip': return season.ip;
+    case 'era': return season.era;
+    case 'whip': return season.whip;
+    case 'so': return season.so;
+    case 'svh': return (season.sv || 0) + (season.hld || 0);
+    case 'l14_k_pct': return last.k_pct;
+    case 'l14_primary': return p.group === 'hitting' ? last.ops : last.k_pct;
+    default: return '';
+  }
+}
+
+function levelSortValue(level) {
+  const order = { AAA: 1, AA: 2, 'A+': 3, A: 4, Rk: 5 };
+  return order[level] || 99;
 }
 
 function buildLeaderList(rows, category) {
@@ -805,46 +907,46 @@ function buildTable(prospects, filter, includeOwner) {
 
   // Identity columns common to every view.
   const identityHeaders = `
-    <th style="width:52px;">Rank</th>
-    <th>Player</th>
-    ${includeOwner ? '<th style="width:140px;">Owner</th>' : ''}
-    <th style="width:60px;">Level</th>
-    <th class="right" style="width:70px;">Pos</th>
-    <th class="right" style="width:54px;">ETA</th>`;
+    ${sortHeader('Rank', 'rank', { style: 'width:52px;' })}
+    ${sortHeader('Player', 'name')}
+    ${includeOwner ? sortHeader('Owner', 'owner', { style: 'width:140px;' }) : ''}
+    ${sortHeader('Level', 'level', { style: 'width:60px;' })}
+    ${sortHeader('Pos', 'positions', { className: 'right', style: 'width:70px;' })}
+    ${sortHeader('ETA', 'eta', { className: 'right', style: 'width:54px;' })}`;
 
   // Stat columns vary by filter.
   let statHeaders = '';
   if (filter === 'hitting') {
     statHeaders = `
-      <th class="right" title="Plate appearances, season">PA</th>
-      <th class="right">AVG</th>
-      <th class="right">OBP</th>
-      <th class="right">SLG</th>
-      <th class="right">OPS</th>
-      <th class="right">HR</th>
-      <th class="right">R</th>
-      <th class="right">RBI</th>
-      <th class="right">SB</th>
-      <th class="right" title="Walk rate, season">BB%</th>
-      <th class="right" title="Strikeout rate, season">K%</th>
-      <th class="center" style="width:108px;" title="Last 14d OPS, Δ vs season">L14 OPS</th>`;
+      ${sortHeader('PA', 'pa', { className: 'right', title: 'Plate appearances, season' })}
+      ${sortHeader('AVG', 'avg', { className: 'right' })}
+      ${sortHeader('OBP', 'obp', { className: 'right' })}
+      ${sortHeader('SLG', 'slg', { className: 'right' })}
+      ${sortHeader('OPS', 'ops', { className: 'right' })}
+      ${sortHeader('HR', 'hr', { className: 'right' })}
+      ${sortHeader('R', 'r', { className: 'right' })}
+      ${sortHeader('RBI', 'rbi', { className: 'right' })}
+      ${sortHeader('SB', 'sb', { className: 'right' })}
+      ${sortHeader('BB%', 'bb_pct', { className: 'right', title: 'Walk rate, season' })}
+      ${sortHeader('K%', 'k_pct', { className: 'right', title: 'Strikeout rate, season' })}
+      ${sortHeader('L14 OPS', 'l14_ops', { className: 'center', style: 'width:108px;', title: 'Last 14d OPS, Δ vs season' })}`;
   } else if (filter === 'pitching') {
     statHeaders = `
-      <th class="right" title="Innings pitched, season">IP</th>
-      <th class="right">ERA</th>
-      <th class="right">WHIP</th>
-      <th class="right" title="Strikeouts">K</th>
-      <th class="right" title="Saves + holds (roto SVH)">SVH</th>
-      <th class="right" title="Strikeout rate, season">K%</th>
-      <th class="right" title="Walk rate, season">BB%</th>
-      <th class="center" style="width:108px;" title="Last 14d K%, Δ vs season">L14 K%</th>`;
+      ${sortHeader('IP', 'ip', { className: 'right', title: 'Innings pitched, season' })}
+      ${sortHeader('ERA', 'era', { className: 'right' })}
+      ${sortHeader('WHIP', 'whip', { className: 'right' })}
+      ${sortHeader('K', 'so', { className: 'right', title: 'Strikeouts' })}
+      ${sortHeader('SVH', 'svh', { className: 'right', title: 'Saves + holds (roto SVH)' })}
+      ${sortHeader('K%', 'k_pct', { className: 'right', title: 'Strikeout rate, season' })}
+      ${sortHeader('BB%', 'bb_pct', { className: 'right', title: 'Walk rate, season' })}
+      ${sortHeader('L14 K%', 'l14_k_pct', { className: 'center', style: 'width:108px;', title: 'Last 14d K%, Δ vs season' })}`;
   } else {
     // 'all' view: keep it compact, share columns across both groups.
     statHeaders = `
-      <th class="right" style="width:48px;" title="Position group">Type</th>
-      <th class="right" style="width:64px;" title="Hitters: season OPS">OPS</th>
-      <th class="right" style="width:64px;" title="Pitchers: season ERA">ERA</th>
-      <th class="center" style="width:108px;" title="Last 14d primary stat with Δ vs season">14d</th>`;
+      ${sortHeader('Type', 'group', { className: 'right', style: 'width:48px;', title: 'Position group' })}
+      ${sortHeader('OPS', 'ops', { className: 'right', style: 'width:64px;', title: 'Hitters: season OPS' })}
+      ${sortHeader('ERA', 'era', { className: 'right', style: 'width:64px;', title: 'Pitchers: season ERA' })}
+      ${sortHeader('14d', 'l14_primary', { className: 'center', style: 'width:108px;', title: 'Last 14d primary stat with Δ vs season' })}`;
   }
 
   const rows = prospects.map(p => {
@@ -935,6 +1037,20 @@ function buildTable(prospects, filter, includeOwner) {
         <tbody>${rows}</tbody>
       </table>
     </div>`;
+}
+
+function sortHeader(label, key, opts = {}) {
+  const classAttr = opts.className ? ` class="${opts.className}"` : '';
+  const styleAttr = opts.style ? ` style="${opts.style}"` : '';
+  const titleAttr = opts.title ? ` title="${esc(opts.title)}"` : '';
+  const active = radarSort.key === key;
+  const indicator = active ? (radarSort.dir === 'asc' ? '▲' : '▼') : '';
+  const aria = active ? (radarSort.dir === 'asc' ? 'ascending' : 'descending') : 'none';
+  return `<th${classAttr}${styleAttr}${titleAttr} aria-sort="${aria}">
+    <button class="sort-btn${active ? ' active' : ''}" type="button" data-sort="${esc(key)}">
+      ${esc(label)}<span class="sort-indicator">${indicator}</span>
+    </button>
+  </th>`;
 }
 
 function deltaIndicator(d) {
