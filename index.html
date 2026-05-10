@@ -20,6 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Hub — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
+<link rel="stylesheet" href="assets/nav.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -161,7 +162,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px 16px 10px;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
 }
 .leaderboard-head {
   display: flex;
@@ -188,6 +189,9 @@ body {
   text-decoration: none;
 }
 .leaderboard-link:hover { color: var(--text-muted); }
+.standings-link-wrap {
+  margin-bottom: 48px;
+}
 .lb-list { display: flex; flex-direction: column; }
 .lb-row {
   display: grid;
@@ -243,6 +247,9 @@ body {
 }
 .card-grid.combined-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.card-grid.team-tools-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .card {
   display: block;
@@ -308,6 +315,17 @@ body {
 }
 .tool-grid.tools-grid-compact .tile-preview {
   height: 190px;
+}
+.this-week-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 48px;
+}
+.this-week-grid .card,
+.this-week-grid .tool-tile {
+  min-height: 100%;
 }
 .tool-tile {
   display: flex;
@@ -514,6 +532,10 @@ body {
   .tool-grid.tools-grid-compact { grid-template-columns: 1fr; }
   .tool-grid.tools-grid-compact .tile-preview { height: 170px; }
   .tool-grid.tools-grid-compact .tile-footer { padding: 12px 16px 16px; }
+  .this-week-grid,
+  .card-grid.team-tools-grid {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer {
@@ -561,9 +583,32 @@ body {
 </div>
 
 <div class="nav-section">
+  <div class="section-label">This Week</div>
+  <div class="this-week-grid">
+    <a href="week7_power_rankings.html" class="card featured">
+      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 7</div>
+      <div class="card-title">Power Rankings</div>
+      <div class="card-meta">May 4, 2026</div>
+      <div class="card-arrow">Read →</div>
+    </a>
+
+    <a href="transactions.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="tx-list" id="transactionsPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
+        <div class="tile-title">Transactions</div>
+        <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
+        <span class="tile-arrow">View transactions →</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label">The Standings</div>
   <div class="leaderboard">
     <div class="leaderboard-head">
-      <a class="leaderboard-title" href="standings.html">Leaderboard</a>
+      <a class="leaderboard-title" href="standings.html">Live Standings</a>
     </div>
     <div class="lb-list" id="leaderboardList">
       <div class="lb-row">
@@ -604,73 +649,17 @@ body {
       </div>
     </div>
   </div>
-
-  <div class="section-label"><a href="power_rankings.html">Power Rankings — 2026</a></div>
-  <div class="card-grid">
-    <a href="week7_power_rankings.html" class="card featured">
-      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 7</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">May 4, 2026</div>
-      <div class="card-arrow">Read →</div>
-    </a>
-    <a href="week6_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 6</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Apr 27, 2026</div>
-      <div class="card-arrow">Read →</div>
-    </a>
-    <a href="week5_power_rankings.html" class="card">
-      <div class="card-eyebrow">Week 5</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-meta">Apr 20, 2026</div>
-      <div class="card-arrow">Read →</div>
-    </a>
-    <a href="power_rankings.html" class="card">
-      <div class="card-eyebrow">All Articles</div>
-      <div class="card-title">Archive</div>
-      <div class="card-meta">Full list of every weekly post</div>
-      <div class="card-arrow">View all →</div>
-    </a>
+  <div class="standings-link-wrap">
+    <a class="leaderboard-link" href="standings.html">View full standings →</a>
   </div>
 
-  <div class="section-label">League</div>
-  <div class="tool-grid tools-grid-compact">
-
-    <a href="team_intel.html" class="tool-tile">
-      <div class="tile-preview">
-        <svg id="miniScatterSvg" class="mini-scatter"></svg>
-        <div class="preview-note">Age vs Oracle value</div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Contention &nbsp;·&nbsp; Oracle Split</div>
-        <div class="tile-title">Team Intel</div>
-        <div class="tile-meta">Roster window, standings pressure, luck, volatility, and valuation in one place.</div>
-        <span class="tile-arrow">View team intel →</span>
-      </div>
-    </a>
-
-    <!-- ── Transactions tile ── -->
-    <a href="transactions.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="tx-list" id="transactionsPreview"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
-        <div class="tile-title">Transactions</div>
-        <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
-        <span class="tile-arrow">View transactions →</span>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="section-label">Analysis &amp; Tools</div>
-  <div class="card-grid combined-grid">
-    <a href="closers.html" class="card">
-      <div class="card-eyebrow">Bullpen Roles</div>
-      <div class="card-title">Closer Carousel</div>
-      <div class="card-meta">Current save leaders with confidence scores and dynasty ownership.</div>
-      <div class="card-arrow">View →</div>
+  <div class="section-label">Team Tools</div>
+  <div class="card-grid team-tools-grid">
+    <a href="team_intel.html" class="card">
+      <div class="card-eyebrow">Contention &nbsp;·&nbsp; Oracle Split</div>
+      <div class="card-title">Team Intel</div>
+      <div class="card-meta">Roster window, standings pressure, luck, volatility, and valuation in one place.</div>
+      <div class="card-arrow">View team intel →</div>
     </a>
 
     <a href="roster_depth.html" class="card">
@@ -687,6 +676,12 @@ body {
       <div class="card-arrow">Open →</div>
     </a>
 
+    <a href="closers.html" class="card">
+      <div class="card-eyebrow">Bullpen Roles</div>
+      <div class="card-title">Closer Carousel</div>
+      <div class="card-meta">Current save leaders with confidence scores and dynasty ownership.</div>
+      <div class="card-arrow">View →</div>
+    </a>
   </div>
 </div>
 
@@ -799,11 +794,11 @@ function formatHomeDate(value) {
   });
 }
 
-function renderLeaderboard(teams) {
+function renderSnapshot(teams) {
   const lb = document.getElementById('leaderboardList');
   if (!lb) return;
   if (!teams.length) {
-    lb.innerHTML = '<div class="state-msg">Leaderboard unavailable.</div>';
+    lb.innerHTML = '<div class="state-msg">Snapshot unavailable.</div>';
     return;
   }
   lb.innerHTML = teams.map(t => {
@@ -988,7 +983,7 @@ function loadHomePreview() {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
   }).then(data => {
-    renderLeaderboard(data.leaderboard || []);
+    renderSnapshot(data.leaderboard || []);
     renderTransactions(data.transactions || []);
     TEAMS = (data.oracle_teams || []).map(team => ({
       ...team,
@@ -1017,6 +1012,7 @@ if ('requestIdleCallback' in window) {
 </script>
 <script src="assets/analytics.js" defer></script>
 <script src="assets/feedback.js" defer></script>
+<script src="assets/site-shell.js" defer></script>
 
 </body>
 </html>

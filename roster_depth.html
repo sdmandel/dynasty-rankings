@@ -16,6 +16,7 @@
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/site-shell.css">
+<link rel="stylesheet" href="assets/nav.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -650,6 +651,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 
   let activePill = null;
   let trajectoryData = null;
+  const touchTooltipMode = window.matchMedia('(hover: none)').matches;
 
   const positionTooltip = (x, y) => {
     const gap = 14;
@@ -675,14 +677,23 @@ tr:hover { background: rgba(255,255,255,0.012); }
     tooltip.style.top = `${top}px`;
   };
 
-  const showTooltip = (pill, event) => {
+  const showTooltipAt = (pill, x, y) => {
     const text = pill.dataset.tooltip;
     if (!text) return;
     activePill = pill;
     tooltip.textContent = text;
     tooltip.classList.add('visible');
     tooltip.setAttribute('aria-hidden', 'false');
-    positionTooltip(event.clientX, event.clientY);
+    positionTooltip(x, y);
+  };
+
+  const showTooltip = (pill, event) => {
+    showTooltipAt(pill, event.clientX, event.clientY);
+  };
+
+  const showTooltipForPill = (pill) => {
+    const rect = pill.getBoundingClientRect();
+    showTooltipAt(pill, rect.left + rect.width / 2, rect.top);
   };
 
   const hideTooltip = () => {
@@ -814,14 +825,28 @@ tr:hover { background: rgba(255,255,255,0.012); }
   };
 
   document.querySelectorAll('.pill[data-tooltip]').forEach((pill) => {
-    pill.addEventListener('mouseenter', (event) => showTooltip(pill, event));
-    pill.addEventListener('mousemove', (event) => {
-      if (activePill === pill) {
-        positionTooltip(event.clientX, event.clientY);
+    if (!touchTooltipMode) {
+      pill.addEventListener('mouseenter', (event) => showTooltip(pill, event));
+      pill.addEventListener('mousemove', (event) => {
+        if (activePill === pill) {
+          positionTooltip(event.clientX, event.clientY);
+        }
+      });
+      pill.addEventListener('mouseleave', hideTooltip);
+    }
+    pill.addEventListener('click', (event) => {
+      if (touchTooltipMode) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (activePill === pill && tooltip.classList.contains('visible')) {
+          hideTooltip();
+          return;
+        }
+        showTooltipForPill(pill);
+        return;
       }
+      openPlayer(pill.dataset.playerKey);
     });
-    pill.addEventListener('mouseleave', hideTooltip);
-    pill.addEventListener('click', () => openPlayer(pill.dataset.playerKey));
     pill.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -835,6 +860,11 @@ tr:hover { background: rgba(255,255,255,0.012); }
   });
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closePlayer();
+  });
+  document.addEventListener('click', (event) => {
+    if (touchTooltipMode && activePill && event.target instanceof Element && !event.target.closest('.pill[data-tooltip]')) {
+      hideTooltip();
+    }
   });
   window.addEventListener('scroll', hideTooltip, { passive: true });
 

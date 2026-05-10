@@ -22,6 +22,7 @@
 <meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
+<link rel="stylesheet" href="assets/nav.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 .charts-section {
@@ -276,6 +277,42 @@ th {
   padding: 0 10px 10px 0;
   border-bottom: 1px solid var(--border2);
 }
+.th-hint {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  text-decoration: underline dotted rgba(200,168,75,0.55);
+  text-underline-offset: 3px;
+}
+.th-hint::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  z-index: 30;
+  width: min(260px, 70vw);
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  background: rgba(10,10,11,0.98);
+  color: var(--text-mid);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.38);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  text-transform: none;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-2px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.th-hint:hover::after,
+.th-hint:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
 td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid var(--border); }
 .cat-cell {
   display: flex;
@@ -526,7 +563,6 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 <body>
 
 <div class="site-header">
-  <a href="index.html" class="back-link">← The Hub</a>
   <div class="eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</a></div>
   <h1>Team<br><span>Intel</span></h1>
   <div class="divider"></div>
@@ -561,7 +597,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Team</th><th>Tier</th><th>Points Back</th><th>Reachable Points</th><th>Tight Categories (Top 3)</th><th>Luck Delta</th><th>Volatility</th></tr>
+          <tr><th>Team</th><th><span class="th-hint" tabindex="0" data-tooltip="Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.">Tier</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Current roto points behind first place. Lower means closer to the title race.">Points Back</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Categories where a team is within 2.0 points of the next team up, making the next standings point realistically attainable. Higher totals usually mean a team is more live and competitive in the current race.">Reachable Points</span></th><th><span class="th-hint" tabindex="0" data-tooltip="The three category lanes where the standings gaps are tightest and most likely to swing.">Tight Categories (Top 3)</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline. Negative means if you set your lineup you'd be doing better.">Luck Delta</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Movement from rank changes and category swings during the season. A lower value means more stable performance.">Volatility</span></th></tr>
         </thead>
         <tbody id="intelBody"></tbody>
       </table>
@@ -580,7 +616,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     <div class="table-wrap">
       <table class="projected-table">
         <thead>
-          <tr><th>Proj</th><th>Team</th><th>Current</th><th>Projected</th><th>Range</th><th>Swing</th><th>Read</th></tr>
+          <tr><th>Proj</th><th>Team</th><th><span class="th-hint" tabindex="0" data-tooltip="Baseline starts from today&rsquo;s roto points, then moves each team up or down from that base.">Current</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Directional finish forecast built from current roto points, reachable category lanes, luck regression, volatility, and present MLB Oracle strength.">Projected</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Higher volatility widens the finish band. MLB value matters more than farm depth for this-year projection.">Range</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Net movement from the baseline after upside, regression, stability, momentum, and roster-strength components are applied.">Swing</span></th><th>Read</th></tr>
         </thead>
         <tbody id="projectionBody"></tbody>
       </table>

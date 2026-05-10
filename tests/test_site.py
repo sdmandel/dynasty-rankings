@@ -12,7 +12,8 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 HTML_FILES = sorted(ROOT.glob("*.html"))
 META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
-SHELL_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
+SHELL_HTML_FILES = HTML_FILES
+SHELL_CSS_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
 REQUIRED_META = {"og:title", "og:image"}
 FEEDBACK_REPO = "sdmandel/dynasty-rankings"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "deploy-pages-on-release.yml"
@@ -93,8 +94,14 @@ def test_relative_links_resolve(html_file: Path) -> None:
 @pytest.mark.parametrize("html_file", SHELL_HTML_FILES, ids=lambda p: p.name)
 def test_pages_include_shared_hub_shell(html_file: Path) -> None:
     html = _read(html_file)
-    assert 'href="assets/site-shell.css"' in html, f"{html_file.name} missing shared shell CSS"
+    assert 'href="assets/nav.css"' in html, f"{html_file.name} missing shared nav CSS"
     assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
+
+
+@pytest.mark.parametrize("html_file", SHELL_CSS_HTML_FILES, ids=lambda p: p.name)
+def test_inner_pages_include_shared_shell_css(html_file: Path) -> None:
+    html = _read(html_file)
+    assert 'href="assets/site-shell.css"' in html, f"{html_file.name} missing shared shell CSS"
 
 
 def test_analytics_loader_is_present_everywhere() -> None:
@@ -108,11 +115,10 @@ def test_analytics_loader_is_present_everywhere() -> None:
 
     for html_file in HTML_FILES:
         html = _read(html_file)
+        assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
+        assert "data-cf-beacon" not in html, f"{html_file.name} still embeds a beacon inline"
         if html_file.name in {"index.html", "404.html"}:
-            assert 'src="assets/analytics.js"' in html, f"{html_file.name} missing analytics wrapper"
-            assert "data-cf-beacon" not in html, f"{html_file.name} still embeds a beacon inline"
-        else:
-            assert 'src="assets/site-shell.js"' in html, f"{html_file.name} missing shared shell JS"
+            assert 'src="assets/analytics.js"' in html, f"{html_file.name} missing inline analytics tag"
 
 
 def test_standings_schema() -> None:
