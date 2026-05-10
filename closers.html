@@ -50,15 +50,22 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .dynasty-section { margin-bottom:32px; }
 .dynasty-title { font-family:'Bebas Neue', sans-serif; font-size:32px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:14px; }
 .dynasty-closers { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
-.table-wrap { overflow-x:auto; margin-bottom:30px; }
-table { width:100%; min-width:680px; border-collapse:collapse; font-size:13px; }
-th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
-td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
-td:first-child { color:var(--text); }
-.board-row.rostered { background:rgba(93,125,181,0.10); }
-.board-row.available { background:rgba(93,168,122,0.10); }
-.board-row.rostered td,
-.board-row.available td { color:var(--text-mid); }
+.table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 0 -4px 30px; scrollbar-width:thin; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 8px 10px 0; border-bottom:1px solid var(--border2); white-space:nowrap; }
+thead th:first-child { padding-left:0; }
+thead th.right, tbody td.right { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); transition: background 0.1s; }
+tbody tr:hover { background: var(--bg2); }
+tbody td { padding:9px 8px 9px 0; color:var(--text); white-space:nowrap; }
+tbody td:first-child { padding-left:0; }
+tbody td.right { color:var(--text-muted); font-size:12px; font-variant-numeric: tabular-nums; }
+.board-row td:nth-child(2) { color:var(--text); font-weight:500; }
+.p-rank { font-family:'Bebas Neue', sans-serif; font-size:18px; color:var(--text-dead); min-width:44px; display:inline-block; text-align:right; }
+.p-rank.top100 { color:var(--gold); }
+.p-rank.top200 { color:var(--text-mid); }
+.p-rank.unranked { color:var(--text-dead); font-size:12px; }
+@media (max-width:680px){ table { font-size:12px; } thead th, tbody td { padding-right:6px; } }
 .owner-pill {
   display:inline-block;
   font-size:10px;
@@ -98,8 +105,8 @@ td:first-child { color:var(--text); }
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>Closer</th><th>MLB Team</th><th>Dynasty Team</th>
-          <th>Saves</th><th>Confidence</th><th>Role Share</th><th>Flags</th>
+          <th class="right">Rank</th><th>Closer</th><th>MLB Team</th><th>Dynasty Team</th>
+          <th class="right">Saves</th><th class="right">Confidence</th><th class="right">Role Share</th><th>Flags</th>
         </tr></thead>
         <tbody id="boardBody"></tbody>
       </table>
@@ -154,16 +161,20 @@ function render(data){
     const available = !c.dynasty_team;
     const rowCls = available ? 'available' : 'rostered';
     const ownerTxt = available ? 'Available' : esc(c.dynasty_team);
+    const rank = c.oracle_rank;
+    const rankCls = rank == null ? 'unranked' : rank <= 100 ? 'top100' : rank <= 200 ? 'top200' : '';
+    const rankTxt = rank == null ? '—' : '#' + rank;
     return `<tr class="board-row ${rowCls}">
+    <td class="right"><span class="p-rank ${rankCls}">${rankTxt}</span></td>
     <td>${esc(c.closer_name||'—')}</td>
     <td>${esc(c.bullpen_team||'—')}</td>
     <td><span class="owner-pill">${ownerTxt}</span></td>
-    <td>${c.recent_saves}</td>
-    <td>${pct(c.confidence_score)} <span style="font-size:10px;color:var(--text-dead)">(${confLabel(c.confidence_score)})</span></td>
-    <td>${c.role_share}%</td>
+    <td class="right">${c.recent_saves}</td>
+    <td class="right">${pct(c.confidence_score)} <span style="font-size:10px;color:var(--text-dead)">(${confLabel(c.confidence_score)})</span></td>
+    <td class="right">${c.role_share}%</td>
     <td>${c.unstable_flag?'<span style="color:var(--red);font-size:11px">⚠ Unstable</span>':''}</td>
   </tr>`;
-  }).join('')||'<tr><td colspan="7">No closer data.</td></tr>';
+  }).join('')||'<tr><td colspan="8">No closer data.</td></tr>';
 
   document.getElementById('footerEl').textContent=`Last updated: ${data.generated||'—'} · Save data from MLB Stats API with FantasyPros/FanGraphs confidence.`;
 }

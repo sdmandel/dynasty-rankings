@@ -103,7 +103,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 52px;
-  font-size: 14px;
+  font-size: 13px;
 }
 .summary-table thead th {
   text-align: left;
@@ -112,8 +112,9 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dead);
-  padding: 0 12px 10px 0;
+  padding: 0 8px 10px 0;
   border-bottom: 1px solid var(--border2);
+  white-space: nowrap;
 }
 .summary-table thead th:first-child { padding-left: 0; }
 .summary-table thead th.right { text-align: right; }
@@ -123,11 +124,15 @@ body {
 }
 .summary-table tbody tr:hover { background: var(--bg2); }
 .summary-table tbody td {
-  padding: 11px 12px 11px 0;
+  padding: 9px 8px 9px 0;
   color: var(--text);
+  white-space: nowrap;
 }
 .summary-table tbody td:first-child { padding-left: 0; }
-.summary-table tbody td.right { text-align: right; }
+.summary-table tbody td.right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
 .rank-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 20px;
@@ -176,7 +181,7 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dead);
-  padding: 0 6px 10px;
+  padding: 0 8px 10px;
   border-bottom: 1px solid var(--border2);
   cursor: pointer;
   user-select: none;
@@ -193,9 +198,10 @@ body {
 }
 .cat-table tbody tr:hover { background: var(--bg2); }
 .cat-table tbody td {
-  padding: 9px 6px;
+  padding: 9px 8px;
   text-align: center;
-  color: var(--text-mid);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 .cat-table tbody td.team-col {
   text-align: left;

@@ -95,7 +95,7 @@ def update_index_fallback(preview: dict, site_root: Path = ROOT) -> None:
     pattern = re.compile(
         r'(?P<start>    <div class="lb-list" id="leaderboardList">\n)'
         r".*?"
-        r'(?P<end>    </div>\n  </div>\n\n  <div class="section-label"><a href="power_rankings.html">)',
+        r'(?P<end>    </div>\n  </div>\n)',
         re.DOTALL,
     )
     updated, count = pattern.subn(
