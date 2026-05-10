@@ -131,6 +131,7 @@ body {
   gap: 28px;
   margin-bottom: 32px;
 }
+.hot-grid.single { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 760px) {
   .hot-grid { grid-template-columns: 1fr; gap: 24px; }
 }
@@ -214,6 +215,11 @@ body {
   gap: 8px;
   margin-bottom: 14px;
 }
+.owner-filter {
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.owner-filter .filter-label { padding-top: 7px; }
 .filter-label {
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -518,7 +524,7 @@ body {
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Prospect<br><span>Desk</span></h1>
   <div class="divider"></div>
-  <p>14-day MiLB momentum across all 12 farm systems. The Desk surfaces hot bats and arms league-wide; Radar is the per-team table with FanGraphs ETA and rolling stats. Updated after each Oracle run.</p>
+  <p>14-day MiLB momentum across rostered, free-agent, and waiver-available prospects. The Desk surfaces category leaders league-wide; Radar filters the full Fantrax-visible prospect pool with FanGraphs ETA and rolling stats.</p>
 </div>
 
 <div class="content">
@@ -533,16 +539,12 @@ body {
     <!-- ── Desk ── -->
     <div class="mode-panel active" id="mode-desk">
       <div class="window-label">14-day window<span class="window-range" id="windowRange"></span></div>
-      <div class="hot-grid">
+      <div class="tab-bar" id="categoryBar"></div>
+      <div class="hot-grid single">
         <div class="hot-card">
-          <div class="hot-card-title">Hot Bats</div>
-          <div class="hot-card-sub">Top OPS · last 14 days · min 30 PA</div>
-          <div id="hotHittersBody"></div>
-        </div>
-        <div class="hot-card">
-          <div class="hot-card-title">Hot Arms</div>
-          <div class="hot-card-sub">Top K% · last 14 days · min 10 IP</div>
-          <div id="hotPitchersBody"></div>
+          <div class="hot-card-title" id="leaderTitle">OPS Leaders</div>
+          <div class="hot-card-sub" id="leaderSub">Top OPS · last 14 days · min 30 PA</div>
+          <div id="categoryLeadersBody"></div>
         </div>
       </div>
     </div>
@@ -555,7 +557,10 @@ body {
         <button class="filter-btn" data-filter="hitting">Hitters</button>
         <button class="filter-btn" data-filter="pitching">Pitchers</button>
       </div>
-      <div class="tab-bar" id="tabBar"></div>
+      <div class="filter-bar owner-filter">
+        <span class="filter-label">Owners</span>
+        <div class="tab-bar" id="ownerBar"></div>
+      </div>
       <div id="panels"></div>
     </div>
 
@@ -584,6 +589,21 @@ body {
 
 <script>
 let currentFilter = 'all';
+let selectedCategory = 'OPS';
+const selectedOwners = new Set();
+let prospectData = null;
+
+const CATEGORY_META = {
+  OPS:  { title: 'OPS Leaders',  sub: 'Top OPS · last 14 days · min 30 PA', group: 'hitting',  fmt: fmt3,  note: p => `${p.stats_last14?.pa ?? '—'} PA` },
+  HR:   { title: 'Home Run Leaders', sub: 'Most HR · last 14 days', group: 'hitting', fmt: n => String(n ?? '—'), note: p => `${p.stats_last14?.pa ?? '—'} PA` },
+  R:    { title: 'Run Leaders', sub: 'Most R · last 14 days', group: 'hitting', fmt: n => String(n ?? '—'), note: p => `${p.stats_last14?.pa ?? '—'} PA` },
+  RBI:  { title: 'RBI Leaders', sub: 'Most RBI · last 14 days', group: 'hitting', fmt: n => String(n ?? '—'), note: p => `${p.stats_last14?.pa ?? '—'} PA` },
+  SB:   { title: 'Stolen Base Leaders', sub: 'Most SB · last 14 days', group: 'hitting', fmt: n => String(n ?? '—'), note: p => `${p.stats_last14?.pa ?? '—'} PA` },
+  K:    { title: 'Strikeout Leaders', sub: 'Most K · last 14 days', group: 'pitching', fmt: n => String(n ?? '—'), note: p => `${fmt1(p.stats_last14?.ip)} IP` },
+  ERA:  { title: 'ERA Leaders', sub: 'Lowest ERA · last 14 days · min 10 IP', group: 'pitching', fmt: fmt2, note: p => `${fmt1(p.stats_last14?.ip)} IP` },
+  WHIP: { title: 'WHIP Leaders', sub: 'Lowest WHIP · last 14 days · min 10 IP', group: 'pitching', fmt: fmt2, note: p => `${fmt1(p.stats_last14?.ip)} IP` },
+  SVH:  { title: 'SVH Leaders', sub: 'Most saves + holds · last 14 days', group: 'pitching', fmt: n => String(n ?? '—'), note: p => `${fmt1(p.stats_last14?.ip)} IP` }
+};
 
 fetch('data/prospects.json')
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -599,6 +619,10 @@ fetch('data/prospects.json')
   });
 
 function buildUI(data) {
+  prospectData = normalizePayload(data);
+  const categories = prospectData.filters.categories || Object.keys(CATEGORY_META);
+  selectedCategory = categories.includes('OPS') ? 'OPS' : (categories[0] || 'OPS');
+
   // Window range label
   const range = (data.window_start && data.window_end)
     ? ` · ${fmtShort(data.window_start)} → ${fmtShort(data.window_end)}`
@@ -615,9 +639,9 @@ function buildUI(data) {
     });
   });
 
-  // Hot lists
-  document.getElementById('hotHittersBody').innerHTML = buildHotList(data.hot_hitters || [], 'hitting');
-  document.getElementById('hotPitchersBody').innerHTML = buildHotList(data.hot_pitchers || [], 'pitching');
+  // Desk category pills + leaders
+  buildCategoryBar(categories);
+  renderCategoryLeaders();
 
   // Radar filter pills
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -625,55 +649,31 @@ function buildUI(data) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFilter = btn.dataset.filter;
-      renderActivePanel();
+      renderRadarPanel();
     });
   });
 
-  // League pseudo-team: every prospect across every team, with owner attached.
-  const leagueProspects = [];
-  data.teams.forEach(team => {
-    team.prospects.forEach(p => leagueProspects.push({ ...p, owner: team.team }));
-  });
-  leagueProspects.sort((a, b) => {
-    const ar = a.rank ? a.rank : 99999;
-    const br = b.rank ? b.rank : 99999;
-    if (ar !== br) return ar - br;
-    return (a.name || '').localeCompare(b.name || '');
-  });
-  const teams = [
-    { team: 'League', count: leagueProspects.length, prospects: leagueProspects, isLeague: true },
-    ...data.teams,
-  ];
-
-  // Team tabs + panels
-  const tabBar = document.getElementById('tabBar');
-  const panels = document.getElementById('panels');
-
-  teams.forEach((team, i) => {
-    const isFirst = i === 0;
+  // Owner multi-select. No selected owners means show everyone.
+  const ownerBar = document.getElementById('ownerBar');
+  ownerBar.innerHTML = '';
+  (prospectData.filters.owners || []).forEach(owner => {
     const btn = document.createElement('button');
-    btn.className = 'tab-btn' + (isFirst ? ' active' : '');
-    btn.dataset.idx = i;
-    btn.innerHTML = esc(team.team) + `<span class="tab-count">${team.count}</span>`;
+    btn.className = 'tab-btn';
+    btn.dataset.owner = owner;
+    const count = prospectData.players.filter(p => p.owner === owner).length;
+    btn.innerHTML = esc(owner) + `<span class="tab-count">${count}</span>`;
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.team-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('panel-' + i).classList.add('active');
-      renderActivePanel();
+      if (selectedOwners.has(owner)) selectedOwners.delete(owner);
+      else selectedOwners.add(owner);
+      refreshOwnerButtons();
+      renderRadarPanel();
     });
-    tabBar.appendChild(btn);
-
-    const panel = document.createElement('div');
-    panel.className = 'team-panel' + (isFirst ? ' active' : '');
-    panel.id = 'panel-' + i;
-    panel.dataset.teamIdx = i;
-    panels.appendChild(panel);
+    ownerBar.appendChild(btn);
   });
 
-  // Stash teams on the global so applyFilter / renderActivePanel can reach them.
-  window._radarTeams = teams;
-  renderActivePanel();
+  const panels = document.getElementById('panels');
+  panels.innerHTML = '<div class="team-panel active" id="radarPanel"></div>';
+  renderRadarPanel();
 
   wireDeskToRadar();
   wireRadarToModal();
@@ -684,49 +684,97 @@ function buildUI(data) {
   if (hashMatch) openPlayerModal(decodeURIComponent(hashMatch[1]), false);
 }
 
-function renderActivePanel() {
-  const teams = window._radarTeams || [];
-  const activePanel = document.querySelector('.team-panel.active');
-  if (!activePanel) return;
-  const idx = parseInt(activePanel.dataset.teamIdx, 10);
-  const team = teams[idx];
-  if (!team) return;
-  const filtered = team.prospects.filter(p => {
-    if (currentFilter === 'all') return true;
-    return p.group === currentFilter;
+function normalizePayload(data) {
+  if (Array.isArray(data.players)) return data;
+  const players = [];
+  (data.teams || []).forEach(team => {
+    (team.prospects || []).forEach(p => players.push({ ...p, owner: p.owner || team.team }));
   });
-  const total = team.prospects.length;
-  const shown = filtered.length;
-  const countTxt = (currentFilter === 'all')
-    ? `${total} prospect${total !== 1 ? 's' : ''}`
-    : `${shown} of ${total} ${currentFilter === 'hitting' ? 'hitter' : 'pitcher'}${shown !== 1 ? 's' : ''}`;
-  activePanel.innerHTML = `
-    <div class="panel-header">
-      <div class="panel-team">${esc(team.team)}</div>
-      <div class="panel-count">${countTxt}</div>
-    </div>
-    ${buildTable(filtered, currentFilter, !!team.isLeague)}`;
+  const owners = [...new Set(players.map(p => p.owner).filter(Boolean))].sort();
+  return {
+    ...data,
+    players,
+    filters: data.filters || { owners, categories: ['OPS', 'HR', 'RBI', 'SB', 'K', 'ERA', 'WHIP', 'SVH'] },
+    category_leaders: data.category_leaders || { OPS: data.hot_hitters || [], K: data.hot_pitchers || [] }
+  };
 }
 
-function buildHotList(rows, group) {
+function buildCategoryBar(categories) {
+  const bar = document.getElementById('categoryBar');
+  bar.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (cat === selectedCategory ? ' active' : '');
+    btn.dataset.category = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', () => {
+      selectedCategory = cat;
+      document.querySelectorAll('#categoryBar .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.category === cat));
+      renderCategoryLeaders();
+    });
+    bar.appendChild(btn);
+  });
+}
+
+function renderCategoryLeaders() {
+  const meta = CATEGORY_META[selectedCategory] || CATEGORY_META.OPS;
+  document.getElementById('leaderTitle').textContent = meta.title;
+  document.getElementById('leaderSub').textContent = meta.sub;
+  const rows = (prospectData.category_leaders && prospectData.category_leaders[selectedCategory]) || [];
+  document.getElementById('categoryLeadersBody').innerHTML = buildLeaderList(rows, selectedCategory);
+}
+
+function refreshOwnerButtons() {
+  document.querySelectorAll('#ownerBar .tab-btn').forEach(btn => {
+    btn.classList.toggle('active', selectedOwners.has(btn.dataset.owner));
+  });
+}
+
+function filteredPlayers() {
+  return (prospectData?.players || []).filter(p => {
+    if (currentFilter === 'all') return true;
+    return p.group === currentFilter;
+  }).filter(p => {
+    if (!selectedOwners.size) return true;
+    return selectedOwners.has(p.owner);
+  });
+}
+
+function renderRadarPanel() {
+  const panel = document.getElementById('radarPanel');
+  if (!panel) return;
+  const filtered = filteredPlayers();
+  const total = prospectData.players.length;
+  const shown = filtered.length;
+  const ownerLabel = selectedOwners.size
+    ? [...selectedOwners].join(', ')
+    : 'All owners';
+  const countTxt = (currentFilter === 'all')
+    ? `${shown} of ${total} prospects`
+    : `${shown} of ${total} ${currentFilter === 'hitting' ? 'hitters' : 'pitchers'}`;
+  panel.innerHTML = `
+    <div class="panel-header">
+      <div class="panel-team">Radar</div>
+      <div class="panel-count">${countTxt}</div>
+      <div class="panel-count">${esc(ownerLabel)}</div>
+    </div>
+    ${buildTable(filtered, currentFilter, true)}`;
+}
+
+function buildLeaderList(rows, category) {
+  const meta = CATEGORY_META[category] || CATEGORY_META.OPS;
   if (!rows.length) {
-    return `<p style="color:var(--text-muted);font-size:12px;padding:10px 0">No qualifying ${group === 'hitting' ? 'hitters' : 'pitchers'} in window.</p>`;
+    return `<p style="color:var(--text-muted);font-size:12px;padding:10px 0">No qualifying prospects in this category.</p>`;
   }
   return rows.map((p, idx) => {
     const last = p.stats_last14 || {};
     const season = p.stats_season || {};
     const lvl = p.level || '';
     const eta = p.eta || '—';
-    const owner = p.team || '';
+    const owner = p.owner || p.team || '';
     const delta = p.delta;
-    let primary, primaryLabel, secondary, secondaryLabel;
-    if (group === 'hitting') {
-      primary = fmt3(last.ops); primaryLabel = 'OPS · 14d';
-      secondary = season.ops != null ? `${fmt3(season.ops)} season · ${last.pa} PA` : `${last.pa} PA`;
-    } else {
-      primary = fmtPct(last.k_pct); primaryLabel = 'K% · 14d';
-      secondary = season.k_pct != null ? `${fmtPct(season.k_pct)} season · ${fmt1(last.ip)} IP` : `${fmt1(last.ip)} IP`;
-    }
+    const primary = meta.fmt(p.category_value);
+    const secondary = meta.note(p);
     return `
       <div class="hot-row" role="button" tabindex="0"
            data-player-name="${esc(p.name)}" data-player-team="${esc(owner)}"
@@ -742,7 +790,7 @@ function buildHotList(rows, group) {
           <span class="hot-meta">${secondary}${deltaIndicator(delta)}</span>
         </div>
         <div class="hot-stat">
-          <span class="stat-label">${primaryLabel}</span>
+          <span class="stat-label">${esc(category)} · 14d</span>
           ${primary}
         </div>
       </div>`;
@@ -945,35 +993,38 @@ function normalizeName(s) {
 
 // ── Desk → Radar navigation ──
 function wireDeskToRadar() {
-  document.querySelectorAll('.hot-row[data-player-name]').forEach(row => {
-    const handler = () => goToRadarPlayer(row.dataset.playerName, row.dataset.playerTeam);
-    row.addEventListener('click', handler);
-    row.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
-    });
+  const body = document.getElementById('categoryLeadersBody');
+  if (!body) return;
+  body.addEventListener('click', (e) => {
+    const row = e.target.closest('.hot-row[data-player-name]');
+    if (row) goToRadarPlayer(row.dataset.playerName, row.dataset.playerTeam);
+  });
+  body.addEventListener('keydown', (e) => {
+    const row = e.target.closest('.hot-row[data-player-name]');
+    if (!row) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      goToRadarPlayer(row.dataset.playerName, row.dataset.playerTeam);
+    }
   });
 }
 
 function goToRadarPlayer(playerName, teamName) {
-  const teams = window._radarTeams || [];
-  // Find the team tab; fall back to League (idx 0) if owner missing.
-  let idx = teams.findIndex((t, i) => i > 0 && t.team === teamName);
-  if (idx < 0) idx = 0;
-
   // Switch mode → Radar
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === 'radar'));
   document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('mode-radar').classList.add('active');
 
-  // Switch team tab + render
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.idx, 10) === idx));
-  document.querySelectorAll('.team-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + idx).classList.add('active');
-  renderActivePanel();
+  // Show the full pool so Desk row navigation never depends on a synthetic tab.
+  selectedOwners.clear();
+  refreshOwnerButtons();
+  currentFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  renderRadarPanel();
 
   // After re-render, scroll the row into view + flash.
   requestAnimationFrame(() => {
-    const target = document.querySelector(`#panel-${idx} tr[data-player-name="${cssEsc(playerName)}"]`);
+    const target = document.querySelector(`#radarPanel tr[data-player-name="${cssEsc(playerName)}"]`);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       target.classList.remove('flash-row');
