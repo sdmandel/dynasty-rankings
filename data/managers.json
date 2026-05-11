@@ -11,10 +11,11 @@
       "roster_churn": 94.0,
       "churn_pct": 100.0,
       "archetypes": [
-        "trader",
-        "grinder"
+        "market watcher",
+        "grinder",
+        "prospect hoarder"
       ],
-      "archetype": "trader"
+      "archetype": "market watcher"
     },
     {
       "team": "Vin Mazzaro fan club",
@@ -26,7 +27,8 @@
       "churn_pct": 88.3,
       "archetypes": [
         "trader",
-        "grinder"
+        "grinder",
+        "prospect hoarder"
       ],
       "archetype": "trader"
     },
@@ -52,10 +54,11 @@
       "roster_churn": 39.0,
       "churn_pct": 41.5,
       "archetypes": [
+        "prospect hoarder",
         "trader",
         "grinder"
       ],
-      "archetype": "trader"
+      "archetype": "prospect hoarder"
     },
     {
       "team": "John Henry Fan Club",
@@ -66,10 +69,11 @@
       "roster_churn": 27.0,
       "churn_pct": 28.7,
       "archetypes": [
-        "trader",
-        "grinder"
+        "market watcher",
+        "waiver regular",
+        "prospect hoarder"
       ],
-      "archetype": "trader"
+      "archetype": "market watcher"
     },
     {
       "team": "Trazadone",
@@ -80,10 +84,11 @@
       "roster_churn": 25.0,
       "churn_pct": 26.6,
       "archetypes": [
-        "trader",
-        "grinder"
+        "market watcher",
+        "waiver regular",
+        "prospect hoarder"
       ],
-      "archetype": "trader"
+      "archetype": "market watcher"
     },
     {
       "team": "Pat",
@@ -94,9 +99,24 @@
       "roster_churn": 24.0,
       "churn_pct": 25.5,
       "archetypes": [
-        "grinder"
+        "waiver regular"
       ],
-      "archetype": "grinder"
+      "archetype": "waiver regular"
+    },
+    {
+      "team": "Humongous Melonheads",
+      "source_team": "Humongous Melonheads",
+      "trade_count": 5,
+      "add_count": 12,
+      "drop_count": 9,
+      "roster_churn": 21.0,
+      "churn_pct": 22.3,
+      "archetypes": [
+        "market watcher",
+        "waiver regular",
+        "prospect hoarder"
+      ],
+      "archetype": "market watcher"
     },
     {
       "team": "Rollie Fingers",
@@ -108,7 +128,7 @@
       "churn_pct": 22.3,
       "archetypes": [
         "trader",
-        "grinder"
+        "waiver regular"
       ],
       "archetype": "trader"
     },
@@ -121,23 +141,9 @@
       "roster_churn": 20.0,
       "churn_pct": 21.3,
       "archetypes": [
-        "grinder"
+        "holding steady"
       ],
-      "archetype": "grinder"
-    },
-    {
-      "team": "Humongous Melonheads",
-      "source_team": "Humongous Melonheads",
-      "trade_count": 5,
-      "add_count": 12,
-      "drop_count": 8,
-      "roster_churn": 20.0,
-      "churn_pct": 21.3,
-      "archetypes": [
-        "trader",
-        "grinder"
-      ],
-      "archetype": "trader"
+      "archetype": "holding steady"
     },
     {
       "team": "Sam",
@@ -148,9 +154,9 @@
       "roster_churn": 18.0,
       "churn_pct": 19.1,
       "archetypes": [
-        "trader"
+        "selective"
       ],
-      "archetype": "trader"
+      "archetype": "selective"
     },
     {
       "team": "Mommy",
