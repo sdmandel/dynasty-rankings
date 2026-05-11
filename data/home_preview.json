@@ -43,9 +43,24 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Jason Foley"
+    },
+    {
       "type": "ADD",
       "team": "Acuña Matata",
       "player": "Trevor Story"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Zack Littell"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Marcus Semien"
     },
     {
       "type": "ADD",
@@ -71,21 +86,6 @@
       "type": "ADD",
       "team": "Vin Mazzaro fan club",
       "player": "Noah Cameron"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Jack Kochanowicz"
-    },
-    {
-      "type": "ADD",
-      "team": "Rollie Fingers",
-      "player": "Matt Chapman"
-    },
-    {
-      "type": "DROP",
-      "team": "Rollie Fingers",
-      "player": "Nolan Arenado"
     }
   ],
   "oracle_teams": [
