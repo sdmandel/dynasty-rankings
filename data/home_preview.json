@@ -43,9 +43,39 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Kevin Kelly"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Brandon Valenzuela"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Jesus Rodriguez"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Jason Foley"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Yennier Cano"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Bradgley Rodriguez"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Brandyn Garcia"
     },
     {
       "type": "ADD",
@@ -56,36 +86,6 @@
       "type": "DROP",
       "team": "Humongous Melonheads",
       "player": "Shane Smith"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Zack Littell"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Marcus Semien"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Spencer Miles"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Garrett Cleavinger"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Spencer Miles"
-    },
-    {
-      "type": "DROP",
-      "team": "Acuña Matata",
-      "player": "Shane Baz"
     }
   ],
   "oracle_teams": [
