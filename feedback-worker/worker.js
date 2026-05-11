@@ -2,8 +2,6 @@ const DEFAULT_REPO = 'sdmandel/dynasty-rankings';
 const ALLOWED_TYPES = new Set(['bug', 'idea']);
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://baseball.stephenmandella.com',
-  'http://localhost:8000',
-  'http://127.0.0.1:8000',
 ];
 
 function allowedOrigins(env) {
@@ -11,10 +9,14 @@ function allowedOrigins(env) {
   return raw.split(',').map(origin => origin.trim()).filter(Boolean);
 }
 
+function isLocalhost(origin) {
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+}
+
 function corsHeaders(request, env) {
   const origin = request.headers.get('Origin') || '';
   const allowed = allowedOrigins(env);
-  const allowOrigin = allowed.includes(origin) ? origin : allowed[0];
+  const allowOrigin = allowed.includes(origin) || isLocalhost(origin) ? origin : allowed[0];
   return {
     'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
