@@ -219,8 +219,16 @@ def derive_public_archetypes(team: dict, manager: dict | None, standings_row: di
     if manager and len(archetypes) < 3:
         if manager.get("archetype") == "trader":
             manager_label = "trade-driven"
+        elif manager.get("archetype") == "market watcher":
+            manager_label = "trade-aware"
         elif manager.get("archetype") == "grinder":
             manager_label = "waiver churn"
+        elif manager.get("archetype") == "waiver regular":
+            manager_label = "waiver-active"
+        elif manager.get("archetype") == "selective":
+            manager_label = "selective manager"
+        elif manager.get("archetype") == "holding steady":
+            manager_label = "holding steady"
         elif manager.get("archetype") == "asleep at the wheel":
             manager_label = "quiet roster"
     if manager_label and manager_label not in archetypes:

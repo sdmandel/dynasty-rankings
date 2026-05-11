@@ -190,6 +190,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .tier-contender { color: #5da87a; }
 .tier-fringe { color: #c8a84b; }
+.tier-holding-steady { color: #8fb46f; }
 .tier-stagnating { color: #c8856e; }
 .tier-rebuilding { color: #b55d5d; }
 
@@ -521,6 +522,7 @@ function fmt(v, digits = 1) {
 function tierClass(tier) {
   if (tier === 'contender') return 'tier-contender';
   if (tier === 'fringe') return 'tier-fringe';
+  if (tier === 'holding steady') return 'tier-holding-steady';
   if (tier === 'stagnating') return 'tier-stagnating';
   return 'tier-rebuilding';
 }
@@ -563,13 +565,14 @@ fetchOraclePublic().then(data => {
 
   const contenders = teams.filter(t => t.contention_tier === 'contender').length;
   const fringes = teams.filter(t => t.contention_tier === 'fringe').length;
+  const holding = teams.filter(t => t.contention_tier === 'holding steady').length;
   const stagnating = teams.filter(t => t.contention_tier === 'stagnating').length;
   const rebuilding = teams.filter(t => t.contention_tier === 'rebuilding').length;
   const avgLuckSwing = teams.length ? teams.reduce((sum, t) => sum + Math.abs(Number(t.luck_delta || 0)), 0) / teams.length : 0;
   const netLuckTilt = teams.length ? teams.reduce((sum, t) => sum + Number(t.luck_delta || 0), 0) / teams.length : 0;
   const avgVol = teams.length ? teams.reduce((sum, t) => sum + Number(t.volatility || 0), 0) / teams.length : 0;
   document.getElementById('intelCards').innerHTML = [
-    ['Contenders', contenders, `${fringes} fringe · ${stagnating} stagnating · ${rebuilding} rebuilding`],
+    ['Contenders', contenders, `${fringes} fringe · ${holding} holding steady · ${stagnating} stagnating · ${rebuilding} rebuilding`],
     ['Avg Luck Swing', fmt(avgLuckSwing, 2), `Absolute luck movement · net tilt ${fmt(netLuckTilt, 2)}`],
     ['Avg Volatility', fmt(avgVol, 1), 'Team volatility score (0-100)']
   ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');

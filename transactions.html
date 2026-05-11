@@ -244,7 +244,7 @@ body {
 /* ── MANAGER PROFILES ── */
 .mgr-section { margin-bottom: 48px; }
 .section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
-.arch-def-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:28px; }
+.arch-def-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:28px; }
 .arch-def { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:12px 14px; }
 .arch-def-title { font-family:'Bebas Neue',sans-serif; font-size:17px; margin-bottom:3px; }
 .arch-def-desc { font-size:11px; color:var(--text-muted); line-height:1.5; }
@@ -253,6 +253,10 @@ body {
 .mgr-card.at-trader  { border-color:#1e2f4a; background:#0f1624; }
 .mgr-card.at-grinder { border-color:#4a3c18; background:#141208; }
 .mgr-card.at-prospect-hoarder { border-color:#1a3226; background:#0e1a14; }
+.mgr-card.at-market-watcher { border-color:#24364d; background:#101722; }
+.mgr-card.at-waiver-regular { border-color:#4a3c18; background:#151309; }
+.mgr-card.at-selective { border-color:#2a2a2c; background:#141416; }
+.mgr-card.at-holding-steady { border-color:#31452a; background:#10150e; }
 .mgr-card.at-asleep-at-the-wheel { border-color:#4a1e1e; background:#150e0e; }
 .mgr-name { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:.95; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
 .arch-badges { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; }
@@ -260,7 +264,10 @@ body {
 .arch-badge.ab-trader         { color:var(--blue);  border-color:#1e2f4a; background:rgba(93,125,181,0.1); }
 .arch-badge.ab-grinder        { color:var(--gold);  border-color:#4a3c18; background:rgba(200,168,75,0.08); }
 .arch-badge.ab-prospect-hoarder { color:var(--green); border-color:#1a3226; background:rgba(93,168,122,0.1); }
-.arch-badge.ab-steady         { color:var(--text-muted); border-color:var(--border2); }
+.arch-badge.ab-market-watcher { color:#7e9ccc; border-color:#24364d; background:rgba(93,125,181,0.08); }
+.arch-badge.ab-waiver-regular { color:#d0b35e; border-color:#4a3c18; background:rgba(200,168,75,0.07); }
+.arch-badge.ab-selective { color:var(--text-muted); border-color:var(--border2); background:rgba(240,237,230,0.03); }
+.arch-badge.ab-holding-steady { color:#8fb46f; border-color:#31452a; background:rgba(143,180,111,0.08); }
 .arch-badge.ab-asleep-at-the-wheel { color:var(--red); border-color:#4a1e1e; background:rgba(181,93,93,0.08); }
 .mgr-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
 .mgr-stat-val { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; color:var(--text); }
@@ -280,7 +287,9 @@ body {
 }
 .churn-fill { height:100%; }
 .cf-trader { background:var(--blue); } .cf-grinder { background:var(--gold); }
-.cf-prospect-hoarder { background:var(--green); } .cf-steady { background:var(--text-dead); }
+.cf-prospect-hoarder { background:var(--green); } .cf-market-watcher { background:#7e9ccc; }
+.cf-waiver-regular { background:#d0b35e; } .cf-selective { background:var(--text-dead); }
+.cf-holding-steady { background:#8fb46f; }
 .cf-asleep-at-the-wheel { background:var(--red); }
 .churn-val { font-family:'Bebas Neue',sans-serif; font-size:14px; color:var(--text-muted); text-align:right; }
 .churn-meta { margin-top:6px; font-size:10px; color:var(--text-dead); letter-spacing:.02em; }
@@ -346,10 +355,13 @@ body {
   <div class="mgr-section" id="mgrSection" style="display:none;">
     <div class="section-label">Manager Profiles</div>
     <div class="arch-def-grid">
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">4+ trades this season.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--gold)">Grinder</div><div class="arch-def-desc">20+ waiver adds/drops.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">10+ trades this season.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:#7e9ccc">Market Watcher</div><div class="arch-def-desc">5-9 trades this season.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--gold)">Grinder</div><div class="arch-def-desc">30+ waiver adds/drops.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:#d0b35e">Waiver Regular</div><div class="arch-def-desc">20-29 waiver adds/drops.</div></div>
       <div class="arch-def"><div class="arch-def-title" style="color:var(--green)">Prospect Hoarder</div><div class="arch-def-desc">3+ prospect transactions.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--text-muted)">Steady</div><div class="arch-def-desc">Low activity, no dominant pattern.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:var(--text-muted)">Selective</div><div class="arch-def-desc">Active enough, without a volume spike.</div></div>
+      <div class="arch-def"><div class="arch-def-title" style="color:#8fb46f">Holding Steady</div><div class="arch-def-desc">Top-five team without high-volume moves.</div></div>
       <div class="arch-def"><div class="arch-def-title" style="color:var(--red)">Asleep at the Wheel</div><div class="arch-def-desc">Below the weekly activity threshold.</div></div>
     </div>
     <div class="mgr-grid" id="mgrGrid"></div>
@@ -394,17 +406,17 @@ fetch('data/managers.json')
     const leagueAvg = churnValues.reduce((sum, n) => sum + n, 0) / churnValues.length;
     const CHURN_SCALE_MAX = 40;
     document.getElementById('mgrGrid').innerHTML = managers.map(m => {
-      const archetypes = m.archetypes || [m.archetype || 'steady'];
-      const primary = (archetypes[0] || 'steady').toLowerCase().replace(/\s+/g, '-');
+      const archetypes = m.archetypes || [m.archetype || 'selective'];
+      const primary = (archetypes[0] || 'selective').toLowerCase().replace(/\s+/g, '-');
       const churn = Number(m.roster_churn) || 0;
       const churnPct = Math.min((churn / CHURN_SCALE_MAX) * 100, 100).toFixed(1);
       const churnRank = sortedChurn.indexOf(churn) + 1;
-      const churnBand = churn >= 20 ? 'High churn' : churn >= 10 ? 'Moderate churn' : 'Low churn';
+      const churnBand = churn >= 30 ? 'High churn' : churn >= 20 ? 'Moderate churn' : 'Low churn';
       const delta = churn - leagueAvg;
       const deltaLabel = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)} vs avg`;
       const badges = archetypes.map(a => {
         const cls = a.toLowerCase().replace(/\s+/g, '-');
-        const label = {'trader':'Trader','grinder':'Grinder','prospect hoarder':'Prospect Hoarder','steady':'Steady','asleep at the wheel':'Asleep at the Wheel'}[a] || a;
+        const label = {'trader':'Trader','market watcher':'Market Watcher','grinder':'Grinder','waiver regular':'Waiver Regular','prospect hoarder':'Prospect Hoarder','selective':'Selective','holding steady':'Holding Steady','asleep at the wheel':'Asleep at the Wheel'}[a] || a;
         return `<span class="arch-badge ab-${cls}">${esc(label)}</span>`;
       }).join('');
       return `<div class="mgr-card at-${primary}">
