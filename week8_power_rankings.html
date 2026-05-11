@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Week 8 Dynasty Power Rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Week 8 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Week 8 Power Rankings - Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Week 8 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/week8_power_rankings.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta name="twitter:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 8 Power Rankings - Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Week 8 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<link rel="stylesheet" href="assets/site-shell.css">
+<link rel="stylesheet" href="assets/nav.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e0e0f;
+    color: #e8e6e0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .header {
+    background: #0e0e0f;
+    border-bottom: 1px solid #2a2a2c;
+    padding: 48px 40px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 88px);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: #f0ede6;
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: #c8a84b; }
+
+  .header-meta {
+    font-size: 13px;
+    color: #7a7872;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .header-meta strong {
+    color: #c8a84b;
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: #c8a84b;
+    margin: 20px 0;
+  }
+
+  .legend {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #1e1e20;
+  }
+
+  .feature-strip {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 18px 40px 0;
+  }
+
+  .feature-box {
+    border: 1px solid #242426;
+    background: linear-gradient(180deg, #141416 0%, #101012 100%);
+    border-radius: 6px;
+    padding: 18px 20px 20px;
+  }
+
+  .feature-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 10px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .feature-card {
+    background: #171719;
+    border: 1px solid #262629;
+    border-radius: 5px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .feature-card-link {
+    display: block;
+    padding: 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .feature-card-link:visited {
+    color: inherit;
+  }
+
+  .feature-card-link .feature-title {
+    color: #f0ede6;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-within {
+    border-color: #4a3c18;
+    background: #1b1b1e;
+  }
+
+  .feature-card:hover .feature-title,
+  .feature-card:focus-within .feature-title {
+    color: #c8a84b;
+  }
+
+  .feature-card-link:focus-visible {
+    outline: 2px solid #c8a84b;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #9e9a93;
+  }
+
+  .feature-card .feature-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5d9e5d;
+    background: #1a2e1a;
+    border: 1px solid #2d5a2d;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: 4px;
+  }
+
+  .feature-feedback {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #222225;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .feature-feedback p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #9e9a93;
+  }
+
+  .feature-feedback-button {
+    display: inline-block;
+    border: 1px solid #3a3020;
+    background: #1a1708;
+    color: #d4b96a;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .feature-feedback-button:hover,
+  .feature-feedback-button:focus-visible {
+    border-color: #c8a84b;
+    background: #221d0b;
+    color: #f0d77e;
+  }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4845;
+    margin-right: 4px;
+  }
+
+  .rank-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .delta-up   { color: #5d7db5; }
+  .delta-down { color: #b55d5d; }
+  .delta-same { color: #3a3a3c; }
+
+  .rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 40px 80px;
+  }
+
+  .rank-entry {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    border-bottom: 1px solid #1e1e20;
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .rank-entry:hover { background: rgba(255,255,255,0.015); }
+
+  .rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    color: #2a2a2c;
+    line-height: 1;
+    padding-top: 4px;
+    user-select: none;
+  }
+
+  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
+  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
+
+  .rank-content { padding-left: 8px; }
+
+  .rank-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: #f0ede6;
+    line-height: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
+  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
+  .badge-up     { background: #1a1f2e; color: #5d7db5; }
+  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-return { background: #2a1a2e; color: #9b6cb5; }
+
+  .blurb {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #c2bfb8;
+    margin-bottom: 14px;
+  }
+
+  .blurb em {
+    font-style: italic;
+    color: #9a9690;
+  }
+
+  .key-players {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: #181819;
+    border: 1px solid #2a2a2c;
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #a8a59e;
+    white-space: nowrap;
+  }
+
+  .player-pill .pill-rank {
+    color: #5a5855;
+    margin-right: 3px;
+    font-size: 11px;
+  }
+
+  .player-pill.top {
+    border-color: #3a3020;
+    color: #d4b96a;
+    background: #1a1708;
+  }
+
+  .player-pill.hot {
+    border-color: #4a2416;
+    color: #f0b28f;
+    background: #1d110c;
+  }
+
+  .player-pill.prospect {
+    border-color: #1f2d3a;
+    color: #6a9bc4;
+    background: #0d1620;
+  }
+
+  .player-pill.warning {
+    border-color: #2e1a1a;
+    color: #9a5555;
+    background: #180d0d;
+  }
+
+  .player-pill.cold {
+    border-color: #203246;
+    color: #8fb6d9;
+    background: #0c141d;
+  }
+
+  .player-pill.big-riser {
+    border-color: #2d5a2d;
+    color: #8fd98f;
+    background: #0d1a0d;
+  }
+
+  .player-pill.big-riser .pill-rank {
+    color: #5d9e5d;
+  }
+
+  .player-pill.ghost {
+    border-color: #2d2040;
+    color: #7a5aaa;
+    background: #0f0a18;
+    font-style: italic;
+  }
+
+  .sportsbook-ticker {
+    margin-top: 12px;
+    border: 1px solid #2a2620;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #141210 0%, #100e0c 100%);
+    padding: 12px 14px;
+    font-size: 12px;
+    max-width: 480px;
+  }
+
+  .sportsbook-ticker .sb-kicker {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sportsbook-ticker .sb-kicker::before {
+    content: '⬤';
+    color: #5d9e5d;
+    font-size: 8px;
+    animation: sb-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes sb-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .sportsbook-ticker .sb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    border-top: 1px dashed #1f1c17;
+    color: #a8a59e;
+  }
+
+  .sportsbook-ticker .sb-row:first-of-type { border-top: 0; }
+  .sportsbook-ticker .sb-prop { font-size: 12px; }
+  .sportsbook-ticker .sb-odds {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #d4b96a;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  .sportsbook-ticker .sb-footer {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #1f1c17;
+    font-size: 10px;
+    color: #5a5855;
+    font-style: italic;
+  }
+
+  .whats-new {
+    max-width: 860px;
+    margin: 18px auto 0;
+    padding: 0 40px;
+  }
+
+  .whats-new .feature-kicker { margin-bottom: 8px; }
+  .whats-new .new-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .whats-new .new-list li {
+    border: 1px solid #262629;
+    background: #161618;
+    border-radius: 5px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #b8b5ae;
+  }
+  .whats-new .new-list b {
+    color: #c8a84b;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .footnote {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px 40px;
+    font-size: 12px;
+    color: #4a4845;
+    font-style: italic;
+    border-top: 1px solid #1e1e20;
+    line-height: 1.8;
+  }
+
+  .ascii-art {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    color: #c8a84b;
+    white-space: pre;
+    margin: 4px 0 14px;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 600px) {
+    .header, .rankings, .footnote, .legend, .whats-new { padding-left: 20px; padding-right: 20px; }
+    .rank-entry { grid-template-columns: 52px 1fr; }
+    .rank-num { font-size: 40px; }
+    .feature-strip { padding-left: 20px; padding-right: 20px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-feedback { align-items: flex-start; flex-direction: column; }
+    .whats-new .new-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week 8 &nbsp;&#183;&nbsp; 2026 Season</a></div>
+  <h1>Power<br><span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p class="header-meta">
+    Seam Heads stays in first by a five-point margin that would have been ten if Tarik Skubal and Edwin Diaz hadn't taken matching August vacations. Humongous Melonheads gain a spot on the back of the league's only +7.5 week, Pat climbs three on what is being charitably called "engagement," and the bottom four reshuffle without anyone actually escaping the bottom four.
+    <br>
+    <strong>Rankings powered by the Oracle.</strong>
+  </p>
+</div>
+
+<div class="feature-strip">
+  <div class="feature-box">
+    <div class="feature-kicker">New This Week</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/roster_depth.html">
+          <span class="feature-title">Player Oracle History</span>
+          <p>Click any player on the Roster Depth chart to see how their Oracle rank has moved week over week.</p>
+        </a>
+      </div>
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/index.html">
+          <span class="feature-title">Hub Navigation</span>
+          <p>The homepage was rebuilt from scratch so The Hub now actually leads somewhere instead of being a list with feelings.</p>
+        </a>
+      </div>
+      <div class="feature-card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/prospects.html">
+          <span class="feature-title">Prospects Desk</span>
+          <p>A new prospect radar covering every rostered minor leaguer with farm-level stats and Oracle tiers.</p>
+        </a>
+      </div>
+    </div>
+    <div class="feature-feedback">
+      <p>Want to see something changed or added on the site?</p>
+      <a class="feature-feedback-button" href="#feedback" data-feedback-trigger data-feedback-type="idea">Click Feedback</a>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill hot">🔥 Hot week</span>
+  <span class="player-pill cold">🧊 Cold week</span>
+  <span class="player-pill big-riser">↑ Big riser</span>
+  <span class="player-pill top">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost">👻 Manager went dark</span>
+</div>
+
+<div class="rankings">
+  <!-- 1 - Seam Heads -->
+  <div class="rank-entry">
+    <div class="rank-num">1</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Seam Heads</span>
+        <div class="badges">
+          <span class="badge badge-champ">🏆 2025 Champion 105pts</span>
+          <span class="badge badge-last">Last week: 1st</span>
+        </div>
+      </div>
+      <p class="blurb">
+        99.5 roto, 31 days in first, an OPS category locked at 12.0, and the new Inkers trade came in almost perfectly annoying: Luis Pena and a 2027 third out, Zack Wheeler and Dax Kilby in. Not a fleece, just a contender buying innings because Skubal and Diaz are both shelved into August. Cristopher Sánchez was already here, then threw 15 scoreless with 17 strikeouts as if offended by the idea that this rotation needed rescuing. Aaron Judge added a 1.203 OPS and four homers, so the public statement from the front office remains calm and deeply normal:
+        <em>"Let me tell you, the Seam Heads are still in first place, BIGLY. The radical deep state took out my monster Tarik Skubal and my lights-out closer Edwin Diaz with these totally rigged injuries, but we bring in Wheeler, Sánchez throws zeros, Judge launches nukes, and Cal Raleigh will be back. The haters and losers hate it. They always hate to see winners like us, maybe winners like nobody has seen before."</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#8</span> Aaron Judge - 1.203 OPS, 4 HR, 9 RBI</span>
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#25</span> Cristopher Sánchez - 15.0 IP, 0.00 ERA, 17 K</span>
+        <span class="player-pill top cold">🧊 <span class="pill-rank">#20</span> Cal Raleigh - .048 OPS</span>
+        <span class="player-pill warning"><span class="pill-rank">#148</span> Zack Wheeler</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 - Rollie Fingers -->
+  <div class="rank-entry">
+    <div class="rank-num">2</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Rollie Fingers</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 2nd</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Quiet week, zero transactions, and the Oracle still says #1 roster on paper. Twelve points in R, twelve in HR, four in ERA, and a category profile that looks like a guy who lifts upper body six days a week and ignores the legs. Byron Buxton went .916 / 3 HR / 2 SB on a 33-PA cameo, which is a sentence I will keep typing until his hamstring files a restraining order. The pressure points are still the same ones from last week: quality starts and an ERA that wobbles whenever the Oracle peeks at it.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#116</span> Byron Buxton - .916 OPS, 3 HR, 2 SB</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#66</span> Jarren Duran - .787 OPS, 2 HR, 3 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#75</span> Carter Jensen - .486 OPS, 2 RBI</span>
+        <span class="player-pill warning big-riser"><span class="pill-rank">#820</span> Tylor Megill ↑35</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 - Humongous Melonheads -->
+  <div class="rank-entry">
+    <div class="rank-num">3</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Humongous Melonheads</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 4th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Best week in the league: +7.5 roto points, +2.5 in homers alone, third in standings, fourth in Oracle, and a Brent Rooker rental from Inkers that fits the win-now brief even if Andrew Painter and a second keep the receipts from being clean. Bobby Witt Jr. is the #2 Oracle asset in the league and posted a 1.131 OPS to make sure nobody forgot. The rotation is doing the adult work with 12 QS points and 12 K points. The lineup is still only middle-class by OPS, but when the staff is that loud, middle-class gets invited to the good table.
+      </p>
+      <div class="key-players">
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#2</span> Bobby Witt Jr. - 1.131 OPS, 3 HR, 2 SB</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#36</span> Pete Alonso - .825 OPS, 2 HR, 7 RBI</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#103</span> Alex Bregman - .466 OPS, 1 RBI</span>
+        <span class="player-pill big-riser"><span class="pill-rank">#267</span> Sonny Gray ↑45</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 - John Henry Fan Club -->
+  <div class="rank-entry">
+    <div class="rank-num">4</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">John Henry Fan Club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 5th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Travis traded for Jacob deGrom, which is kind of like buying a vintage Porsche in another state that only has one functioning axle. Oracle still says #2 roster overall, WHIP is locked at 11 and SB at 10, and Kyle Schwarber crushed 5 HR in a week to remind everyone he gets paid in barrels. The bucket under the ceiling leak is now labeled "RBI=4, SVH=1," and deGrom is the contractor who showed up. Travis Bazzana adding 6 SB while ranked #81 is the kind of thing this roster does in its sleep.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#34</span> Kyle Schwarber - 1.067 OPS, 5 HR, 7 RBI</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#81</span> Travis Bazzana - .824 OPS, 1 HR, 6 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#124</span> Gavin Williams - 12.0 IP, 7.50 ERA</span>
+        <span class="player-pill top warning"><span class="pill-rank">#16</span> José Ramírez</span>
+        <span class="player-pill warning"><span class="pill-rank">#142</span> Jacob deGrom</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 - Acuña Matata -->
+  <div class="rank-entry">
+    <div class="rank-num">5</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Acuña Matata</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 3rd</span>
+          <span class="badge badge-down">▼2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        The rebuild cover story finally took on some water this week: down 7.0 roto points, down 3.0 in WHIP, and the OPS category sliding to four like it was politely backing out of the room. ERA is still elite at 11 and the QS argument is intact, so the structure here has not collapsed so much as it has admitted to being load-bearing. Braxton Ashcraft (14.2 IP, 0.61 ERA) is the kind of guy you find on a contender's roster the same week the contender insists it isn't one.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#161</span> Braxton Ashcraft - 14.2 IP, 0.61 ERA, 12 K</span>
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#17</span> Junior Caminero - .825 OPS, 2 HR, 3 RBI</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#299</span> Will Warren - 4.0 IP, 13.50 ERA</span>
+        <span class="player-pill warning"><span class="pill-rank">#319</span> Trevor Story</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 - Vin Mazzaro fan club -->
+  <div class="rank-entry">
+    <div class="rank-num">6</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Vin Mazzaro fan club</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 6th</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Vin sits exactly where Vin sat last week: sixth in roto, sixth in Oracle, first in WHIP, second in K, and still asking the offense to stop filing paperwork under "eventually." Which is a shame because I really like this team. Michael Busch ran a 1.168 OPS and Bryson Stott added two homers, but the team lost three full points in HR over seven days while R and OPS remain near the bottom of the room. The pitching floor keeps the ranking stable. The bats keep making the floor do all the parenting.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#107</span> Michael Busch - 1.168 OPS, 1 HR, 1 SB</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#355</span> Bryson Stott - .819 OPS, 2 HR, 1 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#495</span> Angel Martinez - .422 OPS, 1 RBI</span>
+        <span class="player-pill big-riser"><span class="pill-rank">#235</span> Caleb Durbin ↑35</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 - Millville Meteors -->
+  <div class="rank-entry">
+    <div class="rank-num">7</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Millville Meteors</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 8th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Millville claws up one spot mostly because two teams below them tripped over their own shoelaces (happy?). Chase Burns went 13.0 IP at 0.69 ERA, Jake Irvin spiked 131 Oracle spots, and the QS column quietly climbed to 9. Now the bad news: SB sits at 1, ERA sits at 1, and Framber Valdez turned three innings of 21.00 ERA pitching into a five-game suspension, which is a neat way to start the fire and then bill the league for smoke damage. <em>The roster is fine. The mid is what's mid.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#64</span> Chase Burns - 13.0 IP, 0.69 ERA, 9 K</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#236</span> Ian Happ - .629 OPS, 1 HR, 1 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#98</span> Framber Valdez - 3.0 IP, 21.00 ERA</span>
+        <span class="player-pill warning big-riser"><span class="pill-rank">#854</span> Jake Irvin ↑131</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 - Pat -->
+  <div class="rank-entry">
+    <div class="rank-num">8</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Pat</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 11th</span>
+          <span class="badge badge-up">▲3</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Pat is up three spots, which is the largest jump on the board, and all it took was a waiver bonanza: five adds, seven drops, and 21 lineup sessions from a manager who has apparently just discovered the website. I would like to say that I played a part in the resurgence, but if that was true I would have had to pay Patrick $500 (offer still stands, if you read this I'll pay). Pages put up a 1.271 OPS line with 4 HR, Matt Olson added three more, and RBI at 8.5 with R at 8 are now actual points. The pitching is still a problem, ERA and SVH both sitting at 3, and Jesús Luzardo running a 7.71 ERA at #74 is a nice reminder that talent and outcomes occasionally take separate Ubers. Welcome back to the conversation? <em>The team name is still up for renegotiation, though.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#95</span> Andy Pages - 1.271 OPS, 4 HR, 2 SB</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#54</span> Matt Olson - 1.131 OPS, 3 HR, 1 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#74</span> Jesús Luzardo - 9.1 IP, 7.71 ERA, 16 K</span>
+        <span class="player-pill warning"><span class="pill-rank">#254</span> George Springer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 - Sam -->
+  <div class="rank-entry">
+    <div class="rank-num">9</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Sam</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 7th</span>
+          <span class="badge badge-down">▼2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Last week I said Sam launched out of the basement on the strength of Soto and Harper. This week Soto ran a .436 OPS with 1 HR and Harper carried the entire roster on a 1.460 OPS line by himself. That is the team in one sentence: a Hall of Fame argument and 17 players ranked 1000-plus. Down 7.0 roto points, down two spots, tied for first in SVH, still owes the pitching staff an apology. <em>Change the team name.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#49</span> Bryce Harper - 1.460 OPS, 4 HR, 5 RBI</span>
+        <span class="player-pill top hot">🔥 <span class="pill-rank">#30</span> CJ Abrams - .817 OPS, 1 HR, 2 SB</span>
+        <span class="player-pill top cold">🧊 <span class="pill-rank">#3</span> Juan Soto - .436 OPS, 1 HR, 2 RBI</span>
+        <span class="player-pill warning big-riser"><span class="pill-rank">#925</span> Josiah Gray ↑307</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 - Trazadone -->
+  <div class="rank-entry">
+    <div class="rank-num">10</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Trazadone</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 12th</span>
+          <span class="badge badge-up">▲2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Trazadone gets the biggest charity upgrade on the board because the standings remembered who actually owns 12 ERA points and 10 WHIP points. Mark Vientos and Miguel Vargas had legitimately useful weeks, SVH ticked up 1.5, and Ryan Waldschmidt arrived from John Henry as the kind of buy-low prospect move that becomes a paragraph in 2028. The bats remain a dirge: last in HR, 11th in RBI, and the offense is currently a strong wifi password protecting two pitching points. <em>5 Mucking Fets remain a registered team philosophy.</em>
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#281</span> Miguel Vargas - 1.153 OPS, 3 HR, 1 SB</span>
+        <span class="player-pill hot">🔥 <span class="pill-rank">#369</span> Mark Vientos - .812 OPS, 3 HR, 8 RBI</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#490</span> Merrill Kelly - 11.1 IP, 5.56 ERA</span>
+        <span class="player-pill warning big-riser"><span class="pill-rank">#969</span> Jared Koenig ↑161</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 - Inkers, PhD -->
+  <div class="rank-entry">
+    <div class="rank-num">11</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Inkers, PhD</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 9th</span>
+          <span class="badge badge-down">▼2</span>
+        </div>
+      </div>
+<pre class="ascii-art" aria-hidden="true">        ,_
+| `""---..._____
+'-...______    _````"""""""'`|
+       \   ```` ``"---...__  |
+       |`              |   ``!
+       |               |     A
+       |               /\   /#\
+       /`--..______..-'  |  ###
+      |   /  `\    /`--. |  ###
+     _|  |  .-;`-./;-.  ||  ###
+    / \  \ /\_|    |_/\ //\ ##'
+    |  `-' \__/ _  \__/ |  |`#
+    \_,                 /_/
+       `\              /
+         '.  '.__.'  .'
+           `-,____,-'
+            /"""I""\
+           /`---'--'\</pre>
+      <p class="blurb">
+        Three trades in three days: Andrew Painter and a 2027 second from Melonheads, Carson Benge from Mommy, Luis Pena and a 2027 third from Seam Heads. Also, we would like to be the first to officially congratulate Ben on getting his PhD from UT Austin, which gives this front office the credentialed stature to defend a three-trade week as field research rather than panic. The standings, may require another PhD. Eleventh in roto, still rocking 10 RBI points and 6 HR but landing 2 in SB and 2 in ERA, and the freshly acquired Painter put up a 19.64 ERA over 3.2 IP in his Inkers debut, which is one way to make the prospect-stash argument harder to read. Keaton Winn, Gordon Graceffo, and Kutter Crawford each jumped 350+ Oracle spots, so the depth is moving even if the standings are not.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🎓 <span class="pill-rank">#166</span> Kazuma Okamoto - 1.015 OPS, 2 HR, 6 RBI</span>
+        <span class="player-pill prospect hot">🎓 <span class="pill-rank">#115</span> Carson Benge - 1.059 OPS, 1 HR, 5 RBI</span>
+        <span class="player-pill prospect cold">🎓 <span class="pill-rank">#136</span> Andrew Painter - 3.2 IP, 19.64 ERA</span>
+        <span class="player-pill warning big-riser">🎓<span class="pill-rank">#856</span> Keaton Winn ↑490</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 - Mommy -->
+  <div class="rank-entry">
+    <div class="rank-num">12</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Mommy</span>
+        <div class="badges">
+          <span class="badge badge-last">Last week: 10th</span>
+          <span class="badge badge-down">▼2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        27.0 roto points. That is the view from the bottom, but at least someone opened the app: nine lineup sessions after weeks of 2, 4, 2, and 1 is a wellness arc that this week's sponsor Betterhelp.com can only dream about. <em>BetterHelp is an online therapy platform that connects you with 30,000+ licensed therapists worldwide through video, phone, and messaging. Use code DRINKBOURBONPUSSY at checkout for 10% off your first month.</em> The category sheet still lives at 1 R, 1 RBI, 1 OPS, and 1 K, and the trade with Inkers brought in Xander Bogaerts plus Dansby Swanson because if you are going to commit to veteran shortstops, commit. Right? The ERA and WHIP columns still hold 8 and 6 points respectively, which keeps this from being a fully ceremonial entry. League chat is now actively rooting for the 12-point season, and the prop desk has opened a line.
+      </p>
+      <div class="key-players">
+        <span class="player-pill hot">🔥 <span class="pill-rank">#698</span> Luke Raley - 1.564 OPS, 3 HR, 10 RBI</span>
+        <span class="player-pill warning hot">🔥 <span class="pill-rank">#374</span> Xander Bogaerts - .877 OPS, 2 HR, 2 SB</span>
+        <span class="player-pill cold">🧊 <span class="pill-rank">#188</span> Taylor Ward - .472 OPS</span>
+        <span class="player-pill warning"><span class="pill-rank">#76</span> Manny Machado</span>
+      </div>
+      <div class="sportsbook-ticker" role="complementary" aria-label="Mommy 12-point special live odds">
+        <div class="sb-kicker">Mommy 12-Point Special &nbsp;·&nbsp; Live Line</div>
+        <div class="sb-row"><span class="sb-prop">Finishes the season with ≤ 12 roto pts</span><span class="sb-odds">+450</span></div>
+        <div class="sb-row"><span class="sb-prop">Finishes last in every category</span><span class="sb-odds">+900</span></div>
+        <div class="sb-row"><span class="sb-prop">Concedes the season before the All-Star break</span><span class="sb-odds">+275</span></div>
+        <div class="sb-row"><span class="sb-prop">Still rostering Yu Darvish on Sept 1</span><span class="sb-odds">-180</span></div>
+        <div class="sb-row"><span class="sb-prop">Back-to-back weeks with ≥ 8 lineup sessions</span><span class="sb-odds">+650</span></div>
+        <div class="sb-row"><span class="sb-prop">Adds and starts a player on the IL by accident</span><span class="sb-odds">-10000</span></div>
+        <div class="sb-footer">Lines refresh on Mondays. Not legal advice. Definitely not financial advice.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footnote">
+  Rankings compiled using Oracle composite scores, season standings, 7-day player heat, lineup activity, transaction logs, and the usual amount of editorial judgment nobody should cite in arbitration. Next update: after Week 8 results.
+</div>
+
+<script src="assets/feedback.js" defer></script>
+<script src="assets/site-shell.js" defer></script>
+</body>
+</html>

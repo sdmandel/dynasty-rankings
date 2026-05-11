@@ -1,10 +1,10 @@
-/* feedback.js — floating feedback pill + modal for every page
- * Opens a prefilled GitHub Issue Form in a new tab. No backend needed.
+/* feedback.js — floating feedback pill + modal for every page.
+ * Sends feedback to a small serverless endpoint that creates GitHub issues.
  */
 (function () {
   'use strict';
 
-  const REPO = 'sdmandel/dynasty-rankings';
+  const FEEDBACK_ENDPOINT = window.BACKYARD_FEEDBACK_ENDPOINT || 'https://baseball-feedback.baseball-feedback.workers.dev';
 
   // ── Styles ──────────────────────────────────────────────────────────────────
   const CSS = `
@@ -130,6 +130,14 @@
       display: none;
     }
     .fb-error.show { display: block; }
+    .fb-status {
+      min-height: 16px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #7a7872;
+    }
+    .fb-status.error { color: #b55d5d; }
+    .fb-status.success { color: #5d9e5d; }
 
     /* Actions */
     .fb-actions {
@@ -171,6 +179,10 @@
       white-space: nowrap;
     }
     .fb-btn-submit:hover { background: #d9bb60; }
+    .fb-btn-submit:disabled {
+      cursor: wait;
+      background: #7a672f;
+    }
 
     /* Close X */
     .fb-close {
@@ -218,7 +230,7 @@
       '<div id="fb-modal">' +
         '<button class="fb-close" aria-label="Close">&times;</button>' +
         '<h2 id="fb-title">Feedback</h2>' +
-        '<p class="fb-sub">Fill in the details below and click Send — we\'ll open a prefilled issue for you, all you have to do is click submit</p>' +
+        '<p class="fb-sub">Send a bug report or feature idea without logging in. This creates a GitHub issue for the site.</p>' +
 
         '<div class="fb-type-row">' +
           '<button class="fb-type-btn selected" data-type="bug" type="button">' +
@@ -237,34 +249,15 @@
         '<textarea id="fb-details" class="fb-textarea" placeholder="Any extra context…"></textarea>' +
 
         '<div class="fb-actions">' +
-          '<a class="fb-fallback" href="https://github.com/' + REPO + '/issues/new/choose" target="_blank" rel="noopener">Open GitHub directly</a>' +
+          '<span class="fb-fallback">No GitHub account needed</span>' +
           '<div class="fb-btns">' +
             '<button class="fb-btn-cancel" type="button">Cancel</button>' +
-            '<button class="fb-btn-submit" id="fb-submit" type="button">Send →</button>' +
+            '<button class="fb-btn-submit" id="fb-submit" type="button">Send</button>' +
           '</div>' +
         '</div>' +
+        '<div class="fb-status" id="fb-status" role="status" aria-live="polite"></div>' +
       '</div>';
     return el;
-  }
-
-  // ── URL builder ─────────────────────────────────────────────────────────────
-  function issueUrl(type, summary, details) {
-    const bug  = type === 'bug';
-    const title = (bug ? '[Bug] ' : '[Idea] ') + summary;
-    const body  = [
-      details.trim(),
-      details.trim() ? '' : null,
-      '---',
-      'Page: ' + location.href,
-      'Time: ' + new Date().toISOString(),
-    ].filter(l => l !== null).join('\n');
-
-    const params = new URLSearchParams({
-      template: bug ? 'bug.yml' : 'feature.yml',
-      title,
-      body,
-    });
-    return 'https://github.com/' + REPO + '/issues/new?' + params;
   }
 
   // ── Init ────────────────────────────────────────────────────────────────────
@@ -290,41 +283,82 @@
     const summaryEl = overlay.querySelector('#fb-summary');
     const detailsEl = overlay.querySelector('#fb-details');
     const errEl     = overlay.querySelector('#fb-err');
+    const statusEl  = overlay.querySelector('#fb-status');
     const submitBtn = overlay.querySelector('#fb-submit');
     const cancelBtn = overlay.querySelector('.fb-btn-cancel');
     const closeBtn  = overlay.querySelector('.fb-close');
 
     let selectedType = 'bug'; // pre-selected default
+    let returnFocusEl = pill;
+
+    function selectType(type) {
+      selectedType = type === 'idea' ? 'idea' : 'bug';
+      typeBtns.forEach(b => b.classList.toggle('selected', b.dataset.type === selectedType));
+    }
 
     function openModal() {
       overlay.classList.add('open');
       summaryEl.focus();
     }
 
+    function openFromTrigger(trigger) {
+      returnFocusEl = trigger || pill;
+      selectType(trigger && trigger.dataset.feedbackType);
+      openModal();
+    }
+
     function closeModal() {
       overlay.classList.remove('open');
       // Reset
-      selectedType = 'bug';
-      typeBtns.forEach(b => b.classList.toggle('selected', b.dataset.type === 'bug'));
+      selectType('bug');
       summaryEl.value = '';
       detailsEl.value = '';
       errEl.classList.remove('show');
-      pill.focus();
+      statusEl.textContent = '';
+      statusEl.className = 'fb-status';
+      submitBtn.disabled = false;
+      (returnFocusEl || pill).focus();
+      returnFocusEl = pill;
     }
 
     // Type toggle
     typeBtns.forEach(btn => btn.addEventListener('click', () => {
-      selectedType = btn.dataset.type;
-      typeBtns.forEach(b => b.classList.toggle('selected', b === btn));
+      selectType(btn.dataset.type);
     }));
 
     // Submit
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', async () => {
       const summary = summaryEl.value.trim();
       if (!summary) { errEl.classList.add('show'); summaryEl.focus(); return; }
       errEl.classList.remove('show');
-      window.open(issueUrl(selectedType, summary, detailsEl.value), '_blank', 'noopener');
-      closeModal();
+      submitBtn.disabled = true;
+      statusEl.className = 'fb-status';
+      statusEl.textContent = 'Sending...';
+
+      try {
+        const response = await fetch(FEEDBACK_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: selectedType,
+            summary,
+            details: detailsEl.value.trim(),
+            page: location.href,
+            userAgent: navigator.userAgent,
+          }),
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Feedback could not be sent.');
+        }
+        statusEl.className = 'fb-status success';
+        statusEl.textContent = 'Sent. Thanks.';
+        setTimeout(closeModal, 900);
+      } catch (error) {
+        statusEl.className = 'fb-status error';
+        statusEl.textContent = error.message || 'Feedback could not be sent.';
+        submitBtn.disabled = false;
+      }
     });
 
     // Close triggers
@@ -335,7 +369,13 @@
       if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
     });
 
-    pill.addEventListener('click', openModal);
+    pill.addEventListener('click', () => openFromTrigger(pill));
+    document.addEventListener('click', event => {
+      const trigger = event.target.closest('[data-feedback-trigger]');
+      if (!trigger) return;
+      event.preventDefault();
+      openFromTrigger(trigger);
+    });
     summaryEl.addEventListener('keydown', e => { if (e.key === 'Enter') submitBtn.click(); });
 
     // Focus trap
@@ -348,5 +388,9 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

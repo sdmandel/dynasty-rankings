@@ -1,0 +1,7 @@
+name = "baseball-feedback"
+main = "worker.js"
+compatibility_date = "2026-05-11"
+
+[vars]
+GITHUB_REPO = "sdmandel/dynasty-rankings"
+ALLOWED_ORIGINS = "https://baseball.stephenmandella.com,http://localhost:8000,http://127.0.0.1:8000"

@@ -96,5 +96,6 @@ function render(data){
 fetch('data/rivalries.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; render(data); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load rivalries. ('+err.message+')'; });
 </script>
 <script src="assets/site-shell.js" defer></script>
+<script src="assets/feedback.js" defer></script>
 </body>
 </html>

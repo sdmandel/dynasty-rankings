@@ -15,7 +15,7 @@ META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
 SHELL_HTML_FILES = HTML_FILES
 SHELL_CSS_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
 REQUIRED_META = {"og:title", "og:image"}
-FEEDBACK_REPO = "sdmandel/dynasty-rankings"
+FEEDBACK_ENDPOINT = "baseball-feedback.baseball-feedback.workers.dev"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "deploy-pages-on-release.yml"
 
 
@@ -419,9 +419,13 @@ def test_oracle_public_schema() -> None:
         assert isinstance(first["trade_needs"], list)
 
 
-def test_feedback_js_points_at_repo() -> None:
+def test_feedback_js_uses_no_login_issue_endpoint() -> None:
     js = _read(ROOT / "assets" / "feedback.js") if (ROOT / "assets" / "feedback.js").exists() else _read(ROOT / "feedback.js")
-    assert FEEDBACK_REPO in js, f"feedback.js should reference {FEEDBACK_REPO}"
+    assert FEEDBACK_ENDPOINT in js, f"feedback.js should post to {FEEDBACK_ENDPOINT}"
+    assert "BACKYARD_FEEDBACK_ENDPOINT" in js
+    assert "fetch(FEEDBACK_ENDPOINT" in js
+    assert "issues/new" not in js
+    assert "mailto:" not in js
 
 
 def test_issue_templates_exist() -> None:
