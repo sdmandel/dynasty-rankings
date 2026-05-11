@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-10",
-  "generated_at": "2026-05-10T19:00:03-05:00",
+  "generated_at": "2026-05-10T20:00:05-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 48,
   "snapshot_date": "2026-05-10",
   "sources": {
-    "standings": "2026-05-10T19:00:03-05:00",
+    "standings": "2026-05-10T20:00:05-05:00",
     "intelligence": "2026-05-10",
     "managers": "2026-05-10",
     "oracle_values": "data/rankings_latest.csv"
@@ -26,7 +26,7 @@
       "avg_age": 27.5,
       "farm_share": 0.1299,
       "contention_tier": "contender",
-      "points_back": 5.0,
+      "points_back": 6.0,
       "reachable_points": 7.0,
       "tight_categories": [
         "ERA",
@@ -76,7 +76,7 @@
         }
       },
       "luck_delta": 0.0,
-      "volatility": 29.58,
+      "volatility": 29.51,
       "pressure": {
         "score": 89.0,
         "gain_target": {
@@ -98,7 +98,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 2.5,
+        "pts_change": 1.5,
         "stock": "push",
         "summary": "Window open \u00b7 pressure in ERA",
         "rank_delta": null,
@@ -519,8 +519,8 @@
       "farm_value": 4571.5,
       "avg_age": 28.1,
       "farm_share": 0.1476,
-      "contention_tier": "stagnating",
-      "points_back": 31.0,
+      "contention_tier": "fringe",
+      "points_back": 30.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "HR",
@@ -570,7 +570,7 @@
         }
       },
       "luck_delta": 0.5,
-      "volatility": 51.76,
+      "volatility": 51.78,
       "pressure": {
         "score": 100.0,
         "gain_target": {
@@ -584,7 +584,7 @@
         "summary": "closest gain: QS (0.0) \u00b7 closest loss: HR (0.0)"
       },
       "public_archetypes": [
-        "stagnating",
+        "fringe",
         "volume arms",
         "trade-driven"
       ],
@@ -592,7 +592,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.5,
+        "pts_change": -0.5,
         "stock": "edge",
         "summary": "One move from gaining QS",
         "rank_delta": null,

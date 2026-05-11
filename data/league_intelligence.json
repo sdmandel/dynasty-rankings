@@ -92,7 +92,7 @@
       "team": "Rollie Fingers",
       "source_team": "Rollie Fingers",
       "tier": "contender",
-      "points_back": 5.0,
+      "points_back": 6.0,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -142,16 +142,16 @@
         }
       },
       "luck": {
-        "actual_points": 95.0,
-        "expected_points": 95.0,
+        "actual_points": 94.0,
+        "expected_points": 94.0,
         "delta": 0.0,
         "cluster_sensitivity": 70.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 29.58,
+        "team_volatility_score": 29.51,
         "category_volatility": {
-          "cat_era": 1.468,
+          "cat_era": 1.434,
           "cat_hr": 0.075,
           "cat_k": 1.514,
           "cat_ops": 1.522,
@@ -317,6 +317,82 @@
       }
     },
     {
+      "team": "Vin Mazzaro fan club",
+      "source_team": "Vin Mazzaro fan club",
+      "tier": "fringe",
+      "points_back": 30.0,
+      "reachable_points": 9.0,
+      "tight_categories": [
+        "cat_hr",
+        "cat_qs",
+        "cat_r"
+      ],
+      "category_gaps": {
+        "cat_era": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_hr": {
+          "to_gain": 2.0,
+          "to_loss": 0.0
+        },
+        "cat_k": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_ops": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_qs": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "cat_r": {
+          "to_gain": 1.5,
+          "to_loss": 0.5
+        },
+        "cat_rbi": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_sb": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_svh": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "cat_whip": {
+          "to_gain": null,
+          "to_loss": 2.0
+        }
+      },
+      "luck": {
+        "actual_points": 70.0,
+        "expected_points": 69.5,
+        "delta": 0.5,
+        "cluster_sensitivity": 75.0,
+        "efficiency_score": null
+      },
+      "volatility": {
+        "team_volatility_score": 51.78,
+        "category_volatility": {
+          "cat_era": 2.425,
+          "cat_hr": 2.163,
+          "cat_k": 2.464,
+          "cat_ops": 2.707,
+          "cat_qs": 2.45,
+          "cat_r": 2.16,
+          "cat_rbi": 1.312,
+          "cat_sb": 1.113,
+          "cat_svh": 0.828,
+          "cat_whip": 3.639
+        }
+      }
+    },
+    {
       "team": "John Henry Fan Club",
       "source_team": "John Henry Fan Club",
       "tier": "stagnating",
@@ -389,82 +465,6 @@
           "cat_sb": 1.16,
           "cat_svh": 0.707,
           "cat_whip": 2.829
-        }
-      }
-    },
-    {
-      "team": "Vin Mazzaro fan club",
-      "source_team": "Vin Mazzaro fan club",
-      "tier": "stagnating",
-      "points_back": 31.0,
-      "reachable_points": 9.0,
-      "tight_categories": [
-        "cat_hr",
-        "cat_qs",
-        "cat_r"
-      ],
-      "category_gaps": {
-        "cat_era": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_hr": {
-          "to_gain": 2.0,
-          "to_loss": 0.0
-        },
-        "cat_k": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_ops": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_qs": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
-        },
-        "cat_r": {
-          "to_gain": 1.5,
-          "to_loss": 0.5
-        },
-        "cat_rbi": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_sb": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_svh": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "cat_whip": {
-          "to_gain": null,
-          "to_loss": 2.0
-        }
-      },
-      "luck": {
-        "actual_points": 69.0,
-        "expected_points": 68.5,
-        "delta": 0.5,
-        "cluster_sensitivity": 75.0,
-        "efficiency_score": null
-      },
-      "volatility": {
-        "team_volatility_score": 51.76,
-        "category_volatility": {
-          "cat_era": 2.44,
-          "cat_hr": 2.163,
-          "cat_k": 2.464,
-          "cat_ops": 2.707,
-          "cat_qs": 2.45,
-          "cat_r": 2.16,
-          "cat_rbi": 1.312,
-          "cat_sb": 1.113,
-          "cat_svh": 0.828,
-          "cat_whip": 3.639
         }
       }
     },
@@ -940,7 +940,7 @@
     {
       "team": "Rollie Fingers",
       "tier": "contender",
-      "points_back": 5.0,
+      "points_back": 6.0,
       "reachable_points": 7.0,
       "tight_categories": [
         "cat_era",
@@ -971,6 +971,17 @@
       ]
     },
     {
+      "team": "Vin Mazzaro fan club",
+      "tier": "fringe",
+      "points_back": 30.0,
+      "reachable_points": 9.0,
+      "tight_categories": [
+        "cat_hr",
+        "cat_qs",
+        "cat_r"
+      ]
+    },
+    {
       "team": "John Henry Fan Club",
       "tier": "stagnating",
       "points_back": 30.5,
@@ -979,17 +990,6 @@
         "cat_k",
         "cat_ops",
         "cat_qs"
-      ]
-    },
-    {
-      "team": "Vin Mazzaro fan club",
-      "tier": "stagnating",
-      "points_back": 31.0,
-      "reachable_points": 9.0,
-      "tight_categories": [
-        "cat_hr",
-        "cat_qs",
-        "cat_r"
       ]
     },
     {
@@ -1098,8 +1098,8 @@
     },
     {
       "team": "Rollie Fingers",
-      "actual_points": 95.0,
-      "expected_points": 95.0,
+      "actual_points": 94.0,
+      "expected_points": 94.0,
       "delta": 0.0,
       "cluster_sensitivity": 70.0,
       "efficiency_score": null,
@@ -1115,20 +1115,20 @@
       "badge": "neutral"
     },
     {
+      "team": "Vin Mazzaro fan club",
+      "actual_points": 70.0,
+      "expected_points": 69.5,
+      "delta": 0.5,
+      "cluster_sensitivity": 75.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
       "team": "John Henry Fan Club",
       "actual_points": 69.5,
       "expected_points": 69.0,
       "delta": 0.5,
       "cluster_sensitivity": 65.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Vin Mazzaro fan club",
-      "actual_points": 69.0,
-      "expected_points": 68.5,
-      "delta": 0.5,
-      "cluster_sensitivity": 75.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1220,9 +1220,9 @@
     },
     {
       "team": "Vin Mazzaro fan club",
-      "team_volatility_score": 51.76,
+      "team_volatility_score": 51.78,
       "category_volatility": {
-        "cat_era": 2.44,
+        "cat_era": 2.425,
         "cat_hr": 2.163,
         "cat_k": 2.464,
         "cat_ops": 2.707,
@@ -1300,9 +1300,9 @@
     },
     {
       "team": "Rollie Fingers",
-      "team_volatility_score": 29.58,
+      "team_volatility_score": 29.51,
       "category_volatility": {
-        "cat_era": 1.468,
+        "cat_era": 1.434,
         "cat_hr": 0.075,
         "cat_k": 1.514,
         "cat_ops": 1.522,
