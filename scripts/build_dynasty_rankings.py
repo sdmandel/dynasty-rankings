@@ -65,7 +65,20 @@ def _safe_int(val) -> int | None:
         return None
 
 
-STATS_PATH = SITE_DATA / "season_stats.json"
+STATS_PATH      = SITE_DATA / "season_stats.json"
+FG_ID_CACHE_PATH = FANTRAX_DATA / "fg_id_cache.json"
+
+
+def _load_fg_id_cache() -> dict:
+    if not FG_ID_CACHE_PATH.exists():
+        return {}
+    return json.loads(FG_ID_CACHE_PATH.read_text(encoding="utf-8"))
+
+
+_PITCHER_POS = {"SP", "RP", "P", "SIRP", "MIRP"}
+
+def _stat_type(positions: list[str]) -> str:
+    return "pitching" if positions and all(p in _PITCHER_POS for p in positions) else "batting"
 
 
 def _load_season_stats() -> tuple:
@@ -87,6 +100,7 @@ def build() -> None:
         raise SystemExit("dynasty_history.json is empty")
 
     csv_by_name = _load_csv()
+    fg_cache    = _load_fg_id_cache()
     mlb_bat, mlb_pit, milb_bat, milb_pit, stats_generated = _load_season_stats()
 
     latest   = history[-1]
@@ -120,10 +134,13 @@ def build() -> None:
             except (ValueError, TypeError):
                 return v
 
+        fg_entry = fg_cache.get(name, {})
         rankings_out.append({
             "rank":         entry["rank"],
             "display_name": display_name,
             "name":         name,
+            "fg_id":        fg_entry.get("fg_id"),
+            "fg_stat_type": _stat_type(positions),
             "team":         csv_row.get("Team", ""),
             "positions":    positions,
             "age":          _safe_int(csv_row.get("Age")),
