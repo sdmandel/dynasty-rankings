@@ -1,10 +1,8 @@
 """
 fetch_season_stats.py — MLB season stats from MLB Stats API + MiLB stats from milb_stats.json.
 
-Uses statsapi.mlb.com/api/v1/stats (sportId=1, same API as fetch_milb_stats.py).
-FanGraphs /api/leaders/major-league/data is rate-limited; this avoids it entirely.
-
-QS is not available from the MLB Stats API and will be null for all MLB pitchers.
+Uses statsapi.mlb.com/api/v1/stats (sportId=1). QS is not in the bulk season stats endpoint,
+so it is computed from individual game boxscores (one per completed game, run concurrently).
 
 Writes powerrankings/data/season_stats.json with four dicts:
   mlb_batting, mlb_pitching, milb_batting, milb_pitching
@@ -18,6 +16,7 @@ from __future__ import annotations
 import datetime
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
@@ -32,6 +31,7 @@ SITE_DATA = Path(__file__).resolve().parent.parent / "data"
 
 _STATS_URL = "https://statsapi.mlb.com/api/v1/stats"
 _HEADERS = {"User-Agent": "fantrax-dynasty-bot/season-stats"}
+_QS_WORKERS = 20
 
 
 def _ip_to_float(s) -> float:
@@ -75,7 +75,79 @@ def _fetch_mlb(group: str) -> list[dict]:
     return splits
 
 
+def _fetch_completed_game_pks(season: int) -> list[int]:
+    """Return gamePks for all completed regular-season games."""
+    resp = requests.get(
+        "https://statsapi.mlb.com/api/v1/schedule",
+        params={
+            "sportId": 1,
+            "season": season,
+            "gameType": "R",
+            "startDate": f"{season}-01-01",
+            "endDate": datetime.date.today().isoformat(),
+        },
+        headers=_HEADERS,
+        timeout=60,
+    )
+    resp.raise_for_status()
+    return [
+        g["gamePk"]
+        for date_entry in resp.json().get("dates", [])
+        for g in date_entry.get("games", [])
+        if g.get("status", {}).get("abstractGameState") == "Final"
+    ]
+
+
+def _boxscore_qs(game_pk: int) -> list[tuple[str, bool]]:
+    """Return (normalize_name, is_qs) pairs for each starting pitcher in this game."""
+    try:
+        resp = requests.get(
+            f"https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore",
+            headers=_HEADERS,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        bs = resp.json()
+    except Exception:
+        return []
+
+    results = []
+    for side in ("home", "away"):
+        team = bs.get("teams", {}).get(side, {})
+        players = team.get("players", {})
+        for pid in team.get("pitchers", []):
+            pdata = players.get(f"ID{pid}", {})
+            ps = pdata.get("stats", {}).get("pitching", {})
+            if not ps.get("gamesStarted"):
+                continue
+            name = pdata.get("person", {}).get("fullName", "")
+            if not name:
+                continue
+            ip = _ip_to_float(ps.get("inningsPitched", "0"))
+            er = int(ps.get("earnedRuns") or 0)
+            results.append((normalize_name(name), ip >= 6.0 and er <= 3))
+    return results
+
+
+def _compute_qs(season: int) -> dict[str, int]:
+    """Concurrently fetch boxscores and tally QS per pitcher."""
+    game_pks = _fetch_completed_game_pks(season)
+    print(f"Computing QS from {len(game_pks)} completed games ({_QS_WORKERS} workers)...")
+    qs: dict[str, int] = {}
+    with ThreadPoolExecutor(max_workers=_QS_WORKERS) as pool:
+        futures = {pool.submit(_boxscore_qs, pk): pk for pk in game_pks}
+        for i, future in enumerate(as_completed(futures), 1):
+            for key, is_qs in future.result():
+                if is_qs:
+                    qs[key] = qs.get(key, 0) + 1
+            if i % 100 == 0:
+                print(f"  {i}/{len(game_pks)} boxscores processed")
+    print(f"QS computed: {len(qs)} pitchers with ≥1 QS")
+    return qs
+
+
 def build() -> None:
+    # MLB hitting
     mlb_batting: dict[str, dict] = {}
     for sp in _fetch_mlb("hitting"):
         name = (sp.get("player") or {}).get("fullName") or ""
@@ -85,8 +157,7 @@ def build() -> None:
         pa = int(s.get("plateAppearances") or 0)
         if pa < 1:
             continue
-        key = normalize_name(name)
-        mlb_batting[key] = {
+        mlb_batting[normalize_name(name)] = {
             "hr":  _si(s.get("homeRuns")),
             "r":   _si(s.get("runs")),
             "rbi": _si(s.get("rbi")),
@@ -95,7 +166,9 @@ def build() -> None:
             "pa":  pa,
         }
 
+    # MLB pitching (QS filled in below)
     mlb_pitching: dict[str, dict] = {}
+    gs_by_key: dict[str, int] = {}  # track gamesStarted to distinguish starters from relievers
     for sp in _fetch_mlb("pitching"):
         name = (sp.get("player") or {}).get("fullName") or ""
         if not name:
@@ -107,8 +180,10 @@ def build() -> None:
         key = normalize_name(name)
         sv  = int(s.get("saves") or 0)
         hld = int(s.get("holds") or 0)
+        gs  = int(s.get("gamesStarted") or 0)
+        gs_by_key[key] = gs
         mlb_pitching[key] = {
-            "qs":   None,   # not available from MLB Stats API
+            "qs":   None,  # filled after QS computation
             "k":    _si(s.get("strikeOuts")),
             "era":  _sf(s.get("era"), 2),
             "svh":  sv + hld,
@@ -116,6 +191,15 @@ def build() -> None:
             "ip":   round(ip, 1),
         }
 
+    # Compute QS from boxscores
+    qs_counts = _compute_qs(SEASON)
+    for key, rec in mlb_pitching.items():
+        if gs_by_key.get(key, 0) > 0:
+            # Has at least one start — show actual QS count (may be 0)
+            rec["qs"] = qs_counts.get(key, 0)
+        # Pure relievers (gs=0) stay None → renders as — on site
+
+    # MiLB stats from milb_stats.json
     milb_batting: dict[str, dict] = {}
     milb_pitching: dict[str, dict] = {}
     if MILB_STATS_PATH.exists():
@@ -161,7 +245,8 @@ def build() -> None:
     path = SITE_DATA / "season_stats.json"
     path.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(
-        f"Wrote {len(mlb_batting)} MLB batters, {len(mlb_pitching)} MLB pitchers, "
+        f"Wrote {len(mlb_batting)} MLB batters, {len(mlb_pitching)} MLB pitchers "
+        f"({sum(1 for r in mlb_pitching.values() if r['qs'] is not None)} with QS data), "
         f"{len(milb_batting)} MiLB batters, {len(milb_pitching)} MiLB pitchers → {path}"
     )
 
