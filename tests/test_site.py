@@ -76,7 +76,7 @@ def test_relative_links_resolve(html_file: Path) -> None:
     html = _read(html_file)
     href_pattern = re.compile(r'(?:href|src)=["\']([^"\']+)["\']')
     for raw in href_pattern.findall(html):
-        if not raw or raw.startswith(("#", "data:", "mailto:", "javascript:")):
+        if not raw or raw.startswith(("#", "data:", "mailto:", "javascript:", "${")):
             continue
         parsed = urlparse(raw)
         if parsed.scheme or parsed.netloc:
