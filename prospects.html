@@ -417,6 +417,9 @@ body {
 .level-AAA  { color: #8fba9a; border-color: #2a3d2e; background: rgba(143,186,154,0.08); }
 .level-AA   { color: var(--blue); border-color: #1e2a3a; background: rgba(93,125,181,0.08); }
 .level-Ap   { color: #9a8fba; border-color: #2e2a3d; background: rgba(154,143,186,0.08); }
+html[data-theme="light"] .level-AAA { color: #2a6a3a; border-color: #80b890; background: rgba(42,106,58,0.10); }
+html[data-theme="light"] .level-AA  { border-color: #8aa4c8; background: rgba(58,90,138,0.10); }
+html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; background: rgba(90,74,138,0.10); }
 .level-A    { color: var(--text-muted); border-color: var(--border); background: transparent; }
 .level-Rk   { color: var(--text-dead); border-color: var(--border); background: transparent; }
 
@@ -477,7 +480,7 @@ body {
   overflow-y: auto;
   border: 1px solid var(--border2);
   border-radius: 8px;
-  background: #111112;
+  background: var(--bg2);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
   padding: 22px;
 }
@@ -489,13 +492,13 @@ body {
   height: 30px;
   border: 1px solid var(--border2);
   border-radius: 6px;
-  background: #171719;
+  background: var(--bg2);
   color: var(--text-muted);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
 }
-.player-close:hover { color: var(--text); border-color: #4a4845; }
+.player-close:hover { color: var(--text); border-color: var(--text-dead); }
 .player-kicker {
   color: var(--gold);
   font-size: 10px;

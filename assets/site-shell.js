@@ -65,6 +65,44 @@
   });
 
   inner.appendChild(links);
+
+  (function() {
+    const STORAGE_KEY = "pr-theme";
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+    }
+
+    function getInitialTheme() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === "dark" || saved === "light") return saved;
+      return prefersDark.matches ? "dark" : "light";
+    }
+
+    applyTheme(getInitialTheme());
+
+    const btn = document.createElement("button");
+    btn.className = "global-nav-theme";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Toggle dark/light theme");
+    btn.innerHTML = '<span aria-hidden="true" class="theme-icon"></span>';
+
+    btn.addEventListener("click", () => {
+      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      applyTheme(next);
+      localStorage.setItem(STORAGE_KEY, next);
+    });
+
+    function syncIcon() {
+      btn.dataset.current = document.documentElement.dataset.theme;
+    }
+    new MutationObserver(syncIcon).observe(document.documentElement, { attributeFilter: ["data-theme"] });
+    syncIcon();
+
+    inner.appendChild(btn);
+  })();
+
   nav.appendChild(inner);
   body.insertBefore(nav, body.firstChild);
 

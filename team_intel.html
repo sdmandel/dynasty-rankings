@@ -61,7 +61,7 @@
 
 .tooltip {
   position: fixed;
-  background: #1a1a1c;
+  background: var(--bg2);
   border: 1px solid var(--border2);
   border-radius: 4px;
   padding: 8px 12px;
@@ -503,7 +503,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .bar-track {
   height: 22px;
-  background: #141416;
+  background: var(--bg2);
   border-radius: 3px;
   overflow: hidden;
   position: relative;
@@ -827,6 +827,16 @@ function resolveScatterLabels(dots, bounds, obstacles = []) {
 
 function buildScatter() {
   if (!TEAMS.length) return;
+  const _cs = getComputedStyle(document.documentElement);
+  const cv = {
+    border:    _cs.getPropertyValue('--border').trim()    || '#1e1e20',
+    border2:   _cs.getPropertyValue('--border2').trim()   || '#2a2a2c',
+    textDead:  _cs.getPropertyValue('--text-dead').trim() || '#4a4845',
+    textMid:   _cs.getPropertyValue('--text-mid').trim()  || '#c2bfb8',
+    gold:      _cs.getPropertyValue('--gold').trim()      || '#c8a84b',
+    bg:        _cs.getPropertyValue('--bg').trim()        || '#0e0e0f',
+    text:      _cs.getPropertyValue('--text').trim()      || '#f0ede6',
+  };
   const W = svg.parentElement.clientWidth;
   const H = Math.max(380, Math.min(520, W * 0.58));
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
@@ -871,7 +881,7 @@ function buildScatter() {
   marker.setAttribute('markerUnits', 'strokeWidth');
   const arrowHead = document.createElementNS(ns, 'path');
   arrowHead.setAttribute('d', 'M 0 0 L 8 4 L 0 8 z');
-  arrowHead.setAttribute('fill', '#c8a84b');
+  arrowHead.setAttribute('fill', cv.gold);
   arrowHead.setAttribute('opacity', '0.85');
   marker.appendChild(arrowHead);
   defs.appendChild(marker);
@@ -920,7 +930,7 @@ function buildScatter() {
     const l = document.createElementNS(ns, 'line');
     l.setAttribute('x1', x1); l.setAttribute('y1', y1);
     l.setAttribute('x2', x2); l.setAttribute('y2', y2);
-    l.setAttribute('stroke', '#1e1e20'); l.setAttribute('stroke-width', '1');
+    l.setAttribute('stroke', cv.border); l.setAttribute('stroke-width', '1');
     if (dash) l.setAttribute('stroke-dasharray', '4 4');
     svg.appendChild(l);
   };
@@ -937,19 +947,19 @@ function buildScatter() {
   const vLine = document.createElementNS(ns, 'line');
   vLine.setAttribute('x1', scaleX(midAge)); vLine.setAttribute('y1', PAD.top);
   vLine.setAttribute('x2', scaleX(midAge)); vLine.setAttribute('y2', PAD.top + plotH);
-  vLine.setAttribute('stroke', '#2e2e32'); vLine.setAttribute('stroke-width', '1');
+  vLine.setAttribute('stroke', cv.border2); vLine.setAttribute('stroke-width', '1');
   vLine.setAttribute('stroke-dasharray', '5 4');
   svg.appendChild(vLine);
 
   const hLine = document.createElementNS(ns, 'line');
   hLine.setAttribute('x1', PAD.left);           hLine.setAttribute('y1', scaleY(midVal));
   hLine.setAttribute('x2', PAD.left + plotW);   hLine.setAttribute('y2', scaleY(midVal));
-  hLine.setAttribute('stroke', '#2e2e32'); hLine.setAttribute('stroke-width', '1');
+  hLine.setAttribute('stroke', cv.border2); hLine.setAttribute('stroke-width', '1');
   hLine.setAttribute('stroke-dasharray', '5 4');
   svg.appendChild(hLine);
 
   // Axis tick labels
-  const mkText = (txt, x, y, anchor = 'middle', size = 12, color = '#4a4845') => {
+  const mkText = (txt, x, y, anchor = 'middle', size = 12, color = cv.textDead) => {
     const t = document.createElementNS(ns, 'text');
     t.setAttribute('x', x); t.setAttribute('y', y);
     t.setAttribute('text-anchor', anchor);
@@ -967,7 +977,7 @@ function buildScatter() {
       mkText(a.toFixed(1), x, PAD.top + plotH + 20);
     }
   }
-  mkText('Average Age', PAD.left + plotW / 2, H - 6, 'middle', 12, '#3a3a3c');
+  mkText('Average Age', PAD.left + plotW / 2, H - 6, 'middle', 12, cv.textDead);
 
   // Y axis — value ticks
   for (let v = 0; v <= maxVal; v += 5000) {
@@ -1024,7 +1034,7 @@ function buildScatter() {
     line.setAttribute('y1', label.dot.cy);
     line.setAttribute('x2', endX);
     line.setAttribute('y2', endY);
-    line.setAttribute('stroke', '#4c4944');
+    line.setAttribute('stroke', cv.textDead);
     line.setAttribute('stroke-width', '1');
     line.setAttribute('opacity', '0.55');
     svg.appendChild(line);
@@ -1043,7 +1053,7 @@ function buildScatter() {
     path.setAttribute('y1', d.prevCy);
     path.setAttribute('x2', d.cx);
     path.setAttribute('y2', d.cy);
-    path.setAttribute('stroke', '#c8a84b');
+    path.setAttribute('stroke', cv.gold);
     path.setAttribute('stroke-width', '1.7');
     path.setAttribute('opacity', '0.8');
     path.setAttribute('marker-end', 'url(#scatterMoveArrow)');
@@ -1053,7 +1063,7 @@ function buildScatter() {
     origin.setAttribute('cx', d.prevCx);
     origin.setAttribute('cy', d.prevCy);
     origin.setAttribute('r', '4.5');
-    origin.setAttribute('fill', '#111112');
+    origin.setAttribute('fill', cv.bg);
     origin.setAttribute('stroke', '#6f8a79');
     origin.setAttribute('stroke-width', '1.1');
     origin.setAttribute('opacity', '0.9');
@@ -1067,7 +1077,7 @@ function buildScatter() {
 
     const ring = document.createElementNS(ns, 'circle');
     ring.setAttribute('cx', d.cx); ring.setAttribute('cy', d.cy);
-    ring.setAttribute('r', 14); ring.setAttribute('fill', '#c8a84b'); ring.setAttribute('opacity', '0.06');
+    ring.setAttribute('r', 14); ring.setAttribute('fill', cv.gold); ring.setAttribute('opacity', '0.06');
     g.appendChild(ring);
 
     const c = document.createElementNS(ns, 'circle');
@@ -1079,7 +1089,7 @@ function buildScatter() {
     rk.setAttribute('x', d.cx); rk.setAttribute('y', d.cy + 4.5);
     rk.setAttribute('text-anchor', 'middle');
     rk.setAttribute('font-family', 'DM Sans, sans-serif');
-    rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', '#f0ede6');
+    rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', cv.text);
     rk.textContent = d.t.oracle_rank;
     g.appendChild(rk);
 
@@ -1116,8 +1126,8 @@ function buildScatter() {
     lbl.setAttribute('font-family', 'DM Sans, sans-serif');
     lbl.setAttribute('font-size', W < 560 ? '11.5' : '12.5');
     lbl.setAttribute('font-weight', '500');
-    lbl.setAttribute('fill', '#c2bfb8');
-    lbl.setAttribute('stroke', '#111112');
+    lbl.setAttribute('fill', cv.textMid);
+    lbl.setAttribute('stroke', cv.bg);
     lbl.setAttribute('stroke-width', '3');
     lbl.setAttribute('paint-order', 'stroke');
     lbl.textContent = label.dot.shortName;

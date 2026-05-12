@@ -21,6 +21,8 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
+html[data-theme="dark"] { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
+html[data-theme="light"] { --bg:#f5f3ef; --bg2:#eceae5; --border:#d8d4cb; --border2:#c5c0b5; --gold:#9a7a28; --text:#1a1917; --text-mid:#3a3834; --text-muted:#7a7468; --text-dead:#a09a90; --green:#2a7a4a; --blue:#3a5a8a; --red:#8a3a3a; }
 body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
 .content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
 .section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
@@ -36,7 +38,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .dynasty-owner.no-owner { color:var(--text-dead); font-style:italic; }
 .conf-row { display:grid; grid-template-columns:80px 1fr 36px; gap:8px; align-items:center; margin-bottom:8px; }
 .conf-label { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
-.track { height:8px; background:#0e0e0f; border:1px solid #1a1a1c; border-radius:2px; overflow:hidden; }
+.track { height:8px; background:var(--bg); border:1px solid var(--border); border-radius:2px; overflow:hidden; }
 .fill { height:100%; }
 .fill-high { background:var(--green); }
 .fill-mid  { background:var(--gold); }
@@ -78,6 +80,10 @@ tbody td.right { color:var(--text-muted); font-size:12px; font-variant-numeric: 
 }
 .board-row.rostered .owner-pill { color:#8ca7d4; border-color:#314b78; background:rgba(93,125,181,0.14); }
 .board-row.available .owner-pill { color:#5da87a; border-color:#2a5a3c; background:rgba(93,168,122,0.14); }
+html[data-theme="light"] .closer-card.unstable { background:#fdf2f0; border-color:#e8b8b0; }
+html[data-theme="light"] .closer-card.high-conf { background:#f0f8f2; border-color:#b0d8be; }
+html[data-theme="light"] .board-row.rostered .owner-pill { color:#3a5a8a; border-color:#adc0d8; background:rgba(58,90,138,0.10); }
+html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; border-color:#a8d0b8; background:rgba(42,122,74,0.10); }
 .state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
 .site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
 @media (max-width:900px){ .closer-grid,.dynasty-closers{grid-template-columns:1fr 1fr;} }

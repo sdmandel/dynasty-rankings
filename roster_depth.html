@@ -15,14 +15,34 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_depth.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/nav.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
+  --gold: #c8a84b; --text: #f0ede6; --text-mid: #c2bfb8; --text-muted: #7a7872; --text-dead: #4a4845;
+  --blue: #5d7db5; --red: #b55d5d;
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+}
+html[data-theme="dark"] {
+  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
+  --gold: #c8a84b; --text: #f0ede6; --text-mid: #c2bfb8; --text-muted: #7a7872; --text-dead: #4a4845;
+  --blue: #5d7db5; --red: #b55d5d;
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+}
+html[data-theme="light"] {
+  --bg: #f5f3ef; --bg2: #eceae5; --border: #d8d4cb; --border2: #c5c0b5;
+  --gold: #9a7a28; --text: #1a1917; --text-mid: #3a3834; --text-muted: #7a7468; --text-dead: #a09a90;
+  --blue: #3a5a8a; --red: #8a3a3a;
+  --nav-bg-blur: rgba(245, 243, 239, 0.96);
+}
+
 body {
-  background: #0e0e0f;
-  color: #e8e6e0;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   line-height: 1.6;
@@ -30,8 +50,8 @@ body {
 }
 
 .header {
-  background: #0e0e0f;
-  border-bottom: 1px solid #2a2a2c;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border2);
   padding: 48px 40px 32px;
   max-width: 1100px;
   margin: 0 auto;
@@ -42,7 +62,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #c8a84b;
+  color: var(--gold);
   margin-bottom: 12px;
 }
 .header h1 {
@@ -50,22 +70,22 @@ body {
   font-size: clamp(44px, 7vw, 80px);
   letter-spacing: 0.02em;
   line-height: 0.92;
-  color: #f0ede6;
+  color: var(--text);
   margin-bottom: 20px;
 }
-.header h1 span { color: #c8a84b; }
+.header h1 span { color: var(--gold); }
 .divider {
   width: 40px; height: 2px;
-  background: #c8a84b;
+  background: var(--gold);
   margin: 20px 0;
 }
 .header-meta {
   font-size: 13px;
-  color: #7a7872;
+  color: var(--text-muted);
   max-width: 680px;
   line-height: 1.7;
 }
-.header-meta strong { color: #c8a84b; font-weight: 500; }
+.header-meta strong { color: var(--gold); font-weight: 500; }
 
 /* Legend */
 .legend {
@@ -76,14 +96,14 @@ body {
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
-  border-bottom: 1px solid #1e1e20;
+  border-bottom: 1px solid var(--border);
 }
 .legend-label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--text-dead);
   margin-right: 4px;
 }
 .leg-pill {
@@ -92,7 +112,7 @@ body {
   gap: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: #7a7872;
+  color: var(--text-muted);
 }
 .leg-swatch {
   width: 12px; height: 12px;
@@ -117,9 +137,9 @@ body {
   top: 0;
   z-index: 10;
   margin-bottom: 10px;
-  background: rgba(14, 14, 15, 0.96);
+  background: var(--nav-bg-blur);
   backdrop-filter: blur(6px);
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -161,12 +181,12 @@ thead th {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--text-dead);
   padding: 8px 10px;
   text-align: center;
-  border-bottom: 1px solid #1e1e20;
+  border-bottom: 1px solid var(--border);
   white-space: nowrap;
-  background: #0e0e0f;
+  background: var(--bg);
 }
 thead th.th-team {
   text-align: left;
@@ -174,21 +194,21 @@ thead th.th-team {
 }
 thead th.th-rank { width: 40px; }
 
-tr { border-bottom: 1px solid #1a1a1c; }
+tr { border-bottom: 1px solid var(--border); }
 tr:hover { background: rgba(255,255,255,0.012); }
 
 .rank-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 28px;
-  color: #2a2a2c;
+  color: var(--border2);
   padding: 16px 12px 16px 0;
   vertical-align: top;
   line-height: 1;
   width: 44px;
   text-align: right;
 }
-.rank-gold   { color: #c8a84b; }
-.rank-silver { color: #8a8680; }
+.rank-gold   { color: var(--gold); }
+.rank-silver { color: var(--text-muted); }
 .rank-bronze { color: #7a5c38; }
 
 .team-cell {
@@ -199,14 +219,14 @@ tr:hover { background: rgba(255,255,255,0.012); }
   font-family: 'Bebas Neue', sans-serif;
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: #f0ede6;
+  color: var(--text);
   display: block;
   line-height: 1.1;
   margin-bottom: 2px;
 }
 .tscore {
   font-size: 11px;
-  color: #4a4845;
+  color: var(--text-dead);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -231,7 +251,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 }
 .pill:hover { opacity: 0.8; }
 .pill:focus-visible {
-  outline: 2px solid #c8a84b;
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
@@ -242,10 +262,10 @@ tr:hover { background: rgba(255,255,255,0.012); }
   z-index: 999;
   max-width: min(280px, calc(100vw - 24px));
   padding: 7px 9px;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--border2);
   border-radius: 6px;
-  background: rgba(10, 10, 11, 0.96);
-  color: #f0ede6;
+  background: var(--nav-bg-blur);
+  color: var(--text);
   font-size: 11px;
   line-height: 1.35;
   letter-spacing: 0.01em;
@@ -268,15 +288,22 @@ tr:hover { background: rgba(255,255,255,0.012); }
 .t4 { background: #5a4030; color: #d4b898; border: 1px solid #7a5840; }
 .t5 { background: #2e2420; color: #8a7868; border: 1px solid #3e3028; }
 
+html[data-theme="light"] .t1 { background: #fde8e8; color: #7a1010; border-color: #e8b0b0; }
+html[data-theme="light"] .t2 { background: #fdeee6; color: #7a2e18; border-color: #e8c4a0; }
+html[data-theme="light"] .t3 { background: #fdf2e8; color: #6e3818; border-color: #e0c090; }
+html[data-theme="light"] .t4 { background: #faf5ef; color: #5a3820; border-color: #d8c0a0; }
+html[data-theme="light"] .t5 { background: #f5f0ea; color: #6a5840; border-color: #c8b8a0; }
+html[data-theme="light"] tr:hover { background: rgba(0,0,0,0.04); }
+
 /* Riser / faller pill indicators */
-.pill.big-riser { border-color: #5d7db5; }
-.pill.big-riser::after { content: ' ↑'; color: #5d7db5; font-size: 9px; }
-.pill.big-faller { border-color: #b55d5d; }
-.pill.big-faller::after { content: ' ↓'; color: #b55d5d; font-size: 9px; }
+.pill.big-riser { border-color: var(--blue); }
+.pill.big-riser::after { content: ' ↑'; color: var(--blue); font-size: 9px; }
+.pill.big-faller { border-color: var(--red); }
+.pill.big-faller::after { content: ' ↓'; color: var(--red); font-size: 9px; }
 
 /* Trade block indicator */
-.pill.trade-block { border-color: #c8a84b; }
-.pill.trade-block::before { content: '⇄ '; color: #c8a84b; font-size: 8px; }
+.pill.trade-block { border-color: var(--gold); }
+.pill.trade-block::before { content: '⇄ '; color: var(--gold); font-size: 8px; }
 
 /* Team rank delta badges */
 .team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: 'DM Sans', sans-serif; }
@@ -284,7 +311,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 .delta-down        { color: #b55d5d; }
 .delta-same        { color: #3a3a3c; }
 
-.count-empty { color: #2a2a2c; font-size: 14px; }
+.count-empty { color: var(--border2); font-size: 14px; }
 
 .player-modal {
   position: fixed;
@@ -305,9 +332,9 @@ tr:hover { background: rgba(255,255,255,0.012); }
   bottom: 24px;
   width: min(520px, calc(100vw - 48px));
   overflow-y: auto;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--border2);
   border-radius: 8px;
-  background: #111112;
+  background: var(--bg2);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
   padding: 22px;
 }
@@ -317,17 +344,17 @@ tr:hover { background: rgba(255,255,255,0.012); }
   top: 12px;
   width: 30px;
   height: 30px;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--border2);
   border-radius: 6px;
-  background: #171719;
-  color: #8a8680;
+  background: var(--bg2);
+  color: var(--text-muted);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
 }
-.player-close:hover { color: #f0ede6; border-color: #4a4845; }
+.player-close:hover { color: var(--text); border-color: var(--text-dead); }
 .player-kicker {
-  color: #c8a84b;
+  color: var(--gold);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -339,12 +366,12 @@ tr:hover { background: rgba(255,255,255,0.012); }
   font-size: 42px;
   line-height: 0.95;
   letter-spacing: 0.02em;
-  color: #f0ede6;
+  color: var(--text);
   padding-right: 42px;
 }
 .player-meta {
   margin-top: 8px;
-  color: #7a7872;
+  color: var(--text-muted);
   font-size: 12px;
 }
 .player-stats {
@@ -354,29 +381,29 @@ tr:hover { background: rgba(255,255,255,0.012); }
   margin: 20px 0 18px;
 }
 .player-stat {
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: #0e0e0f;
+  background: var(--bg);
   padding: 10px;
 }
 .player-stat-label {
-  color: #4a4845;
+  color: var(--text-dead);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .player-stat-value {
-  color: #f0ede6;
+  color: var(--text);
   font-family: 'Bebas Neue', sans-serif;
   font-size: 28px;
   line-height: 1;
   margin-top: 6px;
 }
 .player-chart-wrap {
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: #0e0e0f;
+  background: var(--bg);
   padding: 12px;
 }
 .player-chart {
@@ -387,7 +414,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 }
 .player-note {
   margin-top: 12px;
-  color: #7a7872;
+  color: var(--text-muted);
   font-size: 12px;
 }
 .player-error {
@@ -401,9 +428,9 @@ tr:hover { background: rgba(255,255,255,0.012); }
   margin: 24px auto 0;
   padding: 24px 40px;
   font-size: 12px;
-  color: #4a4845;
+  color: var(--text-dead);
   font-style: italic;
-  border-top: 1px solid #1e1e20;
+  border-top: 1px solid var(--border);
   line-height: 1.8;
 }
 
@@ -445,7 +472,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
   <span class="leg-pill"><span class="leg-swatch sw5"></span>#500+ Fringe</span>
   <span class="leg-pill"><span class="leg-delta">Δ</span>Week-over-week rank change</span>
   <span class="leg-pill"><span class="leg-move"><span class="leg-up">↑</span><span class="leg-down">↓</span></span>Risers and fallers shown on pills that moved 100+ spots</span>
-  <span class="leg-pill"><span style="color:#c8a84b;font-size:10px;line-height:1">⇄</span> On trade block</span>
+  <span class="leg-pill"><span style="color:var(--gold);font-size:10px;line-height:1">⇄</span> On trade block</span>
 </div>
 
 <div class="depth-shell">
@@ -603,7 +630,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
   Δ indicates week-over-week rank change &nbsp;·&nbsp;
   Risers <span style="color:#5d7db5;font-style:normal">↑</span> and
   fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
-  <span style="color:#c8a84b;font-style:normal">⇄</span> indicates player is on their team's trade block
+  <span style="color:var(--gold);font-style:normal">⇄</span> indicates player is on their team's trade block
 </div>
 
 <div class="player-modal" id="playerModal" aria-hidden="true">
@@ -737,6 +764,14 @@ tr:hover { background: rgba(255,255,255,0.012); }
     const points = player.points || [];
     if (points.length === 0) return;
 
+    const _cs = getComputedStyle(document.documentElement);
+    const cv = {
+      border2:  _cs.getPropertyValue('--border2').trim()   || '#2a2a2c',
+      muted:    _cs.getPropertyValue('--text-muted').trim()|| '#7a7872',
+      gold:     _cs.getPropertyValue('--gold').trim()      || '#c8a84b',
+      text:     _cs.getPropertyValue('--text').trim()      || '#f0ede6',
+    };
+
     const width = 640;
     const height = 260;
     const pad = { left: 52, right: 18, top: 22, bottom: 38 };
@@ -751,18 +786,18 @@ tr:hover { background: rgba(255,255,255,0.012); }
     const yFor = (rank) => pad.top + ((rank - minRank) / rankSpan) * chartHeight;
     const pathPoints = points.map((point, idx) => `${xFor(idx).toFixed(1)},${yFor(point.rank).toFixed(1)}`).join(' ');
 
-    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
-    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
-    addSvg('text', { x: 8, y: pad.top + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(minRank));
-    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(maxRank));
-    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: '#c8a84b', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: cv.border2, 'stroke-width': 1 });
+    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: cv.border2, 'stroke-width': 1 });
+    addSvg('text', { x: 8, y: pad.top + 4, fill: cv.muted, 'font-size': 11 }, fmtRank(minRank));
+    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: cv.muted, 'font-size': 11 }, fmtRank(maxRank));
+    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: cv.gold, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
 
     points.forEach((point, idx) => {
-      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? '#f0ede6' : '#c8a84b' });
+      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? cv.text : cv.gold });
     });
 
-    addSvg('text', { x: pad.left, y: height - 10, fill: '#7a7872', 'font-size': 11 }, points[0].date);
-    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: '#7a7872', 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
+    addSvg('text', { x: pad.left, y: height - 10, fill: cv.muted, 'font-size': 11 }, points[0].date);
+    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: cv.muted, 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
   };
 
   const renderPlayer = (player) => {
