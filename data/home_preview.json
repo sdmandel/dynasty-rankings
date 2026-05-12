@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Alec Bohm"
+    },
+    {
       "type": "ADD",
       "team": "Trazadone",
       "player": "Keider Montero"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "Pat",
       "player": "Jason Foley"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Yennier Cano"
     }
   ],
   "oracle_teams": [
