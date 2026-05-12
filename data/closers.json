@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-11",
-  "snapshot_date": "2026-05-11",
+  "generated": "2026-05-12",
+  "snapshot_date": "2026-05-12",
   "closers": [
     {
       "closer_name": "Mason Miller",
@@ -33,6 +33,16 @@
       "oracle_rank": 523
     },
     {
+      "closer_name": "Bryan Baker",
+      "bullpen_team": "Tampa Bay Rays",
+      "dynasty_team": "Humongous Melonheads",
+      "recent_saves": 11,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 64.7,
+      "oracle_rank": 646
+    },
+    {
       "closer_name": "Lucas Erceg",
       "bullpen_team": "Kansas City Royals",
       "dynasty_team": "Rollie Fingers",
@@ -51,16 +61,6 @@
       "unstable_flag": false,
       "role_share": 100.0,
       "oracle_rank": 234
-    },
-    {
-      "closer_name": "Bryan Baker",
-      "bullpen_team": "Tampa Bay Rays",
-      "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 10,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 62.5,
-      "oracle_rank": 646
     },
     {
       "closer_name": "Seranthony Dom\u00ednguez",
@@ -83,13 +83,23 @@
       "oracle_rank": 322
     },
     {
+      "closer_name": "Andr\u00e9s Mu\u00f1oz",
+      "bullpen_team": "Seattle Mariners",
+      "dynasty_team": "Sam",
+      "recent_saves": 8,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 61.5,
+      "oracle_rank": 109
+    },
+    {
       "closer_name": "Ryan Helsley",
       "bullpen_team": "Baltimore Orioles",
       "dynasty_team": "Sam",
       "recent_saves": 7,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 58.3,
+      "role_share": 53.8,
       "oracle_rank": 275
     },
     {
@@ -101,16 +111,6 @@
       "unstable_flag": false,
       "role_share": 77.8,
       "oracle_rank": 572
-    },
-    {
-      "closer_name": "Andr\u00e9s Mu\u00f1oz",
-      "bullpen_team": "Seattle Mariners",
-      "dynasty_team": "Sam",
-      "recent_saves": 7,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 58.3,
-      "oracle_rank": 109
     },
     {
       "closer_name": "Emilio Pag\u00e1n",
@@ -266,10 +266,10 @@
       "closer_name": "Paul Sewald",
       "bullpen_team": "Arizona Diamondbacks",
       "dynasty_team": "Acu\u00f1a Matata",
-      "recent_saves": 8,
+      "recent_saves": 9,
       "confidence_score": 35.0,
       "unstable_flag": false,
-      "role_share": 80.0,
+      "role_share": 81.8,
       "oracle_rank": 741
     },
     {
@@ -316,24 +316,24 @@
         "oracle_rank": 48
       },
       {
+        "closer_name": "Andr\u00e9s Mu\u00f1oz",
+        "bullpen_team": "Seattle Mariners",
+        "dynasty_team": "Sam",
+        "recent_saves": 8,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 61.5,
+        "oracle_rank": 109
+      },
+      {
         "closer_name": "Ryan Helsley",
         "bullpen_team": "Baltimore Orioles",
         "dynasty_team": "Sam",
         "recent_saves": 7,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 58.3,
+        "role_share": 53.8,
         "oracle_rank": 275
-      },
-      {
-        "closer_name": "Andr\u00e9s Mu\u00f1oz",
-        "bullpen_team": "Seattle Mariners",
-        "dynasty_team": "Sam",
-        "recent_saves": 7,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 58.3,
-        "oracle_rank": 109
       },
       {
         "closer_name": "Devin Williams",
@@ -378,6 +378,48 @@
         "unstable_flag": false,
         "role_share": 78.6,
         "oracle_rank": 523
+      }
+    ],
+    "Humongous Melonheads": [
+      {
+        "closer_name": "Bryan Baker",
+        "bullpen_team": "Tampa Bay Rays",
+        "dynasty_team": "Humongous Melonheads",
+        "recent_saves": 11,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 64.7,
+        "oracle_rank": 646
+      },
+      {
+        "closer_name": "Seranthony Dom\u00ednguez",
+        "bullpen_team": "Chicago White Sox",
+        "dynasty_team": "Humongous Melonheads",
+        "recent_saves": 9,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 69.2,
+        "oracle_rank": 519
+      },
+      {
+        "closer_name": "Kenley Jansen",
+        "bullpen_team": "Detroit Tigers",
+        "dynasty_team": "Humongous Melonheads",
+        "recent_saves": 7,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 77.8,
+        "oracle_rank": 572
+      },
+      {
+        "closer_name": "Emilio Pag\u00e1n",
+        "bullpen_team": "Cincinnati Reds",
+        "dynasty_team": "Humongous Melonheads",
+        "recent_saves": 6,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 54.5,
+        "oracle_rank": 462
       }
     ],
     "Rollie Fingers": [
@@ -437,53 +479,11 @@
         "closer_name": "Paul Sewald",
         "bullpen_team": "Arizona Diamondbacks",
         "dynasty_team": "Acu\u00f1a Matata",
-        "recent_saves": 8,
+        "recent_saves": 9,
         "confidence_score": 35.0,
         "unstable_flag": false,
-        "role_share": 80.0,
+        "role_share": 81.8,
         "oracle_rank": 741
-      }
-    ],
-    "Humongous Melonheads": [
-      {
-        "closer_name": "Bryan Baker",
-        "bullpen_team": "Tampa Bay Rays",
-        "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 10,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 62.5,
-        "oracle_rank": 646
-      },
-      {
-        "closer_name": "Seranthony Dom\u00ednguez",
-        "bullpen_team": "Chicago White Sox",
-        "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 9,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 69.2,
-        "oracle_rank": 519
-      },
-      {
-        "closer_name": "Kenley Jansen",
-        "bullpen_team": "Detroit Tigers",
-        "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 7,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 77.8,
-        "oracle_rank": 572
-      },
-      {
-        "closer_name": "Emilio Pag\u00e1n",
-        "bullpen_team": "Cincinnati Reds",
-        "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 6,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 54.5,
-        "oracle_rank": 462
       }
     ],
     "Millville Meteors": [
