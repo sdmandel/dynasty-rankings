@@ -65,12 +65,29 @@ def _safe_int(val) -> int | None:
         return None
 
 
+STATS_PATH = SITE_DATA / "season_stats.json"
+
+
+def _load_season_stats() -> tuple:
+    if not STATS_PATH.exists():
+        return {}, {}, {}, {}, None
+    data = json.loads(STATS_PATH.read_text(encoding="utf-8"))
+    return (
+        data.get("mlb_batting", {}),
+        data.get("mlb_pitching", {}),
+        data.get("milb_batting", {}),
+        data.get("milb_pitching", {}),
+        data.get("generated"),
+    )
+
+
 def build() -> None:
     history = _load_history()
     if not history:
         raise SystemExit("dynasty_history.json is empty")
 
     csv_by_name = _load_csv()
+    mlb_bat, mlb_pit, milb_bat, milb_pit, stats_generated = _load_season_stats()
 
     latest   = history[-1]
     previous = history[-2] if len(history) >= 2 else None
@@ -94,6 +111,15 @@ def build() -> None:
         prior = prev_ranks.get(name)
         rank_change = (prior - entry["rank"]) if prior else 0   # positive = moved up
 
+        def _sf(key, decimals=None):
+            v = csv_row.get(key, "")
+            if v in ("", None): return None
+            try:
+                f = float(v)
+                return round(f, decimals) if decimals is not None else f
+            except (ValueError, TypeError):
+                return v
+
         rankings_out.append({
             "rank":         entry["rank"],
             "display_name": display_name,
@@ -103,17 +129,62 @@ def build() -> None:
             "age":          _safe_int(csv_row.get("Age")),
             "level":        csv_row.get("Level", ""),
             "score":        entry["score"],
+            # Source ranks — prefer enriched history, fall back to CSV
             "hkb_rank":     _safe_int(entry.get("hkb_rank") or csv_row.get("HKB#")),
+            "delta_hkb":    _safe_int(csv_row.get("Δ HKB")),
             "fp_rank":      _safe_int(entry.get("fp_rank")  or csv_row.get("FP#")),
+            "delta_fp":     _safe_int(csv_row.get("Δ FP")),
             "ibw_rank":     _safe_int(entry.get("ibw_rank") or csv_row.get("IBW#")),
+            "delta_ibw":    _safe_int(csv_row.get("Δ IBW")),
             "pl_rank":      _safe_int(entry.get("pl_rank")  or csv_row.get("PL#")),
             "fthq_rank":    _safe_int(entry.get("fthq_rank") or csv_row.get("FTHQ#")),
             "rank_change":  rank_change,
+            # Analysis columns
+            "proj_z":       _sf("Proj Z", 3),
+            "hkb_value":    _sf("HKB Value"),
+            "owned_by":     csv_row.get("Owned By", "") or "",
+            "eta":          csv_row.get("ETA", "") or "",
+            "reason":       csv_row.get("Reason", "") or "",
+            # Steamer batting
+            "st_hr":        _sf("St HR"),
+            "st_r":         _sf("St R"),
+            "st_rbi":       _sf("St RBI"),
+            "st_sb":        _sf("St SB"),
+            "st_ops":       _sf("St OPS", 3),
+            "zips_hr":      _sf("Zips HR"),
+            "zips_ops":     _sf("Zips OPS", 3),
+            # Steamer pitching
+            "st_qs":        _sf("St QS"),
+            "st_k":         _sf("St K"),
+            "st_era":       _sf("St ERA", 2),
+            "st_svh":       _sf("St SVH"),
+            "st_whip":      _sf("St WHIP", 3),
+            "zips_era":     _sf("Zips ERA", 2),
+            "zips_k":       _sf("Zips K"),
+            # MLB season stats
+            **(lambda b, pi: {
+                "mlb_hr":   b.get("hr"),  "mlb_r":   b.get("r"),
+                "mlb_rbi":  b.get("rbi"), "mlb_sb":  b.get("sb"),
+                "mlb_ops":  b.get("ops"), "mlb_pa":  b.get("pa"),
+                "mlb_qs":   pi.get("qs"), "mlb_k":   pi.get("k"),
+                "mlb_era":  pi.get("era"),"mlb_svh": pi.get("svh"),
+                "mlb_whip": pi.get("whip"),"mlb_ip": pi.get("ip"),
+            })(mlb_bat.get(name, {}), mlb_pit.get(name, {})),
+            # MiLB season stats (no QS — minor leagues don't track it)
+            **(lambda b, pi: {
+                "milb_hr":   b.get("hr"),  "milb_r":   b.get("r"),
+                "milb_rbi":  b.get("rbi"), "milb_sb":  b.get("sb"),
+                "milb_ops":  b.get("ops"), "milb_pa":  b.get("pa"),
+                "milb_k":    pi.get("k"),  "milb_era": pi.get("era"),
+                "milb_svh":  pi.get("svh"),"milb_whip":pi.get("whip"),
+                "milb_ip":   pi.get("ip"),
+            })(milb_bat.get(name, {}), milb_pit.get(name, {})),
         })
 
     latest_json = {
-        "generated": latest["date"],
-        "rankings":  rankings_out,
+        "generated":       latest["date"],
+        "stats_generated": stats_generated,
+        "rankings":        rankings_out,
     }
     out_path = SITE_DATA / "dynasty_rankings_latest.json"
     out_path.write_text(json.dumps(latest_json, indent=2), encoding="utf-8")

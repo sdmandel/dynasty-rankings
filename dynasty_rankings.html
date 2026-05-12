@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<title>Dynasty Rankings — Backyard Dynasty Baseball 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site-shell.css">
+<link rel="stylesheet" href="assets/nav.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #141416;
+  --border: #1e1e20;
+  --border2: #2a2a2c;
+  --gold: #c8a84b;
+  --gold-dim: #4a3c18;
+  --text: #f0ede6;
+  --text-mid: #c2bfb8;
+  --text-muted: #7a7872;
+  --text-dead: #4a4845;
+  --blue: #5d7db5;
+  --red: #b55d5d;
+}
+
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+
+.site-header { max-width: 1400px; margin: 0 auto; padding: 52px 40px 36px; border-bottom: 1px solid var(--border2); }
+.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.site-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 90px); line-height: 0.88; letter-spacing: 0.02em; color: var(--text); margin-bottom: 22px; }
+.site-header h1 span { color: var(--gold); }
+.divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
+.site-header p { font-size: 13px; color: var(--text-muted); max-width: 640px; line-height: 1.75; }
+.meta-line { font-size: 11px; color: var(--text-dead); margin-top: 10px; }
+
+.content { max-width: 1400px; margin: 0 auto; padding: 32px 40px 80px; }
+
+/* ── TOOLBAR ── */
+.toolbar { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.search-input {
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px;
+  color: var(--text); font-family: inherit; font-size: 13px; padding: 7px 14px;
+  width: 240px; outline: none;
+}
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: var(--text-dead); }
+.count-badge { font-size: 11px; color: var(--text-dead); }
+
+/* ── TABLE WRAPPER — horizontal scroll, sticky first two cols ── */
+.table-wrap {
+  overflow-x: auto;
+  /* Keep sticky columns visible at all viewport widths */
+  -webkit-overflow-scrolling: touch;
+}
+
+.rank-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+/* Section separators via left-border on the first col of each group */
+.rank-table thead th.group-start,
+.rank-table tbody td.group-start {
+  border-left: 1px solid var(--border2);
+  padding-left: 10px;
+}
+
+.rank-table thead th {
+  position: sticky; top: 0;
+  text-align: right;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-dead); background: var(--bg);
+  padding: 0 6px 10px; border-bottom: 1px solid var(--border2);
+  white-space: nowrap; cursor: pointer; user-select: none;
+  z-index: 1;
+}
+.rank-table thead th.left { text-align: left; }
+.rank-table thead th.sort-active { color: var(--text-mid); }
+.sort-arrow { margin-left: 3px; color: var(--gold); }
+
+/* Sticky rank column */
+.rank-table thead th.col-rank,
+.rank-table tbody td.col-rank {
+  position: sticky; left: 0; z-index: 2;
+  background: var(--bg);
+  padding-right: 8px;
+}
+.rank-table tbody tr:hover td.col-rank,
+.rank-table tbody tr:hover td.col-player { background: var(--bg2); }
+
+/* Sticky player column */
+.rank-table thead th.col-player,
+.rank-table tbody td.col-player {
+  position: sticky; left: 46px; z-index: 2;
+  background: var(--bg);
+  min-width: 160px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+  padding-right: 12px;
+  border-right: 1px solid var(--border2);
+}
+.rank-table thead th.col-rank { z-index: 3; }
+.rank-table thead th.col-player { z-index: 3; }
+
+.rank-table tbody tr { border-bottom: 1px solid var(--border); }
+.rank-table tbody tr:hover { background: var(--bg2); }
+.rank-table tbody td {
+  padding: 7px 6px; color: var(--text); white-space: nowrap;
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.rank-table tbody td.left { text-align: left; font-variant-numeric: normal; }
+
+/* Rank number */
+.rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text-dead); }
+.rank-num.top3 { color: var(--gold); }
+
+/* Player link */
+.player-link { color: var(--text); text-decoration: none; cursor: pointer; border-bottom: 1px solid transparent; font-size: 13px; }
+.player-link:hover { border-bottom-color: var(--gold); }
+
+/* Rank deltas (vs composite) */
+.d-pos { color: var(--text-muted); font-size: 10px; }
+.d-neg { color: var(--text-dead); font-size: 10px; }
+
+/* Week-over-week delta */
+.wk-up   { color: var(--gold); }
+.wk-down { color: var(--red); }
+.wk-flat { color: var(--text-dead); }
+
+/* Source rank */
+.src { color: var(--text-muted); }
+.src.none { color: var(--text-dead); }
+
+/* Score */
+.score-val { font-family: 'Bebas Neue', sans-serif; font-size: 16px; }
+
+/* Proj Z */
+.projz { color: var(--text-mid); }
+
+/* Analysis */
+.hkb-val { color: var(--gold); font-size: 11px; }
+.owner-cell { color: var(--text-muted); font-size: 11px; max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
+.reason-cell { color: var(--text-muted); font-size: 11px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eta-cell { color: var(--text-muted); font-size: 11px; }
+
+/* Stat values */
+.stat-val { color: var(--text-mid); }
+.stat-empty { color: var(--text-dead); }
+
+/* No results */
+.no-results { color: var(--text-dead); font-size: 13px; padding: 24px 0; display: none; }
+
+/* ── FILTERS ── */
+.filter-select {
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px;
+  color: var(--text); font-family: inherit; font-size: 13px; padding: 7px 28px 7px 10px;
+  appearance: none; outline: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7872'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center;
+}
+.filter-select:focus { border-color: var(--gold); }
+
+.dd-wrap { position: relative; }
+.dd-trigger {
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px;
+  color: var(--text-muted); font-family: inherit; font-size: 13px;
+  padding: 7px 28px 7px 10px; cursor: pointer; white-space: nowrap;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7872'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center;
+  min-width: 120px; text-align: left; user-select: none;
+}
+.dd-trigger.has-filter { border-color: var(--gold); color: var(--gold); }
+.dd-menu {
+  display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 200;
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px;
+  min-width: 180px; max-height: 280px; overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.dd-menu.open { display: block; }
+.dd-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; font-size: 12px; color: var(--text-muted); cursor: pointer;
+}
+.dd-item:hover { background: var(--border); color: var(--text); }
+.dd-item input[type=checkbox] { accent-color: var(--gold); width: 13px; height: 13px; }
+.dd-item.checked { color: var(--text); }
+.dd-count { font-size: 10px; color: var(--text-dead); margin-left: auto; }
+
+/* ── COLUMN SUB-LABELS ── */
+.col-sub  { display:block; font-size:8px; font-weight:400; letter-spacing:0; text-transform:none; }
+.col-sub-mlb  { color: var(--text-mid); }
+.col-sub-milb { color: var(--gold); opacity: 0.6; }
+
+/* ── PLAYER MODAL ── */
+.player-modal { position: fixed; inset: 0; z-index: 1000; display: none; }
+.player-modal.open { display: block; }
+.player-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.66); }
+.player-panel {
+  position: absolute; right: 24px; top: 24px; bottom: 24px;
+  width: min(520px, calc(100vw - 48px)); overflow-y: auto;
+  border: 1px solid #2a2a2c; border-radius: 8px; background: #111112;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.48); padding: 22px;
+}
+.player-close {
+  position: absolute; right: 14px; top: 12px; width: 30px; height: 30px;
+  border: 1px solid #2a2a2c; border-radius: 6px; background: #171719;
+  color: #8a8680; font-size: 18px; line-height: 1; cursor: pointer;
+}
+.player-close:hover { color: #f0ede6; border-color: #4a4845; }
+.player-kicker { color: #c8a84b; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.player-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 0.95; letter-spacing: 0.02em; color: #f0ede6; padding-right: 42px; }
+.player-meta { margin-top: 8px; color: #7a7872; font-size: 12px; }
+.player-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin: 20px 0 18px; }
+.player-stat { border: 1px solid #1e1e20; border-radius: 6px; background: #0e0e0f; padding: 10px; }
+.player-stat-label { color: #4a4845; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.player-stat-value { color: #f0ede6; font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; margin-top: 6px; }
+.player-chart-wrap { border: 1px solid #1e1e20; border-radius: 6px; background: #0e0e0f; padding: 12px; }
+.player-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.player-note { margin-top: 14px; font-size: 12px; color: #4a4845; line-height: 1.6; }
+.player-error { margin-top: 14px; font-size: 12px; color: #b55d5d; }
+
+@media (max-width: 700px) {
+  .site-header, .content { padding-left: 16px; padding-right: 16px; }
+  .player-panel { right: 0; top: 0; bottom: 0; width: 100vw; border-radius: 0; }
+  .player-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="eyebrow">Backyard Dynasty Baseball 2026</div>
+  <h1>Dynasty <span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p>Composite score blending HKB, FantasyPros, IBW, PitcherList, and FantraxHQ dynasty rankings with Steamer/ZiPS projections, age curves, and positional scarcity.</p>
+  <div class="meta-line" id="metaLine">Loading…</div>
+</header>
+
+<div class="content">
+  <div class="toolbar">
+    <input class="search-input" type="search" id="searchInput" placeholder="Search player…" autocomplete="off">
+
+    <select class="filter-select" id="posFilter">
+      <option value="all">All positions</option>
+      <option value="SP">SP</option>
+      <option value="RP">RP</option>
+      <option value="C">C</option>
+      <option value="1B">1B</option>
+      <option value="2B">2B</option>
+      <option value="3B">3B</option>
+      <option value="SS">SS</option>
+      <option value="OF">OF</option>
+    </select>
+
+    <div class="dd-wrap" id="teamDd">
+      <button class="dd-trigger" id="teamTrigger" type="button">Team</button>
+      <div class="dd-menu" id="teamMenu"></div>
+    </div>
+
+    <div class="dd-wrap" id="ownerDd">
+      <button class="dd-trigger" id="ownerTrigger" type="button">Owner</button>
+      <div class="dd-menu" id="ownerMenu"></div>
+    </div>
+
+    <span class="count-badge" id="countBadge"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="rank-table" id="rankTable">
+      <thead><tr id="tableHead"></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="no-results" id="noResults">No players match your search.</div>
+  </div>
+</div>
+
+<div class="player-modal" id="playerModal" aria-hidden="true">
+  <div class="player-modal-backdrop" data-close-player-modal></div>
+  <section class="player-panel" role="dialog" aria-modal="true" aria-labelledby="playerModalTitle">
+    <button class="player-close" type="button" data-close-player-modal aria-label="Close">&times;</button>
+    <div class="player-kicker">Dynasty Rank History</div>
+    <h2 class="player-title" id="playerModalTitle">Player</h2>
+    <div class="player-meta" id="playerModalMeta"></div>
+    <div class="player-stats" id="playerModalStats"></div>
+    <div class="player-chart-wrap">
+      <svg class="player-chart" id="playerModalChart" viewBox="0 0 640 260" role="img" aria-label="Dynasty rank trajectory"></svg>
+    </div>
+    <div class="player-note" id="playerModalNote"></div>
+    <div class="player-error" id="playerModalError" hidden></div>
+  </section>
+</div>
+
+<script src="assets/site-shell.js" defer></script>
+<script>
+(() => {
+  // ── Column definitions ─────────────────────────────────────────────────────
+  // group: for left-border separator; sticky: for pin; cls: extra td class
+  const COLS = [
+    // Core
+    { key: 'rank',       label: 'Rank',   sticky: 'col-rank',   tdCls: 'col-rank'   },
+    { key: 'display_name', label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
+    { key: 'team',       label: 'Team',   group: true, tdCls: 'left' },
+    { key: 'positions',  label: 'Pos',    tdCls: 'left' },
+    { key: 'age',        label: 'Age'     },
+    { key: 'level',      label: 'Lvl',    tdCls: 'left' },
+    // Rankings
+    { key: 'score',      label: 'Score',  group: true },
+    { key: 'rank_change', label: 'Δwk'   },
+    { key: 'hkb_rank',   label: 'HKB#'   },
+    { key: 'delta_hkb',  label: 'ΔHKB'   },
+    { key: 'fp_rank',    label: 'FP#'     },
+    { key: 'delta_fp',   label: 'ΔFP'     },
+    { key: 'ibw_rank',   label: 'IBW#'    },
+    { key: 'delta_ibw',  label: 'ΔIBW'    },
+    { key: 'pl_rank',    label: 'PL#'     },
+    { key: 'fthq_rank',  label: 'FTHQ#'   },
+    // Analysis
+    { key: 'proj_z',     label: 'ProjZ',  group: true },
+    { key: 'hkb_value',  label: 'HKB$'   },
+    { key: 'owned_by',   label: 'Owner',  tdCls: 'left' },
+    { key: 'eta',        label: 'ETA',    tdCls: 'left' },
+    { key: 'reason',     label: 'Reason', tdCls: 'left' },
+    // Batting projections
+    { key: 'st_hr',      label: 'HR',     group: true },
+    { key: 'st_r',       label: 'R'       },
+    { key: 'st_rbi',     label: 'RBI'     },
+    { key: 'st_sb',      label: 'SB'      },
+    { key: 'st_ops',     label: 'OPS'     },
+    { key: 'zips_hr',    label: 'zHR'     },
+    { key: 'zips_ops',   label: 'zOPS'    },
+    // Pitching projections
+    { key: 'st_qs',      label: 'QS',     group: true },
+    { key: 'st_k',       label: 'K'       },
+    { key: 'st_era',     label: 'ERA'     },
+    { key: 'st_svh',     label: 'SVH'     },
+    { key: 'st_whip',    label: 'WHIP'    },
+    { key: 'zips_era',   label: 'zERA'    },
+    { key: 'zips_k',     label: 'zK'      },
+    // MLB season stats
+    { key: 'mlb_hr',    label: 'HR',  group: true },
+    { key: 'mlb_r',     label: 'R'               },
+    { key: 'mlb_rbi',   label: 'RBI'             },
+    { key: 'mlb_sb',    label: 'SB'              },
+    { key: 'mlb_ops',   label: 'OPS'             },
+    { key: 'mlb_qs',    label: 'QS',  group: true },
+    { key: 'mlb_k',     label: 'K'               },
+    { key: 'mlb_era',   label: 'ERA'             },
+    { key: 'mlb_svh',   label: 'SVH'             },
+    { key: 'mlb_whip',  label: 'WHIP'            },
+    // MiLB season stats (no QS — minor leagues don't track it)
+    { key: 'milb_hr',   label: 'HR',  group: true },
+    { key: 'milb_r',    label: 'R'               },
+    { key: 'milb_rbi',  label: 'RBI'             },
+    { key: 'milb_sb',   label: 'SB'              },
+    { key: 'milb_ops',  label: 'OPS'             },
+    { key: 'milb_k',    label: 'K',   group: true },
+    { key: 'milb_era',  label: 'ERA'             },
+    { key: 'milb_svh',  label: 'SVH'             },
+    { key: 'milb_whip', label: 'WHIP'            },
+  ];
+
+  const STAT_SUB = {
+    st_hr:'Steamer', st_r:'Steamer', st_rbi:'Steamer', st_sb:'Steamer', st_ops:'Steamer',
+    zips_hr:'ZiPS', zips_ops:'ZiPS',
+    st_qs:'Steamer', st_k:'Steamer', st_era:'Steamer', st_svh:'Steamer', st_whip:'Steamer',
+    zips_era:'ZiPS', zips_k:'ZiPS',
+    mlb_hr:'MLB', mlb_r:'MLB', mlb_rbi:'MLB', mlb_sb:'MLB', mlb_ops:'MLB',
+    mlb_qs:'MLB', mlb_k:'MLB', mlb_era:'MLB', mlb_svh:'MLB', mlb_whip:'MLB',
+    milb_hr:'MiLB', milb_r:'MiLB', milb_rbi:'MiLB', milb_sb:'MiLB', milb_ops:'MiLB',
+    milb_k:'MiLB', milb_era:'MiLB', milb_svh:'MiLB', milb_whip:'MiLB',
+  };
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let _allRows = [];
+  let _sortCol = 'rank';
+  let _sortDir = 1;   // 1 = asc, -1 = desc
+  let _posFilter      = 'all';
+  let _selectedTeams  = new Set();
+  let _selectedOwners = new Set();
+
+  // ── Load data ──────────────────────────────────────────────────────────────
+  fetch('data/dynasty_rankings_latest.json', { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw new Error('Failed to load rankings'); return r.json(); })
+    .then(data => {
+      _allRows = data.rankings || [];
+      let meta = `${_allRows.length.toLocaleString()} players · rankings ${data.generated || ''}`;
+      if (data.stats_generated) meta += ` · stats as of ${data.stats_generated}`;
+      document.getElementById('metaLine').textContent = meta;
+      _buildHeaders();
+      _buildDynFilters(_allRows);
+      _renderTable(_filteredRows());
+    })
+    .catch(err => {
+      document.getElementById('metaLine').textContent = 'Error loading rankings.';
+      console.error(err);
+    });
+
+  // ── Headers ────────────────────────────────────────────────────────────────
+  function _buildHeaders() {
+    const tr = document.getElementById('tableHead');
+    COLS.forEach(col => {
+      const th = document.createElement('th');
+      th.dataset.col = col.key;
+      const sub = STAT_SUB[col.key];
+      if (sub) {
+        const cls = sub === 'MLB' ? 'col-sub col-sub-mlb'
+                  : sub === 'MiLB' ? 'col-sub col-sub-milb'
+                  : 'col-sub';
+        th.innerHTML = `${_esc(col.label)}<span class="${cls}">${sub}</span>`;
+      } else {
+        th.textContent = col.label;
+      }
+      const cls = [col.sticky, col.group ? 'group-start' : '', (col.tdCls||'').includes('left') ? 'left' : '']
+        .filter(Boolean).join(' ');
+      if (cls) th.className = cls;
+      if (!(col.tdCls||'').includes('left') && !col.sticky) th.classList.add('right');
+      th.addEventListener('click', () => _onSort(col.key));
+      tr.appendChild(th);
+    });
+    _updateSortHeaders();
+  }
+
+  function _onSort(col) {
+    if (_sortCol !== col) { _sortCol = col; _sortDir = 1; }
+    else if (_sortDir === 1) { _sortDir = -1; }
+    else { _sortCol = 'rank'; _sortDir = 1; }
+    _updateSortHeaders();
+    _renderTable(_filteredRows());
+  }
+
+  function _updateSortHeaders() {
+    document.querySelectorAll('#tableHead th').forEach(th => {
+      const a = th.querySelector('.sort-arrow'); if (a) a.remove();
+      th.classList.remove('sort-active');
+      if (th.dataset.col === _sortCol) {
+        th.classList.add('sort-active');
+        const sp = document.createElement('span');
+        sp.className = 'sort-arrow';
+        sp.textContent = _sortDir === 1 ? '↑' : '↓';
+        th.appendChild(sp);
+      }
+    });
+  }
+
+  // ── Search & filters ───────────────────────────────────────────────────────
+  document.getElementById('searchInput').addEventListener('input', () => {
+    _renderTable(_filteredRows());
+  });
+
+  document.getElementById('posFilter').addEventListener('change', e => {
+    _posFilter = e.target.value;
+    _renderTable(_filteredRows());
+  });
+
+  function _filteredRows() {
+    const lq = document.getElementById('searchInput').value.trim().toLowerCase();
+    return _allRows.filter(p => {
+      if (lq && !p.display_name.toLowerCase().includes(lq)) return false;
+      if (_posFilter !== 'all') {
+        const pos = Array.isArray(p.positions) ? p.positions : [];
+        if (!pos.includes(_posFilter)) return false;
+      }
+      if (_selectedTeams.size && !_selectedTeams.has(p.team)) return false;
+      if (_selectedOwners.size && !_selectedOwners.has(p.owned_by || 'FA')) return false;
+      return true;
+    });
+  }
+
+  function _buildDropdown(menuId, triggerId, items, selectedSet, labelFn, onchange) {
+    const menu    = document.getElementById(menuId);
+    const trigger = document.getElementById(triggerId);
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'dd-item';
+      div.dataset.val = item.value;
+      const cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.tabIndex = -1;
+      const label = document.createElement('span');
+      label.textContent = item.label;
+      const cnt = document.createElement('span');
+      cnt.className = 'dd-count'; cnt.textContent = item.count;
+      div.append(cb, label, cnt);
+      div.addEventListener('click', e => {
+        e.stopPropagation();
+        if (selectedSet.has(item.value)) selectedSet.delete(item.value);
+        else selectedSet.add(item.value);
+        cb.checked = selectedSet.has(item.value);
+        div.classList.toggle('checked', cb.checked);
+        _updateTriggerLabel(trigger, labelFn());
+        onchange();
+      });
+      menu.appendChild(div);
+    });
+  }
+
+  function _updateTriggerLabel(trigger, label) {
+    trigger.textContent = label;
+    trigger.classList.toggle('has-filter', label !== trigger.dataset.default);
+  }
+
+  function _closeAllDd() {
+    document.querySelectorAll('.dd-menu').forEach(m => m.classList.remove('open'));
+  }
+
+  function _setupDdToggle(triggerId, menuId) {
+    const trigger = document.getElementById(triggerId);
+    const menu    = document.getElementById(menuId);
+    trigger.dataset.default = trigger.textContent;
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasOpen = menu.classList.contains('open');
+      _closeAllDd();
+      if (!wasOpen) menu.classList.add('open');
+    });
+  }
+
+  function _buildDynFilters(rows) {
+    const teamCounts = {};
+    rows.forEach(p => { if (p.team) teamCounts[p.team] = (teamCounts[p.team]||0)+1; });
+    const teams = Object.keys(teamCounts).sort().map(t => ({ value:t, label:t, count:teamCounts[t] }));
+    _buildDropdown('teamMenu','teamTrigger', teams, _selectedTeams,
+      () => _selectedTeams.size ? [..._selectedTeams].join(', ') : 'Team',
+      () => _renderTable(_filteredRows())
+    );
+    _setupDdToggle('teamTrigger','teamMenu');
+
+    const ownerCounts = {};
+    rows.forEach(p => { const o = p.owned_by||'FA'; ownerCounts[o] = (ownerCounts[o]||0)+1; });
+    const owners = Object.keys(ownerCounts).sort().map(o => ({ value:o, label:o, count:ownerCounts[o] }));
+    _buildDropdown('ownerMenu','ownerTrigger', owners, _selectedOwners,
+      () => _selectedOwners.size ? [..._selectedOwners].join(', ') : 'Owner',
+      () => _renderTable(_filteredRows())
+    );
+    _setupDdToggle('ownerTrigger','ownerMenu');
+  }
+
+  document.addEventListener('click', _closeAllDd);
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  const _numericCols = new Set(['rank','age','score','rank_change','hkb_rank','delta_hkb',
+    'fp_rank','delta_fp','ibw_rank','delta_ibw','pl_rank','fthq_rank','proj_z','hkb_value',
+    'st_hr','st_r','st_rbi','st_sb','st_ops','zips_hr','zips_ops',
+    'st_qs','st_k','st_era','st_svh','st_whip','zips_era','zips_k',
+    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip',
+    'milb_hr','milb_r','milb_rbi','milb_sb','milb_ops','milb_k','milb_era','milb_svh','milb_whip']);
+
+  function _renderTable(rows) {
+    const sorted = [...rows].sort((a, b) => {
+      let av = a[_sortCol], bv = b[_sortCol];
+      if (_numericCols.has(_sortCol)) {
+        av = av == null ? Infinity : +av;
+        bv = bv == null ? Infinity : +bv;
+      } else {
+        av = (av || '').toString().toLowerCase();
+        bv = (bv || '').toString().toLowerCase();
+      }
+      if (av < bv) return -_sortDir;
+      if (av > bv) return  _sortDir;
+      return 0;
+    });
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    sorted.forEach(p => tbody.appendChild(_buildRow(p)));
+    const nr = document.getElementById('noResults');
+    nr.style.display = sorted.length ? 'none' : 'block';
+    document.getElementById('countBadge').textContent = sorted.length < _allRows.length
+      ? `${sorted.length} of ${_allRows.length}` : '';
+  }
+
+  // ── Row builder ────────────────────────────────────────────────────────────
+  function _td(content, cls) {
+    const td = document.createElement('td');
+    if (cls) td.className = cls;
+    if (typeof content === 'string' || typeof content === 'number') {
+      td.textContent = content;
+    } else if (content instanceof Node) {
+      td.appendChild(content);
+    }
+    return td;
+  }
+
+  function _buildRow(p) {
+    const tr = document.createElement('tr');
+
+    // Rank (sticky)
+    const rankWrap = document.createElement('span');
+    rankWrap.className = 'rank-num' + (p.rank <= 3 ? ' top3' : '');
+    rankWrap.textContent = p.rank;
+    tr.appendChild(_td(rankWrap, 'col-rank'));
+
+    // Player (sticky)
+    const link = document.createElement('span');
+    link.className = 'player-link';
+    link.textContent = p.display_name;
+    link.dataset.playerKey = p.name;
+    link.tabIndex = 0;
+    link.addEventListener('click',   () => openPlayer(p.name));
+    link.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();openPlayer(p.name);} });
+    tr.appendChild(_td(link, 'col-player left'));
+
+    // Team
+    tr.appendChild(_td(p.team || '', 'left group-start'));
+
+    // Pos
+    tr.appendChild(_td(Array.isArray(p.positions) ? p.positions.join(', ') : (p.positions||''), 'left'));
+
+    // Age
+    tr.appendChild(_td(p.age != null ? p.age : ''));
+
+    // Level
+    tr.appendChild(_td(p.level || '', 'left'));
+
+    // Score
+    const scoreEl = document.createElement('span');
+    scoreEl.className = 'score-val';
+    scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
+    tr.appendChild(_td(scoreEl, 'group-start'));
+
+    // Δwk (week-over-week)
+    const wk = p.rank_change;
+    const wkEl = document.createElement('span');
+    if (!wk) { wkEl.className='wk-flat'; wkEl.textContent='—'; }
+    else if (wk>0) { wkEl.className='wk-up'; wkEl.textContent=`+${wk}`; }
+    else           { wkEl.className='wk-down'; wkEl.textContent=wk; }
+    tr.appendChild(_td(wkEl));
+
+    // Source ranks with inline delta
+    function srcPair(rank, delta, groupStart) {
+      const td = document.createElement('td');
+      if (groupStart) td.className = 'group-start';
+      if (rank == null) {
+        td.innerHTML = '<span class="src none">—</span>';
+      } else {
+        td.innerHTML = `<span class="src">${rank}</span>`;
+      }
+      return td;
+    }
+    function deltaCell(delta) {
+      const td = document.createElement('td');
+      if (delta == null || delta === 0) { td.innerHTML = '<span class="wk-flat">—</span>'; }
+      else if (delta > 0) { td.innerHTML = `<span class="d-pos">+${delta}</span>`; }
+      else                { td.innerHTML = `<span class="d-neg">${delta}</span>`; }
+      return td;
+    }
+
+    tr.appendChild(srcPair(p.hkb_rank, null, false));
+    tr.appendChild(deltaCell(p.delta_hkb));
+    tr.appendChild(srcPair(p.fp_rank, null, false));
+    tr.appendChild(deltaCell(p.delta_fp));
+    tr.appendChild(srcPair(p.ibw_rank, null, false));
+    tr.appendChild(deltaCell(p.delta_ibw));
+    tr.appendChild(srcPair(p.pl_rank, null, false));
+    tr.appendChild(srcPair(p.fthq_rank, null, false));
+
+    // Proj Z
+    const pzTd = _td('', 'group-start');
+    pzTd.innerHTML = p.proj_z != null
+      ? `<span class="projz">${p.proj_z.toFixed(3)}</span>`
+      : '<span class="stat-empty">—</span>';
+    tr.appendChild(pzTd);
+
+    // HKB$
+    const valTd = document.createElement('td');
+    valTd.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : '<span class="stat-empty">—</span>';
+    tr.appendChild(valTd);
+
+    // Owner
+    const ownTd = document.createElement('td');
+    ownTd.className = 'left';
+    ownTd.title = p.owned_by || '';
+    ownTd.innerHTML = p.owned_by
+      ? `<span class="owner-cell">${_esc(p.owned_by)}</span>`
+      : '<span class="stat-empty">FA</span>';
+    tr.appendChild(ownTd);
+
+    // ETA
+    const etaTd = document.createElement('td');
+    etaTd.className = 'left';
+    etaTd.innerHTML = p.eta ? `<span class="eta-cell">${_esc(p.eta)}</span>` : '';
+    tr.appendChild(etaTd);
+
+    // Reason
+    const rTd = document.createElement('td');
+    rTd.className = 'left';
+    rTd.title = p.reason || '';
+    rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
+    tr.appendChild(rTd);
+
+    // Stats helper
+    function statTd(val, groupStart) {
+      const td = document.createElement('td');
+      if (groupStart) td.className = 'group-start';
+      td.innerHTML = val != null && val !== ''
+        ? `<span class="stat-val">${val}</span>`
+        : '<span class="stat-empty">—</span>';
+      return td;
+    }
+
+    // Batting stats
+    tr.appendChild(statTd(p.st_hr  != null ? Math.round(p.st_hr)  : null, true));
+    tr.appendChild(statTd(p.st_r   != null ? Math.round(p.st_r)   : null));
+    tr.appendChild(statTd(p.st_rbi != null ? Math.round(p.st_rbi) : null));
+    tr.appendChild(statTd(p.st_sb  != null ? Math.round(p.st_sb)  : null));
+    tr.appendChild(statTd(p.st_ops  != null ? p.st_ops.toFixed(3)  : null));
+    tr.appendChild(statTd(p.zips_hr != null ? Math.round(p.zips_hr): null));
+    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3): null));
+
+    // Pitching stats
+    tr.appendChild(statTd(p.st_qs   != null ? Math.round(p.st_qs)  : null, true));
+    tr.appendChild(statTd(p.st_k    != null ? Math.round(p.st_k)   : null));
+    tr.appendChild(statTd(p.st_era  != null ? p.st_era.toFixed(2)  : null));
+    tr.appendChild(statTd(p.st_svh  != null ? Math.round(p.st_svh) : null));
+    tr.appendChild(statTd(p.st_whip != null ? p.st_whip.toFixed(3) : null));
+    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2): null));
+    tr.appendChild(statTd(p.zips_k  != null ? Math.round(p.zips_k) : null));
+
+    // MLB season stats
+    tr.appendChild(statTd(p.mlb_hr   != null ? p.mlb_hr   : null, true));
+    tr.appendChild(statTd(p.mlb_r    != null ? p.mlb_r    : null));
+    tr.appendChild(statTd(p.mlb_rbi  != null ? p.mlb_rbi  : null));
+    tr.appendChild(statTd(p.mlb_sb   != null ? p.mlb_sb   : null));
+    tr.appendChild(statTd(p.mlb_ops  != null ? p.mlb_ops.toFixed(3) : null));
+    tr.appendChild(statTd(p.mlb_qs   != null ? p.mlb_qs   : null, true));
+    tr.appendChild(statTd(p.mlb_k    != null ? p.mlb_k    : null));
+    tr.appendChild(statTd(p.mlb_era  != null ? p.mlb_era.toFixed(2) : null));
+    tr.appendChild(statTd(p.mlb_svh  != null ? p.mlb_svh  : null));
+    tr.appendChild(statTd(p.mlb_whip != null ? p.mlb_whip.toFixed(3) : null));
+
+    // MiLB season stats
+    tr.appendChild(statTd(p.milb_hr   != null ? p.milb_hr   : null, true));
+    tr.appendChild(statTd(p.milb_r    != null ? p.milb_r    : null));
+    tr.appendChild(statTd(p.milb_rbi  != null ? p.milb_rbi  : null));
+    tr.appendChild(statTd(p.milb_sb   != null ? p.milb_sb   : null));
+    tr.appendChild(statTd(p.milb_ops  != null ? p.milb_ops.toFixed(3) : null));
+    tr.appendChild(statTd(p.milb_k    != null ? p.milb_k    : null, true));
+    tr.appendChild(statTd(p.milb_era  != null ? p.milb_era.toFixed(2) : null));
+    tr.appendChild(statTd(p.milb_svh  != null ? p.milb_svh  : null));
+    tr.appendChild(statTd(p.milb_whip != null ? p.milb_whip.toFixed(3) : null));
+
+    return tr;
+  }
+
+  function _esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Player modal ───────────────────────────────────────────────────────────
+  let trajectoryData = null;
+  const modal      = document.getElementById('playerModal');
+  const modalTitle = document.getElementById('playerModalTitle');
+  const modalMeta  = document.getElementById('playerModalMeta');
+  const modalStats = document.getElementById('playerModalStats');
+  const modalChart = document.getElementById('playerModalChart');
+  const modalNote  = document.getElementById('playerModalNote');
+  const modalError = document.getElementById('playerModalError');
+
+  const fmtRank   = r => r ? `#${r}` : 'n/a';
+  const fmtChange = c => !Number.isFinite(c)||c===0 ? '0' : c>0 ? `+${c}` : `${c}`;
+  const statHtml  = (label,value) => `<div class="player-stat"><div class="player-stat-label">${label}</div><div class="player-stat-value">${value}</div></div>`;
+
+  const loadTraj = async () => {
+    if (trajectoryData) return trajectoryData;
+    const r = await fetch('data/dynasty_player_trajectories.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error('Could not load rank history.');
+    trajectoryData = await r.json();
+    return trajectoryData;
+  };
+
+  const clearChart = () => { while (modalChart.firstChild) modalChart.removeChild(modalChart.firstChild); };
+
+  const addSvg = (tag, attrs, text) => {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([k,v]) => node.setAttribute(k,v));
+    if (text !== undefined) node.textContent = text;
+    modalChart.appendChild(node); return node;
+  };
+
+  const renderChart = player => {
+    clearChart();
+    const pts = player.points || [];
+    if (!pts.length) return;
+    const w=640, h=260, pad={left:52,right:18,top:22,bottom:38};
+    const cw=w-pad.left-pad.right, ch=h-pad.top-pad.bottom;
+    const ranks=pts.map(p=>p.rank), minR=Math.min(...ranks), maxR=Math.max(...ranks), span=Math.max(1,maxR-minR);
+    const xFor=i=>pad.left+(pts.length===1?cw/2:i*cw/(pts.length-1));
+    const yFor=r=>pad.top+((r-minR)/span)*ch;
+    const path=pts.map((pt,i)=>`${xFor(i).toFixed(1)},${yFor(pt.rank).toFixed(1)}`).join(' ');
+    addSvg('line',{x1:pad.left,y1:pad.top,x2:pad.left,y2:pad.top+ch,stroke:'#2a2a2c','stroke-width':1});
+    addSvg('line',{x1:pad.left,y1:pad.top+ch,x2:pad.left+cw,y2:pad.top+ch,stroke:'#2a2a2c','stroke-width':1});
+    addSvg('text',{x:8,y:pad.top+4,fill:'#7a7872','font-size':11},fmtRank(minR));
+    addSvg('text',{x:8,y:pad.top+ch+4,fill:'#7a7872','font-size':11},fmtRank(maxR));
+    addSvg('polyline',{points:path,fill:'none',stroke:'#c8a84b','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'});
+    pts.forEach((pt,i)=>addSvg('circle',{cx:xFor(i),cy:yFor(pt.rank),r:i===pts.length-1?5:3,fill:i===pts.length-1?'#f0ede6':'#c8a84b'}));
+    addSvg('text',{x:pad.left,y:h-10,fill:'#7a7872','font-size':11},pts[0].date);
+    addSvg('text',{x:pad.left+cw,y:h-10,fill:'#7a7872','font-size':11,'text-anchor':'end'},pts[pts.length-1].date);
+  };
+
+  const renderPlayer = player => {
+    modalTitle.textContent = player.display_name || 'Player';
+    const pos = Array.isArray(player.positions) ? player.positions.join(', ') : '';
+    modalMeta.textContent = [pos, player.team, player.level].filter(Boolean).join(' · ');
+    const pts=player.points||[], ranks=pts.map(p=>p.rank);
+    const best=ranks.length?Math.min(...ranks):null, worst=ranks.length?Math.max(...ranks):null;
+    const ytd=pts.length>=2?pts[0].rank-pts[pts.length-1].rank:0;
+    modalStats.innerHTML=[
+      statHtml('Current',fmtRank(player.current_rank)),
+      statHtml('YTD',fmtChange(ytd)),
+      statHtml('Best',fmtRank(best)),
+      statHtml('Worst',fmtRank(worst)),
+    ].join('');
+    modalNote.textContent=pts.length>=2
+      ?`Tracking from ${pts[0].date} through ${pts[pts.length-1].date} (${pts.length} snapshots). Positive YTD = moved up.`
+      :'Rank history not yet available.';
+    modalError.hidden=true;
+    renderChart(player);
+  };
+
+  const openPlayer = async key => {
+    if (!key||!modal) return;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    modalTitle.textContent='Loading'; modalMeta.textContent=''; modalStats.innerHTML=''; modalNote.textContent=''; modalError.hidden=true; clearChart();
+    try {
+      const data=await loadTraj();
+      const player=data.players&&data.players[key];
+      if (!player) throw new Error('No rank history found.');
+      renderPlayer(player);
+      history.replaceState(null,'',`#player=${encodeURIComponent(key)}`);
+    } catch(err) {
+      modalTitle.textContent='Rank History'; modalError.textContent=err.message||'Could not load.'; modalError.hidden=false;
+    }
+  };
+
+  const closePlayer = () => {
+    if (!modal) return;
+    modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+    if (window.location.hash.startsWith('#player='))
+      history.replaceState(null,'',window.location.pathname+window.location.search);
+  };
+
+  document.querySelectorAll('[data-close-player-modal]').forEach(n=>n.addEventListener('click',closePlayer));
+  window.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer();});
+  const hash=window.location.hash;
+  if (hash.startsWith('#player=')) openPlayer(decodeURIComponent(hash.slice('#player='.length)));
+
+})();
+</script>
+</body>
+</html>
