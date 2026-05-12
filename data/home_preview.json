@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Vin Mazzaro fan club",
+      "player": "Ethan Salas"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Alec Bohm"
@@ -81,11 +86,6 @@
       "type": "ADD",
       "team": "Pat",
       "player": "Jesus Rodriguez"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Jason Foley"
     }
   ],
   "oracle_teams": [
