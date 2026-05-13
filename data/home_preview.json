@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Luis Severino"
+    },
+    {
       "type": "ADD",
       "team": "Seam heads",
       "player": "Gabe Speier"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "Humongous Melonheads",
       "player": "Carmen Mlodzinski"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Grant Taylor"
     }
   ],
   "oracle_teams": [
