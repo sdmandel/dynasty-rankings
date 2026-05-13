@@ -44,8 +44,28 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Seam heads",
+      "player": "Gabe Speier"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Troy Johnston"
+    },
+    {
+      "type": "ADD",
       "team": "Millville Meteors",
       "player": "Taylor Clarke"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Ha-seong Kim"
+    },
+    {
+      "type": "ADD",
+      "team": "Seam heads",
+      "player": "Robert Garcia"
     },
     {
       "type": "ADD",
@@ -66,26 +86,6 @@
       "type": "ADD",
       "team": "Pat",
       "player": "Nolan Arenado"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Alec Bohm"
-    },
-    {
-      "type": "ADD",
-      "team": "philbell",
-      "player": "Anthony Volpe"
-    },
-    {
-      "type": "DROP",
-      "team": "philbell",
-      "player": "TJ Friedl"
-    },
-    {
-      "type": "ADD",
-      "team": "Trazadone",
-      "player": "Keider Montero"
     }
   ],
   "oracle_teams": [
