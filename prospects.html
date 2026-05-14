@@ -529,6 +529,18 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
 .player-chart { width: 100%; height: auto; display: block; overflow: visible; }
 .player-note { margin-top: 12px; color: var(--text-muted); font-size: 12px; }
 .player-error { color: var(--red); font-size: 13px; margin-top: 18px; }
+.src-pills { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
+.src-pill {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 1px 5px; border-radius: 3px; text-decoration: none;
+  border: 1px solid currentColor; opacity: 0.55; transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.src-pill:hover { opacity: 1; }
+.src-pill-fg { color: #84b84c; }
+html[data-theme="light"] .src-pill-fg { color: #3a7020; }
+html[data-theme="light"] .src-pill { opacity: 0.85; }
+.pill-sub { font-weight: 400; letter-spacing: 0; opacity: 0.75; }
 @media (max-width: 700px) {
   .player-panel {
     left: 0; right: 0; top: auto; bottom: 0;
@@ -1229,6 +1241,11 @@ async function openPlayerModal(playerName, updateHash = true) {
       errEl.hidden = false;
       return;
     }
+    const prospectEntry = (prospectData?.players || []).find(p => p.name_key === key);
+    if (prospectEntry?.fg_id != null) {
+      player.fg_id = prospectEntry.fg_id;
+      player.fg_stat_type = prospectEntry.fg_stat_type;
+    }
     renderPlayerModal(player);
     if (updateHash) history.replaceState(null, '', `#player=${encodeURIComponent(key)}`);
   } catch (e) {
@@ -1236,6 +1253,14 @@ async function openPlayerModal(playerName, updateHash = true) {
     errEl.textContent = e.message || 'Could not load rank history.';
     errEl.hidden = false;
   }
+}
+
+function _fgSlug(name) {
+  return name.normalize('NFKD').replace(/[̀-ͯ]/g,'')
+    .toLowerCase().replace(/\./g,'').replace(/ /g,'-');
+}
+function _esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function renderPlayerModal(player) {
@@ -1251,8 +1276,14 @@ function renderPlayerModal(player) {
       <div class="player-stat-value">${value}</div>
     </div>`;
 
-  title.textContent = player.display_name || 'Player';
-  meta.textContent = `${player.owner || 'Rostered'}${player.positions ? ` · ${player.positions}` : ''}${player.team ? ` · ${player.team}` : ''}`;
+  title.textContent = player.display_name || player.name || 'Player';
+  const metaText = `${player.owner || 'Rostered'}${player.positions ? ` · ${player.positions}` : ''}${(player.team || player.org) ? ` · ${player.team || player.org}` : ''}`;
+  meta.textContent = metaText;
+  if (player.fg_id != null) {
+    const slug = _fgSlug(player.display_name || player.name || '');
+    const url  = `https://www.fangraphs.com/players/${slug}/${player.fg_id}/stats/${player.fg_stat_type || 'batting'}`;
+    meta.innerHTML += ` <span class="src-pills"><a class="src-pill src-pill-fg" href="${_esc(url)}" target="_blank" rel="noopener noreferrer" title="View on FanGraphs">FanGraphs<span class="pill-sub"> stats &amp; projections ↗</span></a></span>`;
+  }
   stats.innerHTML = [
     statHtml('Current', fmtRank(player.latest_rank || player.current_rank)),
     statHtml('YTD',     fmtChange(player.change_ytd)),

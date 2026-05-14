@@ -95,12 +95,13 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .rank-table tbody td.col-rank {
   position: sticky; left: 0; z-index: 2;
   background: var(--bg);
+  width: 52px; min-width: 52px; max-width: 52px;
   padding-right: 8px;
 }
 /* Sticky player column */
 .rank-table thead th.col-player,
 .rank-table tbody td.col-player {
-  position: sticky; left: 46px; z-index: 2;
+  position: sticky; left: 52px; z-index: 2;
   background: var(--bg);
   min-width: 160px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   padding-right: 12px;
@@ -180,6 +181,17 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
 /* No results */
 .no-results { color: var(--text-dead); font-size: 13px; padding: 24px 0; display: none; }
+
+/* ── Simple / Advanced toggle ── */
+.view-toggle { display: inline-flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; }
+.view-toggle button {
+  background: var(--bg2); border: none; color: var(--text-dead);
+  font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 5px 10px; cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.view-toggle button.active { background: var(--gold); color: #1a1a17; }
+.view-toggle button:first-child { border-right: 1px solid var(--border2); }
+.table-wrap.simple-view .col-advanced { display: none; }
 
 /* ── TIER LEGEND ── */
 .tier-legend {
@@ -317,6 +329,10 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     </div>
 
     <span class="count-badge" id="countBadge"></span>
+    <div class="view-toggle" id="viewToggle" role="group" aria-label="Table view">
+      <button id="btnSimple" class="active" type="button">Simple</button>
+      <button id="btnAdvanced" type="button">Advanced</button>
+    </div>
   </div>
 
   <div class="table-wrap">
@@ -362,23 +378,23 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     { key: 'positions',  label: 'Pos',    tdCls: 'left' },
     { key: 'age',        label: 'Age'     },
     { key: 'level',      label: 'Lvl',    tdCls: 'left' },
-    // Rankings
-    { key: 'score',      label: 'Score',  group: true },
-    { key: 'rank_change', label: 'Δwk'   },
-    { key: 'hkb_rank',   label: 'HKB#'   },
-    { key: 'delta_hkb',  label: 'ΔHKB'   },
-    { key: 'fp_rank',    label: 'FP#'     },
-    { key: 'delta_fp',   label: 'ΔFP'     },
-    { key: 'ibw_rank',   label: 'IBW#'    },
-    { key: 'delta_ibw',  label: 'ΔIBW'    },
-    { key: 'pl_rank',    label: 'PL#'     },
-    { key: 'fthq_rank',  label: 'FTHQ#'   },
+    // Rankings (advanced)
+    { key: 'score',      label: 'Score',  group: true, adv: true },
+    { key: 'rank_change', label: 'Δwk',               adv: true },
+    { key: 'hkb_rank',   label: 'HKB#',               adv: true },
+    { key: 'delta_hkb',  label: 'ΔHKB',               adv: true },
+    { key: 'fp_rank',    label: 'FP#',                adv: true },
+    { key: 'delta_fp',   label: 'ΔFP',                adv: true },
+    { key: 'ibw_rank',   label: 'IBW#',               adv: true },
+    { key: 'delta_ibw',  label: 'ΔIBW',               adv: true },
+    { key: 'pl_rank',    label: 'PL#',                adv: true },
+    { key: 'fthq_rank',  label: 'FTHQ#',              adv: true },
     // Analysis
-    { key: 'proj_z',     label: 'ProjZ',  group: true },
-    { key: 'hkb_value',  label: 'HKB$'   },
+    { key: 'proj_z',     label: 'ProjZ',  group: true, adv: true },
+    { key: 'hkb_value',  label: 'HKB$',               adv: true },
     { key: 'owned_by',   label: 'Owner',  tdCls: 'left' },
     { key: 'eta',        label: 'ETA',    tdCls: 'left' },
-    { key: 'reason',     label: 'Reason', tdCls: 'left' },
+    { key: 'reason',     label: 'Reason', tdCls: 'left', adv: true },
     // Batting projections
     { key: 'st_hr',      label: 'HR',     group: true },
     { key: 'st_r',       label: 'R'       },
@@ -439,6 +455,20 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   let _page     = 1;
   const _pageSize = 100;
 
+  // ── Simple / Advanced toggle ───────────────────────────────────────────────
+  const _tableWrap = document.querySelector('.table-wrap');
+  _tableWrap.classList.add('simple-view');  // default: simple
+  document.getElementById('btnSimple').addEventListener('click', () => {
+    _tableWrap.classList.add('simple-view');
+    document.getElementById('btnSimple').classList.add('active');
+    document.getElementById('btnAdvanced').classList.remove('active');
+  });
+  document.getElementById('btnAdvanced').addEventListener('click', () => {
+    _tableWrap.classList.remove('simple-view');
+    document.getElementById('btnAdvanced').classList.add('active');
+    document.getElementById('btnSimple').classList.remove('active');
+  });
+
   // ── Load data ──────────────────────────────────────────────────────────────
   fetch('data/dynasty_rankings_latest.json', { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error('Failed to load rankings'); return r.json(); })
@@ -471,7 +501,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       } else {
         th.textContent = col.label;
       }
-      const cls = [col.sticky, col.group ? 'group-start' : '', (col.tdCls||'').includes('left') ? 'left' : '']
+      const cls = [col.sticky, col.group ? 'group-start' : '', (col.tdCls||'').includes('left') ? 'left' : '', col.adv ? 'col-advanced' : '']
         .filter(Boolean).join(' ');
       if (cls) th.className = cls;
       if (!(col.tdCls||'').includes('left') && !col.sticky) th.classList.add('right');
@@ -697,19 +727,19 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     // Level
     tr.appendChild(_td(p.level || '', 'left'));
 
-    // Score
+    // Score (advanced)
     const scoreEl = document.createElement('span');
     scoreEl.className = 'score-val';
     scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
-    tr.appendChild(_td(scoreEl, 'group-start'));
+    tr.appendChild(_td(scoreEl, 'group-start col-advanced'));
 
-    // Δwk (week-over-week)
+    // Δwk (week-over-week) (advanced)
     const wk = p.rank_change;
     const wkEl = document.createElement('span');
     if (!wk) { wkEl.className='wk-flat'; wkEl.textContent='—'; }
     else if (wk>0) { wkEl.className='wk-up'; wkEl.textContent=`+${wk}`; }
     else           { wkEl.className='wk-down'; wkEl.textContent=wk; }
-    tr.appendChild(_td(wkEl));
+    tr.appendChild(_td(wkEl, 'col-advanced'));
 
     // Source ranks with inline delta
     function srcPair(rank, delta, groupStart) {
@@ -730,24 +760,24 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       return td;
     }
 
-    tr.appendChild(srcPair(p.hkb_rank, null, false));
-    tr.appendChild(deltaCell(p.delta_hkb));
-    tr.appendChild(srcPair(p.fp_rank, null, false));
-    tr.appendChild(deltaCell(p.delta_fp));
-    tr.appendChild(srcPair(p.ibw_rank, null, false));
-    tr.appendChild(deltaCell(p.delta_ibw));
-    tr.appendChild(srcPair(p.pl_rank, null, false));
-    tr.appendChild(srcPair(p.fthq_rank, null, false));
+    // All source rank/delta cells are advanced
+    [srcPair(p.hkb_rank, null, false), deltaCell(p.delta_hkb),
+     srcPair(p.fp_rank,  null, false), deltaCell(p.delta_fp),
+     srcPair(p.ibw_rank, null, false), deltaCell(p.delta_ibw),
+     srcPair(p.pl_rank,  null, false),
+     srcPair(p.fthq_rank,null, false),
+    ].forEach(td => { td.classList.add('col-advanced'); tr.appendChild(td); });
 
-    // Proj Z
-    const pzTd = _td('', 'group-start');
+    // Proj Z (advanced)
+    const pzTd = _td('', 'group-start col-advanced');
     pzTd.innerHTML = p.proj_z != null
       ? `<span class="projz">${p.proj_z.toFixed(3)}</span>`
       : '<span class="stat-empty">—</span>';
     tr.appendChild(pzTd);
 
-    // HKB$
+    // HKB$ (advanced)
     const valTd = document.createElement('td');
+    valTd.classList.add('col-advanced');
     valTd.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : '<span class="stat-empty">—</span>';
     tr.appendChild(valTd);
 
@@ -766,9 +796,9 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     etaTd.innerHTML = p.eta ? `<span class="eta-cell">${_esc(p.eta)}</span>` : '';
     tr.appendChild(etaTd);
 
-    // Reason
+    // Reason (advanced)
     const rTd = document.createElement('td');
-    rTd.className = 'left';
+    rTd.className = 'left col-advanced';
     rTd.title = p.reason || '';
     rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
     tr.appendChild(rTd);
