@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-14",
-  "generated_at": "2026-05-14T12:00:03-05:00",
+  "generated_at": "2026-05-14T13:00:03-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 51,
   "snapshot_date": "2026-05-13",
   "sources": {
-    "standings": "2026-05-14T12:00:03-05:00",
+    "standings": "2026-05-14T13:00:03-05:00",
     "intelligence": "2026-05-13",
     "managers": "2026-05-14",
     "oracle_values": "data/rankings_latest.csv"
@@ -100,7 +100,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": 0.0,
         "stock": "edge",
         "summary": "One move from gaining SVH",
         "rank_delta": null,
@@ -615,7 +615,7 @@
     {
       "team": "Inkers",
       "oracle_rank": 7,
-      "standings_rank": 10,
+      "standings_rank": 11,
       "total_value": 28262.1,
       "mlb_value": 21339.5,
       "farm_value": 6922.6,
@@ -687,8 +687,7 @@
       },
       "public_archetypes": [
         "rebuilding",
-        "farm-forward build",
-        "bat-first build"
+        "farm-forward build"
       ],
       "trade_needs": [
         "fragile SP depth",
@@ -696,7 +695,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": -1.5,
         "stock": "build",
         "summary": "Farm-forward build",
         "rank_delta": null,
@@ -814,7 +813,7 @@
     {
       "team": "Trazadone",
       "oracle_rank": 9,
-      "standings_rank": 11,
+      "standings_rank": 10,
       "total_value": 25422.1,
       "mlb_value": 20164.9,
       "farm_value": 5257.2,
@@ -895,7 +894,7 @@
         "can trade prospects"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "build",
         "summary": "Farm-forward build",
         "rank_delta": null,
@@ -993,7 +992,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": 1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1091,7 +1090,7 @@
         "needs saves"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 0.5,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
