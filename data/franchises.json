@@ -10340,7 +10340,7 @@
           "team_id": "soj5yvv3mjx1h38d",
           "team_name": "Rollie Fingers",
           "rank": 2,
-          "roto_pts": 92.5,
+          "roto_pts": 93.5,
           "cat_r": 11.0,
           "cat_hr": 12.0,
           "cat_rbi": 11.0,
@@ -10348,7 +10348,7 @@
           "cat_ops": 10.0,
           "cat_qs": 6.5,
           "cat_k": 8.0,
-          "cat_era": 5.0,
+          "cat_era": 6.0,
           "cat_whip": 8.0,
           "cat_svh": 10.0,
           "source_team_name": "Rollie Fingers"
@@ -15389,7 +15389,7 @@
           "team_id": "9xcr9pq5mjx1h38d",
           "team_name": "Humongous Melonheads",
           "rank": 3,
-          "roto_pts": 89.0,
+          "roto_pts": 87.0,
           "cat_r": 10.0,
           "cat_hr": 8.5,
           "cat_rbi": 8.0,
@@ -15397,7 +15397,7 @@
           "cat_ops": 6.0,
           "cat_qs": 12.0,
           "cat_k": 12.0,
-          "cat_era": 7.0,
+          "cat_era": 5.0,
           "cat_whip": 6.0,
           "cat_svh": 7.5,
           "source_team_name": "Humongous Melonheads"
@@ -30165,7 +30165,7 @@
           "team_id": "138du58zmjx1h38d",
           "team_name": "Vin Mazzaro fan club",
           "rank": 6,
-          "roto_pts": 71.0,
+          "roto_pts": 72.0,
           "cat_r": 2.0,
           "cat_hr": 4.5,
           "cat_rbi": 7.0,
@@ -30173,13 +30173,39 @@
           "cat_ops": 2.0,
           "cat_qs": 11.0,
           "cat_k": 11.0,
-          "cat_era": 6.0,
+          "cat_era": 7.0,
           "cat_whip": 12.0,
           "cat_svh": 7.5,
           "source_team_name": "Vin Mazzaro fan club"
         }
       ],
       "transactions": [
+        {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "txn_date": "2026-05-14",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Vin Mazzaro fan club",
+          "player": "Jeffrey Springs",
+          "position": "SP",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Pat",
+          "source_team": "Vin Mazzaro fan club"
+        },
+        {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "txn_date": "2026-05-14",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Vin Mazzaro fan club",
+          "player": "Bryan Reynolds",
+          "position": "OF",
+          "level": "MLB",
+          "badge": "notable",
+          "from_team": "Pat",
+          "source_team": "Vin Mazzaro fan club"
+        },
         {
           "txn_id": "proq5sg3mp2tspd8",
           "txn_date": "2026-05-12",
@@ -31483,6 +31509,40 @@
       ],
       "notable_trades": [
         {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "date": "2026-05-14",
+          "assets": [
+            {
+              "team": "Vin Mazzaro fan club",
+              "player": "Jeffrey Springs",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Vin Mazzaro fan club",
+              "player": "Bryan Reynolds",
+              "position": "OF",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Pat",
+              "player": "Max Meyer",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Pat",
+              "player": "Logan O'Hoppe",
+              "position": "C",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        },
+        {
           "txn_id": "nqn5s9gimp1xrpyb",
           "date": "2026-05-11",
           "assets": [
@@ -31587,33 +31647,6 @@
               "position": "2B,OF",
               "level": "AAA",
               "badge": "prospect"
-            }
-          ]
-        },
-        {
-          "txn_id": "efe5l8krmo9euqm2",
-          "date": "2026-04-21",
-          "assets": [
-            {
-              "team": "Vin Mazzaro fan club",
-              "player": "Matt Shaw",
-              "position": "3B,OF",
-              "level": "MLB",
-              "badge": "notable"
-            },
-            {
-              "team": "Seam heads",
-              "player": "Bryce Miller",
-              "position": "SP",
-              "level": "MLB",
-              "badge": "notable"
-            },
-            {
-              "team": "Seam heads",
-              "player": "Cole Young",
-              "position": "2B",
-              "level": "MLB",
-              "badge": "notable"
             }
           ]
         }
@@ -36064,7 +36097,7 @@
           "team_id": "y1ebh2dxmjx1h38d",
           "team_name": "Pat",
           "rank": 7,
-          "roto_pts": 51.0,
+          "roto_pts": 50.0,
           "cat_r": 8.0,
           "cat_hr": 6.0,
           "cat_rbi": 9.0,
@@ -36073,12 +36106,38 @@
           "cat_qs": 4.0,
           "cat_k": 2.0,
           "cat_era": 3.0,
-          "cat_whip": 2.0,
+          "cat_whip": 1.0,
           "cat_svh": 3.0,
           "source_team_name": "Pat"
         }
       ],
       "transactions": [
+        {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "txn_date": "2026-05-14",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Pat",
+          "player": "Max Meyer",
+          "position": "SP",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Vin Mazzaro fan club",
+          "source_team": "Pat"
+        },
+        {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "txn_date": "2026-05-14",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Pat",
+          "player": "Logan O'Hoppe",
+          "position": "C",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Vin Mazzaro fan club",
+          "source_team": "Pat"
+        },
         {
           "txn_id": "rzdmdoz3mp4n7lla",
           "txn_date": "2026-05-13",
@@ -36652,7 +36711,42 @@
           "source_team": "Pat"
         }
       ],
-      "notable_trades": [],
+      "notable_trades": [
+        {
+          "txn_id": "qcmqxkv8mp5ouhjh",
+          "date": "2026-05-14",
+          "assets": [
+            {
+              "team": "Vin Mazzaro fan club",
+              "player": "Jeffrey Springs",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Vin Mazzaro fan club",
+              "player": "Bryan Reynolds",
+              "position": "OF",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Pat",
+              "player": "Max Meyer",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Pat",
+              "player": "Logan O'Hoppe",
+              "position": "C",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        }
+      ],
       "best_season": {
         "season": 2025,
         "source_team_name": "Pat",
@@ -41099,7 +41193,7 @@
           "team_id": "gz4ok7gfmjx1h38d",
           "team_name": "Millville Meteors",
           "rank": 8,
-          "roto_pts": 48.0,
+          "roto_pts": 49.0,
           "cat_r": 6.0,
           "cat_hr": 7.0,
           "cat_rbi": 5.0,
@@ -41108,7 +41202,7 @@
           "cat_qs": 9.0,
           "cat_k": 6.0,
           "cat_era": 1.0,
-          "cat_whip": 1.0,
+          "cat_whip": 2.0,
           "cat_svh": 5.0,
           "source_team_name": "Millville Meteors"
         }
@@ -46303,8 +46397,8 @@
           "team_id": "lvnzqrrkmjx1h38c",
           "team_name": "Sam",
           "rank": 9,
-          "roto_pts": 48.0,
-          "cat_r": 4.0,
+          "roto_pts": 48.5,
+          "cat_r": 4.5,
           "cat_hr": 3.0,
           "cat_rbi": 3.0,
           "cat_sb": 5.0,
@@ -51127,8 +51221,8 @@
           "team_id": "6gqx3zl1mjx1h38c",
           "team_name": "Inkers",
           "rank": 10,
-          "roto_pts": 47.0,
-          "cat_r": 5.0,
+          "roto_pts": 46.5,
+          "cat_r": 4.5,
           "cat_hr": 4.5,
           "cat_rbi": 10.0,
           "cat_sb": 4.0,
