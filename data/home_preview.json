@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Seam heads",
+      "player": "Paul Goldschmidt"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Yennier Cano"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "Vin Mazzaro fan club",
       "player": "Jordan Beck"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Gabe Speier"
     }
   ],
   "oracle_teams": [
