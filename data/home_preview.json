@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Yennier Cano"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Bryan Hudson"
+    },
+    {
       "type": "TRADE",
       "team": "Vin Mazzaro fan club",
       "player": "Jeffrey Springs"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Seam heads",
       "player": "Gabe Speier"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Nick Loftin"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Zebby Matthews"
     }
   ],
   "oracle_teams": [
