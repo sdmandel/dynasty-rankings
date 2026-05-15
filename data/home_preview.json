@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Humongous Melonheads",
+      "player": "Alec Bohm"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Nick Loftin"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "Pat",
       "player": "Yennier Cano"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Bryan Hudson"
     }
   ],
   "oracle_teams": [
