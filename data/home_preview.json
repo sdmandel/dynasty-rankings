@@ -43,9 +43,29 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Millville Meteors",
+      "player": "Matthew Liberatore"
+    },
+    {
+      "type": "ADD",
+      "team": "Millville Meteors",
+      "player": "Jack Kochanowicz"
+    },
+    {
+      "type": "ADD",
+      "team": "Millville Meteors",
+      "player": "Dustin May"
+    },
+    {
       "type": "ADD",
       "team": "Seam heads",
       "player": "Paul Goldschmidt"
+    },
+    {
+      "type": "DROP",
+      "team": "Millville Meteors",
+      "player": "Jake Irvin"
     },
     {
       "type": "DROP",
@@ -66,26 +86,6 @@
       "type": "TRADE",
       "team": "Vin Mazzaro fan club",
       "player": "Bryan Reynolds"
-    },
-    {
-      "type": "TRADE",
-      "team": "Pat",
-      "player": "Max Meyer"
-    },
-    {
-      "type": "TRADE",
-      "team": "Pat",
-      "player": "Logan O'Hoppe"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Jake McCarthy"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Jordan Beck"
     }
   ],
   "oracle_teams": [
