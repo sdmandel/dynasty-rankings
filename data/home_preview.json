@@ -44,6 +44,11 @@
   "transactions": [
     {
       "type": "DROP",
+      "team": "Pat",
+      "player": "Nick Loftin"
+    },
+    {
+      "type": "DROP",
       "team": "Millville Meteors",
       "player": "Matthew Liberatore"
     },
@@ -51,6 +56,11 @@
       "type": "ADD",
       "team": "Millville Meteors",
       "player": "Jack Kochanowicz"
+    },
+    {
+      "type": "ADD",
+      "team": "John Henry Fan Club",
+      "player": "Martin Perez"
     },
     {
       "type": "ADD",
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Pat",
       "player": "Bryan Hudson"
-    },
-    {
-      "type": "TRADE",
-      "team": "Vin Mazzaro fan club",
-      "player": "Jeffrey Springs"
-    },
-    {
-      "type": "TRADE",
-      "team": "Vin Mazzaro fan club",
-      "player": "Bryan Reynolds"
     }
   ],
   "oracle_teams": [
