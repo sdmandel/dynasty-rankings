@@ -44,6 +44,11 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Pat",
+      "player": "Jack Dreyer"
+    },
+    {
+      "type": "ADD",
       "team": "Millville Meteors",
       "player": "Walker Buehler"
     },
@@ -59,6 +64,16 @@
     },
     {
       "type": "DROP",
+      "team": "Trazadone",
+      "player": "Tim Hill"
+    },
+    {
+      "type": "ADD",
+      "team": "Rollie Fingers",
+      "player": "Mike Sirota"
+    },
+    {
+      "type": "DROP",
       "team": "Millville Meteors",
       "player": "Dustin May"
     },
@@ -71,21 +86,6 @@
       "type": "ADD",
       "team": "Humongous Melonheads",
       "player": "Alec Bohm"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Nick Loftin"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Curtis Mead"
-    },
-    {
-      "type": "ADD",
-      "team": "Mommy",
-      "player": "Scott Barlow"
     }
   ],
   "oracle_teams": [
