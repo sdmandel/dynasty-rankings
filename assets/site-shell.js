@@ -1,3 +1,11 @@
+/*
+ * FOUC PREVENTION — copy this snippet into each HTML page's <head>, before any stylesheets.
+ *
+ * <!-- FOUC prevention: paste this into <head> before any stylesheets -->
+ * <script>
+ * (function(){var t=localStorage.getItem('pr-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;})();
+ * </script>
+ */
 (() => {
   const analyticsSrc = "assets/analytics.js";
   if (!document.querySelector(`script[src="${analyticsSrc}"]`)) {
@@ -18,6 +26,7 @@
     ["Standings", "standings.html"],
     ["Team Intel", "team_intel.html"],
     ["Roster Depth", "roster_depth.html"],
+    ["Dynasty Rankings", "dynasty_rankings.html"],
     ["Prospects", "prospects.html"],
     ["Closers", "closers.html"],
     ["Transactions", "transactions.html"],
@@ -68,40 +77,87 @@
 
   (function() {
     const STORAGE_KEY = "pr-theme";
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    let mqListener = null;
 
-    function applyTheme(theme) {
-      document.documentElement.dataset.theme = theme;
+    function applyTheme(mode) {
+      if (mode === "auto") {
+        delete document.documentElement.dataset.theme;
+        localStorage.removeItem(STORAGE_KEY);
+        if (!mqListener) {
+          mqListener = () => syncButtons();
+          mq.addEventListener("change", mqListener);
+        }
+      } else {
+        document.documentElement.dataset.theme = mode;
+        localStorage.setItem(STORAGE_KEY, mode);
+        if (mqListener) {
+          mq.removeEventListener("change", mqListener);
+          mqListener = null;
+        }
+      }
+      syncButtons();
     }
 
-    function getInitialTheme() {
+    function getInitialMode() {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === "dark" || saved === "light") return saved;
-      return prefersDark.matches ? "dark" : "light";
+      return (saved === "dark" || saved === "light") ? saved : "auto";
     }
 
-    applyTheme(getInitialTheme());
+    const initialMode = getInitialMode();
+    if (initialMode !== "auto") {
+      document.documentElement.dataset.theme = initialMode;
+    } else {
+      mqListener = () => syncButtons();
+      mq.addEventListener("change", mqListener);
+    }
 
-    const btn = document.createElement("button");
-    btn.className = "global-nav-theme";
-    btn.type = "button";
-    btn.setAttribute("aria-label", "Toggle dark/light theme");
-    btn.innerHTML = '<span aria-hidden="true" class="theme-icon"></span>';
+    const seg = document.createElement("div");
+    seg.className = "segmented global-nav-segmented";
+    seg.setAttribute("role", "group");
+    seg.setAttribute("aria-label", "Theme");
 
-    btn.addEventListener("click", () => {
-      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      applyTheme(next);
-      localStorage.setItem(STORAGE_KEY, next);
+    const modes = [["Auto", "auto"], ["Light", "light"], ["Dark", "dark"]];
+    const btns = modes.map(([label, mode]) => {
+      const b = document.createElement("button");
+      b.className = "segmented-btn";
+      b.type = "button";
+      b.textContent = label;
+      b.dataset.mode = mode;
+      b.addEventListener("click", () => applyTheme(mode));
+      seg.appendChild(b);
+      return b;
     });
 
-    function syncIcon() {
-      btn.dataset.current = document.documentElement.dataset.theme;
+    function syncButtons() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const current = (saved === "dark" || saved === "light") ? saved : "auto";
+      btns.forEach(b => {
+        const active = b.dataset.mode === current;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", String(active));
+      });
     }
-    new MutationObserver(syncIcon).observe(document.documentElement, { attributeFilter: ["data-theme"] });
-    syncIcon();
+    syncButtons();
 
-    inner.appendChild(btn);
+    inner.appendChild(seg);
   })();
+
+  if (!document.querySelector('link[href*="fonts.googleapis.com/css2"][href*="Source+Serif+4"]')) {
+    const pc1 = document.createElement("link");
+    pc1.rel = "preconnect";
+    pc1.href = "https://fonts.googleapis.com";
+    document.head.appendChild(pc1);
+    const pc2 = document.createElement("link");
+    pc2.rel = "preconnect";
+    pc2.href = "https://fonts.gstatic.com";
+    pc2.crossOrigin = "anonymous";
+    document.head.appendChild(pc2);
+    const font = document.createElement("link");
+    font.rel = "stylesheet";
+    font.href = "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap";
+    document.head.appendChild(font);
+  }
 
   nav.appendChild(inner);
   body.insertBefore(nav, body.firstChild);

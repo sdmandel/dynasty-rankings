@@ -110,36 +110,6 @@ body.global-nav-open {
   overflow: hidden;
 }
 
-.global-nav-theme {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--border2, #2a2a2c);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-muted, #7a7872);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: color 0.15s, border-color 0.15s;
-}
-
-.global-nav-theme:hover,
-.global-nav-theme:focus-visible {
-  color: var(--text, #f0ede6);
-  border-color: var(--gold-dim, #4a3c18);
-  outline: 0;
-}
-
-.theme-icon {
-  font-size: 14px;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.global-nav-theme[data-current="dark"] .theme-icon::before { content: "☀"; }
-.global-nav-theme[data-current="light"] .theme-icon::before { content: "☾"; }
 
 @media (max-width: 767px) {
   .global-nav-inner {
@@ -180,5 +150,24 @@ body.global-nav-open {
   .global-nav-link.active {
     background: var(--tag-fill, rgba(200, 168, 75, 0.08));
     border-bottom-color: var(--border, #1e1e20);
+  }
+}
+
+/* Theme segmented control in nav */
+.global-nav-segmented {
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.global-nav-segmented .segmented-btn {
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 767px) {
+  .global-nav-segmented {
+    display: none;
   }
 }
