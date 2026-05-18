@@ -88,7 +88,7 @@ body {
 }
 .site-header h1 {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: clamp(44px, 6.5vw, 80px);
+  font-size: 64px;
   line-height: 0.88;
   letter-spacing: 0.02em;
   color: var(--text);
@@ -107,6 +107,7 @@ body {
   line-height: 1.75;
 }
 .site-header p strong { color: var(--gold); font-weight: 500; }
+
 .header-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(170px, 260px));
@@ -573,6 +574,9 @@ html[data-theme="light"] .header-link:hover {
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer {
     padding-left: 20px; padding-right: 20px;
+  }
+  .site-header h1 {
+    font-size: 44px;
   }
   .header-links {
     grid-template-columns: 1fr;

@@ -104,6 +104,21 @@ def test_inner_pages_include_shared_shell_css(html_file: Path) -> None:
     assert 'href="assets/site-shell.css"' in html, f"{html_file.name} missing shared shell CSS"
 
 
+def test_site_header_typography_stays_shared() -> None:
+    local_header_rule = re.compile(
+        r"\.(?:site-header\s*\{|eyebrow\s*\{|site-header\s+h1|site-header\s+p\s*\{|divider\s*\{)"
+    )
+    for html_file in HTML_FILES:
+        if html_file.name == "404.html":
+            continue
+        html = _read(html_file)
+        if 'class="site-header"' not in html or 'href="assets/site.css"' not in html:
+            continue
+        assert not local_header_rule.search(html), (
+            f"{html_file.name} should inherit shared site-header typography from assets/site.css"
+        )
+
+
 def test_analytics_loader_is_present_everywhere() -> None:
     shell_js = _read(ROOT / "assets" / "site-shell.js")
     analytics_js = _read(ROOT / "assets" / "analytics.js")
