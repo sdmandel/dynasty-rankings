@@ -11,6 +11,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 HTML_FILES = sorted(ROOT.glob("*.html"))
+WEEKLY_HTML_FILES = sorted(ROOT.glob("week*_power_rankings.html"))
+WEEKLY_TEMPLATE = ROOT / "templates" / "power_rankings_template.html"
 META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
 SHELL_HTML_FILES = HTML_FILES
 SHELL_CSS_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "404.html"}]
@@ -30,6 +32,43 @@ class StrictHTMLParser(HTMLParser):
 
 def _read(p: Path) -> str:
     return p.read_text(encoding="utf-8")
+
+
+def test_theme_boot_is_external_and_before_stylesheets() -> None:
+    checked_files = HTML_FILES + [WEEKLY_TEMPLATE, ROOT.parent / "scripts" / "update_depth_chart.py"]
+
+    for html_file in checked_files:
+        text = _read(html_file)
+        assert "localStorage.getItem('pr-theme')" not in text, (
+            f"{html_file.name} still has the inline theme boot snippet"
+        )
+
+    for html_file in HTML_FILES:
+        html = _read(html_file)
+        boot = html.find('src="assets/fouc-prevention.js"')
+        stylesheet = html.find('rel="stylesheet"')
+        assert boot != -1, f"{html_file.name} missing external FOUC prevention script"
+        assert stylesheet != -1, f"{html_file.name} missing stylesheet"
+        assert boot < stylesheet, f"{html_file.name} loads FOUC prevention after first stylesheet"
+
+
+def test_weekly_power_rankings_use_canonical_stylesheet() -> None:
+    assert (ROOT / "assets" / "power-rankings.css").exists()
+    assert '@import url("power-rankings.css")' in _read(ROOT / "assets" / "power-rankings-theme.css")
+
+    for html_file in WEEKLY_HTML_FILES + [WEEKLY_TEMPLATE]:
+        html = _read(html_file)
+        assert 'href="assets/power-rankings.css"' in html, (
+            f"{html_file.name} missing canonical weekly power rankings CSS"
+        )
+        assert 'href="assets/power-rankings-theme.css"' not in html, (
+            f"{html_file.name} still depends on compatibility shim"
+        )
+
+    for html_file in HTML_FILES:
+        assert 'href="assets/power-rankings-theme.css"' not in _read(html_file), (
+            f"{html_file.name} still depends on compatibility shim"
+        )
 
 
 def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
@@ -129,6 +168,20 @@ def test_roster_depth_uses_shared_header_and_nav_fonts() -> None:
     assert "Bebas Neue" not in html
     assert "DM Sans" not in html
     assert "DM Sans" not in nav_css
+    assert 'href="assets/icons.svg#icon-arrows-swap"' in html
+    assert "⇄" not in html
+    assert 'class="card legend-card"' in html
+    assert html.count('class="legend-row"') == 2
+
+
+def test_power_rankings_archive_uses_shared_list_markup() -> None:
+    html = _read(ROOT / "power_rankings.html")
+
+    assert 'class="card archive-card"' in html
+    assert 'class="list-group"' in html
+    assert 'class="list-row list-row--featured"' in html
+    assert 'class="archive-row' not in html
+    assert 'class="archive-list"' not in html
 
 
 def test_analytics_loader_is_present_everywhere() -> None:

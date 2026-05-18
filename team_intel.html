@@ -20,9 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
-<script>
-(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
-</script>
+<script src="assets/fouc-prevention.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
@@ -120,6 +118,20 @@
   gap: 10px;
   margin-bottom: 12px;
 }
+.intel-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.intel-card-grid .card {
+  cursor: default;
+  padding: 10px 12px;
+}
+.intel-card-grid .card:hover {
+  background: var(--bg2);
+  border-color: var(--border);
+}
 .help-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -212,18 +224,18 @@
 }
 .signal-chip.primary {
   color: var(--gold);
-  border-color: rgba(200,168,75,0.35);
-  background: rgba(200,168,75,0.08);
+  border-color: var(--gold-tint-border);
+  background: var(--gold-tint-soft);
 }
 .signal-chip.primary.tier-contender {
   color: var(--success);
-  border-color: rgba(93,168,122,0.35);
-  background: rgba(93,168,122,0.08);
+  border-color: var(--success-tint-border);
+  background: var(--success-tint-soft);
 }
 .signal-chip.primary.tier-fringe {
   color: var(--gold-500);
-  border-color: rgba(200,168,75,0.35);
-  background: rgba(200,168,75,0.08);
+  border-color: var(--gold-tint-border);
+  background: var(--gold-tint-soft);
 }
 .signal-chip.primary.tier-stagnating {
   color: #c8856e;
@@ -232,8 +244,8 @@
 }
 .signal-chip.primary.tier-rebuilding {
   color: var(--danger);
-  border-color: rgba(181,93,93,0.35);
-  background: rgba(181,93,93,0.08);
+  border-color: var(--danger-tint-border);
+  background: var(--danger-tint-soft);
 }
 .signal-chip.needs {
   color: #c8856e;
@@ -515,7 +527,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .bar-fill-mlb {
   height: 100%;
-  background: #4e6e58;
+  background: var(--success);
   position: absolute;
   left: 0;
   top: 0;
@@ -524,7 +536,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 }
 .bar-fill-farm {
   height: 100%;
-  background: #98BDA4;
+  background: color-mix(in srgb, var(--prospect) 78%, var(--t-secondary));
   position: absolute;
   top: 0;
   border-radius: 0 2px 2px 0;
@@ -551,13 +563,14 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   color: var(--text-dead);
 }
 .leg-dot { width: 10px; height: 10px; border-radius: 2px; }
-.leg-mlb  { background: #4e6e58; }
-.leg-farm { background: #98BDA4; }
+.leg-mlb  { background: var(--success); }
+.leg-farm { background: color-mix(in srgb, var(--prospect) 78%, var(--t-secondary)); }
 
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
   .intel-grid { grid-template-columns: 1fr; }
   .intel-help { grid-template-columns: 1fr; }
+  .intel-card-grid { grid-template-columns: 1fr; }
   .bar-row { grid-template-columns: 110px 1fr 60px; }
   .bar-label { font-size: 11px; }
   .bar-legend { padding-left: 122px; }
@@ -629,11 +642,11 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   <div class="chart-block">
     <h3>Archetypes · Next Move · Trade Posture</h3>
     <p class="section-copy">One card per team with the cleanest editorial read on roster shape, the clearest action to consider next, and the most obvious deal angle.</p>
-    <div class="intel-help">
-      <div class="help-card"><div class="help-title">Archetypes</div><div class="help-copy">Roster-shape tags only. These describe how the build behaves without repeating the contention tier.</div></div>
-      <div class="help-card"><div class="help-title">Next Move</div><div class="help-copy">A short editorial read on the roster’s clearest action, based on category pressure, roster shape, and timing.</div></div>
-      <div class="help-card"><div class="help-title">Trade Posture</div><div class="help-copy">The most obvious deal signal right now: what to target, what can be moved, and how aggressive the team can afford to be.</div></div>
-      <div class="help-card"><div class="help-title">Outlook</div><div class="help-copy">A slower-moving read on direction: pushing to win now, soft retooling, building through the farm, or protecting a narrow edge.</div></div>
+    <div class="intel-card-grid">
+      <div class="card"><div class="help-title">Archetypes</div><div class="help-copy">Roster-shape tags only. These describe how the build behaves without repeating the contention tier.</div></div>
+      <div class="card"><div class="help-title">Next Move</div><div class="help-copy">A short editorial read on the roster’s clearest action, based on category pressure, roster shape, and timing.</div></div>
+      <div class="card"><div class="help-title">Trade Posture</div><div class="help-copy">The most obvious deal signal right now: what to target, what can be moved, and how aggressive the team can afford to be.</div></div>
+      <div class="card"><div class="help-title">Outlook</div><div class="help-copy">A slower-moving read on direction: pushing to win now, soft retooling, building through the farm, or protecting a narrow edge.</div></div>
     </div>
     <div class="team-board-grid" id="teamBoards"></div>
   </div>
@@ -854,6 +867,9 @@ function buildScatter() {
     gold:      _cs.getPropertyValue('--gold').trim()      || 'var(--gold-500)',
     bg:        _cs.getPropertyValue('--bg').trim()        || 'var(--bg-base)',
     text:      _cs.getPropertyValue('--text').trim()      || 'var(--t-primary)',
+    mlb:       _cs.getPropertyValue('--success').trim()   || 'currentColor',
+    farm:      _cs.getPropertyValue('--prospect').trim()  || 'currentColor',
+    origin:    _cs.getPropertyValue('--t-tertiary').trim() || 'currentColor',
   };
   const W = svg.parentElement.clientWidth;
   const H = Math.max(380, Math.min(520, W * 0.58));
@@ -1082,7 +1098,7 @@ function buildScatter() {
     origin.setAttribute('cy', d.prevCy);
     origin.setAttribute('r', '4.5');
     origin.setAttribute('fill', cv.bg);
-    origin.setAttribute('stroke', '#6f8a79');
+    origin.setAttribute('stroke', cv.origin);
     origin.setAttribute('stroke-width', '1.1');
     origin.setAttribute('opacity', '0.9');
     svg.appendChild(origin);
@@ -1100,7 +1116,7 @@ function buildScatter() {
 
     const c = document.createElementNS(ns, 'circle');
     c.setAttribute('cx', d.cx); c.setAttribute('cy', d.cy); c.setAttribute('r', DOT_R);
-    c.setAttribute('fill', '#4e6e58'); c.setAttribute('stroke', '#98BDA4'); c.setAttribute('stroke-width', '1.5');
+    c.setAttribute('fill', cv.mlb); c.setAttribute('stroke', cv.farm); c.setAttribute('stroke-width', '1.5');
     g.appendChild(c);
 
     const rk = document.createElementNS(ns, 'text');
@@ -1176,6 +1192,10 @@ function buildScatter() {
 }
 
 window.addEventListener('resize', buildScatter);
+new MutationObserver(() => buildScatter()).observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['data-theme'],
+});
 
 function buildValueBars() {
   if (!TEAMS.length) return;

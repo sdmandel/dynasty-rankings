@@ -39,6 +39,12 @@
   --gold-tint-border: rgba(200,168,75,0.35);
   --gold-tint-fill:   rgba(200,168,75,0.12);
 
+  /* semantic tints */
+  --danger-tint-soft:    rgba(181,93,93,0.08);
+  --danger-tint-border:  rgba(181,93,93,0.35);
+  --success-tint-soft:   rgba(93,168,122,0.08);
+  --success-tint-border: rgba(93,168,122,0.35);
+
   /* semantic data colors */
   --hot:      #e86c4a;
   --cold:     #4a9ae8;
@@ -97,6 +103,12 @@
     --gold-tint-border: rgba(154,122,40,0.35);
     --gold-tint-fill:   rgba(154,122,40,0.12);
 
+    /* semantic tints */
+    --danger-tint-soft:    rgba(181,93,93,0.10);
+    --danger-tint-border:  rgba(181,93,93,0.40);
+    --success-tint-soft:   rgba(93,168,122,0.10);
+    --success-tint-border: rgba(93,168,122,0.40);
+
     /* semantic data colors */
     --hot:      #c04830;
     --cold:     #2870b8;
@@ -145,6 +157,12 @@
   --gold-tint-border: rgba(200,168,75,0.35);
   --gold-tint-fill:   rgba(200,168,75,0.12);
 
+  /* semantic tints */
+  --danger-tint-soft:    rgba(181,93,93,0.08);
+  --danger-tint-border:  rgba(181,93,93,0.35);
+  --success-tint-soft:   rgba(93,168,122,0.08);
+  --success-tint-border: rgba(93,168,122,0.35);
+
   /* semantic data colors */
   --hot:      #e86c4a;
   --cold:     #4a9ae8;
@@ -190,6 +208,12 @@
   --gold-tint-soft:   rgba(154,122,40,0.08);
   --gold-tint-border: rgba(154,122,40,0.35);
   --gold-tint-fill:   rgba(154,122,40,0.12);
+
+  /* semantic tints */
+  --danger-tint-soft:    rgba(181,93,93,0.10);
+  --danger-tint-border:  rgba(181,93,93,0.40);
+  --success-tint-soft:   rgba(93,168,122,0.10);
+  --success-tint-border: rgba(93,168,122,0.40);
 
   /* semantic data colors */
   --hot:      #c04830;
@@ -260,6 +284,14 @@
 }
 .card--accent-gold:hover {
   border-color: var(--gold-500);
+}
+.card--danger {
+  border-color: var(--danger-tint-border);
+  background: var(--danger-tint-soft);
+}
+.card--success {
+  border-color: var(--success-tint-border);
+  background: var(--success-tint-soft);
 }
 
 /* List group */

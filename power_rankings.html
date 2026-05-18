@@ -20,9 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Power Rankings Archive — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="All Oracle power rankings articles for Backyard Dynasty Baseball 2026.">
-<script>
-(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
-</script>
+<script src="assets/fouc-prevention.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
@@ -77,29 +75,38 @@ body {
   color: var(--text-dead);
   margin-bottom: 16px;
 }
-.archive-list {
+.archive-card {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  cursor: default;
+}
+.archive-card:hover {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+.list-group {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border);
   margin-bottom: 48px;
 }
-.archive-row {
+.list-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 20px;
   align-items: start;
   text-decoration: none;
-  padding: 22px 0;
+  padding: 22px;
   border-bottom: 1px solid var(--border);
   transition: background 0.15s, border-color 0.15s;
 }
-.archive-row:hover {
+.list-row:hover {
   background: rgba(255,255,255,0.015);
   border-bottom-color: var(--border2);
 }
-.archive-row.featured .archive-kicker,
-.archive-row.featured .archive-title,
-.archive-row.featured .archive-arrow {
+.list-row--featured .archive-kicker,
+.list-row--featured .archive-title,
+.list-row--featured .archive-arrow {
   color: var(--gold);
 }
 .archive-main {
@@ -173,16 +180,16 @@ html[data-theme="light"] .summary-pill.rank-1 {
 html[data-theme="light"] .summary-pill.rank-3 {
   border-color: #d4a060; color: #6a4010; background: #fef4e8;
 }
-html[data-theme="light"] .archive-row.featured .archive-kicker,
-html[data-theme="light"] .archive-row.featured .archive-title,
-html[data-theme="light"] .archive-row.featured .archive-arrow {
+html[data-theme="light"] .list-row--featured .archive-kicker,
+html[data-theme="light"] .list-row--featured .archive-title,
+html[data-theme="light"] .list-row--featured .archive-arrow {
   color: var(--text);
 }
-html[data-theme="light"] .archive-row.featured .archive-kicker,
-html[data-theme="light"] .archive-row.featured .archive-arrow {
+html[data-theme="light"] .list-row--featured .archive-kicker,
+html[data-theme="light"] .list-row--featured .archive-arrow {
   color: var(--text-muted);
 }
-html[data-theme="light"] .archive-row:hover {
+html[data-theme="light"] .list-row:hover {
   background: rgba(0,0,0,0.04);
 }
 .archive-side {
@@ -218,7 +225,7 @@ html[data-theme="light"] .archive-row:hover {
 
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer { padding-left: 20px; padding-right: 20px; }
-  .archive-row {
+  .list-row {
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -239,9 +246,10 @@ html[data-theme="light"] .archive-row:hover {
 
 <div class="nav-section">
   <div class="year-label">2026 Season — All Issues</div>
-  <div class="archive-list">
+  <div class="card archive-card">
+    <div class="list-group">
 
-    <a href="week9_power_rankings.html" class="archive-row featured">
+    <a href="week9_power_rankings.html" class="list-row list-row--featured">
       <div class="archive-main">
         <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 9</div>
         <div class="archive-title">Power Rankings</div>
@@ -258,7 +266,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week8_power_rankings.html" class="archive-row">
+    <a href="week8_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 8</div>
         <div class="archive-title">Power Rankings</div>
@@ -275,7 +283,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week7_power_rankings.html" class="archive-row">
+    <a href="week7_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 7</div>
         <div class="archive-title">Power Rankings</div>
@@ -292,7 +300,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week6_power_rankings.html" class="archive-row">
+    <a href="week6_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 6</div>
         <div class="archive-title">Power Rankings</div>
@@ -309,7 +317,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week5_power_rankings.html" class="archive-row">
+    <a href="week5_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 5</div>
         <div class="archive-title">Power Rankings</div>
@@ -326,7 +334,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week4_power_rankings.html" class="archive-row">
+    <a href="week4_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 4</div>
         <div class="archive-title">Power Rankings</div>
@@ -343,7 +351,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week3_power_rankings.html" class="archive-row">
+    <a href="week3_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 3</div>
         <div class="archive-title">Power Rankings</div>
@@ -360,7 +368,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week2_power_rankings.html" class="archive-row">
+    <a href="week2_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 2</div>
         <div class="archive-title">Power Rankings</div>
@@ -377,7 +385,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
-    <a href="week1_power_rankings.html" class="archive-row">
+    <a href="week1_power_rankings.html" class="list-row">
       <div class="archive-main">
         <div class="archive-kicker">Week 1</div>
         <div class="archive-title">Power Rankings</div>
@@ -394,6 +402,7 @@ html[data-theme="light"] .archive-row:hover {
       </div>
     </a>
 
+    </div>
   </div>
 </div>
 
