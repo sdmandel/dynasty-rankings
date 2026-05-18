@@ -164,6 +164,8 @@ def build() -> None:
             "sb":  _si(s.get("stolenBases")),
             "ops": _sf(s.get("ops"), 3),
             "pa":  pa,
+            "ab":  _si(s.get("atBats")),
+            "gp":  _si(s.get("gamesPlayed")),
         }
 
     # MLB pitching (QS filled in below)
@@ -189,6 +191,7 @@ def build() -> None:
             "svh":  sv + hld,
             "whip": _sf(s.get("whip"), 3),
             "ip":   round(ip, 1),
+            "gp":   _si(s.get("gamesPlayed")),
         }
 
     # Compute QS from boxscores
@@ -218,6 +221,7 @@ def build() -> None:
                         "sb":  _si(s.get("sb")),
                         "ops": _sf(s.get("ops"), 3),
                         "pa":  _si(pa),
+                        "ab":  _si(s.get("ab")),
                     }
             elif rec.get("group") == "pitching":
                 ip = float(s.get("ip") or 0)
@@ -230,6 +234,7 @@ def build() -> None:
                         "svh":  _si(sv + hld),
                         "whip": _sf(s.get("whip"), 3),
                         "ip":   _sf(ip, 1),
+                        "gp":   _si(s.get("g")),
                     }
     else:
         print(f"Warning: {MILB_STATS_PATH} not found — MiLB columns will be empty")

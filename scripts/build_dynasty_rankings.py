@@ -180,21 +180,24 @@ def build() -> None:
             "zips_k":       _sf("Zips K"),
             # MLB season stats
             **(lambda b, pi: {
-                "mlb_hr":   b.get("hr"),  "mlb_r":   b.get("r"),
-                "mlb_rbi":  b.get("rbi"), "mlb_sb":  b.get("sb"),
-                "mlb_ops":  b.get("ops"), "mlb_pa":  b.get("pa"),
-                "mlb_qs":   pi.get("qs"), "mlb_k":   pi.get("k"),
-                "mlb_era":  pi.get("era"),"mlb_svh": pi.get("svh"),
-                "mlb_whip": pi.get("whip"),"mlb_ip": pi.get("ip"),
+                "mlb_hr":     b.get("hr"),   "mlb_r":     b.get("r"),
+                "mlb_rbi":    b.get("rbi"),  "mlb_sb":    b.get("sb"),
+                "mlb_ops":    b.get("ops"),  "mlb_pa":    b.get("pa"),
+                "mlb_ab":     b.get("ab"),   "mlb_bat_gp":b.get("gp"),
+                "mlb_qs":     pi.get("qs"),  "mlb_k":     pi.get("k"),
+                "mlb_era":    pi.get("era"), "mlb_svh":   pi.get("svh"),
+                "mlb_whip":   pi.get("whip"),"mlb_ip":    pi.get("ip"),
+                "mlb_pit_gp": pi.get("gp"),
             })(mlb_bat.get(name, {}), mlb_pit.get(name, {})),
             # MiLB season stats (no QS — minor leagues don't track it)
             **(lambda b, pi: {
-                "milb_hr":   b.get("hr"),  "milb_r":   b.get("r"),
-                "milb_rbi":  b.get("rbi"), "milb_sb":  b.get("sb"),
-                "milb_ops":  b.get("ops"), "milb_pa":  b.get("pa"),
-                "milb_k":    pi.get("k"),  "milb_era": pi.get("era"),
-                "milb_svh":  pi.get("svh"),"milb_whip":pi.get("whip"),
-                "milb_ip":   pi.get("ip"),
+                "milb_hr":     b.get("hr"),  "milb_r":   b.get("r"),
+                "milb_rbi":    b.get("rbi"), "milb_sb":  b.get("sb"),
+                "milb_ops":    b.get("ops"), "milb_pa":  b.get("pa"),
+                "milb_ab":     b.get("ab"),
+                "milb_k":      pi.get("k"),  "milb_era": pi.get("era"),
+                "milb_svh":    pi.get("svh"),"milb_whip":pi.get("whip"),
+                "milb_ip":     pi.get("ip"), "milb_pit_gp": pi.get("gp"),
             })(milb_bat.get(name, {}), milb_pit.get(name, {})),
         })
 

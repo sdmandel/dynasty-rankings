@@ -58,8 +58,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* ── TABLE WRAPPER — horizontal scroll, sticky first two cols ── */
 .table-wrap {
   overflow-x: auto;
-  overflow-y: auto;
-  max-height: calc(100vh - 150px);
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -90,10 +89,16 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .rank-table thead th.sort-active { color: var(--text-mid); }
 .sort-arrow { margin-left: 3px; color: var(--gold); }
 
+/* Sticky pin column */
+.rank-table thead th.col-pin,
+.rank-table tbody td.col-pin {
+  position: sticky; left: 0; z-index: 2;
+  background: var(--bg);
+}
 /* Sticky rank column */
 .rank-table thead th.col-rank,
 .rank-table tbody td.col-rank {
-  position: sticky; left: 0; z-index: 2;
+  position: sticky; left: 26px; z-index: 2;
   background: var(--bg);
   width: 52px; min-width: 52px; max-width: 52px;
   padding-right: 8px;
@@ -101,18 +106,20 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* Sticky player column */
 .rank-table thead th.col-player,
 .rank-table tbody td.col-player {
-  position: sticky; left: 52px; z-index: 2;
+  position: sticky; left: 78px; z-index: 2;
   background: var(--bg);
   min-width: 160px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   padding-right: 12px;
   border-right: 1px solid var(--border2);
 }
+.rank-table thead th.col-pin  { z-index: 3; }
 .rank-table thead th.col-rank { z-index: 3; }
 .rank-table thead th.col-player { z-index: 3; }
 
 .rank-table tbody tr { border-bottom: 1px solid var(--border); }
 .rank-table tbody tr:hover td { background: rgba(200,168,75,0.04); }
 .rank-table tbody tr:hover td.col-rank { border-left: 2px solid rgba(200,168,75,0.4); }
+.rank-table tbody tr:hover td.col-pin,
 .rank-table tbody tr:hover td.col-rank,
 .rank-table tbody tr:hover td.col-player { background: var(--bg); }
 .rank-table tbody td {
@@ -159,6 +166,7 @@ tr[data-rank="3"] .rank-num { color: var(--gold); }
 /* Stat values */
 .stat-val { color: var(--text-mid); }
 .stat-empty { color: var(--text-dead); }
+.stat-milb { display: block; color: var(--gold); opacity: 0.65; font-size: 10px; line-height: 1.3; }
 
 /* Source pills */
 .src-pills { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
@@ -195,7 +203,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
 /* ── TIER LEGEND ── */
 .tier-legend {
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 48px; z-index: 10;
   height: 36px; display: flex; align-items: center; gap: 16px; padding: 0 40px;
   background: var(--bg); border-bottom: 1px solid var(--border2);
   font-size: 11px; color: var(--text-muted);
@@ -282,6 +290,47 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   .player-panel { right: 0; top: 0; bottom: 0; width: 100vw; border-radius: 0; }
   .player-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+
+/* ── Sticky toolbar (below nav 48px + tier-legend 36px = 84px; tier-legend hidden until site-header scrolls away) ── */
+.toolbar {
+  position: sticky;
+  top: 84px;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border2);
+}
+
+/* ── Position-type column hiding ── */
+.hide-bat-cols [data-stat-type="bat"] { display: none; }
+.hide-pit-cols [data-stat-type="pit"] { display: none; }
+
+/* ── Position filter: muted default, gold when active ── */
+.filter-select { color: var(--text-muted); }
+.filter-select.has-filter { color: var(--gold); border-color: var(--gold); }
+
+/* ── Pin/check rows ── */
+.col-pin { width: 26px; min-width: 26px; padding: 0 2px !important; text-align: center !important; }
+.pin-btn {
+  background: none; border: none; color: var(--text-dead);
+  cursor: pointer; font-size: 10px; padding: 2px 4px; line-height: 1;
+  border-radius: 3px; transition: color 0.1s;
+}
+.pin-btn:hover { color: var(--text-muted); }
+.pin-btn.pinned { color: var(--gold); }
+.row-pinned > td { background: rgba(200, 168, 75, 0.06) !important; }
+.row-pinned > td.col-rank,
+.row-pinned > td.col-player { background: rgba(200, 168, 75, 0.06) !important; }
+.row-pinned > td.col-pin { border-left: 2px solid rgba(200, 168, 75, 0.4) !important; }
+.pin-sep > td { height: 2px; background: var(--border2) !important; padding: 0 !important; border: none !important; }
+
+/* ── Clear-pins button ── */
+#clearPins {
+  font-size: 11px; color: var(--text-dead); cursor: pointer;
+  background: none; border: none; padding: 0 4px; font-family: inherit;
+  display: none;
+}
+#clearPins.visible { display: inline; color: var(--text-muted); }
+#clearPins:hover { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -308,6 +357,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
     <select class="filter-select" id="posFilter">
       <option value="all">All positions</option>
+      <option value="HIT">Hitters</option>
+      <option value="PIT">Pitchers</option>
       <option value="SP">SP</option>
       <option value="RP">RP</option>
       <option value="C">C</option>
@@ -328,6 +379,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       <div class="dd-menu" id="ownerMenu"></div>
     </div>
 
+    <button id="clearPins" type="button">× clear pins</button>
     <span class="count-badge" id="countBadge"></span>
     <div class="view-toggle" id="viewToggle" role="group" aria-label="Table view">
       <button id="btnSimple" class="active" type="button">Simple</button>
@@ -372,66 +424,61 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   // group: for left-border separator; sticky: for pin; cls: extra td class
   const COLS = [
     // Core
-    { key: 'rank',       label: 'Rank',   sticky: 'col-rank',   tdCls: 'col-rank'   },
-    { key: 'display_name', label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
-    { key: 'team',       label: 'Team',   group: true, tdCls: 'left' },
-    { key: 'positions',  label: 'Pos',    tdCls: 'left' },
-    { key: 'age',        label: 'Age'     },
-    { key: 'level',      label: 'Lvl',    tdCls: 'left' },
+    { key: 'rank',        label: 'Rank',   sticky: 'col-rank',   tdCls: 'col-rank'   },
+    { key: 'display_name',label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
+    { key: 'team',        label: 'Team',   group: true, tdCls: 'left' },
+    { key: 'positions',   label: 'Pos',    tdCls: 'left' },
+    { key: 'age',         label: 'Age'     },
+    { key: 'level',       label: 'Lvl',    tdCls: 'left' },
     // Rankings (advanced)
-    { key: 'score',      label: 'Score',  group: true, adv: true },
-    { key: 'rank_change', label: 'Δwk',               adv: true },
-    { key: 'hkb_rank',   label: 'HKB#',               adv: true },
-    { key: 'delta_hkb',  label: 'ΔHKB',               adv: true },
-    { key: 'fp_rank',    label: 'FP#',                adv: true },
-    { key: 'delta_fp',   label: 'ΔFP',                adv: true },
-    { key: 'ibw_rank',   label: 'IBW#',               adv: true },
-    { key: 'delta_ibw',  label: 'ΔIBW',               adv: true },
-    { key: 'pl_rank',    label: 'PL#',                adv: true },
-    { key: 'fthq_rank',  label: 'FTHQ#',              adv: true },
+    { key: 'score',       label: 'Score',  group: true, adv: true },
+    { key: 'rank_change', label: 'Δwk',                adv: true },
+    { key: 'hkb_rank',    label: 'HKB#',               adv: true },
+    { key: 'delta_hkb',   label: 'ΔHKB',               adv: true },
+    { key: 'fp_rank',     label: 'FP#',                adv: true },
+    { key: 'delta_fp',    label: 'ΔFP',                adv: true },
+    { key: 'ibw_rank',    label: 'IBW#',               adv: true },
+    { key: 'delta_ibw',   label: 'ΔIBW',               adv: true },
+    { key: 'pl_rank',     label: 'PL#',                adv: true },
+    { key: 'fthq_rank',   label: 'FTHQ#',              adv: true },
     // Analysis
-    { key: 'proj_z',     label: 'ProjZ',  group: true, adv: true },
-    { key: 'hkb_value',  label: 'HKB$',               adv: true },
-    { key: 'owned_by',   label: 'Owner',  tdCls: 'left' },
-    { key: 'eta',        label: 'ETA',    tdCls: 'left' },
-    { key: 'reason',     label: 'Reason', tdCls: 'left', adv: true },
-    // Batting projections
-    { key: 'st_hr',      label: 'HR',     group: true },
-    { key: 'st_r',       label: 'R'       },
-    { key: 'st_rbi',     label: 'RBI'     },
-    { key: 'st_sb',      label: 'SB'      },
-    { key: 'st_ops',     label: 'OPS'     },
-    { key: 'zips_hr',    label: 'zHR'     },
-    { key: 'zips_ops',   label: 'zOPS'    },
-    // Pitching projections
-    { key: 'st_qs',      label: 'QS',     group: true },
-    { key: 'st_k',       label: 'K'       },
-    { key: 'st_era',     label: 'ERA'     },
-    { key: 'st_svh',     label: 'SVH'     },
-    { key: 'st_whip',    label: 'WHIP'    },
-    { key: 'zips_era',   label: 'zERA'    },
-    { key: 'zips_k',     label: 'zK'      },
-    // MLB season stats
-    { key: 'mlb_hr',    label: 'HR',  group: true },
-    { key: 'mlb_r',     label: 'R'               },
-    { key: 'mlb_rbi',   label: 'RBI'             },
-    { key: 'mlb_sb',    label: 'SB'              },
-    { key: 'mlb_ops',   label: 'OPS'             },
-    { key: 'mlb_qs',    label: 'QS',  group: true },
-    { key: 'mlb_k',     label: 'K'               },
-    { key: 'mlb_era',   label: 'ERA'             },
-    { key: 'mlb_svh',   label: 'SVH'             },
-    { key: 'mlb_whip',  label: 'WHIP'            },
-    // MiLB season stats (no QS — minor leagues don't track it)
-    { key: 'milb_hr',   label: 'HR',  group: true },
-    { key: 'milb_r',    label: 'R'               },
-    { key: 'milb_rbi',  label: 'RBI'             },
-    { key: 'milb_sb',   label: 'SB'              },
-    { key: 'milb_ops',  label: 'OPS'             },
-    { key: 'milb_k',    label: 'K',   group: true },
-    { key: 'milb_era',  label: 'ERA'             },
-    { key: 'milb_svh',  label: 'SVH'             },
-    { key: 'milb_whip', label: 'WHIP'            },
+    { key: 'proj_z',      label: 'ProjZ',  group: true, adv: true },
+    { key: 'hkb_value',   label: 'HKB$',               adv: true },
+    { key: 'owned_by',    label: 'Owner',  tdCls: 'left' },
+    { key: 'eta',         label: 'ETA',    tdCls: 'left' },
+    { key: 'reason',      label: 'Reason', tdCls: 'left', adv: true },
+    // Batting projections (advanced)
+    { key: 'st_hr',       label: 'HR',     group: true, adv: true, statType: 'bat' },
+    { key: 'st_r',        label: 'R',                  adv: true, statType: 'bat' },
+    { key: 'st_rbi',      label: 'RBI',                adv: true, statType: 'bat' },
+    { key: 'st_sb',       label: 'SB',                 adv: true, statType: 'bat' },
+    { key: 'st_ops',      label: 'OPS',                adv: true, statType: 'bat' },
+    { key: 'zips_hr',     label: 'zHR',                adv: true, statType: 'bat' },
+    { key: 'zips_ops',    label: 'zOPS',               adv: true, statType: 'bat' },
+    // Pitching projections (advanced)
+    { key: 'st_qs',       label: 'QS',     group: true, adv: true, statType: 'pit' },
+    { key: 'st_k',        label: 'K',                  adv: true, statType: 'pit' },
+    { key: 'st_era',      label: 'ERA',                adv: true, statType: 'pit' },
+    { key: 'st_svh',      label: 'SVH',                adv: true, statType: 'pit' },
+    { key: 'st_whip',     label: 'WHIP',               adv: true, statType: 'pit' },
+    { key: 'zips_era',    label: 'zERA',               adv: true, statType: 'pit' },
+    { key: 'zips_k',      label: 'zK',                 adv: true, statType: 'pit' },
+    // Season stats — batting (MLB primary; MiLB in gold when present)
+    { key: 'mlb_hr',      label: 'HR',     group: true,           statType: 'bat' },
+    { key: 'mlb_r',       label: 'R',                             statType: 'bat' },
+    { key: 'mlb_rbi',     label: 'RBI',                           statType: 'bat' },
+    { key: 'mlb_sb',      label: 'SB',                            statType: 'bat' },
+    { key: 'mlb_ops',     label: 'OPS',                           statType: 'bat' },
+    { key: 'mlb_ab',      label: 'AB',                            statType: 'bat' },
+    { key: 'mlb_bat_gp',  label: 'GP',                            statType: 'bat' },
+    // Season stats — pitching (MLB primary; MiLB in gold when present)
+    { key: 'mlb_qs',      label: 'QS',     group: true,           statType: 'pit' },
+    { key: 'mlb_k',       label: 'K',                             statType: 'pit' },
+    { key: 'mlb_era',     label: 'ERA',                           statType: 'pit' },
+    { key: 'mlb_svh',     label: 'SVH',                           statType: 'pit' },
+    { key: 'mlb_whip',    label: 'WHIP',                          statType: 'pit' },
+    { key: 'mlb_ip',      label: 'IP',                            statType: 'pit' },
+    { key: 'mlb_pit_gp',  label: 'GP',                            statType: 'pit' },
   ];
 
   const STAT_SUB = {
@@ -439,10 +486,6 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     zips_hr:'ZiPS', zips_ops:'ZiPS',
     st_qs:'Steamer', st_k:'Steamer', st_era:'Steamer', st_svh:'Steamer', st_whip:'Steamer',
     zips_era:'ZiPS', zips_k:'ZiPS',
-    mlb_hr:'MLB', mlb_r:'MLB', mlb_rbi:'MLB', mlb_sb:'MLB', mlb_ops:'MLB',
-    mlb_qs:'MLB', mlb_k:'MLB', mlb_era:'MLB', mlb_svh:'MLB', mlb_whip:'MLB',
-    milb_hr:'MiLB', milb_r:'MiLB', milb_rbi:'MiLB', milb_sb:'MiLB', milb_ops:'MiLB',
-    milb_k:'MiLB', milb_era:'MiLB', milb_svh:'MiLB', milb_whip:'MiLB',
   };
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -452,8 +495,13 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   let _posFilter      = 'all';
   let _selectedTeams  = new Set();
   let _selectedOwners = new Set();
+  let _pinnedNames    = new Set();
   let _page     = 1;
-  const _pageSize = 100;
+  const _pageSize = 200;
+
+  // Position type sets (used by filter and column hiding)
+  const _PIT_POS = new Set(['SP', 'RP', 'P', 'SIRP', 'MIRP', 'PIT']);
+  const _BAT_POS = new Set(['C', '1B', '2B', '3B', 'SS', 'OF', 'DH', 'HIT']);
 
   // ── Simple / Advanced toggle ───────────────────────────────────────────────
   const _tableWrap = document.querySelector('.table-wrap');
@@ -467,6 +515,29 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     _tableWrap.classList.remove('simple-view');
     document.getElementById('btnAdvanced').classList.add('active');
     document.getElementById('btnSimple').classList.remove('active');
+  });
+
+  // ── Advanced access lock (Cmd+Shift+0 to toggle) ──────────────────────────
+  const _ADV_KEY = 'oracle_adv_unlocked';
+  let _advUnlocked = localStorage.getItem(_ADV_KEY) === '1';
+
+  function _applyAdvLock() {
+    const btn = document.getElementById('btnAdvanced');
+    btn.hidden = !_advUnlocked;
+    if (!_advUnlocked && !_tableWrap.classList.contains('simple-view')) {
+      _tableWrap.classList.add('simple-view');
+      document.getElementById('btnSimple').classList.add('active');
+      btn.classList.remove('active');
+    }
+  }
+  _applyAdvLock();
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey && e.shiftKey && e.key === '0') {
+      _advUnlocked = !_advUnlocked;
+      localStorage.setItem(_ADV_KEY, _advUnlocked ? '1' : '0');
+      _applyAdvLock();
+    }
   });
 
   // ── Load data ──────────────────────────────────────────────────────────────
@@ -489,6 +560,11 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   // ── Headers ────────────────────────────────────────────────────────────────
   function _buildHeaders() {
     const tr = document.getElementById('tableHead');
+    // Pin column (always first, not in COLS)
+    const thPin = document.createElement('th');
+    thPin.className = 'col-pin';
+    tr.appendChild(thPin);
+
     COLS.forEach(col => {
       const th = document.createElement('th');
       th.dataset.col = col.key;
@@ -505,6 +581,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
         .filter(Boolean).join(' ');
       if (cls) th.className = cls;
       if (!(col.tdCls||'').includes('left') && !col.sticky) th.classList.add('right');
+      if (col.statType) th.dataset.statType = col.statType;
       th.addEventListener('click', () => _onSort(col.key));
       tr.appendChild(th);
     });
@@ -542,6 +619,10 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
   document.getElementById('posFilter').addEventListener('change', e => {
     _posFilter = e.target.value;
+    const sel = e.target;
+    sel.classList.toggle('has-filter', _posFilter !== 'all');
+    _tableWrap.classList.toggle('hide-bat-cols', _PIT_POS.has(_posFilter));
+    _tableWrap.classList.toggle('hide-pit-cols', _BAT_POS.has(_posFilter));
     _page = 1;
     _renderTable(_filteredRows());
   });
@@ -552,7 +633,13 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (lq && !p.display_name.toLowerCase().includes(lq)) return false;
       if (_posFilter !== 'all') {
         const pos = Array.isArray(p.positions) ? p.positions : [];
-        if (!pos.includes(_posFilter)) return false;
+        if (_posFilter === 'HIT') {
+          if (pos.length && pos.every(pp => _PIT_POS.has(pp))) return false;
+        } else if (_posFilter === 'PIT') {
+          if (!pos.some(pp => _PIT_POS.has(pp))) return false;
+        } else {
+          if (!pos.includes(_posFilter)) return false;
+        }
       }
       if (_selectedTeams.size && !_selectedTeams.has(p.team)) return false;
       if (_selectedOwners.size && !_selectedOwners.has(p.owned_by || 'FA')) return false;
@@ -635,8 +722,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     'fp_rank','delta_fp','ibw_rank','delta_ibw','pl_rank','fthq_rank','proj_z','hkb_value',
     'st_hr','st_r','st_rbi','st_sb','st_ops','zips_hr','zips_ops',
     'st_qs','st_k','st_era','st_svh','st_whip','zips_era','zips_k',
-    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip',
-    'milb_hr','milb_r','milb_rbi','milb_sb','milb_ops','milb_k','milb_era','milb_svh','milb_whip']);
+    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_ab','mlb_bat_gp',
+    'mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip','mlb_ip','mlb_pit_gp']);
 
   function _renderTable(rows) {
     const sorted = [...rows].sort((a, b) => {
@@ -652,18 +739,40 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (av > bv) return  _sortDir;
       return 0;
     });
-    const total = sorted.length;
+    // Split into pinned (always shown first) and rest (paginated)
+    const pinned = sorted.filter(p => _pinnedNames.has(p.name));
+    const rest   = sorted.filter(p => !_pinnedNames.has(p.name));
+    const total  = rest.length;
     const totalPages = Math.ceil(total / _pageSize) || 1;
     _page = Math.min(_page, totalPages);
     const start = (_page - 1) * _pageSize;
-    const pageRows = sorted.slice(start, start + _pageSize);
+    const pageRows = rest.slice(start, start + _pageSize);
+
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
+    if (pinned.length) {
+      pinned.forEach(p => {
+        const tr = _buildRow(p);
+        tr.classList.add('row-pinned');
+        tbody.appendChild(tr);
+      });
+      // Separator row after pinned section
+      const sep = document.createElement('tr');
+      sep.className = 'pin-sep';
+      const colCount = COLS.length + 1; // +1 for pin column
+      for (let i = 0; i < colCount; i++) sep.appendChild(document.createElement('td'));
+      tbody.appendChild(sep);
+    }
     pageRows.forEach(p => tbody.appendChild(_buildRow(p)));
+
     const nr = document.getElementById('noResults');
-    nr.style.display = total ? 'none' : 'block';
-    document.getElementById('countBadge').textContent = total < _allRows.length
-      ? `${total} of ${_allRows.length}` : '';
+    nr.style.display = (total === 0 && pinned.length === 0) ? 'block' : 'none';
+    document.getElementById('countBadge').textContent = (total + pinned.length) < _allRows.length
+      ? `${total + pinned.length} of ${_allRows.length}` : '';
+
+    // Clear-pins button visibility
+    document.getElementById('clearPins').classList.toggle('visible', _pinnedNames.size > 0);
+
     // Pagination controls
     const ctrl = document.getElementById('pageControls');
     ctrl.hidden = total <= _pageSize;
@@ -682,6 +791,10 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     _page++;
     _renderTable(_filteredRows());
   });
+  document.getElementById('clearPins').addEventListener('click', () => {
+    _pinnedNames.clear();
+    _renderTable(_filteredRows());
+  });
 
   // ── Row builder ────────────────────────────────────────────────────────────
   function _td(content, cls) {
@@ -697,6 +810,23 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
   function _buildRow(p) {
     const tr = document.createElement('tr');
+
+    // Pin button (always first)
+    const pinBtn = document.createElement('button');
+    pinBtn.className = 'pin-btn' + (_pinnedNames.has(p.name) ? ' pinned' : '');
+    pinBtn.type = 'button';
+    pinBtn.title = _pinnedNames.has(p.name) ? 'Unpin row' : 'Pin row for comparison';
+    pinBtn.textContent = '●';
+    pinBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (_pinnedNames.has(p.name)) _pinnedNames.delete(p.name);
+      else _pinnedNames.add(p.name);
+      _renderTable(_filteredRows());
+    });
+    const pinTd = document.createElement('td');
+    pinTd.className = 'col-pin';
+    pinTd.appendChild(pinBtn);
+    tr.appendChild(pinTd);
 
     // Rank (sticky)
     tr.dataset.rank = p.rank;
@@ -803,56 +933,72 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
     tr.appendChild(rTd);
 
-    // Stats helper
-    function statTd(val, groupStart) {
+    // statTd: single value cell (used for advanced projections)
+    function statTd(val, groupStart, statType, adv) {
       const td = document.createElement('td');
-      if (groupStart) td.className = 'group-start';
+      const cls = [groupStart ? 'group-start' : '', adv ? 'col-advanced' : ''].filter(Boolean).join(' ');
+      if (cls) td.className = cls;
+      if (statType) td.dataset.statType = statType;
       td.innerHTML = val != null && val !== ''
         ? `<span class="stat-val">${val}</span>`
         : '<span class="stat-empty">—</span>';
       return td;
     }
 
-    // Batting stats
-    tr.appendChild(statTd(p.st_hr  != null ? Math.round(p.st_hr)  : null, true));
-    tr.appendChild(statTd(p.st_r   != null ? Math.round(p.st_r)   : null));
-    tr.appendChild(statTd(p.st_rbi != null ? Math.round(p.st_rbi) : null));
-    tr.appendChild(statTd(p.st_sb  != null ? Math.round(p.st_sb)  : null));
-    tr.appendChild(statTd(p.st_ops  != null ? p.st_ops.toFixed(3)  : null));
-    tr.appendChild(statTd(p.zips_hr != null ? Math.round(p.zips_hr): null));
-    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3): null));
+    // combinedStatTd: MLB value on top, MiLB in gold below (omitted when null)
+    function combinedStatTd(mlbVal, milbVal, groupStart, statType, fmt) {
+      const td = document.createElement('td');
+      if (groupStart) td.className = 'group-start';
+      if (statType) td.dataset.statType = statType;
+      const mlbStr  = mlbVal  != null ? String(fmt(mlbVal))  : null;
+      const milbStr = milbVal != null ? String(fmt(milbVal)) : null;
+      if (mlbStr && milbStr) {
+        td.innerHTML = `<span class="stat-val">${mlbStr}</span><span class="stat-milb">${milbStr}</span>`;
+      } else if (mlbStr) {
+        td.innerHTML = `<span class="stat-val">${mlbStr}</span>`;
+      } else if (milbStr) {
+        td.innerHTML = `<span class="stat-milb">${milbStr}</span>`;
+      } else {
+        td.innerHTML = '<span class="stat-empty">—</span>';
+      }
+      return td;
+    }
 
-    // Pitching stats
-    tr.appendChild(statTd(p.st_qs   != null ? Math.round(p.st_qs)  : null, true));
-    tr.appendChild(statTd(p.st_k    != null ? Math.round(p.st_k)   : null));
-    tr.appendChild(statTd(p.st_era  != null ? p.st_era.toFixed(2)  : null));
-    tr.appendChild(statTd(p.st_svh  != null ? Math.round(p.st_svh) : null));
-    tr.appendChild(statTd(p.st_whip != null ? p.st_whip.toFixed(3) : null));
-    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2): null));
-    tr.appendChild(statTd(p.zips_k  != null ? Math.round(p.zips_k) : null));
+    // Batting projections (advanced, statType bat)
+    tr.appendChild(statTd(p.st_hr    != null ? Math.round(p.st_hr)    : null, true,  'bat', true));
+    tr.appendChild(statTd(p.st_r     != null ? Math.round(p.st_r)     : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_rbi   != null ? Math.round(p.st_rbi)   : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_sb    != null ? Math.round(p.st_sb)    : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_ops   != null ? p.st_ops.toFixed(3)    : null, false, 'bat', true));
+    tr.appendChild(statTd(p.zips_hr  != null ? Math.round(p.zips_hr)  : null, false, 'bat', true));
+    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3)  : null, false, 'bat', true));
 
-    // MLB season stats
-    tr.appendChild(statTd(p.mlb_hr   != null ? p.mlb_hr   : null, true));
-    tr.appendChild(statTd(p.mlb_r    != null ? p.mlb_r    : null));
-    tr.appendChild(statTd(p.mlb_rbi  != null ? p.mlb_rbi  : null));
-    tr.appendChild(statTd(p.mlb_sb   != null ? p.mlb_sb   : null));
-    tr.appendChild(statTd(p.mlb_ops  != null ? p.mlb_ops.toFixed(3) : null));
-    tr.appendChild(statTd(p.mlb_qs   != null ? p.mlb_qs   : null, true));
-    tr.appendChild(statTd(p.mlb_k    != null ? p.mlb_k    : null));
-    tr.appendChild(statTd(p.mlb_era  != null ? p.mlb_era.toFixed(2) : null));
-    tr.appendChild(statTd(p.mlb_svh  != null ? p.mlb_svh  : null));
-    tr.appendChild(statTd(p.mlb_whip != null ? p.mlb_whip.toFixed(3) : null));
+    // Pitching projections (advanced, statType pit)
+    tr.appendChild(statTd(p.st_qs    != null ? Math.round(p.st_qs)    : null, true,  'pit', true));
+    tr.appendChild(statTd(p.st_k     != null ? Math.round(p.st_k)     : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_era   != null ? p.st_era.toFixed(2)    : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_svh   != null ? Math.round(p.st_svh)   : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_whip  != null ? p.st_whip.toFixed(3)   : null, false, 'pit', true));
+    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2)  : null, false, 'pit', true));
+    tr.appendChild(statTd(p.zips_k   != null ? Math.round(p.zips_k)   : null, false, 'pit', true));
 
-    // MiLB season stats
-    tr.appendChild(statTd(p.milb_hr   != null ? p.milb_hr   : null, true));
-    tr.appendChild(statTd(p.milb_r    != null ? p.milb_r    : null));
-    tr.appendChild(statTd(p.milb_rbi  != null ? p.milb_rbi  : null));
-    tr.appendChild(statTd(p.milb_sb   != null ? p.milb_sb   : null));
-    tr.appendChild(statTd(p.milb_ops  != null ? p.milb_ops.toFixed(3) : null));
-    tr.appendChild(statTd(p.milb_k    != null ? p.milb_k    : null, true));
-    tr.appendChild(statTd(p.milb_era  != null ? p.milb_era.toFixed(2) : null));
-    tr.appendChild(statTd(p.milb_svh  != null ? p.milb_svh  : null));
-    tr.appendChild(statTd(p.milb_whip != null ? p.milb_whip.toFixed(3) : null));
+    // Season stats — batting (MLB top, MiLB gold when present)
+    tr.appendChild(combinedStatTd(p.mlb_hr,     p.milb_hr,    true,  'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_r,      p.milb_r,     false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_rbi,    p.milb_rbi,   false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_sb,     p.milb_sb,    false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_ops,    p.milb_ops,   false, 'bat', v => v.toFixed(3)));
+    tr.appendChild(combinedStatTd(p.mlb_ab,     null,          false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_bat_gp, null,          false, 'bat', v => Math.round(v)));
+
+    // Season stats — pitching (MLB top, MiLB gold when present; QS and GP have MiLB where available)
+    tr.appendChild(combinedStatTd(p.mlb_qs,     null,              true,  'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_k,      p.milb_k,          false, 'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_era,    p.milb_era,        false, 'pit', v => v.toFixed(2)));
+    tr.appendChild(combinedStatTd(p.mlb_svh,    p.milb_svh,        false, 'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_whip,   p.milb_whip,       false, 'pit', v => v.toFixed(3)));
+    tr.appendChild(combinedStatTd(p.mlb_ip,     p.milb_ip,         false, 'pit', v => v.toFixed(1)));
+    tr.appendChild(combinedStatTd(p.mlb_pit_gp, p.milb_pit_gp,     false, 'pit', v => Math.round(v)));
 
     return tr;
   }
