@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Inkers",
+      "player": "Agustin Ramirez"
+    },
+    {
       "type": "DROP",
       "team": "Seam heads",
       "player": "J.P. Crawford"
@@ -68,6 +73,11 @@
       "player": "Jose Berrios"
     },
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Jaiker Garcia"
+    },
+    {
       "type": "ADD",
       "team": "Sam",
       "player": "Connor Norby"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Sam",
       "player": "Nathaniel Lowe"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Evan Sisk"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Caleb Durbin"
     }
   ],
   "oracle_teams": [
