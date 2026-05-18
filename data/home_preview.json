@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Mommy",
+      "player": "Jose Berrios"
+    },
+    {
       "type": "ADD",
       "team": "Sam",
       "player": "Connor Norby"
@@ -81,11 +86,6 @@
       "type": "DROP",
       "team": "Humongous Melonheads",
       "player": "Jack Wenninger"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Austin Martin"
     }
   ],
   "oracle_teams": [
