@@ -15,62 +15,58 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_depth.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
-<script>
-(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/theme.css">
-<link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
+<link rel="stylesheet" href="assets/site-shell.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--bg-base);
-  color: var(--t-primary);
-  font-family: var(--font-text);
+  background: #0e0e0f;
+  color: #e8e6e0;
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   line-height: 1.6;
   padding: 0 0 60px;
 }
 
 .header {
-  background: var(--bg-base);
-  border-bottom: 1px solid var(--sep-nonopaque);
+  background: #0e0e0f;
+  border-bottom: 1px solid #2a2a2c;
   padding: 48px 40px 32px;
   max-width: 1100px;
   margin: 0 auto;
 }
 .header-eyebrow {
-  font-family: var(--font-text);
+  font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold-500);
+  color: #c8a84b;
   margin-bottom: 12px;
 }
 .header h1 {
-  font-family: var(--font-display);
+  font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(44px, 7vw, 80px);
   letter-spacing: 0.02em;
   line-height: 0.92;
-  color: var(--t-primary);
+  color: #f0ede6;
   margin-bottom: 20px;
 }
-.header h1 span { color: var(--gold-500); }
+.header h1 span { color: #c8a84b; }
 .divider {
   width: 40px; height: 2px;
-  background: var(--gold-500);
+  background: #c8a84b;
   margin: 20px 0;
 }
 .header-meta {
   font-size: 13px;
-  color: var(--t-tertiary);
+  color: #7a7872;
   max-width: 680px;
   line-height: 1.7;
 }
-.header-meta strong { color: var(--gold-500); font-weight: 500; }
+.header-meta strong { color: #c8a84b; font-weight: 500; }
 
 /* Legend */
 .legend {
@@ -81,14 +77,14 @@ body {
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
-  border-bottom: 1px solid var(--sep-opaque);
+  border-bottom: 1px solid #1e1e20;
 }
 .legend-label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--t-quaternary);
+  color: #4a4845;
   margin-right: 4px;
 }
 .leg-pill {
@@ -97,7 +93,7 @@ body {
   gap: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: var(--t-tertiary);
+  color: #7a7872;
 }
 .leg-swatch {
   width: 12px; height: 12px;
@@ -122,9 +118,9 @@ body {
   top: 0;
   z-index: 10;
   margin-bottom: 10px;
-  background: color-mix(in srgb, var(--bg-base) 94%, transparent);
+  background: rgba(14, 14, 15, 0.96);
   backdrop-filter: blur(6px);
-  border: 1px solid var(--sep-opaque);
+  border: 1px solid #1e1e20;
   border-radius: 8px;
 }
 
@@ -161,17 +157,17 @@ table {
 }
 
 thead th {
-  font-family: var(--font-text);
+  font-family: 'DM Sans', sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--t-quaternary);
+  color: #4a4845;
   padding: 8px 10px;
   text-align: center;
-  border-bottom: 1px solid var(--sep-opaque);
+  border-bottom: 1px solid #1e1e20;
   white-space: nowrap;
-  background: var(--bg-base);
+  background: #0e0e0f;
 }
 thead th.th-team {
   text-align: left;
@@ -179,21 +175,21 @@ thead th.th-team {
 }
 thead th.th-rank { width: 40px; }
 
-tr { border-bottom: 1px solid var(--bg-overlay); }
-tr:hover { background: var(--fill-quat); }
+tr { border-bottom: 1px solid #1a1a1c; }
+tr:hover { background: rgba(255,255,255,0.012); }
 
 .rank-num {
-  font-family: var(--font-display);
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 28px;
-  color: var(--sep-nonopaque);
+  color: #2a2a2c;
   padding: 16px 12px 16px 0;
   vertical-align: top;
   line-height: 1;
   width: 44px;
   text-align: right;
 }
-.rank-gold   { color: var(--gold-500); }
-.rank-silver { color: var(--t-tertiary); }
+.rank-gold   { color: #c8a84b; }
+.rank-silver { color: #8a8680; }
 .rank-bronze { color: #7a5c38; }
 
 .team-cell {
@@ -201,17 +197,17 @@ tr:hover { background: var(--fill-quat); }
   vertical-align: top;
 }
 .tname {
-  font-family: var(--font-display);
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: var(--t-primary);
+  color: #f0ede6;
   display: block;
   line-height: 1.1;
   margin-bottom: 2px;
 }
 .tscore {
   font-size: 11px;
-  color: var(--t-quaternary);
+  color: #4a4845;
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -236,7 +232,7 @@ tr:hover { background: var(--fill-quat); }
 }
 .pill:hover { opacity: 0.8; }
 .pill:focus-visible {
-  outline: 2px solid var(--gold-500);
+  outline: 2px solid #c8a84b;
   outline-offset: 2px;
 }
 
@@ -247,10 +243,10 @@ tr:hover { background: var(--fill-quat); }
   z-index: 999;
   max-width: min(280px, calc(100vw - 24px));
   padding: 7px 9px;
-  border: 1px solid var(--sep-nonopaque);
+  border: 1px solid #2a2a2c;
   border-radius: 6px;
   background: rgba(10, 10, 11, 0.96);
-  color: var(--t-primary);
+  color: #f0ede6;
   font-size: 11px;
   line-height: 1.35;
   letter-spacing: 0.01em;
@@ -266,13 +262,6 @@ tr:hover { background: var(--fill-quat); }
   transform: translateY(0);
 }
 
-html[data-theme="light"] .depth-tooltip {
-  background: rgba(250, 248, 243, 0.98);
-  border-color: rgba(0, 0, 0, 0.12);
-  color: var(--t-primary);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-}
-
 /* Tier colors */
 .t1 { background: #6b1212; color: #f5b8b8; border: 1px solid #8b2020; }
 .t2 { background: #7d2e1e; color: #f0c4a8; border: 1px solid #a03828; }
@@ -280,29 +269,23 @@ html[data-theme="light"] .depth-tooltip {
 .t4 { background: #5a4030; color: #d4b898; border: 1px solid #7a5840; }
 .t5 { background: #2e2420; color: #8a7868; border: 1px solid #3e3028; }
 
-html[data-theme="light"] .t1 { background: #f4d7d7; color: #7a1616; border-color: #d59696; }
-html[data-theme="light"] .t2 { background: #f3dfd2; color: #803922; border-color: #d7a18b; }
-html[data-theme="light"] .t3 { background: #f1e4d6; color: #744925; border-color: #d5ad86; }
-html[data-theme="light"] .t4 { background: #eee8df; color: #6a5140; border-color: #d4c5b6; }
-html[data-theme="light"] .t5 { background: #e7e2da; color: #6f675f; border-color: #cbc2b6; }
-
 /* Riser / faller pill indicators */
-.pill.big-riser { border-color: var(--cold); }
-.pill.big-riser::after { content: ' ↑'; color: var(--cold); font-size: 9px; }
-.pill.big-faller { border-color: var(--danger); }
-.pill.big-faller::after { content: ' ↓'; color: var(--danger); font-size: 9px; }
+.pill.big-riser { border-color: #5d7db5; }
+.pill.big-riser::after { content: ' ↑'; color: #5d7db5; font-size: 9px; }
+.pill.big-faller { border-color: #b55d5d; }
+.pill.big-faller::after { content: ' ↓'; color: #b55d5d; font-size: 9px; }
 
 /* Trade block indicator */
-.pill.trade-block { border-color: var(--gold-500); }
-.pill.trade-block::before { content: '⇄ '; color: var(--gold-500); font-size: 8px; }
+.pill.trade-block { border-color: #c8a84b; }
+.pill.trade-block::before { content: '⇄ '; color: #c8a84b; font-size: 8px; }
 
 /* Team rank delta badges */
-.team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: var(--font-text); }
-.delta-up          { color: var(--cold); }
-.delta-down        { color: var(--danger); }
+.team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: 'DM Sans', sans-serif; }
+.delta-up          { color: #5d7db5; }
+.delta-down        { color: #b55d5d; }
 .delta-same        { color: #3a3a3c; }
 
-.count-empty { color: var(--sep-nonopaque); font-size: 14px; }
+.count-empty { color: #2a2a2c; font-size: 14px; }
 
 .player-modal {
   position: fixed;
@@ -323,17 +306,11 @@ html[data-theme="light"] .t5 { background: #e7e2da; color: #6f675f; border-color
   bottom: 24px;
   width: min(520px, calc(100vw - 48px));
   overflow-y: auto;
-  border: 1px solid var(--sep-nonopaque);
+  border: 1px solid #2a2a2c;
   border-radius: 8px;
   background: #111112;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
   padding: 22px;
-}
-html[data-theme="light"] .player-panel {
-  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
-}
-html[data-theme="light"] .player-close {
-  background: var(--bg-elevated);
 }
 .player-close {
   position: absolute;
@@ -341,17 +318,17 @@ html[data-theme="light"] .player-close {
   top: 12px;
   width: 30px;
   height: 30px;
-  border: 1px solid var(--sep-nonopaque);
+  border: 1px solid #2a2a2c;
   border-radius: 6px;
   background: #171719;
-  color: var(--t-tertiary);
+  color: #8a8680;
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
 }
-.player-close:hover { color: var(--t-primary); border-color: var(--t-quaternary); }
+.player-close:hover { color: #f0ede6; border-color: #4a4845; }
 .player-kicker {
-  color: var(--gold-500);
+  color: #c8a84b;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -359,16 +336,16 @@ html[data-theme="light"] .player-close {
   margin-bottom: 8px;
 }
 .player-title {
-  font-family: var(--font-display);
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 42px;
   line-height: 0.95;
   letter-spacing: 0.02em;
-  color: var(--t-primary);
+  color: #f0ede6;
   padding-right: 42px;
 }
 .player-meta {
   margin-top: 8px;
-  color: var(--t-tertiary);
+  color: #7a7872;
   font-size: 12px;
 }
 .player-stats {
@@ -378,29 +355,29 @@ html[data-theme="light"] .player-close {
   margin: 20px 0 18px;
 }
 .player-stat {
-  border: 1px solid var(--sep-opaque);
+  border: 1px solid #1e1e20;
   border-radius: 6px;
-  background: var(--bg-base);
+  background: #0e0e0f;
   padding: 10px;
 }
 .player-stat-label {
-  color: var(--t-quaternary);
+  color: #4a4845;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .player-stat-value {
-  color: var(--t-primary);
-  font-family: var(--font-display);
+  color: #f0ede6;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 28px;
   line-height: 1;
   margin-top: 6px;
 }
 .player-chart-wrap {
-  border: 1px solid var(--sep-opaque);
+  border: 1px solid #1e1e20;
   border-radius: 6px;
-  background: var(--bg-base);
+  background: #0e0e0f;
   padding: 12px;
 }
 .player-chart {
@@ -411,22 +388,13 @@ html[data-theme="light"] .player-close {
 }
 .player-note {
   margin-top: 12px;
-  color: var(--t-tertiary);
+  color: #7a7872;
   font-size: 12px;
 }
 .player-error {
-  color: var(--danger);
+  color: #b55d5d;
   font-size: 13px;
   margin-top: 18px;
-}
-
-.deep-link-flash {
-  animation: deepLinkFlash 2s ease;
-}
-
-@keyframes deepLinkFlash {
-  0% { background: var(--gold-tint-soft); }
-  100% { background: transparent; }
 }
 
 .footnote {
@@ -434,9 +402,9 @@ html[data-theme="light"] .player-close {
   margin: 24px auto 0;
   padding: 24px 40px;
   font-size: 12px;
-  color: var(--t-quaternary);
+  color: #4a4845;
   font-style: italic;
-  border-top: 1px solid var(--sep-opaque);
+  border-top: 1px solid #1e1e20;
   line-height: 1.8;
 }
 
@@ -478,13 +446,13 @@ html[data-theme="light"] .player-close {
   <span class="leg-pill"><span class="leg-swatch sw5"></span>#500+ Fringe</span>
   <span class="leg-pill"><span class="leg-delta">Δ</span>Week-over-week rank change</span>
   <span class="leg-pill"><span class="leg-move"><span class="leg-up">↑</span><span class="leg-down">↓</span></span>Risers and fallers shown on pills that moved 100+ spots</span>
-  <span class="leg-pill"><span style="color:var(--gold-500);font-size:10px;line-height:1">⇄</span> On trade block</span>
+  <span class="leg-pill"><span style="color:#c8a84b;font-size:10px;line-height:1">⇄</span> On trade block</span>
 </div>
 
 <div class="depth-shell">
 <div class="sticky-bar-wrap">
   <div class="sticky-bar-scroll" id="stickyBarScroll">
-    <table class="sticky-bar table" aria-hidden="true">
+    <table class="sticky-bar" aria-hidden="true">
       <colgroup>
         <col style="width:56px">
         <col style="width:220px">
@@ -509,7 +477,7 @@ html[data-theme="light"] .player-close {
 </div>
 
 <div class="table-wrap" id="tableScroll">
-<table class="table">
+<table>
   <colgroup>
     <col style="width:56px">
     <col style="width:220px">
@@ -557,10 +525,10 @@ html[data-theme="light"] .player-close {
     <tr>
       <td class="rank-num">4</td>
       <td class="team-cell">
-        <span class="tname">Seam heads<span class="team-delta delta-up">▲1</span></span>
-        <span class="tscore">34,627</span>
+        <span class="tname">Seam heads<span class="team-delta delta-same">—</span></span>
+        <span class="tscore">34,531</span>
       </td>
-      <td class="pos-cell"><span class="pill t1 trade-block" data-tooltip="#26 Cal Raleigh · on trade block" data-player-key="cal raleigh" role="button" tabindex="0" aria-label="#26 Cal Raleigh · on trade block">#26</span><span class="pill t2" data-tooltip="#66 Ben Rice" data-player-key="ben rice" role="button" tabindex="0" aria-label="#66 Ben Rice">#66</span></td><td class="pos-cell empty"><span class="count-empty">—</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#261 Cole Young" data-player-key="cole young" role="button" tabindex="0" aria-label="#261 Cole Young">#261</span><span class="pill t4 trade-block" data-tooltip="#374 Luis Arraez · on trade block" data-player-key="luis arraez" role="button" tabindex="0" aria-label="#374 Luis Arraez · on trade block">#374</span><span class="pill t5" data-tooltip="#679 Daniel Schneemann" data-player-key="daniel schneemann" role="button" tabindex="0" aria-label="#679 Daniel Schneemann">#679</span><span class="pill t5 big-riser" data-tooltip="#804 Ildemaro Vargas ↑195" data-player-key="ildemaro vargas" role="button" tabindex="0" aria-label="#804 Ildemaro Vargas ↑195">#804</span></td><td class="pos-cell"><span class="pill t4" data-tooltip="#342 Josh Jung" data-player-key="josh jung" role="button" tabindex="0" aria-label="#342 Josh Jung">#342</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#58 Trea Turner" data-player-key="trea turner" role="button" tabindex="0" aria-label="#58 Trea Turner">#58</span><span class="pill t3" data-tooltip="#153 Jordan Lawlar" data-player-key="jordan lawlar" role="button" tabindex="0" aria-label="#153 Jordan Lawlar">#153</span><span class="pill t3" data-tooltip="#238 Eli Willits" data-player-key="eli willits" role="button" tabindex="0" aria-label="#238 Eli Willits">#238</span><span class="pill t3" data-tooltip="#242 Xavier Edwards" data-player-key="xavier edwards" role="button" tabindex="0" aria-label="#242 Xavier Edwards">#242</span><span class="pill t4" data-tooltip="#337 Dax Kilby" data-player-key="dax kilby" role="button" tabindex="0" aria-label="#337 Dax Kilby">#337</span><span class="pill t4" data-tooltip="#353 Kaelen Culpepper" data-player-key="kaelen culpepper" role="button" tabindex="0" aria-label="#353 Kaelen Culpepper">#353</span><span class="pill t5" data-tooltip="#582 J.P. Crawford" data-player-key="jp crawford" role="button" tabindex="0" aria-label="#582 J.P. Crawford">#582</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#7 Aaron Judge" data-player-key="aaron judge" role="button" tabindex="0" aria-label="#7 Aaron Judge">#7</span><span class="pill t1" data-tooltip="#11 Julio Rodríguez" data-player-key="julio rodriguez" role="button" tabindex="0" aria-label="#11 Julio Rodríguez">#11</span><span class="pill t1" data-tooltip="#32 Roman Anthony" data-player-key="roman anthony" role="button" tabindex="0" aria-label="#32 Roman Anthony">#32</span><span class="pill t2 trade-block" data-tooltip="#90 Cody Bellinger · on trade block" data-player-key="cody bellinger" role="button" tabindex="0" aria-label="#90 Cody Bellinger · on trade block">#90</span><span class="pill t2 trade-block" data-tooltip="#119 Jo Adell · on trade block" data-player-key="jo adell" role="button" tabindex="0" aria-label="#119 Jo Adell · on trade block">#119</span><span class="pill t3" data-tooltip="#194 Daylen Lile" data-player-key="daylen lile" role="button" tabindex="0" aria-label="#194 Daylen Lile">#194</span><span class="pill t3" data-tooltip="#249 Edward Florentino" data-player-key="edward florentino" role="button" tabindex="0" aria-label="#249 Edward Florentino">#249</span><span class="pill t3" data-tooltip="#268 Mickey Moniak" data-player-key="mickey moniak" role="button" tabindex="0" aria-label="#268 Mickey Moniak">#268</span><span class="pill t3" data-tooltip="#275 Joshua Baez" data-player-key="joshua baez" role="button" tabindex="0" aria-label="#275 Joshua Baez">#275</span><span class="pill t4" data-tooltip="#396 Ramón Laureano" data-player-key="ramon laureano" role="button" tabindex="0" aria-label="#396 Ramón Laureano">#396</span></td><td class="pos-cell"><span class="pill t1 trade-block" data-tooltip="#5 Tarik Skubal · on trade block" data-player-key="tarik skubal" role="button" tabindex="0" aria-label="#5 Tarik Skubal · on trade block">#5</span><span class="pill t1 trade-block" data-tooltip="#28 Cristopher Sánchez · on trade block" data-player-key="cristopher sanchez" role="button" tabindex="0" aria-label="#28 Cristopher Sánchez · on trade block">#28</span><span class="pill t2 trade-block" data-tooltip="#124 Chris Sale · on trade block" data-player-key="chris sale" role="button" tabindex="0" aria-label="#124 Chris Sale · on trade block">#124</span><span class="pill t2" data-tooltip="#137 Shane McClanahan" data-player-key="shane mcclanahan" role="button" tabindex="0" aria-label="#137 Shane McClanahan">#137</span><span class="pill t2 trade-block" data-tooltip="#141 Edwin Díaz · on trade block" data-player-key="edwin diaz" role="button" tabindex="0" aria-label="#141 Edwin Díaz · on trade block">#141</span><span class="pill t2" data-tooltip="#145 Zack Wheeler" data-player-key="zack wheeler" role="button" tabindex="0" aria-label="#145 Zack Wheeler">#145</span><span class="pill t3 trade-block" data-tooltip="#154 Cade Smith · on trade block" data-player-key="cade smith" role="button" tabindex="0" aria-label="#154 Cade Smith · on trade block">#154</span><span class="pill t3 trade-block" data-tooltip="#161 Connelly Early · on trade block" data-player-key="connelly early" role="button" tabindex="0" aria-label="#161 Connelly Early · on trade block">#161</span><span class="pill t3" data-tooltip="#224 Bryce Miller" data-player-key="bryce miller" role="button" tabindex="0" aria-label="#224 Bryce Miller">#224</span><span class="pill t3" data-tooltip="#239 Gerrit Cole" data-player-key="gerrit cole" role="button" tabindex="0" aria-label="#239 Gerrit Cole">#239</span><span class="pill t3" data-tooltip="#243 Ryan Sloan" data-player-key="ryan sloan" role="button" tabindex="0" aria-label="#243 Ryan Sloan">#243</span><span class="pill t3" data-tooltip="#258 Hurston Waldrep" data-player-key="hurston waldrep" role="button" tabindex="0" aria-label="#258 Hurston Waldrep">#258</span><span class="pill t3" data-tooltip="#259 Grant Taylor" data-player-key="grant taylor" role="button" tabindex="0" aria-label="#259 Grant Taylor">#259</span><span class="pill t3 trade-block" data-tooltip="#263 Luis Castillo · on trade block" data-player-key="luis castillo" role="button" tabindex="0" aria-label="#263 Luis Castillo · on trade block">#263</span><span class="pill t4" data-tooltip="#313 Joey Cantillo" data-player-key="joey cantillo" role="button" tabindex="0" aria-label="#313 Joey Cantillo">#313</span><span class="pill t4" data-tooltip="#324 Jamie Arnold" data-player-key="jamie arnold" role="button" tabindex="0" aria-label="#324 Jamie Arnold">#324</span><span class="pill t4" data-tooltip="#364 Gage Wood" data-player-key="gage wood" role="button" tabindex="0" aria-label="#364 Gage Wood">#364</span><span class="pill t4" data-tooltip="#384 Jeremiah Estrada" data-player-key="jeremiah estrada" role="button" tabindex="0" aria-label="#384 Jeremiah Estrada">#384</span><span class="pill t4" data-tooltip="#393 Bailey Ober" data-player-key="bailey ober" role="button" tabindex="0" aria-label="#393 Bailey Ober">#393</span><span class="pill t4" data-tooltip="#401 Griffin Jax" data-player-key="griffin jax" role="button" tabindex="0" aria-label="#401 Griffin Jax">#401</span><span class="pill t4" data-tooltip="#427 Ian Seymour" data-player-key="ian seymour" role="button" tabindex="0" aria-label="#427 Ian Seymour">#427</span><span class="pill t4" data-tooltip="#428 Ben Brown" data-player-key="ben brown" role="button" tabindex="0" aria-label="#428 Ben Brown">#428</span><span class="pill t4" data-tooltip="#459 Matt Brash" data-player-key="matt brash" role="button" tabindex="0" aria-label="#459 Matt Brash">#459</span><span class="pill t4" data-tooltip="#465 Adrian Morejon" data-player-key="adrian morejon" role="button" tabindex="0" aria-label="#465 Adrian Morejon">#465</span><span class="pill t5" data-tooltip="#538 Robert Garcia" data-player-key="robert garcia" role="button" tabindex="0" aria-label="#538 Robert Garcia">#538</span><span class="pill t5" data-tooltip="#602 Jose Ferrer" data-player-key="jose ferrer" role="button" tabindex="0" aria-label="#602 Jose Ferrer">#602</span><span class="pill t5" data-tooltip="#604 Jack Perkins" data-player-key="jack perkins" role="button" tabindex="0" aria-label="#604 Jack Perkins">#604</span><span class="pill t5" data-tooltip="#659 Garrett Cleavinger" data-player-key="garrett cleavinger" role="button" tabindex="0" aria-label="#659 Garrett Cleavinger">#659</span><span class="pill t5" data-tooltip="#740 Steven Matz" data-player-key="steven matz" role="button" tabindex="0" aria-label="#740 Steven Matz">#740</span></td><td class="pos-cell"><span class="pill t5" data-tooltip="#753 paul goldschmidt" data-player-key="paul goldschmidt" role="button" tabindex="0" aria-label="#753 paul goldschmidt">#753</span></td>
+      <td class="pos-cell"><span class="pill t1 trade-block" data-tooltip="#26 Cal Raleigh · on trade block" data-player-key="cal raleigh" role="button" tabindex="0" aria-label="#26 Cal Raleigh · on trade block">#26</span><span class="pill t2" data-tooltip="#66 Ben Rice" data-player-key="ben rice" role="button" tabindex="0" aria-label="#66 Ben Rice">#66</span></td><td class="pos-cell"><span class="pill t5" data-tooltip="#716 Troy Johnston" data-player-key="troy johnston" role="button" tabindex="0" aria-label="#716 Troy Johnston">#716</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#261 Cole Young" data-player-key="cole young" role="button" tabindex="0" aria-label="#261 Cole Young">#261</span><span class="pill t4 trade-block" data-tooltip="#374 Luis Arraez · on trade block" data-player-key="luis arraez" role="button" tabindex="0" aria-label="#374 Luis Arraez · on trade block">#374</span><span class="pill t5" data-tooltip="#679 Daniel Schneemann" data-player-key="daniel schneemann" role="button" tabindex="0" aria-label="#679 Daniel Schneemann">#679</span><span class="pill t5 big-riser" data-tooltip="#804 Ildemaro Vargas ↑195" data-player-key="ildemaro vargas" role="button" tabindex="0" aria-label="#804 Ildemaro Vargas ↑195">#804</span></td><td class="pos-cell"><span class="pill t4" data-tooltip="#342 Josh Jung" data-player-key="josh jung" role="button" tabindex="0" aria-label="#342 Josh Jung">#342</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#58 Trea Turner" data-player-key="trea turner" role="button" tabindex="0" aria-label="#58 Trea Turner">#58</span><span class="pill t3" data-tooltip="#153 Jordan Lawlar" data-player-key="jordan lawlar" role="button" tabindex="0" aria-label="#153 Jordan Lawlar">#153</span><span class="pill t3" data-tooltip="#238 Eli Willits" data-player-key="eli willits" role="button" tabindex="0" aria-label="#238 Eli Willits">#238</span><span class="pill t3" data-tooltip="#242 Xavier Edwards" data-player-key="xavier edwards" role="button" tabindex="0" aria-label="#242 Xavier Edwards">#242</span><span class="pill t4" data-tooltip="#337 Dax Kilby" data-player-key="dax kilby" role="button" tabindex="0" aria-label="#337 Dax Kilby">#337</span><span class="pill t4" data-tooltip="#353 Kaelen Culpepper" data-player-key="kaelen culpepper" role="button" tabindex="0" aria-label="#353 Kaelen Culpepper">#353</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#7 Aaron Judge" data-player-key="aaron judge" role="button" tabindex="0" aria-label="#7 Aaron Judge">#7</span><span class="pill t1" data-tooltip="#11 Julio Rodríguez" data-player-key="julio rodriguez" role="button" tabindex="0" aria-label="#11 Julio Rodríguez">#11</span><span class="pill t1" data-tooltip="#32 Roman Anthony" data-player-key="roman anthony" role="button" tabindex="0" aria-label="#32 Roman Anthony">#32</span><span class="pill t2 trade-block" data-tooltip="#90 Cody Bellinger · on trade block" data-player-key="cody bellinger" role="button" tabindex="0" aria-label="#90 Cody Bellinger · on trade block">#90</span><span class="pill t2 trade-block" data-tooltip="#119 Jo Adell · on trade block" data-player-key="jo adell" role="button" tabindex="0" aria-label="#119 Jo Adell · on trade block">#119</span><span class="pill t3" data-tooltip="#194 Daylen Lile" data-player-key="daylen lile" role="button" tabindex="0" aria-label="#194 Daylen Lile">#194</span><span class="pill t3" data-tooltip="#249 Edward Florentino" data-player-key="edward florentino" role="button" tabindex="0" aria-label="#249 Edward Florentino">#249</span><span class="pill t3" data-tooltip="#268 Mickey Moniak" data-player-key="mickey moniak" role="button" tabindex="0" aria-label="#268 Mickey Moniak">#268</span><span class="pill t3" data-tooltip="#275 Joshua Baez" data-player-key="joshua baez" role="button" tabindex="0" aria-label="#275 Joshua Baez">#275</span><span class="pill t4" data-tooltip="#396 Ramón Laureano" data-player-key="ramon laureano" role="button" tabindex="0" aria-label="#396 Ramón Laureano">#396</span></td><td class="pos-cell"><span class="pill t1 trade-block" data-tooltip="#5 Tarik Skubal · on trade block" data-player-key="tarik skubal" role="button" tabindex="0" aria-label="#5 Tarik Skubal · on trade block">#5</span><span class="pill t1 trade-block" data-tooltip="#28 Cristopher Sánchez · on trade block" data-player-key="cristopher sanchez" role="button" tabindex="0" aria-label="#28 Cristopher Sánchez · on trade block">#28</span><span class="pill t2 trade-block" data-tooltip="#124 Chris Sale · on trade block" data-player-key="chris sale" role="button" tabindex="0" aria-label="#124 Chris Sale · on trade block">#124</span><span class="pill t2" data-tooltip="#137 Shane McClanahan" data-player-key="shane mcclanahan" role="button" tabindex="0" aria-label="#137 Shane McClanahan">#137</span><span class="pill t2 trade-block" data-tooltip="#141 Edwin Díaz · on trade block" data-player-key="edwin diaz" role="button" tabindex="0" aria-label="#141 Edwin Díaz · on trade block">#141</span><span class="pill t2" data-tooltip="#145 Zack Wheeler" data-player-key="zack wheeler" role="button" tabindex="0" aria-label="#145 Zack Wheeler">#145</span><span class="pill t3 trade-block" data-tooltip="#154 Cade Smith · on trade block" data-player-key="cade smith" role="button" tabindex="0" aria-label="#154 Cade Smith · on trade block">#154</span><span class="pill t3 trade-block" data-tooltip="#161 Connelly Early · on trade block" data-player-key="connelly early" role="button" tabindex="0" aria-label="#161 Connelly Early · on trade block">#161</span><span class="pill t3" data-tooltip="#224 Bryce Miller" data-player-key="bryce miller" role="button" tabindex="0" aria-label="#224 Bryce Miller">#224</span><span class="pill t3" data-tooltip="#239 Gerrit Cole" data-player-key="gerrit cole" role="button" tabindex="0" aria-label="#239 Gerrit Cole">#239</span><span class="pill t3" data-tooltip="#243 Ryan Sloan" data-player-key="ryan sloan" role="button" tabindex="0" aria-label="#243 Ryan Sloan">#243</span><span class="pill t3" data-tooltip="#258 Hurston Waldrep" data-player-key="hurston waldrep" role="button" tabindex="0" aria-label="#258 Hurston Waldrep">#258</span><span class="pill t3" data-tooltip="#259 Grant Taylor" data-player-key="grant taylor" role="button" tabindex="0" aria-label="#259 Grant Taylor">#259</span><span class="pill t3 trade-block" data-tooltip="#263 Luis Castillo · on trade block" data-player-key="luis castillo" role="button" tabindex="0" aria-label="#263 Luis Castillo · on trade block">#263</span><span class="pill t4" data-tooltip="#313 Joey Cantillo" data-player-key="joey cantillo" role="button" tabindex="0" aria-label="#313 Joey Cantillo">#313</span><span class="pill t4" data-tooltip="#324 Jamie Arnold" data-player-key="jamie arnold" role="button" tabindex="0" aria-label="#324 Jamie Arnold">#324</span><span class="pill t4" data-tooltip="#364 Gage Wood" data-player-key="gage wood" role="button" tabindex="0" aria-label="#364 Gage Wood">#364</span><span class="pill t4" data-tooltip="#384 Jeremiah Estrada" data-player-key="jeremiah estrada" role="button" tabindex="0" aria-label="#384 Jeremiah Estrada">#384</span><span class="pill t4" data-tooltip="#393 Bailey Ober" data-player-key="bailey ober" role="button" tabindex="0" aria-label="#393 Bailey Ober">#393</span><span class="pill t4" data-tooltip="#401 Griffin Jax" data-player-key="griffin jax" role="button" tabindex="0" aria-label="#401 Griffin Jax">#401</span><span class="pill t4" data-tooltip="#427 Ian Seymour" data-player-key="ian seymour" role="button" tabindex="0" aria-label="#427 Ian Seymour">#427</span><span class="pill t4" data-tooltip="#428 Ben Brown" data-player-key="ben brown" role="button" tabindex="0" aria-label="#428 Ben Brown">#428</span><span class="pill t4" data-tooltip="#459 Matt Brash" data-player-key="matt brash" role="button" tabindex="0" aria-label="#459 Matt Brash">#459</span><span class="pill t4" data-tooltip="#465 Adrian Morejon" data-player-key="adrian morejon" role="button" tabindex="0" aria-label="#465 Adrian Morejon">#465</span><span class="pill t5" data-tooltip="#538 Robert Garcia" data-player-key="robert garcia" role="button" tabindex="0" aria-label="#538 Robert Garcia">#538</span><span class="pill t5" data-tooltip="#602 Jose Ferrer" data-player-key="jose ferrer" role="button" tabindex="0" aria-label="#602 Jose Ferrer">#602</span><span class="pill t5" data-tooltip="#604 Jack Perkins" data-player-key="jack perkins" role="button" tabindex="0" aria-label="#604 Jack Perkins">#604</span><span class="pill t5" data-tooltip="#659 Garrett Cleavinger" data-player-key="garrett cleavinger" role="button" tabindex="0" aria-label="#659 Garrett Cleavinger">#659</span><span class="pill t5" data-tooltip="#740 Steven Matz" data-player-key="steven matz" role="button" tabindex="0" aria-label="#740 Steven Matz">#740</span></td><td class="pos-cell"><span class="pill t5" data-tooltip="#753 paul goldschmidt" data-player-key="paul goldschmidt" role="button" tabindex="0" aria-label="#753 paul goldschmidt">#753</span></td>
     </tr>
     <tr>
       <td class="rank-num">5</td>
@@ -582,9 +550,9 @@ html[data-theme="light"] .player-close {
       <td class="rank-num">7</td>
       <td class="team-cell">
         <span class="tname">Inkers<span class="team-delta delta-same">—</span></span>
-        <span class="tscore">28,262</span>
+        <span class="tscore">29,092</span>
       </td>
-      <td class="pos-cell"><span class="pill t2" data-tooltip="#79 Drake Baldwin" data-player-key="drake baldwin" role="button" tabindex="0" aria-label="#79 Drake Baldwin">#79</span><span class="pill t3 trade-block" data-tooltip="#201 Dalton Rushing · on trade block" data-player-key="dalton rushing" role="button" tabindex="0" aria-label="#201 Dalton Rushing · on trade block">#201</span><span class="pill t3" data-tooltip="#293 Dillon Dingler" data-player-key="dillon dingler" role="button" tabindex="0" aria-label="#293 Dillon Dingler">#293</span><span class="pill t4" data-tooltip="#455 Liam Hicks" data-player-key="liam hicks" role="button" tabindex="0" aria-label="#455 Liam Hicks">#455</span><span class="pill t5" data-tooltip="#503 Ike Irish" data-player-key="ike irish" role="button" tabindex="0" aria-label="#503 Ike Irish">#503</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#179 Jonathan Aranda" data-player-key="jonathan aranda" role="button" tabindex="0" aria-label="#179 Jonathan Aranda">#179</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#120 Marcelo Mayer" data-player-key="marcelo mayer" role="button" tabindex="0" aria-label="#120 Marcelo Mayer">#120</span><span class="pill t3" data-tooltip="#207 Kristian Campbell" data-player-key="kristian campbell" role="button" tabindex="0" aria-label="#207 Kristian Campbell">#207</span><span class="pill t5" data-tooltip="#577 Jeremiah Jackson" data-player-key="jeremiah jackson" role="button" tabindex="0" aria-label="#577 Jeremiah Jackson">#577</span><span class="pill t5" data-tooltip="#1780 Henry Godbout" data-player-key="henry godbout" role="button" tabindex="0" aria-label="#1780 Henry Godbout">#1780</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#60 Maikel Garcia" data-player-key="maikel garcia" role="button" tabindex="0" aria-label="#60 Maikel Garcia">#60</span><span class="pill t3" data-tooltip="#226 Kazuma Okamoto" data-player-key="kazuma okamoto" role="button" tabindex="0" aria-label="#226 Kazuma Okamoto">#226</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#23 Zach Neto" data-player-key="zach neto" role="button" tabindex="0" aria-label="#23 Zach Neto">#23</span><span class="pill t2" data-tooltip="#123 Luis Pena" data-player-key="luis pena" role="button" tabindex="0" aria-label="#123 Luis Pena">#123</span><span class="pill t2" data-tooltip="#134 Aidan Miller" data-player-key="aidan miller" role="button" tabindex="0" aria-label="#134 Aidan Miller">#134</span><span class="pill t4" data-tooltip="#419 Sam Antonacci" data-player-key="sam antonacci" role="button" tabindex="0" aria-label="#419 Sam Antonacci">#419</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#70 Max Clark" data-player-key="max clark" role="button" tabindex="0" aria-label="#70 Max Clark">#70</span><span class="pill t2" data-tooltip="#112 Carson Benge" data-player-key="carson benge" role="button" tabindex="0" aria-label="#112 Carson Benge">#112</span><span class="pill t2" data-tooltip="#131 Kyle Stowers" data-player-key="kyle stowers" role="button" tabindex="0" aria-label="#131 Kyle Stowers">#131</span><span class="pill t3" data-tooltip="#156 Zyhir Hope" data-player-key="zyhir hope" role="button" tabindex="0" aria-label="#156 Zyhir Hope">#156</span><span class="pill t3 trade-block" data-tooltip="#160 Steven Kwan · on trade block" data-player-key="steven kwan" role="button" tabindex="0" aria-label="#160 Steven Kwan · on trade block">#160</span><span class="pill t5 trade-block" data-tooltip="#558 Jorge Soler · on trade block" data-player-key="jorge soler" role="button" tabindex="0" aria-label="#558 Jorge Soler · on trade block">#558</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#30 Logan Gilbert" data-player-key="logan gilbert" role="button" tabindex="0" aria-label="#30 Logan Gilbert">#30</span><span class="pill t2" data-tooltip="#142 Andrew Painter" data-player-key="andrew painter" role="button" tabindex="0" aria-label="#142 Andrew Painter">#142</span><span class="pill t3" data-tooltip="#166 Kade Anderson" data-player-key="kade anderson" role="button" tabindex="0" aria-label="#166 Kade Anderson">#166</span><span class="pill t3" data-tooltip="#177 Jackson Jobe" data-player-key="jackson jobe" role="button" tabindex="0" aria-label="#177 Jackson Jobe">#177</span><span class="pill t3" data-tooltip="#189 Jared Jones" data-player-key="jared jones" role="button" tabindex="0" aria-label="#189 Jared Jones">#189</span><span class="pill t3" data-tooltip="#211 Noah Schultz" data-player-key="noah schultz" role="button" tabindex="0" aria-label="#211 Noah Schultz">#211</span><span class="pill t3 trade-block" data-tooltip="#215 Pablo López · on trade block" data-player-key="pablo lopez" role="button" tabindex="0" aria-label="#215 Pablo López · on trade block">#215</span><span class="pill t3" data-tooltip="#244 Jack Leiter" data-player-key="jack leiter" role="button" tabindex="0" aria-label="#244 Jack Leiter">#244</span><span class="pill t4" data-tooltip="#331 Brayan Bello" data-player-key="brayan bello" role="button" tabindex="0" aria-label="#331 Brayan Bello">#331</span><span class="pill t4 trade-block" data-tooltip="#340 Bryan Abreu · on trade block" data-player-key="bryan abreu" role="button" tabindex="0" aria-label="#340 Bryan Abreu · on trade block">#340</span><span class="pill t4" data-tooltip="#344 Gage Jump" data-player-key="gage jump" role="button" tabindex="0" aria-label="#344 Gage Jump">#344</span><span class="pill t4" data-tooltip="#363 Landen Roupp" data-player-key="landen roupp" role="button" tabindex="0" aria-label="#363 Landen Roupp">#363</span><span class="pill t4" data-tooltip="#425 Jaxon Wiggins" data-player-key="jaxon wiggins" role="button" tabindex="0" aria-label="#425 Jaxon Wiggins">#425</span><span class="pill t4" data-tooltip="#431 Michael McGreevy" data-player-key="michael mcgreevy" role="button" tabindex="0" aria-label="#431 Michael McGreevy">#431</span><span class="pill t4" data-tooltip="#436 Quinn Mathews" data-player-key="quinn mathews" role="button" tabindex="0" aria-label="#436 Quinn Mathews">#436</span><span class="pill t4" data-tooltip="#452 Kruz Schoolcraft" data-player-key="kruz schoolcraft" role="button" tabindex="0" aria-label="#452 Kruz Schoolcraft">#452</span><span class="pill t4" data-tooltip="#462 Sean Burke" data-player-key="sean burke" role="button" tabindex="0" aria-label="#462 Sean Burke">#462</span><span class="pill t4" data-tooltip="#480 Bryce Elder" data-player-key="bryce elder" role="button" tabindex="0" aria-label="#480 Bryce Elder">#480</span><span class="pill t5" data-tooltip="#579 Anthony Eyanson" data-player-key="anthony eyanson" role="button" tabindex="0" aria-label="#579 Anthony Eyanson">#579</span><span class="pill t5 trade-block" data-tooltip="#606 Tony Santillan · on trade block" data-player-key="tony santillan" role="button" tabindex="0" aria-label="#606 Tony Santillan · on trade block">#606</span><span class="pill t5 trade-block" data-tooltip="#786 Jakob Junis · on trade block" data-player-key="jakob junis" role="button" tabindex="0" aria-label="#786 Jakob Junis · on trade block">#786</span><span class="pill t5" data-tooltip="#885 Daniel Lynch" data-player-key="daniel lynch" role="button" tabindex="0" aria-label="#885 Daniel Lynch">#885</span><span class="pill t5" data-tooltip="#900 Kutter Crawford" data-player-key="kutter crawford" role="button" tabindex="0" aria-label="#900 Kutter Crawford">#900</span><span class="pill t5 big-faller" data-tooltip="#999 Gordon Graceffo ↓196" data-player-key="gordon graceffo" role="button" tabindex="0" aria-label="#999 Gordon Graceffo ↓196">#999</span><span class="pill t5 big-faller" data-tooltip="#1198 Keaton Winn ↓342" data-player-key="keaton winn" role="button" tabindex="0" aria-label="#1198 Keaton Winn ↓342">#1198</span><span class="pill t5" data-tooltip="#1318 Antonio Senzatela" data-player-key="antonio senzatela" role="button" tabindex="0" aria-label="#1318 Antonio Senzatela">#1318</span></td><td class="pos-cell empty"><span class="count-empty">—</span></td>
+      <td class="pos-cell"><span class="pill t2" data-tooltip="#79 Drake Baldwin" data-player-key="drake baldwin" role="button" tabindex="0" aria-label="#79 Drake Baldwin">#79</span><span class="pill t2" data-tooltip="#109 Agustin Ramirez" data-player-key="agustin ramirez" role="button" tabindex="0" aria-label="#109 Agustin Ramirez">#109</span><span class="pill t3 trade-block" data-tooltip="#201 Dalton Rushing · on trade block" data-player-key="dalton rushing" role="button" tabindex="0" aria-label="#201 Dalton Rushing · on trade block">#201</span><span class="pill t3" data-tooltip="#293 Dillon Dingler" data-player-key="dillon dingler" role="button" tabindex="0" aria-label="#293 Dillon Dingler">#293</span><span class="pill t4" data-tooltip="#455 Liam Hicks" data-player-key="liam hicks" role="button" tabindex="0" aria-label="#455 Liam Hicks">#455</span><span class="pill t5" data-tooltip="#503 Ike Irish" data-player-key="ike irish" role="button" tabindex="0" aria-label="#503 Ike Irish">#503</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#179 Jonathan Aranda" data-player-key="jonathan aranda" role="button" tabindex="0" aria-label="#179 Jonathan Aranda">#179</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#120 Marcelo Mayer" data-player-key="marcelo mayer" role="button" tabindex="0" aria-label="#120 Marcelo Mayer">#120</span><span class="pill t3" data-tooltip="#207 Kristian Campbell" data-player-key="kristian campbell" role="button" tabindex="0" aria-label="#207 Kristian Campbell">#207</span><span class="pill t5" data-tooltip="#577 Jeremiah Jackson" data-player-key="jeremiah jackson" role="button" tabindex="0" aria-label="#577 Jeremiah Jackson">#577</span><span class="pill t5" data-tooltip="#1780 Henry Godbout" data-player-key="henry godbout" role="button" tabindex="0" aria-label="#1780 Henry Godbout">#1780</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#60 Maikel Garcia" data-player-key="maikel garcia" role="button" tabindex="0" aria-label="#60 Maikel Garcia">#60</span><span class="pill t3" data-tooltip="#226 Kazuma Okamoto" data-player-key="kazuma okamoto" role="button" tabindex="0" aria-label="#226 Kazuma Okamoto">#226</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#23 Zach Neto" data-player-key="zach neto" role="button" tabindex="0" aria-label="#23 Zach Neto">#23</span><span class="pill t2" data-tooltip="#123 Luis Pena" data-player-key="luis pena" role="button" tabindex="0" aria-label="#123 Luis Pena">#123</span><span class="pill t2" data-tooltip="#134 Aidan Miller" data-player-key="aidan miller" role="button" tabindex="0" aria-label="#134 Aidan Miller">#134</span><span class="pill t4" data-tooltip="#419 Sam Antonacci" data-player-key="sam antonacci" role="button" tabindex="0" aria-label="#419 Sam Antonacci">#419</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#70 Max Clark" data-player-key="max clark" role="button" tabindex="0" aria-label="#70 Max Clark">#70</span><span class="pill t2" data-tooltip="#112 Carson Benge" data-player-key="carson benge" role="button" tabindex="0" aria-label="#112 Carson Benge">#112</span><span class="pill t2" data-tooltip="#131 Kyle Stowers" data-player-key="kyle stowers" role="button" tabindex="0" aria-label="#131 Kyle Stowers">#131</span><span class="pill t3" data-tooltip="#156 Zyhir Hope" data-player-key="zyhir hope" role="button" tabindex="0" aria-label="#156 Zyhir Hope">#156</span><span class="pill t3 trade-block" data-tooltip="#160 Steven Kwan · on trade block" data-player-key="steven kwan" role="button" tabindex="0" aria-label="#160 Steven Kwan · on trade block">#160</span><span class="pill t5 trade-block" data-tooltip="#558 Jorge Soler · on trade block" data-player-key="jorge soler" role="button" tabindex="0" aria-label="#558 Jorge Soler · on trade block">#558</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#30 Logan Gilbert" data-player-key="logan gilbert" role="button" tabindex="0" aria-label="#30 Logan Gilbert">#30</span><span class="pill t2" data-tooltip="#142 Andrew Painter" data-player-key="andrew painter" role="button" tabindex="0" aria-label="#142 Andrew Painter">#142</span><span class="pill t3" data-tooltip="#166 Kade Anderson" data-player-key="kade anderson" role="button" tabindex="0" aria-label="#166 Kade Anderson">#166</span><span class="pill t3" data-tooltip="#177 Jackson Jobe" data-player-key="jackson jobe" role="button" tabindex="0" aria-label="#177 Jackson Jobe">#177</span><span class="pill t3" data-tooltip="#189 Jared Jones" data-player-key="jared jones" role="button" tabindex="0" aria-label="#189 Jared Jones">#189</span><span class="pill t3" data-tooltip="#211 Noah Schultz" data-player-key="noah schultz" role="button" tabindex="0" aria-label="#211 Noah Schultz">#211</span><span class="pill t3 trade-block" data-tooltip="#215 Pablo López · on trade block" data-player-key="pablo lopez" role="button" tabindex="0" aria-label="#215 Pablo López · on trade block">#215</span><span class="pill t3" data-tooltip="#244 Jack Leiter" data-player-key="jack leiter" role="button" tabindex="0" aria-label="#244 Jack Leiter">#244</span><span class="pill t4" data-tooltip="#331 Brayan Bello" data-player-key="brayan bello" role="button" tabindex="0" aria-label="#331 Brayan Bello">#331</span><span class="pill t4 trade-block" data-tooltip="#340 Bryan Abreu · on trade block" data-player-key="bryan abreu" role="button" tabindex="0" aria-label="#340 Bryan Abreu · on trade block">#340</span><span class="pill t4" data-tooltip="#344 Gage Jump" data-player-key="gage jump" role="button" tabindex="0" aria-label="#344 Gage Jump">#344</span><span class="pill t4" data-tooltip="#363 Landen Roupp" data-player-key="landen roupp" role="button" tabindex="0" aria-label="#363 Landen Roupp">#363</span><span class="pill t4" data-tooltip="#425 Jaxon Wiggins" data-player-key="jaxon wiggins" role="button" tabindex="0" aria-label="#425 Jaxon Wiggins">#425</span><span class="pill t4" data-tooltip="#431 Michael McGreevy" data-player-key="michael mcgreevy" role="button" tabindex="0" aria-label="#431 Michael McGreevy">#431</span><span class="pill t4" data-tooltip="#436 Quinn Mathews" data-player-key="quinn mathews" role="button" tabindex="0" aria-label="#436 Quinn Mathews">#436</span><span class="pill t4" data-tooltip="#452 Kruz Schoolcraft" data-player-key="kruz schoolcraft" role="button" tabindex="0" aria-label="#452 Kruz Schoolcraft">#452</span><span class="pill t4" data-tooltip="#462 Sean Burke" data-player-key="sean burke" role="button" tabindex="0" aria-label="#462 Sean Burke">#462</span><span class="pill t4" data-tooltip="#480 Bryce Elder" data-player-key="bryce elder" role="button" tabindex="0" aria-label="#480 Bryce Elder">#480</span><span class="pill t5" data-tooltip="#579 Anthony Eyanson" data-player-key="anthony eyanson" role="button" tabindex="0" aria-label="#579 Anthony Eyanson">#579</span><span class="pill t5 trade-block" data-tooltip="#606 Tony Santillan · on trade block" data-player-key="tony santillan" role="button" tabindex="0" aria-label="#606 Tony Santillan · on trade block">#606</span><span class="pill t5 trade-block" data-tooltip="#786 Jakob Junis · on trade block" data-player-key="jakob junis" role="button" tabindex="0" aria-label="#786 Jakob Junis · on trade block">#786</span><span class="pill t5" data-tooltip="#885 Daniel Lynch" data-player-key="daniel lynch" role="button" tabindex="0" aria-label="#885 Daniel Lynch">#885</span><span class="pill t5" data-tooltip="#900 Kutter Crawford" data-player-key="kutter crawford" role="button" tabindex="0" aria-label="#900 Kutter Crawford">#900</span><span class="pill t5 big-faller" data-tooltip="#999 Gordon Graceffo ↓196" data-player-key="gordon graceffo" role="button" tabindex="0" aria-label="#999 Gordon Graceffo ↓196">#999</span><span class="pill t5 big-faller" data-tooltip="#1198 Keaton Winn ↓342" data-player-key="keaton winn" role="button" tabindex="0" aria-label="#1198 Keaton Winn ↓342">#1198</span><span class="pill t5" data-tooltip="#1318 Antonio Senzatela" data-player-key="antonio senzatela" role="button" tabindex="0" aria-label="#1318 Antonio Senzatela">#1318</span></td><td class="pos-cell empty"><span class="count-empty">—</span></td>
     </tr>
     <tr>
       <td class="rank-num">8</td>
@@ -613,10 +581,10 @@ html[data-theme="light"] .player-close {
     <tr>
       <td class="rank-num">11</td>
       <td class="team-cell">
-        <span class="tname">Mommy<span class="team-delta delta-down">▼7</span></span>
-        <span class="tscore">22,824</span>
+        <span class="tname">Mommy<span class="team-delta delta-down">▼6</span></span>
+        <span class="tscore">22,996</span>
       </td>
-      <td class="pos-cell"><span class="pill t2" data-tooltip="#149 Iván Herrera" data-player-key="ivan herrera" role="button" tabindex="0" aria-label="#149 Iván Herrera">#149</span><span class="pill t4" data-tooltip="#414 Salvador Perez" data-player-key="salvador perez" role="button" tabindex="0" aria-label="#414 Salvador Perez">#414</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#114 Freddie Freeman" data-player-key="freddie freeman" role="button" tabindex="0" aria-label="#114 Freddie Freeman">#114</span><span class="pill t4" data-tooltip="#343 Spencer Steer" data-player-key="spencer steer" role="button" tabindex="0" aria-label="#343 Spencer Steer">#343</span><span class="pill t5" data-tooltip="#693 Luke Raley" data-player-key="luke raley" role="button" tabindex="0" aria-label="#693 Luke Raley">#693</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#176 Matt McLain" data-player-key="matt mclain" role="button" tabindex="0" aria-label="#176 Matt McLain">#176</span><span class="pill t3" data-tooltip="#232 Brandon Lowe" data-player-key="brandon lowe" role="button" tabindex="0" aria-label="#232 Brandon Lowe">#232</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#74 Manny Machado" data-player-key="manny machado" role="button" tabindex="0" aria-label="#74 Manny Machado">#74</span><span class="pill t5" data-tooltip="#671 Ryan McMahon" data-player-key="ryan mcmahon" role="button" tabindex="0" aria-label="#671 Ryan McMahon">#671</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#162 Willy Adames" data-player-key="willy adames" role="button" tabindex="0" aria-label="#162 Willy Adames">#162</span><span class="pill t3" data-tooltip="#253 Dansby Swanson" data-player-key="dansby swanson" role="button" tabindex="0" aria-label="#253 Dansby Swanson">#253</span><span class="pill t4" data-tooltip="#309 JoJo Parker" data-player-key="jojo parker" role="button" tabindex="0" aria-label="#309 JoJo Parker">#309</span><span class="pill t4" data-tooltip="#390 Xander Bogaerts" data-player-key="xander bogaerts" role="button" tabindex="0" aria-label="#390 Xander Bogaerts">#390</span><span class="pill t5" data-tooltip="#508 Gavin Fien" data-player-key="gavin fien" role="button" tabindex="0" aria-label="#508 Gavin Fien">#508</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#13 Fernando Tatis Jr." data-player-key="fernando tatis" role="button" tabindex="0" aria-label="#13 Fernando Tatis Jr.">#13</span><span class="pill t1" data-tooltip="#16 Kyle Tucker" data-player-key="kyle tucker" role="button" tabindex="0" aria-label="#16 Kyle Tucker">#16</span><span class="pill t2" data-tooltip="#107 Lawrence Butler" data-player-key="lawrence butler" role="button" tabindex="0" aria-label="#107 Lawrence Butler">#107</span><span class="pill t3" data-tooltip="#186 Jordan Walker" data-player-key="jordan walker" role="button" tabindex="0" aria-label="#186 Jordan Walker">#186</span><span class="pill t3" data-tooltip="#187 Heliot Ramos" data-player-key="heliot ramos" role="button" tabindex="0" aria-label="#187 Heliot Ramos">#187</span><span class="pill t3" data-tooltip="#205 Taylor Ward" data-player-key="taylor ward" role="button" tabindex="0" aria-label="#205 Taylor Ward">#205</span><span class="pill t4" data-tooltip="#339 Jung Hoo Lee" data-player-key="jung hoo lee" role="button" tabindex="0" aria-label="#339 Jung Hoo Lee">#339</span><span class="pill t4" data-tooltip="#395 Garrett Mitchell" data-player-key="garrett mitchell" role="button" tabindex="0" aria-label="#395 Garrett Mitchell">#395</span><span class="pill t4" data-tooltip="#460 Adolis García" data-player-key="adolis garcia" role="button" tabindex="0" aria-label="#460 Adolis García">#460</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#25 Hunter Brown" data-player-key="hunter brown" role="button" tabindex="0" aria-label="#25 Hunter Brown">#25</span><span class="pill t2" data-tooltip="#52 Max Fried" data-player-key="max fried" role="button" tabindex="0" aria-label="#52 Max Fried">#52</span><span class="pill t2" data-tooltip="#122 Michael King" data-player-key="michael king" role="button" tabindex="0" aria-label="#122 Michael King">#122</span><span class="pill t2" data-tooltip="#148 Edward Cabrera" data-player-key="edward cabrera" role="button" tabindex="0" aria-label="#148 Edward Cabrera">#148</span><span class="pill t2" data-tooltip="#150 Blake Snell" data-player-key="blake snell" role="button" tabindex="0" aria-label="#150 Blake Snell">#150</span><span class="pill t4" data-tooltip="#355 Ryne Nelson" data-player-key="ryne nelson" role="button" tabindex="0" aria-label="#355 Ryne Nelson">#355</span><span class="pill t4" data-tooltip="#464 Raisel Iglesias" data-player-key="raisel iglesias" role="button" tabindex="0" aria-label="#464 Raisel Iglesias">#464</span><span class="pill t4" data-tooltip="#468 Ryan Walker" data-player-key="ryan walker" role="button" tabindex="0" aria-label="#468 Ryan Walker">#468</span><span class="pill t5" data-tooltip="#524 Aaron Ashby" data-player-key="aaron ashby" role="button" tabindex="0" aria-label="#524 Aaron Ashby">#524</span><span class="pill t5" data-tooltip="#585 Jameson Taillon" data-player-key="jameson taillon" role="button" tabindex="0" aria-label="#585 Jameson Taillon">#585</span><span class="pill t5" data-tooltip="#652 Eduardo Rodriguez" data-player-key="eduardo rodriguez" role="button" tabindex="0" aria-label="#652 Eduardo Rodriguez">#652</span><span class="pill t5 big-riser" data-tooltip="#737 Trevor McDonald ↑176" data-player-key="trevor mcdonald" role="button" tabindex="0" aria-label="#737 Trevor McDonald ↑176">#737</span><span class="pill t5" data-tooltip="#1490 Brooks Raley" data-player-key="brooks raley" role="button" tabindex="0" aria-label="#1490 Brooks Raley">#1490</span></td><td class="pos-cell"><span class="pill t5" data-tooltip="#1369 Scott Barlow" data-player-key="scott barlow" role="button" tabindex="0" aria-label="#1369 Scott Barlow">#1369</span><span class="pill t5" data-tooltip="#1622 Hunter Bigge" data-player-key="hunter bigge" role="button" tabindex="0" aria-label="#1622 Hunter Bigge">#1622</span></td>
+      <td class="pos-cell"><span class="pill t2" data-tooltip="#149 Iván Herrera" data-player-key="ivan herrera" role="button" tabindex="0" aria-label="#149 Iván Herrera">#149</span><span class="pill t4" data-tooltip="#414 Salvador Perez" data-player-key="salvador perez" role="button" tabindex="0" aria-label="#414 Salvador Perez">#414</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#114 Freddie Freeman" data-player-key="freddie freeman" role="button" tabindex="0" aria-label="#114 Freddie Freeman">#114</span><span class="pill t4" data-tooltip="#343 Spencer Steer" data-player-key="spencer steer" role="button" tabindex="0" aria-label="#343 Spencer Steer">#343</span><span class="pill t5" data-tooltip="#693 Luke Raley" data-player-key="luke raley" role="button" tabindex="0" aria-label="#693 Luke Raley">#693</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#176 Matt McLain" data-player-key="matt mclain" role="button" tabindex="0" aria-label="#176 Matt McLain">#176</span><span class="pill t3" data-tooltip="#232 Brandon Lowe" data-player-key="brandon lowe" role="button" tabindex="0" aria-label="#232 Brandon Lowe">#232</span></td><td class="pos-cell"><span class="pill t2" data-tooltip="#74 Manny Machado" data-player-key="manny machado" role="button" tabindex="0" aria-label="#74 Manny Machado">#74</span><span class="pill t5" data-tooltip="#671 Ryan McMahon" data-player-key="ryan mcmahon" role="button" tabindex="0" aria-label="#671 Ryan McMahon">#671</span></td><td class="pos-cell"><span class="pill t3" data-tooltip="#162 Willy Adames" data-player-key="willy adames" role="button" tabindex="0" aria-label="#162 Willy Adames">#162</span><span class="pill t3" data-tooltip="#253 Dansby Swanson" data-player-key="dansby swanson" role="button" tabindex="0" aria-label="#253 Dansby Swanson">#253</span><span class="pill t4" data-tooltip="#309 JoJo Parker" data-player-key="jojo parker" role="button" tabindex="0" aria-label="#309 JoJo Parker">#309</span><span class="pill t4" data-tooltip="#390 Xander Bogaerts" data-player-key="xander bogaerts" role="button" tabindex="0" aria-label="#390 Xander Bogaerts">#390</span><span class="pill t5" data-tooltip="#508 Gavin Fien" data-player-key="gavin fien" role="button" tabindex="0" aria-label="#508 Gavin Fien">#508</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#13 Fernando Tatis Jr." data-player-key="fernando tatis" role="button" tabindex="0" aria-label="#13 Fernando Tatis Jr.">#13</span><span class="pill t1" data-tooltip="#16 Kyle Tucker" data-player-key="kyle tucker" role="button" tabindex="0" aria-label="#16 Kyle Tucker">#16</span><span class="pill t2" data-tooltip="#107 Lawrence Butler" data-player-key="lawrence butler" role="button" tabindex="0" aria-label="#107 Lawrence Butler">#107</span><span class="pill t3" data-tooltip="#186 Jordan Walker" data-player-key="jordan walker" role="button" tabindex="0" aria-label="#186 Jordan Walker">#186</span><span class="pill t3" data-tooltip="#187 Heliot Ramos" data-player-key="heliot ramos" role="button" tabindex="0" aria-label="#187 Heliot Ramos">#187</span><span class="pill t3" data-tooltip="#205 Taylor Ward" data-player-key="taylor ward" role="button" tabindex="0" aria-label="#205 Taylor Ward">#205</span><span class="pill t4" data-tooltip="#339 Jung Hoo Lee" data-player-key="jung hoo lee" role="button" tabindex="0" aria-label="#339 Jung Hoo Lee">#339</span><span class="pill t4" data-tooltip="#395 Garrett Mitchell" data-player-key="garrett mitchell" role="button" tabindex="0" aria-label="#395 Garrett Mitchell">#395</span><span class="pill t4" data-tooltip="#460 Adolis García" data-player-key="adolis garcia" role="button" tabindex="0" aria-label="#460 Adolis García">#460</span></td><td class="pos-cell"><span class="pill t1" data-tooltip="#25 Hunter Brown" data-player-key="hunter brown" role="button" tabindex="0" aria-label="#25 Hunter Brown">#25</span><span class="pill t2" data-tooltip="#52 Max Fried" data-player-key="max fried" role="button" tabindex="0" aria-label="#52 Max Fried">#52</span><span class="pill t2" data-tooltip="#122 Michael King" data-player-key="michael king" role="button" tabindex="0" aria-label="#122 Michael King">#122</span><span class="pill t2" data-tooltip="#148 Edward Cabrera" data-player-key="edward cabrera" role="button" tabindex="0" aria-label="#148 Edward Cabrera">#148</span><span class="pill t2" data-tooltip="#150 Blake Snell" data-player-key="blake snell" role="button" tabindex="0" aria-label="#150 Blake Snell">#150</span><span class="pill t4" data-tooltip="#355 Ryne Nelson" data-player-key="ryne nelson" role="button" tabindex="0" aria-label="#355 Ryne Nelson">#355</span><span class="pill t4" data-tooltip="#464 Raisel Iglesias" data-player-key="raisel iglesias" role="button" tabindex="0" aria-label="#464 Raisel Iglesias">#464</span><span class="pill t4" data-tooltip="#468 Ryan Walker" data-player-key="ryan walker" role="button" tabindex="0" aria-label="#468 Ryan Walker">#468</span><span class="pill t5" data-tooltip="#524 Aaron Ashby" data-player-key="aaron ashby" role="button" tabindex="0" aria-label="#524 Aaron Ashby">#524</span><span class="pill t5" data-tooltip="#585 Jameson Taillon" data-player-key="jameson taillon" role="button" tabindex="0" aria-label="#585 Jameson Taillon">#585</span><span class="pill t5" data-tooltip="#652 Eduardo Rodriguez" data-player-key="eduardo rodriguez" role="button" tabindex="0" aria-label="#652 Eduardo Rodriguez">#652</span><span class="pill t5 big-riser" data-tooltip="#737 Trevor McDonald ↑176" data-player-key="trevor mcdonald" role="button" tabindex="0" aria-label="#737 Trevor McDonald ↑176">#737</span><span class="pill t5" data-tooltip="#1490 Brooks Raley" data-player-key="brooks raley" role="button" tabindex="0" aria-label="#1490 Brooks Raley">#1490</span></td><td class="pos-cell"><span class="pill t5" data-tooltip="#1369 Scott Barlow" data-player-key="scott barlow" role="button" tabindex="0" aria-label="#1369 Scott Barlow">#1369</span><span class="pill t5" data-tooltip="#1455 Tim Hill" data-player-key="tim hill" role="button" tabindex="0" aria-label="#1455 Tim Hill">#1455</span><span class="pill t5" data-tooltip="#1622 Hunter Bigge" data-player-key="hunter bigge" role="button" tabindex="0" aria-label="#1622 Hunter Bigge">#1622</span></td>
     </tr>
     <tr>
       <td class="rank-num">12</td>
@@ -634,9 +602,9 @@ html[data-theme="light"] .player-close {
 <div class="footnote">
   Generated May 18, 2026 &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings &nbsp;·&nbsp;
   Δ indicates week-over-week rank change &nbsp;·&nbsp;
-  Risers <span style="color:var(--cold);font-style:normal">↑</span> and
-  fallers <span style="color:var(--hot);font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
-  <span style="color:var(--gold-500);font-style:normal">⇄</span> indicates player is on their team's trade block
+  Risers <span style="color:#5d7db5;font-style:normal">↑</span> and
+  fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
+  <span style="color:#c8a84b;font-style:normal">⇄</span> indicates player is on their team's trade block
 </div>
 
 <div class="player-modal" id="playerModal" aria-hidden="true">
@@ -683,55 +651,6 @@ html[data-theme="light"] .player-close {
 
   let activePill = null;
   let trajectoryData = null;
-
-  const slugify = (value) => String(value || '')
-    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/\b(?:Jr|Sr|II|III|IV)\.?\b/gi, '')
-    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-
-  const teamNameFromNode = (node) => {
-    if (!node) return '';
-    const clone = node.cloneNode(true);
-    clone.querySelectorAll('.team-delta').forEach((delta) => delta.remove());
-    return clone.textContent.trim();
-  };
-
-  const TEAM_SLUG_ALIASES = {
-    'acuna-matata': 'philbell',
-  };
-
-  const playerNameFromPill = (pill) => {
-    const tooltipText = pill.dataset.tooltip || '';
-    const match = tooltipText.match(/^#\d+\s+(.+?)(?:\s+[↑↓]\d+| ·|$)/);
-    return (match ? match[1] : pill.dataset.playerKey || '').trim();
-  };
-
-  const dynastyHrefForPill = (pill) => {
-    const slug = slugify(playerNameFromPill(pill));
-    return slug ? `dynasty_rankings.html?player=${encodeURIComponent(slug)}` : 'dynasty_rankings.html';
-  };
-
-  const rosterRows = Array.from(document.querySelectorAll('.table-wrap tbody tr'));
-  rosterRows.forEach((row) => {
-    const teamName = teamNameFromNode(row.querySelector('.tname'));
-    if (!teamName) return;
-    row.dataset.teamSlug = slugify(teamName);
-  });
-
-  const handleTeamParam = () => {
-    const rawTeamSlug = new URLSearchParams(window.location.search).get('team');
-    const teamSlug = TEAM_SLUG_ALIASES[rawTeamSlug] || rawTeamSlug;
-    if (!teamSlug) return;
-    const target = rosterRows.find((row) => row.dataset.teamSlug === teamSlug);
-    if (!target) return;
-    requestAnimationFrame(() => {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      target.classList.remove('deep-link-flash');
-      void target.offsetWidth;
-      target.classList.add('deep-link-flash');
-      setTimeout(() => target.classList.remove('deep-link-flash'), 2100);
-    });
-  };
 
   const positionTooltip = (x, y) => {
     const gap = 14;
@@ -833,18 +752,18 @@ html[data-theme="light"] .player-close {
     const yFor = (rank) => pad.top + ((rank - minRank) / rankSpan) * chartHeight;
     const pathPoints = points.map((point, idx) => `${xFor(idx).toFixed(1)},${yFor(point.rank).toFixed(1)}`).join(' ');
 
-    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: 'var(--sep-nonopaque)', 'stroke-width': 1 });
-    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: 'var(--sep-nonopaque)', 'stroke-width': 1 });
-    addSvg('text', { x: 8, y: pad.top + 4, fill: 'var(--t-tertiary)', 'font-size': 11 }, fmtRank(minRank));
-    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: 'var(--t-tertiary)', 'font-size': 11 }, fmtRank(maxRank));
-    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: 'var(--gold-500)', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
+    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
+    addSvg('text', { x: 8, y: pad.top + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(minRank));
+    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(maxRank));
+    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: '#c8a84b', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
 
     points.forEach((point, idx) => {
-      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? 'var(--t-primary)' : 'var(--gold-500)' });
+      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? '#f0ede6' : '#c8a84b' });
     });
 
-    addSvg('text', { x: pad.left, y: height - 10, fill: 'var(--t-tertiary)', 'font-size': 11 }, points[0].date);
-    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: 'var(--t-tertiary)', 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
+    addSvg('text', { x: pad.left, y: height - 10, fill: '#7a7872', 'font-size': 11 }, points[0].date);
+    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: '#7a7872', 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
   };
 
   const renderPlayer = (player) => {
@@ -896,8 +815,6 @@ html[data-theme="light"] .player-close {
   };
 
   document.querySelectorAll('.pill[data-tooltip]').forEach((pill) => {
-    pill.setAttribute('role', 'link');
-    pill.title = 'View in Dynasty Rankings';
     pill.addEventListener('mouseenter', (event) => showTooltip(pill, event));
     pill.addEventListener('mousemove', (event) => {
       if (activePill === pill) {
@@ -905,13 +822,11 @@ html[data-theme="light"] .player-close {
       }
     });
     pill.addEventListener('mouseleave', hideTooltip);
-    pill.addEventListener('click', () => {
-      window.location.href = dynastyHrefForPill(pill);
-    });
+    pill.addEventListener('click', () => openPlayer(pill.dataset.playerKey));
     pill.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        window.location.href = dynastyHrefForPill(pill);
+        openPlayer(pill.dataset.playerKey);
       }
     });
   });
@@ -928,7 +843,6 @@ html[data-theme="light"] .player-close {
   if (hashMatch) {
     openPlayer(decodeURIComponent(hashMatch[1]), false);
   }
-  handleTeamParam();
 })();
 </script>
 
