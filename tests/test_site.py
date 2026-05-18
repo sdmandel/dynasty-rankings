@@ -119,6 +119,18 @@ def test_site_header_typography_stays_shared() -> None:
         )
 
 
+def test_roster_depth_uses_shared_header_and_nav_fonts() -> None:
+    html = _read(ROOT / "roster_depth.html")
+    nav_css = _read(ROOT / "assets" / "nav.css")
+
+    assert 'href="assets/site.css"' in html
+    assert 'class="site-header"' in html
+    assert 'class="header"' not in html
+    assert "Bebas Neue" not in html
+    assert "DM Sans" not in html
+    assert "DM Sans" not in nav_css
+
+
 def test_analytics_loader_is_present_everywhere() -> None:
     shell_js = _read(ROOT / "assets" / "site-shell.js")
     analytics_js = _read(ROOT / "assets" / "analytics.js")
