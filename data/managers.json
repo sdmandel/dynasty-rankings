@@ -1,14 +1,14 @@
 {
-  "generated": "2026-05-13",
+  "generated": "2026-05-18",
   "season": 2026,
   "managers": [
     {
       "team": "Seam heads",
       "source_team": "Seam heads",
       "trade_count": 7,
-      "add_count": 47,
-      "drop_count": 51,
-      "roster_churn": 98.0,
+      "add_count": 50,
+      "drop_count": 55,
+      "roster_churn": 105.0,
       "churn_pct": 100.0,
       "archetypes": [
         "market watcher",
@@ -20,11 +20,11 @@
     {
       "team": "Vin Mazzaro fan club",
       "source_team": "Vin Mazzaro fan club",
-      "trade_count": 15,
-      "add_count": 49,
-      "drop_count": 36,
-      "roster_churn": 85.0,
-      "churn_pct": 86.7,
+      "trade_count": 17,
+      "add_count": 54,
+      "drop_count": 41,
+      "roster_churn": 95.0,
+      "churn_pct": 90.5,
       "archetypes": [
         "trader",
         "grinder",
@@ -36,10 +36,10 @@
       "team": "Millville Meteors",
       "source_team": "Millville Meteors",
       "trade_count": 0,
-      "add_count": 31,
-      "drop_count": 26,
-      "roster_churn": 57.0,
-      "churn_pct": 58.2,
+      "add_count": 35,
+      "drop_count": 30,
+      "roster_churn": 65.0,
+      "churn_pct": 61.9,
       "archetypes": [
         "grinder"
       ],
@@ -48,11 +48,11 @@
     {
       "team": "Pat",
       "source_team": "Pat",
-      "trade_count": 0,
-      "add_count": 26,
-      "drop_count": 18,
-      "roster_churn": 44.0,
-      "churn_pct": 44.9,
+      "trade_count": 2,
+      "add_count": 32,
+      "drop_count": 23,
+      "roster_churn": 55.0,
+      "churn_pct": 52.4,
       "archetypes": [
         "grinder"
       ],
@@ -62,10 +62,10 @@
       "team": "Inkers",
       "source_team": "Inkers",
       "trade_count": 10,
-      "add_count": 20,
+      "add_count": 21,
       "drop_count": 19,
-      "roster_churn": 39.0,
-      "churn_pct": 39.8,
+      "roster_churn": 40.0,
+      "churn_pct": 38.1,
       "archetypes": [
         "prospect hoarder",
         "trader",
@@ -74,13 +74,28 @@
       "archetype": "prospect hoarder"
     },
     {
+      "team": "Humongous Melonheads",
+      "source_team": "Humongous Melonheads",
+      "trade_count": 5,
+      "add_count": 17,
+      "drop_count": 12,
+      "roster_churn": 29.0,
+      "churn_pct": 27.6,
+      "archetypes": [
+        "market watcher",
+        "waiver regular",
+        "prospect hoarder"
+      ],
+      "archetype": "market watcher"
+    },
+    {
       "team": "Trazadone",
       "source_team": "Trazadone",
       "trade_count": 5,
       "add_count": 17,
-      "drop_count": 11,
-      "roster_churn": 28.0,
-      "churn_pct": 28.6,
+      "drop_count": 12,
+      "roster_churn": 29.0,
+      "churn_pct": 27.6,
       "archetypes": [
         "market watcher",
         "waiver regular",
@@ -92,10 +107,10 @@
       "team": "John Henry Fan Club",
       "source_team": "John Henry Fan Club",
       "trade_count": 6,
-      "add_count": 16,
+      "add_count": 17,
       "drop_count": 11,
-      "roster_churn": 27.0,
-      "churn_pct": 27.6,
+      "roster_churn": 28.0,
+      "churn_pct": 26.7,
       "archetypes": [
         "market watcher",
         "waiver regular",
@@ -104,72 +119,58 @@
       "archetype": "market watcher"
     },
     {
-      "team": "Humongous Melonheads",
-      "source_team": "Humongous Melonheads",
-      "trade_count": 5,
-      "add_count": 14,
-      "drop_count": 11,
+      "team": "Rollie Fingers",
+      "source_team": "Rollie Fingers",
+      "trade_count": 10,
+      "add_count": 15,
+      "drop_count": 10,
       "roster_churn": 25.0,
-      "churn_pct": 25.5,
+      "churn_pct": 23.8,
       "archetypes": [
-        "market watcher",
+        "trader",
         "waiver regular",
         "prospect hoarder"
       ],
-      "archetype": "market watcher"
+      "archetype": "trader"
     },
     {
       "team": "Acu\u00f1a Matata",
       "source_team": "Acu\u00f1a Matata",
       "trade_count": 0,
-      "add_count": 15,
+      "add_count": 16,
       "drop_count": 7,
-      "roster_churn": 22.0,
-      "churn_pct": 22.4,
+      "roster_churn": 23.0,
+      "churn_pct": 21.9,
       "archetypes": [
         "holding steady"
       ],
       "archetype": "holding steady"
     },
     {
-      "team": "Rollie Fingers",
-      "source_team": "Rollie Fingers",
-      "trade_count": 10,
-      "add_count": 13,
-      "drop_count": 9,
-      "roster_churn": 22.0,
-      "churn_pct": 22.4,
+      "team": "Mommy",
+      "source_team": "Mommy",
+      "trade_count": 2,
+      "add_count": 10,
+      "drop_count": 11,
+      "roster_churn": 21.0,
+      "churn_pct": 20.0,
       "archetypes": [
-        "trader",
         "waiver regular"
       ],
-      "archetype": "trader"
+      "archetype": "waiver regular"
     },
     {
       "team": "Sam",
       "source_team": "Sam",
       "trade_count": 4,
-      "add_count": 14,
-      "drop_count": 4,
-      "roster_churn": 18.0,
-      "churn_pct": 18.4,
+      "add_count": 15,
+      "drop_count": 5,
+      "roster_churn": 20.0,
+      "churn_pct": 19.0,
       "archetypes": [
-        "selective"
+        "waiver regular"
       ],
-      "archetype": "selective"
-    },
-    {
-      "team": "Mommy",
-      "source_team": "Mommy",
-      "trade_count": 2,
-      "add_count": 7,
-      "drop_count": 8,
-      "roster_churn": 15.0,
-      "churn_pct": 15.3,
-      "archetypes": [
-        "asleep at the wheel"
-      ],
-      "archetype": "asleep at the wheel"
+      "archetype": "waiver regular"
     }
   ]
 }
