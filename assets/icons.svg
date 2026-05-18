@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- chevron-right: > -->
+  <symbol id="icon-chevron-right" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M4.47 2.22a.75.75 0 0 0 0 1.06L7.19 6 4.47 8.72a.75.75 0 1 0 1.06 1.06l3.25-3.25a.75.75 0 0 0 0-1.06L5.53 2.22a.75.75 0 0 0-1.06 0Z"/>
+  </symbol>
+
+  <!-- chevron-up: ^ -->
+  <symbol id="icon-chevron-up" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M9.78 7.53a.75.75 0 0 0 0-1.06L6.53 3.22a.75.75 0 0 0-1.06 0L2.22 6.47a.75.75 0 1 0 1.06 1.06L6 4.81l2.72 2.72a.75.75 0 0 0 1.06 0Z"/>
+  </symbol>
+
+  <!-- chevron-down: v -->
+  <symbol id="icon-chevron-down" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M2.22 4.47a.75.75 0 0 0 0 1.06l3.25 3.25a.75.75 0 0 0 1.06 0l3.25-3.25a.75.75 0 1 0-1.06-1.06L6 7.19 3.28 4.47a.75.75 0 0 0-1.06 0Z"/>
+  </symbol>
+
+  <!-- arrow-up: thin upward arrow with arrowhead -->
+  <symbol id="icon-arrow-up" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M6 1.5a.5.5 0 0 0-.354.146l-3 3a.5.5 0 1 0 .708.708L5.5 3.207V10a.5.5 0 0 0 1 0V3.207l2.146 2.147a.5.5 0 1 0 .708-.708l-3-3A.5.5 0 0 0 6 1.5Z"/>
+  </symbol>
+
+  <!-- arrow-down: thin downward arrow with arrowhead -->
+  <symbol id="icon-arrow-down" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M6 10.5a.5.5 0 0 0 .354-.146l3-3a.5.5 0 1 0-.708-.708L6.5 8.793V2a.5.5 0 0 0-1 0v6.793L3.354 6.646a.5.5 0 1 0-.708.708l3 3A.5.5 0 0 0 6 10.5Z"/>
+  </symbol>
+
+  <!-- arrows-swap: bidirectional ↕ swap arrows -->
+  <symbol id="icon-arrows-swap" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M3.5 1.5a.5.5 0 0 0-.354.146l-2 2a.5.5 0 1 0 .708.708L3 3.207V9a.5.5 0 0 0 1 0V3.207l1.146 1.147a.5.5 0 1 0 .708-.708l-2-2A.5.5 0 0 0 3.5 1.5ZM8.5 10.5a.5.5 0 0 0 .354-.146l2-2a.5.5 0 1 0-.708-.708L9 8.793V3a.5.5 0 0 0-1 0v5.793L6.854 7.646a.5.5 0 1 0-.708.708l2 2A.5.5 0 0 0 8.5 10.5Z"/>
+  </symbol>
+
+  <!-- info-circle: circle with "i" -->
+  <symbol id="icon-info-circle" viewBox="0 0 12 12">
+    <path fill="currentColor" fill-rule="evenodd" d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1ZM0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6Zm6-2.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM5.25 5a.75.75 0 0 1 .75-.75h.25a.75.75 0 0 1 .75.75v3h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5H5.5V5.75H5.25A.75.75 0 0 1 5.25 5Z" clip-rule="evenodd"/>
+  </symbol>
+
+  <!-- external-link: box with arrow pointing out top-right -->
+  <symbol id="icon-external-link" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M7 1.5a.5.5 0 0 1 0-1h3.5a.5.5 0 0 1 .5.5V4.5a.5.5 0 0 1-1 0V2.707L5.354 8.354a.5.5 0 0 1-.708-.708L10.293 2H7.5a.5.5 0 0 1-.5-.5ZM1 3a1 1 0 0 1 1-1h3a.5.5 0 0 1 0 1H2v7h7V7a.5.5 0 0 1 1 0v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3Z"/>
+  </symbol>
+
+  <!-- close: X mark -->
+  <symbol id="icon-close" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M2.22 2.22a.75.75 0 0 1 1.06 0L6 4.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L7.06 6l2.72 2.72a.75.75 0 1 1-1.06 1.06L6 7.06 3.28 9.78a.75.75 0 0 1-1.06-1.06L4.94 6 2.22 3.28a.75.75 0 0 1 0-1.06Z"/>
+  </symbol>
+
+  <!-- check: checkmark -->
+  <symbol id="icon-check" viewBox="0 0 12 12">
+    <path fill="currentColor" d="M10.53 2.97a.75.75 0 0 1 0 1.06l-5.5 5.5a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 1 1 1.06-1.06L4.5 7.94l4.97-4.97a.75.75 0 0 1 1.06 0Z"/>
+  </symbol>
+
+</svg>

@@ -20,30 +20,34 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Power Rankings Archive — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="All Oracle power rankings articles for Backyard Dynasty Baseball 2026.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --gold-dim: #4a3c18;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
 }
 
 html[data-theme="dark"] {
-  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
-  --gold: #c8a84b; --gold-dim: #4a3c18; --text: #f0ede6; --text-mid: #c2bfb8;
-  --text-muted: #7a7872; --text-dead: #4a4845;
+  --bg: var(--bg-base); --bg2: var(--bg-elevated); --border: var(--sep-opaque); --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500); --gold-dim: var(--gold-100); --text: var(--t-primary); --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary); --text-dead: var(--t-quaternary);
 }
 
 html[data-theme="light"] {
@@ -55,7 +59,7 @@ html[data-theme="light"] {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -75,7 +79,7 @@ body {
   margin-bottom: 14px;
 }
 .site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(56px, 8vw, 100px);
   line-height: 0.88;
   letter-spacing: 0.02em;
@@ -141,7 +145,7 @@ body {
   margin-bottom: 8px;
 }
 .archive-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 28px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -176,9 +180,9 @@ body {
   font-size: 11px;
 }
 .summary-pill.rank-1 {
-  border-color: #3a3020;
-  color: #d4b96a;
-  background: #1a1708;
+  border-color: var(--gold-100);
+  color: var(--gold-700);
+  background: var(--gold-tint-soft);
 }
 .summary-pill.rank-1 .summary-rank { color: var(--gold); }
 .summary-pill.rank-2 {
@@ -188,17 +192,26 @@ body {
 }
 .summary-pill.rank-2 .summary-rank { color: var(--text-muted); }
 .summary-pill.rank-3 {
-  border-color: #332515;
-  color: #c29663;
-  background: #18110a;
+  border-color: color-mix(in srgb, var(--gold-500) 36%, var(--sep-opaque));
+  color: color-mix(in srgb, var(--gold-500) 68%, var(--t-secondary));
+  background: color-mix(in srgb, var(--gold-500) 8%, var(--bg-elevated));
 }
-.summary-pill.rank-3 .summary-rank { color: #7a5c38; }
+.summary-pill.rank-3 .summary-rank { color: color-mix(in srgb, var(--gold-500) 55%, var(--t-tertiary)); }
 
 html[data-theme="light"] .summary-pill.rank-1 {
   border-color: #d4b870; color: #7a5c10; background: #fdf8ec;
 }
 html[data-theme="light"] .summary-pill.rank-3 {
   border-color: #d4a060; color: #6a4010; background: #fef4e8;
+}
+html[data-theme="light"] .archive-row.featured .archive-kicker,
+html[data-theme="light"] .archive-row.featured .archive-title,
+html[data-theme="light"] .archive-row.featured .archive-arrow {
+  color: var(--text);
+}
+html[data-theme="light"] .archive-row.featured .archive-kicker,
+html[data-theme="light"] .archive-row.featured .archive-arrow {
+  color: var(--text-muted);
 }
 html[data-theme="light"] .archive-row:hover {
   background: rgba(0,0,0,0.04);
@@ -259,9 +272,26 @@ html[data-theme="light"] .archive-row:hover {
   <div class="year-label">2026 Season — All Issues</div>
   <div class="archive-list">
 
-    <a href="week8_power_rankings.html" class="archive-row featured">
+    <a href="week9_power_rankings.html" class="archive-row featured">
       <div class="archive-main">
-        <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 8</div>
+        <div class="archive-kicker">Latest &nbsp;·&nbsp; Week 9</div>
+        <div class="archive-title">Power Rankings</div>
+        <div class="archive-subtitle">Week 9 mostly refused to move until the category sheet started leaking. Seam Heads and Rollie are separating from polite society, philbell/Acu&ntilde;a has ended the rebuild cosplay for now, Sam remembered that Soto and Harper are legal in the same lineup, and Millville found a new way to be tenth in standings and twelfth in vibes.</div>
+        <div class="archive-summary-pills" aria-label="Week 9 top three teams">
+          <span class="summary-pill rank-1"><span class="summary-rank">#1</span>Seam Heads</span>
+          <span class="summary-pill rank-2"><span class="summary-rank">#2</span>Rollie Fingers</span>
+          <span class="summary-pill rank-3"><span class="summary-rank">#3</span>Humongous Melonheads</span>
+        </div>
+      </div>
+      <div class="archive-side">
+        <div class="archive-date">May 18, 2026</div>
+        <div class="archive-arrow">Read →</div>
+      </div>
+    </a>
+
+    <a href="week8_power_rankings.html" class="archive-row">
+      <div class="archive-main">
+        <div class="archive-kicker">Week 8</div>
         <div class="archive-title">Power Rankings</div>
         <div class="archive-subtitle">Seam Heads stays in first by a five-point margin that would have been ten if Tarik Skubal and Edwin Diaz hadn&rsquo;t taken matching August vacations. Humongous Melonheads gain a spot on the back of the league&rsquo;s only +7.5 week, Pat climbs three on what is being charitably called &ldquo;engagement,&rdquo; and the bottom four reshuffle without anyone actually escaping the bottom four.</div>
         <div class="archive-summary-pills" aria-label="Week 8 top three teams">

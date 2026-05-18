@@ -1,0 +1,580 @@
+/* ── theme.css ────────────────────────────────────────────────────────────────
+   Apple-native design token system for the redesign.
+   Namespace: --bg-base / --bg-elevated / --t-primary / --gold-500 / etc.
+   Does NOT conflict with the legacy --bg / --gold / --text vars in site.css.
+   Dark is the default; light adapts via media query or [data-theme] attribute.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Section 1: Token definitions ──────────────────────────────────────── */
+
+/* Block A — dark default */
+:root {
+  /* surfaces */
+  --bg-base:     #0e0e0f;
+  --bg-elevated: #141416;
+  --bg-overlay:  #1a1a1c;
+
+  /* labels */
+  --t-primary:   #f0ede6;
+  --t-secondary: #c2bfb8;
+  --t-tertiary:  #7a7872;
+  --t-quaternary:#4a4845;
+
+  /* separators */
+  --sep-opaque:    #1e1e20;
+  --sep-nonopaque: rgba(255,255,255,0.06);
+
+  /* fills */
+  --fill-prim: rgba(255,255,255,0.15);
+  --fill-sec:  rgba(255,255,255,0.10);
+  --fill-tert: rgba(255,255,255,0.05);
+  --fill-quat: rgba(255,255,255,0.02);
+
+  /* gold system */
+  --gold-100: #3a2c10;
+  --gold-300: #7a5c20;
+  --gold-500: #c8a84b;
+  --gold-700: #e8d08a;
+  --gold-tint-soft:   rgba(200,168,75,0.08);
+  --gold-tint-border: rgba(200,168,75,0.35);
+  --gold-tint-fill:   rgba(200,168,75,0.12);
+
+  /* semantic data colors */
+  --hot:      #e86c4a;
+  --cold:     #4a9ae8;
+  --success:  #4ac87a;
+  --danger:   #e84a4a;
+  --prospect: #9a7ade;
+
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+  --nav-bg-solid: rgba(14, 14, 15, 0.98);
+
+  /* radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* motion */
+  --motion-fast: 0.12s cubic-bezier(0.34,1.56,0.64,1);
+  --motion-base: 0.2s ease;
+}
+
+/* Block B — light via OS preference (no explicit data-theme set) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    /* surfaces */
+    --bg-base:     #f5f3ef;
+    --bg-elevated: #eceae5;
+    --bg-overlay:  #e2dfd8;
+
+    /* labels */
+    --t-primary:    #1a1917;
+    --t-secondary:  #3a3834;
+    --t-tertiary:   #7a7468;
+    --t-quaternary: #a09a90;
+
+    /* separators */
+    --sep-opaque:    #d8d4cb;
+    --sep-nonopaque: rgba(0,0,0,0.06);
+
+    /* fills */
+    --fill-prim: rgba(0,0,0,0.10);
+    --fill-sec:  rgba(0,0,0,0.07);
+    --fill-tert: rgba(0,0,0,0.04);
+    --fill-quat: rgba(0,0,0,0.02);
+
+    /* gold system */
+    --gold-100: #f5edd8;
+    --gold-300: #d4a84a;
+    --gold-500: #9a7a28;
+    --gold-700: #6a520a;
+    --gold-tint-soft:   rgba(154,122,40,0.08);
+    --gold-tint-border: rgba(154,122,40,0.35);
+    --gold-tint-fill:   rgba(154,122,40,0.12);
+
+    /* semantic data colors */
+    --hot:      #c04830;
+    --cold:     #2870b8;
+    --success:  #28885a;
+    --danger:   #c03030;
+    --prospect: #6a5ab8;
+
+    /* shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.15);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.2);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.25);
+    --nav-bg-blur: rgba(245, 243, 239, 0.96);
+    --nav-bg-solid: rgba(245, 243, 239, 0.98);
+  }
+}
+
+/* Block C — explicit JS-driven theme overrides */
+:root[data-theme="dark"] {
+  /* surfaces */
+  --bg-base:     #0e0e0f;
+  --bg-elevated: #141416;
+  --bg-overlay:  #1a1a1c;
+
+  /* labels */
+  --t-primary:    #f0ede6;
+  --t-secondary:  #c2bfb8;
+  --t-tertiary:   #7a7872;
+  --t-quaternary: #4a4845;
+
+  /* separators */
+  --sep-opaque:    #1e1e20;
+  --sep-nonopaque: rgba(255,255,255,0.06);
+
+  /* fills */
+  --fill-prim: rgba(255,255,255,0.15);
+  --fill-sec:  rgba(255,255,255,0.10);
+  --fill-tert: rgba(255,255,255,0.05);
+  --fill-quat: rgba(255,255,255,0.02);
+
+  /* gold system */
+  --gold-100: #3a2c10;
+  --gold-300: #7a5c20;
+  --gold-500: #c8a84b;
+  --gold-700: #e8d08a;
+  --gold-tint-soft:   rgba(200,168,75,0.08);
+  --gold-tint-border: rgba(200,168,75,0.35);
+  --gold-tint-fill:   rgba(200,168,75,0.12);
+
+  /* semantic data colors */
+  --hot:      #e86c4a;
+  --cold:     #4a9ae8;
+  --success:  #4ac87a;
+  --danger:   #e84a4a;
+  --prospect: #9a7ade;
+
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+  --nav-bg-solid: rgba(14, 14, 15, 0.98);
+}
+
+:root[data-theme="light"] {
+  /* surfaces */
+  --bg-base:     #f5f3ef;
+  --bg-elevated: #eceae5;
+  --bg-overlay:  #e2dfd8;
+
+  /* labels */
+  --t-primary:    #1a1917;
+  --t-secondary:  #3a3834;
+  --t-tertiary:   #7a7468;
+  --t-quaternary: #a09a90;
+
+  /* separators */
+  --sep-opaque:    #d8d4cb;
+  --sep-nonopaque: rgba(0,0,0,0.06);
+
+  /* fills */
+  --fill-prim: rgba(0,0,0,0.10);
+  --fill-sec:  rgba(0,0,0,0.07);
+  --fill-tert: rgba(0,0,0,0.04);
+  --fill-quat: rgba(0,0,0,0.02);
+
+  /* gold system */
+  --gold-100: #f5edd8;
+  --gold-300: #d4a84a;
+  --gold-500: #9a7a28;
+  --gold-700: #6a520a;
+  --gold-tint-soft:   rgba(154,122,40,0.08);
+  --gold-tint-border: rgba(154,122,40,0.35);
+  --gold-tint-fill:   rgba(154,122,40,0.12);
+
+  /* semantic data colors */
+  --hot:      #c04830;
+  --cold:     #2870b8;
+  --success:  #28885a;
+  --danger:   #c03030;
+  --prospect: #6a5ab8;
+
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.15);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.2);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.25);
+  --nav-bg-blur: rgba(245, 243, 239, 0.96);
+  --nav-bg-solid: rgba(245, 243, 239, 0.98);
+}
+
+/* Legacy aliases for pages still migrating off site.css variables. */
+:root {
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --bg-hover: var(--bg-overlay);
+  --bg-featured: var(--gold-tint-soft);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --tag-border: var(--gold-tint-border);
+  --tag-fill: var(--gold-tint-fill);
+  --shadow: var(--shadow-md);
+  --red: var(--danger);
+  --blue: var(--cold);
+  --green: var(--success);
+  --warn: var(--gold-500);
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* ─── Section 2: Component primitives ───────────────────────────────────── */
+
+/* App shell */
+.app-shell {
+  min-height: 100vh;
+  background: var(--bg-base);
+  color: var(--t-primary);
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Card */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--sep-opaque);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  transition: border-color var(--motion-base), background var(--motion-base);
+}
+
+.card--accent-gold {
+  border-color: var(--gold-tint-border);
+  background: color-mix(in srgb, var(--bg-elevated) 92%, var(--gold-500) 8%);
+}
+.card--accent-gold:hover {
+  border-color: var(--gold-500);
+}
+
+/* List group */
+.list-group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sep-opaque);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--sep-nonopaque);
+  font-size: 13px;
+}
+.list-row:last-child {
+  border-bottom: none;
+}
+
+/* Pill system — shared base */
+.pill--gold,
+.pill--hot,
+.pill--cold,
+.pill--prospect,
+.pill--warning,
+.pill--ghost {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid;
+}
+
+.pill--gold {
+  background: var(--gold-tint-soft);
+  border-color: var(--gold-tint-border);
+  color: var(--gold-500);
+}
+.pill--hot {
+  background: rgba(232,108,74,0.12);
+  border-color: rgba(232,108,74,0.4);
+  color: var(--hot);
+}
+.pill--cold {
+  background: rgba(74,154,232,0.12);
+  border-color: rgba(74,154,232,0.4);
+  color: var(--cold);
+}
+.pill--prospect {
+  background: rgba(154,122,222,0.12);
+  border-color: rgba(154,122,222,0.4);
+  color: var(--prospect);
+}
+.pill--warning {
+  background: rgba(232,74,74,0.12);
+  border-color: rgba(232,74,74,0.4);
+  color: var(--danger);
+}
+.pill--ghost {
+  background: transparent;
+  border-color: var(--sep-opaque);
+  color: var(--t-tertiary);
+}
+
+/* Pill light-mode color adjustments */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .pill--hot  { color: var(--hot); }
+  :root:not([data-theme]) .pill--cold { color: var(--cold); }
+  :root:not([data-theme]) .pill--prospect { color: var(--prospect); }
+  :root:not([data-theme]) .pill--warning  { color: var(--danger); }
+}
+:root[data-theme="light"] .pill--hot  { color: var(--hot); }
+:root[data-theme="light"] .pill--cold { color: var(--cold); }
+:root[data-theme="light"] .pill--prospect { color: var(--prospect); }
+:root[data-theme="light"] .pill--warning  { color: var(--danger); }
+
+/* Badge system — shared base */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 7px;
+  border-radius: var(--r-sm);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.badge--champ {
+  background: var(--gold-tint-fill);
+  color: var(--gold-500);
+  border: 1px solid var(--gold-tint-border);
+}
+.badge--last {
+  background: var(--fill-tert);
+  color: var(--t-tertiary);
+  border: 1px solid var(--sep-opaque);
+}
+
+/* Segmented control */
+.segmented {
+  display: inline-flex;
+  background: var(--bg-overlay);
+  border-radius: var(--r-sm);
+  padding: 2px;
+  gap: 2px;
+}
+
+.segmented-btn {
+  flex: 1;
+  padding: 4px 12px;
+  border: none;
+  border-radius: calc(var(--r-sm) - 2px);
+  background: transparent;
+  color: var(--t-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background var(--motion-base), color var(--motion-base), box-shadow var(--motion-base);
+}
+.segmented-btn.active,
+.segmented-btn[aria-pressed="true"] {
+  background: var(--bg-elevated);
+  color: var(--t-primary);
+  box-shadow: var(--shadow-sm);
+}
+.segmented-btn:hover:not(.active):not([aria-pressed="true"]) {
+  color: var(--t-primary);
+}
+
+/* Button variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--motion-base), border-color var(--motion-base), color var(--motion-base);
+}
+
+.btn--tinted {
+  background: var(--gold-tint-fill);
+  border-color: var(--gold-tint-border);
+  color: var(--gold-500);
+}
+.btn--tinted:hover {
+  background: color-mix(in srgb, var(--gold-tint-fill) 80%, var(--gold-500) 20%);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--sep-opaque);
+  color: var(--t-secondary);
+}
+.btn--ghost:hover {
+  border-color: var(--sep-nonopaque);
+}
+
+/* Table primitive */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-elevated);
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-tertiary);
+  border-bottom: 1px solid var(--sep-opaque);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--sep-nonopaque);
+  color: var(--t-secondary);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background: var(--fill-quat);
+}
+
+.table td.num,
+.table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Gold rule */
+.gold-rule {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--gold-500);
+  border: none;
+  margin: 0;
+}
+
+/* ─── Section 3: Link styles ─────────────────────────────────────────────── */
+
+.blurb a {
+  color: var(--gold-500);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-tint-border);
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--motion-base);
+}
+.blurb a:hover {
+  text-decoration-color: var(--gold-500);
+}
+
+.pill[href],
+a.pill {
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--motion-fast), box-shadow var(--motion-base);
+}
+.pill[href]:hover,
+a.pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.pill[href]:active,
+a.pill:active {
+  transform: scale(0.97);
+}
+
+/* ─── Section 4: Motion / accessibility ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Section 5: Typography helpers ──────────────────────────────────────── */
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.t-title-1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--t-primary);
+}
+
+.t-title-2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--t-primary);
+}
+
+.t-title-3 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--t-primary);
+}
+
+.t-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--t-secondary);
+}
+
+.t-caption {
+  font-size: 12px;
+  color: var(--t-tertiary);
+  line-height: 1.5;
+}
+
+.t-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+}

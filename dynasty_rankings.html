@@ -10,33 +10,37 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --gold-dim: #4a3c18;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-  --blue: #5d7db5;
-  --red: #b55d5d;
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --blue: var(--cold);
+  --red: var(--danger);
 }
 
-body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-text); font-size: 15px; line-height: 1.6; }
 
 .site-header { max-width: 1400px; margin: 0 auto; padding: 52px 40px 36px; border-bottom: 1px solid var(--border2); }
 .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.site-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 90px); line-height: 0.88; letter-spacing: 0.02em; color: var(--text); margin-bottom: 22px; }
+.site-header h1 { font-family: var(--font-display); font-size: clamp(48px, 7vw, 90px); line-height: 0.88; letter-spacing: 0.02em; color: var(--text); margin-bottom: 22px; }
 .site-header h1 span { color: var(--gold); }
 .divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
 .site-header p { font-size: 13px; color: var(--text-muted); max-width: 640px; line-height: 1.75; }
@@ -58,8 +62,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* ── TABLE WRAPPER — horizontal scroll, sticky first two cols ── */
 .table-wrap {
   overflow-x: auto;
-  overflow-y: auto;
-  max-height: calc(100vh - 150px);
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -90,10 +93,16 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .rank-table thead th.sort-active { color: var(--text-mid); }
 .sort-arrow { margin-left: 3px; color: var(--gold); }
 
+/* Sticky pin column */
+.rank-table thead th.col-pin,
+.rank-table tbody td.col-pin {
+  position: sticky; left: 0; z-index: 2;
+  background: var(--bg);
+}
 /* Sticky rank column */
 .rank-table thead th.col-rank,
 .rank-table tbody td.col-rank {
-  position: sticky; left: 0; z-index: 2;
+  position: sticky; left: 26px; z-index: 2;
   background: var(--bg);
   width: 52px; min-width: 52px; max-width: 52px;
   padding-right: 8px;
@@ -101,18 +110,20 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 /* Sticky player column */
 .rank-table thead th.col-player,
 .rank-table tbody td.col-player {
-  position: sticky; left: 52px; z-index: 2;
+  position: sticky; left: 78px; z-index: 2;
   background: var(--bg);
   min-width: 160px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   padding-right: 12px;
   border-right: 1px solid var(--border2);
 }
+.rank-table thead th.col-pin  { z-index: 3; }
 .rank-table thead th.col-rank { z-index: 3; }
 .rank-table thead th.col-player { z-index: 3; }
 
 .rank-table tbody tr { border-bottom: 1px solid var(--border); }
 .rank-table tbody tr:hover td { background: rgba(200,168,75,0.04); }
 .rank-table tbody tr:hover td.col-rank { border-left: 2px solid rgba(200,168,75,0.4); }
+.rank-table tbody tr:hover td.col-pin,
 .rank-table tbody tr:hover td.col-rank,
 .rank-table tbody tr:hover td.col-player { background: var(--bg); }
 .rank-table tbody td {
@@ -122,7 +133,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .rank-table tbody td.left { text-align: left; font-variant-numeric: normal; }
 
 /* Rank number */
-.rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text-dead); }
+.rank-num { font-family: var(--font-display); font-size: 18px; color: var(--text-dead); }
 tr[data-rank="1"] .rank-num,
 tr[data-rank="2"] .rank-num,
 tr[data-rank="3"] .rank-num { color: var(--gold); }
@@ -145,7 +156,7 @@ tr[data-rank="3"] .rank-num { color: var(--gold); }
 .src.none { color: var(--text-dead); }
 
 /* Score */
-.score-val { font-family: 'Bebas Neue', sans-serif; font-size: 16px; }
+.score-val { font-family: var(--font-display); font-size: 16px; }
 
 /* Proj Z */
 .projz { color: var(--text-mid); }
@@ -159,6 +170,7 @@ tr[data-rank="3"] .rank-num { color: var(--gold); }
 /* Stat values */
 .stat-val { color: var(--text-mid); }
 .stat-empty { color: var(--text-dead); }
+.stat-milb { display: block; color: var(--gold); opacity: 0.65; font-size: 10px; line-height: 1.3; }
 
 /* Source pills */
 .src-pills { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
@@ -195,7 +207,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
 /* ── TIER LEGEND ── */
 .tier-legend {
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 48px; z-index: 10;
   height: 36px; display: flex; align-items: center; gap: 16px; padding: 0 40px;
   background: var(--bg); border-bottom: 1px solid var(--border2);
   font-size: 11px; color: var(--text-muted);
@@ -252,12 +264,18 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 /* ── PLAYER MODAL ── */
 .player-modal { position: fixed; inset: 0; z-index: 1000; display: none; }
 .player-modal.open { display: block; }
-.player-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.66); }
+.player-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.66); backdrop-filter: blur(8px); }
 .player-panel {
-  position: absolute; right: 24px; top: 24px; bottom: 24px;
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  max-height: min(760px, calc(100vh - 48px));
   width: min(520px, calc(100vw - 48px)); overflow-y: auto;
-  border: 1px solid var(--border2); border-radius: 8px; background: var(--bg2);
+  border: 1px solid var(--border2); border-radius: var(--r-xl); background: color-mix(in srgb, var(--bg2) 92%, transparent);
+  backdrop-filter: blur(22px);
   box-shadow: 0 24px 80px rgba(0,0,0,0.48); padding: 22px;
+}
+.player-panel::before {
+  content: ""; display: block; width: 44px; height: 5px; border-radius: 999px;
+  background: var(--fill-prim); margin: 0 auto 18px;
 }
 .player-close {
   position: absolute; right: 14px; top: 12px; width: 30px; height: 30px;
@@ -266,12 +284,12 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 }
 .player-close:hover { color: var(--text); border-color: var(--text-dead); }
 .player-kicker { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-.player-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 0.95; letter-spacing: 0.02em; color: var(--text); padding-right: 42px; }
+.player-title { font-family: var(--font-display); font-size: 42px; line-height: 0.95; letter-spacing: 0.02em; color: var(--text); padding-right: 42px; }
 .player-meta { margin-top: 8px; color: var(--text-muted); font-size: 12px; }
 .player-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin: 20px 0 18px; }
 .player-stat { border: 1px solid var(--border); border-radius: 6px; background: var(--bg); padding: 10px; }
 .player-stat-label { color: var(--text-dead); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-.player-stat-value { color: var(--text); font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; margin-top: 6px; }
+.player-stat-value { color: var(--text); font-family: var(--font-display); font-size: 28px; line-height: 1; margin-top: 6px; }
 .player-chart-wrap { border: 1px solid var(--border); border-radius: 6px; background: var(--bg); padding: 12px; }
 .player-chart { width: 100%; height: auto; display: block; overflow: visible; }
 .player-note { margin-top: 14px; font-size: 12px; color: var(--text-dead); line-height: 1.6; }
@@ -279,9 +297,62 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
 @media (max-width: 700px) {
   .site-header, .content { padding-left: 16px; padding-right: 16px; }
-  .player-panel { right: 0; top: 0; bottom: 0; width: 100vw; border-radius: 0; }
+  .player-panel { left: 0; right: 0; top: auto; bottom: 0; transform: none; width: 100vw; max-height: 86vh; border-radius: var(--r-xl) var(--r-xl) 0 0; }
   .player-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+
+.deep-link-flash { animation: deepLinkFlash 2s ease; }
+@keyframes deepLinkFlash {
+  0% { background: var(--gold-tint-soft); }
+  100% { background: transparent; }
+}
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  z-index: 1200; border: 1px solid var(--sep-nonopaque); border-radius: var(--r-md);
+  background: var(--bg-overlay); color: var(--t-primary); padding: 10px 14px;
+  box-shadow: var(--shadow-md); font-size: 13px;
+}
+
+/* ── Sticky toolbar (below nav 48px + tier-legend 36px = 84px; tier-legend hidden until site-header scrolls away) ── */
+.toolbar {
+  position: sticky;
+  top: 84px;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border2);
+}
+
+/* ── Position-type column hiding ── */
+.hide-bat-cols [data-stat-type="bat"] { display: none; }
+.hide-pit-cols [data-stat-type="pit"] { display: none; }
+
+/* ── Position filter: muted default, gold when active ── */
+.filter-select { color: var(--text-muted); }
+.filter-select.has-filter { color: var(--gold); border-color: var(--gold); }
+
+/* ── Pin/check rows ── */
+.col-pin { width: 26px; min-width: 26px; padding: 0 2px !important; text-align: center !important; }
+.pin-btn {
+  background: none; border: none; color: var(--text-dead);
+  cursor: pointer; font-size: 10px; padding: 2px 4px; line-height: 1;
+  border-radius: 3px; transition: color 0.1s;
+}
+.pin-btn:hover { color: var(--text-muted); }
+.pin-btn.pinned { color: var(--gold); }
+.row-pinned > td { background: rgba(200, 168, 75, 0.06) !important; }
+.row-pinned > td.col-rank,
+.row-pinned > td.col-player { background: rgba(200, 168, 75, 0.06) !important; }
+.row-pinned > td.col-pin { border-left: 2px solid rgba(200, 168, 75, 0.4) !important; }
+.pin-sep > td { height: 2px; background: var(--border2) !important; padding: 0 !important; border: none !important; }
+
+/* ── Clear-pins button ── */
+#clearPins {
+  font-size: 11px; color: var(--text-dead); cursor: pointer;
+  background: none; border: none; padding: 0 4px; font-family: inherit;
+  display: none;
+}
+#clearPins.visible { display: inline; color: var(--text-muted); }
+#clearPins:hover { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -308,6 +379,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
     <select class="filter-select" id="posFilter">
       <option value="all">All positions</option>
+      <option value="HIT">Hitters</option>
+      <option value="PIT">Pitchers</option>
       <option value="SP">SP</option>
       <option value="RP">RP</option>
       <option value="C">C</option>
@@ -328,6 +401,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       <div class="dd-menu" id="ownerMenu"></div>
     </div>
 
+    <button id="clearPins" type="button">× clear pins</button>
     <span class="count-badge" id="countBadge"></span>
     <div class="view-toggle" id="viewToggle" role="group" aria-label="Table view">
       <button id="btnSimple" class="active" type="button">Simple</button>
@@ -372,66 +446,61 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   // group: for left-border separator; sticky: for pin; cls: extra td class
   const COLS = [
     // Core
-    { key: 'rank',       label: 'Rank',   sticky: 'col-rank',   tdCls: 'col-rank'   },
-    { key: 'display_name', label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
-    { key: 'team',       label: 'Team',   group: true, tdCls: 'left' },
-    { key: 'positions',  label: 'Pos',    tdCls: 'left' },
-    { key: 'age',        label: 'Age'     },
-    { key: 'level',      label: 'Lvl',    tdCls: 'left' },
+    { key: 'rank',        label: 'Rank',   sticky: 'col-rank',   tdCls: 'col-rank'   },
+    { key: 'display_name',label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
+    { key: 'team',        label: 'Team',   group: true, tdCls: 'left' },
+    { key: 'positions',   label: 'Pos',    tdCls: 'left' },
+    { key: 'age',         label: 'Age'     },
+    { key: 'level',       label: 'Lvl',    tdCls: 'left' },
     // Rankings (advanced)
-    { key: 'score',      label: 'Score',  group: true, adv: true },
-    { key: 'rank_change', label: 'Δwk',               adv: true },
-    { key: 'hkb_rank',   label: 'HKB#',               adv: true },
-    { key: 'delta_hkb',  label: 'ΔHKB',               adv: true },
-    { key: 'fp_rank',    label: 'FP#',                adv: true },
-    { key: 'delta_fp',   label: 'ΔFP',                adv: true },
-    { key: 'ibw_rank',   label: 'IBW#',               adv: true },
-    { key: 'delta_ibw',  label: 'ΔIBW',               adv: true },
-    { key: 'pl_rank',    label: 'PL#',                adv: true },
-    { key: 'fthq_rank',  label: 'FTHQ#',              adv: true },
+    { key: 'score',       label: 'Score',  group: true, adv: true },
+    { key: 'rank_change', label: 'Δwk',                adv: true },
+    { key: 'hkb_rank',    label: 'HKB#',               adv: true },
+    { key: 'delta_hkb',   label: 'ΔHKB',               adv: true },
+    { key: 'fp_rank',     label: 'FP#',                adv: true },
+    { key: 'delta_fp',    label: 'ΔFP',                adv: true },
+    { key: 'ibw_rank',    label: 'IBW#',               adv: true },
+    { key: 'delta_ibw',   label: 'ΔIBW',               adv: true },
+    { key: 'pl_rank',     label: 'PL#',                adv: true },
+    { key: 'fthq_rank',   label: 'FTHQ#',              adv: true },
     // Analysis
-    { key: 'proj_z',     label: 'ProjZ',  group: true, adv: true },
-    { key: 'hkb_value',  label: 'HKB$',               adv: true },
-    { key: 'owned_by',   label: 'Owner',  tdCls: 'left' },
-    { key: 'eta',        label: 'ETA',    tdCls: 'left' },
-    { key: 'reason',     label: 'Reason', tdCls: 'left', adv: true },
-    // Batting projections
-    { key: 'st_hr',      label: 'HR',     group: true },
-    { key: 'st_r',       label: 'R'       },
-    { key: 'st_rbi',     label: 'RBI'     },
-    { key: 'st_sb',      label: 'SB'      },
-    { key: 'st_ops',     label: 'OPS'     },
-    { key: 'zips_hr',    label: 'zHR'     },
-    { key: 'zips_ops',   label: 'zOPS'    },
-    // Pitching projections
-    { key: 'st_qs',      label: 'QS',     group: true },
-    { key: 'st_k',       label: 'K'       },
-    { key: 'st_era',     label: 'ERA'     },
-    { key: 'st_svh',     label: 'SVH'     },
-    { key: 'st_whip',    label: 'WHIP'    },
-    { key: 'zips_era',   label: 'zERA'    },
-    { key: 'zips_k',     label: 'zK'      },
-    // MLB season stats
-    { key: 'mlb_hr',    label: 'HR',  group: true },
-    { key: 'mlb_r',     label: 'R'               },
-    { key: 'mlb_rbi',   label: 'RBI'             },
-    { key: 'mlb_sb',    label: 'SB'              },
-    { key: 'mlb_ops',   label: 'OPS'             },
-    { key: 'mlb_qs',    label: 'QS',  group: true },
-    { key: 'mlb_k',     label: 'K'               },
-    { key: 'mlb_era',   label: 'ERA'             },
-    { key: 'mlb_svh',   label: 'SVH'             },
-    { key: 'mlb_whip',  label: 'WHIP'            },
-    // MiLB season stats (no QS — minor leagues don't track it)
-    { key: 'milb_hr',   label: 'HR',  group: true },
-    { key: 'milb_r',    label: 'R'               },
-    { key: 'milb_rbi',  label: 'RBI'             },
-    { key: 'milb_sb',   label: 'SB'              },
-    { key: 'milb_ops',  label: 'OPS'             },
-    { key: 'milb_k',    label: 'K',   group: true },
-    { key: 'milb_era',  label: 'ERA'             },
-    { key: 'milb_svh',  label: 'SVH'             },
-    { key: 'milb_whip', label: 'WHIP'            },
+    { key: 'proj_z',      label: 'ProjZ',  group: true, adv: true },
+    { key: 'hkb_value',   label: 'HKB$',               adv: true },
+    { key: 'owned_by',    label: 'Owner',  tdCls: 'left' },
+    { key: 'eta',         label: 'ETA',    tdCls: 'left' },
+    { key: 'reason',      label: 'Reason', tdCls: 'left', adv: true },
+    // Batting projections (advanced)
+    { key: 'st_hr',       label: 'HR',     group: true, adv: true, statType: 'bat' },
+    { key: 'st_r',        label: 'R',                  adv: true, statType: 'bat' },
+    { key: 'st_rbi',      label: 'RBI',                adv: true, statType: 'bat' },
+    { key: 'st_sb',       label: 'SB',                 adv: true, statType: 'bat' },
+    { key: 'st_ops',      label: 'OPS',                adv: true, statType: 'bat' },
+    { key: 'zips_hr',     label: 'zHR',                adv: true, statType: 'bat' },
+    { key: 'zips_ops',    label: 'zOPS',               adv: true, statType: 'bat' },
+    // Pitching projections (advanced)
+    { key: 'st_qs',       label: 'QS',     group: true, adv: true, statType: 'pit' },
+    { key: 'st_k',        label: 'K',                  adv: true, statType: 'pit' },
+    { key: 'st_era',      label: 'ERA',                adv: true, statType: 'pit' },
+    { key: 'st_svh',      label: 'SVH',                adv: true, statType: 'pit' },
+    { key: 'st_whip',     label: 'WHIP',               adv: true, statType: 'pit' },
+    { key: 'zips_era',    label: 'zERA',               adv: true, statType: 'pit' },
+    { key: 'zips_k',      label: 'zK',                 adv: true, statType: 'pit' },
+    // Season stats — batting (MLB primary; MiLB in gold when present)
+    { key: 'mlb_hr',      label: 'HR',     group: true,           statType: 'bat' },
+    { key: 'mlb_r',       label: 'R',                             statType: 'bat' },
+    { key: 'mlb_rbi',     label: 'RBI',                           statType: 'bat' },
+    { key: 'mlb_sb',      label: 'SB',                            statType: 'bat' },
+    { key: 'mlb_ops',     label: 'OPS',                           statType: 'bat' },
+    { key: 'mlb_ab',      label: 'AB',                            statType: 'bat' },
+    { key: 'mlb_bat_gp',  label: 'GP',                            statType: 'bat' },
+    // Season stats — pitching (MLB primary; MiLB in gold when present)
+    { key: 'mlb_qs',      label: 'QS',     group: true,           statType: 'pit' },
+    { key: 'mlb_k',       label: 'K',                             statType: 'pit' },
+    { key: 'mlb_era',     label: 'ERA',                           statType: 'pit' },
+    { key: 'mlb_svh',     label: 'SVH',                           statType: 'pit' },
+    { key: 'mlb_whip',    label: 'WHIP',                          statType: 'pit' },
+    { key: 'mlb_ip',      label: 'IP',                            statType: 'pit' },
+    { key: 'mlb_pit_gp',  label: 'GP',                            statType: 'pit' },
   ];
 
   const STAT_SUB = {
@@ -439,10 +508,6 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     zips_hr:'ZiPS', zips_ops:'ZiPS',
     st_qs:'Steamer', st_k:'Steamer', st_era:'Steamer', st_svh:'Steamer', st_whip:'Steamer',
     zips_era:'ZiPS', zips_k:'ZiPS',
-    mlb_hr:'MLB', mlb_r:'MLB', mlb_rbi:'MLB', mlb_sb:'MLB', mlb_ops:'MLB',
-    mlb_qs:'MLB', mlb_k:'MLB', mlb_era:'MLB', mlb_svh:'MLB', mlb_whip:'MLB',
-    milb_hr:'MiLB', milb_r:'MiLB', milb_rbi:'MiLB', milb_sb:'MiLB', milb_ops:'MiLB',
-    milb_k:'MiLB', milb_era:'MiLB', milb_svh:'MiLB', milb_whip:'MiLB',
   };
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -452,8 +517,13 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   let _posFilter      = 'all';
   let _selectedTeams  = new Set();
   let _selectedOwners = new Set();
+  let _pinnedNames    = new Set();
   let _page     = 1;
-  const _pageSize = 100;
+  const _pageSize = 200;
+
+  // Position type sets (used by filter and column hiding)
+  const _PIT_POS = new Set(['SP', 'RP', 'P', 'SIRP', 'MIRP', 'PIT']);
+  const _BAT_POS = new Set(['C', '1B', '2B', '3B', 'SS', 'OF', 'DH', 'HIT']);
 
   // ── Simple / Advanced toggle ───────────────────────────────────────────────
   const _tableWrap = document.querySelector('.table-wrap');
@@ -469,6 +539,29 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     document.getElementById('btnSimple').classList.remove('active');
   });
 
+  // ── Advanced access lock (Cmd+Shift+0 to toggle) ──────────────────────────
+  const _ADV_KEY = 'oracle_adv_unlocked';
+  let _advUnlocked = localStorage.getItem(_ADV_KEY) === '1';
+
+  function _applyAdvLock() {
+    const btn = document.getElementById('btnAdvanced');
+    btn.hidden = !_advUnlocked;
+    if (!_advUnlocked && !_tableWrap.classList.contains('simple-view')) {
+      _tableWrap.classList.add('simple-view');
+      document.getElementById('btnSimple').classList.add('active');
+      btn.classList.remove('active');
+    }
+  }
+  _applyAdvLock();
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey && e.shiftKey && e.key === '0') {
+      _advUnlocked = !_advUnlocked;
+      localStorage.setItem(_ADV_KEY, _advUnlocked ? '1' : '0');
+      _applyAdvLock();
+    }
+  });
+
   // ── Load data ──────────────────────────────────────────────────────────────
   fetch('data/dynasty_rankings_latest.json', { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error('Failed to load rankings'); return r.json(); })
@@ -480,6 +573,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       _buildHeaders();
       _buildDynFilters(_allRows);
       _renderTable(_filteredRows());
+      _handlePlayerParam();
     })
     .catch(err => {
       document.getElementById('metaLine').textContent = 'Error loading rankings.';
@@ -489,6 +583,11 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   // ── Headers ────────────────────────────────────────────────────────────────
   function _buildHeaders() {
     const tr = document.getElementById('tableHead');
+    // Pin column (always first, not in COLS)
+    const thPin = document.createElement('th');
+    thPin.className = 'col-pin';
+    tr.appendChild(thPin);
+
     COLS.forEach(col => {
       const th = document.createElement('th');
       th.dataset.col = col.key;
@@ -505,6 +604,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
         .filter(Boolean).join(' ');
       if (cls) th.className = cls;
       if (!(col.tdCls||'').includes('left') && !col.sticky) th.classList.add('right');
+      if (col.statType) th.dataset.statType = col.statType;
       th.addEventListener('click', () => _onSort(col.key));
       tr.appendChild(th);
     });
@@ -542,6 +642,10 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
   document.getElementById('posFilter').addEventListener('change', e => {
     _posFilter = e.target.value;
+    const sel = e.target;
+    sel.classList.toggle('has-filter', _posFilter !== 'all');
+    _tableWrap.classList.toggle('hide-bat-cols', _PIT_POS.has(_posFilter));
+    _tableWrap.classList.toggle('hide-pit-cols', _BAT_POS.has(_posFilter));
     _page = 1;
     _renderTable(_filteredRows());
   });
@@ -552,7 +656,13 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (lq && !p.display_name.toLowerCase().includes(lq)) return false;
       if (_posFilter !== 'all') {
         const pos = Array.isArray(p.positions) ? p.positions : [];
-        if (!pos.includes(_posFilter)) return false;
+        if (_posFilter === 'HIT') {
+          if (pos.length && pos.every(pp => _PIT_POS.has(pp))) return false;
+        } else if (_posFilter === 'PIT') {
+          if (!pos.some(pp => _PIT_POS.has(pp))) return false;
+        } else {
+          if (!pos.includes(_posFilter)) return false;
+        }
       }
       if (_selectedTeams.size && !_selectedTeams.has(p.team)) return false;
       if (_selectedOwners.size && !_selectedOwners.has(p.owned_by || 'FA')) return false;
@@ -635,8 +745,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     'fp_rank','delta_fp','ibw_rank','delta_ibw','pl_rank','fthq_rank','proj_z','hkb_value',
     'st_hr','st_r','st_rbi','st_sb','st_ops','zips_hr','zips_ops',
     'st_qs','st_k','st_era','st_svh','st_whip','zips_era','zips_k',
-    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip',
-    'milb_hr','milb_r','milb_rbi','milb_sb','milb_ops','milb_k','milb_era','milb_svh','milb_whip']);
+    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_ab','mlb_bat_gp',
+    'mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip','mlb_ip','mlb_pit_gp']);
 
   function _renderTable(rows) {
     const sorted = [...rows].sort((a, b) => {
@@ -652,18 +762,40 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (av > bv) return  _sortDir;
       return 0;
     });
-    const total = sorted.length;
+    // Split into pinned (always shown first) and rest (paginated)
+    const pinned = sorted.filter(p => _pinnedNames.has(p.name));
+    const rest   = sorted.filter(p => !_pinnedNames.has(p.name));
+    const total  = rest.length;
     const totalPages = Math.ceil(total / _pageSize) || 1;
     _page = Math.min(_page, totalPages);
     const start = (_page - 1) * _pageSize;
-    const pageRows = sorted.slice(start, start + _pageSize);
+    const pageRows = rest.slice(start, start + _pageSize);
+
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
+    if (pinned.length) {
+      pinned.forEach(p => {
+        const tr = _buildRow(p);
+        tr.classList.add('row-pinned');
+        tbody.appendChild(tr);
+      });
+      // Separator row after pinned section
+      const sep = document.createElement('tr');
+      sep.className = 'pin-sep';
+      const colCount = COLS.length + 1; // +1 for pin column
+      for (let i = 0; i < colCount; i++) sep.appendChild(document.createElement('td'));
+      tbody.appendChild(sep);
+    }
     pageRows.forEach(p => tbody.appendChild(_buildRow(p)));
+
     const nr = document.getElementById('noResults');
-    nr.style.display = total ? 'none' : 'block';
-    document.getElementById('countBadge').textContent = total < _allRows.length
-      ? `${total} of ${_allRows.length}` : '';
+    nr.style.display = (total === 0 && pinned.length === 0) ? 'block' : 'none';
+    document.getElementById('countBadge').textContent = (total + pinned.length) < _allRows.length
+      ? `${total + pinned.length} of ${_allRows.length}` : '';
+
+    // Clear-pins button visibility
+    document.getElementById('clearPins').classList.toggle('visible', _pinnedNames.size > 0);
+
     // Pagination controls
     const ctrl = document.getElementById('pageControls');
     ctrl.hidden = total <= _pageSize;
@@ -682,6 +814,10 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     _page++;
     _renderTable(_filteredRows());
   });
+  document.getElementById('clearPins').addEventListener('click', () => {
+    _pinnedNames.clear();
+    _renderTable(_filteredRows());
+  });
 
   // ── Row builder ────────────────────────────────────────────────────────────
   function _td(content, cls) {
@@ -697,6 +833,25 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
   function _buildRow(p) {
     const tr = document.createElement('tr');
+    tr.dataset.playerKey = p.name || '';
+    tr.dataset.playerSlug = _slugify(p.display_name || p.name || '');
+
+    // Pin button (always first)
+    const pinBtn = document.createElement('button');
+    pinBtn.className = 'pin-btn' + (_pinnedNames.has(p.name) ? ' pinned' : '');
+    pinBtn.type = 'button';
+    pinBtn.title = _pinnedNames.has(p.name) ? 'Unpin row' : 'Pin row for comparison';
+    pinBtn.textContent = '●';
+    pinBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (_pinnedNames.has(p.name)) _pinnedNames.delete(p.name);
+      else _pinnedNames.add(p.name);
+      _renderTable(_filteredRows());
+    });
+    const pinTd = document.createElement('td');
+    pinTd.className = 'col-pin';
+    pinTd.appendChild(pinBtn);
+    tr.appendChild(pinTd);
 
     // Rank (sticky)
     tr.dataset.rank = p.rank;
@@ -803,56 +958,72 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
     tr.appendChild(rTd);
 
-    // Stats helper
-    function statTd(val, groupStart) {
+    // statTd: single value cell (used for advanced projections)
+    function statTd(val, groupStart, statType, adv) {
       const td = document.createElement('td');
-      if (groupStart) td.className = 'group-start';
+      const cls = [groupStart ? 'group-start' : '', adv ? 'col-advanced' : ''].filter(Boolean).join(' ');
+      if (cls) td.className = cls;
+      if (statType) td.dataset.statType = statType;
       td.innerHTML = val != null && val !== ''
         ? `<span class="stat-val">${val}</span>`
         : '<span class="stat-empty">—</span>';
       return td;
     }
 
-    // Batting stats
-    tr.appendChild(statTd(p.st_hr  != null ? Math.round(p.st_hr)  : null, true));
-    tr.appendChild(statTd(p.st_r   != null ? Math.round(p.st_r)   : null));
-    tr.appendChild(statTd(p.st_rbi != null ? Math.round(p.st_rbi) : null));
-    tr.appendChild(statTd(p.st_sb  != null ? Math.round(p.st_sb)  : null));
-    tr.appendChild(statTd(p.st_ops  != null ? p.st_ops.toFixed(3)  : null));
-    tr.appendChild(statTd(p.zips_hr != null ? Math.round(p.zips_hr): null));
-    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3): null));
+    // combinedStatTd: MLB value on top, MiLB in gold below (omitted when null)
+    function combinedStatTd(mlbVal, milbVal, groupStart, statType, fmt) {
+      const td = document.createElement('td');
+      if (groupStart) td.className = 'group-start';
+      if (statType) td.dataset.statType = statType;
+      const mlbStr  = mlbVal  != null ? String(fmt(mlbVal))  : null;
+      const milbStr = milbVal != null ? String(fmt(milbVal)) : null;
+      if (mlbStr && milbStr) {
+        td.innerHTML = `<span class="stat-val">${mlbStr}</span><span class="stat-milb">${milbStr}</span>`;
+      } else if (mlbStr) {
+        td.innerHTML = `<span class="stat-val">${mlbStr}</span>`;
+      } else if (milbStr) {
+        td.innerHTML = `<span class="stat-milb">${milbStr}</span>`;
+      } else {
+        td.innerHTML = '<span class="stat-empty">—</span>';
+      }
+      return td;
+    }
 
-    // Pitching stats
-    tr.appendChild(statTd(p.st_qs   != null ? Math.round(p.st_qs)  : null, true));
-    tr.appendChild(statTd(p.st_k    != null ? Math.round(p.st_k)   : null));
-    tr.appendChild(statTd(p.st_era  != null ? p.st_era.toFixed(2)  : null));
-    tr.appendChild(statTd(p.st_svh  != null ? Math.round(p.st_svh) : null));
-    tr.appendChild(statTd(p.st_whip != null ? p.st_whip.toFixed(3) : null));
-    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2): null));
-    tr.appendChild(statTd(p.zips_k  != null ? Math.round(p.zips_k) : null));
+    // Batting projections (advanced, statType bat)
+    tr.appendChild(statTd(p.st_hr    != null ? Math.round(p.st_hr)    : null, true,  'bat', true));
+    tr.appendChild(statTd(p.st_r     != null ? Math.round(p.st_r)     : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_rbi   != null ? Math.round(p.st_rbi)   : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_sb    != null ? Math.round(p.st_sb)    : null, false, 'bat', true));
+    tr.appendChild(statTd(p.st_ops   != null ? p.st_ops.toFixed(3)    : null, false, 'bat', true));
+    tr.appendChild(statTd(p.zips_hr  != null ? Math.round(p.zips_hr)  : null, false, 'bat', true));
+    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3)  : null, false, 'bat', true));
 
-    // MLB season stats
-    tr.appendChild(statTd(p.mlb_hr   != null ? p.mlb_hr   : null, true));
-    tr.appendChild(statTd(p.mlb_r    != null ? p.mlb_r    : null));
-    tr.appendChild(statTd(p.mlb_rbi  != null ? p.mlb_rbi  : null));
-    tr.appendChild(statTd(p.mlb_sb   != null ? p.mlb_sb   : null));
-    tr.appendChild(statTd(p.mlb_ops  != null ? p.mlb_ops.toFixed(3) : null));
-    tr.appendChild(statTd(p.mlb_qs   != null ? p.mlb_qs   : null, true));
-    tr.appendChild(statTd(p.mlb_k    != null ? p.mlb_k    : null));
-    tr.appendChild(statTd(p.mlb_era  != null ? p.mlb_era.toFixed(2) : null));
-    tr.appendChild(statTd(p.mlb_svh  != null ? p.mlb_svh  : null));
-    tr.appendChild(statTd(p.mlb_whip != null ? p.mlb_whip.toFixed(3) : null));
+    // Pitching projections (advanced, statType pit)
+    tr.appendChild(statTd(p.st_qs    != null ? Math.round(p.st_qs)    : null, true,  'pit', true));
+    tr.appendChild(statTd(p.st_k     != null ? Math.round(p.st_k)     : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_era   != null ? p.st_era.toFixed(2)    : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_svh   != null ? Math.round(p.st_svh)   : null, false, 'pit', true));
+    tr.appendChild(statTd(p.st_whip  != null ? p.st_whip.toFixed(3)   : null, false, 'pit', true));
+    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2)  : null, false, 'pit', true));
+    tr.appendChild(statTd(p.zips_k   != null ? Math.round(p.zips_k)   : null, false, 'pit', true));
 
-    // MiLB season stats
-    tr.appendChild(statTd(p.milb_hr   != null ? p.milb_hr   : null, true));
-    tr.appendChild(statTd(p.milb_r    != null ? p.milb_r    : null));
-    tr.appendChild(statTd(p.milb_rbi  != null ? p.milb_rbi  : null));
-    tr.appendChild(statTd(p.milb_sb   != null ? p.milb_sb   : null));
-    tr.appendChild(statTd(p.milb_ops  != null ? p.milb_ops.toFixed(3) : null));
-    tr.appendChild(statTd(p.milb_k    != null ? p.milb_k    : null, true));
-    tr.appendChild(statTd(p.milb_era  != null ? p.milb_era.toFixed(2) : null));
-    tr.appendChild(statTd(p.milb_svh  != null ? p.milb_svh  : null));
-    tr.appendChild(statTd(p.milb_whip != null ? p.milb_whip.toFixed(3) : null));
+    // Season stats — batting (MLB top, MiLB gold when present)
+    tr.appendChild(combinedStatTd(p.mlb_hr,     p.milb_hr,    true,  'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_r,      p.milb_r,     false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_rbi,    p.milb_rbi,   false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_sb,     p.milb_sb,    false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_ops,    p.milb_ops,   false, 'bat', v => v.toFixed(3)));
+    tr.appendChild(combinedStatTd(p.mlb_ab,     null,          false, 'bat', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_bat_gp, null,          false, 'bat', v => Math.round(v)));
+
+    // Season stats — pitching (MLB top, MiLB gold when present; QS and GP have MiLB where available)
+    tr.appendChild(combinedStatTd(p.mlb_qs,     null,              true,  'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_k,      p.milb_k,          false, 'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_era,    p.milb_era,        false, 'pit', v => v.toFixed(2)));
+    tr.appendChild(combinedStatTd(p.mlb_svh,    p.milb_svh,        false, 'pit', v => Math.round(v)));
+    tr.appendChild(combinedStatTd(p.mlb_whip,   p.milb_whip,       false, 'pit', v => v.toFixed(3)));
+    tr.appendChild(combinedStatTd(p.mlb_ip,     p.milb_ip,         false, 'pit', v => v.toFixed(1)));
+    tr.appendChild(combinedStatTd(p.mlb_pit_gp, p.milb_pit_gp,     false, 'pit', v => Math.round(v)));
 
     return tr;
   }
@@ -864,6 +1035,50 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   function _fgSlug(name) {
     return name.normalize('NFKD').replace(/[̀-ͯ]/g,'')
       .toLowerCase().replace(/\./g,'').replace(/ /g,'-');
+  }
+
+  function _slugify(name) {
+    return String(name || '')
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/\b(?:Jr|Sr|II|III|IV)\.?\b/gi, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  function _toast(message) {
+    const old = document.querySelector('.toast');
+    if (old) old.remove();
+    const node = document.createElement('div');
+    node.className = 'toast';
+    node.textContent = message;
+    document.body.appendChild(node);
+    setTimeout(() => node.remove(), 2400);
+  }
+
+  function _handlePlayerParam() {
+    const slug = new URLSearchParams(window.location.search).get('player');
+    if (!slug) return;
+    const target = _allRows.find(p => _slugify(p.display_name || p.name) === slug || _slugify(p.name) === slug);
+    if (!target) {
+      _toast('Player no longer rostered.');
+      return;
+    }
+    document.getElementById('searchInput').value = '';
+    _posFilter = 'all';
+    _selectedTeams.clear();
+    _selectedOwners.clear();
+    _pinnedNames.add(target.name);
+    _page = 1;
+    _renderTable(_filteredRows());
+    requestAnimationFrame(() => {
+      const row = document.querySelector(`tr[data-player-key="${CSS.escape(target.name)}"]`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.classList.remove('deep-link-flash');
+        void row.offsetWidth;
+        row.classList.add('deep-link-flash');
+        setTimeout(() => row.classList.remove('deep-link-flash'), 2100);
+      }
+    });
   }
 
   // ── Player modal ───────────────────────────────────────────────────────────
@@ -907,14 +1122,19 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     const xFor=i=>pad.left+(pts.length===1?cw/2:i*cw/(pts.length-1));
     const yFor=r=>pad.top+((r-minR)/span)*ch;
     const path=pts.map((pt,i)=>`${xFor(i).toFixed(1)},${yFor(pt.rank).toFixed(1)}`).join(' ');
-    addSvg('line',{x1:pad.left,y1:pad.top,x2:pad.left,y2:pad.top+ch,stroke:'#2a2a2c','stroke-width':1});
-    addSvg('line',{x1:pad.left,y1:pad.top+ch,x2:pad.left+cw,y2:pad.top+ch,stroke:'#2a2a2c','stroke-width':1});
-    addSvg('text',{x:8,y:pad.top+4,fill:'#7a7872','font-size':11},fmtRank(minR));
-    addSvg('text',{x:8,y:pad.top+ch+4,fill:'#7a7872','font-size':11},fmtRank(maxR));
-    addSvg('polyline',{points:path,fill:'none',stroke:'#c8a84b','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'});
-    pts.forEach((pt,i)=>addSvg('circle',{cx:xFor(i),cy:yFor(pt.rank),r:i===pts.length-1?5:3,fill:i===pts.length-1?'#f0ede6':'#c8a84b'}));
-    addSvg('text',{x:pad.left,y:h-10,fill:'#7a7872','font-size':11},pts[0].date);
-    addSvg('text',{x:pad.left+cw,y:h-10,fill:'#7a7872','font-size':11,'text-anchor':'end'},pts[pts.length-1].date);
+    const styles = getComputedStyle(document.documentElement);
+    const gold = styles.getPropertyValue('--gold-500').trim() || 'currentColor';
+    const primary = styles.getPropertyValue('--t-primary').trim() || 'currentColor';
+    const tertiary = styles.getPropertyValue('--t-tertiary').trim() || 'currentColor';
+    const sep = styles.getPropertyValue('--sep-nonopaque').trim() || 'currentColor';
+    addSvg('line',{x1:pad.left,y1:pad.top,x2:pad.left,y2:pad.top+ch,stroke:sep,'stroke-width':1});
+    addSvg('line',{x1:pad.left,y1:pad.top+ch,x2:pad.left+cw,y2:pad.top+ch,stroke:sep,'stroke-width':1});
+    addSvg('text',{x:8,y:pad.top+4,fill:tertiary,'font-size':11},fmtRank(minR));
+    addSvg('text',{x:8,y:pad.top+ch+4,fill:tertiary,'font-size':11},fmtRank(maxR));
+    addSvg('polyline',{points:path,fill:'none',stroke:gold,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'});
+    pts.forEach((pt,i)=>addSvg('circle',{cx:xFor(i),cy:yFor(pt.rank),r:i===pts.length-1?5:3,fill:i===pts.length-1?primary:gold}));
+    addSvg('text',{x:pad.left,y:h-10,fill:tertiary,'font-size':11},pts[0].date);
+    addSvg('text',{x:pad.left+cw,y:h-10,fill:tertiary,'font-size':11,'text-anchor':'end'},pts[pts.length-1].date);
   };
 
   const renderPlayer = (player, rowData) => {
@@ -943,7 +1163,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     renderChart(player);
   };
 
-  const openPlayer = async key => {
+  const openPlayer = async (key, updateLocation = true) => {
     if (!key||!modal) return;
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
     modalTitle.textContent='Loading'; modalMeta.textContent=''; modalStats.innerHTML=''; modalNote.textContent=''; modalError.hidden=true; clearChart();
@@ -953,7 +1173,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (!player) throw new Error('No rank history found.');
       const rowData = _allRows.find(r => r.name === key) || {};
       renderPlayer(player, rowData);
-      history.replaceState(null,'',`#player=${encodeURIComponent(key)}`);
+      if (updateLocation) history.replaceState(null,'',`#player=${encodeURIComponent(key)}`);
     } catch(err) {
       modalTitle.textContent='Rank History'; modalError.textContent=err.message||'Could not load.'; modalError.hidden=false;
     }

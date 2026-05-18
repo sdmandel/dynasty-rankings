@@ -20,65 +20,69 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Week {{WEEK}} Power Rankings — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Week {{WEEK}} Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site-shell.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0e0e0f;
-    color: #e8e6e0;
-    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-base);
+    color: var(--t-primary);
+    font-family: var(--font-text);
     font-size: 15px;
     line-height: 1.6;
     padding: 0;
   }
 
   .header {
-    background: #0e0e0f;
-    border-bottom: 1px solid #2a2a2c;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--sep-nonopaque);
     padding: 48px 40px 32px;
     max-width: 860px;
     margin: 0 auto;
   }
 
   .header-eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-text);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #c8a84b;
+    color: var(--gold-500);
     margin-bottom: 12px;
   }
 
   .header h1 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(52px, 8vw, 88px);
     letter-spacing: 0.02em;
     line-height: 0.92;
-    color: #f0ede6;
+    color: var(--t-primary);
     margin-bottom: 20px;
   }
 
-  .header h1 span { color: #c8a84b; }
+  .header h1 span { color: var(--gold-500); }
 
   .header-meta {
     font-size: 13px;
-    color: #7a7872;
+    color: var(--t-tertiary);
     line-height: 1.7;
     max-width: 620px;
   }
 
   .header-meta strong {
-    color: #c8a84b;
+    color: var(--gold-500);
     font-weight: 500;
   }
 
   .divider {
     width: 40px;
     height: 2px;
-    background: #c8a84b;
+    background: var(--gold-500);
     margin: 20px 0;
   }
 
@@ -90,7 +94,7 @@
     gap: 8px;
     flex-wrap: wrap;
     align-items: center;
-    border-bottom: 1px solid #1e1e20;
+    border-bottom: 1px solid var(--sep-opaque);
   }
 
   .feature-strip {
@@ -100,8 +104,8 @@
   }
 
   .feature-box {
-    border: 1px solid #242426;
-    background: linear-gradient(180deg, #141416 0%, #101012 100%);
+    border: 1px solid var(--sep-opaque);
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, #101012 100%);
     border-radius: 6px;
     padding: 18px 20px 20px;
   }
@@ -111,7 +115,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #c8a84b;
+    color: var(--gold-500);
     margin-bottom: 10px;
   }
 
@@ -123,7 +127,7 @@
 
   .feature-card {
     background: #171719;
-    border: 1px solid #262629;
+    border: 1px solid var(--sep-nonopaque);
     border-radius: 5px;
     transition: border-color 0.15s ease, background-color 0.15s ease;
   }
@@ -140,8 +144,8 @@
   }
 
   .feature-card-link .feature-title {
-    color: #f0ede6;
-    font-family: 'Bebas Neue', sans-serif;
+    color: var(--t-primary);
+    font-family: var(--font-display);
     font-size: 22px;
     letter-spacing: 0.03em;
     line-height: 1;
@@ -151,17 +155,17 @@
 
   .feature-card:hover,
   .feature-card:focus-within {
-    border-color: #4a3c18;
+    border-color: var(--gold-100);
     background: #1b1b1e;
   }
 
   .feature-card:hover .feature-title,
   .feature-card:focus-within .feature-title {
-    color: #c8a84b;
+    color: var(--gold-500);
   }
 
   .feature-card-link:focus-visible {
-    outline: 2px solid #c8a84b;
+    outline: 2px solid var(--gold-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -169,7 +173,7 @@
   .feature-card p {
     font-size: 13px;
     line-height: 1.6;
-    color: #9e9a93;
+    color: var(--t-secondary);
   }
 
   .feature-feedback {
@@ -185,17 +189,17 @@
   .feature-feedback p {
     font-size: 13px;
     line-height: 1.55;
-    color: #9e9a93;
+    color: var(--t-secondary);
   }
 
   .feature-feedback-button {
     display: inline-block;
-    border: 1px solid #3a3020;
-    background: #1a1708;
-    color: #d4b96a;
+    border: 1px solid var(--gold-100);
+    background: var(--gold-tint-soft);
+    color: var(--gold-700);
     border-radius: 5px;
     padding: 8px 12px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-text);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -206,9 +210,9 @@
 
   .feature-feedback-button:hover,
   .feature-feedback-button:focus-visible {
-    border-color: #c8a84b;
-    background: #221d0b;
-    color: #f0d77e;
+    border-color: var(--gold-500);
+    background: var(--gold-tint-fill);
+    color: var(--gold-700);
   }
 
   .legend-label {
@@ -216,7 +220,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #4a4845;
+    color: var(--t-quaternary);
     margin-right: 4px;
   }
 
@@ -229,8 +233,8 @@
     letter-spacing: 0.06em;
   }
 
-  .delta-up   { color: #5d7db5; }
-  .delta-down { color: #b55d5d; }
+  .delta-up   { color: var(--cold); }
+  .delta-down { color: var(--danger); }
   .delta-same { color: #3a3a3c; }
 
   .rankings {
@@ -243,7 +247,7 @@
     display: grid;
     grid-template-columns: 72px 1fr;
     gap: 0;
-    border-bottom: 1px solid #1e1e20;
+    border-bottom: 1px solid var(--sep-opaque);
     padding: 32px 0;
     position: relative;
   }
@@ -251,16 +255,16 @@
   .rank-entry:hover { background: rgba(255,255,255,0.015); }
 
   .rank-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 54px;
-    color: #2a2a2c;
+    color: var(--sep-nonopaque);
     line-height: 1;
     padding-top: 4px;
     user-select: none;
   }
 
-  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
-  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(1) .rank-num { color: var(--gold-500); }
+  .rank-entry:nth-child(2) .rank-num { color: var(--t-tertiary); }
   .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
 
   .rank-content { padding-left: 8px; }
@@ -274,10 +278,10 @@
   }
 
   .team-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 26px;
     letter-spacing: 0.04em;
-    color: #f0ede6;
+    color: var(--t-primary);
     line-height: 1;
   }
 
@@ -298,17 +302,17 @@
     white-space: nowrap;
   }
 
-  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-last   { background: var(--sep-opaque); color: var(--t-tertiary); }
   .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
-  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
-  .badge-up     { background: #1a1f2e; color: #5d7db5; }
-  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-champ  { background: var(--gold-tint-fill); color: var(--gold-500); border: 1px solid var(--gold-100); }
+  .badge-up     { background: #1a1f2e; color: var(--cold); }
+  .badge-down   { background: #2e1a1a; color: var(--danger); }
   .badge-return { background: #2a1a2e; color: #9b6cb5; }
 
   .blurb {
     font-size: 14.5px;
     line-height: 1.75;
-    color: #c2bfb8;
+    color: var(--t-secondary);
     margin-bottom: 14px;
   }
 
@@ -327,7 +331,7 @@
     font-size: 12px;
     font-weight: 500;
     background: #181819;
-    border: 1px solid #2a2a2c;
+    border: 1px solid var(--sep-nonopaque);
     border-radius: 4px;
     padding: 3px 10px;
     color: #a8a59e;
@@ -341,9 +345,9 @@
   }
 
   .player-pill.top {
-    border-color: #3a3020;
-    color: #d4b96a;
-    background: #1a1708;
+    border-color: var(--gold-100);
+    color: var(--gold-700);
+    background: var(--gold-tint-soft);
   }
 
   .player-pill.hot {
@@ -392,9 +396,9 @@
     margin: 0 auto;
     padding: 24px 40px 40px;
     font-size: 12px;
-    color: #4a4845;
+    color: var(--t-quaternary);
     font-style: italic;
-    border-top: 1px solid #1e1e20;
+    border-top: 1px solid var(--sep-opaque);
     line-height: 1.8;
   }
 
@@ -407,6 +411,7 @@
     .feature-feedback { align-items: flex-start; flex-direction: column; }
   }
 </style>
+<link rel="stylesheet" href="assets/power-rankings-theme.css">
 </head>
 <body>
 
@@ -428,22 +433,22 @@
 </div>
 
 <div class="feature-strip">
-  <div class="feature-box">
+  <div class="feature-box card">
     <div class="feature-kicker">Site Tools</div>
     <div class="feature-grid">
-      <div class="feature-card">
+      <div class="feature-card card">
         <a class="feature-card-link" href="https://baseball.stephenmandella.com/rules.html">
           <span class="feature-title">League Rules</span>
           <p>The constitution, scoring settings, transaction rules, and the receipts for arguments nobody should be having from memory.</p>
         </a>
       </div>
-      <div class="feature-card">
+      <div class="feature-card card">
         <a class="feature-card-link" href="https://baseball.stephenmandella.com/closers.html">
           <span class="feature-title">Closer Carousel</span>
           <p>Current bullpen roles, confidence levels, dynasty ownership, and the weekly reminder that saves are a group hallucination.</p>
         </a>
       </div>
-      <div class="feature-card">
+      <div class="feature-card card">
         <a class="feature-card-link" href="https://baseball.stephenmandella.com/roster_depth.html">
           <span class="feature-title">Roster Depth</span>
           <p>Positional depth, Oracle tiers, live ownership overlays, and the fastest way to find out which roster is duct tape.</p>
@@ -459,14 +464,14 @@
 
 <div class="legend">
   <span class="legend-label">Player tiers:</span>
-  <span class="player-pill hot">🔥 Hot week</span>
-  <span class="player-pill cold">🧊 Cold week</span>
-  <span class="player-pill big-riser">↑ Big riser</span>
-  <span class="player-pill top">&#9679; Oracle top 30</span>
-  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
-  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
-  <span class="player-pill">&#9679; Everyone else</span>
-  <span class="player-pill ghost">👻 Manager went dark</span>
+  <span class="player-pill hot pill pill--hot">🔥 Hot week</span>
+  <span class="player-pill cold pill pill--cold">🧊 Cold week</span>
+  <span class="player-pill big-riser pill pill--hot">↑ Big riser</span>
+  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost pill pill--ghost">👻 Manager went dark</span>
 </div>
 
 <div class="rankings">

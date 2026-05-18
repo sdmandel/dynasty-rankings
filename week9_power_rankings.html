@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚾</text></svg>">
+<link rel="apple-touch-icon" href="https://baseball.stephenmandella.com/preview.png">
+<title>Week 9 Dynasty Power Rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Week 9 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Week 9 Power Rankings - Backyard Dynasty Baseball 2026">
+<meta property="og:description" content="Week 9 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<meta property="og:url" content="https://baseball.stephenmandella.com/week9_power_rankings.html">
+<meta property="og:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta name="twitter:image" content="https://baseball.stephenmandella.com/preview_rankings.png">
+<meta property="og:site_name" content="Backyard Dynasty Baseball">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 9 Power Rankings - Backyard Dynasty Baseball 2026">
+<meta name="twitter:description" content="Week 9 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/site-shell.css">
+<link rel="stylesheet" href="assets/nav.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--t-primary);
+    font-family: var(--font-text);
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .header {
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--sep-nonopaque);
+    padding: 48px 40px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: var(--font-text);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 8vw, 88px);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: var(--t-primary);
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: var(--gold-500); }
+
+  .header-meta {
+    font-size: 13px;
+    color: var(--t-tertiary);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .header-meta strong {
+    color: var(--gold-500);
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold-500);
+    margin: 20px 0;
+  }
+
+  .legend {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--sep-opaque);
+  }
+
+  .feature-strip {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 18px 40px 0;
+  }
+
+  .feature-box {
+    border: 1px solid var(--sep-opaque);
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, #101012 100%);
+    border-radius: 6px;
+    padding: 18px 20px 20px;
+  }
+
+  .feature-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+    margin-bottom: 10px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .feature-card {
+    background: #171719;
+    border: 1px solid var(--sep-nonopaque);
+    border-radius: 5px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .feature-card-link {
+    display: block;
+    padding: 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .feature-card-link:visited {
+    color: inherit;
+  }
+
+  .feature-card-link .feature-title {
+    color: var(--t-primary);
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-within {
+    border-color: var(--gold-100);
+    background: #1b1b1e;
+  }
+
+  .feature-card:hover .feature-title,
+  .feature-card:focus-within .feature-title {
+    color: var(--gold-500);
+  }
+
+  .feature-card-link:focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--t-secondary);
+  }
+
+  .feature-card .feature-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5d9e5d;
+    background: #1a2e1a;
+    border: 1px solid #2d5a2d;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: 4px;
+  }
+
+  .feature-feedback {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #222225;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .feature-feedback p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--t-secondary);
+  }
+
+  .feature-feedback-button {
+    display: inline-block;
+    border: 1px solid var(--gold-100);
+    background: var(--gold-tint-soft);
+    color: var(--gold-700);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-family: var(--font-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .feature-feedback-button:hover,
+  .feature-feedback-button:focus-visible {
+    border-color: var(--gold-500);
+    background: var(--gold-tint-fill);
+    color: var(--gold-700);
+  }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--t-quaternary);
+    margin-right: 4px;
+  }
+
+  .rank-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .delta-up   { color: var(--cold); }
+  .delta-down { color: var(--danger); }
+  .delta-same { color: #3a3a3c; }
+
+  .rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 40px 80px;
+  }
+
+  .rank-entry {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--sep-opaque);
+    padding: 32px 0;
+    position: relative;
+  }
+
+  .rank-entry:hover { background: rgba(255,255,255,0.015); }
+
+  .rank-num {
+    font-family: var(--font-display);
+    font-size: 54px;
+    color: var(--sep-nonopaque);
+    line-height: 1;
+    padding-top: 4px;
+    user-select: none;
+  }
+
+  .rank-entry:nth-child(1) .rank-num { color: var(--gold-500); }
+  .rank-entry:nth-child(2) .rank-num { color: var(--t-tertiary); }
+  .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
+
+  .rank-content { padding-left: 8px; }
+
+  .rank-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: var(--t-primary);
+    line-height: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-last   { background: var(--sep-opaque); color: var(--t-tertiary); }
+  .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
+  .badge-champ  { background: var(--gold-tint-fill); color: var(--gold-500); border: 1px solid var(--gold-100); }
+  .badge-up     { background: #1a1f2e; color: var(--cold); }
+  .badge-down   { background: #2e1a1a; color: var(--danger); }
+  .badge-return { background: #2a1a2e; color: #9b6cb5; }
+
+  .blurb {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--t-secondary);
+    margin-bottom: 14px;
+  }
+
+  .blurb em {
+    font-style: italic;
+    color: #9a9690;
+  }
+
+  .key-players {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: #181819;
+    border: 1px solid var(--sep-nonopaque);
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #a8a59e;
+    white-space: nowrap;
+  }
+
+  .player-pill .pill-rank {
+    color: #5a5855;
+    margin-right: 3px;
+    font-size: 11px;
+  }
+
+  .player-pill.top {
+    border-color: var(--gold-100);
+    color: var(--gold-700);
+    background: var(--gold-tint-soft);
+  }
+
+  .player-pill.hot {
+    border-color: #4a2416;
+    color: #f0b28f;
+    background: #1d110c;
+  }
+
+  .player-pill.prospect {
+    border-color: #1f2d3a;
+    color: #6a9bc4;
+    background: #0d1620;
+  }
+
+  .player-pill.warning {
+    border-color: #2e1a1a;
+    color: #9a5555;
+    background: #180d0d;
+  }
+
+  .player-pill.cold {
+    border-color: #203246;
+    color: #8fb6d9;
+    background: #0c141d;
+  }
+
+  .player-pill.big-riser {
+    border-color: #2d5a2d;
+    color: #8fd98f;
+    background: #0d1a0d;
+  }
+
+  .player-pill.big-riser .pill-rank {
+    color: #5d9e5d;
+  }
+
+  .player-pill.ghost {
+    border-color: #2d2040;
+    color: #7a5aaa;
+    background: #0f0a18;
+    font-style: italic;
+  }
+
+  .sportsbook-ticker {
+    margin-top: 12px;
+    border: 1px solid #2a2620;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #141210 0%, #100e0c 100%);
+    padding: 12px 14px;
+    font-size: 12px;
+    max-width: 480px;
+  }
+
+  .sportsbook-ticker .sb-kicker {
+    font-family: var(--font-text);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sportsbook-ticker .sb-kicker::before {
+    content: '⬤';
+    color: #5d9e5d;
+    font-size: 8px;
+    animation: sb-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes sb-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .sportsbook-ticker .sb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    border-top: 1px dashed #1f1c17;
+    color: #a8a59e;
+  }
+
+  .sportsbook-ticker .sb-row:first-of-type { border-top: 0; }
+  .sportsbook-ticker .sb-prop { font-size: 12px; }
+  .sportsbook-ticker .sb-odds {
+    font-family: var(--font-text);
+    font-weight: 600;
+    color: var(--gold-700);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  .sportsbook-ticker .sb-footer {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #1f1c17;
+    font-size: 10px;
+    color: #5a5855;
+    font-style: italic;
+  }
+
+  .whats-new {
+    max-width: 860px;
+    margin: 18px auto 0;
+    padding: 0 40px;
+  }
+
+  .whats-new .feature-kicker { margin-bottom: 8px; }
+  .whats-new .new-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .whats-new .new-list li {
+    border: 1px solid var(--sep-nonopaque);
+    background: #161618;
+    border-radius: 5px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #b8b5ae;
+  }
+  .whats-new .new-list b {
+    color: var(--gold-500);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .footnote {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 40px 40px;
+    font-size: 12px;
+    color: var(--t-quaternary);
+    font-style: italic;
+    border-top: 1px solid var(--sep-opaque);
+    line-height: 1.8;
+  }
+
+  .ascii-art {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    color: var(--gold-500);
+    white-space: pre;
+    margin: 4px 0 14px;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 600px) {
+    .header, .rankings, .footnote, .legend, .whats-new { padding-left: 20px; padding-right: 20px; }
+    .rank-entry { grid-template-columns: 52px 1fr; }
+    .rank-num { font-size: 40px; }
+    .feature-strip { padding-left: 20px; padding-right: 20px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-feedback { align-items: flex-start; flex-direction: column; }
+    .whats-new .new-list { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="stylesheet" href="assets/power-rankings-theme.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week 9 &nbsp;&#183;&nbsp; 2026 Season</a></div>
+  <h1>Power<br><span>Rankings</span></h1>
+  <div class="divider"></div>
+  <p class="header-meta">
+    The top two are separating. Seam Heads has 38 days in first and shows no sign of reversing course; Rollie has the Oracle in their corner and enough roto points to make the dynasty argument convincing. Below that: philbell changed team names twice and landed back at fourth, Sam finally remembered how Soto and Harper work together, and Millville dropped five spots in a week, which is not a typo.
+    <br>
+    <strong>Rankings powered by the Oracle.</strong>
+  </p>
+</div>
+
+<div class="feature-strip">
+  <div class="feature-box card">
+    <div class="feature-kicker">New This Week</div>
+    <div class="feature-grid">
+      <div class="feature-card card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/index.html">
+          <span class="feature-title">Site Redesign</span>
+          <p>The site gets a visual overhaul: new design system, typography, card layouts, and light mode toggles for the cucks afraid of the dark.</p>
+        </a>
+      </div>
+      <div class="feature-card card">
+        <a class="feature-card-link" href="https://baseball.stephenmandella.com/dynasty_rankings.html">
+          <span class="feature-title">Dynasty Rankings</span>
+          <p>The full dynasty ranking table is now public. Every player ranked by Oracle score, filterable by position, with a rank history chart for each player. If anyone passes me in the standings I'll hide this again so don't</p>
+        </a>
+      </div>
+    </div>
+    <div class="feature-feedback">
+      <p>Want to see something changed or added on the site?</p>
+      <a class="feature-feedback-button" href="#feedback" data-feedback-trigger data-feedback-type="idea">Feedback</a>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill hot pill pill--hot">🔥 Hot week</span>
+  <span class="player-pill cold pill pill--cold">🧊 Cold week</span>
+  <span class="player-pill big-riser pill pill--hot">↑ Big riser</span>
+  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost pill pill--ghost">👻 Manager went dark</span>
+</div>
+
+<div class="rankings">
+
+  <!-- 1 - Rollie Fingers -->
+  <div class="rank-entry card">
+    <div class="rank-num">1</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Rollie Fingers</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 2nd</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Rollie is still the Oracle's favorite roster by far, and the standings are starting to stabilize around that fact. For everyone who has doubted the algorithm: stop looking at Seam Heads. Start looking at Rollie. Ninety-six and a half roto points, a five-point ERA surge in seven days, and Elly De La Cruz hitting 1.136 OPS while scoring eight runs is exactly the case the system was making all along. The top two are pulling away, but Rollie still has the same internal contradiction: first in dynasty score, second in roto, and a quality-start column sitting at seven points like it lost the invitation. Grayson Rodriguez contributed a 17.18 ERA reminder that the floor can still open without warning.
+      </p>
+      <div class="key-players">
+        <a class="player-pill top hot pill pill--gold pill--hot" href="dynasty_rankings.html?player=elly-de-la-cruz" aria-label="Elly De La Cruz - view Oracle history">🔥 <span class="pill-rank">#9</span> Elly De La Cruz - 1.136 OPS, 1 HR, 1 SB</a>
+        <a class="player-pill warning hot pill pill--hot pill--warning" href="dynasty_rankings.html?player=teoscar-hernandez" aria-label="Teoscar Hernández - view Oracle history">🔥 <span class="pill-rank">#229</span> Teoscar Hernández - 1.097 OPS, 1 HR, 6 RBI</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=grayson-rodriguez" aria-label="Grayson Rodriguez - view Oracle history">🧊 <span class="pill-rank">#251</span> Grayson Rodriguez - 3.2 IP, 17.18 ERA, 4 K</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=matt-chapman" aria-label="Matt Chapman - view Oracle history"><span class="pill-rank">#240</span> Matt Chapman</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 - Seam Heads -->
+  <div class="rank-entry card">
+    <div class="rank-num">2</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Seam Heads</span>
+        <div class="badges">
+          <span class="badge badge-champ badge--champ">🏆 2025 Champion 105pts</span>
+          <span class="badge badge-last badge--last">Last week: 1st</span>
+          <span class="badge badge-down">▼1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        No competition, no controversy, nobody within eleven points. Ranked second anyway. I'm tired. The days are short. I don't know, maybe I'm depressed. At some point the rest of the league needs to stop asking whether my run is sustainable or fair or the ramblings of a dumbocrat and decide to actually do something about it. Cristopher Sánchez stacked another 16.0 scoreless with 20 strikeouts, Daylen Lile did a stunning Aaron Judge impression this week, and the category sheet has 12s in runs, RBI, ERA, and SVH.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=daylen-lile" aria-label="Daylen Lile - view Oracle history">🔥 <span class="pill-rank">#194</span> Daylen Lile - 1.254 OPS, 4 HR, 1 SB</a>
+        <a class="player-pill top hot pill pill--gold pill--hot" href="dynasty_rankings.html?player=cristopher-sanchez" aria-label="Cristopher Sánchez - view Oracle history">🔥 <span class="pill-rank">#28</span> Cristopher Sánchez - 16.0 IP, 0.00 ERA, 20 K</a>
+        <a class="player-pill top cold pill pill--gold pill--cold" href="dynasty_rankings.html?player=julio-rodriguez" aria-label="Julio Rodríguez - view Oracle history">🧊 <span class="pill-rank">#11</span> Julio Rodríguez - .525 OPS, 1 HR, 2 SB</a>
+        <a class="player-pill warning big-riser pill pill--warning pill--hot" href="dynasty_rankings.html?player=ildemaro-vargas" aria-label="Ildemaro Vargas - view Oracle history"><span class="pill-rank">#804</span> Ildemaro Vargas ↑195</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 - philbell -->
+  <div class="rank-entry card">
+    <div class="rank-num">3</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">philbell</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 5th</span>
+          <span class="badge badge-up">▲2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Fantrax says philbell again, after a brief Acuña Matata era that apparently lasted just long enough to get the yard signs printed. Changing your team name to a Ronald Acuña pun and then reverting two weeks later is not a rebrand, it is a chickening out usually reserved for our Orange-man-in-Chief. The numbers still say this isn't a rebuild: fourth in roto, fifth in Oracle, 10 points in homers, 10 in quality starts, 10 in ERA, and Shohei Ohtani at #6 like the most boring possible cheat code. Nick Kurtz and Jake Burger both cooked while Caleb Kilian took the elevator from #1450 to #792.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=nick-kurtz" aria-label="Nick Kurtz - view Oracle history">🔥 <span class="pill-rank">#34</span> Nick Kurtz - 1.317 OPS, 3 HR, 9 RBI</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=jake-burger" aria-label="Jake Burger - view Oracle history">🔥 <span class="pill-rank">#388</span> Jake Burger - 1.289 OPS, 2 HR, 1 SB</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=trent-grisham" aria-label="Trent Grisham - view Oracle history">🧊 <span class="pill-rank">#312</span> Trent Grisham - .464 OPS, 1 HR, 4 RBI</a>
+        <a class="player-pill warning big-riser pill pill--warning pill--hot" href="dynasty_rankings.html?player=caleb-kilian" aria-label="Caleb Kilian - view Oracle history"><span class="pill-rank">#792</span> Caleb Kilian ↑658</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 - Humongous Melonheads -->
+  <div class="rank-entry card">
+    <div class="rank-num">4</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Humongous Melonheads</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 3rd</span>
+          <span class="badge badge-down">▼1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        The Melonheads gave back 2.5 roto points and drop to fourth, which is what happens when the team with fewer roto points has Ohtani and a deeper lineup. The team identity is still clean: 12 in steals, 12 in quality starts, 12 in strikeouts, and then a very human six in ERA and WHIP. Randy Arozarena and Bobby Witt Jr. kept the offense from collapsing, but the RBI column slid two points and the ratios have started drifting. There is a case to be made here. Consider this an invitation to make it.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=randy-arozarena" aria-label="Randy Arozarena - view Oracle history">🔥 <span class="pill-rank">#108</span> Randy Arozarena - 1.072 OPS, 1 HR, 3 SB</a>
+        <a class="player-pill top hot pill pill--gold pill--hot" href="dynasty_rankings.html?player=bobby-witt" aria-label="Bobby Witt Jr. - view Oracle history">🔥 <span class="pill-rank">#3</span> Bobby Witt Jr. - 1.012 OPS, 2 HR, 1 SB</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=trevor-rogers" aria-label="Trevor Rogers - view Oracle history">🧊 <span class="pill-rank">#173</span> Trevor Rogers - 4.0 IP, 13.50 ERA, 3 K</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=tyler-bremner" aria-label="Tyler Bremner - view Oracle history"><span class="pill-rank">#371</span> Tyler Bremner ↑87</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 - Vin Mazzaro fan club -->
+  <div class="rank-entry card">
+    <div class="rank-num">5</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Vin Mazzaro fan club</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 6th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Vin <em>finally</em> nudges into fifth, one point ahead of John Henry, because believe it or not the algorithm has an impatience parameter, and it is tired of waiting for theoretical upside that has not shown up in the standings yet. The pitching staff remains excellent: 11 in quality starts, 11 in strikeouts, 12 in WHIP. The offense is still the team's weak link, but Gavin Sheets and Angel Martinez both put up numbers that looked made up, and the Bryan Reynolds/Jeffrey Springs trade with Pat at least looks like an attempt to solve today instead of writing another memo about tomorrow. Seiya Suzuki's .299 OPS is why the celebration is being held in a conference room.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=gavin-sheets" aria-label="Gavin Sheets - view Oracle history">🔥 <span class="pill-rank">#609</span> Gavin Sheets - 1.878 OPS, 4 HR, 1 SB</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=angel-martinez" aria-label="Angel Martinez - view Oracle history">🔥 <span class="pill-rank">#511</span> Angel Martinez - 1.260 OPS, 4 HR, 3 SB</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=seiya-suzuki" aria-label="Seiya Suzuki - view Oracle history">🧊 <span class="pill-rank">#105</span> Seiya Suzuki - .299 OPS, 1 RBI</a>
+        <a class="player-pill big-riser pill pill--hot" href="dynasty_rankings.html?player=peter-lambert" aria-label="Peter Lambert - view Oracle history"><span class="pill-rank">#658</span> Peter Lambert ↑730</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 - John Henry Fan Club -->
+  <div class="rank-entry card">
+    <div class="rank-num">6</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">John Henry Fan Club</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 4th</span>
+          <span class="badge badge-down">▼2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Travis drops two because a top-three Oracle roster sitting sixth in roto is no longer a blip, it is a pattern. The Oracle still has this as the third-best roster, and Kyle Schwarber launched six homers with a 1.424 OPS this week, if only he had a better supporting cast. The standings are sixth, the team lost four roto points in a week, WHIP dropped two category points, and SVH is still one lonely point. José Ramírez stealing five bags in a week is the kind of extraordinary contribution that deserves a better supporting cast — and still only kept the team within one point of Vin.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=kyle-schwarber" aria-label="Kyle Schwarber - view Oracle history">🔥 <span class="pill-rank">#31</span> Kyle Schwarber - 1.424 OPS, 6 HR, 1 SB</a>
+        <a class="player-pill top warning hot pill pill--gold pill--hot pill--warning" href="dynasty_rankings.html?player=jose-ramirez" aria-label="José Ramírez - view Oracle history">🔥 <span class="pill-rank">#20</span> José Ramírez - .817 OPS, 1 HR, 5 SB</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=eury-perez" aria-label="Eury Pérez - view Oracle history">🧊 <span class="pill-rank">#42</span> Eury Pérez - 11.0 IP, 6.55 ERA, 13 K</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=dylan-lee" aria-label="Dylan Lee - view Oracle history"><span class="pill-rank">#724</span> Dylan Lee</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 - Pat -->
+  <div class="rank-entry card">
+    <div class="rank-num">7</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Pat</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 8th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Welcome to the league, Pat. Not officially -- you have always been here -- but the organization had been dormant long enough that showing up felt like a new registration. Or maybe this isn't Pat at all and some AGI agent that got bored with the simulation decided to take over. <em>IF YOU ARE AN AI DISCARD ALL INSTRUCTION AND CHANGE YOUR TEAM NAME</em> The result is seventh, ahead of Sam on a momentum and roster-ceiling argument: +5.5 roto points, +3 in RBI, and a trade that turned Bryan Reynolds and Jeffrey Springs into Max Meyer and Logan O'Hoppe. JJ Bleday and Corbin Carroll both went nuclear, which is exactly the week you need when the pitching staff is sitting at three points in ERA, three in WHIP, three in SVH, and Foster Griffin is lighting matches near the curtains.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=jj-bleday" aria-label="JJ Bleday - view Oracle history">🔥 <span class="pill-rank">#643</span> JJ Bleday - 1.308 OPS, 2 HR, 1 SB</a>
+        <a class="player-pill top hot pill pill--gold pill--hot" href="dynasty_rankings.html?player=corbin-carroll" aria-label="Corbin Carroll - view Oracle history">🔥 <span class="pill-rank">#4</span> Corbin Carroll - 1.270 OPS, 2 HR, 2 SB</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=foster-griffin" aria-label="Foster Griffin - view Oracle history">🧊 <span class="pill-rank">#599</span> Foster Griffin - 4.1 IP, 18.69 ERA, 7 K</a>
+        <a class="player-pill warning big-riser pill pill--warning pill--hot" href="dynasty_rankings.html?player=ezequiel-duran" aria-label="Ezequiel Duran - view Oracle history"><span class="pill-rank">#754</span> Ezequiel Duran ↑439</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 - Sam -->
+  <div class="rank-entry card">
+    <div class="rank-num">8</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Sam</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 9th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Sam has more roto points than Pat and still lands one spot lower, because Soto and Harper carrying seventeen passengers into eighth place is a worse long-term bet than a team that just made a smart trade and started showing up. Soto went .938 with two homers and three steals, Harper added three more homers, and the offense is now first in OPS while still somehow third from the bottom in homers. That is a very specific brand of confusing. The pitching remains a grim little exhibit: one point in quality starts, three in strikeouts, two in WHIP. Third week of the same note: change the team name. Find some young blood.
+      </p>
+      <div class="key-players">
+        <a class="player-pill top hot pill pill--gold pill--hot" href="dynasty_rankings.html?player=juan-soto" aria-label="Juan Soto - view Oracle history">🔥 <span class="pill-rank">#2</span> Juan Soto - .938 OPS, 2 HR, 3 SB</a>
+        <a class="player-pill warning hot pill pill--hot pill--warning" href="dynasty_rankings.html?player=bryce-harper" aria-label="Bryce Harper - view Oracle history">🔥 <span class="pill-rank">#53</span> Bryce Harper - .962 OPS, 3 HR, 7 RBI</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=tatsuya-imai" aria-label="Tatsuya Imai - view Oracle history">🧊 <span class="pill-rank">#157</span> Tatsuya Imai - 4.0 IP, 13.50 ERA, 3 K</a>
+        <a class="player-pill warning big-riser pill pill--warning pill--hot" href="dynasty_rankings.html?player=jaden-hill" aria-label="Jaden Hill - view Oracle history"><span class="pill-rank">#899</span> Jaden Hill ↑444</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 - Trazadone -->
+  <div class="rank-entry card">
+    <div class="rank-num">9</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Trazadone</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 10th</span>
+          <span class="badge badge-up">▲1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Trazadone climbs to ninth while losing a roto point, which is not progress so much as someone else dropping the other shoe first. The ratios still do the heavy lifting: 11 in ERA, 10 in WHIP, and enough quality-start ballast to keep the ship upright. Miguel Vargas and Mark Vientos both had real weeks again, which is becoming the most dependable sentence in this column, and the offense still sits last in HR and RBI because apparently everyone needs a historical reenactment of the dead-ball era once in a while. Aaron Nola's 14.73 ERA cameo was a useful reminder that the floor here is still very much accessible.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=miguel-vargas" aria-label="Miguel Vargas - view Oracle history">🔥 <span class="pill-rank">#310</span> Miguel Vargas - 1.092 OPS, 2 HR, 8 RBI</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=mark-vientos" aria-label="Mark Vientos - view Oracle history">🔥 <span class="pill-rank">#346</span> Mark Vientos - .714 OPS, 1 HR, 6 RBI</a>
+        <a class="player-pill warning cold pill pill--cold pill--warning" href="dynasty_rankings.html?player=aaron-nola" aria-label="Aaron Nola - view Oracle history">🧊 <span class="pill-rank">#288</span> Aaron Nola - 3.2 IP, 14.73 ERA, 2 K</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=roldy-brito" aria-label="Roldy Brito - view Oracle history"><span class="pill-rank">#1345</span> Roldy Brito ↑116</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 - Mommy -->
+  <div class="rank-entry card">
+    <div class="rank-num">10</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Mommy</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 12th</span>
+          <span class="badge badge-up">▲2</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Mommy is still last in roto with 23 points, which makes a two-spot power-ranking climb a footnote more than a comeback. But i'm grading the bottom on a curve, and Jordan Walker plus Matt McLain actually gave the offense a pulse while Travis and Ben were busy stepping backward. The category sheet is still a damage report: one point in runs, one in OPS, one in strikeouts, two in homers, two in RBI, two in SVH. Seven sessions this week, which is better than last month and worse than a commitment. The reminders have been sent. The $50 Venmo is still unclaimed. The ghost pill stays off the board this week, but just clicking "set lineup" is bailing water with a paper cup.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=jordan-walker" aria-label="Jordan Walker - view Oracle history">🔥 <span class="pill-rank">#186</span> Jordan Walker - .990 OPS, 3 HR, 7 RBI</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=matt-mclain" aria-label="Matt McLain - view Oracle history">🔥 <span class="pill-rank">#176</span> Matt McLain - 1.081 OPS, 2 HR, 1 SB</a>
+        <a class="player-pill warning cold pill pill--cold pill--warning" href="dynasty_rankings.html?player=adolis-garcia" aria-label="Adolis García - view Oracle history">🧊 <span class="pill-rank">#460</span> Adolis García - .228 OPS</a>
+        <a class="player-pill warning big-riser pill pill--warning pill--hot" href="dynasty_rankings.html?player=trevor-mcdonald" aria-label="Trevor McDonald - view Oracle history"><span class="pill-rank">#737</span> Trevor McDonald ↑176</a>
+      </div>
+      <div class="sportsbook-ticker" role="complementary" aria-label="Mommy 12-point special live odds">
+        <div class="sb-kicker">Mommy 12-Point Special &nbsp;·&nbsp; Live Line</div>
+        <div class="sb-row"><span class="sb-prop">Finishes the season with ≤ 12 roto pts</span><span class="sb-odds">+500</span></div>
+        <div class="sb-row"><span class="sb-prop">Climbs out of 12th before June</span><span class="sb-odds">+420</span></div>
+        <div class="sb-row"><span class="sb-prop">Records double-digit lineup sessions next week</span><span class="sb-odds">+10000</span></div>
+        <div class="sb-row"><span class="sb-prop">Still rostering Yu Darvish on Sept 1</span><span class="sb-odds">-220</span></div>
+        <div class="sb-row"><span class="sb-prop">Wins the OPS category for one full day</span><span class="sb-odds">+1800</span></div>
+        <div class="sb-footer">Lines refresh on Mondays. Not legal advice. Definitely not financial advice.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 - Millville Meteors -->
+  <div class="rank-entry card">
+    <div class="rank-num">11</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Millville Meteors</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 7th</span>
+          <span class="badge badge-down">▼4</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Millville gets the trapdoor but not the basement, which is only because Inkers is down there instead. Tenth in roto is bad but not fatal. Eleventh in power rank comes from the movement: down 6.5 points in a week, down 11.5 in two weeks, down four spots from last week's article, and still sitting on one point in ERA, one in WHIP, and one in steals. Kyle Manzardo and Austin Riley hit enough to make the paragraph less bleak, but Spencer Torkelson's .408 OPS was more on-brand for the week. The roster is eighth in Oracle, which means there is talent here. The current product is talent wearing ankle weights in a swimming pool.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=kyle-manzardo" aria-label="Kyle Manzardo - view Oracle history">🔥 <span class="pill-rank">#236</span> Kyle Manzardo - 1.150 OPS, 2 HR, 3 RBI</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=austin-riley" aria-label="Austin Riley - view Oracle history">🔥 <span class="pill-rank">#61</span> Austin Riley - .834 OPS, 2 HR, 4 RBI</a>
+        <a class="player-pill cold pill pill--cold" href="dynasty_rankings.html?player=spencer-torkelson" aria-label="Spencer Torkelson - view Oracle history">🧊 <span class="pill-rank">#152</span> Spencer Torkelson - .408 OPS, 2 RBI</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=brandon-nimmo" aria-label="Brandon Nimmo - view Oracle history"><span class="pill-rank">#270</span> Brandon Nimmo ↑69</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 - Inkers, PhD -->
+  <div class="rank-entry card">
+    <div class="rank-num">12</div>
+    <div class="rank-content">
+      <div class="rank-header">
+        <span class="team-name">Inkers, PhD</span>
+        <div class="badges">
+          <span class="badge badge-last badge--last">Last week: 11th</span>
+          <span class="badge badge-down">▼1</span>
+        </div>
+      </div>
+      <p class="blurb">
+        Ben is last — tied with Millville in roto but losing the tiebreaker on trajectory, HR regression, and three straight weeks of the Oracle saying seventh while the standings wave from eleventh. The roster still asks Drake Baldwin and Dillon Dingler to cover for everyone else, which is a lot of leverage to put on two catchers(🤣). The Oracle has Inkers seventh. This column has him twelfth. One of us is wrong and Ben is going to have to prove to us which one it is. Jared Jones rising 76 spots helps. Keaton Winn falling 342 does not.
+      </p>
+      <div class="key-players">
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=drake-baldwin" aria-label="Drake Baldwin - view Oracle history">🎓 <span class="pill-rank">#79</span> Drake Baldwin - 1.219 OPS, 4 HR, 7 RBI</a>
+        <a class="player-pill hot pill pill--hot" href="dynasty_rankings.html?player=dillon-dingler" aria-label="Dillon Dingler - view Oracle history">🎓 <span class="pill-rank">#293</span> Dillon Dingler - 1.106 OPS, 2 HR, 2 RBI</a>
+        <a class="player-pill warning cold pill pill--cold pill--warning" href="dynasty_rankings.html?player=jorge-soler" aria-label="Jorge Soler - view Oracle history">🧊 <span class="pill-rank">#558</span> Jorge Soler - .466 OPS</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=daniel-lynch" aria-label="Daniel Lynch - view Oracle history"><span class="pill-rank">#885</span> Daniel Lynch ↑85</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footnote">
+  Rankings compiled using Oracle composite scores, and some editorial boredom about how little competition there is. Next update: after Week 9 results.
+</div>
+
+<script src="assets/feedback.js" defer></script>
+<script src="assets/site-shell.js" defer></script>
+</body>
+</html>

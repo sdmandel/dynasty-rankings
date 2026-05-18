@@ -14,24 +14,28 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
-html[data-theme="dark"] { --bg:#0e0e0f; --bg2:#141416; --border:#1e1e20; --border2:#2a2a2c; --gold:#c8a84b; --text:#f0ede6; --text-mid:#c2bfb8; --text-muted:#7a7872; --text-dead:#4a4845; --green:#5da87a; --blue:#5d7db5; --red:#b55d5d; }
+:root { --bg:var(--bg-base); --bg2:var(--bg-elevated); --border:var(--sep-opaque); --border2:var(--sep-nonopaque); --gold:var(--gold-500); --text:var(--t-primary); --text-mid:var(--t-secondary); --text-muted:var(--t-tertiary); --text-dead:var(--t-quaternary); --green:var(--success); --blue:var(--cold); --red:var(--danger); }
+html[data-theme="dark"] { --bg:var(--bg-base); --bg2:var(--bg-elevated); --border:var(--sep-opaque); --border2:var(--sep-nonopaque); --gold:var(--gold-500); --text:var(--t-primary); --text-mid:var(--t-secondary); --text-muted:var(--t-tertiary); --text-dead:var(--t-quaternary); --green:var(--success); --blue:var(--cold); --red:var(--danger); }
 html[data-theme="light"] { --bg:#f5f3ef; --bg2:#eceae5; --border:#d8d4cb; --border2:#c5c0b5; --gold:#9a7a28; --text:#1a1917; --text-mid:#3a3834; --text-muted:#7a7468; --text-dead:#a09a90; --green:#2a7a4a; --blue:#3a5a8a; --red:#8a3a3a; }
-body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-text); font-size: 15px; line-height: 1.6; }
 .content, .site-footer { max-width: 1100px; margin: 0 auto; padding: 36px 40px 56px; }
 .section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
 .closer-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:40px; }
 .closer-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:18px 20px; }
-.closer-card.unstable { border-color:#4a1e1e; background:#150e0e; }
-.closer-card.high-conf { border-color:#1e3226; background:#0e1810; }
+.closer-card.unstable { border-color:color-mix(in srgb, var(--red) 36%, var(--border)); background:color-mix(in srgb, var(--red) 8%, var(--bg2)); }
+.closer-card.high-conf { border-color:color-mix(in srgb, var(--green) 36%, var(--border)); background:color-mix(in srgb, var(--green) 8%, var(--bg2)); }
 .bullpen-team { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); margin-bottom:4px; }
-.closer-name { font-family:'Bebas Neue', sans-serif; font-size:26px; line-height:1; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
+.closer-name { font-family:var(--font-display); font-size:26px; line-height:1; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
 .closer-card.high-conf .closer-name { color:var(--green); }
 .dynasty-owner { font-size:12px; color:var(--text-muted); margin-bottom:10px; }
 .dynasty-owner span { color:var(--gold); }
@@ -39,18 +43,18 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
 .conf-row { display:grid; grid-template-columns:80px 1fr 36px; gap:8px; align-items:center; margin-bottom:8px; }
 .conf-label { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
 .track { height:8px; background:var(--bg); border:1px solid var(--border); border-radius:2px; overflow:hidden; }
-.fill { height:100%; }
+.fill { height:100%; width:var(--confidence, 0%); }
 .fill-high { background:var(--green); }
 .fill-mid  { background:var(--gold); }
 .fill-low  { background:var(--text-dead); }
-.conf-value { font-family:'Bebas Neue', sans-serif; font-size:15px; line-height:1; color:var(--text-muted); text-align:right; }
+.conf-value { font-family:var(--font-display); font-size:15px; line-height:1; color:var(--text-muted); text-align:right; }
 .tag-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
 .tag { font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--border2); border-radius:999px; padding:3px 8px; color:var(--text-muted); }
-.tag.unstable { color:var(--red); border-color:#4a1e1e; }
+.tag.unstable { color:var(--red); border-color:color-mix(in srgb, var(--red) 42%, var(--border)); }
 .tag.saves    { color:var(--text-mid); border-color:var(--border2); }
 .stat-pill { font-size:11px; color:var(--text-muted); }
 .dynasty-section { margin-bottom:32px; }
-.dynasty-title { font-family:'Bebas Neue', sans-serif; font-size:32px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:14px; }
+.dynasty-title { font-family:var(--font-display); font-size:32px; line-height:.95; letter-spacing:.03em; color:var(--text); margin-bottom:14px; }
 .dynasty-closers { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
 .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 0 -4px 30px; scrollbar-width:thin; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
@@ -63,7 +67,7 @@ tbody td { padding:9px 8px 9px 0; color:var(--text); white-space:nowrap; }
 tbody td:first-child { padding-left:0; }
 tbody td.right { color:var(--text-muted); font-size:12px; font-variant-numeric: tabular-nums; }
 .board-row td:nth-child(2) { color:var(--text); font-weight:500; }
-.p-rank { font-family:'Bebas Neue', sans-serif; font-size:18px; color:var(--text-dead); min-width:44px; display:inline-block; text-align:right; }
+.p-rank { font-family:var(--font-display); font-size:18px; color:var(--text-dead); min-width:44px; display:inline-block; text-align:right; }
 .p-rank.top100 { color:var(--gold); }
 .p-rank.top200 { color:var(--text-mid); }
 .p-rank.unranked { color:var(--text-dead); font-size:12px; }
@@ -79,9 +83,7 @@ tbody td.right { color:var(--text-muted); font-size:12px; font-variant-numeric: 
   padding:2px 7px;
 }
 .board-row.rostered .owner-pill { color:#8ca7d4; border-color:#314b78; background:rgba(93,125,181,0.14); }
-.board-row.available .owner-pill { color:#5da87a; border-color:#2a5a3c; background:rgba(93,168,122,0.14); }
-html[data-theme="light"] .closer-card.unstable { background:#fdf2f0; border-color:#e8b8b0; }
-html[data-theme="light"] .closer-card.high-conf { background:#f0f8f2; border-color:#b0d8be; }
+.board-row.available .owner-pill { color:var(--success); border-color:#2a5a3c; background:rgba(93,168,122,0.14); }
 html[data-theme="light"] .board-row.rostered .owner-pill { color:#3a5a8a; border-color:#adc0d8; background:rgba(58,90,138,0.10); }
 html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; border-color:#a8d0b8; background:rgba(42,122,74,0.10); }
 .state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
@@ -109,7 +111,7 @@ html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; borde
 
     <div class="section-label">Full Board</div>
     <div class="table-wrap">
-      <table>
+      <table class="table">
         <thead><tr>
           <th class="right">Rank</th><th>Closer</th><th>MLB Team</th><th>Dynasty Team</th>
           <th class="right">Saves</th><th class="right">Confidence</th><th class="right">Role Share</th><th>Flags</th>
@@ -142,7 +144,7 @@ function closerCard(item, highlight){
     <div class="${hasDynasty?'dynasty-owner':'dynasty-owner no-owner'}">${hasDynasty?`Owned by <span>${esc(item.dynasty_team)}</span>`:'Unowned / Free Agent'}</div>
     <div class="conf-row">
       <div class="conf-label">Confidence</div>
-      <div class="track"><div class="fill ${fillClass(item.confidence_score)}" style="width:${pct(item.confidence_score)}%"></div></div>
+      <div class="track"><div class="fill ${fillClass(item.confidence_score)}" style="--confidence:${pct(item.confidence_score)}%"></div></div>
       <div class="conf-value">${pct(item.confidence_score)}</div>
     </div>
     ${tags.length?`<div class="tag-row">${tags.join('')}</div>`:''}

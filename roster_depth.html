@@ -15,58 +15,62 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_depth.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="assets/nav.css">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site-shell.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/nav.css">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #0e0e0f;
-  color: #e8e6e0;
-  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-base);
+  color: var(--t-primary);
+  font-family: var(--font-text);
   font-size: 14px;
   line-height: 1.6;
   padding: 0 0 60px;
 }
 
 .header {
-  background: #0e0e0f;
-  border-bottom: 1px solid #2a2a2c;
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--sep-nonopaque);
   padding: 48px 40px 32px;
   max-width: 1100px;
   margin: 0 auto;
 }
 .header-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #c8a84b;
+  color: var(--gold-500);
   margin-bottom: 12px;
 }
 .header h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(44px, 7vw, 80px);
   letter-spacing: 0.02em;
   line-height: 0.92;
-  color: #f0ede6;
+  color: var(--t-primary);
   margin-bottom: 20px;
 }
-.header h1 span { color: #c8a84b; }
+.header h1 span { color: var(--gold-500); }
 .divider {
   width: 40px; height: 2px;
-  background: #c8a84b;
+  background: var(--gold-500);
   margin: 20px 0;
 }
 .header-meta {
   font-size: 13px;
-  color: #7a7872;
+  color: var(--t-tertiary);
   max-width: 680px;
   line-height: 1.7;
 }
-.header-meta strong { color: #c8a84b; font-weight: 500; }
+.header-meta strong { color: var(--gold-500); font-weight: 500; }
 
 /* Legend */
 .legend {
@@ -77,14 +81,14 @@ body {
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
-  border-bottom: 1px solid #1e1e20;
+  border-bottom: 1px solid var(--sep-opaque);
 }
 .legend-label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--t-quaternary);
   margin-right: 4px;
 }
 .leg-pill {
@@ -93,7 +97,7 @@ body {
   gap: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: #7a7872;
+  color: var(--t-tertiary);
 }
 .leg-swatch {
   width: 12px; height: 12px;
@@ -118,9 +122,9 @@ body {
   top: 0;
   z-index: 10;
   margin-bottom: 10px;
-  background: rgba(14, 14, 15, 0.96);
+  background: color-mix(in srgb, var(--bg-base) 94%, transparent);
   backdrop-filter: blur(6px);
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--sep-opaque);
   border-radius: 8px;
 }
 
@@ -157,17 +161,17 @@ table {
 }
 
 thead th {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--t-quaternary);
   padding: 8px 10px;
   text-align: center;
-  border-bottom: 1px solid #1e1e20;
+  border-bottom: 1px solid var(--sep-opaque);
   white-space: nowrap;
-  background: #0e0e0f;
+  background: var(--bg-base);
 }
 thead th.th-team {
   text-align: left;
@@ -175,21 +179,21 @@ thead th.th-team {
 }
 thead th.th-rank { width: 40px; }
 
-tr { border-bottom: 1px solid #1a1a1c; }
-tr:hover { background: rgba(255,255,255,0.012); }
+tr { border-bottom: 1px solid var(--bg-overlay); }
+tr:hover { background: var(--fill-quat); }
 
 .rank-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 28px;
-  color: #2a2a2c;
+  color: var(--sep-nonopaque);
   padding: 16px 12px 16px 0;
   vertical-align: top;
   line-height: 1;
   width: 44px;
   text-align: right;
 }
-.rank-gold   { color: #c8a84b; }
-.rank-silver { color: #8a8680; }
+.rank-gold   { color: var(--gold-500); }
+.rank-silver { color: var(--t-tertiary); }
 .rank-bronze { color: #7a5c38; }
 
 .team-cell {
@@ -197,17 +201,17 @@ tr:hover { background: rgba(255,255,255,0.012); }
   vertical-align: top;
 }
 .tname {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: #f0ede6;
+  color: var(--t-primary);
   display: block;
   line-height: 1.1;
   margin-bottom: 2px;
 }
 .tscore {
   font-size: 11px;
-  color: #4a4845;
+  color: var(--t-quaternary);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -232,7 +236,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 }
 .pill:hover { opacity: 0.8; }
 .pill:focus-visible {
-  outline: 2px solid #c8a84b;
+  outline: 2px solid var(--gold-500);
   outline-offset: 2px;
 }
 
@@ -243,10 +247,10 @@ tr:hover { background: rgba(255,255,255,0.012); }
   z-index: 999;
   max-width: min(280px, calc(100vw - 24px));
   padding: 7px 9px;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--sep-nonopaque);
   border-radius: 6px;
   background: rgba(10, 10, 11, 0.96);
-  color: #f0ede6;
+  color: var(--t-primary);
   font-size: 11px;
   line-height: 1.35;
   letter-spacing: 0.01em;
@@ -262,6 +266,13 @@ tr:hover { background: rgba(255,255,255,0.012); }
   transform: translateY(0);
 }
 
+html[data-theme="light"] .depth-tooltip {
+  background: rgba(250, 248, 243, 0.98);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: var(--t-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
 /* Tier colors */
 .t1 { background: #6b1212; color: #f5b8b8; border: 1px solid #8b2020; }
 .t2 { background: #7d2e1e; color: #f0c4a8; border: 1px solid #a03828; }
@@ -269,23 +280,29 @@ tr:hover { background: rgba(255,255,255,0.012); }
 .t4 { background: #5a4030; color: #d4b898; border: 1px solid #7a5840; }
 .t5 { background: #2e2420; color: #8a7868; border: 1px solid #3e3028; }
 
+html[data-theme="light"] .t1 { background: #f4d7d7; color: #7a1616; border-color: #d59696; }
+html[data-theme="light"] .t2 { background: #f3dfd2; color: #803922; border-color: #d7a18b; }
+html[data-theme="light"] .t3 { background: #f1e4d6; color: #744925; border-color: #d5ad86; }
+html[data-theme="light"] .t4 { background: #eee8df; color: #6a5140; border-color: #d4c5b6; }
+html[data-theme="light"] .t5 { background: #e7e2da; color: #6f675f; border-color: #cbc2b6; }
+
 /* Riser / faller pill indicators */
-.pill.big-riser { border-color: #5d7db5; }
-.pill.big-riser::after { content: ' ↑'; color: #5d7db5; font-size: 9px; }
-.pill.big-faller { border-color: #b55d5d; }
-.pill.big-faller::after { content: ' ↓'; color: #b55d5d; font-size: 9px; }
+.pill.big-riser { border-color: var(--cold); }
+.pill.big-riser::after { content: ' ↑'; color: var(--cold); font-size: 9px; }
+.pill.big-faller { border-color: var(--danger); }
+.pill.big-faller::after { content: ' ↓'; color: var(--danger); font-size: 9px; }
 
 /* Trade block indicator */
-.pill.trade-block { border-color: #c8a84b; }
-.pill.trade-block::before { content: '⇄ '; color: #c8a84b; font-size: 8px; }
+.pill.trade-block { border-color: var(--gold-500); }
+.pill.trade-block::before { content: '⇄ '; color: var(--gold-500); font-size: 8px; }
 
 /* Team rank delta badges */
-.team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: 'DM Sans', sans-serif; }
-.delta-up          { color: #5d7db5; }
-.delta-down        { color: #b55d5d; }
+.team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: var(--font-text); }
+.delta-up          { color: var(--cold); }
+.delta-down        { color: var(--danger); }
 .delta-same        { color: #3a3a3c; }
 
-.count-empty { color: #2a2a2c; font-size: 14px; }
+.count-empty { color: var(--sep-nonopaque); font-size: 14px; }
 
 .player-modal {
   position: fixed;
@@ -306,11 +323,17 @@ tr:hover { background: rgba(255,255,255,0.012); }
   bottom: 24px;
   width: min(520px, calc(100vw - 48px));
   overflow-y: auto;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--sep-nonopaque);
   border-radius: 8px;
   background: #111112;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
   padding: 22px;
+}
+html[data-theme="light"] .player-panel {
+  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+}
+html[data-theme="light"] .player-close {
+  background: var(--bg-elevated);
 }
 .player-close {
   position: absolute;
@@ -318,17 +341,17 @@ tr:hover { background: rgba(255,255,255,0.012); }
   top: 12px;
   width: 30px;
   height: 30px;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--sep-nonopaque);
   border-radius: 6px;
   background: #171719;
-  color: #8a8680;
+  color: var(--t-tertiary);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
 }
-.player-close:hover { color: #f0ede6; border-color: #4a4845; }
+.player-close:hover { color: var(--t-primary); border-color: var(--t-quaternary); }
 .player-kicker {
-  color: #c8a84b;
+  color: var(--gold-500);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -336,16 +359,16 @@ tr:hover { background: rgba(255,255,255,0.012); }
   margin-bottom: 8px;
 }
 .player-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 42px;
   line-height: 0.95;
   letter-spacing: 0.02em;
-  color: #f0ede6;
+  color: var(--t-primary);
   padding-right: 42px;
 }
 .player-meta {
   margin-top: 8px;
-  color: #7a7872;
+  color: var(--t-tertiary);
   font-size: 12px;
 }
 .player-stats {
@@ -355,29 +378,29 @@ tr:hover { background: rgba(255,255,255,0.012); }
   margin: 20px 0 18px;
 }
 .player-stat {
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--sep-opaque);
   border-radius: 6px;
-  background: #0e0e0f;
+  background: var(--bg-base);
   padding: 10px;
 }
 .player-stat-label {
-  color: #4a4845;
+  color: var(--t-quaternary);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .player-stat-value {
-  color: #f0ede6;
-  font-family: 'Bebas Neue', sans-serif;
+  color: var(--t-primary);
+  font-family: var(--font-display);
   font-size: 28px;
   line-height: 1;
   margin-top: 6px;
 }
 .player-chart-wrap {
-  border: 1px solid #1e1e20;
+  border: 1px solid var(--sep-opaque);
   border-radius: 6px;
-  background: #0e0e0f;
+  background: var(--bg-base);
   padding: 12px;
 }
 .player-chart {
@@ -388,13 +411,22 @@ tr:hover { background: rgba(255,255,255,0.012); }
 }
 .player-note {
   margin-top: 12px;
-  color: #7a7872;
+  color: var(--t-tertiary);
   font-size: 12px;
 }
 .player-error {
-  color: #b55d5d;
+  color: var(--danger);
   font-size: 13px;
   margin-top: 18px;
+}
+
+.deep-link-flash {
+  animation: deepLinkFlash 2s ease;
+}
+
+@keyframes deepLinkFlash {
+  0% { background: var(--gold-tint-soft); }
+  100% { background: transparent; }
 }
 
 .footnote {
@@ -402,9 +434,9 @@ tr:hover { background: rgba(255,255,255,0.012); }
   margin: 24px auto 0;
   padding: 24px 40px;
   font-size: 12px;
-  color: #4a4845;
+  color: var(--t-quaternary);
   font-style: italic;
-  border-top: 1px solid #1e1e20;
+  border-top: 1px solid var(--sep-opaque);
   line-height: 1.8;
 }
 
@@ -446,13 +478,13 @@ tr:hover { background: rgba(255,255,255,0.012); }
   <span class="leg-pill"><span class="leg-swatch sw5"></span>#500+ Fringe</span>
   <span class="leg-pill"><span class="leg-delta">Δ</span>Week-over-week rank change</span>
   <span class="leg-pill"><span class="leg-move"><span class="leg-up">↑</span><span class="leg-down">↓</span></span>Risers and fallers shown on pills that moved 100+ spots</span>
-  <span class="leg-pill"><span style="color:#c8a84b;font-size:10px;line-height:1">⇄</span> On trade block</span>
+  <span class="leg-pill"><span style="color:var(--gold-500);font-size:10px;line-height:1">⇄</span> On trade block</span>
 </div>
 
 <div class="depth-shell">
 <div class="sticky-bar-wrap">
   <div class="sticky-bar-scroll" id="stickyBarScroll">
-    <table class="sticky-bar" aria-hidden="true">
+    <table class="sticky-bar table" aria-hidden="true">
       <colgroup>
         <col style="width:56px">
         <col style="width:220px">
@@ -477,7 +509,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
 </div>
 
 <div class="table-wrap" id="tableScroll">
-<table>
+<table class="table">
   <colgroup>
     <col style="width:56px">
     <col style="width:220px">
@@ -602,9 +634,9 @@ tr:hover { background: rgba(255,255,255,0.012); }
 <div class="footnote">
   Generated May 18, 2026 &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings &nbsp;·&nbsp;
   Δ indicates week-over-week rank change &nbsp;·&nbsp;
-  Risers <span style="color:#5d7db5;font-style:normal">↑</span> and
-  fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
-  <span style="color:#c8a84b;font-style:normal">⇄</span> indicates player is on their team's trade block
+  Risers <span style="color:var(--cold);font-style:normal">↑</span> and
+  fallers <span style="color:var(--hot);font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
+  <span style="color:var(--gold-500);font-style:normal">⇄</span> indicates player is on their team's trade block
 </div>
 
 <div class="player-modal" id="playerModal" aria-hidden="true">
@@ -651,6 +683,55 @@ tr:hover { background: rgba(255,255,255,0.012); }
 
   let activePill = null;
   let trajectoryData = null;
+
+  const slugify = (value) => String(value || '')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\b(?:Jr|Sr|II|III|IV)\.?\b/gi, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+  const teamNameFromNode = (node) => {
+    if (!node) return '';
+    const clone = node.cloneNode(true);
+    clone.querySelectorAll('.team-delta').forEach((delta) => delta.remove());
+    return clone.textContent.trim();
+  };
+
+  const TEAM_SLUG_ALIASES = {
+    'acuna-matata': 'philbell',
+  };
+
+  const playerNameFromPill = (pill) => {
+    const tooltipText = pill.dataset.tooltip || '';
+    const match = tooltipText.match(/^#\d+\s+(.+?)(?:\s+[↑↓]\d+| ·|$)/);
+    return (match ? match[1] : pill.dataset.playerKey || '').trim();
+  };
+
+  const dynastyHrefForPill = (pill) => {
+    const slug = slugify(playerNameFromPill(pill));
+    return slug ? `dynasty_rankings.html?player=${encodeURIComponent(slug)}` : 'dynasty_rankings.html';
+  };
+
+  const rosterRows = Array.from(document.querySelectorAll('.table-wrap tbody tr'));
+  rosterRows.forEach((row) => {
+    const teamName = teamNameFromNode(row.querySelector('.tname'));
+    if (!teamName) return;
+    row.dataset.teamSlug = slugify(teamName);
+  });
+
+  const handleTeamParam = () => {
+    const rawTeamSlug = new URLSearchParams(window.location.search).get('team');
+    const teamSlug = TEAM_SLUG_ALIASES[rawTeamSlug] || rawTeamSlug;
+    if (!teamSlug) return;
+    const target = rosterRows.find((row) => row.dataset.teamSlug === teamSlug);
+    if (!target) return;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('deep-link-flash');
+      void target.offsetWidth;
+      target.classList.add('deep-link-flash');
+      setTimeout(() => target.classList.remove('deep-link-flash'), 2100);
+    });
+  };
 
   const positionTooltip = (x, y) => {
     const gap = 14;
@@ -752,18 +833,18 @@ tr:hover { background: rgba(255,255,255,0.012); }
     const yFor = (rank) => pad.top + ((rank - minRank) / rankSpan) * chartHeight;
     const pathPoints = points.map((point, idx) => `${xFor(idx).toFixed(1)},${yFor(point.rank).toFixed(1)}`).join(' ');
 
-    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
-    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: '#2a2a2c', 'stroke-width': 1 });
-    addSvg('text', { x: 8, y: pad.top + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(minRank));
-    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: '#7a7872', 'font-size': 11 }, fmtRank(maxRank));
-    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: '#c8a84b', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    addSvg('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + chartHeight, stroke: 'var(--sep-nonopaque)', 'stroke-width': 1 });
+    addSvg('line', { x1: pad.left, y1: pad.top + chartHeight, x2: pad.left + chartWidth, y2: pad.top + chartHeight, stroke: 'var(--sep-nonopaque)', 'stroke-width': 1 });
+    addSvg('text', { x: 8, y: pad.top + 4, fill: 'var(--t-tertiary)', 'font-size': 11 }, fmtRank(minRank));
+    addSvg('text', { x: 8, y: pad.top + chartHeight + 4, fill: 'var(--t-tertiary)', 'font-size': 11 }, fmtRank(maxRank));
+    addSvg('polyline', { points: pathPoints, fill: 'none', stroke: 'var(--gold-500)', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
 
     points.forEach((point, idx) => {
-      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? '#f0ede6' : '#c8a84b' });
+      addSvg('circle', { cx: xFor(idx), cy: yFor(point.rank), r: idx === points.length - 1 ? 5 : 3, fill: idx === points.length - 1 ? 'var(--t-primary)' : 'var(--gold-500)' });
     });
 
-    addSvg('text', { x: pad.left, y: height - 10, fill: '#7a7872', 'font-size': 11 }, points[0].date);
-    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: '#7a7872', 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
+    addSvg('text', { x: pad.left, y: height - 10, fill: 'var(--t-tertiary)', 'font-size': 11 }, points[0].date);
+    addSvg('text', { x: pad.left + chartWidth, y: height - 10, fill: 'var(--t-tertiary)', 'font-size': 11, 'text-anchor': 'end' }, points[points.length - 1].date);
   };
 
   const renderPlayer = (player) => {
@@ -815,6 +896,8 @@ tr:hover { background: rgba(255,255,255,0.012); }
   };
 
   document.querySelectorAll('.pill[data-tooltip]').forEach((pill) => {
+    pill.setAttribute('role', 'link');
+    pill.title = 'View in Dynasty Rankings';
     pill.addEventListener('mouseenter', (event) => showTooltip(pill, event));
     pill.addEventListener('mousemove', (event) => {
       if (activePill === pill) {
@@ -822,11 +905,13 @@ tr:hover { background: rgba(255,255,255,0.012); }
       }
     });
     pill.addEventListener('mouseleave', hideTooltip);
-    pill.addEventListener('click', () => openPlayer(pill.dataset.playerKey));
+    pill.addEventListener('click', () => {
+      window.location.href = dynastyHrefForPill(pill);
+    });
     pill.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        openPlayer(pill.dataset.playerKey);
+        window.location.href = dynastyHrefForPill(pill);
       }
     });
   });
@@ -843,6 +928,7 @@ tr:hover { background: rgba(255,255,255,0.012); }
   if (hashMatch) {
     openPlayer(decodeURIComponent(hashMatch[1]), false);
   }
+  handleTeamParam();
 })();
 </script>
 

@@ -20,10 +20,14 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 .charts-section {
   max-width: 1100px;
@@ -74,7 +78,7 @@
   max-width: 200px;
 }
 .tooltip .tt-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 16px;
   color: var(--text);
   letter-spacing: 0.04em;
@@ -103,7 +107,7 @@
   margin-bottom: 5px;
 }
 .intel-value {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 34px;
   line-height: 0.92;
   letter-spacing: 0.03em;
@@ -151,7 +155,7 @@
   margin-bottom: 10px;
 }
 .team-signal-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 20px;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -212,12 +216,12 @@
   background: rgba(200,168,75,0.08);
 }
 .signal-chip.primary.tier-contender {
-  color: #5da87a;
+  color: var(--success);
   border-color: rgba(93,168,122,0.35);
   background: rgba(93,168,122,0.08);
 }
 .signal-chip.primary.tier-fringe {
-  color: #c8a84b;
+  color: var(--gold-500);
   border-color: rgba(200,168,75,0.35);
   background: rgba(200,168,75,0.08);
 }
@@ -227,7 +231,7 @@
   background: rgba(200,133,110,0.08);
 }
 .signal-chip.primary.tier-rebuilding {
-  color: #b55d5d;
+  color: var(--danger);
   border-color: rgba(181,93,93,0.35);
   background: rgba(181,93,93,0.08);
 }
@@ -367,10 +371,10 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   border-radius: 999px;
   padding: 4px 8px;
 }
-.tier-contender { color: #5da87a; }
-.tier-fringe { color: #c8a84b; }
+.tier-contender { color: var(--success); }
+.tier-fringe { color: var(--gold-500); }
 .tier-stagnating { color: #c8856e; }
-.tier-rebuilding { color: #b55d5d; }
+.tier-rebuilding { color: var(--danger); }
 .projected-table { min-width: 920px; }
 .proj-rank-badge {
   display: inline-flex;
@@ -383,7 +387,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   border: 1px solid var(--border2);
   background: rgba(255,255,255,0.03);
   color: var(--text);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 17px;
   letter-spacing: 0.04em;
 }
@@ -496,7 +500,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   text-overflow: ellipsis;
 }
 .bar-label .rank-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 14px;
   color: var(--text-dead);
   margin-right: 6px;
@@ -595,7 +599,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     </div>
     <div class="intel-grid" id="intelCards"></div>
     <div class="table-wrap">
-      <table>
+      <table class="table">
         <thead>
           <tr><th>Team</th><th><span class="th-hint" tabindex="0" data-tooltip="Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.">Tier</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Current roto points behind first place. Lower means closer to the title race.">Points Back</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Categories where a team is within 2.0 points of the next team up, making the next standings point realistically attainable. Higher totals usually mean a team is more live and competitive in the current race.">Reachable Points</span></th><th><span class="th-hint" tabindex="0" data-tooltip="The three category lanes where the standings gaps are tightest and most likely to swing.">Tight Categories (Top 3)</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Actual roto points minus expectation from tight category clusters. Positive means results are running ahead of that baseline. Negative means if you set your lineup you'd be doing better.">Luck Delta</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Movement from rank changes and category swings during the season. A lower value means more stable performance.">Volatility</span></th></tr>
         </thead>
@@ -702,6 +706,20 @@ function formatScatterMove(move) {
   const ageText = formatSigned(ageDelta, 1) || '0.0';
   const valueText = formatSigned(valueDelta, 0) || '0';
   return `Scatter move: ${yDir}/${xDir} · value ${valueText} · age ${ageText}${quadrantShift}`;
+}
+
+function slugifyTeam(value) {
+  return String(value || '')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function rosterDepthHref(teamName) {
+  return `roster_depth.html?team=${encodeURIComponent(slugifyTeam(teamName))}`;
+}
+
+function goToRosterDepth(teamName) {
+  window.location.href = rosterDepthHref(teamName);
 }
 
 function setMoveTooltip(move) {
@@ -829,13 +847,13 @@ function buildScatter() {
   if (!TEAMS.length) return;
   const _cs = getComputedStyle(document.documentElement);
   const cv = {
-    border:    _cs.getPropertyValue('--border').trim()    || '#1e1e20',
-    border2:   _cs.getPropertyValue('--border2').trim()   || '#2a2a2c',
-    textDead:  _cs.getPropertyValue('--text-dead').trim() || '#4a4845',
-    textMid:   _cs.getPropertyValue('--text-mid').trim()  || '#c2bfb8',
-    gold:      _cs.getPropertyValue('--gold').trim()      || '#c8a84b',
-    bg:        _cs.getPropertyValue('--bg').trim()        || '#0e0e0f',
-    text:      _cs.getPropertyValue('--text').trim()      || '#f0ede6',
+    border:    _cs.getPropertyValue('--border').trim()    || 'var(--sep-opaque)',
+    border2:   _cs.getPropertyValue('--border2').trim()   || 'var(--sep-nonopaque)',
+    textDead:  _cs.getPropertyValue('--text-dead').trim() || 'var(--t-quaternary)',
+    textMid:   _cs.getPropertyValue('--text-mid').trim()  || 'var(--t-secondary)',
+    gold:      _cs.getPropertyValue('--gold').trim()      || 'var(--gold-500)',
+    bg:        _cs.getPropertyValue('--bg').trim()        || 'var(--bg-base)',
+    text:      _cs.getPropertyValue('--text').trim()      || 'var(--t-primary)',
   };
   const W = svg.parentElement.clientWidth;
   const H = Math.max(380, Math.min(520, W * 0.58));
@@ -892,10 +910,10 @@ function buildScatter() {
   const qMidY = scaleY(midVal);
 
   const quadrants = [
-    { x: PAD.left, y: PAD.top,  w: qMidX - PAD.left,         h: qMidY - PAD.top,           fill: '#5d7db5', label: 'REBUILDING' },
-    { x: qMidX,    y: PAD.top,  w: PAD.left + plotW - qMidX,  h: qMidY - PAD.top,           fill: '#c8a84b', label: 'WIN NOW'    },
-    { x: PAD.left, y: qMidY,    w: qMidX - PAD.left,         h: PAD.top + plotH - qMidY,    fill: '#b55d5d', label: 'NEEDS WORK' },
-    { x: qMidX,    y: qMidY,    w: PAD.left + plotW - qMidX,  h: PAD.top + plotH - qMidY,   fill: '#b55d5d', label: 'AGING OUT'  },
+    { x: PAD.left, y: PAD.top,  w: qMidX - PAD.left,         h: qMidY - PAD.top,           fill: 'var(--cold)', label: 'REBUILDING' },
+    { x: qMidX,    y: PAD.top,  w: PAD.left + plotW - qMidX,  h: qMidY - PAD.top,           fill: 'var(--gold-500)', label: 'WIN NOW'    },
+    { x: PAD.left, y: qMidY,    w: qMidX - PAD.left,         h: PAD.top + plotH - qMidY,    fill: 'var(--danger)', label: 'NEEDS WORK' },
+    { x: qMidX,    y: qMidY,    w: PAD.left + plotW - qMidX,  h: PAD.top + plotH - qMidY,   fill: 'var(--danger)', label: 'AGING OUT'  },
   ];
 
   // Center each label within its quadrant
@@ -915,7 +933,7 @@ function buildScatter() {
     lbl.setAttribute('x', q.lx); lbl.setAttribute('y', q.ly);
     lbl.setAttribute('text-anchor', 'middle');
     lbl.setAttribute('dominant-baseline', 'middle');
-    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size', '11');
     lbl.setAttribute('font-weight', '700');
     lbl.setAttribute('letter-spacing', '0.12em');
@@ -963,7 +981,7 @@ function buildScatter() {
     const t = document.createElementNS(ns, 'text');
     t.setAttribute('x', x); t.setAttribute('y', y);
     t.setAttribute('text-anchor', anchor);
-    t.setAttribute('font-family', 'DM Sans, sans-serif');
+    t.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     t.setAttribute('font-size', size);
     t.setAttribute('fill', color);
     t.textContent = txt;
@@ -1073,7 +1091,7 @@ function buildScatter() {
   // --- Phase 2: Draw all dot circles first ---
   dots.forEach(d => {
     const g = document.createElementNS(ns, 'g');
-    g.style.cursor = 'default';
+    g.style.cursor = 'pointer';
 
     const ring = document.createElementNS(ns, 'circle');
     ring.setAttribute('cx', d.cx); ring.setAttribute('cy', d.cy);
@@ -1088,7 +1106,7 @@ function buildScatter() {
     const rk = document.createElementNS(ns, 'text');
     rk.setAttribute('x', d.cx); rk.setAttribute('y', d.cy + 4.5);
     rk.setAttribute('text-anchor', 'middle');
-    rk.setAttribute('font-family', 'DM Sans, sans-serif');
+    rk.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', cv.text);
     rk.textContent = d.t.oracle_rank;
     g.appendChild(rk);
@@ -1108,6 +1126,16 @@ function buildScatter() {
       tooltip.style.top  = (e.clientY - 10) + 'px';
     });
     g.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    g.addEventListener('click', () => goToRosterDepth(d.t.name));
+    g.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        goToRosterDepth(d.t.name);
+      }
+    });
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'link');
+    g.setAttribute('aria-label', `View ${d.t.name} roster depth`);
 
     svg.appendChild(g);
   });
@@ -1123,7 +1151,7 @@ function buildScatter() {
     lbl.setAttribute('x', textX);
     lbl.setAttribute('y', label.y + label.h - 4);
     lbl.setAttribute('text-anchor', label.anchor);
-    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size', W < 560 ? '11.5' : '12.5');
     lbl.setAttribute('font-weight', '500');
     lbl.setAttribute('fill', cv.textMid);
@@ -1131,7 +1159,18 @@ function buildScatter() {
     lbl.setAttribute('stroke-width', '3');
     lbl.setAttribute('paint-order', 'stroke');
     lbl.textContent = label.dot.shortName;
-    lbl.style.pointerEvents = 'none';
+    lbl.style.cursor = 'pointer';
+    lbl.style.pointerEvents = 'auto';
+    lbl.setAttribute('tabindex', '0');
+    lbl.setAttribute('role', 'link');
+    lbl.setAttribute('aria-label', `View ${label.dot.t.name} roster depth`);
+    lbl.addEventListener('click', () => goToRosterDepth(label.dot.t.name));
+    lbl.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        goToRosterDepth(label.dot.t.name);
+      }
+    });
     svg.appendChild(lbl);
   });
 }
@@ -1180,6 +1219,7 @@ function buildValueBars() {
     row.appendChild(labelDiv);
     row.appendChild(trackDiv);
     row.appendChild(valDiv);
+    row.style.cursor = 'pointer';
     row.addEventListener('mousemove', e => {
       ttName.textContent = t.name;
       ttAge.textContent = `MLB: ${t.mlb.toLocaleString()}`;
@@ -1190,6 +1230,7 @@ function buildValueBars() {
       tooltip.style.top = (e.clientY - 10) + 'px';
     });
     row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    row.addEventListener('click', () => goToRosterDepth(t.name));
     barEl.appendChild(row);
   });
 }

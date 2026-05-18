@@ -20,10 +20,14 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win Window — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Roster age vs. Oracle value quadrant chart. See which teams are winning now vs. rebuilding.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 .charts-section {
   max-width: 1100px;
@@ -52,7 +56,7 @@
 
 .tooltip {
   position: fixed;
-  background: #1a1a1c;
+  background: var(--bg-overlay);
   border: 1px solid var(--border2);
   border-radius: 4px;
   padding: 8px 12px;
@@ -65,7 +69,7 @@
   max-width: 200px;
 }
 .tooltip .tt-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 16px;
   color: var(--text);
   letter-spacing: 0.04em;
@@ -94,7 +98,7 @@
   margin-bottom: 5px;
 }
 .intel-value {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 34px;
   line-height: 0.92;
   letter-spacing: 0.03em;
@@ -188,11 +192,11 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   border-radius: 999px;
   padding: 4px 8px;
 }
-.tier-contender { color: #5da87a; }
-.tier-fringe { color: #c8a84b; }
+.tier-contender { color: var(--success); }
+.tier-fringe { color: var(--gold-500); }
 .tier-holding-steady { color: #8fb46f; }
 .tier-stagnating { color: #c8856e; }
-.tier-rebuilding { color: #b55d5d; }
+.tier-rebuilding { color: var(--danger); }
 
 @media (max-width: 680px) {
   .site-header, .charts-section, .site-footer { padding-left: 20px; padding-right: 20px; }
@@ -227,7 +231,7 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     </div>
     <div class="intel-grid" id="intelCards"></div>
     <div class="table-wrap">
-      <table>
+      <table class="table">
         <thead>
           <tr><th>Team</th><th>Tier</th><th>Points Back</th><th>Reachable Points</th><th>Tight Categories (Top 3)</th><th>Luck Delta</th><th>Volatility</th></tr>
         </thead>
@@ -291,10 +295,10 @@ function buildScatter() {
   const qMidY = scaleY(midVal);
 
   const quadrants = [
-    { x: PAD.left, y: PAD.top,  w: qMidX - PAD.left,         h: qMidY - PAD.top,           fill: '#5d7db5', label: 'REBUILDING' },
-    { x: qMidX,    y: PAD.top,  w: PAD.left + plotW - qMidX,  h: qMidY - PAD.top,           fill: '#c8a84b', label: 'WIN NOW'    },
-    { x: PAD.left, y: qMidY,    w: qMidX - PAD.left,         h: PAD.top + plotH - qMidY,    fill: '#b55d5d', label: 'NEEDS WORK' },
-    { x: qMidX,    y: qMidY,    w: PAD.left + plotW - qMidX,  h: PAD.top + plotH - qMidY,   fill: '#b55d5d', label: 'AGING OUT'  },
+    { x: PAD.left, y: PAD.top,  w: qMidX - PAD.left,         h: qMidY - PAD.top,           fill: 'var(--cold)', label: 'REBUILDING' },
+    { x: qMidX,    y: PAD.top,  w: PAD.left + plotW - qMidX,  h: qMidY - PAD.top,           fill: 'var(--gold-500)', label: 'WIN NOW'    },
+    { x: PAD.left, y: qMidY,    w: qMidX - PAD.left,         h: PAD.top + plotH - qMidY,    fill: 'var(--danger)', label: 'NEEDS WORK' },
+    { x: qMidX,    y: qMidY,    w: PAD.left + plotW - qMidX,  h: PAD.top + plotH - qMidY,   fill: 'var(--danger)', label: 'AGING OUT'  },
   ];
 
   // Center each label within its quadrant
@@ -314,7 +318,7 @@ function buildScatter() {
     lbl.setAttribute('x', q.lx); lbl.setAttribute('y', q.ly);
     lbl.setAttribute('text-anchor', 'middle');
     lbl.setAttribute('dominant-baseline', 'middle');
-    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size', '11');
     lbl.setAttribute('font-weight', '700');
     lbl.setAttribute('letter-spacing', '0.12em');
@@ -329,7 +333,7 @@ function buildScatter() {
     const l = document.createElementNS(ns, 'line');
     l.setAttribute('x1', x1); l.setAttribute('y1', y1);
     l.setAttribute('x2', x2); l.setAttribute('y2', y2);
-    l.setAttribute('stroke', '#1e1e20'); l.setAttribute('stroke-width', '1');
+    l.setAttribute('stroke', 'var(--sep-opaque)'); l.setAttribute('stroke-width', '1');
     if (dash) l.setAttribute('stroke-dasharray', '4 4');
     svg.appendChild(l);
   };
@@ -358,11 +362,11 @@ function buildScatter() {
   svg.appendChild(hLine);
 
   // Axis tick labels
-  const mkText = (txt, x, y, anchor = 'middle', size = 12, color = '#4a4845') => {
+  const mkText = (txt, x, y, anchor = 'middle', size = 12, color = 'var(--t-quaternary)') => {
     const t = document.createElementNS(ns, 'text');
     t.setAttribute('x', x); t.setAttribute('y', y);
     t.setAttribute('text-anchor', anchor);
-    t.setAttribute('font-family', 'DM Sans, sans-serif');
+    t.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     t.setAttribute('font-size', size);
     t.setAttribute('fill', color);
     t.textContent = txt;
@@ -389,7 +393,7 @@ function buildScatter() {
   // --- Phase 1: Compute all dot positions ---
   const DOT_R   = 8;
   const LBL_H   = 16;
-  const CHAR_W  = 7.2;  // approx px per char at 12.5px DM Sans
+  const CHAR_W  = 7.2;  // approx px per char at 12.5px system text
   const LBL_GAP = 4;
 
   const dots = TEAMS.map(t => ({
@@ -424,7 +428,7 @@ function buildScatter() {
 
     const ring = document.createElementNS(ns, 'circle');
     ring.setAttribute('cx', d.cx); ring.setAttribute('cy', d.cy);
-    ring.setAttribute('r', 14); ring.setAttribute('fill', '#c8a84b'); ring.setAttribute('opacity', '0.06');
+    ring.setAttribute('r', 14); ring.setAttribute('fill', 'var(--gold-500)'); ring.setAttribute('opacity', '0.06');
     g.appendChild(ring);
 
     const c = document.createElementNS(ns, 'circle');
@@ -435,8 +439,8 @@ function buildScatter() {
     const rk = document.createElementNS(ns, 'text');
     rk.setAttribute('x', d.cx); rk.setAttribute('y', d.cy + 4.5);
     rk.setAttribute('text-anchor', 'middle');
-    rk.setAttribute('font-family', 'DM Sans, sans-serif');
-    rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', '#f0ede6');
+    rk.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
+    rk.setAttribute('font-size', '10'); rk.setAttribute('font-weight', '700'); rk.setAttribute('fill', 'var(--t-primary)');
     rk.textContent = d.t.oracle_rank;
     g.appendChild(rk);
 
@@ -503,10 +507,10 @@ function buildScatter() {
     lbl.setAttribute('x', d.cx + chosen.dx);
     lbl.setAttribute('y', d.cy + chosen.dy + 4);
     lbl.setAttribute('text-anchor', chosen.anchor);
-    lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+    lbl.setAttribute('font-family', '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size', '12.5');
     lbl.setAttribute('font-weight', '500');
-    lbl.setAttribute('fill', '#c2bfb8');
+    lbl.setAttribute('fill', 'var(--t-secondary)');
     lbl.textContent = d.shortName;
     svg.appendChild(lbl);
   });
