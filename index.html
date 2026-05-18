@@ -87,8 +87,8 @@ body {
   margin-bottom: 14px;
 }
 .site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(56px, 8vw, 100px);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: clamp(44px, 6.5vw, 80px);
   line-height: 0.88;
   letter-spacing: 0.02em;
   color: var(--text);
@@ -132,6 +132,10 @@ body {
   border-color: var(--gold-dim);
   background: #16140d;
   transform: translateY(-1px);
+}
+html[data-theme="light"] .header-link:hover {
+  border-color: var(--border2);
+  background: var(--bg-hover);
 }
 .header-link-title {
   display: block;
