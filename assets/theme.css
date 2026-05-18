@@ -50,6 +50,8 @@
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+  --nav-bg-solid: rgba(14, 14, 15, 0.98);
 
   /* radius */
   --r-sm: 6px;
@@ -106,6 +108,8 @@
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.15);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.2);
     --shadow-lg: 0 12px 40px rgba(0,0,0,0.25);
+    --nav-bg-blur: rgba(245, 243, 239, 0.96);
+    --nav-bg-solid: rgba(245, 243, 239, 0.98);
   }
 }
 
@@ -152,6 +156,8 @@
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+  --nav-bg-blur: rgba(14, 14, 15, 0.96);
+  --nav-bg-solid: rgba(14, 14, 15, 0.98);
 }
 
 :root[data-theme="light"] {
@@ -196,6 +202,35 @@
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.15);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.2);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.25);
+  --nav-bg-blur: rgba(245, 243, 239, 0.96);
+  --nav-bg-solid: rgba(245, 243, 239, 0.98);
+}
+
+/* Legacy aliases for pages still migrating off site.css variables. */
+:root {
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --bg-hover: var(--bg-overlay);
+  --bg-featured: var(--gold-tint-soft);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --tag-border: var(--gold-tint-border);
+  --tag-fill: var(--gold-tint-fill);
+  --shadow: var(--shadow-md);
+  --red: var(--danger);
+  --blue: var(--cold);
+  --green: var(--success);
+  --warn: var(--gold-500);
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 
 /* ─── Section 2: Component primitives ───────────────────────────────────── */

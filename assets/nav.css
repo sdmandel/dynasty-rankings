@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border, #1e1e20);
+  border-bottom: 1px solid var(--border, var(--sep-opaque));
   background: var(--nav-bg-blur, rgba(14, 14, 15, 0.96));
   backdrop-filter: blur(10px);
 }
@@ -19,8 +19,8 @@
 }
 
 .global-nav-brand {
-  color: var(--gold, #c8a84b);
-  font-family: 'Bebas Neue', sans-serif;
+  color: var(--gold, var(--gold-500));
+  font-family: var(--font-display);
   font-size: 22px;
   letter-spacing: 0.06em;
   line-height: 1;
@@ -34,17 +34,17 @@
   height: 34px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border2, #2a2a2c);
+  border: 1px solid var(--border2, var(--sep-nonopaque));
   border-radius: 6px;
   background: transparent;
-  color: var(--text-muted, #7a7872);
+  color: var(--text-muted, var(--t-tertiary));
   cursor: pointer;
 }
 
 .global-nav-toggle:hover,
 .global-nav-toggle:focus-visible {
-  color: var(--text, #f0ede6);
-  border-color: var(--gold-dim, #4a3c18);
+  color: var(--text, var(--t-primary));
+  border-color: var(--gold-dim, var(--gold-100));
   outline: 0;
 }
 
@@ -84,7 +84,7 @@
   align-items: center;
   min-height: 48px;
   padding: 0 9px;
-  color: var(--text-muted, #7a7872);
+  color: var(--text-muted, var(--t-tertiary));
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -97,13 +97,13 @@
 
 .global-nav-link:hover,
 .global-nav-link:focus-visible {
-  color: var(--text-mid, #c2bfb8);
+  color: var(--text-mid, var(--t-secondary));
   outline: 0;
 }
 
 .global-nav-link.active {
-  color: var(--gold, #c8a84b);
-  border-bottom-color: var(--gold, #c8a84b);
+  color: var(--gold, var(--gold-500));
+  border-bottom-color: var(--gold, var(--gold-500));
 }
 
 body.global-nav-open {
@@ -131,8 +131,8 @@ body.global-nav-open {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    border-top: 1px solid var(--border, #1e1e20);
-    border-bottom: 1px solid var(--border, #1e1e20);
+    border-top: 1px solid var(--border, var(--sep-opaque));
+    border-bottom: 1px solid var(--border, var(--sep-opaque));
     background: var(--nav-bg-solid, rgba(14, 14, 15, 0.98));
     box-shadow: 0 20px 60px var(--shadow, rgba(0, 0, 0, 0.35));
   }
@@ -144,12 +144,12 @@ body.global-nav-open {
   .global-nav-link {
     min-height: 44px;
     padding: 0 20px;
-    border-bottom: 1px solid var(--border, #1e1e20);
+    border-bottom: 1px solid var(--border, var(--sep-opaque));
   }
 
   .global-nav-link.active {
     background: var(--tag-fill, rgba(200, 168, 75, 0.08));
-    border-bottom-color: var(--border, #1e1e20);
+    border-bottom-color: var(--border, var(--sep-opaque));
   }
 }
 

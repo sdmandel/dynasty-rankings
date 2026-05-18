@@ -17,33 +17,37 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --gold-dim: #4a3c18;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-  --blue: #5d7db5;
-  --red: #b55d5d;
-  --green: #5da87a;
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --blue: var(--cold);
+  --red: var(--danger);
+  --green: var(--success);
 }
 
 html[data-theme="dark"] {
-  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
-  --gold: #c8a84b; --gold-dim: #4a3c18; --text: #f0ede6; --text-mid: #c2bfb8;
-  --text-muted: #7a7872; --text-dead: #4a4845; --blue: #5d7db5; --red: #b55d5d; --green: #5da87a;
+  --bg: var(--bg-base); --bg2: var(--bg-elevated); --border: var(--sep-opaque); --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500); --gold-dim: var(--gold-100); --text: var(--t-primary); --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary); --text-dead: var(--t-quaternary); --blue: var(--cold); --red: var(--danger); --green: var(--success);
 }
 
 html[data-theme="light"] {
@@ -55,7 +59,7 @@ html[data-theme="light"] {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -76,7 +80,7 @@ body {
   margin-bottom: 14px;
 }
 .site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(56px, 8vw, 100px);
   line-height: 0.88;
   letter-spacing: 0.02em;
@@ -105,9 +109,13 @@ body {
 
 /* ── FILTER BAR ── */
 .filter-bar {
-  display: flex;
+  display: inline-flex;
   gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
+  background: var(--bg-overlay);
+  border-radius: var(--r-sm);
+  padding: 3px;
   margin-bottom: 10px;
 }
 .filter-btn {
@@ -115,26 +123,34 @@ body {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--r-sm) - 2px);
   padding: 6px 14px;
   color: var(--text-muted);
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.filter-btn:hover  { color: var(--text); border-color: var(--border2); }
+.filter-btn:hover  { color: var(--text); }
 .filter-btn.active {
-  background: var(--gold-dim);
-  border-color: var(--gold);
-  color: var(--gold);
+  background: var(--bg2);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+#showMoreBtn {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
 }
 
 /* ── TRANSACTION LIST ── */
 .txn-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
 }
 .txn-row {
   display: grid;
@@ -142,11 +158,13 @@ body {
   gap: 12px;
   align-items: center;
   padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
   background: var(--bg2);
   transition: border-color 0.1s;
 }
+.txn-row:last-child { border-bottom: 0; }
 .txn-row:hover { border-color: var(--border2); }
 
 .txn-type-col {
@@ -255,34 +273,61 @@ body {
 
 /* ── MANAGER PROFILES ── */
 .mgr-section { margin-bottom: 48px; }
+.manager-profile-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 18px 20px 20px;
+}
+.manager-profile-card > summary {
+  cursor: pointer;
+  list-style: none;
+}
+.manager-profile-card > summary::-webkit-details-marker { display: none; }
+.manager-profile-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.manager-profile-summary::after {
+  content: "⌄";
+  color: var(--text-dead);
+  font-size: 16px;
+  line-height: 1;
+}
+.manager-profile-card[open] .manager-profile-summary::after {
+  transform: rotate(180deg);
+}
 .section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin:0 0 16px; }
 .arch-def-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:28px; }
 .arch-def { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:12px 14px; }
-.arch-def-title { font-family:'Bebas Neue',sans-serif; font-size:17px; margin-bottom:3px; }
+.arch-def-title { font-family:var(--font-display); font-size:17px; margin-bottom:3px; }
 .arch-def-desc { font-size:11px; color:var(--text-muted); line-height:1.5; }
 .mgr-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
 .mgr-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:18px 20px; }
 .mgr-card.at-trader  { border-color:#1e2f4a; background:#0f1624; }
-.mgr-card.at-grinder { border-color:#4a3c18; background:#141208; }
+.mgr-card.at-grinder { border-color:var(--gold-100); background:#141208; }
 .mgr-card.at-prospect-hoarder { border-color:#1a3226; background:#0e1a14; }
 .mgr-card.at-market-watcher { border-color:#24364d; background:#101722; }
-.mgr-card.at-waiver-regular { border-color:#4a3c18; background:#151309; }
-.mgr-card.at-selective { border-color:#2a2a2c; background:#141416; }
+.mgr-card.at-waiver-regular { border-color:var(--gold-100); background:#151309; }
+.mgr-card.at-selective { border-color:var(--sep-nonopaque); background:var(--bg-elevated); }
 .mgr-card.at-holding-steady { border-color:#31452a; background:#10150e; }
 .mgr-card.at-asleep-at-the-wheel { border-color:#4a1e1e; background:#150e0e; }
-.mgr-name { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:.95; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
+.mgr-name { font-family:var(--font-display); font-size:26px; line-height:.95; letter-spacing:.04em; color:var(--text); margin-bottom:8px; }
 .arch-badges { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; }
 .arch-badge { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:3px 9px; border:1px solid; }
 .arch-badge.ab-trader         { color:var(--blue);  border-color:#1e2f4a; background:rgba(93,125,181,0.1); }
-.arch-badge.ab-grinder        { color:var(--gold);  border-color:#4a3c18; background:rgba(200,168,75,0.08); }
+.arch-badge.ab-grinder        { color:var(--gold);  border-color:var(--gold-100); background:rgba(200,168,75,0.08); }
 .arch-badge.ab-prospect-hoarder { color:var(--green); border-color:#1a3226; background:rgba(93,168,122,0.1); }
 .arch-badge.ab-market-watcher { color:#7e9ccc; border-color:#24364d; background:rgba(93,125,181,0.08); }
-.arch-badge.ab-waiver-regular { color:#d0b35e; border-color:#4a3c18; background:rgba(200,168,75,0.07); }
+.arch-badge.ab-waiver-regular { color:#d0b35e; border-color:var(--gold-100); background:rgba(200,168,75,0.07); }
 .arch-badge.ab-selective { color:var(--text-muted); border-color:var(--border2); background:rgba(240,237,230,0.03); }
 .arch-badge.ab-holding-steady { color:#8fb46f; border-color:#31452a; background:rgba(143,180,111,0.08); }
 .arch-badge.ab-asleep-at-the-wheel { color:var(--red); border-color:#4a1e1e; background:rgba(181,93,93,0.08); }
 .mgr-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
-.mgr-stat-val { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; color:var(--text); }
+.mgr-stat-val { font-family:var(--font-display); font-size:26px; line-height:1; color:var(--text); }
 .mgr-stat-lbl { font-size:9px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
 .churn-row { display:grid; grid-template-columns:52px 1fr 32px; gap:7px; align-items:center; }
 .churn-lbl { font-size:10px; color:var(--text-dead); text-transform:uppercase; letter-spacing:.08em; }
@@ -297,13 +342,13 @@ body {
     linear-gradient(to right, transparent 74.5%, rgba(128,128,128,0.15) 74.5%, rgba(128,128,128,0.15) 75.5%, transparent 75.5%);
   pointer-events:none;
 }
-.churn-fill { height:100%; }
+.churn-fill { height:100%; width:var(--churn-width, 0%); }
 .cf-trader { background:var(--blue); } .cf-grinder { background:var(--gold); }
 .cf-prospect-hoarder { background:var(--green); } .cf-market-watcher { background:#7e9ccc; }
 .cf-waiver-regular { background:#d0b35e; } .cf-selective { background:var(--text-dead); }
 .cf-holding-steady { background:#8fb46f; }
 .cf-asleep-at-the-wheel { background:var(--red); }
-.churn-val { font-family:'Bebas Neue',sans-serif; font-size:14px; color:var(--text-muted); text-align:right; }
+.churn-val { font-family:var(--font-display); font-size:14px; color:var(--text-muted); text-align:right; }
 
 /* Light-mode overrides: manager card tints */
 html[data-theme="light"] .mgr-card.at-trader           { background:#eef2f8; border-color:#adc0d8; }
@@ -384,18 +429,20 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
   <div id="loadingMsg" class="state-msg">Loading transactions…</div>
 
   <div class="mgr-section" id="mgrSection" style="display:none;">
-    <div class="section-label">Manager Profiles</div>
-    <div class="arch-def-grid">
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">10+ trades this season.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:#7e9ccc">Market Watcher</div><div class="arch-def-desc">5-9 trades this season.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--gold)">Grinder</div><div class="arch-def-desc">30+ waiver adds/drops.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:#d0b35e">Waiver Regular</div><div class="arch-def-desc">20-29 waiver adds/drops.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--green)">Prospect Hoarder</div><div class="arch-def-desc">3+ prospect transactions.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--text-muted)">Selective</div><div class="arch-def-desc">Active enough, without a volume spike.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:#8fb46f">Holding Steady</div><div class="arch-def-desc">Top-five team without high-volume moves.</div></div>
-      <div class="arch-def"><div class="arch-def-title" style="color:var(--red)">Asleep at the Wheel</div><div class="arch-def-desc">Below the weekly activity threshold.</div></div>
-    </div>
-    <div class="mgr-grid" id="mgrGrid"></div>
+    <details class="manager-profile-card" open>
+      <summary class="manager-profile-summary"><span class="section-label">Manager Profiles</span></summary>
+      <div class="arch-def-grid">
+        <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">10+ trades this season.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:#7e9ccc">Market Watcher</div><div class="arch-def-desc">5-9 trades this season.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:var(--gold)">Grinder</div><div class="arch-def-desc">30+ waiver adds/drops.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:#d0b35e">Waiver Regular</div><div class="arch-def-desc">20-29 waiver adds/drops.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:var(--green)">Prospect Hoarder</div><div class="arch-def-desc">3+ prospect transactions.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:var(--text-muted)">Selective</div><div class="arch-def-desc">Active enough, without a volume spike.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:#8fb46f">Holding Steady</div><div class="arch-def-desc">Top-five team without high-volume moves.</div></div>
+        <div class="arch-def"><div class="arch-def-title" style="color:var(--red)">Asleep at the Wheel</div><div class="arch-def-desc">Below the weekly activity threshold.</div></div>
+      </div>
+      <div class="mgr-grid" id="mgrGrid"></div>
+    </details>
   </div>
 
   <div id="mainContent" style="display:none;">
@@ -460,7 +507,7 @@ fetch('data/managers.json')
         </div>
         <div class="churn-row">
           <div class="churn-lbl">Churn</div>
-          <div class="churn-track" title="Scale: 0-40 transactions (markers at 10/20/30)"><div class="churn-fill cf-${primary}" style="width:${churnPct}%"></div></div>
+          <div class="churn-track" title="Scale: 0-40 transactions (markers at 10/20/30)"><div class="churn-fill cf-${primary}" style="--churn-width:${churnPct}%"></div></div>
           <div class="churn-val">${churn.toFixed(0)}</div>
         </div>
         <div class="churn-meta">${churnBand} · #${churnRank}/${managers.length} · ${deltaLabel}</div>

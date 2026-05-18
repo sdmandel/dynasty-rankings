@@ -8,22 +8,22 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --gold-dim: #4a3c18;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-  --blue: #5d7db5;
-  --red: #b55d5d;
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --blue: var(--cold);
+  --red: var(--danger);
   --nav-bg-blur: rgba(14, 14, 15, 0.96);
   --nav-bg-solid: rgba(14, 14, 15, 0.98);
   --shadow: rgba(0, 0, 0, 0.35);
-  --bg-hover: #1a1a1c;
+  --bg-hover: var(--bg-overlay);
   --bg-featured: #141208;
   --tag-bg: rgba(255,255,255,0.02);
   --tag-border: rgba(200,168,75,0.35);
@@ -48,7 +48,7 @@
     --nav-bg-solid: rgba(245, 243, 239, 0.98);
     --shadow: rgba(0, 0, 0, 0.15);
     --bg-hover: #e2dfd8;
-    --bg-featured: #faf7ee;
+    --bg-featured: #e8e5de;
     --tag-bg: rgba(0,0,0,0.03);
     --tag-border: rgba(154,122,40,0.35);
     --tag-fill: rgba(154,122,40,0.08);
@@ -56,12 +56,12 @@
 }
 
 html[data-theme="dark"] {
-  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
-  --gold: #c8a84b; --gold-dim: #4a3c18; --text: #f0ede6; --text-mid: #c2bfb8;
-  --text-muted: #7a7872; --text-dead: #4a4845; --blue: #5d7db5; --red: #b55d5d;
+  --bg: var(--bg-base); --bg2: var(--bg-elevated); --border: var(--sep-opaque); --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500); --gold-dim: var(--gold-100); --text: var(--t-primary); --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary); --text-dead: var(--t-quaternary); --blue: var(--cold); --red: var(--danger);
   --nav-bg-blur: rgba(14, 14, 15, 0.96); --nav-bg-solid: rgba(14, 14, 15, 0.98);
   --shadow: rgba(0, 0, 0, 0.35);
-  --bg-hover: #1a1a1c; --bg-featured: #141208;
+  --bg-hover: var(--bg-overlay); --bg-featured: #141208;
   --tag-bg: rgba(255,255,255,0.02);
   --tag-border: rgba(200,168,75,0.35); --tag-fill: rgba(200,168,75,0.08);
 }
@@ -72,7 +72,7 @@ html[data-theme="light"] {
   --text-muted: #7a7468; --text-dead: #a09a90; --blue: #3a5a8a; --red: #8a3a3a;
   --nav-bg-blur: rgba(245, 243, 239, 0.96); --nav-bg-solid: rgba(245, 243, 239, 0.98);
   --shadow: rgba(0, 0, 0, 0.15);
-  --bg-hover: #e2dfd8; --bg-featured: #faf7ee;
+  --bg-hover: #e2dfd8; --bg-featured: #e8e5de;
   --tag-bg: rgba(0,0,0,0.03);
   --tag-border: rgba(154,122,40,0.35); --tag-fill: rgba(154,122,40,0.08);
 }
@@ -80,7 +80,7 @@ html[data-theme="light"] {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -101,7 +101,7 @@ body {
   margin-bottom: 14px;
 }
 .site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(56px, 8vw, 100px);
   line-height: 0.88;
   letter-spacing: 0.02em;
@@ -204,7 +204,7 @@ body {
   margin-bottom: 6px;
 }
 .card-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 22px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -222,6 +222,21 @@ body {
 .card.featured .card-eyebrow { color: var(--gold); }
 .card.featured .card-title   { color: var(--gold); }
 .card.featured:hover { border-color: var(--gold); }
+html[data-theme="light"] .card.featured {
+  border-color: var(--border);
+  background: var(--bg-featured);
+}
+html[data-theme="light"] .card.featured .card-eyebrow,
+html[data-theme="light"] .card.featured .card-arrow {
+  color: var(--text-muted);
+}
+html[data-theme="light"] .card.featured .card-title {
+  color: var(--text);
+}
+html[data-theme="light"] .card.featured:hover {
+  border-color: var(--border2);
+  background: var(--bg-hover);
+}
 .card-arrow {
   display: inline-block;
   margin-top: 14px;
@@ -278,7 +293,7 @@ body {
   margin-bottom: 4px;
 }
 .tile-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 20px;
   letter-spacing: 0.04em;
   color: var(--text);

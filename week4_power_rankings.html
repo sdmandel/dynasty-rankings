@@ -20,66 +20,70 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Week 4 Power Rankings — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Week 4 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0e0e0f;
-    color: #e8e6e0;
-    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-base);
+    color: var(--t-primary);
+    font-family: var(--font-text);
     font-size: 15px;
     line-height: 1.6;
     padding: 0;
   }
 
   .header {
-    background: #0e0e0f;
-    border-bottom: 1px solid #2a2a2c;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--sep-nonopaque);
     padding: 48px 40px 32px;
     max-width: 860px;
     margin: 0 auto;
   }
 
   .header-eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-text);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #c8a84b;
+    color: var(--gold-500);
     margin-bottom: 12px;
   }
 
   .header h1 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(52px, 8vw, 88px);
     letter-spacing: 0.02em;
     line-height: 0.92;
-    color: #f0ede6;
+    color: var(--t-primary);
     margin-bottom: 20px;
   }
 
-  .header h1 span { color: #c8a84b; }
+  .header h1 span { color: var(--gold-500); }
 
   .header-meta {
     font-size: 13px;
-    color: #7a7872;
+    color: var(--t-tertiary);
     line-height: 1.7;
     max-width: 620px;
   }
 
   .header-meta strong {
-    color: #c8a84b;
+    color: var(--gold-500);
     font-weight: 500;
   }
 
   .divider {
     width: 40px;
     height: 2px;
-    background: #c8a84b;
+    background: var(--gold-500);
     margin: 20px 0;
   }
 
@@ -91,7 +95,7 @@
     gap: 8px;
     flex-wrap: wrap;
     align-items: center;
-    border-bottom: 1px solid #1e1e20;
+    border-bottom: 1px solid var(--sep-opaque);
   }
 
   .legend-label {
@@ -99,7 +103,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #4a4845;
+    color: var(--t-quaternary);
     margin-right: 4px;
   }
 
@@ -112,8 +116,8 @@
     letter-spacing: 0.06em;
   }
 
-  .delta-up   { color: #5d7db5; }
-  .delta-down { color: #b55d5d; }
+  .delta-up   { color: var(--cold); }
+  .delta-down { color: var(--danger); }
   .delta-same { color: #3a3a3c; }
 
   .rankings {
@@ -126,7 +130,7 @@
     display: grid;
     grid-template-columns: 72px 1fr;
     gap: 0;
-    border-bottom: 1px solid #1e1e20;
+    border-bottom: 1px solid var(--sep-opaque);
     padding: 32px 0;
     position: relative;
   }
@@ -134,16 +138,16 @@
   .rank-entry:hover { background: rgba(255,255,255,0.015); }
 
   .rank-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 54px;
-    color: #2a2a2c;
+    color: var(--sep-nonopaque);
     line-height: 1;
     padding-top: 4px;
     user-select: none;
   }
 
-  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
-  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(1) .rank-num { color: var(--gold-500); }
+  .rank-entry:nth-child(2) .rank-num { color: var(--t-tertiary); }
   .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
 
   .rank-content { padding-left: 8px; }
@@ -157,10 +161,10 @@
   }
 
   .team-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 26px;
     letter-spacing: 0.04em;
-    color: #f0ede6;
+    color: var(--t-primary);
     line-height: 1;
   }
 
@@ -181,17 +185,17 @@
     white-space: nowrap;
   }
 
-  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-last   { background: var(--sep-opaque); color: var(--t-tertiary); }
   .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
-  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
-  .badge-up     { background: #1a1f2e; color: #5d7db5; }
-  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-champ  { background: var(--gold-tint-fill); color: var(--gold-500); border: 1px solid var(--gold-100); }
+  .badge-up     { background: #1a1f2e; color: var(--cold); }
+  .badge-down   { background: #2e1a1a; color: var(--danger); }
   .badge-return { background: #2a1a2e; color: #9b6cb5; }
 
   .blurb {
     font-size: 14.5px;
     line-height: 1.75;
-    color: #c2bfb8;
+    color: var(--t-secondary);
     margin-bottom: 14px;
   }
 
@@ -210,7 +214,7 @@
     font-size: 12px;
     font-weight: 500;
     background: #181819;
-    border: 1px solid #2a2a2c;
+    border: 1px solid var(--sep-nonopaque);
     border-radius: 4px;
     padding: 3px 10px;
     color: #a8a59e;
@@ -224,9 +228,9 @@
   }
 
   .player-pill.top {
-    border-color: #3a3020;
-    color: #d4b96a;
-    background: #1a1708;
+    border-color: var(--gold-100);
+    color: var(--gold-700);
+    background: var(--gold-tint-soft);
   }
 
   .player-pill.prospect {
@@ -253,9 +257,9 @@
     margin: 0 auto;
     padding: 24px 40px 40px;
     font-size: 12px;
-    color: #4a4845;
+    color: var(--t-quaternary);
     font-style: italic;
-    border-top: 1px solid #1e1e20;
+    border-top: 1px solid var(--sep-opaque);
     line-height: 1.8;
   }
 
@@ -267,6 +271,7 @@
 
 /* ── BACK LINK ── */
 </style>
+<link rel="stylesheet" href="assets/power-rankings-theme.css">
 </head>
 <body>
 
@@ -294,24 +299,24 @@
 
 <div class="legend">
   <span class="legend-label">Player tiers:</span>
-  <span class="player-pill top">&#9679; Oracle top 30</span>
-  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
-  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
-  <span class="player-pill">&#9679; Everyone else</span>
-  <span class="player-pill ghost">&#9679; Manager went dark</span>
+  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost pill pill--ghost">&#9679; Manager went dark</span>
 </div>
 
 <div class="rankings">
 
   <!-- 1 — Seam Heads -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">1</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Seam Heads</span>
         <div class="badges">
-          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;105pts</span>
-          <span class="badge badge-last">Last week: 2nd</span>
+          <span class="badge badge-champ badge--champ">&#127942; 2025 Champion &nbsp;105pts</span>
+          <span class="badge badge-last badge--last">Last week: 2nd</span>
           <span class="badge badge-up">▲1</span>
         </div>
       </div>
@@ -326,21 +331,21 @@
         <em>The algorithm has spoken. I had nothing to do with it.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#10</span> Roman Anthony</span>
-        <span class="player-pill"><span class="pill-rank">#289</span> Joey Cantillo ↑115</span>
-        <span class="player-pill"><span class="pill-rank">#429</span> AJ Smith-Shawver ↓93</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=roman-anthony" aria-label="Roman Anthony - view Oracle history"><span class="pill-rank">#10</span> Roman Anthony</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=joey-cantillo" aria-label="Joey Cantillo - view Oracle history"><span class="pill-rank">#289</span> Joey Cantillo ↑115</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=aj-smith-shawver-93" aria-label="AJ Smith-Shawver ↓93 - view Oracle history"><span class="pill-rank">#429</span> AJ Smith-Shawver ↓93</a>
       </div>
     </div>
   </div>
 
   <!-- 2 — Rollie Fingers -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">2</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Rollie Fingers</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 4th</span>
+          <span class="badge badge-last badge--last">Last week: 4th</span>
           <span class="badge badge-up">▲2</span>
         </div>
       </div>
@@ -354,21 +359,21 @@
         lose sleep over. <em>Only team in the top four in both Oracle and roto rankings.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#7</span> Elly De La Cruz</span>
-        <span class="player-pill"><span class="pill-rank">#220</span> Luis García Jr. ↑98</span>
-        <span class="player-pill"><span class="pill-rank">#378</span> Luis Gil ↓67</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=elly-de-la-cruz" aria-label="Elly De La Cruz - view Oracle history"><span class="pill-rank">#7</span> Elly De La Cruz</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=luis-garcia" aria-label="Luis García Jr. - view Oracle history"><span class="pill-rank">#220</span> Luis García Jr. ↑98</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=luis-gil-67" aria-label="Luis Gil ↓67 - view Oracle history"><span class="pill-rank">#378</span> Luis Gil ↓67</a>
       </div>
     </div>
   </div>
 
   <!-- 3 — John Henry Fan Club -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">3</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">John Henry Fan Club</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 1st</span>
+          <span class="badge badge-last badge--last">Last week: 1st</span>
           <span class="badge badge-down">▼2</span>
         </div>
       </div>
@@ -382,21 +387,21 @@
         <em>The saves machine has not yet been located.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#13</span> Konnor Griffin</span>
-        <span class="player-pill"><span class="pill-rank">#198</span> José Soriano ↑119</span>
-        <span class="player-pill"><span class="pill-rank">#242</span> Brady House ↑104</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=konnor-griffin" aria-label="Konnor Griffin - view Oracle history"><span class="pill-rank">#13</span> Konnor Griffin</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jose-soriano" aria-label="José Soriano - view Oracle history"><span class="pill-rank">#198</span> José Soriano ↑119</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=brady-house" aria-label="Brady House - view Oracle history"><span class="pill-rank">#242</span> Brady House ↑104</a>
       </div>
     </div>
   </div>
 
   <!-- 4 — Humongous Melonheads -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">4</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Humongous Melonheads</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 5th</span>
+          <span class="badge badge-last badge--last">Last week: 5th</span>
           <span class="badge badge-up">▲1</span>
         </div>
       </div>
@@ -406,21 +411,21 @@
         starts simultaneously. 99.5 points in the last 7 days, the highest total for any team so far. Keep doing your thing, Melonheads. <em>Sonny Gray is 36. The Melonheads do not care.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#1</span> Bobby Witt Jr.</span>
-        <span class="player-pill"><span class="pill-rank">#290</span> Mike Burrows ↑94</span>
-        <span class="player-pill"><span class="pill-rank">#265</span> Sonny Gray ↑65</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=bobby-witt" aria-label="Bobby Witt Jr. - view Oracle history"><span class="pill-rank">#1</span> Bobby Witt Jr.</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=mike-burrows" aria-label="Mike Burrows - view Oracle history"><span class="pill-rank">#290</span> Mike Burrows ↑94</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=sonny-gray" aria-label="Sonny Gray - view Oracle history"><span class="pill-rank">#265</span> Sonny Gray ↑65</a>
       </div>
     </div>
   </div>
 
   <!-- 5 — philbell -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">5</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">philbell</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 3rd</span>
+          <span class="badge badge-last badge--last">Last week: 3rd</span>
           <span class="badge badge-down">▼2</span>
         </div>
       </div>
@@ -433,21 +438,21 @@
         <em>The Oracle is also not in first place.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#2</span> Shohei Ohtani</span>
-        <span class="player-pill"><span class="pill-rank">#245</span> David Bednar ↑111</span>
-        <span class="player-pill"><span class="pill-rank">#428</span> Harry Ford ↓75</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=shohei-ohtani" aria-label="Shohei Ohtani - view Oracle history"><span class="pill-rank">#2</span> Shohei Ohtani</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=david-bednar" aria-label="David Bednar - view Oracle history"><span class="pill-rank">#245</span> David Bednar ↑111</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=harry-ford-75" aria-label="Harry Ford ↓75 - view Oracle history"><span class="pill-rank">#428</span> Harry Ford ↓75</a>
       </div>
     </div>
   </div>
 
   <!-- 6 — Inkers -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">6</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Inkers</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 10th</span>
+          <span class="badge badge-last badge--last">Last week: 10th</span>
           <span class="badge badge-up">▲4</span>
         </div>
       </div>
@@ -460,21 +465,21 @@
         <em>A PhD in foreign policy. Not in moneyball. Congrats on defending! 🎓</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#28</span> Zach Neto</span>
-        <span class="player-pill"><span class="pill-rank">#589</span> Liam Hicks ↑203</span>
-        <span class="player-pill warning"><span class="pill-rank">#248</span> Jared Jones ↓80</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=zach-neto" aria-label="Zach Neto - view Oracle history"><span class="pill-rank">#28</span> Zach Neto</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=liam-hicks" aria-label="Liam Hicks - view Oracle history"><span class="pill-rank">#589</span> Liam Hicks ↑203</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=jared-jones-80" aria-label="Jared Jones ↓80 - view Oracle history"><span class="pill-rank">#248</span> Jared Jones ↓80</a>
       </div>
     </div>
   </div>
 
   <!-- 7 — Trazadone -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">7</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Trazadone</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 12th</span>
+          <span class="badge badge-last badge--last">Last week: 12th</span>
           <span class="badge badge-up">▲5</span>
         </div>
       </div>
@@ -487,21 +492,21 @@
         The Oracle is not wrong. <em>The Oracle is simply early. Probably.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill"><span class="pill-rank">#42</span> Leo De Vries</span>
-        <span class="player-pill"><span class="pill-rank">#573</span> Josh Bell ↑138</span>
-        <span class="player-pill"><span class="pill-rank">#610</span> Nasim Nunez ↑103</span>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=leo-de-vries" aria-label="Leo De Vries - view Oracle history"><span class="pill-rank">#42</span> Leo De Vries</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=josh-bell" aria-label="Josh Bell - view Oracle history"><span class="pill-rank">#573</span> Josh Bell ↑138</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=nasim-nunez" aria-label="Nasim Nunez - view Oracle history"><span class="pill-rank">#610</span> Nasim Nunez ↑103</a>
       </div>
     </div>
   </div>
 
   <!-- 8 — Vin Mazzaro Fan Club -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">8</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Vin Mazzaro Fan Club</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 8th</span>
+          <span class="badge badge-last badge--last">Last week: 8th</span>
         </div>
       </div>
       <p class="blurb">
@@ -513,21 +518,21 @@
         and immediately went to the IL. He fit right in.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#4</span> Paul Skenes</span>
-        <span class="player-pill"><span class="pill-rank">#328</span> Andrés Giménez ↑99</span>
-        <span class="player-pill warning"><span class="pill-rank">#853</span> Drew Gilbert ↓346</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=paul-skenes" aria-label="Paul Skenes - view Oracle history"><span class="pill-rank">#4</span> Paul Skenes</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=andres-gimenez" aria-label="Andrés Giménez - view Oracle history"><span class="pill-rank">#328</span> Andrés Giménez ↑99</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=drew-gilbert-346" aria-label="Drew Gilbert ↓346 - view Oracle history"><span class="pill-rank">#853</span> Drew Gilbert ↓346</a>
       </div>
     </div>
   </div>
 
   <!-- 9 — Pat -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">9</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Pat</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 11th</span>
+          <span class="badge badge-last badge--last">Last week: 11th</span>
           <span class="badge badge-up">▲2</span>
         </div>
       </div>
@@ -538,21 +543,21 @@
         Corbin Carroll is the only one here who doesn't need a nap after a day game.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#6</span> Corbin Carroll</span>
-        <span class="player-pill"><span class="pill-rank">#664</span> Foster Griffin ↑113</span>
-        <span class="player-pill warning"><span class="pill-rank">#382</span> Kodai Senga ↓44</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=corbin-carroll" aria-label="Corbin Carroll - view Oracle history"><span class="pill-rank">#6</span> Corbin Carroll</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=foster-griffin" aria-label="Foster Griffin - view Oracle history"><span class="pill-rank">#664</span> Foster Griffin ↑113</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=kodai-senga-44" aria-label="Kodai Senga ↓44 - view Oracle history"><span class="pill-rank">#382</span> Kodai Senga ↓44</a>
       </div>
     </div>
   </div>
 
   <!-- 10 — Sam -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">10</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Sam</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 6th</span>
+          <span class="badge badge-last badge--last">Last week: 6th</span>
           <span class="badge badge-down">▼4</span>
         </div>
       </div>
@@ -564,21 +569,21 @@
         Otto Lopez 70. <em>The core is fine. The core is an island.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#3</span> Juan Soto</span>
-        <span class="player-pill"><span class="pill-rank">#307</span> Ryan Helsley ↑75</span>
-        <span class="player-pill"><span class="pill-rank">#249</span> Otto Lopez ↑70</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=juan-soto" aria-label="Juan Soto - view Oracle history"><span class="pill-rank">#3</span> Juan Soto</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=ryan-helsley" aria-label="Ryan Helsley - view Oracle history"><span class="pill-rank">#307</span> Ryan Helsley ↑75</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=otto-lopez" aria-label="Otto Lopez - view Oracle history"><span class="pill-rank">#249</span> Otto Lopez ↑70</a>
       </div>
     </div>
   </div>
 
   <!-- 11 — Millville Meteors -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">11</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Millville Meteors</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 7th</span>
+          <span class="badge badge-last badge--last">Last week: 7th</span>
           <span class="badge badge-down">▼4</span>
         </div>
       </div>
@@ -593,21 +598,21 @@
         <em>The effort is sincere. The roster is what it is.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#19</span> Jackson Chourio</span>
-        <span class="player-pill"><span class="pill-rank">#462</span> Christian Walker ↑75</span>
-        <span class="player-pill warning"><span class="pill-rank">#505</span> Jhostynxon Garcia ↓70</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=jackson-chourio" aria-label="Jackson Chourio - view Oracle history"><span class="pill-rank">#19</span> Jackson Chourio</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=christian-walker" aria-label="Christian Walker - view Oracle history"><span class="pill-rank">#462</span> Christian Walker ↑75</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=jhostynxon-garcia-70" aria-label="Jhostynxon Garcia ↓70 - view Oracle history"><span class="pill-rank">#505</span> Jhostynxon Garcia ↓70</a>
       </div>
     </div>
   </div>
 
   <!-- 12 — Mommy -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">12</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Mommy</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 9th</span>
+          <span class="badge badge-last badge--last">Last week: 9th</span>
           <span class="badge badge-down">▼3</span>
         </div>
       </div>
@@ -619,9 +624,9 @@
         <em>Roto #11. Priorities correctly ordered. 💍</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#18</span> Fernando Tatis Jr.</span>
-        <span class="player-pill"><span class="pill-rank">#252</span> Jordan Walker ↑139</span>
-        <span class="player-pill ghost">💍 lineup set 2 days this week</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=fernando-tatis" aria-label="Fernando Tatis Jr. - view Oracle history"><span class="pill-rank">#18</span> Fernando Tatis Jr.</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jordan-walker" aria-label="Jordan Walker - view Oracle history"><span class="pill-rank">#252</span> Jordan Walker ↑139</a>
+        <span class="player-pill ghost pill pill--ghost">💍 lineup set 2 days this week</span>
       </div>
     </div>
   </div>

@@ -20,66 +20,70 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Week 2 Power Rankings — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Week 2 Oracle power rankings for Backyard Dynasty Baseball 2026.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0e0e0f;
-    color: #e8e6e0;
-    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-base);
+    color: var(--t-primary);
+    font-family: var(--font-text);
     font-size: 15px;
     line-height: 1.6;
     padding: 0;
   }
 
   .header {
-    background: #0e0e0f;
-    border-bottom: 1px solid #2a2a2c;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--sep-nonopaque);
     padding: 48px 40px 32px;
     max-width: 860px;
     margin: 0 auto;
   }
 
   .header-eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-text);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #c8a84b;
+    color: var(--gold-500);
     margin-bottom: 12px;
   }
 
   .header h1 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(52px, 8vw, 88px);
     letter-spacing: 0.02em;
     line-height: 0.92;
-    color: #f0ede6;
+    color: var(--t-primary);
     margin-bottom: 20px;
   }
 
-  .header h1 span { color: #c8a84b; }
+  .header h1 span { color: var(--gold-500); }
 
   .header-meta {
     font-size: 13px;
-    color: #7a7872;
+    color: var(--t-tertiary);
     line-height: 1.7;
     max-width: 620px;
   }
 
   .header-meta strong {
-    color: #c8a84b;
+    color: var(--gold-500);
     font-weight: 500;
   }
 
   .divider {
     width: 40px;
     height: 2px;
-    background: #c8a84b;
+    background: var(--gold-500);
     margin: 20px 0;
   }
 
@@ -93,7 +97,7 @@
     display: grid;
     grid-template-columns: 72px 1fr;
     gap: 0;
-    border-bottom: 1px solid #1e1e20;
+    border-bottom: 1px solid var(--sep-opaque);
     padding: 32px 0;
     position: relative;
   }
@@ -101,16 +105,16 @@
   .rank-entry:hover { background: rgba(255,255,255,0.015); }
 
   .rank-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 54px;
-    color: #2a2a2c;
+    color: var(--sep-nonopaque);
     line-height: 1;
     padding-top: 4px;
     user-select: none;
   }
 
-  .rank-entry:nth-child(1) .rank-num { color: #c8a84b; }
-  .rank-entry:nth-child(2) .rank-num { color: #8a8680; }
+  .rank-entry:nth-child(1) .rank-num { color: var(--gold-500); }
+  .rank-entry:nth-child(2) .rank-num { color: var(--t-tertiary); }
   .rank-entry:nth-child(3) .rank-num { color: #7a5c38; }
 
   .rank-content { padding-left: 8px; }
@@ -124,10 +128,10 @@
   }
 
   .team-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 26px;
     letter-spacing: 0.04em;
-    color: #f0ede6;
+    color: var(--t-primary);
     line-height: 1;
   }
 
@@ -148,17 +152,17 @@
     white-space: nowrap;
   }
 
-  .badge-last   { background: #1e1e20; color: #7a7872; }
+  .badge-last   { background: var(--sep-opaque); color: var(--t-tertiary); }
   .badge-new    { background: #1a2e1a; color: #5d9e5d; border: 1px solid #2d5a2d; }
-  .badge-champ  { background: #2e2510; color: #c8a84b; border: 1px solid #4a3c18; }
-  .badge-up     { background: #1a1f2e; color: #5d7db5; }
-  .badge-down   { background: #2e1a1a; color: #b55d5d; }
+  .badge-champ  { background: var(--gold-tint-fill); color: var(--gold-500); border: 1px solid var(--gold-100); }
+  .badge-up     { background: #1a1f2e; color: var(--cold); }
+  .badge-down   { background: #2e1a1a; color: var(--danger); }
   .badge-return { background: #2a1a2e; color: #9b6cb5; }
 
   .blurb {
     font-size: 14.5px;
     line-height: 1.75;
-    color: #c2bfb8;
+    color: var(--t-secondary);
     margin-bottom: 14px;
   }
 
@@ -177,7 +181,7 @@
     font-size: 12px;
     font-weight: 500;
     background: #181819;
-    border: 1px solid #2a2a2c;
+    border: 1px solid var(--sep-nonopaque);
     border-radius: 4px;
     padding: 3px 10px;
     color: #a8a59e;
@@ -191,9 +195,9 @@
   }
 
   .player-pill.top {
-    border-color: #3a3020;
-    color: #d4b96a;
-    background: #1a1708;
+    border-color: var(--gold-100);
+    color: var(--gold-700);
+    background: var(--gold-tint-soft);
   }
 
   .player-pill.prospect {
@@ -213,9 +217,9 @@
     margin: 0 auto;
     padding: 24px 40px 40px;
     font-size: 12px;
-    color: #4a4845;
+    color: var(--t-quaternary);
     font-style: italic;
-    border-top: 1px solid #1e1e20;
+    border-top: 1px solid var(--sep-opaque);
     line-height: 1.8;
   }
 
@@ -232,7 +236,7 @@
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
-  border-bottom: 1px solid #1e1e20;
+  border-bottom: 1px solid var(--sep-opaque);
 }
 
 .legend-label {
@@ -240,7 +244,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--t-quaternary);
   margin-right: 4px;
 }
 
@@ -256,12 +260,13 @@
   letter-spacing: 0.06em;
 }
 
-.delta-up   { color: #5d7db5; }
-.delta-down { color: #b55d5d; }
+.delta-up   { color: var(--cold); }
+.delta-down { color: var(--danger); }
 .delta-same { color: #3a3a3c; }
 
 /* ── BACK LINK ── */
 </style>
+<link rel="stylesheet" href="assets/power-rankings-theme.css">
 </head>
 <body>
 
@@ -284,22 +289,22 @@
 
 <div class="legend">
   <span class="legend-label">Player tiers:</span>
-  <span class="player-pill top">&#9679; Oracle top 30</span>
-  <span class="player-pill prospect">&#9679; Prospect (A–AAA)</span>
-  <span class="player-pill warning">&#9679; Age 33+ / ranked 700+</span>
-  <span class="player-pill">&#9679; Everyone else</span>
+  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill pill">&#9679; Everyone else</span>
 </div>
 
 <div class="rankings">
 
   <!-- 1 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">1</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">philbell</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 1st</span>
+          <span class="badge badge-last badge--last">Last week: 1st</span>
           <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
         </div>
       </div>
@@ -307,23 +312,23 @@
         Nothing has changed and nothing needs to. Shohei Ohtani. Junior Caminero. etc. etc. No trades were made this week. No trades needed to be made. There is a specific kind of confidence that comes from owning a roster this deep and just watching everyone else panic-deal. Philbell is not panicking. Philbell is sitting back and <em>watching.</em>
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#6</span> Shohei Ohtani</span>
-        <span class="player-pill top"><span class="pill-rank">#7</span> Ronald Acuña Jr.</span>
-        <span class="player-pill top"><span class="pill-rank">#14</span> Junior Caminero</span>
-        <span class="player-pill"><span class="pill-rank">#26</span> Wyatt Langford</span>
-        <span class="player-pill"><span class="pill-rank">#32</span> Nick Kurtz</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=shohei-ohtani" aria-label="Shohei Ohtani - view Oracle history"><span class="pill-rank">#6</span> Shohei Ohtani</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=ronald-acuna" aria-label="Ronald Acuña Jr. - view Oracle history"><span class="pill-rank">#7</span> Ronald Acuña Jr.</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=junior-caminero" aria-label="Junior Caminero - view Oracle history"><span class="pill-rank">#14</span> Junior Caminero</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=wyatt-langford" aria-label="Wyatt Langford - view Oracle history"><span class="pill-rank">#26</span> Wyatt Langford</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=nick-kurtz" aria-label="Nick Kurtz - view Oracle history"><span class="pill-rank">#32</span> Nick Kurtz</a>
       </div>
     </div>
   </div>
 
   <!-- 2 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">2</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Rollie Fingers</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 5th</span>
+          <span class="badge badge-last badge--last">Last week: 5th</span>
           <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +3</span>
         </div>
       </div>
@@ -331,23 +336,23 @@
         Rollie's got his Fingies in the cookie jar early. Jumping from the starting line with early and commanding leads in the HR and OPS department. The only note: trading Jhoan Duran for Hagen Smith (MiLB) and a Grayson Rodriguez on the IL was not the most inspiring use of a proven closer. We'll let the standings, currently 1st at 88.5 points, make the counterargument.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#8</span> Garrett Crochet</span>
-        <span class="player-pill top"><span class="pill-rank">#9</span> Elly De La Cruz</span>
-        <span class="player-pill prospect"><span class="pill-rank">#46</span> JJ Wetherholt</span>
-        <span class="player-pill"><span class="pill-rank">#49</span> Hunter Greene</span>
-        <span class="player-pill warning"><span class="pill-rank">#50</span> Bryce Harper, 33</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=garrett-crochet" aria-label="Garrett Crochet - view Oracle history"><span class="pill-rank">#8</span> Garrett Crochet</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=elly-de-la-cruz" aria-label="Elly De La Cruz - view Oracle history"><span class="pill-rank">#9</span> Elly De La Cruz</a>
+        <a class="player-pill prospect pill pill--prospect" href="prospects.html?player=jj-wetherholt" aria-label="JJ Wetherholt - view Oracle history"><span class="pill-rank">#46</span> JJ Wetherholt</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=hunter-greene" aria-label="Hunter Greene - view Oracle history"><span class="pill-rank">#49</span> Hunter Greene</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=bryce-harper" aria-label="Bryce Harper - view Oracle history"><span class="pill-rank">#50</span> Bryce Harper, 33</a>
       </div>
     </div>
   </div>
 
   <!-- 3 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">3</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Humongous Melonheads</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 3rd</span>
+          <span class="badge badge-last badge--last">Last week: 3rd</span>
           <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
         </div>
       </div>
@@ -355,24 +360,24 @@
         As if Bobby Witt Jr. and James Wood weren't enough, Bryan Woo is <em>now also on this roster</em>, acquired from Vin Mazzaro fan club in a blockbuster 3 for 3 trade. Say it slowly: Witt. Wood. Woo. Three elite young players under 27 making up your top-3. The Melonheads also sent Kenley Jansen (38, ranked #579) to your commish in exchange for Pfaadt and a third rounder, which is the kind of roster hygiene move that pays dividends by August. Or did Seam Heads just pass along their geriatric veteran for... another geriatric veteran? Still trying to reason this one out. Maybe I just wanted to feel something, be a part of the action. The concern remains a bullpen littered with aging veterans: Taillon (34), Bassitt (37), Emilio Pagan (35), but that is a problem any dynasty manager would happily inherit alongside this core.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#3</span> Bobby Witt Jr.</span>
-        <span class="player-pill top"><span class="pill-rank">#19</span> Bryan Woo</span>
-        <span class="player-pill top"><span class="pill-rank">#20</span> James Wood</span>
-        <span class="player-pill"><span class="pill-rank">#35</span> Pete Alonso</span>
-        <span class="player-pill warning"><span class="pill-rank">#579</span> Jansen, 38</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=bobby-witt" aria-label="Bobby Witt Jr. - view Oracle history"><span class="pill-rank">#3</span> Bobby Witt Jr.</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=bryan-woo" aria-label="Bryan Woo - view Oracle history"><span class="pill-rank">#19</span> Bryan Woo</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=james-wood" aria-label="James Wood - view Oracle history"><span class="pill-rank">#20</span> James Wood</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=pete-alonso" aria-label="Pete Alonso - view Oracle history"><span class="pill-rank">#35</span> Pete Alonso</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=jansen" aria-label="Jansen - view Oracle history"><span class="pill-rank">#579</span> Jansen, 38</a>
       </div>
     </div>
   </div>
 
   <!-- 4 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">4</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Seam heads</span>
         <div class="badges">
-          <span class="badge badge-champ">&#127942; 2025 Champion &nbsp;105pts</span>
-          <span class="badge badge-last">Last week: 6th</span>
+          <span class="badge badge-champ badge--champ">&#127942; 2025 Champion &nbsp;105pts</span>
+          <span class="badge badge-last badge--last">Last week: 6th</span>
           <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +2</span>
         </div>
       </div>
@@ -380,23 +385,23 @@
         Full disclosure: the Oracle has Seam Heads as the #3 roster in the league by composite score (top-10 average: 908.9). We are ranking ourselves #4. This is called editorial restraint and we are practicing it openly and with great transparency. Some say there has never been a more transparent outlet, it's really amazing. Roman Anthony is the next Juan Soto, but is absolutely on the trade block. The Pfaadt acquisition adds a young(?) rotation arm. The saves shelf is absurd, something like 17 closers and setup men clogging this roster like a dynasty hoarder who can't say no at the waiver wire. Which is true, and I can't. That's why my IR (cc:Auth), is always full. The warnings are real: Judge is 34, Trea Turner is 33, Chris Sale is 37, Gerrit Cole is 36, blah blah blah, I'm still in second place in the actual standings.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#4</span> Tarik Skubal</span>
-        <span class="player-pill top"><span class="pill-rank">#11</span> Aaron Judge</span>
-        <span class="player-pill"><span class="pill-rank">#22</span> Cal Raleigh</span>
-        <span class="player-pill prospect"><span class="pill-rank">#31</span> Roman Anthony</span>
-        <span class="player-pill warning"><span class="pill-rank">#830</span> Kris Bryant, 34</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=tarik-skubal" aria-label="Tarik Skubal - view Oracle history"><span class="pill-rank">#4</span> Tarik Skubal</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=aaron-judge" aria-label="Aaron Judge - view Oracle history"><span class="pill-rank">#11</span> Aaron Judge</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=cal-raleigh" aria-label="Cal Raleigh - view Oracle history"><span class="pill-rank">#22</span> Cal Raleigh</a>
+        <a class="player-pill prospect pill pill--prospect" href="prospects.html?player=roman-anthony" aria-label="Roman Anthony - view Oracle history"><span class="pill-rank">#31</span> Roman Anthony</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=kris-bryant" aria-label="Kris Bryant - view Oracle history"><span class="pill-rank">#830</span> Kris Bryant, 34</a>
       </div>
     </div>
   </div>
 
   <!-- 5 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">5</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">John Henry Fan Club</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 2nd</span>
+          <span class="badge badge-last badge--last">Last week: 2nd</span>
           <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -3</span>
         </div>
       </div>
@@ -404,23 +409,23 @@
         John Henry can't keep getting away with this. Or can he? Let's discuss. Three trades. One Thursday. In the span of a single business day, this team acquired Jose Ramirez (34), Jhoan Duran, and Zyhir Hope, while shedding Leodalis De Vries (19 years old, elite prospect), Thomas White, Hagen Smith, Grayson Rodriguez (IL, shoulder), two draft picks, and whatever dynasty credibility they had built over the offseason. Last week this team was ranked #2 in the league on the strength of 14 prospects and a 25.2-year average roster age. This week, Ramirez is 34 and the prospect cupboard just got substantially emptier.The youth-fueled dynasty outlook that earned this team that #2 ranking has been drastically altered in one afternoon by someone who really needed to step away from the app. But hell, better than betting on who we go to war with on Polymarket, the sponsor of this week's video!
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#13</span> Gunnar Henderson</span>
-        <span class="player-pill"><span class="pill-rank">#21</span> José Ramírez</span>
-        <span class="player-pill"><span class="pill-rank">#27</span> Zach Neto</span>
-        <span class="player-pill"><span class="pill-rank">#28</span> Yordan Alvarez</span>
-        <span class="player-pill"><span class="pill-rank">#36</span> Cole Ragans</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=gunnar-henderson" aria-label="Gunnar Henderson - view Oracle history"><span class="pill-rank">#13</span> Gunnar Henderson</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jose-ramirez" aria-label="José Ramírez - view Oracle history"><span class="pill-rank">#21</span> José Ramírez</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=zach-neto" aria-label="Zach Neto - view Oracle history"><span class="pill-rank">#27</span> Zach Neto</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=yordan-alvarez" aria-label="Yordan Alvarez - view Oracle history"><span class="pill-rank">#28</span> Yordan Alvarez</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=cole-ragans" aria-label="Cole Ragans - view Oracle history"><span class="pill-rank">#36</span> Cole Ragans</a>
       </div>
     </div>
   </div>
 
   <!-- 6 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">6</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Sam</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 4th</span>
+          <span class="badge badge-last badge--last">Last week: 4th</span>
           <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -2</span>
         </div>
       </div>
@@ -428,23 +433,23 @@
         We've said it before and we'll say it again, this is one of the most elite top-ends in the league and it is not particularly close. The problem, <em>and it is</em> a real problem, is what happens below those three. CJ Abrams at #40 is fine. Yoshinobu Yamamoto at #29 is excellent. And then: Kyren Paris at #874. Tyler Rogers at #701. Jon Gray at #762. Nathaniel Lowe at #758. Javier Báez, 33, at #742. This is not a depth chart. This is a hostage situation where three elite players are being held captive by 15 roster slots that appear to have been filled by spinning a wheel. Sam enters Week 2 down a few pegs because dynasty is 35 players, not 3.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#1</span> Juan Soto</span>
-        <span class="player-pill top"><span class="pill-rank">#10</span> Julio Rodríguez</span>
-        <span class="player-pill top"><span class="pill-rank">#17</span> Pete Crow-Armstrong</span>
-        <span class="player-pill"><span class="pill-rank">#29</span> Y. Yamamoto</span>
-        <span class="player-pill warning"><span class="pill-rank">#874</span> Kyren Paris</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=juan-soto" aria-label="Juan Soto - view Oracle history"><span class="pill-rank">#1</span> Juan Soto</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=julio-rodriguez" aria-label="Julio Rodríguez - view Oracle history"><span class="pill-rank">#10</span> Julio Rodríguez</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=pete-crow-armstrong" aria-label="Pete Crow-Armstrong - view Oracle history"><span class="pill-rank">#17</span> Pete Crow-Armstrong</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=y-yamamoto" aria-label="Y. Yamamoto - view Oracle history"><span class="pill-rank">#29</span> Y. Yamamoto</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=kyren-paris" aria-label="Kyren Paris - view Oracle history"><span class="pill-rank">#874</span> Kyren Paris</a>
       </div>
     </div>
   </div>
 
   <!-- 7 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">7</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Millville Meteors</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 7th</span>
+          <span class="badge badge-last badge--last">Last week: 7th</span>
           <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
         </div>
       </div>
@@ -452,23 +457,23 @@
         The Meteors went from 11th to 3rd in the standings in 48 hours, a +31.5 point swing that was the most dramatic move in the league this week. The power ranking stays at 7th because standings in Week 2 are noise, not signal, and the Oracle places them solidly in the middle tier. Stop me if you've heard this one before: Mike Trout is freer than he ever has been, please simultaneously don't count him out (1.573 OPS and 2 HRs) and laugh along at where he was drafted last year (8 overall). The ceiling is real. The floor is crowded.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#18</span> Jackson Chourio</span>
-        <span class="player-pill"><span class="pill-rank">#33</span> Logan Webb</span>
-        <span class="player-pill"><span class="pill-rank">#48</span> Austin Riley</span>
-        <span class="player-pill"><span class="pill-rank">#57</span> Jac Caglianone</span>
-        <span class="player-pill warning"><span class="pill-rank">#237</span> Mike Trout, 90 years old</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=jackson-chourio" aria-label="Jackson Chourio - view Oracle history"><span class="pill-rank">#18</span> Jackson Chourio</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=logan-webb" aria-label="Logan Webb - view Oracle history"><span class="pill-rank">#33</span> Logan Webb</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=austin-riley" aria-label="Austin Riley - view Oracle history"><span class="pill-rank">#48</span> Austin Riley</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jac-caglianone" aria-label="Jac Caglianone - view Oracle history"><span class="pill-rank">#57</span> Jac Caglianone</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=mike-trout" aria-label="Mike Trout - view Oracle history"><span class="pill-rank">#237</span> Mike Trout, 90 years old</a>
       </div>
     </div>
   </div>
 
   <!-- 8 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">8</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Vin Mazzaro fan club</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 8th</span>
+          <span class="badge badge-last badge--last">Last week: 8th</span>
           <span class="rank-delta delta-same"><svg width="9" height="3" viewBox="0 0 9 3" style="margin-top:0px"><rect width="9" height="3" rx="1.5" fill="currentColor"/></svg></span>
           <span class="badge badge-new">New owner</span>
         </div>
@@ -477,23 +482,23 @@
         Paul Skenes is still here. That's the good news and most of the good news. The bad news is that Bryan Woo and one of the better young arms in the sport, is now on the Humongous Melonheads roster in exchange for Joe Ryan, Michael Busch, and J.T. Realmuto. Realmuto is 35. Ryan is 30. Woo is 26. The math on that exchange, from a dynasty perspective, is not mathing. The new owner came in with Paul Skenes (#2 overall) as an inheritance and has since traded the second-best asset they had. Justin Verlander is 43 years old and ranked #711, which is less of a baseball fact and more of a philosophical statement about time. The team is 5th in standings but the dynasty outlook narrows without Woo. And yes I'm also salty he didn't trade Woo to me. That probably didn't factor in though.
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#2</span> Paul Skenes</span>
-        <span class="player-pill"><span class="pill-rank">#23</span> Jazz Chisholm Jr.</span>
-        <span class="player-pill"><span class="pill-rank">#34</span> Francisco Lindor</span>
-        <span class="player-pill"><span class="pill-rank">#38</span> Kyle Schwarber</span>
-        <span class="player-pill warning"><span class="pill-rank">#711</span> Verlander, 43</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=paul-skenes" aria-label="Paul Skenes - view Oracle history"><span class="pill-rank">#2</span> Paul Skenes</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jazz-chisholm" aria-label="Jazz Chisholm Jr. - view Oracle history"><span class="pill-rank">#23</span> Jazz Chisholm Jr.</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=francisco-lindor" aria-label="Francisco Lindor - view Oracle history"><span class="pill-rank">#34</span> Francisco Lindor</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=kyle-schwarber" aria-label="Kyle Schwarber - view Oracle history"><span class="pill-rank">#38</span> Kyle Schwarber</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=verlander" aria-label="Verlander - view Oracle history"><span class="pill-rank">#711</span> Verlander, 43</a>
       </div>
     </div>
   </div>
 
   <!-- 9 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">9</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Mommy</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 12th</span>
+          <span class="badge badge-last badge--last">Last week: 12th</span>
           <span class="rank-delta delta-up"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:-1px"><path d="M3.5 0.5L6.8 6.5H0.2L3.5 0.5Z" fill="currentColor"/></svg> +3</span>
           <span class="badge badge-new">New owner</span>
         </div>
@@ -502,23 +507,23 @@
         Mommy's perking right on up to 4th in the standings at 73.0 points, which is low key impressive for a roster that was ranked 12th last week. The Oracle score of 858.6 places Mommy 9th by top-10 average, and the upgrade from 12th to 9th here is driven entirely by the foundation that Tatis and Tucker represent. The concern is everything else, which we've been over. He has been setting his lineup every day which is more than we can say about some of you (see below).
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#12</span> Fernando Tatis Jr.</span>
-        <span class="player-pill top"><span class="pill-rank">#15</span> Kyle Tucker</span>
-        <span class="player-pill"><span class="pill-rank">#24</span> Hunter Brown</span>
-        <span class="player-pill warning"><span class="pill-rank">#75</span> Manny Machado, 34</span>
-        <span class="player-pill warning"><span class="pill-rank">#791</span> Yu Darvish, 40</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=fernando-tatis" aria-label="Fernando Tatis Jr. - view Oracle history"><span class="pill-rank">#12</span> Fernando Tatis Jr.</a>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=kyle-tucker" aria-label="Kyle Tucker - view Oracle history"><span class="pill-rank">#15</span> Kyle Tucker</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=hunter-brown" aria-label="Hunter Brown - view Oracle history"><span class="pill-rank">#24</span> Hunter Brown</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=manny-machado" aria-label="Manny Machado - view Oracle history"><span class="pill-rank">#75</span> Manny Machado, 34</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=yu-darvish" aria-label="Yu Darvish - view Oracle history"><span class="pill-rank">#791</span> Yu Darvish, 40</a>
       </div>
     </div>
   </div>
 
   <!-- 10 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">10</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Inkers</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 9th</span>
+          <span class="badge badge-last badge--last">Last week: 9th</span>
           <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -1</span>
         </div>
       </div>
@@ -526,23 +531,23 @@
         Death, taxes, and Inkers in the standings cellar. 31.5 points after dropping 24.5 this week alone, the most dramatic fall in the league. Almost no one is helping Vladdy out. The week's trade: sending Zyhir Hope to John Henry Fan Club in exchange for getting their own 2027 first-round pick back plus a Seam Heads third is the kind of transaction that makes sense only if you squint at it from a specific angle and then don't look again. For the second consecutive year, 9th place beckons. So does self-reflection. Когда вы наконец отнесетесь к этому серьезно?
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#16</span> Vlad Guerrero Jr.</span>
-        <span class="player-pill"><span class="pill-rank">#30</span> Logan Gilbert</span>
-        <span class="player-pill"><span class="pill-rank">#58</span> Maikel Garcia</span>
-        <span class="player-pill prospect"><span class="pill-rank">#73</span> Max Clark</span>
-        <span class="player-pill warning"><span class="pill-rank">#806</span> Quintana, 37</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=vlad-guerrero" aria-label="Vlad Guerrero Jr. - view Oracle history"><span class="pill-rank">#16</span> Vlad Guerrero Jr.</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=logan-gilbert" aria-label="Logan Gilbert - view Oracle history"><span class="pill-rank">#30</span> Logan Gilbert</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=maikel-garcia" aria-label="Maikel Garcia - view Oracle history"><span class="pill-rank">#58</span> Maikel Garcia</a>
+        <a class="player-pill prospect pill pill--prospect" href="prospects.html?player=max-clark" aria-label="Max Clark - view Oracle history"><span class="pill-rank">#73</span> Max Clark</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=quintana" aria-label="Quintana - view Oracle history"><span class="pill-rank">#806</span> Quintana, 37</a>
       </div>
     </div>
   </div>
 
   <!-- 11 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">11</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Pat</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 10th</span>
+          <span class="badge badge-last badge--last">Last week: 10th</span>
           <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -1</span>
           <span class="badge badge-down">Oldest roster: 30.3 avg age</span>
         </div>
@@ -551,23 +556,23 @@
         Hey, is this thing on? Patrick can you hear me? Set your lineup once if you're alive (okay to be fair he did set his lineup twice that we can tell). This is not a joke: Carroll is elite. The roster around Carroll is a cautionary tale. The Oracle's top-10 average score of 828.6 ranks this team 11th in the league. The average roster age of 30.3 is the highest in the league by more than a year. The path to last year's 5th-place finish likely ran through Carroll carrying an above-average supporting cast that has since aged past its window. No trades were made. No trades were needed. What's needed is a long look at the roster and a willingness to know when to rebuild. 
       </p>
       <div class="key-players">
-        <span class="player-pill top"><span class="pill-rank">#5</span> Corbin Carroll</span>
-        <span class="player-pill"><span class="pill-rank">#63</span> Matt Olson</span>
-        <span class="player-pill"><span class="pill-rank">#65</span> Brice Turang</span>
-        <span class="player-pill warning"><span class="pill-rank">#71</span> Mookie Betts, 34</span>
-        <span class="player-pill warning"><span class="pill-rank">#417</span> M. Semien, 36</span>
+        <a class="player-pill top pill pill--gold" href="dynasty_rankings.html?player=corbin-carroll" aria-label="Corbin Carroll - view Oracle history"><span class="pill-rank">#5</span> Corbin Carroll</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=matt-olson" aria-label="Matt Olson - view Oracle history"><span class="pill-rank">#63</span> Matt Olson</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=brice-turang" aria-label="Brice Turang - view Oracle history"><span class="pill-rank">#65</span> Brice Turang</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=mookie-betts" aria-label="Mookie Betts - view Oracle history"><span class="pill-rank">#71</span> Mookie Betts, 34</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=m-semien" aria-label="M. Semien - view Oracle history"><span class="pill-rank">#417</span> M. Semien, 36</a>
       </div>
     </div>
   </div>
 
   <!-- 12 -->
-  <div class="rank-entry">
+  <div class="rank-entry card">
     <div class="rank-num">12</div>
     <div class="rank-content">
       <div class="rank-header">
         <span class="team-name">Trazadone</span>
         <div class="badges">
-          <span class="badge badge-last">Last week: 11th</span>
+          <span class="badge badge-last badge--last">Last week: 11th</span>
           <span class="rank-delta delta-down"><svg width="7" height="8" viewBox="0 0 7 8" fill="none" style="margin-top:1px"><path d="M3.5 7.5L0.2 1.5H6.8L3.5 7.5Z" fill="currentColor"/></svg> -1</span>
           <span class="badge badge-down"><em>Full</em> rebuild</span>
         </div>
@@ -576,12 +581,12 @@
         José Ramírez is gone. That requires a moment of silence. Ramírez was the #21 player in the Oracle, a 34-year-old who still projects 27 HR and 30 SB and had been defying the aging curve for two seasons running. He was the anchor of this roster, the thing that kept Trazadone credible, the reason anyone in this league took their lineup seriously. He is now a John Henry Fan Club problem. In exchange, Trazadone received Leodalis De Vries (19, AA, elite prospect), Thomas White (MiLB), and a 2027 JHFC second-round pick. This is a sell. A full rebuild. The Oracle's top-10 average score of 769.1 is the lowest in the league, and that was <em>before</em> Ramirez left. Without him, what remains is Jacob deGrom at 38, ranked #142, pitching on whatever is left of his elbow's goodwill... and not much else. Get comfortable down here, the sleeping pill team has officially gone to sleep. Wake us up in 2028.
       </p>
       <div class="key-players">
-        <span class="player-pill"><span class="pill-rank">#61</span> Jarren Duran</span>
-        <span class="player-pill"><span class="pill-rank">#85</span> MacKenzie Gore</span>
-        <span class="player-pill"><span class="pill-rank">#94</span> Bo Bichette</span>
-        <span class="player-pill warning"><span class="pill-rank">#142</span> Jacob deGrom, 38</span>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=jarren-duran" aria-label="Jarren Duran - view Oracle history"><span class="pill-rank">#61</span> Jarren Duran</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=mackenzie-gore" aria-label="MacKenzie Gore - view Oracle history"><span class="pill-rank">#85</span> MacKenzie Gore</a>
+        <a class="player-pill pill" href="dynasty_rankings.html?player=bo-bichette" aria-label="Bo Bichette - view Oracle history"><span class="pill-rank">#94</span> Bo Bichette</a>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=jacob-degrom" aria-label="Jacob deGrom - view Oracle history"><span class="pill-rank">#142</span> Jacob deGrom, 38</a>
   
-        <span class="player-pill warning"><span class="pill-rank">#820</span> Jose Corniell</span>
+        <a class="player-pill warning pill pill--warning" href="dynasty_rankings.html?player=jose-corniell" aria-label="Jose Corniell - view Oracle history"><span class="pill-rank">#820</span> Jose Corniell</a>
       </div>
     </div>
   </div>

@@ -20,26 +20,29 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Hub — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
+<script>
+(function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e0f;
-  --bg2: #141416;
-  --border: #1e1e20;
-  --border2: #2a2a2c;
-  --gold: #c8a84b;
-  --gold-dim: #4a3c18;
-  --text: #f0ede6;
-  --text-mid: #c2bfb8;
-  --text-muted: #7a7872;
-  --text-dead: #4a4845;
-  --blue: #5d7db5;
-  --red: #b55d5d;
-  --bg-hover: #1a1a1c;
+  --bg: var(--bg-base);
+  --bg2: var(--bg-elevated);
+  --border: var(--sep-opaque);
+  --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500);
+  --gold-dim: var(--gold-100);
+  --text: var(--t-primary);
+  --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary);
+  --text-dead: var(--t-quaternary);
+  --blue: var(--cold);
+  --red: var(--danger);
+  --bg-hover: var(--bg-overlay);
   --bg-featured: #141208;
   --nav-bg-blur: rgba(14, 14, 15, 0.96);
   --nav-bg-solid: rgba(14, 14, 15, 0.98);
@@ -47,10 +50,10 @@
 }
 
 html[data-theme="dark"] {
-  --bg: #0e0e0f; --bg2: #141416; --border: #1e1e20; --border2: #2a2a2c;
-  --gold: #c8a84b; --gold-dim: #4a3c18; --text: #f0ede6; --text-mid: #c2bfb8;
-  --text-muted: #7a7872; --text-dead: #4a4845; --blue: #5d7db5; --red: #b55d5d;
-  --bg-hover: #1a1a1c; --bg-featured: #141208;
+  --bg: var(--bg-base); --bg2: var(--bg-elevated); --border: var(--sep-opaque); --border2: var(--sep-nonopaque);
+  --gold: var(--gold-500); --gold-dim: var(--gold-100); --text: var(--t-primary); --text-mid: var(--t-secondary);
+  --text-muted: var(--t-tertiary); --text-dead: var(--t-quaternary); --blue: var(--cold); --red: var(--danger);
+  --bg-hover: var(--bg-overlay); --bg-featured: #141208;
   --nav-bg-blur: rgba(14, 14, 15, 0.96); --nav-bg-solid: rgba(14, 14, 15, 0.98);
   --shadow: rgba(0, 0, 0, 0.35);
 }
@@ -59,7 +62,7 @@ html[data-theme="light"] {
   --bg: #f5f3ef; --bg2: #eceae5; --border: #d8d4cb; --border2: #c5c0b5;
   --gold: #9a7a28; --gold-dim: #e8dfc0; --text: #1a1917; --text-mid: #3a3834;
   --text-muted: #7a7468; --text-dead: #a09a90; --blue: #3a5a8a; --red: #8a3a3a;
-  --bg-hover: #e2dfd8; --bg-featured: #faf7ee;
+  --bg-hover: #e2dfd8; --bg-featured: #e8e5de;
   --nav-bg-blur: rgba(245, 243, 239, 0.96); --nav-bg-solid: rgba(245, 243, 239, 0.98);
   --shadow: rgba(0, 0, 0, 0.15);
 }
@@ -67,7 +70,7 @@ html[data-theme="light"] {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -88,7 +91,7 @@ body {
   margin-bottom: 14px;
 }
 .site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(56px, 8vw, 100px);
   line-height: 0.88;
   letter-spacing: 0.02em;
@@ -133,6 +136,10 @@ body {
   border-color: var(--gold-dim);
   background: #16140d;
   transform: translateY(-1px);
+}
+html[data-theme="light"] .header-link:hover {
+  border-color: var(--border2);
+  background: var(--bg-hover);
 }
 .header-link-title {
   display: block;
@@ -196,14 +203,14 @@ body {
   margin-bottom: 8px;
 }
 .leaderboard-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 24px;
   letter-spacing: .04em;
   line-height: 1;
   color: var(--gold);
   text-decoration: none;
 }
-.leaderboard-title:hover { color: #d9ba63; }
+.leaderboard-title:hover { color: var(--gold-700); }
 .leaderboard-link {
   font-size: 10px;
   font-weight: 700;
@@ -227,7 +234,7 @@ body {
 }
 .lb-row:last-child { border-bottom: 0; }
 .lb-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 16px;
   color: var(--gold);
   text-align: right;
@@ -240,7 +247,7 @@ body {
   text-overflow: ellipsis;
 }
 .lb-pts {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 15px;
   color: var(--text);
   text-align: right;
@@ -253,7 +260,7 @@ body {
   text-align: right;
   color: var(--text-muted);
 }
-.lb-change.up { color: #5da87a; }
+.lb-change.up { color: var(--success); }
 .lb-change.down { color: var(--red); }
 .state-msg {
   padding: 20px 0;
@@ -298,7 +305,7 @@ body {
   margin-bottom: 6px;
 }
 .card-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 22px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -322,6 +329,16 @@ body {
 .card.featured .card-eyebrow { color: var(--gold); }
 .card.featured .card-title   { color: var(--gold); }
 .card.featured:hover { border-color: var(--gold); }
+html[data-theme="light"] .card.featured {
+  border-color: var(--border);
+  background: var(--bg-featured);
+}
+html[data-theme="light"] .card.featured .card-eyebrow { color: var(--text-dead); }
+html[data-theme="light"] .card.featured .card-title { color: var(--text); }
+html[data-theme="light"] .card.featured:hover {
+  border-color: var(--border2);
+  background: var(--bg-hover);
+}
 .card-arrow {
   display: inline-block;
   margin-top: 14px;
@@ -332,6 +349,7 @@ body {
   color: var(--text-dead);
 }
 .card.featured .card-arrow { color: var(--gold); }
+html[data-theme="light"] .card.featured .card-arrow { color: var(--text-muted); }
 
 /* ── TOOL TILES ── */
 .tool-grid {
@@ -390,7 +408,7 @@ body {
   margin-bottom: 4px;
 }
 .tile-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 20px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -426,7 +444,7 @@ body {
 .dp-list { display: flex; flex-direction: column; gap: 4px; }
 .dp-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
 .dp-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -446,7 +464,7 @@ body {
 .mb-list { display: flex; flex-direction: column; gap: 4px; }
 .mb-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
 .mb-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -484,7 +502,7 @@ body {
 .st-list { display: flex; flex-direction: column; gap: 3px; }
 .st-row  { display: grid; grid-template-columns: 22px 1fr 34px; gap: 5px; align-items: center; }
 .st-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -504,7 +522,7 @@ body {
 }
 .st-row.rank1 .st-fill { background: var(--gold); }
 .st-pts {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 11px;
   color: var(--text-dead);
   text-align: right;
@@ -524,7 +542,7 @@ body {
   border-radius: 2px;
   flex-shrink: 0;
 }
-.tx-badge.add   { background: rgba(93,168,122,0.18); color: #5da87a; }
+.tx-badge.add   { background: rgba(93,168,122,0.18); color: var(--success); }
 .tx-badge.drop  { background: rgba(181,93,93,0.15);  color: var(--red); }
 .tx-badge.trade { background: rgba(93,125,181,0.18); color: var(--blue); }
 .tx-info { display: flex; flex-direction: column; min-width: 0; }
@@ -535,7 +553,7 @@ body {
 .pr-list { display: flex; flex-direction: column; gap: 3px; }
 .pr-row  { display: grid; grid-template-columns: 30px 1fr auto; gap: 5px; align-items: center; }
 .pr-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -637,7 +655,7 @@ body {
   </div>
 
   <div class="section-label">The Standings</div>
-  <div class="leaderboard">
+  <div class="leaderboard card">
     <div class="leaderboard-head">
       <a class="leaderboard-title" href="standings.html">Live Standings</a>
     </div>
@@ -715,7 +733,6 @@ body {
     </a>
   </div>
 </div>
-
 
 <div class="site-footer" id="footerEl">
   Data compiled using Oracle composite scores and public league snapshots.
@@ -914,17 +931,17 @@ function buildMiniScatter() {
   marker.setAttribute('markerUnits', 'strokeWidth');
   const arrowHead = document.createElementNS(ns, 'path');
   arrowHead.setAttribute('d', 'M 0 0 L 6 3 L 0 6 z');
-  arrowHead.setAttribute('fill', '#c8a84b');
+  arrowHead.setAttribute('fill', 'var(--gold-500)');
   arrowHead.setAttribute('opacity', '0.9');
   marker.appendChild(arrowHead);
   defs.appendChild(marker);
   svgEl.appendChild(defs);
 
   [
-    { x: PAD.left, y: PAD.top, w: sx(midAge) - PAD.left, h: sy(midVal) - PAD.top, fill: '#5d7db5' },
-    { x: sx(midAge), y: PAD.top, w: PAD.left + plotW - sx(midAge), h: sy(midVal) - PAD.top, fill: '#c8a84b' },
-    { x: PAD.left, y: sy(midVal), w: sx(midAge) - PAD.left, h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
-    { x: sx(midAge), y: sy(midVal), w: PAD.left + plotW - sx(midAge), h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
+    { x: PAD.left, y: PAD.top, w: sx(midAge) - PAD.left, h: sy(midVal) - PAD.top, fill: 'var(--cold)' },
+    { x: sx(midAge), y: PAD.top, w: PAD.left + plotW - sx(midAge), h: sy(midVal) - PAD.top, fill: 'var(--gold-500)' },
+    { x: PAD.left, y: sy(midVal), w: sx(midAge) - PAD.left, h: PAD.top + plotH - sy(midVal), fill: 'var(--danger)' },
+    { x: sx(midAge), y: sy(midVal), w: PAD.left + plotW - sx(midAge), h: PAD.top + plotH - sy(midVal), fill: 'var(--danger)' },
   ].forEach(q => {
     const rect = document.createElementNS(ns, 'rect');
     rect.setAttribute('x', q.x);
@@ -968,7 +985,7 @@ function buildMiniScatter() {
         path.setAttribute('y1', prevCy);
         path.setAttribute('x2', cx);
         path.setAttribute('y2', cy);
-        path.setAttribute('stroke', '#c8a84b');
+        path.setAttribute('stroke', 'var(--gold-500)');
         path.setAttribute('stroke-width', '1.2');
         path.setAttribute('opacity', '0.75');
         path.setAttribute('marker-end', 'url(#miniScatterArrow)');
@@ -988,7 +1005,7 @@ function buildMiniScatter() {
 
     const ring = document.createElementNS(ns,'circle');
     ring.setAttribute('cx',cx); ring.setAttribute('cy',cy); ring.setAttribute('r',10);
-    ring.setAttribute('fill','#c8a84b'); ring.setAttribute('opacity','0.07');
+    ring.setAttribute('fill','var(--gold-500)'); ring.setAttribute('opacity','0.07');
     g.appendChild(ring);
 
     const dot = document.createElementNS(ns,'circle');
@@ -999,9 +1016,9 @@ function buildMiniScatter() {
     const lbl = document.createElementNS(ns,'text');
     lbl.setAttribute('x',cx); lbl.setAttribute('y',cy+3.5);
     lbl.setAttribute('text-anchor','middle');
-    lbl.setAttribute('font-family','DM Sans, sans-serif');
+    lbl.setAttribute('font-family','-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size','7.5'); lbl.setAttribute('font-weight','700');
-    lbl.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#f0ede6');
+    lbl.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || 'var(--t-primary)');
     lbl.textContent = t.oracle_rank;
     g.appendChild(lbl);
 
