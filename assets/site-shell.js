@@ -3,7 +3,7 @@
  *
  * <!-- FOUC prevention: paste this into <head> before any stylesheets -->
  * <script>
- * (function(){var t=localStorage.getItem('pr-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;})();
+ * (function(){var t=localStorage.getItem('pr-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();
  * </script>
  */
 (() => {
@@ -80,12 +80,16 @@
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     let mqListener = null;
 
+    function applySystemTheme() {
+      document.documentElement.dataset.theme = mq.matches ? "dark" : "light";
+    }
+
     function applyTheme(mode) {
       if (mode === "auto") {
-        delete document.documentElement.dataset.theme;
         localStorage.removeItem(STORAGE_KEY);
+        applySystemTheme();
         if (!mqListener) {
-          mqListener = () => syncButtons();
+          mqListener = () => { applySystemTheme(); syncButtons(); };
           mq.addEventListener("change", mqListener);
         }
       } else {
@@ -108,7 +112,8 @@
     if (initialMode !== "auto") {
       document.documentElement.dataset.theme = initialMode;
     } else {
-      mqListener = () => syncButtons();
+      applySystemTheme();
+      mqListener = () => { applySystemTheme(); syncButtons(); };
       mq.addEventListener("change", mqListener);
     }
 
