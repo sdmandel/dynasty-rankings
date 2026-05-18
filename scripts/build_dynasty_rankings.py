@@ -36,7 +36,7 @@ def _normalize(name: str) -> str:
     name = _MIDDLE_INITIAL_RE.sub("", name)
     return " ".join(name.split()).lower()
 
-FANTRAX_DATA = Path("/Users/stevemandella/Documents/Making/fantrax/data")
+FANTRAX_DATA = Path(__file__).resolve().parent.parent.parent / "data"
 SITE_DATA    = Path(__file__).resolve().parent.parent / "data"
 
 HISTORY_PATH = FANTRAX_DATA / "dynasty_history.json"

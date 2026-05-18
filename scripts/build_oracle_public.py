@@ -384,7 +384,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     intelligence = load_json("league_intelligence.json", data_dir)
     managers = load_json("managers.json", data_dir)
     previous_payload = load_previous_oracle_public(site_root)
-    alias_to_display, _display_to_key = load_team_registry(data_dir)
+    alias_to_display, _display_to_key = load_team_registry(DEFAULT_DATA_DIR)
     value_input = load_live_team_values(alias_to_display, _display_to_key)
 
     standings_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in standings["teams"]}
