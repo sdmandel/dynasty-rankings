@@ -87,14 +87,6 @@ td:first-child, th:first-child { padding-left:0; }
       <button class="filter-pill" data-lookback="YTD">YTD</button>
     </div>
     <div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Rank</th><th>Roto Pts</th><th>R</th><th>HR</th><th>RBI</th><th>SB</th><th>OPS</th><th>QS</th><th>K</th><th>ERA</th><th>WHIP</th><th>SVH</th></tr></thead><tbody id="snapshotBody"></tbody></table></div>
-    <div class="section-label">Transactions</div>
-    <div class="filter-bar" id="txLookbackBar">
-      <button class="filter-pill active" data-lookback="7">7D</button>
-      <button class="filter-pill" data-lookback="14">14D</button>
-      <button class="filter-pill" data-lookback="30">30D</button>
-      <button class="filter-pill" data-lookback="YTD">YTD</button>
-    </div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Type</th><th>Player</th><th>Pos</th><th>Level</th><th>Badge</th></tr></thead><tbody id="txBody"></tbody></table></div>
   </div>
 </div>
 <div class="site-footer" id="footerEl">Franchise history from local site metrics tables.</div>
@@ -102,7 +94,6 @@ td:first-child, th:first-child { padding-left:0; }
 let ALL_TEAMS = [];
 let ACTIVE_TEAM = null;
 let ACTIVE_LOOKBACK = '7';
-let ACTIVE_TX_LOOKBACK = '7';
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function filterByLookback(rows, key, lookback) {
   if (lookback === 'YTD' || !rows.length) return rows;
@@ -129,8 +120,6 @@ function renderTeam(team){
   document.getElementById('summaryBody').innerHTML = team.season_summaries.map(row => `<tr><td>${row.season}</td><td>#${row.final_rank ?? '-'}</td><td>#${row.best_rank ?? '-'}</td><td>#${row.worst_rank ?? '-'}</td><td>${row.best_roto_pts ?? '-'}</td><td>${row.days_in_first}</td><td>${row.days_in_top3}</td></tr>`).join('');
   const snapshots = filterByLookback(team.snapshots || [], 'snapshot_date', ACTIVE_LOOKBACK);
   document.getElementById('snapshotBody').innerHTML = snapshots.map(row => `<tr><td>${esc(row.snapshot_date)}</td><td>#${row.rank ?? '-'}</td><td>${row.roto_pts ?? '-'}</td><td>${row.cat_r ?? '-'}</td><td>${row.cat_hr ?? '-'}</td><td>${row.cat_rbi ?? '-'}</td><td>${row.cat_sb ?? '-'}</td><td>${row.cat_ops ?? '-'}</td><td>${row.cat_qs ?? '-'}</td><td>${row.cat_k ?? '-'}</td><td>${row.cat_era ?? '-'}</td><td>${row.cat_whip ?? '-'}</td><td>${row.cat_svh ?? '-'}</td></tr>`).join('') || '<tr><td colspan="13">No snapshots in this range.</td></tr>';
-  const transactions = filterByLookback(team.transactions || [], 'txn_date', ACTIVE_TX_LOOKBACK);
-  document.getElementById('txBody').innerHTML = transactions.map(row => `<tr><td>${esc(row.txn_date)}</td><td>${esc(row.type)}</td><td>${esc(row.player)}</td><td>${esc(row.position || '')}</td><td>${esc(row.level || '')}</td><td>${esc(row.badge || '')}</td></tr>`).join('') || '<tr><td colspan="6">No transactions in this range.</td></tr>';
 }
 function renderPicker(){
   const picker=document.getElementById('teamPicker');
@@ -147,19 +136,9 @@ function setupLookback() {
     });
   });
 }
-function setupTxLookback() {
-  document.querySelectorAll('#txLookbackBar .filter-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#txLookbackBar .filter-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      ACTIVE_TX_LOOKBACK = btn.dataset.lookback;
-      if (ACTIVE_TEAM) renderTeam(ACTIVE_TEAM);
-    });
-  });
-}
+
 fetch('data/franchises.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_TEAMS = data.teams || []; const seasons = Array.isArray(data.seasons) && data.seasons.length ? ' · Seasons: ' + data.seasons.join(', ') + '.' : '.'; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + seasons; renderPicker(); if (ALL_TEAMS.length) renderTeam(ALL_TEAMS[0]); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load franchise history. ('+err.message+')'; });
 setupLookback();
-setupTxLookback();
 </script>
 <script src="assets/site-shell.js" defer></script>
 <script src="assets/feedback.js" defer></script>

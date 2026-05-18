@@ -5,6 +5,7 @@
   border-bottom: 1px solid var(--border, var(--sep-opaque, #1e1e20));
   background: var(--nav-bg-blur, rgba(14, 14, 15, 0.96));
   backdrop-filter: blur(10px);
+  font-family: 'DM Sans', sans-serif;
 }
 
 .global-nav-inner {
@@ -20,8 +21,9 @@
 
 .global-nav-brand {
   color: var(--gold, var(--gold-500, #c8a84b));
-  font-family: var(--font-display);
-  font-size: 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
   letter-spacing: 0.06em;
   line-height: 1;
   text-decoration: none;
@@ -159,11 +161,40 @@ body.global-nav-open {
   margin-left: 4px;
 }
 
+.global-nav-segmented.segmented {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  gap: 4px;
+  padding: 0;
+  border-radius: 0;
+}
+
 .global-nav-segmented .segmented-btn {
+  flex: 0 0 auto;
   padding: 3px 9px;
+  min-width: 0;
   font-size: 10px;
   font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
   letter-spacing: 0.06em;
+  line-height: 1.2;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-dead, var(--t-quaternary, #4a4845));
+  box-shadow: none;
+}
+
+.global-nav-segmented .segmented-btn.active,
+.global-nav-segmented .segmented-btn[aria-pressed="true"] {
+  background: transparent;
+  color: var(--text-muted, var(--t-tertiary, #7a7872));
+  box-shadow: none;
+}
+
+.global-nav-segmented .segmented-btn:hover:not(.active):not([aria-pressed="true"]) {
+  color: var(--text-muted, var(--t-tertiary, #7a7872));
 }
 
 @media (max-width: 767px) {
