@@ -91,11 +91,16 @@
   background: var(--bg);
   min-width: 160px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   padding-right: 12px;
-  border-right: 1px solid var(--border2);
+  border-right: 1px solid var(--border);
 }
 .rank-table thead th.col-pin  { z-index: 3; }
 .rank-table thead th.col-rank { z-index: 3; }
 .rank-table thead th.col-player { z-index: 3; }
+/* Force sticky body cells onto their own compositing layer so they always
+   paint above non-positioned cells that scroll behind them. */
+.rank-table tbody td.col-pin,
+.rank-table tbody td.col-rank,
+.rank-table tbody td.col-player { will-change: transform; }
 
 .rank-table tbody tr { border-bottom: 1px solid var(--border); }
 .rank-table tbody tr:hover td { background: rgba(200,168,75,0.04); }
@@ -245,13 +250,9 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     padding-left: 4px;
     padding-right: 4px;
   }
-  .rank-table thead th.col-pin,
-  .rank-table tbody td.col-pin {
-    display: none;
-  }
   .rank-table thead th.col-rank,
   .rank-table tbody td.col-rank {
-    left: 0;
+    left: 26px;
     width: 52px;
     min-width: 52px;
     max-width: 52px;
@@ -259,11 +260,12 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   }
   .rank-table thead th.col-player,
   .rank-table tbody td.col-player {
-    left: 52px;
-    min-width: 118px;
-    max-width: 118px;
+    left: 78px;
+    min-width: 100px;
+    max-width: 100px;
     padding-right: 8px;
   }
+  .pin-btn { min-width: 22px; min-height: 30px; font-size: 9px; }
   .rank-num {
     font-size: 16px;
   }

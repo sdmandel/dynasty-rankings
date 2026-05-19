@@ -500,8 +500,21 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 .bar-row {
   display: grid;
   grid-template-columns: 160px 1fr 80px;
-  align-items: center;
+  align-items: start;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.bar-row:hover .bar-label { color: var(--text); }
+.bar-track-wrap { display: flex; flex-direction: column; min-width: 0; }
+.bar-meta {
+  font-size: 10px;
+  color: var(--text-dead);
+  line-height: 1.4;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .bar-label {
   font-size: 12px;
@@ -1258,8 +1271,9 @@ function buildValueBars() {
     const mlbPct = (t.mlb / maxVal * 100).toFixed(1);
     const farmPct = (t.farm / maxVal * 100).toFixed(1);
     const shortName = t.name.length > 18 ? t.name.slice(0, 17) + '…' : t.name;
-    const row = document.createElement('div');
+    const row = document.createElement('a');
     row.className = 'bar-row';
+    row.href = rosterDepthHref(t.name);
 
     const labelDiv = document.createElement('div');
     labelDiv.className = 'bar-label';
@@ -1281,14 +1295,23 @@ function buildValueBars() {
     trackDiv.appendChild(fillMlb);
     trackDiv.appendChild(fillFarm);
 
+    const ageText = isFiniteNumber(t.avg_age) ? `Age ${Number(t.avg_age).toFixed(1)}` : 'Age n/a';
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'bar-meta';
+    metaDiv.textContent = `${ageText} · ${formatScatterMove(t.scatter_move, t)}`;
+
+    const trackWrap = document.createElement('div');
+    trackWrap.className = 'bar-track-wrap';
+    trackWrap.appendChild(trackDiv);
+    trackWrap.appendChild(metaDiv);
+
     const valDiv = document.createElement('div');
     valDiv.className = 'bar-value';
     valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
 
     row.appendChild(labelDiv);
-    row.appendChild(trackDiv);
+    row.appendChild(trackWrap);
     row.appendChild(valDiv);
-    row.style.cursor = 'pointer';
     row.addEventListener('mousemove', e => {
       ttName.textContent = t.name;
       ttAge.textContent = `MLB value: ${formatWholeValue(t.mlb)}`;
@@ -1299,7 +1322,6 @@ function buildValueBars() {
       tooltip.style.top = (e.clientY - 10) + 'px';
     });
     row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-    row.addEventListener('click', () => goToRosterDepth(t.name));
     barEl.appendChild(row);
   });
 }
