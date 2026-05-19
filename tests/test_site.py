@@ -155,7 +155,7 @@ def test_fangraphs_links_are_app_aware() -> None:
     assert "com.fangraphs.fangraphsmobile" in helper
     assert "intent://" in helper
     assert "browser_fallback_url" in helper
-    for name in ("prospects.html", "dynasty_rankings.html"):
+    for name in ("prospects.html", "dynasty_rankings.html", "roster_depth.html"):
         html = _read(ROOT / name)
         assert 'src="assets/fangraphs-links.js"' in html
         assert "fangraphsLinks" in html
@@ -174,29 +174,11 @@ def test_dynasty_rankings_advanced_row_cells_match_header_order() -> None:
     start = html.index("function _buildRow")
     end = html.index("return tr;", start)
     create_row = html[start:end]
-    ordered_markers = [
-        "// Owner",
-        "// Age",
-        "// Level",
-        "// ETA",
-        "// Score",
-        "// Proj Z",
-        "// Batting projections",
-        "// Pitching projections",
-        "// Season stats — batting",
-        "// Season stats — pitching",
-        "// Δwk",
-        "// Source ranks",
-        "// HKB$",
-        "// Reason",
-    ]
-    positions = [create_row.index(marker) for marker in ordered_markers]
-
-    assert positions == sorted(positions)
-    assert "tr.appendChild(_td(wkEl, 'group-start col-advanced'));" in create_row
-    assert "const pzTd = _td('', 'col-advanced');" in create_row
-    assert "[srcPair(p.hkb_rank, null, false), valTd, deltaCell(p.delta_hkb)," in create_row
-    assert "rTd.className = 'left col-advanced';" in create_row
+    assert "COLS.forEach(col => tr.appendChild(_cellForColumn(p, col)));" in create_row
+    assert "const _numericCols = new Set(COLS.filter(col => col.numeric).map(col => col.key));" in html
+    assert "const _descFirstCols = new Set(COLS.filter(col => col.descFirst).map(col => col.key));" in html
+    assert "window.rankingsFieldSchema = RANKINGS_FIELD_SCHEMA;" in html
+    assert "th.title = col.description;" in html
 
 
 def test_hardcoded_color_audit_tool_exists() -> None:
@@ -211,6 +193,7 @@ def test_rank_history_modal_css_is_shared() -> None:
     site_css = _read(ROOT / "assets" / "site.css")
     dynasty_html = _read(ROOT / "dynasty_rankings.html")
     depth_html = _read(ROOT / "roster_depth.html")
+    prospects_html = _read(ROOT / "prospects.html")
 
     assert ".player-modal {" in site_css
     assert ".player-panel {" in site_css
@@ -219,8 +202,42 @@ def test_rank_history_modal_css_is_shared() -> None:
     assert ".src-pill-fg" in site_css
     assert ".player-panel {" not in dynasty_html
     assert ".player-panel {" not in depth_html
+    assert ".player-panel {" not in prospects_html
     assert ".src-pill {" not in dynasty_html
     assert ".src-pill {" not in depth_html
+    assert ".src-pill {" not in prospects_html
+
+
+def test_team_intel_table_links_and_bar_metadata_are_visible() -> None:
+    html = _read(ROOT / "team_intel.html")
+    assert "function rosterDepthLink(teamName" in html
+    assert '<td>${rosterDepthLink(team.team)}</td>' in html
+    assert 'href="${rosterDepthHref(row.team)}"' in html
+    assert "bar-meta" in html
+    assert "Total Oracle value:" in html
+    assert "Avg age:" in html
+    assert "formatScatterMove(t.scatter_move, t)" in html
+    assert "Scatter move: no prior oracle snapshot" in html
+
+
+def test_prospects_desk_opens_shared_player_modal() -> None:
+    html = _read(ROOT / "prospects.html")
+    assert "wireDeskToModal();" in html
+    assert "function wireDeskToModal()" in html
+    assert "openPlayerModal(row.dataset.playerName)" in html
+    assert "goToRadarPlayer(row.dataset.playerName" not in html
+    assert "oracleLinkHtml(player.rankings_url)" in html
+
+
+def test_dynasty_rankings_schema_is_discoverable() -> None:
+    schema = json.loads(_read(ROOT / "data" / "dynasty_rankings_schema.json"))
+    manifest = json.loads(_read(ROOT / "data" / "site_manifest.json"))
+    llms = _read(ROOT / "llms.txt")
+    assert schema["dataset"] == "data/dynasty_rankings_latest.json"
+    assert schema["fields"]
+    assert "data/dynasty_rankings_schema.json" in llms
+    dynasty = next(page for page in manifest["pages"] if page["path"] == "dynasty_rankings.html")
+    assert "data/dynasty_rankings_schema.json" in dynasty["data"]
 
 
 @pytest.mark.parametrize("html_file", HTML_FILES, ids=lambda p: p.name)

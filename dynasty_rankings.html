@@ -487,6 +487,48 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     st_qs:'Steamer', st_k:'Steamer', st_era:'Steamer', st_svh:'Steamer', st_whip:'Steamer',
     zips_era:'ZiPS', zips_k:'ZiPS',
   };
+  const NUMERIC_COL_KEYS = new Set(['rank','age','score','rank_change','hkb_rank','delta_hkb',
+    'fp_rank','delta_fp','ibw_rank','delta_ibw','pl_rank','fthq_rank','proj_z','hkb_value',
+    'st_hr','st_r','st_rbi','st_sb','st_ops','zips_hr','zips_ops',
+    'st_qs','st_k','st_era','st_svh','st_whip','zips_era','zips_k',
+    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_ab','mlb_bat_gp',
+    'mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip','mlb_ip','mlb_pit_gp']);
+  const DESC_FIRST_COL_KEYS = new Set([
+    'score','rank_change','hkb_value','proj_z',
+    'st_hr','st_r','st_rbi','st_sb','zips_hr',
+    'st_qs','st_k','st_svh','zips_k',
+    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ab','mlb_bat_gp',
+    'mlb_qs','mlb_k','mlb_svh','mlb_ip','mlb_pit_gp',
+  ]);
+  const FIELD_DESCRIPTIONS = {
+    rank: 'Oracle overall dynasty rank.',
+    display_name: 'Player display name; opens the player detail modal.',
+    team: 'MLB organization or team abbreviation.',
+    positions: 'Fantasy-eligible positions.',
+    owned_by: 'Current Backyard Dynasty roster owner, or FA.',
+    age: 'Player age.',
+    level: 'Current level: MLB, minor-league level, or PICK.',
+    eta: 'Estimated MLB arrival window for prospects.',
+    score: 'Oracle composite dynasty score.',
+    proj_z: 'Projection z-score component used by Oracle.',
+    reason: 'Short explanation for notable ranking context.',
+  };
+  COLS.forEach(col => {
+    col.numeric = NUMERIC_COL_KEYS.has(col.key);
+    col.descFirst = DESC_FIRST_COL_KEYS.has(col.key);
+    col.description = FIELD_DESCRIPTIONS[col.key] || `${col.label} field in the public dynasty rankings table.`;
+    col.agentField = col.key;
+  });
+  const RANKINGS_FIELD_SCHEMA = COLS.map(col => ({
+    field: col.agentField,
+    label: col.label,
+    description: col.description,
+    numeric: Boolean(col.numeric),
+    default_sort: col.descFirst ? 'desc' : 'asc',
+    advanced: Boolean(col.adv),
+    stat_type: col.statType || null,
+  }));
+  window.rankingsFieldSchema = RANKINGS_FIELD_SCHEMA;
 
   // ── State ──────────────────────────────────────────────────────────────────
   let _allRows = [];
@@ -583,6 +625,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
       if (cls) th.className = cls;
       if (!(col.tdCls||'').includes('left') && !col.sticky) th.classList.add('right');
       if (col.statType) th.dataset.statType = col.statType;
+      th.title = col.description;
       th.addEventListener('click', () => _onSort(col.key));
       tr.appendChild(th);
     });
@@ -724,19 +767,8 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   document.addEventListener('click', _closeAllDd);
 
   // ── Render ─────────────────────────────────────────────────────────────────
-  const _numericCols = new Set(['rank','age','score','rank_change','hkb_rank','delta_hkb',
-    'fp_rank','delta_fp','ibw_rank','delta_ibw','pl_rank','fthq_rank','proj_z','hkb_value',
-    'st_hr','st_r','st_rbi','st_sb','st_ops','zips_hr','zips_ops',
-    'st_qs','st_k','st_era','st_svh','st_whip','zips_era','zips_k',
-    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_ab','mlb_bat_gp',
-    'mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip','mlb_ip','mlb_pit_gp']);
-  const _descFirstCols = new Set([
-    'score','rank_change','hkb_value','proj_z',
-    'st_hr','st_r','st_rbi','st_sb','zips_hr',
-    'st_qs','st_k','st_svh','zips_k',
-    'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ab','mlb_bat_gp',
-    'mlb_qs','mlb_k','mlb_svh','mlb_ip','mlb_pit_gp',
-  ]);
+  const _numericCols = new Set(COLS.filter(col => col.numeric).map(col => col.key));
+  const _descFirstCols = new Set(COLS.filter(col => col.descFirst).map(col => col.key));
 
   function _pinKey(p) {
     return p.level === 'PICK'
@@ -855,192 +887,184 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     pinTd.appendChild(pinBtn);
     tr.appendChild(pinTd);
 
-    // Rank (sticky)
     tr.dataset.rank = p.rank;
-    const rankWrap = document.createElement('span');
-    rankWrap.className = 'rank-num';
-    rankWrap.textContent = p.rank;
-    tr.appendChild(_td(rankWrap, 'col-rank'));
-
-    // Player (sticky)
-    const link = document.createElement('span');
-    link.className = 'player-link';
-    link.textContent = p.display_name;
-    link.dataset.playerKey = p.name;
-    link.tabIndex = 0;
-    link.addEventListener('click', () => p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name));
-    link.addEventListener('keydown', e => {
-      if (e.key==='Enter'||e.key===' ') {
-        e.preventDefault();
-        p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name);
-      }
-    });
-    tr.appendChild(_td(link, 'col-player left'));
-
-    // Team
-    tr.appendChild(_td(p.team || '', 'left group-start'));
-
-    // Pos
-    tr.appendChild(_td(Array.isArray(p.positions) ? p.positions.join(', ') : (p.positions||''), 'left'));
-
-    // Owner
-    const ownTd = document.createElement('td');
-    ownTd.className = 'left';
-    ownTd.title = p.owned_by || '';
-    ownTd.innerHTML = p.owned_by
-      ? `<span class="owner-cell">${_esc(p.owned_by)}</span>`
-      : '<span class="stat-empty">FA</span>';
-    tr.appendChild(ownTd);
-
-    // Age
-    tr.appendChild(_td(p.age != null ? p.age : ''));
-
-    // Level
-    const lvlCell = _td('', 'left');
-    if (p.level === 'PICK') {
-      const badge = document.createElement('span');
-      badge.className = 'level-pick-badge';
-      badge.textContent = 'PICK';
-      lvlCell.appendChild(badge);
-    } else {
-      lvlCell.textContent = p.level || '';
-    }
-    tr.appendChild(lvlCell);
-
-    // ETA
-    const etaTd = document.createElement('td');
-    etaTd.className = 'left';
-    etaTd.innerHTML = p.eta ? `<span class="eta-cell">${_esc(p.eta)}</span>` : '';
-    tr.appendChild(etaTd);
-
-    // Score (advanced)
-    const scoreEl = document.createElement('span');
-    scoreEl.className = 'score-val';
-    scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
-    tr.appendChild(_td(scoreEl, 'group-start col-advanced'));
-
-    // Proj Z (advanced)
-    const pzTd = _td('', 'col-advanced');
-    pzTd.innerHTML = p.proj_z != null
-      ? `<span class="projz">${p.proj_z.toFixed(3)}</span>`
-      : '<span class="stat-empty">—</span>';
-    tr.appendChild(pzTd);
-
-    // statTd: single value cell (used for advanced projections)
-    function statTd(val, groupStart, statType, adv) {
-      const td = document.createElement('td');
-      const cls = [groupStart ? 'group-start' : '', adv ? 'col-advanced' : ''].filter(Boolean).join(' ');
-      if (cls) td.className = cls;
-      if (statType) td.dataset.statType = statType;
-      td.innerHTML = val != null && val !== ''
-        ? `<span class="stat-val">${val}</span>`
-        : '<span class="stat-empty">—</span>';
-      return td;
-    }
-
-    // combinedStatTd: MLB value on top, MiLB in gold below (omitted when null)
-    function combinedStatTd(mlbVal, milbVal, groupStart, statType, fmt) {
-      const td = document.createElement('td');
-      if (groupStart) td.className = 'group-start';
-      if (statType) td.dataset.statType = statType;
-      const mlbStr  = mlbVal  != null ? String(fmt(mlbVal))  : null;
-      const milbStr = milbVal != null ? String(fmt(milbVal)) : null;
-      if (mlbStr && milbStr) {
-        td.innerHTML = `<span class="stat-val">${mlbStr}</span><span class="stat-milb">${milbStr}</span>`;
-      } else if (mlbStr) {
-        td.innerHTML = `<span class="stat-val">${mlbStr}</span>`;
-      } else if (milbStr) {
-        td.innerHTML = `<span class="stat-milb">${milbStr}</span>`;
-      } else {
-        td.innerHTML = '<span class="stat-empty">—</span>';
-      }
-      return td;
-    }
-
-    // Batting projections (advanced, statType bat)
-    tr.appendChild(statTd(p.st_hr    != null ? Math.round(p.st_hr)    : null, true,  'bat', true));
-    tr.appendChild(statTd(p.st_r     != null ? Math.round(p.st_r)     : null, false, 'bat', true));
-    tr.appendChild(statTd(p.st_rbi   != null ? Math.round(p.st_rbi)   : null, false, 'bat', true));
-    tr.appendChild(statTd(p.st_sb    != null ? Math.round(p.st_sb)    : null, false, 'bat', true));
-    tr.appendChild(statTd(p.st_ops   != null ? p.st_ops.toFixed(3)    : null, false, 'bat', true));
-    tr.appendChild(statTd(p.zips_hr  != null ? Math.round(p.zips_hr)  : null, false, 'bat', true));
-    tr.appendChild(statTd(p.zips_ops != null ? p.zips_ops.toFixed(3)  : null, false, 'bat', true));
-
-    // Pitching projections (advanced, statType pit)
-    tr.appendChild(statTd(p.st_qs    != null ? Math.round(p.st_qs)    : null, true,  'pit', true));
-    tr.appendChild(statTd(p.st_k     != null ? Math.round(p.st_k)     : null, false, 'pit', true));
-    tr.appendChild(statTd(p.st_era   != null ? p.st_era.toFixed(2)    : null, false, 'pit', true));
-    tr.appendChild(statTd(p.st_svh   != null ? Math.round(p.st_svh)   : null, false, 'pit', true));
-    tr.appendChild(statTd(p.st_whip  != null ? p.st_whip.toFixed(3)   : null, false, 'pit', true));
-    tr.appendChild(statTd(p.zips_era != null ? p.zips_era.toFixed(2)  : null, false, 'pit', true));
-    tr.appendChild(statTd(p.zips_k   != null ? Math.round(p.zips_k)   : null, false, 'pit', true));
-
-    // Season stats — batting (MLB top, MiLB gold when present)
-    tr.appendChild(combinedStatTd(p.mlb_hr,     p.milb_hr,    true,  'bat', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_r,      p.milb_r,     false, 'bat', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_rbi,    p.milb_rbi,   false, 'bat', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_sb,     p.milb_sb,    false, 'bat', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_ops,    p.milb_ops,   false, 'bat', v => v.toFixed(3)));
-    tr.appendChild(combinedStatTd(p.mlb_ab,     null,          false, 'bat', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_bat_gp, null,          false, 'bat', v => Math.round(v)));
-
-    // Season stats — pitching (MLB top, MiLB gold when present; QS and GP have MiLB where available)
-    tr.appendChild(combinedStatTd(p.mlb_qs,     null,              true,  'pit', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_k,      p.milb_k,          false, 'pit', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_era,    p.milb_era,        false, 'pit', v => v.toFixed(2)));
-    tr.appendChild(combinedStatTd(p.mlb_svh,    p.milb_svh,        false, 'pit', v => Math.round(v)));
-    tr.appendChild(combinedStatTd(p.mlb_whip,   p.milb_whip,       false, 'pit', v => v.toFixed(3)));
-    tr.appendChild(combinedStatTd(p.mlb_ip,     p.milb_ip,         false, 'pit', v => v.toFixed(1)));
-    tr.appendChild(combinedStatTd(p.mlb_pit_gp, p.milb_pit_gp,     false, 'pit', v => Math.round(v)));
-
-    // Δwk (week-over-week) (advanced)
-    const wk = p.rank_change;
-    const wkEl = document.createElement('span');
-    if (!wk) { wkEl.className='wk-flat'; wkEl.textContent='—'; }
-    else if (wk>0) { wkEl.className='wk-up'; wkEl.textContent=`+${wk}`; }
-    else           { wkEl.className='wk-down'; wkEl.textContent=wk; }
-    tr.appendChild(_td(wkEl, 'group-start col-advanced'));
-
-    // Source ranks with inline delta
-    function srcPair(rank, delta, groupStart) {
-      const td = document.createElement('td');
-      if (groupStart) td.className = 'group-start';
-      if (rank == null) {
-        td.innerHTML = '<span class="src none">—</span>';
-      } else {
-        td.innerHTML = `<span class="src">${rank}</span>`;
-      }
-      return td;
-    }
-    function deltaCell(delta) {
-      const td = document.createElement('td');
-      if (delta == null || delta === 0) { td.innerHTML = '<span class="wk-flat">—</span>'; }
-      else if (delta > 0) { td.innerHTML = `<span class="d-pos">+${delta}</span>`; }
-      else                { td.innerHTML = `<span class="d-neg">${delta}</span>`; }
-      return td;
-    }
-
-    // HKB$ (advanced)
-    const valTd = document.createElement('td');
-    valTd.classList.add('col-advanced');
-    valTd.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : '<span class="stat-empty">—</span>';
-
-    // All source rank/delta cells are advanced
-    [srcPair(p.hkb_rank, null, false), valTd, deltaCell(p.delta_hkb),
-     srcPair(p.fp_rank,  null, false), deltaCell(p.delta_fp),
-     srcPair(p.ibw_rank, null, false), deltaCell(p.delta_ibw),
-     srcPair(p.pl_rank,  null, false),
-     srcPair(p.fthq_rank,null, false),
-    ].forEach(td => { td.classList.add('col-advanced'); tr.appendChild(td); });
-
-    // Reason (advanced)
-    const rTd = document.createElement('td');
-    rTd.className = 'left col-advanced';
-    rTd.title = p.reason || '';
-    rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
-    tr.appendChild(rTd);
+    COLS.forEach(col => tr.appendChild(_cellForColumn(p, col)));
 
     return tr;
+  }
+
+  function _cellClass(col) {
+    return [col.tdCls || '', col.group ? 'group-start' : '', col.adv ? 'col-advanced' : '']
+      .filter(Boolean).join(' ');
+  }
+
+  function _decorateCell(td, col) {
+    const cls = _cellClass(col);
+    if (cls) td.className = cls;
+    if (col.statType) td.dataset.statType = col.statType;
+    td.title = col.description || '';
+    return td;
+  }
+
+  function _emptyStat() {
+    return '<span class="stat-empty">—</span>';
+  }
+
+  function _singleStatCell(col, value) {
+    const td = _decorateCell(document.createElement('td'), col);
+    td.innerHTML = value != null && value !== ''
+      ? `<span class="stat-val">${value}</span>`
+      : _emptyStat();
+    return td;
+  }
+
+  function _combinedStatCell(p, col, fmt) {
+    const milbKeys = {
+      mlb_hr: 'milb_hr', mlb_r: 'milb_r', mlb_rbi: 'milb_rbi', mlb_sb: 'milb_sb',
+      mlb_ops: 'milb_ops', mlb_k: 'milb_k', mlb_era: 'milb_era', mlb_svh: 'milb_svh',
+      mlb_whip: 'milb_whip', mlb_ip: 'milb_ip', mlb_pit_gp: 'milb_pit_gp',
+    };
+    const td = _decorateCell(document.createElement('td'), col);
+    const mlbVal = p[col.key];
+    const milbVal = milbKeys[col.key] ? p[milbKeys[col.key]] : null;
+    const mlbStr = mlbVal != null ? String(fmt(mlbVal)) : null;
+    const milbStr = milbVal != null ? String(fmt(milbVal)) : null;
+    if (mlbStr && milbStr) {
+      td.innerHTML = `<span class="stat-val">${mlbStr}</span><span class="stat-milb">${milbStr}</span>`;
+    } else if (mlbStr) {
+      td.innerHTML = `<span class="stat-val">${mlbStr}</span>`;
+    } else if (milbStr) {
+      td.innerHTML = `<span class="stat-milb">${milbStr}</span>`;
+    } else {
+      td.innerHTML = _emptyStat();
+    }
+    return td;
+  }
+
+  function _deltaCell(col, delta) {
+    const td = _decorateCell(document.createElement('td'), col);
+    if (delta == null || delta === 0) td.innerHTML = '<span class="wk-flat">—</span>';
+    else if (delta > 0) td.innerHTML = `<span class="d-pos">+${delta}</span>`;
+    else td.innerHTML = `<span class="d-neg">${delta}</span>`;
+    return td;
+  }
+
+  function _sourceRankCell(col, rank) {
+    const td = _decorateCell(document.createElement('td'), col);
+    td.innerHTML = rank == null ? '<span class="src none">—</span>' : `<span class="src">${rank}</span>`;
+    return td;
+  }
+
+  function _formatProjection(p, key) {
+    if (p[key] == null) return null;
+    if (/_ops$|_whip$/.test(key)) return p[key].toFixed(3);
+    if (/_era$/.test(key)) return p[key].toFixed(2);
+    return Math.round(p[key]);
+  }
+
+  function _formatMlbStat(p, key) {
+    if (/ops|whip/.test(key)) return v => v.toFixed(3);
+    if (/era/.test(key)) return v => v.toFixed(2);
+    if (/ip/.test(key)) return v => v.toFixed(1);
+    return v => Math.round(v);
+  }
+
+  function _cellForColumn(p, col) {
+    switch (col.key) {
+      case 'rank': {
+        const rankWrap = document.createElement('span');
+        rankWrap.className = 'rank-num';
+        rankWrap.textContent = p.rank;
+        return _decorateCell(_td(rankWrap), col);
+      }
+      case 'display_name': {
+        const link = document.createElement('span');
+        link.className = 'player-link';
+        link.textContent = p.display_name;
+        link.dataset.playerKey = p.name;
+        link.tabIndex = 0;
+        link.addEventListener('click', () => p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name));
+        link.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name);
+          }
+        });
+        return _decorateCell(_td(link), col);
+      }
+      case 'positions':
+        return _decorateCell(_td(Array.isArray(p.positions) ? p.positions.join(', ') : (p.positions || '')), col);
+      case 'owned_by': {
+        const td = _decorateCell(document.createElement('td'), col);
+        td.title = p.owned_by || col.description || '';
+        td.innerHTML = p.owned_by
+          ? `<span class="owner-cell">${_esc(p.owned_by)}</span>`
+          : '<span class="stat-empty">FA</span>';
+        return td;
+      }
+      case 'level': {
+        const td = _decorateCell(document.createElement('td'), col);
+        if (p.level === 'PICK') {
+          td.innerHTML = '<span class="level-pick-badge">PICK</span>';
+        } else {
+          td.textContent = p.level || '';
+        }
+        return td;
+      }
+      case 'eta': {
+        const td = _decorateCell(document.createElement('td'), col);
+        td.innerHTML = p.eta ? `<span class="eta-cell">${_esc(p.eta)}</span>` : '';
+        return td;
+      }
+      case 'score': {
+        const scoreEl = document.createElement('span');
+        scoreEl.className = 'score-val';
+        scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
+        return _decorateCell(_td(scoreEl), col);
+      }
+      case 'proj_z': {
+        const td = _decorateCell(document.createElement('td'), col);
+        td.innerHTML = p.proj_z != null ? `<span class="projz">${p.proj_z.toFixed(3)}</span>` : _emptyStat();
+        return td;
+      }
+      case 'rank_change': {
+        const wk = p.rank_change;
+        const wkEl = document.createElement('span');
+        if (!wk) { wkEl.className = 'wk-flat'; wkEl.textContent = '—'; }
+        else if (wk > 0) { wkEl.className = 'wk-up'; wkEl.textContent = `+${wk}`; }
+        else { wkEl.className = 'wk-down'; wkEl.textContent = wk; }
+        return _decorateCell(_td(wkEl), col);
+      }
+      case 'hkb_rank':
+      case 'fp_rank':
+      case 'ibw_rank':
+      case 'pl_rank':
+      case 'fthq_rank':
+        return _sourceRankCell(col, p[col.key]);
+      case 'delta_hkb':
+      case 'delta_fp':
+      case 'delta_ibw':
+        return _deltaCell(col, p[col.key]);
+      case 'hkb_value': {
+        const td = _decorateCell(document.createElement('td'), col);
+        td.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : _emptyStat();
+        return td;
+      }
+      case 'reason': {
+        const td = _decorateCell(document.createElement('td'), col);
+        td.title = p.reason || col.description || '';
+        td.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
+        return td;
+      }
+      default:
+        if (/^(st|zips)_/.test(col.key)) {
+          return _singleStatCell(col, _formatProjection(p, col.key));
+        }
+        if (/^mlb_/.test(col.key)) {
+          return _combinedStatCell(p, col, _formatMlbStat(p, col.key));
+        }
+        return _decorateCell(_td(p[col.key] != null ? p[col.key] : ''), col);
+    }
   }
 
   function _esc(s) {

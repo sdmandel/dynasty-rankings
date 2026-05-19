@@ -15,6 +15,7 @@ Base URL: https://baseball.stephenmandella.com/
 - Standings: /data/standings.json
 - Public Oracle team summaries: /data/oracle_public.json
 - Full dynasty rankings table: /data/dynasty_rankings_latest.json
+- Dynasty rankings schema: /data/dynasty_rankings_schema.json
 - Player rank trajectories: /data/dynasty_player_trajectories.json
 - Team intel source data: /data/league_intelligence.json
 - Transactions: /data/transactions.json
@@ -42,4 +43,4 @@ Base URL: https://baseball.stephenmandella.com/
 
 Most pages render client-side from JSON files in /data/. Prefer the JSON endpoints above for programmatic retrieval.
 
-For the dynasty rankings table, use /data/dynasty_rankings_latest.json. Its top-level `rankings` array contains the table rows used by dynasty_rankings.html.
+For the dynasty rankings table, use /data/dynasty_rankings_latest.json. Its top-level `rankings` array contains the table rows used by dynasty_rankings.html. Use /data/dynasty_rankings_schema.json for field descriptions and sort semantics.

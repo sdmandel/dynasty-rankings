@@ -14,12 +14,13 @@
     { "path": "closers.html", "title": "Closers", "description": "Bullpen roles, closer confidence, and dynasty ownership.", "data": ["data/closers.json"], "updated": "2026-05-18", "indexable": true },
     { "path": "transactions.html", "title": "Transactions", "description": "Recent adds, drops, trades, and manager activity.", "data": ["data/transactions.json", "data/managers.json"], "updated": "2026-05-18", "indexable": true },
     { "path": "rules.html", "title": "League Rules", "description": "Fantrax rules plus constitution-sourced league policies.", "data": ["data/rules.json"], "updated": "2026-03-25", "indexable": true },
-    { "path": "dynasty_rankings.html", "title": "Dynasty Rankings", "description": "Full Oracle dynasty player rankings table.", "data": ["data/dynasty_rankings_latest.json", "data/dynasty_player_trajectories.json"], "updated": "2026-05-18", "indexable": true }
+    { "path": "dynasty_rankings.html", "title": "Dynasty Rankings", "description": "Full Oracle dynasty player rankings table.", "data": ["data/dynasty_rankings_latest.json", "data/dynasty_rankings_schema.json", "data/dynasty_player_trajectories.json"], "updated": "2026-05-18", "indexable": true }
   ],
   "public_data": [
     { "path": "data/standings.json", "description": "Current roto standings and category leaders." },
     { "path": "data/oracle_public.json", "description": "Public team-level Oracle summaries." },
     { "path": "data/dynasty_rankings_latest.json", "description": "Full dynasty rankings table rows used by dynasty_rankings.html." },
+    { "path": "data/dynasty_rankings_schema.json", "description": "Agent-readable field descriptions and sort semantics for the dynasty rankings table." },
     { "path": "data/dynasty_player_trajectories.json", "description": "Rank history data used by dynasty player modals." },
     { "path": "data/league_intelligence.json", "description": "Team contention, luck, volatility, and pressure metrics." },
     { "path": "data/transactions.json", "description": "Recent league transaction feed." },

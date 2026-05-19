@@ -550,6 +550,27 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   text-align: right;
   white-space: nowrap;
 }
+.bar-meta {
+  grid-column: 2 / 4;
+  margin-top: -4px;
+  color: var(--text-dead);
+  font-size: 11px;
+  line-height: 1.35;
+}
+.team-table-link,
+.proj-team-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.team-table-link:hover,
+.team-table-link:focus-visible,
+.proj-team-link:hover,
+.proj-team-link:focus-visible {
+  color: var(--text);
+  border-bottom-color: currentColor;
+  outline: none;
+}
 .bar-legend {
   display: flex;
   gap: 20px;
@@ -754,6 +775,10 @@ function slugifyTeam(value) {
 
 function rosterDepthHref(teamName) {
   return `roster_depth.html?team=${encodeURIComponent(slugifyTeam(teamName))}`;
+}
+
+function rosterDepthLink(teamName, className = 'team-table-link') {
+  return `<a class="${className}" href="${rosterDepthHref(teamName)}">${esc(teamName)}</a>`;
 }
 
 function goToRosterDepth(teamName) {
@@ -1267,9 +1292,14 @@ function buildValueBars() {
     valDiv.className = 'bar-value';
     valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
 
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'bar-meta';
+    metaDiv.textContent = `Total Oracle value: ${formatWholeValue(t.total)} · Avg age: ${fmt(t.avg_age, 1)} · ${formatScatterMove(t.scatter_move, t)}`;
+
     row.appendChild(labelDiv);
     row.appendChild(trackDiv);
     row.appendChild(valDiv);
+    row.appendChild(metaDiv);
     row.style.cursor = 'pointer';
     row.addEventListener('mousemove', e => {
       ttName.textContent = t.name;
@@ -1604,7 +1634,7 @@ function renderProjectionTable(rows) {
     return (
       '<tr>' +
       `<td><span class="proj-rank-badge ${projectionRankClass(row.projected_rank)}">#${row.projected_rank}</span></td>` +
-      `<td><div class="proj-team-cell"><span class="proj-team-name">${esc(row.team)}</span><span class="proj-team-meta">Now #${esc(row.current_rank)} · ${esc(row.contention_tier || 'open race')}</span></div></td>` +
+      `<td><div class="proj-team-cell"><a class="proj-team-name proj-team-link" href="${rosterDepthHref(row.team)}">${esc(row.team)}</a><span class="proj-team-meta">Now #${esc(row.current_rank)} · ${esc(row.contention_tier || 'open race')}</span></div></td>` +
       `<td class="proj-points">${fmt(row.current_points, 1)}</td>` +
       `<td class="proj-points"><strong>${fmt(row.projected, 1)}</strong></td>` +
       `<td class="proj-range">${fmt(row.low, 1)} to ${fmt(row.high, 1)}</td>` +
@@ -1643,7 +1673,7 @@ Promise.all([fetchOraclePublic(), fetchStandingsData().catch(() => null)]).then(
   ].map(card => `<div class="intel-card"><div class="intel-label">${esc(card[0])}</div><div class="intel-value">${esc(card[1])}</div><div class="intel-meta">${esc(card[2])}</div></div>`).join('');
   document.getElementById('intelBody').innerHTML = standingsOrderedTeams.map(team => (
     `<tr>` +
-    `<td>${esc(team.team)}</td>` +
+    `<td>${rosterDepthLink(team.team)}</td>` +
     `<td><span class="tier-pill ${tierClass(team.contention_tier)}">${esc(team.contention_tier)}</span></td>` +
     `<td>${fmt(team.points_back, 1)}</td>` +
     `<td>${fmt(team.reachable_points, 0)}</td>` +

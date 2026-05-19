@@ -1,0 +1,29 @@
+{
+  "dataset": "data/dynasty_rankings_latest.json",
+  "root": "rankings",
+  "updated": "2026-05-18",
+  "description": "Schema for the public Oracle dynasty rankings table rendered by dynasty_rankings.html.",
+  "fields": [
+    { "name": "rank", "type": "number", "sort": "ascending", "description": "Oracle overall dynasty rank." },
+    { "name": "display_name", "type": "string", "sort": "ascending", "description": "Player display name." },
+    { "name": "name", "type": "string", "sort": "ascending", "description": "Normalized player key used by modals and deep links." },
+    { "name": "fg_id", "type": "number", "sort": "none", "description": "FanGraphs player id when available." },
+    { "name": "fg_stat_type", "type": "string", "sort": "none", "description": "FanGraphs stats page type: batting or pitching." },
+    { "name": "team", "type": "string", "sort": "ascending", "description": "MLB organization or team abbreviation." },
+    { "name": "positions", "type": "array", "sort": "ascending", "description": "Fantasy-eligible positions." },
+    { "name": "owned_by", "type": "string", "sort": "ascending", "description": "Current Backyard Dynasty roster owner, or blank for free agents." },
+    { "name": "age", "type": "number", "sort": "ascending", "description": "Player age." },
+    { "name": "level", "type": "string", "sort": "ascending", "description": "Current level: MLB, minor-league level, or PICK." },
+    { "name": "eta", "type": "string", "sort": "ascending", "description": "Estimated MLB arrival window for prospects." },
+    { "name": "score", "type": "number", "sort": "descending", "description": "Oracle composite dynasty score." },
+    { "name": "proj_z", "type": "number", "sort": "descending", "description": "Projection z-score component used by Oracle." },
+    { "name": "rank_change", "type": "number", "sort": "descending", "description": "Week-over-week Oracle rank movement." },
+    { "name": "reason", "type": "string", "sort": "ascending", "description": "Short ranking context when available." }
+  ],
+  "stat_field_patterns": [
+    { "pattern": "st_*", "source": "Steamer", "type": "number", "description": "Projected category value." },
+    { "pattern": "zips_*", "source": "ZiPS", "type": "number", "description": "Projected category value." },
+    { "pattern": "mlb_*", "source": "MLB season stats", "type": "number", "description": "Current MLB season category value." },
+    { "pattern": "milb_*", "source": "MiLB season stats", "type": "number", "description": "Current minor-league season category value shown under MLB values when present." }
+  ]
+}
