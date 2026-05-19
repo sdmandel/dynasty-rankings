@@ -169,6 +169,36 @@ def test_dynasty_rankings_sort_keeps_blank_numeric_values_last() -> None:
     assert "'st_sb'" in html and "'mlb_sb'" in html
 
 
+def test_dynasty_rankings_advanced_row_cells_match_header_order() -> None:
+    html = _read(ROOT / "dynasty_rankings.html")
+    start = html.index("function _buildRow")
+    end = html.index("return tr;", start)
+    create_row = html[start:end]
+    ordered_markers = [
+        "// Owner",
+        "// Age",
+        "// Level",
+        "// ETA",
+        "// Score",
+        "// Proj Z",
+        "// Batting projections",
+        "// Pitching projections",
+        "// Season stats — batting",
+        "// Season stats — pitching",
+        "// Δwk",
+        "// Source ranks",
+        "// HKB$",
+        "// Reason",
+    ]
+    positions = [create_row.index(marker) for marker in ordered_markers]
+
+    assert positions == sorted(positions)
+    assert "tr.appendChild(_td(wkEl, 'group-start col-advanced'));" in create_row
+    assert "const pzTd = _td('', 'col-advanced');" in create_row
+    assert "[srcPair(p.hkb_rank, null, false), valTd, deltaCell(p.delta_hkb)," in create_row
+    assert "rTd.className = 'left col-advanced';" in create_row
+
+
 def test_hardcoded_color_audit_tool_exists() -> None:
     script = ROOT / "scripts" / "audit_hardcoded_colors.py"
     assert script.exists()

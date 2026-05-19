@@ -428,24 +428,13 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     { key: 'display_name',label: 'Player', sticky: 'col-player', tdCls: 'col-player left' },
     { key: 'team',        label: 'Team',   group: true, tdCls: 'left' },
     { key: 'positions',   label: 'Pos',    tdCls: 'left' },
+    { key: 'owned_by',    label: 'Owner',  tdCls: 'left' },
     { key: 'age',         label: 'Age'     },
     { key: 'level',       label: 'Lvl',    tdCls: 'left' },
-    // Source ranks (advanced)
-    { key: 'rank_change', label: 'Δwk',    group: true, adv: true },
-    { key: 'hkb_rank',    label: 'HKB#',               adv: true },
-    { key: 'delta_hkb',   label: 'ΔHKB',               adv: true },
-    { key: 'fp_rank',     label: 'FP#',                adv: true },
-    { key: 'delta_fp',    label: 'ΔFP',                adv: true },
-    { key: 'ibw_rank',    label: 'IBW#',               adv: true },
-    { key: 'delta_ibw',   label: 'ΔIBW',               adv: true },
-    { key: 'pl_rank',     label: 'PL#',                adv: true },
-    { key: 'fthq_rank',   label: 'FTHQ#',              adv: true },
+    { key: 'eta',         label: 'ETA',    tdCls: 'left' },
     // Value and projection context
     { key: 'score',       label: 'Score',  group: true, adv: true },
     { key: 'proj_z',      label: 'ProjZ',              adv: true },
-    { key: 'hkb_value',   label: 'HKB$',               adv: true },
-    { key: 'owned_by',    label: 'Owner',  tdCls: 'left' },
-    { key: 'eta',         label: 'ETA',    tdCls: 'left' },
     // Batting projections (advanced)
     { key: 'st_hr',       label: 'HR',     group: true, adv: true, statType: 'bat' },
     { key: 'st_r',        label: 'R',                  adv: true, statType: 'bat' },
@@ -478,8 +467,18 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     { key: 'mlb_whip',    label: 'WHIP',                          statType: 'pit' },
     { key: 'mlb_ip',      label: 'IP',                            statType: 'pit' },
     { key: 'mlb_pit_gp',  label: 'GP',                            statType: 'pit' },
-    // Explanation
-    { key: 'reason',      label: 'Reason', group: true, tdCls: 'left', adv: true },
+    // Source ranks and explanation (advanced)
+    { key: 'rank_change', label: 'Δwk',    group: true, adv: true },
+    { key: 'hkb_rank',    label: 'HKB#',               adv: true },
+    { key: 'hkb_value',   label: 'HKB$',               adv: true },
+    { key: 'delta_hkb',   label: 'ΔHKB',               adv: true },
+    { key: 'fp_rank',     label: 'FP#',                adv: true },
+    { key: 'delta_fp',    label: 'ΔFP',                adv: true },
+    { key: 'ibw_rank',    label: 'IBW#',               adv: true },
+    { key: 'delta_ibw',   label: 'ΔIBW',               adv: true },
+    { key: 'pl_rank',     label: 'PL#',                adv: true },
+    { key: 'fthq_rank',   label: 'FTHQ#',              adv: true },
+    { key: 'reason',      label: 'Reason', tdCls: 'left', adv: true },
   ];
 
   const STAT_SUB = {
@@ -884,6 +883,15 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     // Pos
     tr.appendChild(_td(Array.isArray(p.positions) ? p.positions.join(', ') : (p.positions||''), 'left'));
 
+    // Owner
+    const ownTd = document.createElement('td');
+    ownTd.className = 'left';
+    ownTd.title = p.owned_by || '';
+    ownTd.innerHTML = p.owned_by
+      ? `<span class="owner-cell">${_esc(p.owned_by)}</span>`
+      : '<span class="stat-empty">FA</span>';
+    tr.appendChild(ownTd);
+
     // Age
     tr.appendChild(_td(p.age != null ? p.age : ''));
 
@@ -899,81 +907,24 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     }
     tr.appendChild(lvlCell);
 
-    // Score (advanced)
-    const scoreEl = document.createElement('span');
-    scoreEl.className = 'score-val';
-    scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
-    tr.appendChild(_td(scoreEl, 'group-start col-advanced'));
-
-    // Δwk (week-over-week) (advanced)
-    const wk = p.rank_change;
-    const wkEl = document.createElement('span');
-    if (!wk) { wkEl.className='wk-flat'; wkEl.textContent='—'; }
-    else if (wk>0) { wkEl.className='wk-up'; wkEl.textContent=`+${wk}`; }
-    else           { wkEl.className='wk-down'; wkEl.textContent=wk; }
-    tr.appendChild(_td(wkEl, 'col-advanced'));
-
-    // Source ranks with inline delta
-    function srcPair(rank, delta, groupStart) {
-      const td = document.createElement('td');
-      if (groupStart) td.className = 'group-start';
-      if (rank == null) {
-        td.innerHTML = '<span class="src none">—</span>';
-      } else {
-        td.innerHTML = `<span class="src">${rank}</span>`;
-      }
-      return td;
-    }
-    function deltaCell(delta) {
-      const td = document.createElement('td');
-      if (delta == null || delta === 0) { td.innerHTML = '<span class="wk-flat">—</span>'; }
-      else if (delta > 0) { td.innerHTML = `<span class="d-pos">+${delta}</span>`; }
-      else                { td.innerHTML = `<span class="d-neg">${delta}</span>`; }
-      return td;
-    }
-
-    // All source rank/delta cells are advanced
-    [srcPair(p.hkb_rank, null, false), deltaCell(p.delta_hkb),
-     srcPair(p.fp_rank,  null, false), deltaCell(p.delta_fp),
-     srcPair(p.ibw_rank, null, false), deltaCell(p.delta_ibw),
-     srcPair(p.pl_rank,  null, false),
-     srcPair(p.fthq_rank,null, false),
-    ].forEach(td => { td.classList.add('col-advanced'); tr.appendChild(td); });
-
-    // Proj Z (advanced)
-    const pzTd = _td('', 'group-start col-advanced');
-    pzTd.innerHTML = p.proj_z != null
-      ? `<span class="projz">${p.proj_z.toFixed(3)}</span>`
-      : '<span class="stat-empty">—</span>';
-    tr.appendChild(pzTd);
-
-    // HKB$ (advanced)
-    const valTd = document.createElement('td');
-    valTd.classList.add('col-advanced');
-    valTd.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : '<span class="stat-empty">—</span>';
-    tr.appendChild(valTd);
-
-    // Owner
-    const ownTd = document.createElement('td');
-    ownTd.className = 'left';
-    ownTd.title = p.owned_by || '';
-    ownTd.innerHTML = p.owned_by
-      ? `<span class="owner-cell">${_esc(p.owned_by)}</span>`
-      : '<span class="stat-empty">FA</span>';
-    tr.appendChild(ownTd);
-
     // ETA
     const etaTd = document.createElement('td');
     etaTd.className = 'left';
     etaTd.innerHTML = p.eta ? `<span class="eta-cell">${_esc(p.eta)}</span>` : '';
     tr.appendChild(etaTd);
 
-    // Reason (advanced)
-    const rTd = document.createElement('td');
-    rTd.className = 'left col-advanced';
-    rTd.title = p.reason || '';
-    rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
-    tr.appendChild(rTd);
+    // Score (advanced)
+    const scoreEl = document.createElement('span');
+    scoreEl.className = 'score-val';
+    scoreEl.textContent = p.score != null ? p.score.toFixed(1) : '';
+    tr.appendChild(_td(scoreEl, 'group-start col-advanced'));
+
+    // Proj Z (advanced)
+    const pzTd = _td('', 'col-advanced');
+    pzTd.innerHTML = p.proj_z != null
+      ? `<span class="projz">${p.proj_z.toFixed(3)}</span>`
+      : '<span class="stat-empty">—</span>';
+    tr.appendChild(pzTd);
 
     // statTd: single value cell (used for advanced projections)
     function statTd(val, groupStart, statType, adv) {
@@ -1041,6 +992,53 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     tr.appendChild(combinedStatTd(p.mlb_whip,   p.milb_whip,       false, 'pit', v => v.toFixed(3)));
     tr.appendChild(combinedStatTd(p.mlb_ip,     p.milb_ip,         false, 'pit', v => v.toFixed(1)));
     tr.appendChild(combinedStatTd(p.mlb_pit_gp, p.milb_pit_gp,     false, 'pit', v => Math.round(v)));
+
+    // Δwk (week-over-week) (advanced)
+    const wk = p.rank_change;
+    const wkEl = document.createElement('span');
+    if (!wk) { wkEl.className='wk-flat'; wkEl.textContent='—'; }
+    else if (wk>0) { wkEl.className='wk-up'; wkEl.textContent=`+${wk}`; }
+    else           { wkEl.className='wk-down'; wkEl.textContent=wk; }
+    tr.appendChild(_td(wkEl, 'group-start col-advanced'));
+
+    // Source ranks with inline delta
+    function srcPair(rank, delta, groupStart) {
+      const td = document.createElement('td');
+      if (groupStart) td.className = 'group-start';
+      if (rank == null) {
+        td.innerHTML = '<span class="src none">—</span>';
+      } else {
+        td.innerHTML = `<span class="src">${rank}</span>`;
+      }
+      return td;
+    }
+    function deltaCell(delta) {
+      const td = document.createElement('td');
+      if (delta == null || delta === 0) { td.innerHTML = '<span class="wk-flat">—</span>'; }
+      else if (delta > 0) { td.innerHTML = `<span class="d-pos">+${delta}</span>`; }
+      else                { td.innerHTML = `<span class="d-neg">${delta}</span>`; }
+      return td;
+    }
+
+    // HKB$ (advanced)
+    const valTd = document.createElement('td');
+    valTd.classList.add('col-advanced');
+    valTd.innerHTML = p.hkb_value ? `<span class="hkb-val">$${Math.round(p.hkb_value)}</span>` : '<span class="stat-empty">—</span>';
+
+    // All source rank/delta cells are advanced
+    [srcPair(p.hkb_rank, null, false), valTd, deltaCell(p.delta_hkb),
+     srcPair(p.fp_rank,  null, false), deltaCell(p.delta_fp),
+     srcPair(p.ibw_rank, null, false), deltaCell(p.delta_ibw),
+     srcPair(p.pl_rank,  null, false),
+     srcPair(p.fthq_rank,null, false),
+    ].forEach(td => { td.classList.add('col-advanced'); tr.appendChild(td); });
+
+    // Reason (advanced)
+    const rTd = document.createElement('td');
+    rTd.className = 'left col-advanced';
+    rTd.title = p.reason || '';
+    rTd.innerHTML = p.reason ? `<span class="reason-cell">${_esc(p.reason)}</span>` : '';
+    tr.appendChild(rTd);
 
     return tr;
   }
