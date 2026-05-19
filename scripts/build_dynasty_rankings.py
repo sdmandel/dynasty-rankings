@@ -201,6 +201,42 @@ def build() -> None:
             })(milb_bat.get(name, {}), milb_pit.get(name, {})),
         })
 
+    # ── Inject draft pick rows ────────────────────────────────────────────────
+    picks_path = FANTRAX_DATA / "draft_picks.json"
+    if picks_path.exists():
+        pick_data = json.loads(picks_path.read_text(encoding="utf-8"))
+        _null_stats = {k: None for k in (
+            "fg_id", "fg_stat_type", "team", "age", "delta_hkb", "fp_rank", "delta_fp",
+            "ibw_rank", "delta_ibw", "pl_rank", "fthq_rank", "rank_change",
+            "proj_z", "eta", "reason",
+            "st_hr", "st_r", "st_rbi", "st_sb", "st_ops", "zips_hr", "zips_ops",
+            "st_qs", "st_k", "st_era", "st_svh", "st_whip", "zips_era", "zips_k",
+            "mlb_hr", "mlb_r", "mlb_rbi", "mlb_sb", "mlb_ops", "mlb_pa", "mlb_ab",
+            "mlb_bat_gp", "mlb_qs", "mlb_k", "mlb_era", "mlb_svh", "mlb_whip",
+            "mlb_ip", "mlb_pit_gp",
+            "milb_hr", "milb_r", "milb_rbi", "milb_sb", "milb_ops", "milb_pa",
+            "milb_ab", "milb_k", "milb_era", "milb_svh", "milb_whip", "milb_ip",
+            "milb_pit_gp",
+        )}
+        for pk in pick_data:
+            rankings_out.append({
+                "rank":         None,          # assigned below after sort
+                "display_name": pk["display_name"],
+                "name":         pk["display_name"],
+                "positions":    pk["positions"],
+                "level":        "PICK",
+                "score":        pk["score"],
+                "hkb_rank":     pk.get("hkb_rank"),
+                "hkb_value":    pk.get("hkb_value"),
+                "owned_by":     pk.get("owned_by", ""),
+                **_null_stats,
+            })
+        # Re-sort by score and re-assign ranks
+        rankings_out.sort(key=lambda r: r["score"] or 0, reverse=True)
+        for i, row in enumerate(rankings_out, 1):
+            row["rank"] = i
+        print(f"Injected {len(pick_data)} pick rows → {len(rankings_out)} total")
+
     latest_json = {
         "generated":       latest["date"],
         "stats_generated": stats_generated,
@@ -208,7 +244,7 @@ def build() -> None:
     }
     out_path = SITE_DATA / "dynasty_rankings_latest.json"
     out_path.write_text(json.dumps(latest_json, indent=2), encoding="utf-8")
-    print(f"Wrote {len(rankings_out)} players → {out_path}")
+    print(f"Wrote {len(rankings_out)} rows → {out_path}")
 
     # ── dynasty_player_trajectories.json ─────────────────────────────────────
 

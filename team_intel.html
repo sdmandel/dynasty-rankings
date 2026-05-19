@@ -704,20 +704,34 @@ function formatSigned(value, digits = 1) {
   return `${numeric > 0 ? '+' : ''}${numeric.toFixed(digits)}`;
 }
 
-function formatScatterMove(move) {
-  if (!move || !isFiniteNumber(move.previous_avg_age) || !isFiniteNumber(move.previous_total_value)) {
+function finiteNumberOrNull(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
+}
+
+function formatScatterMove(move, team = null) {
+  const previousAge = finiteNumberOrNull(move?.previous_avg_age);
+  const previousValue = finiteNumberOrNull(move?.previous_total_value);
+  if (!move || previousAge === null || previousValue === null) {
     return 'Scatter move: no prior oracle snapshot';
   }
 
-  const ageDelta = Number(move.age_delta || 0);
-  const valueDelta = Number(move.value_delta || 0);
+  const currentAge = finiteNumberOrNull(team?.avg_age);
+  const currentValue = finiteNumberOrNull(team?.total);
+  const ageDelta = finiteNumberOrNull(move.age_delta) ?? (
+    currentAge === null ? null : currentAge - previousAge
+  );
+  const valueDelta = finiteNumberOrNull(move.value_delta) ?? (
+    currentValue === null ? null : currentValue - previousValue
+  );
   const xDir = ageDelta > 0.02 ? 'right' : ageDelta < -0.02 ? 'left' : 'flat';
   const yDir = valueDelta > 25 ? 'up' : valueDelta < -25 ? 'down' : 'flat';
   const quadrantShift = move.previous_quadrant && move.current_quadrant && move.previous_quadrant !== move.current_quadrant
     ? ` · ${move.previous_quadrant} → ${move.current_quadrant}`
     : '';
-  const ageText = formatSigned(ageDelta, 1) || '0.0';
-  const valueText = formatSigned(valueDelta, 0) || '0';
+  const ageText = formatSigned(ageDelta, 1) || 'n/a';
+  const valueText = formatSigned(valueDelta, 0) || 'n/a';
   return `Scatter move: ${yDir}/${xDir} · value ${valueText} · age ${ageText}${quadrantShift}`;
 }
 
@@ -735,9 +749,9 @@ function goToRosterDepth(teamName) {
   window.location.href = rosterDepthHref(teamName);
 }
 
-function setMoveTooltip(move) {
+function setMoveTooltip(move, team = null) {
   if (!ttTrend) return;
-  ttTrend.textContent = formatScatterMove(move);
+  ttTrend.textContent = formatScatterMove(move, team);
 }
 
 function resolveScatterLabels(dots, bounds, obstacles = []) {
@@ -1136,7 +1150,7 @@ function buildScatter() {
       ttName.textContent = d.t.name;
       ttAge.textContent  = `Avg age: ${d.t.avg_age}`;
       ttVal.textContent  = `Oracle value: ${d.t.total.toLocaleString()}`;
-      setMoveTooltip(d.move);
+      setMoveTooltip(d.move, d.t);
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top  = (e.clientY - 10) + 'px';
@@ -1244,7 +1258,7 @@ function buildValueBars() {
       ttName.textContent = t.name;
       ttAge.textContent = `MLB: ${t.mlb.toLocaleString()}`;
       ttVal.textContent = `Farm: ${t.farm.toLocaleString()}  ·  Total: ${t.total.toLocaleString()}`;
-      setMoveTooltip(t.scatter_move);
+      setMoveTooltip(t.scatter_move, t);
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top = (e.clientY - 10) + 'px';

@@ -52,6 +52,10 @@ def build_home_preview(site_root: Path = ROOT) -> dict:
             "scatter_move": {
                 "previous_avg_age": team.get("scatter_move", {}).get("previous_avg_age"),
                 "previous_total_value": team.get("scatter_move", {}).get("previous_total_value"),
+                "age_delta": team.get("scatter_move", {}).get("age_delta"),
+                "value_delta": team.get("scatter_move", {}).get("value_delta"),
+                "previous_quadrant": team.get("scatter_move", {}).get("previous_quadrant"),
+                "current_quadrant": team.get("scatter_move", {}).get("current_quadrant"),
             },
         }
         for team in oracle.get("teams", [])

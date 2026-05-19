@@ -88,6 +88,31 @@ def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
         assert f'- "{path}"' in workflow, f"Pages deploy workflow must include {path}"
 
 
+def test_dynasty_rankings_supports_search_deep_link() -> None:
+    html = _read(ROOT / "dynasty_rankings.html")
+
+    assert "params.get('search')" in html
+    assert "document.getElementById('searchInput').value = searchParam;" in html
+    assert 'tr[data-rank="${rankParam}"]' in html
+    assert 'tr[data-player-slug="${CSS.escape(exactSlug)}"]' in html
+
+
+def test_rank_history_modal_css_is_shared() -> None:
+    site_css = _read(ROOT / "assets" / "site.css")
+    dynasty_html = _read(ROOT / "dynasty_rankings.html")
+    depth_html = _read(ROOT / "roster_depth.html")
+
+    assert ".player-modal {" in site_css
+    assert ".player-panel {" in site_css
+    assert ".src-pill {" in site_css
+    assert ".src-pill-oracle" in site_css
+    assert ".src-pill-fg" in site_css
+    assert ".player-panel {" not in dynasty_html
+    assert ".player-panel {" not in depth_html
+    assert ".src-pill {" not in dynasty_html
+    assert ".src-pill {" not in depth_html
+
+
 @pytest.mark.parametrize("html_file", HTML_FILES, ids=lambda p: p.name)
 def test_html_parses(html_file: Path) -> None:
     parser = StrictHTMLParser()
@@ -519,3 +544,11 @@ def test_roster_depth_keeps_position_header_visible() -> None:
     assert 'id="stickyBarScroll"' in html
     assert 'id="tableScroll"' in html
     assert 'position: sticky;' in html
+
+
+def test_roster_depth_supports_team_deep_links() -> None:
+    html = _read(ROOT / "roster_depth.html")
+    assert "const scrollToLinkedTeam = () =>" in html
+    assert "new URLSearchParams(window.location.search).get('team')" in html
+    assert "targetRow.scrollIntoView({ block: 'start', behavior: 'auto' });" in html
+    assert "tbody tr.team-target" in html

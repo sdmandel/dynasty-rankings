@@ -145,19 +145,13 @@ tr[data-rank="3"] .rank-num { color: var(--gold); }
 .stat-empty { color: var(--text-dead); }
 .stat-milb { display: block; color: var(--gold); opacity: 0.65; font-size: 10px; line-height: 1.3; }
 
-/* Source pills */
-.src-pills { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
-.src-pill {
-  font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
-  padding: 1px 5px; border-radius: 3px; text-decoration: none;
-  border: 1px solid currentColor; opacity: 0.55; transition: opacity 0.15s;
-  white-space: nowrap;
+/* Draft pick level badge */
+.level-pick-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.07em;
+  padding: 1px 5px; border-radius: 3px;
+  background: #4a5568; color: #e2e8f0;
 }
-.src-pill:hover { opacity: 1; }
-.src-pill-fg { color: #84b84c; }
-html[data-theme="light"] .src-pill-fg { color: #3a7020; }
-html[data-theme="light"] .src-pill { opacity: 0.85; }
-.pill-sub { font-weight: 400; letter-spacing: 0; opacity: 0.75; }
+html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
 
 /* Pagination */
 .page-controls { display: flex; align-items: center; gap: 12px; margin-top: 14px; font-size: 12px; color: var(--text-muted); }
@@ -234,44 +228,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 .col-sub-mlb  { color: var(--text-mid); }
 .col-sub-milb { color: var(--gold); opacity: 0.6; }
 
-/* ── PLAYER MODAL ── */
-.player-modal { position: fixed; inset: 0; z-index: 1000; display: none; }
-.player-modal.open { display: block; }
-.player-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.66); backdrop-filter: blur(8px); }
-.player-panel {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  max-height: min(760px, calc(100vh - 48px));
-  width: min(520px, calc(100vw - 48px)); overflow-y: auto;
-  border: 1px solid var(--border2); border-radius: var(--r-xl); background: color-mix(in srgb, var(--bg2) 92%, transparent);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 24px 80px rgba(0,0,0,0.48); padding: 22px;
-}
-.player-panel::before {
-  content: ""; display: block; width: 44px; height: 5px; border-radius: 999px;
-  background: var(--fill-prim); margin: 0 auto 18px;
-}
-.player-close {
-  position: absolute; right: 14px; top: 12px; width: 30px; height: 30px;
-  border: 1px solid var(--border2); border-radius: 6px; background: var(--bg2);
-  color: var(--text-muted); font-size: 18px; line-height: 1; cursor: pointer;
-}
-.player-close:hover { color: var(--text); border-color: var(--text-dead); }
-.player-kicker { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-.player-title { font-family: var(--font-display); font-size: 42px; line-height: 0.95; letter-spacing: 0.02em; color: var(--text); padding-right: 42px; }
-.player-meta { margin-top: 8px; color: var(--text-muted); font-size: 12px; }
-.player-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin: 20px 0 18px; }
-.player-stat { border: 1px solid var(--border); border-radius: 6px; background: var(--bg); padding: 10px; }
-.player-stat-label { color: var(--text-dead); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-.player-stat-value { color: var(--text); font-family: var(--font-display); font-size: 28px; line-height: 1; margin-top: 6px; }
-.player-chart-wrap { border: 1px solid var(--border); border-radius: 6px; background: var(--bg); padding: 12px; }
-.player-chart { width: 100%; height: auto; display: block; overflow: visible; }
-.player-note { margin-top: 14px; font-size: 12px; color: var(--text-dead); line-height: 1.6; }
-.player-error { margin-top: 14px; font-size: 12px; color: var(--red); }
-
 @media (max-width: 700px) {
   .site-header, .content { padding-left: 16px; padding-right: 16px; }
-  .player-panel { left: 0; right: 0; top: auto; bottom: 0; transform: none; width: 100vw; max-height: 86vh; border-radius: var(--r-xl) var(--r-xl) 0 0; }
-  .player-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 
 .deep-link-flash { animation: deepLinkFlash 2s ease; }
@@ -362,6 +320,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       <option value="3B">3B</option>
       <option value="SS">SS</option>
       <option value="OF">OF</option>
+      <option value="PICK">Picks</option>
     </select>
 
     <div class="dd-wrap" id="teamDd">
@@ -629,7 +588,12 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       if (lq && !p.display_name.toLowerCase().includes(lq)) return false;
       if (_posFilter !== 'all') {
         const pos = Array.isArray(p.positions) ? p.positions : [];
-        if (_posFilter === 'HIT') {
+        const isPick = p.level === 'PICK';
+        if (_posFilter === 'PICK') {
+          if (!isPick) return false;
+        } else if (isPick) {
+          return false;  // exclude picks from all non-PICK position filters
+        } else if (_posFilter === 'HIT') {
           if (pos.length && pos.every(pp => _PIT_POS.has(pp))) return false;
         } else if (_posFilter === 'PIT') {
           if (!pos.some(pp => _PIT_POS.has(pp))) return false;
@@ -721,6 +685,12 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     'mlb_hr','mlb_r','mlb_rbi','mlb_sb','mlb_ops','mlb_ab','mlb_bat_gp',
     'mlb_qs','mlb_k','mlb_era','mlb_svh','mlb_whip','mlb_ip','mlb_pit_gp']);
 
+  function _pinKey(p) {
+    return p.level === 'PICK'
+      ? `pick:${p.rank}:${p.owned_by || ''}:${p.display_name || p.name || ''}`
+      : p.name;
+  }
+
   function _renderTable(rows) {
     const sorted = [...rows].sort((a, b) => {
       let av = a[_sortCol], bv = b[_sortCol];
@@ -736,8 +706,8 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       return 0;
     });
     // Split into pinned (always shown first) and rest (paginated)
-    const pinned = sorted.filter(p => _pinnedNames.has(p.name));
-    const rest   = sorted.filter(p => !_pinnedNames.has(p.name));
+    const pinned = sorted.filter(p => _pinnedNames.has(_pinKey(p)));
+    const rest   = sorted.filter(p => !_pinnedNames.has(_pinKey(p)));
     const total  = rest.length;
     const totalPages = Math.ceil(total / _pageSize) || 1;
     _page = Math.min(_page, totalPages);
@@ -811,14 +781,15 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
 
     // Pin button (always first)
     const pinBtn = document.createElement('button');
-    pinBtn.className = 'pin-btn' + (_pinnedNames.has(p.name) ? ' pinned' : '');
+    const pinKey = _pinKey(p);
+    pinBtn.className = 'pin-btn' + (_pinnedNames.has(pinKey) ? ' pinned' : '');
     pinBtn.type = 'button';
-    pinBtn.title = _pinnedNames.has(p.name) ? 'Unpin row' : 'Pin row for comparison';
+    pinBtn.title = _pinnedNames.has(pinKey) ? 'Unpin row' : 'Pin row for comparison';
     pinBtn.textContent = '●';
     pinBtn.addEventListener('click', e => {
       e.stopPropagation();
-      if (_pinnedNames.has(p.name)) _pinnedNames.delete(p.name);
-      else _pinnedNames.add(p.name);
+      if (_pinnedNames.has(pinKey)) _pinnedNames.delete(pinKey);
+      else _pinnedNames.add(pinKey);
       _renderTable(_filteredRows());
     });
     const pinTd = document.createElement('td');
@@ -839,8 +810,13 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     link.textContent = p.display_name;
     link.dataset.playerKey = p.name;
     link.tabIndex = 0;
-    link.addEventListener('click',   () => openPlayer(p.name));
-    link.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();openPlayer(p.name);} });
+    link.addEventListener('click', () => p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name));
+    link.addEventListener('keydown', e => {
+      if (e.key==='Enter'||e.key===' ') {
+        e.preventDefault();
+        p.level === 'PICK' ? openPickRow(p) : openPlayer(p.name);
+      }
+    });
     tr.appendChild(_td(link, 'col-player left'));
 
     // Team
@@ -853,7 +829,16 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     tr.appendChild(_td(p.age != null ? p.age : ''));
 
     // Level
-    tr.appendChild(_td(p.level || '', 'left'));
+    const lvlCell = _td('', 'left');
+    if (p.level === 'PICK') {
+      const badge = document.createElement('span');
+      badge.className = 'level-pick-badge';
+      badge.textContent = 'PICK';
+      lvlCell.appendChild(badge);
+    } else {
+      lvlCell.textContent = p.level || '';
+    }
+    tr.appendChild(lvlCell);
 
     // Score (advanced)
     const scoreEl = document.createElement('span');
@@ -1027,30 +1012,94 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
     setTimeout(() => node.remove(), 2400);
   }
 
+  function _syncFilterControls() {
+    const posSelect = document.getElementById('posFilter');
+    posSelect.value = _posFilter;
+    posSelect.classList.toggle('has-filter', _posFilter !== 'all');
+    _updateTriggerLabel(document.getElementById('teamTrigger'), 'Team');
+    _updateTriggerLabel(document.getElementById('ownerTrigger'), 'Owner');
+    document.querySelectorAll('#teamMenu .dd-item, #ownerMenu .dd-item').forEach(item => {
+      item.classList.remove('checked');
+      const cb = item.querySelector('input[type=checkbox]');
+      if (cb) cb.checked = false;
+    });
+  }
+
+  function _resetTableForDeepLink() {
+    document.getElementById('searchInput').value = '';
+    _posFilter = 'all';
+    _selectedTeams.clear();
+    _selectedOwners.clear();
+    _tableWrap.classList.remove('hide-bat-cols', 'hide-pit-cols');
+    _syncFilterControls();
+  }
+
+  function _flashRow(row) {
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    row.classList.remove('deep-link-flash');
+    void row.offsetWidth;
+    row.classList.add('deep-link-flash');
+    setTimeout(() => row.classList.remove('deep-link-flash'), 2100);
+  }
+
   function _handlePlayerParam() {
-    const slug = new URLSearchParams(window.location.search).get('player');
+    const params = new URLSearchParams(window.location.search);
+    const rankParam = Number(params.get('rank'));
+
+    const searchParam = (params.get('search') || '').trim();
+    if (searchParam) {
+      _resetTableForDeepLink();
+      document.getElementById('searchInput').value = searchParam;
+      _page = 1;
+      _renderTable(_filteredRows());
+      requestAnimationFrame(() => {
+        const exactSlug = _slugify(searchParam);
+        const row = (Number.isInteger(rankParam) && rankParam > 0
+          ? document.querySelector(`tr[data-rank="${rankParam}"]`)
+          : null)
+          || document.querySelector(`tr[data-player-slug="${CSS.escape(exactSlug)}"]`)
+          || document.querySelector('#tableBody tr:not(.pin-sep)');
+        if (row) _flashRow(row);
+      });
+      return;
+    }
+
+    if (Number.isInteger(rankParam) && rankParam > 0) {
+      const target = _allRows.find(p => Number(p.rank) === rankParam);
+      if (!target) {
+        _toast('Rank no longer exists.');
+        return;
+      }
+      _resetTableForDeepLink();
+      _sortCol = 'rank';
+      _sortDir = 1;
+      _updateSortHeaders();
+      const rows = _filteredRows().sort((a, b) => Number(a.rank) - Number(b.rank));
+      const idx = rows.findIndex(p => Number(p.rank) === rankParam);
+      _page = idx >= 0 ? Math.floor(idx / _pageSize) + 1 : 1;
+      _renderTable(rows);
+      requestAnimationFrame(() => {
+        const row = document.querySelector(`tr[data-rank="${rankParam}"]`);
+        if (row) _flashRow(row);
+      });
+      return;
+    }
+
+    const slug = params.get('player');
     if (!slug) return;
     const target = _allRows.find(p => _slugify(p.display_name || p.name) === slug || _slugify(p.name) === slug);
     if (!target) {
       _toast('Player no longer rostered.');
       return;
     }
-    document.getElementById('searchInput').value = '';
-    _posFilter = 'all';
-    _selectedTeams.clear();
-    _selectedOwners.clear();
-    _pinnedNames.add(target.name);
+    _resetTableForDeepLink();
+    document.getElementById('searchInput').value = target.display_name || target.name || slug;
     _page = 1;
     _renderTable(_filteredRows());
     requestAnimationFrame(() => {
-      const row = document.querySelector(`tr[data-player-key="${CSS.escape(target.name)}"]`);
-      if (row) {
-        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        row.classList.remove('deep-link-flash');
-        void row.offsetWidth;
-        row.classList.add('deep-link-flash');
-        setTimeout(() => row.classList.remove('deep-link-flash'), 2100);
-      }
+      const row = document.querySelector(`tr[data-player-key="${CSS.escape(target.name)}"]`)
+        || document.querySelector(`tr[data-player-slug="${CSS.escape(_slugify(target.display_name || target.name))}"]`);
+      if (row) _flashRow(row);
     });
   }
 
@@ -1134,6 +1183,23 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
       :'Rank history not yet available.';
     modalError.hidden=true;
     renderChart(player);
+  };
+
+  const openPickRow = rowData => {
+    if (!rowData || !modal) return;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    modalTitle.textContent = rowData.display_name || 'Draft pick';
+    modalMeta.textContent = [rowData.owned_by, 'Draft pick'].filter(Boolean).join(' · ');
+    modalStats.innerHTML = [
+      statHtml('Current', fmtRank(rowData.rank)),
+      statHtml('Score', rowData.score != null ? rowData.score.toFixed(1) : 'n/a'),
+      statHtml('HKB#', rowData.hkb_rank || 'n/a'),
+      statHtml('History', 'n/a'),
+    ].join('');
+    modalNote.textContent = 'Draft picks are ranked in the Oracle table but do not have weekly player history yet.';
+    modalError.hidden = true;
+    clearChart();
+    history.replaceState(null,'',`?rank=${encodeURIComponent(rowData.rank)}`);
   };
 
   const openPlayer = async (key, updateLocation = true) => {

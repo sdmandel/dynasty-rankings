@@ -1,26 +1,26 @@
 {
   "generated": "2026-05-18",
-  "generated_at": "2026-05-18T21:00:09-05:00",
-  "week": 56,
+  "generated_at": "2026-05-18T19:00:06-05:00",
+  "week": 55,
   "snapshot_date": "2026-05-18",
   "leaderboard": [
     {
       "rank": 1,
       "team": "Seam heads",
-      "total_pts": 105.5,
-      "pts_change": 0.5
+      "total_pts": 106.5,
+      "pts_change": 1.5
     },
     {
       "rank": 2,
       "team": "Rollie Fingers",
-      "total_pts": 95.0,
-      "pts_change": -0.5
+      "total_pts": 93.5,
+      "pts_change": -2.0
     },
     {
       "rank": 3,
       "team": "Humongous Melonheads",
-      "total_pts": 88.0,
-      "pts_change": 2.0
+      "total_pts": 86.0,
+      "pts_change": 0.0
     },
     {
       "rank": 4,
@@ -31,14 +31,14 @@
     {
       "rank": 5,
       "team": "John Henry Fan Club",
-      "total_pts": 74.0,
-      "pts_change": 2.0
+      "total_pts": 72.0,
+      "pts_change": 0.0
     },
     {
       "rank": 6,
       "team": "Vin Mazzaro fan club",
-      "total_pts": 71.5,
-      "pts_change": -0.5
+      "total_pts": 71.0,
+      "pts_change": -1.0
     }
   ],
   "transactions": [
@@ -46,11 +46,6 @@
       "type": "ADD",
       "team": "Inkers",
       "player": "Agustin Ramirez"
-    },
-    {
-      "type": "DROP",
-      "team": "Inkers",
-      "player": "Tony Santillan"
     },
     {
       "type": "DROP",
@@ -86,151 +81,204 @@
       "type": "DROP",
       "team": "Mommy",
       "player": "Jose Berrios"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Jaiker Garcia"
     }
   ],
   "oracle_teams": [
     {
       "team": "Rollie Fingers",
       "oracle_rank": 1,
-      "total_value": 37595.7,
-      "mlb_value": 32100.6,
-      "farm_value": 5495.1,
+      "total_value": 37509.3,
+      "mlb_value": 32266.5,
+      "farm_value": 5242.8,
       "avg_age": 27.5,
       "scatter_move": {
         "previous_avg_age": 27.5,
-        "previous_total_value": 37595.7
-      }
-    },
-    {
-      "team": "John Henry Fan Club",
-      "oracle_rank": 2,
-      "total_value": 34683.1,
-      "mlb_value": 28475.3,
-      "farm_value": 6207.8,
-      "avg_age": 27.4,
-      "scatter_move": {
-        "previous_avg_age": 27.4,
-        "previous_total_value": 34683.1
-      }
-    },
-    {
-      "team": "Humongous Melonheads",
-      "oracle_rank": 3,
-      "total_value": 34637.7,
-      "mlb_value": 28881.2,
-      "farm_value": 5756.5,
-      "avg_age": 28.5,
-      "scatter_move": {
-        "previous_avg_age": 28.5,
-        "previous_total_value": 34637.7
+        "previous_total_value": 37509.3,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
       }
     },
     {
       "team": "Seam heads",
-      "oracle_rank": 4,
-      "total_value": 33704.3,
-      "mlb_value": 28883.6,
-      "farm_value": 4820.7,
-      "avg_age": 29.1,
+      "oracle_rank": 2,
+      "total_value": 35079.6,
+      "mlb_value": 30079.1,
+      "farm_value": 5000.5,
+      "avg_age": 29.0,
       "scatter_move": {
-        "previous_avg_age": 29.1,
-        "previous_total_value": 33704.3
+        "previous_avg_age": 29.0,
+        "previous_total_value": 35079.6,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      }
+    },
+    {
+      "team": "John Henry Fan Club",
+      "oracle_rank": 3,
+      "total_value": 34950.4,
+      "mlb_value": 28711.2,
+      "farm_value": 6239.2,
+      "avg_age": 27.2,
+      "scatter_move": {
+        "previous_avg_age": 27.2,
+        "previous_total_value": 34950.4,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Humongous Melonheads",
+      "oracle_rank": 4,
+      "total_value": 34463.0,
+      "mlb_value": 29002.7,
+      "farm_value": 5460.3,
+      "avg_age": 28.4,
+      "scatter_move": {
+        "previous_avg_age": 28.4,
+        "previous_total_value": 34463.0,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
       }
     },
     {
       "team": "Philbell",
       "oracle_rank": 5,
-      "total_value": 33301.9,
-      "mlb_value": 29869.0,
-      "farm_value": 3432.9,
-      "avg_age": 28.0,
+      "total_value": 33485.3,
+      "mlb_value": 29988.9,
+      "farm_value": 3496.4,
+      "avg_age": 28.1,
       "scatter_move": {
-        "previous_avg_age": 28.0,
-        "previous_total_value": 33301.9
+        "previous_avg_age": 28.1,
+        "previous_total_value": 33485.3,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
       }
     },
     {
       "team": "Vin Mazzaro fan club",
       "oracle_rank": 6,
-      "total_value": 28835.4,
-      "mlb_value": 25062.3,
-      "farm_value": 3773.1,
-      "avg_age": 28.2,
+      "total_value": 30218.9,
+      "mlb_value": 26080.8,
+      "farm_value": 4138.1,
+      "avg_age": 28.1,
       "scatter_move": {
-        "previous_avg_age": 28.2,
-        "previous_total_value": 28835.4
+        "previous_avg_age": 28.1,
+        "previous_total_value": 30218.9,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
       }
     },
     {
       "team": "Inkers",
       "oracle_rank": 7,
-      "total_value": 28541.9,
-      "mlb_value": 21693.5,
-      "farm_value": 6848.4,
-      "avg_age": 26.9,
+      "total_value": 28262.1,
+      "mlb_value": 21339.5,
+      "farm_value": 6922.6,
+      "avg_age": 27.1,
       "scatter_move": {
-        "previous_avg_age": 26.9,
-        "previous_total_value": 28541.9
+        "previous_avg_age": 27.1,
+        "previous_total_value": 28262.1,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
       }
     },
     {
       "team": "Millville Meteors",
       "oracle_rank": 8,
-      "total_value": 26671.3,
-      "mlb_value": 24831.1,
-      "farm_value": 1840.2,
-      "avg_age": 29.4,
+      "total_value": 27033.3,
+      "mlb_value": 25202.0,
+      "farm_value": 1831.3,
+      "avg_age": 29.1,
       "scatter_move": {
-        "previous_avg_age": 29.4,
-        "previous_total_value": 26671.3
+        "previous_avg_age": 29.1,
+        "previous_total_value": 27033.3,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
       }
     },
     {
       "team": "Trazadone",
       "oracle_rank": 9,
-      "total_value": 25246.3,
-      "mlb_value": 20560.4,
-      "farm_value": 4685.9,
-      "avg_age": 28.8,
+      "total_value": 25422.1,
+      "mlb_value": 20164.9,
+      "farm_value": 5257.2,
+      "avg_age": 28.9,
       "scatter_move": {
-        "previous_avg_age": 28.8,
-        "previous_total_value": 25246.3
+        "previous_avg_age": 28.9,
+        "previous_total_value": 25422.1,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
       }
     },
     {
       "team": "Sam",
       "oracle_rank": 10,
-      "total_value": 24592.6,
-      "mlb_value": 22139.6,
-      "farm_value": 2453.0,
-      "avg_age": 29.9,
+      "total_value": 24980.0,
+      "mlb_value": 22516.4,
+      "farm_value": 2463.6,
+      "avg_age": 30.0,
       "scatter_move": {
-        "previous_avg_age": 29.9,
-        "previous_total_value": 24592.6
+        "previous_avg_age": 30.0,
+        "previous_total_value": 24980.0,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
       }
     },
     {
       "team": "Mommy",
       "oracle_rank": 11,
-      "total_value": 22530.1,
-      "mlb_value": 21492.5,
-      "farm_value": 1037.6,
-      "avg_age": 30.6,
+      "total_value": 23325.3,
+      "mlb_value": 22273.5,
+      "farm_value": 1051.8,
+      "avg_age": 30.8,
       "scatter_move": {
-        "previous_avg_age": 30.6,
-        "previous_total_value": 22530.1
+        "previous_avg_age": 30.8,
+        "previous_total_value": 23325.3,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
       }
     },
     {
       "team": "Pat",
       "oracle_rank": 12,
-      "total_value": 21928.1,
-      "mlb_value": 20584.3,
-      "farm_value": 1343.8,
-      "avg_age": 29.4,
+      "total_value": 20806.0,
+      "mlb_value": 19435.4,
+      "farm_value": 1370.6,
+      "avg_age": 30.1,
       "scatter_move": {
-        "previous_avg_age": 29.4,
-        "previous_total_value": 21928.1
+        "previous_avg_age": 30.1,
+        "previous_total_value": 20806.0,
+        "age_delta": 0.0,
+        "value_delta": 0.0,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
       }
     }
   ]
