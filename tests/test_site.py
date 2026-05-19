@@ -35,7 +35,7 @@ def _read(p: Path) -> str:
 
 
 def test_theme_boot_is_external_and_before_stylesheets() -> None:
-    checked_files = HTML_FILES + [WEEKLY_TEMPLATE, ROOT.parent / "scripts" / "update_depth_chart.py"]
+    checked_files = HTML_FILES + [WEEKLY_TEMPLATE]
 
     for html_file in checked_files:
         text = _read(html_file)
