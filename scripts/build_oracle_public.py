@@ -460,6 +460,21 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
 
     output = output_path or (data_dir / "oracle_public.json")
     output.parent.mkdir(parents=True, exist_ok=True)
+
+    # When the rankings CSV hasn't changed this run, the anchor already holds
+    # the current week's values (set on the first rankings run), so
+    # derive_scatter_move returns zero deltas.  Preserve the scatter_move that
+    # was computed on the actual rankings run instead of overwriting with zeros.
+    if not _should_update_anchor(anchor) and output.exists():
+        try:
+            old_payload = json.loads(output.read_text(encoding="utf-8"))
+            old_scatter = {t["team"]: t.get("scatter_move") for t in old_payload.get("teams", [])}
+            for t in teams:
+                if old_scatter.get(t["team"]) is not None:
+                    t["scatter_move"] = old_scatter[t["team"]]
+        except (json.JSONDecodeError, KeyError):
+            pass
+
     output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
     if _should_update_anchor(anchor):
