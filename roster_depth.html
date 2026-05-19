@@ -196,12 +196,14 @@ tbody tr.team-target {
   line-height: 1.1;
   margin-bottom: 2px;
 }
+html[data-theme="light"] .tname { color: var(--t-primary); }
 .tscore {
   font-size: 11px;
   color: #4a4845;
   font-weight: 500;
   letter-spacing: 0.04em;
 }
+html[data-theme="light"] .tscore { color: var(--t-tertiary); }
 
 .pos-cell {
   padding: 14px 8px;
@@ -210,7 +212,7 @@ tbody tr.team-target {
 }
 
 .pill {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -256,12 +258,19 @@ tbody tr.team-target {
   transform: translateY(0);
 }
 
-/* Tier colors */
+/* Tier colors — dark mode (default) */
 .t1 { background: #6b1212; color: #f5b8b8; border: 1px solid #8b2020; }
 .t2 { background: #7d2e1e; color: #f0c4a8; border: 1px solid #a03828; }
 .t3 { background: #6e4025; color: #e8c4a0; border: 1px solid #8a5030; }
 .t4 { background: #5a4030; color: #d4b898; border: 1px solid #7a5840; }
 .t5 { background: #2e2420; color: #8a7868; border: 1px solid #3e3028; }
+
+/* Tier colors — light mode */
+html[data-theme="light"] .t1 { background: rgba(160,30,30,0.10); color: #8b1a1a; border-color: rgba(160,30,30,0.32); }
+html[data-theme="light"] .t2 { background: rgba(160,65,35,0.10); color: #8b3820; border-color: rgba(160,65,35,0.32); }
+html[data-theme="light"] .t3 { background: rgba(140,85,40,0.10); color: #7a4820; border-color: rgba(140,85,40,0.32); }
+html[data-theme="light"] .t4 { background: rgba(120,95,60,0.10); color: #6a5030; border-color: rgba(120,95,60,0.30); }
+html[data-theme="light"] .t5 { background: rgba(90,80,70,0.07); color: #5a5048; border-color: rgba(90,80,70,0.22); }
 
 /* Riser / faller pill indicators */
 .pill.big-riser { border-color: #5d7db5; }
@@ -707,7 +716,7 @@ tbody tr.team-target {
     window.location.href = url;
   };
 
-  const openPlayer = async (key, updateHash = true) => {
+  const openPlayer = async (key, updateHash = true, rankingsUrlFallback = null) => {
     if (!key || !modal) return;
     hideTooltip();
     modal.classList.add('open');
@@ -723,6 +732,7 @@ tbody tr.team-target {
       const data = await loadTrajectoryData();
       const player = data.players && data.players[key];
       if (!player) throw new Error('No rank history found for this player.');
+      if (rankingsUrlFallback && !player.rankings_url) player.rankings_url = rankingsUrlFallback;
       renderPlayer(player);
       if (updateHash) history.replaceState(null, '', `#player=${encodeURIComponent(key)}`);
     } catch (error) {
@@ -758,11 +768,11 @@ tbody tr.team-target {
         }
       });
     } else {
-      pill.addEventListener('click', () => openRankings(pill));
+      pill.addEventListener('click', () => openPlayer(pill.dataset.playerKey, true, pill.dataset.rankingsUrl));
       pill.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          openRankings(pill);
+          openPlayer(pill.dataset.playerKey, true, pill.dataset.rankingsUrl);
         }
       });
     }

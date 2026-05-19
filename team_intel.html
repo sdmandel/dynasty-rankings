@@ -550,13 +550,6 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   text-align: right;
   white-space: nowrap;
 }
-.bar-meta {
-  grid-column: 2 / 4;
-  margin-top: -4px;
-  color: var(--text-dead);
-  font-size: 11px;
-  line-height: 1.35;
-}
 .team-table-link,
 .proj-team-link {
   color: inherit;
@@ -1292,14 +1285,9 @@ function buildValueBars() {
     valDiv.className = 'bar-value';
     valDiv.textContent = (t.total / 1000).toFixed(1) + 'k';
 
-    const metaDiv = document.createElement('div');
-    metaDiv.className = 'bar-meta';
-    metaDiv.textContent = `Total Oracle value: ${formatWholeValue(t.total)} · Avg age: ${fmt(t.avg_age, 1)} · ${formatScatterMove(t.scatter_move, t)}`;
-
     row.appendChild(labelDiv);
     row.appendChild(trackDiv);
     row.appendChild(valDiv);
-    row.appendChild(metaDiv);
     row.style.cursor = 'pointer';
     row.addEventListener('mousemove', e => {
       ttName.textContent = t.name;

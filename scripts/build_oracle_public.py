@@ -6,8 +6,9 @@ the private rankings CSV or player-level valuation inputs.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
-import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
 
@@ -38,22 +39,34 @@ def load_json(name: str, data_dir: Path = DEFAULT_DATA_DIR) -> dict:
     return json.loads((data_dir / name).read_text(encoding="utf-8"))
 
 
-def load_previous_oracle_public(site_root: Path = SITE_ROOT) -> dict:
+def _csv_hash() -> str | None:
     try:
-        result = subprocess.run(
-            ["git", "show", "HEAD:data/oracle_public.json"],
-            cwd=site_root,
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    except (subprocess.CalledProcessError, FileNotFoundError):
+        return hashlib.md5(RANKINGS_CSV.read_bytes()).hexdigest()
+    except FileNotFoundError:
+        return None
+
+
+def load_oracle_anchor(data_dir: Path = DEFAULT_DATA_DIR) -> dict:
+    try:
+        return json.loads((data_dir / "oracle_anchor.json").read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
-    try:
-        return json.loads(result.stdout)
-    except json.JSONDecodeError:
-        return {}
+
+def save_oracle_anchor(teams: list[dict], data_dir: Path = DEFAULT_DATA_DIR, *, captured_at: str | None = None) -> None:
+    anchor = {
+        "captured_at": captured_at or datetime.now(timezone.utc).isoformat(),
+        "rankings_csv_hash": _csv_hash(),
+        "teams": [
+            {"team": t["team"], "total_value": t["total_value"], "avg_age": t["avg_age"]}
+            for t in teams
+        ],
+    }
+    (data_dir / "oracle_anchor.json").write_text(json.dumps(anchor, indent=2) + "\n", encoding="utf-8")
+
+
+def _should_update_anchor(anchor: dict) -> bool:
+    return anchor.get("rankings_csv_hash") != _csv_hash()
 
 
 def load_team_registry(data_dir: Path = DEFAULT_DATA_DIR) -> tuple[dict[str, str], dict[str, str]]:
@@ -383,18 +396,14 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     standings = load_json("standings.json", data_dir)
     intelligence = load_json("league_intelligence.json", data_dir)
     managers = load_json("managers.json", data_dir)
-    previous_payload = load_previous_oracle_public(site_root)
+    anchor = load_oracle_anchor(data_dir)
     alias_to_display, _display_to_key = load_team_registry(DEFAULT_DATA_DIR)
     value_input = load_live_team_values(alias_to_display, _display_to_key)
 
     standings_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in standings["teams"]}
     intel_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in intelligence["teams"]}
     manager_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in managers["managers"]}
-    previous_by_team = {
-        row.get("team"): row
-        for row in previous_payload.get("teams", [])
-        if row.get("team")
-    }
+    anchor_by_team = {row["team"]: row for row in anchor.get("teams", [])}
     median_total = median(team["total_value"] for team in value_input.values())
 
     CATEGORIES = CATEGORY_CODE_TO_LABEL
@@ -426,7 +435,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
         team["public_archetypes"] = derive_public_archetypes(team, manager_by_team.get(team_name), standings_row, median_total)
         team["trade_needs"] = derive_trade_needs(team, standings_row)
         team["trend"] = derive_trend(team, standings_row)
-        team["scatter_move"] = derive_scatter_move(team, previous_by_team.get(team_name))
+        team["scatter_move"] = derive_scatter_move(team, anchor_by_team.get(team_name))
         teams.append(team)
 
     payload = {
@@ -452,6 +461,10 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     output = output_path or (data_dir / "oracle_public.json")
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+    if _should_update_anchor(anchor):
+        save_oracle_anchor(teams, data_dir, captured_at=payload.get("generated_at"))
+
     return payload
 
 

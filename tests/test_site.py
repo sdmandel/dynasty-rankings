@@ -213,10 +213,7 @@ def test_team_intel_table_links_and_bar_metadata_are_visible() -> None:
     assert "function rosterDepthLink(teamName" in html
     assert '<td>${rosterDepthLink(team.team)}</td>' in html
     assert 'href="${rosterDepthHref(row.team)}"' in html
-    assert "bar-meta" in html
-    assert "Total Oracle value:" in html
     assert "Avg age:" in html
-    assert "formatScatterMove(t.scatter_move, t)" in html
     assert "Scatter move: no prior oracle snapshot" in html
 
 
