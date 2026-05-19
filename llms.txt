@@ -1,0 +1,45 @@
+# Backyard Dynasty Baseball
+
+Public static site for Backyard Dynasty Baseball 2026.
+
+Base URL: https://baseball.stephenmandella.com/
+
+## Agent-Readable Indexes
+
+- Site manifest: https://baseball.stephenmandella.com/data/site_manifest.json
+- Update metadata: https://baseball.stephenmandella.com/data/site_updates.json
+- Sitemap: https://baseball.stephenmandella.com/sitemap.xml
+
+## Public JSON Data
+
+- Standings: /data/standings.json
+- Public Oracle team summaries: /data/oracle_public.json
+- Full dynasty rankings table: /data/dynasty_rankings_latest.json
+- Player rank trajectories: /data/dynasty_player_trajectories.json
+- Team intel source data: /data/league_intelligence.json
+- Transactions: /data/transactions.json
+- Prospects: /data/prospects.json
+- Closers: /data/closers.json
+- Rivalries: /data/rivalries.json
+- Franchise history: /data/franchises.json
+- League rules: /data/rules.json
+- Polls: /data/polls.json
+
+## Public Pages
+
+- Hub: /index.html
+- Power rankings archive: /power_rankings.html
+- Standings: /standings.html
+- Team Intel: /team_intel.html
+- Roster Depth: /roster_depth.html
+- Dynasty Rankings: /dynasty_rankings.html
+- Prospects: /prospects.html
+- Closers: /closers.html
+- Transactions: /transactions.html
+- League Rules: /rules.html
+
+## Access Notes
+
+Most pages render client-side from JSON files in /data/. Prefer the JSON endpoints above for programmatic retrieval.
+
+For the dynasty rankings table, use /data/dynasty_rankings_latest.json. Its top-level `rankings` array contains the table rows used by dynasty_rankings.html.

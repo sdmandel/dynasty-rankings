@@ -83,6 +83,12 @@ def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
         "data/managers.json",
         "data/oracle_public.json",
         "data/rivalries.json",
+        "data/rules.json",
+        "data/site_manifest.json",
+        "data/site_updates.json",
+        "llms.txt",
+        "robots.txt",
+        "sitemap.xml",
         "index.html",
     ):
         assert f'- "{path}"' in workflow, f"Pages deploy workflow must include {path}"
@@ -95,6 +101,80 @@ def test_dynasty_rankings_supports_search_deep_link() -> None:
     assert "document.getElementById('searchInput').value = searchParam;" in html
     assert 'tr[data-rank="${rankParam}"]' in html
     assert 'tr[data-player-slug="${CSS.escape(exactSlug)}"]' in html
+
+
+def test_agent_discovery_files_exist_and_reference_public_data() -> None:
+    for name in ("llms.txt", "robots.txt", "sitemap.xml"):
+        assert (ROOT / name).exists(), f"missing {name}"
+
+    manifest = json.loads(_read(ROOT / "data" / "site_manifest.json"))
+    updates = json.loads(_read(ROOT / "data" / "site_updates.json"))
+    llms = _read(ROOT / "llms.txt")
+    robots = _read(ROOT / "robots.txt")
+    sitemap = _read(ROOT / "sitemap.xml")
+
+    assert "pages" in manifest and manifest["pages"]
+    assert "public_data" in manifest and manifest["public_data"]
+    assert updates["pages"]["index.html"]["source"] == "data/home_preview.json"
+    assert updates["pages"]["dynasty_rankings.html"]["source"] == "data/dynasty_rankings_latest.json"
+    assert "/data/site_manifest.json" in llms
+    assert "/data/dynasty_rankings_latest.json" in llms
+    assert "Sitemap: https://baseball.stephenmandella.com/sitemap.xml" in robots
+    assert "https://baseball.stephenmandella.com/standings.html" in sitemap
+    assert "https://baseball.stephenmandella.com/dynasty_rankings.html" in sitemap
+    dynasty = next(page for page in manifest["pages"] if page["path"] == "dynasty_rankings.html")
+    assert dynasty["indexable"] is True
+    assert "data/dynasty_rankings_latest.json" in dynasty["data"]
+
+
+def test_js_heavy_pages_include_structured_data_summary() -> None:
+    for name in ("standings.html", "team_intel.html", "dynasty_rankings.html", "prospects.html", "transactions.html", "power_rankings.html"):
+        html = _read(ROOT / name)
+        assert 'type="application/ld+json"' in html, f"{name} missing JSON-LD summary"
+
+
+def test_dynasty_rankings_is_agent_discoverable() -> None:
+    html = _read(ROOT / "dynasty_rankings.html")
+    data = json.loads(_read(ROOT / "data" / "dynasty_rankings_latest.json"))
+    assert '<meta name="robots" content="index, follow">' in html
+    assert "data/dynasty_rankings_latest.json" in html
+    assert "rankings" in data and data["rankings"]
+
+
+def test_index_uses_shared_theme_stack_without_legacy_fonts() -> None:
+    html = _read(ROOT / "index.html")
+    assert 'href="assets/theme.css"' in html
+    assert 'href="assets/site.css"' in html
+    assert 'href="assets/site-shell.css"' in html
+    assert "Bebas Neue" not in html
+    assert "DM Sans" not in html
+
+
+def test_fangraphs_links_are_app_aware() -> None:
+    helper = _read(ROOT / "assets" / "fangraphs-links.js")
+    assert "com.fangraphs.fangraphsmobile" in helper
+    assert "intent://" in helper
+    assert "browser_fallback_url" in helper
+    for name in ("prospects.html", "dynasty_rankings.html"):
+        html = _read(ROOT / name)
+        assert 'src="assets/fangraphs-links.js"' in html
+        assert "fangraphsLinks" in html
+
+
+def test_dynasty_rankings_sort_keeps_blank_numeric_values_last() -> None:
+    html = _read(ROOT / "dynasty_rankings.html")
+    assert "const _descFirstCols = new Set" in html
+    assert "if (aMissing) return 1;" in html
+    assert "if (bMissing) return -1;" in html
+    assert "'st_sb'" in html and "'mlb_sb'" in html
+
+
+def test_hardcoded_color_audit_tool_exists() -> None:
+    script = ROOT / "scripts" / "audit_hardcoded_colors.py"
+    assert script.exists()
+    text = _read(script)
+    assert "COLOR_RE" in text
+    assert "ALLOWLIST_CONTEXT" in text
 
 
 def test_rank_history_modal_css_is_shared() -> None:

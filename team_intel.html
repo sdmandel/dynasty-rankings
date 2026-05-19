@@ -20,6 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Team Intel — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Roster age, Oracle value, contention tiers, and roster valuation splits for all 12 dynasty teams.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Team Intel — Backyard Dynasty Baseball 2026","url":"https://baseball.stephenmandella.com/team_intel.html","description":"Public Oracle team values, contention tiers, category pressure, and roster valuation splits.","mainEntity":{"@type":"Dataset","name":"Public Oracle team summaries","url":"https://baseball.stephenmandella.com/data/oracle_public.json"}}</script>
 <script src="assets/fouc-prevention.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
@@ -704,6 +705,11 @@ function formatSigned(value, digits = 1) {
   return `${numeric > 0 ? '+' : ''}${numeric.toFixed(digits)}`;
 }
 
+function formatWholeValue(value) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric.toLocaleString() : '-';
+}
+
 function finiteNumberOrNull(value) {
   if (value === null || value === undefined || value === '') return null;
   const numeric = Number(value);
@@ -735,6 +741,11 @@ function formatScatterMove(move, team = null) {
   return `Scatter move: ${yDir}/${xDir} · value ${valueText} · age ${ageText}${quadrantShift}`;
 }
 
+function hasScatterMove(move) {
+  return finiteNumberOrNull(move?.previous_avg_age) !== null
+    && finiteNumberOrNull(move?.previous_total_value) !== null;
+}
+
 function slugifyTeam(value) {
   return String(value || '')
     .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
@@ -749,8 +760,14 @@ function goToRosterDepth(teamName) {
   window.location.href = rosterDepthHref(teamName);
 }
 
-function setMoveTooltip(move, team = null) {
+function setMoveTooltip(move, team = null, { showMissing = true } = {}) {
   if (!ttTrend) return;
+  if (!showMissing && !hasScatterMove(move)) {
+    ttTrend.textContent = '';
+    ttTrend.style.display = 'none';
+    return;
+  }
+  ttTrend.style.display = '';
   ttTrend.textContent = formatScatterMove(move, team);
 }
 
@@ -1148,8 +1165,8 @@ function buildScatter() {
 
     g.addEventListener('mousemove', e => {
       ttName.textContent = d.t.name;
-      ttAge.textContent  = `Avg age: ${d.t.avg_age}`;
-      ttVal.textContent  = `Oracle value: ${d.t.total.toLocaleString()}`;
+      ttAge.textContent  = `Avg age: ${fmt(d.t.avg_age, 1)}`;
+      ttVal.textContent  = `Oracle value: ${formatWholeValue(d.t.total)}`;
       setMoveTooltip(d.move, d.t);
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
@@ -1256,9 +1273,9 @@ function buildValueBars() {
     row.style.cursor = 'pointer';
     row.addEventListener('mousemove', e => {
       ttName.textContent = t.name;
-      ttAge.textContent = `MLB: ${t.mlb.toLocaleString()}`;
-      ttVal.textContent = `Farm: ${t.farm.toLocaleString()}  ·  Total: ${t.total.toLocaleString()}`;
-      setMoveTooltip(t.scatter_move, t);
+      ttAge.textContent = `MLB value: ${formatWholeValue(t.mlb)}`;
+      ttVal.textContent = `Farm value: ${formatWholeValue(t.farm)} · Total value: ${formatWholeValue(t.total)}`;
+      setMoveTooltip(t.scatter_move, t, { showMissing: false });
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top = (e.clientY - 10) + 'px';

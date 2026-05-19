@@ -21,46 +21,11 @@
 <meta name="twitter:title" content="The Hub — Backyard Dynasty Baseball 2026">
 <meta name="twitter:description" content="Oracle-powered dynasty fantasy baseball hub. Power rankings, roster depth, and league analytics for all 12 teams.">
 <script src="assets/fouc-prevention.js"></script>
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site-shell.css">
 <link rel="stylesheet" href="assets/nav.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-/* ── HEADER ── */
-.site-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 52px 40px 36px;
-  border-bottom: 1px solid var(--border2);
-}
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-.site-header h1 {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: 64px;
-  line-height: 0.88;
-  letter-spacing: 0.02em;
-  color: var(--text);
-  margin-bottom: 22px;
-}
-.site-header h1 span { color: var(--gold); }
-.divider {
-  width: 40px; height: 2px;
-  background: var(--gold);
-  margin: 20px 0;
-}
-.site-header p {
-  font-size: 13px;
-  color: var(--text-muted);
-  max-width: 620px;
-  line-height: 1.75;
-}
-.site-header p strong { color: var(--gold); font-weight: 500; }
-
 .header-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(170px, 260px));
@@ -84,7 +49,7 @@
 }
 .header-link:hover {
   border-color: var(--gold-dim);
-  background: #16140d;
+  background: var(--bg-hover);
   transform: translateY(-1px);
 }
 html[data-theme="light"] .header-link:hover {
@@ -153,14 +118,14 @@ html[data-theme="light"] .header-link:hover {
   margin-bottom: 8px;
 }
 .leaderboard-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 24px;
   letter-spacing: .04em;
   line-height: 1;
   color: var(--gold);
   text-decoration: none;
 }
-.leaderboard-title:hover { color: #d9ba63; }
+.leaderboard-title:hover { color: var(--gold-700); }
 .leaderboard-link {
   font-size: 10px;
   font-weight: 700;
@@ -184,7 +149,7 @@ html[data-theme="light"] .header-link:hover {
 }
 .lb-row:last-child { border-bottom: 0; }
 .lb-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 16px;
   color: var(--gold);
   text-align: right;
@@ -197,7 +162,7 @@ html[data-theme="light"] .header-link:hover {
   text-overflow: ellipsis;
 }
 .lb-pts {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 15px;
   color: var(--text);
   text-align: right;
@@ -210,7 +175,7 @@ html[data-theme="light"] .header-link:hover {
   text-align: right;
   color: var(--text-muted);
 }
-.lb-change.up { color: #5da87a; }
+.lb-change.up { color: var(--success); }
 .lb-change.down { color: var(--red); }
 .state-msg {
   padding: 20px 0;
@@ -255,7 +220,7 @@ html[data-theme="light"] .header-link:hover {
   margin-bottom: 6px;
 }
 .card-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 22px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -347,7 +312,7 @@ html[data-theme="light"] .header-link:hover {
   margin-bottom: 4px;
 }
 .tile-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 20px;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -383,7 +348,7 @@ html[data-theme="light"] .header-link:hover {
 .dp-list { display: flex; flex-direction: column; gap: 4px; }
 .dp-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
 .dp-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -403,7 +368,7 @@ html[data-theme="light"] .header-link:hover {
 .mb-list { display: flex; flex-direction: column; gap: 4px; }
 .mb-row  { display: grid; grid-template-columns: 24px 1fr; gap: 5px; align-items: center; }
 .mb-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -419,14 +384,14 @@ html[data-theme="light"] .header-link:hover {
 }
 .mb-fill-mlb {
   height: 100%;
-  background: #8b2a1e;
+  background: var(--success);
   position: absolute;
   left: 0; top: 0;
   border-radius: 1px;
 }
 .mb-fill-farm {
   height: 100%;
-  background: #c8856e;
+  background: var(--prospect);
   position: absolute;
   top: 0;
   border-radius: 0 1px 1px 0;
@@ -441,7 +406,7 @@ html[data-theme="light"] .header-link:hover {
 .st-list { display: flex; flex-direction: column; gap: 3px; }
 .st-row  { display: grid; grid-template-columns: 22px 1fr 34px; gap: 5px; align-items: center; }
 .st-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -461,7 +426,7 @@ html[data-theme="light"] .header-link:hover {
 }
 .st-row.rank1 .st-fill { background: var(--gold); }
 .st-pts {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 11px;
   color: var(--text-dead);
   text-align: right;
@@ -481,7 +446,7 @@ html[data-theme="light"] .header-link:hover {
   border-radius: 2px;
   flex-shrink: 0;
 }
-.tx-badge.add   { background: rgba(93,168,122,0.18); color: #5da87a; }
+.tx-badge.add   { background: var(--success-tint-soft); color: var(--success); }
 .tx-badge.drop  { background: rgba(181,93,93,0.15);  color: var(--red); }
 .tx-badge.trade { background: rgba(93,125,181,0.18); color: var(--blue); }
 .tx-info { display: flex; flex-direction: column; min-width: 0; }
@@ -492,7 +457,7 @@ html[data-theme="light"] .header-link:hover {
 .pr-list { display: flex; flex-direction: column; gap: 3px; }
 .pr-row  { display: grid; grid-template-columns: 30px 1fr auto; gap: 5px; align-items: center; }
 .pr-rank {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-display);
   font-size: 12px;
   color: var(--text-dead);
   text-align: right;
@@ -527,9 +492,6 @@ html[data-theme="light"] .header-link:hover {
 @media (max-width: 680px) {
   .site-header, .nav-section, .site-footer {
     padding-left: 20px; padding-right: 20px;
-  }
-  .site-header h1 {
-    font-size: 44px;
   }
   .header-links {
     grid-template-columns: 1fr;
@@ -703,12 +665,25 @@ const DEPTH_PREVIEW = [
 // ─── DEPTH PREVIEW END ───────────────────────────────────────
 
 // ─── DEPTH CHART TILE ────────────────────────────────────────
-const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
+function cssVar(name, fallback = 'currentColor') {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
+
+function tierColors() {
+  return [
+    cssVar('--gold-700'),
+    cssVar('--gold-500'),
+    cssVar('--gold-300'),
+    cssVar('--t-secondary'),
+    cssVar('--t-quaternary'),
+  ];
+}
 
 (function buildDepthPreview() {
   const el = document.getElementById('depthPreviewChart');
   if (!el) return;
   DEPTH_PREVIEW.forEach(t => {
+    const colors = tierColors();
     const total = t.tiers.reduce((a,b) => a+b, 0);
     if (total === 0) return;
     const row = document.createElement('div');
@@ -723,7 +698,7 @@ const TIER_COLORS = ['#6b1212','#7d2e1e','#6e4025','#5a4030','#2e2420'];
       const seg = document.createElement('div');
       seg.className = 'dp-seg';
       seg.style.width = (count / total * 100).toFixed(1) + '%';
-      seg.style.background = TIER_COLORS[i];
+      seg.style.background = colors[i];
       track.appendChild(seg);
     });
     row.appendChild(rankEl);
@@ -860,6 +835,18 @@ function buildMiniScatter() {
   const sy = v => PAD.top  + (1 - v / maxVal) * plotH;
 
   const ns = 'http://www.w3.org/2000/svg';
+  const colors = {
+    gold: cssVar('--gold'),
+    goldSoft: cssVar('--gold-tint-soft', 'rgba(200,168,75,0.08)'),
+    cold: cssVar('--cold'),
+    danger: cssVar('--danger'),
+    success: cssVar('--success'),
+    prospect: cssVar('--prospect'),
+    border: cssVar('--border'),
+    bg: cssVar('--bg'),
+    text: cssVar('--text'),
+    tertiary: cssVar('--t-tertiary'),
+  };
   const midAge = 28.5;
   const midVal = 25000;
 
@@ -874,17 +861,17 @@ function buildMiniScatter() {
   marker.setAttribute('markerUnits', 'strokeWidth');
   const arrowHead = document.createElementNS(ns, 'path');
   arrowHead.setAttribute('d', 'M 0 0 L 6 3 L 0 6 z');
-  arrowHead.setAttribute('fill', '#c8a84b');
+  arrowHead.setAttribute('fill', colors.gold);
   arrowHead.setAttribute('opacity', '0.9');
   marker.appendChild(arrowHead);
   defs.appendChild(marker);
   svgEl.appendChild(defs);
 
   [
-    { x: PAD.left, y: PAD.top, w: sx(midAge) - PAD.left, h: sy(midVal) - PAD.top, fill: '#5d7db5' },
-    { x: sx(midAge), y: PAD.top, w: PAD.left + plotW - sx(midAge), h: sy(midVal) - PAD.top, fill: '#c8a84b' },
-    { x: PAD.left, y: sy(midVal), w: sx(midAge) - PAD.left, h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
-    { x: sx(midAge), y: sy(midVal), w: PAD.left + plotW - sx(midAge), h: PAD.top + plotH - sy(midVal), fill: '#b55d5d' },
+    { x: PAD.left, y: PAD.top, w: sx(midAge) - PAD.left, h: sy(midVal) - PAD.top, fill: colors.cold },
+    { x: sx(midAge), y: PAD.top, w: PAD.left + plotW - sx(midAge), h: sy(midVal) - PAD.top, fill: colors.gold },
+    { x: PAD.left, y: sy(midVal), w: sx(midAge) - PAD.left, h: PAD.top + plotH - sy(midVal), fill: colors.danger },
+    { x: sx(midAge), y: sy(midVal), w: PAD.left + plotW - sx(midAge), h: PAD.top + plotH - sy(midVal), fill: colors.danger },
   ].forEach(q => {
     const rect = document.createElementNS(ns, 'rect');
     rect.setAttribute('x', q.x);
@@ -902,7 +889,7 @@ function buildMiniScatter() {
     const l = document.createElementNS(ns,'line');
     l.setAttribute('x1',x1); l.setAttribute('y1',y1);
     l.setAttribute('x2',x2); l.setAttribute('y2',y2);
-    l.setAttribute('stroke','#2e2e32'); l.setAttribute('stroke-width','1');
+    l.setAttribute('stroke', colors.border); l.setAttribute('stroke-width','1');
     l.setAttribute('stroke-dasharray','3 3');
     svgEl.appendChild(l);
   });
@@ -928,7 +915,7 @@ function buildMiniScatter() {
         path.setAttribute('y1', prevCy);
         path.setAttribute('x2', cx);
         path.setAttribute('y2', cy);
-        path.setAttribute('stroke', '#c8a84b');
+        path.setAttribute('stroke', colors.gold);
         path.setAttribute('stroke-width', '1.2');
         path.setAttribute('opacity', '0.75');
         path.setAttribute('marker-end', 'url(#miniScatterArrow)');
@@ -939,8 +926,8 @@ function buildMiniScatter() {
       origin.setAttribute('cx', prevCx);
       origin.setAttribute('cy', prevCy);
       origin.setAttribute('r', '3.5');
-      origin.setAttribute('fill', '#111112');
-      origin.setAttribute('stroke', '#6f8a79');
+      origin.setAttribute('fill', colors.bg);
+      origin.setAttribute('stroke', colors.tertiary);
       origin.setAttribute('stroke-width', '1');
       origin.setAttribute('opacity', '0.85');
       g.appendChild(origin);
@@ -948,20 +935,20 @@ function buildMiniScatter() {
 
     const ring = document.createElementNS(ns,'circle');
     ring.setAttribute('cx',cx); ring.setAttribute('cy',cy); ring.setAttribute('r',10);
-    ring.setAttribute('fill','#c8a84b'); ring.setAttribute('opacity','0.07');
+    ring.setAttribute('fill', colors.gold); ring.setAttribute('opacity','0.07');
     g.appendChild(ring);
 
     const dot = document.createElementNS(ns,'circle');
     dot.setAttribute('cx',cx); dot.setAttribute('cy',cy); dot.setAttribute('r',6);
-    dot.setAttribute('fill','#4e6e58'); dot.setAttribute('stroke','#98BDA4'); dot.setAttribute('stroke-width','1.4');
+    dot.setAttribute('fill', colors.success); dot.setAttribute('stroke', colors.prospect); dot.setAttribute('stroke-width','1.4');
     g.appendChild(dot);
 
     const lbl = document.createElementNS(ns,'text');
     lbl.setAttribute('x',cx); lbl.setAttribute('y',cy+3.5);
     lbl.setAttribute('text-anchor','middle');
-    lbl.setAttribute('font-family','DM Sans, sans-serif');
+    lbl.setAttribute('font-family','-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif');
     lbl.setAttribute('font-size','7.5'); lbl.setAttribute('font-weight','700');
-    lbl.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#f0ede6');
+    lbl.setAttribute('fill', colors.text);
     lbl.textContent = t.oracle_rank;
     g.appendChild(lbl);
 

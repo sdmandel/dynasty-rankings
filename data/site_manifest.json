@@ -1,0 +1,29 @@
+{
+  "site": "Backyard Dynasty Baseball",
+  "base_url": "https://baseball.stephenmandella.com/",
+  "generated": "2026-05-18",
+  "generated_at": "2026-05-18T21:00:09-05:00",
+  "agent_guidance": "Most pages render from static JSON in /data/. Prefer these public JSON files for programmatic access. For the full dynasty rankings table, use data/dynasty_rankings_latest.json and read its top-level rankings array.",
+  "pages": [
+    { "path": "index.html", "title": "The Hub", "description": "Overview hub with standings, transactions, and Oracle previews.", "data": ["data/home_preview.json", "data/site_updates.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "power_rankings.html", "title": "Power Rankings Archive", "description": "Weekly editorial power rankings archive.", "data": ["data/site_updates.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "standings.html", "title": "Standings", "description": "Rotisserie standings and category leaders.", "data": ["data/standings.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "team_intel.html", "title": "Team Intel", "description": "Public Oracle team values, contention tiers, and category pressure.", "data": ["data/oracle_public.json", "data/standings.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "roster_depth.html", "title": "Roster Depth", "description": "Position-by-position roster depth by Oracle tier.", "data": ["data/player_rank_trajectories.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "prospects.html", "title": "Prospects", "description": "Rostered prospects, farm systems, and prospect trajectory data.", "data": ["data/prospects.json", "data/player_rank_trajectories.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "closers.html", "title": "Closers", "description": "Bullpen roles, closer confidence, and dynasty ownership.", "data": ["data/closers.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "transactions.html", "title": "Transactions", "description": "Recent adds, drops, trades, and manager activity.", "data": ["data/transactions.json", "data/managers.json"], "updated": "2026-05-18", "indexable": true },
+    { "path": "rules.html", "title": "League Rules", "description": "Fantrax rules plus constitution-sourced league policies.", "data": ["data/rules.json"], "updated": "2026-03-25", "indexable": true },
+    { "path": "dynasty_rankings.html", "title": "Dynasty Rankings", "description": "Full Oracle dynasty player rankings table.", "data": ["data/dynasty_rankings_latest.json", "data/dynasty_player_trajectories.json"], "updated": "2026-05-18", "indexable": true }
+  ],
+  "public_data": [
+    { "path": "data/standings.json", "description": "Current roto standings and category leaders." },
+    { "path": "data/oracle_public.json", "description": "Public team-level Oracle summaries." },
+    { "path": "data/dynasty_rankings_latest.json", "description": "Full dynasty rankings table rows used by dynasty_rankings.html." },
+    { "path": "data/dynasty_player_trajectories.json", "description": "Rank history data used by dynasty player modals." },
+    { "path": "data/league_intelligence.json", "description": "Team contention, luck, volatility, and pressure metrics." },
+    { "path": "data/transactions.json", "description": "Recent league transaction feed." },
+    { "path": "data/prospects.json", "description": "Prospect tables and farm summaries." },
+    { "path": "data/rules.json", "description": "Structured rules and constitution data." }
+  ]
+}

@@ -17,6 +17,7 @@
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
 <meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Prospect Desk — Backyard Dynasty Baseball 2026","url":"https://baseball.stephenmandella.com/prospects.html","description":"Rostered prospects, farm systems, and prospect trajectory data.","mainEntity":{"@type":"Dataset","name":"Prospect data","url":"https://baseball.stephenmandella.com/data/prospects.json"}}</script>
 <script src="assets/fouc-prevention.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
@@ -590,6 +591,7 @@ html[data-theme="light"] .src-pill { opacity: 0.85; }
   </section>
 </div>
 
+<script src="assets/fangraphs-links.js"></script>
 <script>
 let currentFilter = 'all';
 let selectedCategory = 'OPS';
@@ -1284,8 +1286,12 @@ function renderPlayerModal(player) {
   meta.textContent = metaText;
   if (player.fg_id != null) {
     const slug = _fgSlug(player.display_name || player.name || '');
-    const url  = `https://www.fangraphs.com/players/${slug}/${player.fg_id}/stats/${player.fg_stat_type || 'batting'}`;
-    meta.innerHTML += ` <span class="src-pills"><a class="src-pill src-pill-fg" href="${_esc(url)}" target="_blank" rel="noopener noreferrer" title="View on FanGraphs">FanGraphs<span class="pill-sub"> stats &amp; projections ↗</span></a></span>`;
+    const fg = window.fangraphsLinks || {};
+    const url = fg.appAwareUrl
+      ? fg.appAwareUrl({ slug, id: player.fg_id, statType: player.fg_stat_type || 'batting' })
+      : `https://www.fangraphs.com/players/${slug}/${player.fg_id}/stats/${player.fg_stat_type || 'batting'}`;
+    const target = fg.targetForDevice ? fg.targetForDevice() : '_blank';
+    meta.innerHTML += ` <span class="src-pills"><a class="src-pill src-pill-fg" href="${_esc(url)}" target="${_esc(target)}" rel="noopener noreferrer" title="View on FanGraphs">FanGraphs<span class="pill-sub"> stats &amp; projections ↗</span></a></span>`;
   }
   stats.innerHTML = [
     statHtml('Current', fmtRank(player.latest_rank || player.current_rank)),
