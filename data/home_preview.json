@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Philbell",
+      "player": "Trevor Larnach"
+    },
+    {
+      "type": "DROP",
+      "team": "Philbell",
+      "player": "Jeff McNeil"
+    },
+    {
       "type": "ADD",
       "team": "Inkers",
       "player": "Agustin Ramirez"
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Seam heads",
       "player": "Troy Johnston"
-    },
-    {
-      "type": "DROP",
-      "team": "Inkers",
-      "player": "Kutter Crawford"
-    },
-    {
-      "type": "DROP",
-      "team": "Mommy",
-      "player": "Jose Berrios"
     }
   ],
   "oracle_teams": [
