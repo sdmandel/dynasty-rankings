@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Lonnie White"
+    },
+    {
       "type": "DROP",
       "team": "Philbell",
       "player": "Trevor Larnach"
@@ -68,6 +73,11 @@
       "player": "Paul Goldschmidt"
     },
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Jesus Rodriguez"
+    },
+    {
       "type": "ADD",
       "team": "Inkers",
       "player": "Agustin Ramirez"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Inkers",
       "player": "Tony Santillan"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "J.P. Crawford"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Jaiker Garcia"
     }
   ],
   "oracle_teams": [
