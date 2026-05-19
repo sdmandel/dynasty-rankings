@@ -4502,6 +4502,19 @@
       ],
       "transactions": [
         {
+          "txn_id": "tn8orciompcm64y0",
+          "txn_date": "2026-05-19",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Seam heads",
+          "player": "Emil Morales",
+          "position": "SS",
+          "level": "LOW_A",
+          "badge": "prospect",
+          "from_team": "Pat",
+          "source_team": "Seam heads"
+        },
+        {
           "txn_id": "6akuj11ympcpnmh3",
           "txn_date": "2026-05-19",
           "season": 2026,
@@ -5973,6 +5986,26 @@
       ],
       "notable_trades": [
         {
+          "txn_id": "tn8orciompcm64y0",
+          "date": "2026-05-19",
+          "assets": [
+            {
+              "team": "Seam heads",
+              "player": "Emil Morales",
+              "position": "SS",
+              "level": "LOW_A",
+              "badge": "prospect"
+            },
+            {
+              "team": "Pat",
+              "player": "Ben Brown",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        },
+        {
           "txn_id": "nqn5s9gimp1xrpyb",
           "date": "2026-05-11",
           "assets": [
@@ -6062,26 +6095,6 @@
               "player": "Julio Rodriguez",
               "position": "OF",
               "level": null,
-              "badge": "trade"
-            }
-          ]
-        },
-        {
-          "txn_id": "xwzk6lj0mmuvfe21",
-          "date": "2026-03-17",
-          "assets": [
-            {
-              "team": "Humongous Melonheads",
-              "player": "Kenley Jansen",
-              "position": "RP",
-              "level": "MLB",
-              "badge": "trade"
-            },
-            {
-              "team": "Seam heads",
-              "player": "Brandon Pfaadt",
-              "position": "SP",
-              "level": "MLB",
               "badge": "trade"
             }
           ]
@@ -42113,6 +42126,19 @@
       ],
       "transactions": [
         {
+          "txn_id": "tn8orciompcm64y0",
+          "txn_date": "2026-05-19",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Pat",
+          "player": "Ben Brown",
+          "position": "SP",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Seam heads",
+          "source_team": "Pat"
+        },
+        {
           "txn_id": "rtlzfngimpbav2re",
           "txn_date": "2026-05-18",
           "season": 2026,
@@ -42855,6 +42881,26 @@
         }
       ],
       "notable_trades": [
+        {
+          "txn_id": "tn8orciompcm64y0",
+          "date": "2026-05-19",
+          "assets": [
+            {
+              "team": "Seam heads",
+              "player": "Emil Morales",
+              "position": "SS",
+              "level": "LOW_A",
+              "badge": "prospect"
+            },
+            {
+              "team": "Pat",
+              "player": "Ben Brown",
+              "position": "SP",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        },
         {
           "txn_id": "qcmqxkv8mp5ouhjh",
           "date": "2026-05-14",
