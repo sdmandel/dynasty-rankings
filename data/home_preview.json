@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Seam heads",
+      "player": "Will Vest"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Jack Perkins"
+    },
+    {
+      "type": "ADD",
       "team": "Pat",
       "player": "Lonnie White"
     },
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Seam heads",
       "player": "Paul Goldschmidt"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Jesus Rodriguez"
-    },
-    {
-      "type": "ADD",
-      "team": "Inkers",
-      "player": "Agustin Ramirez"
     }
   ],
   "oracle_teams": [

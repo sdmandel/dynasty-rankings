@@ -4521,6 +4521,32 @@
       ],
       "transactions": [
         {
+          "txn_id": "mvx216ofmpe6su7s",
+          "txn_date": "2026-05-20",
+          "season": 2026,
+          "type": "ADD",
+          "team": "Seam heads",
+          "player": "Will Vest",
+          "position": "RP",
+          "level": "MLB",
+          "badge": null,
+          "from_team": null,
+          "source_team": "Seam heads"
+        },
+        {
+          "txn_id": "mvx216ofmpe6su7s",
+          "txn_date": "2026-05-20",
+          "season": 2026,
+          "type": "DROP",
+          "team": "Seam heads",
+          "player": "Jack Perkins",
+          "position": "RP",
+          "level": "MLB",
+          "badge": null,
+          "from_team": null,
+          "source_team": "Seam heads"
+        },
+        {
           "txn_id": "tn8orciompcm64y0",
           "txn_date": "2026-05-19",
           "season": 2026,
@@ -4528,7 +4554,7 @@
           "team": "Seam heads",
           "player": "Emil Morales",
           "position": "SS",
-          "level": "LOW_A",
+          "level": "HIGH_A",
           "badge": "prospect",
           "from_team": "Pat",
           "source_team": "Seam heads"
@@ -4541,7 +4567,7 @@
           "team": "Seam heads",
           "player": "Paul Goldschmidt",
           "position": "1B",
-          "level": "MLB",
+          "level": null,
           "badge": null,
           "from_team": null,
           "source_team": "Seam heads"
@@ -4593,7 +4619,7 @@
           "team": "Seam heads",
           "player": "Paul Goldschmidt",
           "position": "1B",
-          "level": "MLB",
+          "level": null,
           "badge": null,
           "from_team": null,
           "source_team": "Seam heads"
@@ -6012,7 +6038,7 @@
               "team": "Seam heads",
               "player": "Emil Morales",
               "position": "SS",
-              "level": "LOW_A",
+              "level": "HIGH_A",
               "badge": "prospect"
             },
             {
@@ -10708,7 +10734,7 @@
           "team": "Rollie Fingers",
           "player": "Mike Sirota",
           "position": "OF",
-          "level": "HIGH_A",
+          "level": "AA",
           "badge": "prospect",
           "from_team": null,
           "source_team": "Rollie Fingers"
@@ -15911,7 +15937,7 @@
           "player": "Zebby Matthews",
           "position": "SP",
           "level": "MLB",
-          "badge": null,
+          "badge": "notable",
           "from_team": null,
           "source_team": "Humongous Melonheads"
         },
@@ -16001,7 +16027,7 @@
           "team": "Humongous Melonheads",
           "player": "Mike Sirota",
           "position": "OF",
-          "level": "HIGH_A",
+          "level": "AA",
           "badge": "prospect",
           "from_team": null,
           "source_team": "Humongous Melonheads"
@@ -26009,7 +26035,7 @@
           "player": "Zebby Matthews",
           "position": "SP",
           "level": "MLB",
-          "badge": null,
+          "badge": "notable",
           "from_team": null,
           "source_team": "Vin Mazzaro fan club"
         },
@@ -26074,7 +26100,7 @@
           "player": "Zebby Matthews",
           "position": "SP",
           "level": "MLB",
-          "badge": null,
+          "badge": "notable",
           "from_team": null,
           "source_team": "Vin Mazzaro fan club"
         },
@@ -43067,7 +43093,7 @@
               "team": "Seam heads",
               "player": "Emil Morales",
               "position": "SS",
-              "level": "LOW_A",
+              "level": "HIGH_A",
               "badge": "prospect"
             },
             {
@@ -58259,7 +58285,7 @@
           "team": "Inkers",
           "player": "Kutter Crawford",
           "position": "SP",
-          "level": "MLB",
+          "level": null,
           "badge": null,
           "from_team": null,
           "source_team": "Inkers"
