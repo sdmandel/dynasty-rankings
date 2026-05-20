@@ -4,10 +4,12 @@ build_dynasty_rankings.py — Build static JSON data for the dynasty rankings si
 Reads:
   /Users/stevemandella/Documents/Making/fantrax/data/dynasty_history.json
   /Users/stevemandella/Documents/Making/fantrax/data/rankings_latest.csv
+  /Users/stevemandella/Documents/Making/fantrax/data/ownership_cache.json  (optional, hourly)
 
 Writes to powerrankings/data/:
   dynasty_rankings_latest.json  — current snapshot with rank_change and source ranks
   dynasty_player_trajectories.json — full rank history per player for modal chart
+  rosters.json                  — compact {team → players} for agent/tool use
 
 Run manually after each rankings update:
   python powerrankings/scripts/build_dynasty_rankings.py
@@ -18,6 +20,7 @@ import csv
 import json
 import re
 import unicodedata
+from collections import defaultdict
 from pathlib import Path
 
 _SUFFIX_RE         = re.compile(r"\b(Jr\.?|Sr\.?|II|III|IV|V)(?=\s|$)", re.IGNORECASE)
@@ -39,12 +42,24 @@ def _normalize(name: str) -> str:
 FANTRAX_DATA = Path(__file__).resolve().parent.parent.parent / "data"
 SITE_DATA    = Path(__file__).resolve().parent.parent / "data"
 
-HISTORY_PATH = FANTRAX_DATA / "dynasty_history.json"
-CSV_PATH     = FANTRAX_DATA / "rankings_latest.csv"
+HISTORY_PATH        = FANTRAX_DATA / "dynasty_history.json"
+CSV_PATH            = FANTRAX_DATA / "rankings_latest.csv"
+OWNERSHIP_CACHE_PATH = FANTRAX_DATA / "ownership_cache.json"
 
 
 def _load_history() -> list[dict]:
     return json.loads(HISTORY_PATH.read_text(encoding="utf-8"))
+
+
+def _load_ownership_cache() -> dict[str, str]:
+    """Return {normalized_name: team_name} from the hourly ownership cache, or {}."""
+    if not OWNERSHIP_CACHE_PATH.exists():
+        return {}
+    try:
+        raw = json.loads(OWNERSHIP_CACHE_PATH.read_text(encoding="utf-8"))
+        return {_normalize(name): team for name, team in raw.get("owners", {}).items()}
+    except (json.JSONDecodeError, KeyError):
+        return {}
 
 
 def _load_csv() -> dict[str, dict]:
@@ -99,8 +114,9 @@ def build() -> None:
     if not history:
         raise SystemExit("dynasty_history.json is empty")
 
-    csv_by_name = _load_csv()
-    fg_cache    = _load_fg_id_cache()
+    csv_by_name    = _load_csv()
+    fg_cache       = _load_fg_id_cache()
+    ownership_cache = _load_ownership_cache()
     mlb_bat, mlb_pit, milb_bat, milb_pit, stats_generated = _load_season_stats()
 
     latest   = history[-1]
@@ -159,7 +175,7 @@ def build() -> None:
             # Analysis columns
             "proj_z":       _sf("Proj Z", 3),
             "hkb_value":    _sf("HKB Value"),
-            "owned_by":     csv_row.get("Owned By", "") or "",
+            "owned_by":     ownership_cache.get(name) or csv_row.get("Owned By", "") or "",
             "eta":          csv_row.get("ETA", "") or "",
             "reason":       csv_row.get("Reason", "") or "",
             # Steamer batting
@@ -245,6 +261,30 @@ def build() -> None:
     out_path = SITE_DATA / "dynasty_rankings_latest.json"
     out_path.write_text(json.dumps(latest_json, indent=2), encoding="utf-8")
     print(f"Wrote {len(rankings_out)} rows → {out_path}")
+
+    # ── rosters.json — compact per-team roster for agent/tool use ─────────────
+    roster_map: dict[str, list] = defaultdict(list)
+    for row in rankings_out:
+        owner = row.get("owned_by") or ""
+        if owner:
+            roster_map[owner].append({
+                "name":      row["display_name"],
+                "rank":      row["rank"],
+                "score":     row["score"],
+                "age":       row["age"],
+                "level":     row["level"],
+                "positions": row["positions"],
+            })
+    rosters_json = {
+        "generated":  latest["date"],
+        "teams": [
+            {"team": team, "players": sorted(players, key=lambda p: p["rank"] or 9999)}
+            for team, players in sorted(roster_map.items())
+        ],
+    }
+    rosters_path = SITE_DATA / "rosters.json"
+    rosters_path.write_text(json.dumps(rosters_json, indent=2), encoding="utf-8")
+    print(f"Wrote {len(roster_map)} team rosters → {rosters_path}")
 
     # ── dynasty_player_trajectories.json ─────────────────────────────────────
 
