@@ -44,6 +44,11 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Pat",
+      "player": "Justin Slaten"
+    },
+    {
+      "type": "ADD",
       "team": "Seam heads",
       "player": "Will Vest"
     },
@@ -51,6 +56,11 @@
       "type": "DROP",
       "team": "Seam heads",
       "player": "Jack Perkins"
+    },
+    {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Evan Sisk"
     },
     {
       "type": "ADD",
@@ -76,16 +86,6 @@
       "type": "TRADE",
       "team": "Pat",
       "player": "Ben Brown"
-    },
-    {
-      "type": "DROP",
-      "team": "Philbell",
-      "player": "Jeff McNeil"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Paul Goldschmidt"
     }
   ],
   "oracle_teams": [
