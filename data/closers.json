@@ -1,7 +1,17 @@
 {
-  "generated": "2026-05-19",
-  "snapshot_date": "2026-05-19",
+  "generated": "2026-05-20",
+  "snapshot_date": "2026-05-20",
   "closers": [
+    {
+      "closer_name": "Cade Smith",
+      "bullpen_team": "Cleveland Guardians",
+      "dynasty_team": "Seam heads",
+      "recent_saves": 15,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 88.2,
+      "oracle_rank": 140
+    },
     {
       "closer_name": "Mason Miller",
       "bullpen_team": "San Diego Padres",
@@ -11,16 +21,6 @@
       "unstable_flag": false,
       "role_share": 83.3,
       "oracle_rank": 38
-    },
-    {
-      "closer_name": "Cade Smith",
-      "bullpen_team": "Cleveland Guardians",
-      "dynasty_team": "Seam heads",
-      "recent_saves": 14,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 87.5,
-      "oracle_rank": 140
     },
     {
       "closer_name": "Riley O'Brien",
@@ -36,10 +36,10 @@
       "closer_name": "Bryan Baker",
       "bullpen_team": "Tampa Bay Rays",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 12,
+      "recent_saves": 13,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 63.2,
+      "role_share": 65.0,
       "oracle_rank": 656
     },
     {
@@ -69,7 +69,7 @@
       "recent_saves": 11,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 100.0,
+      "role_share": 91.7,
       "oracle_rank": 305
     },
     {
@@ -79,7 +79,7 @@
       "recent_saves": 10,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 62.5,
+      "role_share": 58.8,
       "oracle_rank": 495
     },
     {
@@ -129,7 +129,7 @@
       "recent_saves": 6,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 50.0,
+      "role_share": 46.2,
       "oracle_rank": 467
     },
     {
@@ -153,14 +153,14 @@
       "oracle_rank": 391
     },
     {
-      "closer_name": "Trevor Megill",
+      "closer_name": "Abner Uribe",
       "bullpen_team": "Milwaukee Brewers",
       "dynasty_team": "Rollie Fingers",
       "recent_saves": 5,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 35.7,
-      "oracle_rank": 376
+      "role_share": 33.3,
+      "oracle_rank": 280
     },
     {
       "closer_name": "Jacob Latz",
@@ -199,7 +199,7 @@
       "recent_saves": 4,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 40.0,
+      "role_share": 36.4,
       "oracle_rank": 669
     },
     {
@@ -219,7 +219,7 @@
       "recent_saves": 4,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 40.0,
+      "role_share": 36.4,
       "oracle_rank": 141
     },
     {
@@ -239,7 +239,7 @@
       "recent_saves": 4,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 33.3,
+      "role_share": 30.8,
       "oracle_rank": 1169
     },
     {
@@ -304,6 +304,28 @@
     }
   ],
   "by_dynasty_team": {
+    "Seam heads": [
+      {
+        "closer_name": "Cade Smith",
+        "bullpen_team": "Cleveland Guardians",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 15,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 88.2,
+        "oracle_rank": 140
+      },
+      {
+        "closer_name": "Edwin D\u00edaz",
+        "bullpen_team": "Los Angeles Dodgers",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 4,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 36.4,
+        "oracle_rank": 141
+      }
+    ],
     "Sam": [
       {
         "closer_name": "Mason Miller",
@@ -346,28 +368,6 @@
         "oracle_rank": 228
       }
     ],
-    "Seam heads": [
-      {
-        "closer_name": "Cade Smith",
-        "bullpen_team": "Cleveland Guardians",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 14,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 87.5,
-        "oracle_rank": 140
-      },
-      {
-        "closer_name": "Edwin D\u00edaz",
-        "bullpen_team": "Los Angeles Dodgers",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 4,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 40.0,
-        "oracle_rank": 141
-      }
-    ],
     "Vin Mazzaro fan club": [
       {
         "closer_name": "Riley O'Brien",
@@ -385,10 +385,10 @@
         "closer_name": "Bryan Baker",
         "bullpen_team": "Tampa Bay Rays",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 12,
+        "recent_saves": 13,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 63.2,
+        "role_share": 65.0,
         "oracle_rank": 656
       },
       {
@@ -398,7 +398,7 @@
         "recent_saves": 10,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 62.5,
+        "role_share": 58.8,
         "oracle_rank": 495
       },
       {
@@ -418,7 +418,7 @@
         "recent_saves": 6,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 50.0,
+        "role_share": 46.2,
         "oracle_rank": 467
       }
     ],
@@ -444,14 +444,14 @@
         "oracle_rank": 573
       },
       {
-        "closer_name": "Trevor Megill",
+        "closer_name": "Abner Uribe",
         "bullpen_team": "Milwaukee Brewers",
         "dynasty_team": "Rollie Fingers",
         "recent_saves": 5,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 35.7,
-        "oracle_rank": 376
+        "role_share": 33.3,
+        "oracle_rank": 280
       },
       {
         "closer_name": "Gregory Soto",
@@ -482,7 +482,7 @@
         "recent_saves": 11,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 100.0,
+        "role_share": 91.7,
         "oracle_rank": 305
       },
       {
