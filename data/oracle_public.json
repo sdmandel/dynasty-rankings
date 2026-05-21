@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-20",
-  "generated_at": "2026-05-20T18:00:03-05:00",
+  "generated_at": "2026-05-20T19:00:03-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 57,
   "snapshot_date": "2026-05-20",
   "sources": {
-    "standings": "2026-05-20T18:00:03-05:00",
+    "standings": "2026-05-20T19:00:03-05:00",
     "intelligence": "2026-05-20",
     "managers": "2026-05-20",
     "oracle_values": "data/rankings_latest.csv"
@@ -423,7 +423,7 @@
       "avg_age": 27.9,
       "farm_share": 0.1057,
       "contention_tier": "fringe",
-      "points_back": 24.0,
+      "points_back": 25.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -473,7 +473,7 @@
         }
       },
       "luck_delta": 0.0,
-      "volatility": 40.64,
+      "volatility": 40.59,
       "pressure": {
         "score": 89.0,
         "gain_target": {
@@ -496,7 +496,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": -1.5,
         "stock": "risk",
         "summary": "Protecting QS",
         "rank_delta": null,
@@ -522,7 +522,7 @@
       "avg_age": 28.2,
       "farm_share": 0.1305,
       "contention_tier": "holding steady",
-      "points_back": 35.0,
+      "points_back": 35.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -535,7 +535,7 @@
           "to_loss": 1.0
         },
         "HR": {
-          "to_gain": 0.5,
+          "to_gain": 1.0,
           "to_loss": 0.0
         },
         "K": {
@@ -572,18 +572,18 @@
         }
       },
       "luck_delta": 0.0,
-      "volatility": 48.51,
+      "volatility": 48.5,
       "pressure": {
         "score": 100.0,
         "gain_target": {
-          "category": "HR",
-          "gap": 0.5
+          "category": "ERA",
+          "gap": 1.0
         },
         "loss_risk": {
           "category": "HR",
           "gap": 0.0
         },
-        "summary": "closest gain: HR (0.5) \u00b7 closest loss: HR (0.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: HR (0.0)"
       },
       "public_archetypes": [
         "holding steady",
@@ -591,12 +591,12 @@
         "trade-driven"
       ],
       "trade_needs": [
-        "needs impact bats"
+        "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.5,
-        "stock": "edge",
-        "summary": "One move from gaining HR",
+        "pts_change": -2.0,
+        "stock": "risk",
+        "summary": "Protecting HR",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -733,7 +733,7 @@
         },
         "HR": {
           "to_gain": 1.5,
-          "to_loss": 0.5
+          "to_loss": 1.0
         },
         "K": {
           "to_gain": 1.0,
@@ -778,9 +778,9 @@
         },
         "loss_risk": {
           "category": "HR",
-          "gap": 0.5
+          "gap": 1.0
         },
-        "summary": "closest gain: QS (0.5) \u00b7 closest loss: HR (0.5)"
+        "summary": "closest gain: QS (0.5) \u00b7 closest loss: HR (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -791,7 +791,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "edge",
         "summary": "One move from gaining QS",
         "rank_delta": null,
@@ -817,7 +817,7 @@
       "avg_age": 28.8,
       "farm_share": 0.1865,
       "contention_tier": "rebuilding",
-      "points_back": 63.0,
+      "points_back": 64.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -867,7 +867,7 @@
         }
       },
       "luck_delta": -0.5,
-      "volatility": 62.02,
+      "volatility": 62.05,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -890,7 +890,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.5,
+        "pts_change": -2.5,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -916,7 +916,7 @@
       "avg_age": 29.9,
       "farm_share": 0.1,
       "contention_tier": "rebuilding",
-      "points_back": 46.0,
+      "points_back": 44.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "ERA",
@@ -929,7 +929,7 @@
           "to_loss": 1.0
         },
         "HR": {
-          "to_gain": 2.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "K": {
@@ -966,7 +966,7 @@
         }
       },
       "luck_delta": 0.5,
-      "volatility": 39.98,
+      "volatility": 40.02,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -988,7 +988,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1113,7 +1113,7 @@
       "avg_age": 29.5,
       "farm_share": 0.0358,
       "contention_tier": "rebuilding",
-      "points_back": 53.0,
+      "points_back": 53.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -1127,7 +1127,7 @@
         },
         "HR": {
           "to_gain": 0.0,
-          "to_loss": 2.0
+          "to_loss": 1.5
         },
         "K": {
           "to_gain": 1.0,
@@ -1187,7 +1187,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -0.5,
         "stock": "edge",
         "summary": "One move from gaining HR",
         "rank_delta": null,
