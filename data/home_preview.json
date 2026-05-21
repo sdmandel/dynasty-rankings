@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Pat",
+      "player": "Drew Romo"
+    },
+    {
+      "type": "ADD",
+      "team": "Pat",
+      "player": "Yohandy Morales"
+    },
+    {
       "type": "ADD",
       "team": "Millville Meteors",
       "player": "Keibert Ruiz"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Seam heads",
       "player": "Jack Perkins"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Dustin May"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Janson Junk"
     }
   ],
   "oracle_teams": [
