@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Mommy",
+      "player": "Yennier Cano"
+    },
+    {
+      "type": "DROP",
+      "team": "Mommy",
+      "player": "Hunter Bigge"
+    },
+    {
       "type": "DROP",
       "team": "Pat",
       "player": "Drew Romo"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Philbell",
       "player": "Dennis Santana"
-    },
-    {
-      "type": "ADD",
-      "team": "Seam heads",
-      "player": "Will Vest"
-    },
-    {
-      "type": "DROP",
-      "team": "Seam heads",
-      "player": "Jack Perkins"
     }
   ],
   "oracle_teams": [
