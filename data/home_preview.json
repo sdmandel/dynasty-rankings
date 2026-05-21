@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Millville Meteors",
+      "player": "Keibert Ruiz"
+    },
+    {
+      "type": "DROP",
+      "team": "Millville Meteors",
+      "player": "Bo Naylor"
+    },
+    {
+      "type": "ADD",
       "team": "Pat",
       "player": "Justin Slaten"
     },
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Vin Mazzaro fan club",
       "player": "Janson Junk"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Shane Baz"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Tyler Mahle"
     }
   ],
   "oracle_teams": [
