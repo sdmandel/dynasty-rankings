@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Troy Johnston"
+    },
+    {
       "type": "ADD",
       "team": "Mommy",
       "player": "Yennier Cano"
@@ -81,11 +86,6 @@
       "type": "ADD",
       "team": "Millville Meteors",
       "player": "Keibert Ruiz"
-    },
-    {
-      "type": "DROP",
-      "team": "Millville Meteors",
-      "player": "Bo Naylor"
     }
   ],
   "oracle_teams": [
