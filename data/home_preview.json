@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Philbell",
+      "player": "J.T. Realmuto"
+    },
+    {
       "type": "DROP",
       "team": "Seam heads",
       "player": "Troy Johnston"
@@ -58,6 +63,16 @@
       "player": "Jon Gray"
     },
     {
+      "type": "DROP",
+      "team": "Philbell",
+      "player": "Austin Wells"
+    },
+    {
+      "type": "DROP",
+      "team": "Philbell",
+      "player": "Merrill Kelly"
+    },
+    {
       "type": "ADD",
       "team": "Mommy",
       "player": "Yennier Cano"
@@ -71,21 +86,6 @@
       "type": "DROP",
       "team": "Pat",
       "player": "Drew Romo"
-    },
-    {
-      "type": "ADD",
-      "team": "Pat",
-      "player": "Yohandy Morales"
-    },
-    {
-      "type": "ADD",
-      "team": "Inkers",
-      "player": "Michael Arroyo"
-    },
-    {
-      "type": "ADD",
-      "team": "Mommy",
-      "player": "Braydon Fisher"
     }
   ],
   "oracle_teams": [
