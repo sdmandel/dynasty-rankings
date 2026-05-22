@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-22",
-  "generated_at": "2026-05-22T14:00:03-05:00",
+  "generated_at": "2026-05-22T15:00:03-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": null,
   "snapshot_date": "2026-05-22",
   "sources": {
-    "standings": "2026-05-22T14:00:03-05:00",
+    "standings": "2026-05-22T15:00:03-05:00",
     "intelligence": "2026-05-22",
     "managers": "2026-05-22",
     "oracle_values": "data/rankings_latest.csv"
@@ -198,7 +198,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "risk",
         "summary": "Protecting SVH",
         "rank_delta": null,
@@ -298,7 +298,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -693,7 +693,7 @@
         "can trade prospects"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "build",
         "summary": "Farm-forward build",
         "rank_delta": null,
@@ -891,7 +891,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -989,7 +989,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1081,14 +1081,14 @@
       "public_archetypes": [
         "rebuilding",
         "aging core",
-        "pitching-led build"
+        "offense-starved"
       ],
       "trade_needs": [
         "needs saves",
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": -2.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
