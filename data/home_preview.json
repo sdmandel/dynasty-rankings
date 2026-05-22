@@ -49,6 +49,16 @@
     },
     {
       "type": "ADD",
+      "team": "Sam",
+      "player": "Mike Burrows"
+    },
+    {
+      "type": "DROP",
+      "team": "Sam",
+      "player": "Jon Gray"
+    },
+    {
+      "type": "ADD",
       "team": "Mommy",
       "player": "Yennier Cano"
     },
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Mommy",
       "player": "Braydon Fisher"
-    },
-    {
-      "type": "DROP",
-      "team": "Mommy",
-      "player": "Scott Barlow"
-    },
-    {
-      "type": "ADD",
-      "team": "Millville Meteors",
-      "player": "Keibert Ruiz"
     }
   ],
   "oracle_teams": [
