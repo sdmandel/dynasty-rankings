@@ -48567,6 +48567,19 @@
       ],
       "transactions": [
         {
+          "txn_id": "58bk2zkwmpilucjq",
+          "txn_date": "2026-05-23",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Millville Meteors",
+          "player": "Dillon Dingler",
+          "position": "C",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Inkers",
+          "source_team": "Millville Meteors"
+        },
+        {
           "txn_id": "5p8ed7z4mpfaq3ur",
           "txn_date": "2026-05-21",
           "season": 2026,
@@ -49438,7 +49451,35 @@
           "source_team": "Millville Meteors"
         }
       ],
-      "notable_trades": [],
+      "notable_trades": [
+        {
+          "txn_id": "58bk2zkwmpilucjq",
+          "date": "2026-05-23",
+          "assets": [
+            {
+              "team": "Millville Meteors",
+              "player": "Dillon Dingler",
+              "position": "C",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Inkers",
+              "player": "Spencer Torkelson",
+              "position": "1B",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Inkers",
+              "player": "Erik Sabrowski",
+              "position": "RP",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        }
+      ],
       "best_season": {
         "season": 2025,
         "source_team_name": "Millville Meteors",
@@ -54072,6 +54113,32 @@
       ],
       "transactions": [
         {
+          "txn_id": "58bk2zkwmpilucjq",
+          "txn_date": "2026-05-23",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Inkers",
+          "player": "Spencer Torkelson",
+          "position": "1B",
+          "level": "MLB",
+          "badge": "notable",
+          "from_team": "Millville Meteors",
+          "source_team": "Inkers"
+        },
+        {
+          "txn_id": "58bk2zkwmpilucjq",
+          "txn_date": "2026-05-23",
+          "season": 2026,
+          "type": "TRADE",
+          "team": "Inkers",
+          "player": "Erik Sabrowski",
+          "position": "RP",
+          "level": "MLB",
+          "badge": "trade",
+          "from_team": "Millville Meteors",
+          "source_team": "Inkers"
+        },
+        {
           "txn_id": "aj9zwub3mphf507w",
           "txn_date": "2026-05-22",
           "season": 2026,
@@ -54789,6 +54856,33 @@
       ],
       "notable_trades": [
         {
+          "txn_id": "58bk2zkwmpilucjq",
+          "date": "2026-05-23",
+          "assets": [
+            {
+              "team": "Millville Meteors",
+              "player": "Dillon Dingler",
+              "position": "C",
+              "level": "MLB",
+              "badge": "trade"
+            },
+            {
+              "team": "Inkers",
+              "player": "Spencer Torkelson",
+              "position": "1B",
+              "level": "MLB",
+              "badge": "notable"
+            },
+            {
+              "team": "Inkers",
+              "player": "Erik Sabrowski",
+              "position": "RP",
+              "level": "MLB",
+              "badge": "trade"
+            }
+          ]
+        },
+        {
           "txn_id": "spbcsya8mosye0cp",
           "date": "2026-05-05",
           "assets": [
@@ -54879,54 +54973,6 @@
               "position": "SP",
               "level": "MLB",
               "badge": "trade"
-            }
-          ]
-        },
-        {
-          "txn_id": "q39tzncwmnujvu1a",
-          "date": "2026-04-11",
-          "assets": [
-            {
-              "team": "Inkers",
-              "player": "Brayan Bello",
-              "position": "SP",
-              "level": "MLB",
-              "badge": "trade"
-            },
-            {
-              "team": "Inkers",
-              "player": "Zach Neto",
-              "position": "SS",
-              "level": "MLB",
-              "badge": "notable"
-            },
-            {
-              "team": "Inkers",
-              "player": "Jaxon Wiggins",
-              "position": "SP",
-              "level": "AAA",
-              "badge": "prospect"
-            },
-            {
-              "team": "Inkers",
-              "player": "Kade Anderson",
-              "position": "SP",
-              "level": "AA",
-              "badge": "prospect"
-            },
-            {
-              "team": "Inkers",
-              "player": "Mason Miller",
-              "position": "RP",
-              "level": "MLB",
-              "badge": "notable"
-            },
-            {
-              "team": "John Henry Fan Club",
-              "player": "Vladimir Guerrero Jr.",
-              "position": "1B",
-              "level": "MLB",
-              "badge": "notable"
             }
           ]
         }
