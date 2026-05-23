@@ -43,6 +43,16 @@
   ],
   "transactions": [
     {
+      "type": "DROP",
+      "team": "Trazadone",
+      "player": "Matt Wallner"
+    },
+    {
+      "type": "ADD",
+      "team": "Philbell",
+      "player": "Willi Castro"
+    },
+    {
       "type": "ADD",
       "team": "Philbell",
       "player": "J.T. Realmuto"
@@ -76,16 +86,6 @@
       "type": "DROP",
       "team": "Sam",
       "player": "Jon Gray"
-    },
-    {
-      "type": "DROP",
-      "team": "Inkers",
-      "player": "Gordon Graceffo"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Slade Cecconi"
     }
   ],
   "oracle_teams": [
