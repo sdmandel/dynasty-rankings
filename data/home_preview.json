@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Seam heads",
+      "player": "Jonny DeLuca"
+    },
+    {
+      "type": "DROP",
+      "team": "Inkers",
+      "player": "Henry Godbout"
+    },
+    {
+      "type": "ADD",
       "team": "Philbell",
       "player": "Troy Johnston"
     },
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Philbell",
       "player": "J.T. Realmuto"
-    },
-    {
-      "type": "DROP",
-      "team": "Pat",
-      "player": "Yusei Kikuchi"
-    },
-    {
-      "type": "ADD",
-      "team": "Vin Mazzaro fan club",
-      "player": "Janson Junk"
     }
   ],
   "oracle_teams": [
