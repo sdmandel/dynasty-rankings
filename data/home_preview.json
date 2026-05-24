@@ -43,6 +43,11 @@
   ],
   "transactions": [
     {
+      "type": "ADD",
+      "team": "Philbell",
+      "player": "Troy Johnston"
+    },
+    {
       "type": "DROP",
       "team": "Trazadone",
       "player": "Matt Wallner"
@@ -81,11 +86,6 @@
       "type": "ADD",
       "team": "Vin Mazzaro fan club",
       "player": "Janson Junk"
-    },
-    {
-      "type": "DROP",
-      "team": "Vin Mazzaro fan club",
-      "player": "Shane Baz"
     }
   ],
   "oracle_teams": [
