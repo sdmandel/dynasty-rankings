@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Mommy",
+      "player": "Scott Barlow"
+    },
+    {
+      "type": "DROP",
+      "team": "Mommy",
+      "player": "Ryan Walker"
+    },
+    {
+      "type": "ADD",
       "team": "Seam heads",
       "player": "Jonny DeLuca"
     },
@@ -76,16 +86,6 @@
       "type": "TRADE",
       "team": "Inkers",
       "player": "Spencer Torkelson"
-    },
-    {
-      "type": "TRADE",
-      "team": "Inkers",
-      "player": "Erik Sabrowski"
-    },
-    {
-      "type": "ADD",
-      "team": "Philbell",
-      "player": "Willi Castro"
     }
   ],
   "oracle_teams": [
