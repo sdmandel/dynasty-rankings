@@ -20,11 +20,11 @@
       "team": "Rollie Fingers",
       "oracle_rank": 1,
       "standings_rank": 2,
-      "total_value": 37601.2,
-      "mlb_value": 32095.1,
-      "farm_value": 5506.1,
+      "total_value": 38679.0,
+      "mlb_value": 33064.0,
+      "farm_value": 5615.0,
       "avg_age": 27.5,
-      "farm_share": 0.1464,
+      "farm_share": 0.1452,
       "contention_tier": "fringe",
       "points_back": 10.5,
       "reachable_points": 9.0,
@@ -119,11 +119,11 @@
       "team": "Humongous Melonheads",
       "oracle_rank": 2,
       "standings_rank": 3,
-      "total_value": 35181.5,
-      "mlb_value": 29437.8,
-      "farm_value": 5743.7,
+      "total_value": 36420.8,
+      "mlb_value": 30262.5,
+      "farm_value": 6158.3,
       "avg_age": 28.5,
-      "farm_share": 0.1633,
+      "farm_share": 0.1691,
       "contention_tier": "fringe",
       "points_back": 14.5,
       "reachable_points": 7.0,
@@ -219,11 +219,11 @@
       "team": "John Henry Fan Club",
       "oracle_rank": 3,
       "standings_rank": 5,
-      "total_value": 34629.2,
-      "mlb_value": 28404.3,
-      "farm_value": 6224.9,
+      "total_value": 35792.3,
+      "mlb_value": 29262.8,
+      "farm_value": 6529.5,
       "avg_age": 27.4,
-      "farm_share": 0.1798,
+      "farm_share": 0.1824,
       "contention_tier": "stagnating",
       "points_back": 34.0,
       "reachable_points": 10.0,
@@ -319,11 +319,11 @@
       "team": "Seam heads",
       "oracle_rank": 4,
       "standings_rank": 1,
-      "total_value": 33510.1,
-      "mlb_value": 28095.4,
-      "farm_value": 5414.7,
-      "avg_age": 29.1,
-      "farm_share": 0.1616,
+      "total_value": 35513.5,
+      "mlb_value": 29736.8,
+      "farm_value": 5776.7,
+      "avg_age": 29.0,
+      "farm_share": 0.1627,
       "contention_tier": "contender",
       "points_back": 0.0,
       "reachable_points": 6.0,
@@ -418,11 +418,11 @@
       "team": "Philbell",
       "oracle_rank": 5,
       "standings_rank": 4,
-      "total_value": 32503.8,
-      "mlb_value": 29066.7,
-      "farm_value": 3437.1,
-      "avg_age": 27.9,
-      "farm_share": 0.1057,
+      "total_value": 32974.0,
+      "mlb_value": 29383.2,
+      "farm_value": 3590.8,
+      "avg_age": 28.2,
+      "farm_share": 0.1089,
       "contention_tier": "fringe",
       "points_back": 19.0,
       "reachable_points": 10.0,
@@ -514,112 +514,14 @@
       }
     },
     {
-      "team": "Vin Mazzaro fan club",
-      "oracle_rank": 6,
-      "standings_rank": 6,
-      "total_value": 28808.2,
-      "mlb_value": 25048.7,
-      "farm_value": 3759.5,
-      "avg_age": 28.2,
-      "farm_share": 0.1305,
-      "contention_tier": "stagnating",
-      "points_back": 34.5,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "WHIP"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.0,
-          "to_loss": 1.5
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": 0.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": -0.5,
-      "volatility": 46.94,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "WHIP",
-          "gap": 0.0
-        },
-        "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "summary": "closest gain: WHIP (0.0) \u00b7 closest loss: ERA (1.0)"
-      },
-      "public_archetypes": [
-        "stagnating",
-        "volume arms",
-        "trade-driven"
-      ],
-      "trade_needs": [
-        "fragile SP depth"
-      ],
-      "trend": {
-        "pts_change": 2.0,
-        "stock": "edge",
-        "summary": "One move from gaining WHIP",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": null,
-        "previous_total_value": null,
-        "age_delta": null,
-        "value_delta": null,
-        "previous_quadrant": null,
-        "current_quadrant": "REBUILDING"
-      }
-    },
-    {
       "team": "Inkers",
-      "oracle_rank": 7,
+      "oracle_rank": 6,
       "standings_rank": 11,
-      "total_value": 28503.3,
-      "mlb_value": 21597.8,
-      "farm_value": 6905.5,
+      "total_value": 30453.3,
+      "mlb_value": 22717.6,
+      "farm_value": 7735.7,
       "avg_age": 26.8,
-      "farm_share": 0.2423,
+      "farm_share": 0.254,
       "contention_tier": "rebuilding",
       "points_back": 68.5,
       "reachable_points": 10.0,
@@ -711,14 +613,112 @@
       }
     },
     {
+      "team": "Vin Mazzaro fan club",
+      "oracle_rank": 7,
+      "standings_rank": 6,
+      "total_value": 29462.3,
+      "mlb_value": 26822.4,
+      "farm_value": 2639.9,
+      "avg_age": 28.0,
+      "farm_share": 0.0896,
+      "contention_tier": "stagnating",
+      "points_back": 34.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "WHIP"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.5
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 0.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -0.5,
+      "volatility": 46.94,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "WHIP",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: WHIP (0.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "stagnating",
+        "volume arms",
+        "trade-driven"
+      ],
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "trend": {
+        "pts_change": 2.0,
+        "stock": "edge",
+        "summary": "One move from gaining WHIP",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": null,
+        "previous_total_value": null,
+        "age_delta": null,
+        "value_delta": null,
+        "previous_quadrant": null,
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
       "team": "Millville Meteors",
       "oracle_rank": 8,
       "standings_rank": 9,
-      "total_value": 26624.8,
-      "mlb_value": 25221.6,
-      "farm_value": 1403.2,
-      "avg_age": 29.2,
-      "farm_share": 0.0527,
+      "total_value": 26850.0,
+      "mlb_value": 25413.0,
+      "farm_value": 1437.0,
+      "avg_age": 29.4,
+      "farm_share": 0.0535,
       "contention_tier": "rebuilding",
       "points_back": 58.5,
       "reachable_points": 10.0,
@@ -812,11 +812,11 @@
       "team": "Trazadone",
       "oracle_rank": 9,
       "standings_rank": 10,
-      "total_value": 25276.7,
-      "mlb_value": 20562.5,
-      "farm_value": 4714.2,
-      "avg_age": 28.8,
-      "farm_share": 0.1865,
+      "total_value": 26261.5,
+      "mlb_value": 22265.7,
+      "farm_value": 3995.8,
+      "avg_age": 28.6,
+      "farm_share": 0.1522,
       "contention_tier": "rebuilding",
       "points_back": 59.5,
       "reachable_points": 10.0,
@@ -911,11 +911,11 @@
       "team": "Sam",
       "oracle_rank": 10,
       "standings_rank": 7,
-      "total_value": 24563.3,
-      "mlb_value": 22107.5,
-      "farm_value": 2455.8,
-      "avg_age": 29.9,
-      "farm_share": 0.1,
+      "total_value": 25893.1,
+      "mlb_value": 23310.3,
+      "farm_value": 2582.8,
+      "avg_age": 29.7,
+      "farm_share": 0.0997,
       "contention_tier": "stagnating",
       "points_back": 40.0,
       "reachable_points": 9.0,
@@ -982,16 +982,16 @@
       },
       "public_archetypes": [
         "stagnating",
-        "win-now veteran",
-        "bullpen-backed"
+        "bullpen-backed",
+        "waiver-active"
       ],
       "trade_needs": [
         "fragile SP depth"
       ],
       "trend": {
         "pts_change": 0.0,
-        "stock": "age",
-        "summary": "Aging core under pressure",
+        "stock": "risk",
+        "summary": "Protecting QS",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -1002,17 +1002,17 @@
         "age_delta": null,
         "value_delta": null,
         "previous_quadrant": null,
-        "current_quadrant": "AGING OUT"
+        "current_quadrant": "WIN NOW"
       }
     },
     {
       "team": "Mommy",
       "oracle_rank": 11,
       "standings_rank": 12,
-      "total_value": 22646.5,
-      "mlb_value": 21610.9,
-      "farm_value": 1035.6,
-      "avg_age": 30.7,
+      "total_value": 23597.2,
+      "mlb_value": 22517.8,
+      "farm_value": 1079.4,
+      "avg_age": 30.6,
       "farm_share": 0.0457,
       "contention_tier": "rebuilding",
       "points_back": 83.5,
@@ -1108,11 +1108,11 @@
       "team": "Pat",
       "oracle_rank": 12,
       "standings_rank": 8,
-      "total_value": 21584.3,
-      "mlb_value": 20811.3,
-      "farm_value": 773.0,
+      "total_value": 22904.7,
+      "mlb_value": 22027.3,
+      "farm_value": 877.4,
       "avg_age": 29.5,
-      "farm_share": 0.0358,
+      "farm_share": 0.0383,
       "contention_tier": "rebuilding",
       "points_back": 53.5,
       "reachable_points": 9.0,
