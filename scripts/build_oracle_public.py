@@ -65,8 +65,39 @@ def save_oracle_anchor(teams: list[dict], data_dir: Path = DEFAULT_DATA_DIR, *, 
     (data_dir / "oracle_anchor.json").write_text(json.dumps(anchor, indent=2) + "\n", encoding="utf-8")
 
 
+def load_public_payload_anchor(output_path: Path) -> dict:
+    try:
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+    teams = []
+    for row in payload.get("teams", []):
+        team = row.get("team")
+        total_value = row.get("total_value")
+        avg_age = row.get("avg_age")
+        if team is None or total_value is None or avg_age is None:
+            continue
+        teams.append({"team": team, "total_value": total_value, "avg_age": avg_age})
+    if not teams:
+        return {}
+    return {
+        "captured_at": payload.get("generated_at") or payload.get("generated"),
+        "rankings_csv_hash": None,
+        "teams": teams,
+    }
+
+
 def _should_update_anchor(anchor: dict) -> bool:
     return anchor.get("rankings_csv_hash") != _csv_hash()
+
+
+def _has_usable_scatter_move(move: dict | None) -> bool:
+    return bool(
+        move
+        and move.get("previous_avg_age") is not None
+        and move.get("previous_total_value") is not None
+    )
 
 
 def load_team_registry(data_dir: Path = DEFAULT_DATA_DIR) -> tuple[dict[str, str], dict[str, str]]:
@@ -393,10 +424,15 @@ def derive_scatter_move(team: dict, previous_row: dict | None) -> dict:
 def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None = None) -> dict:
     global CATEGORIES
     data_dir = site_root / "data"
+    output = output_path or (data_dir / "oracle_public.json")
+    output.parent.mkdir(parents=True, exist_ok=True)
+
     standings = load_json("standings.json", data_dir)
     intelligence = load_json("league_intelligence.json", data_dir)
     managers = load_json("managers.json", data_dir)
     anchor = load_oracle_anchor(data_dir)
+    if not anchor.get("teams"):
+        anchor = load_public_payload_anchor(output)
     alias_to_display, _display_to_key = load_team_registry(DEFAULT_DATA_DIR)
     value_input = load_live_team_values(alias_to_display, _display_to_key)
 
@@ -458,9 +494,6 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
         "teams": teams,
     }
 
-    output = output_path or (data_dir / "oracle_public.json")
-    output.parent.mkdir(parents=True, exist_ok=True)
-
     # When the rankings CSV hasn't changed this run, the anchor already holds
     # the current week's values (set on the first rankings run), so
     # derive_scatter_move returns zero deltas.  Preserve the scatter_move that
@@ -470,7 +503,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
             old_payload = json.loads(output.read_text(encoding="utf-8"))
             old_scatter = {t["team"]: t.get("scatter_move") for t in old_payload.get("teams", [])}
             for t in teams:
-                if old_scatter.get(t["team"]) is not None:
+                if _has_usable_scatter_move(old_scatter.get(t["team"])):
                     t["scatter_move"] = old_scatter[t["team"]]
         except (json.JSONDecodeError, KeyError):
             pass

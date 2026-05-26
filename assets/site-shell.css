@@ -1,4 +1,5 @@
-.site-shell-back-link {
+.site-shell-back-link,
+.back-link {
   display: inline-block;
   margin-bottom: 20px;
   color: var(--text-dead, #4a4845);
@@ -10,6 +11,7 @@
   transition: color 0.15s ease;
 }
 
-.site-shell-back-link:hover {
+.site-shell-back-link:hover,
+.back-link:hover {
   color: var(--text-muted, #7a7872);
 }
