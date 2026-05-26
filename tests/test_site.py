@@ -71,6 +71,23 @@ def test_weekly_power_rankings_use_canonical_stylesheet() -> None:
         )
 
 
+def test_weekly_power_rankings_mobile_content_is_contained() -> None:
+    css = _read(ROOT / "assets" / "power-rankings.css")
+    week10 = _read(ROOT / "week10_power_rankings.html")
+
+    assert "grid-template-columns: 72px minmax(0, 1fr);" in css
+    assert "grid-template-columns: 52px minmax(0, 1fr);" in css
+    assert ".rank-content {\n    padding-left: 8px;\n    min-width: 0;" in css
+    assert ".blurb a {\n    overflow-wrap: anywhere;" in css
+    assert ".player-pill {\n    display: inline-block;" in css
+    assert ".player-pill {\n    display: inline-flex;" not in css
+    assert "height: auto;" in css
+    assert "text-transform: none;" in css
+    assert ".key-players .player-pill {\n    display: block;\n    width: 100%;" in css
+    assert ".legend .player-pill {\n  white-space: nowrap;" in css
+    assert 'class="site-shell-back-link"' not in week10
+
+
 def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
     workflow = _read(DEPLOY_WORKFLOW)
     for path in (
@@ -323,6 +340,10 @@ def test_roster_depth_uses_shared_header_and_nav_fonts() -> None:
     assert html.count('class="legend-row"') == 2
     assert ".pill {\n  display: flex;" in html
     assert ".pill {\n  display: inline-flex;" not in html
+    assert ':root[data-theme="light"]' in html
+    assert "--depth-team-name: var(--text);" in html
+    assert ".t1 { background: var(--depth-t1-bg);" in html
+    assert ".t1 { background: #6b1212;" not in html
 
 
 def test_power_rankings_archive_uses_shared_list_markup() -> None:

@@ -32,6 +32,89 @@
   --text-mid: var(--t-secondary);
   --text-muted: var(--t-tertiary);
   --text-dead: var(--t-quaternary);
+  --depth-row-border: var(--sep-nonopaque);
+  --depth-hover-bg: var(--fill-quat);
+  --depth-team-name: var(--text);
+  --depth-score: var(--text-dead);
+  --depth-rank: var(--text-dead);
+  --depth-rank-silver: #8a8680;
+  --depth-rank-bronze: #7a5c38;
+  --depth-tooltip-bg: rgba(10, 10, 11, 0.96);
+  --depth-tooltip-text: #f0ede6;
+  --depth-t1-bg: #6b1212;
+  --depth-t1-text: #f5b8b8;
+  --depth-t1-border: #8b2020;
+  --depth-t2-bg: #7d2e1e;
+  --depth-t2-text: #f0c4a8;
+  --depth-t2-border: #a03828;
+  --depth-t3-bg: #6e4025;
+  --depth-t3-text: #e8c4a0;
+  --depth-t3-border: #8a5030;
+  --depth-t4-bg: #5a4030;
+  --depth-t4-text: #d4b898;
+  --depth-t4-border: #7a5840;
+  --depth-t5-bg: #2e2420;
+  --depth-t5-text: #8a7868;
+  --depth-t5-border: #3e3028;
+  --depth-rise: #5d7db5;
+  --depth-fall: #b55d5d;
+  --depth-trade: var(--gold);
+  --depth-target-bg: rgba(200,168,75,0.07);
+  --depth-target-border: rgba(200,168,75,0.4);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --depth-rank-silver: #7b766d;
+    --depth-rank-bronze: #8a6230;
+    --depth-tooltip-bg: rgba(255, 255, 255, 0.98);
+    --depth-tooltip-text: var(--text);
+    --depth-t1-bg: #f8d9d9;
+    --depth-t1-text: #681414;
+    --depth-t1-border: #c88484;
+    --depth-t2-bg: #f5ded4;
+    --depth-t2-text: #74311f;
+    --depth-t2-border: #d09782;
+    --depth-t3-bg: #f2e5d8;
+    --depth-t3-text: #684426;
+    --depth-t3-border: #d1ad88;
+    --depth-t4-bg: #eee3d8;
+    --depth-t4-text: #5d4938;
+    --depth-t4-border: #c7ad92;
+    --depth-t5-bg: #e7e2dc;
+    --depth-t5-text: #5c554e;
+    --depth-t5-border: #c8beb3;
+    --depth-rise: #2f61a6;
+    --depth-fall: #a64242;
+    --depth-target-bg: rgba(154,122,40,0.10);
+    --depth-target-border: rgba(154,122,40,0.45);
+  }
+}
+
+:root[data-theme="light"] {
+  --depth-rank-silver: #7b766d;
+  --depth-rank-bronze: #8a6230;
+  --depth-tooltip-bg: rgba(255, 255, 255, 0.98);
+  --depth-tooltip-text: var(--text);
+  --depth-t1-bg: #f8d9d9;
+  --depth-t1-text: #681414;
+  --depth-t1-border: #c88484;
+  --depth-t2-bg: #f5ded4;
+  --depth-t2-text: #74311f;
+  --depth-t2-border: #d09782;
+  --depth-t3-bg: #f2e5d8;
+  --depth-t3-text: #684426;
+  --depth-t3-border: #d1ad88;
+  --depth-t4-bg: #eee3d8;
+  --depth-t4-text: #5d4938;
+  --depth-t4-border: #c7ad92;
+  --depth-t5-bg: #e7e2dc;
+  --depth-t5-text: #5c554e;
+  --depth-t5-border: #c8beb3;
+  --depth-rise: #2f61a6;
+  --depth-fall: #a64242;
+  --depth-target-bg: rgba(154,122,40,0.10);
+  --depth-target-border: rgba(154,122,40,0.45);
 }
 
 body {
@@ -62,14 +145,14 @@ body {
 .legend-row + .legend-row {
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid #1e1e20;
+  border-top: 1px solid var(--border);
 }
 .legend-label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a4845;
+  color: var(--text-dead);
   margin-right: 4px;
 }
 .leg-pill {
@@ -78,18 +161,18 @@ body {
   gap: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: #7a7872;
+  color: var(--text-muted);
 }
 .leg-swatch {
   width: 12px; height: 12px;
   border-radius: 2px;
   display: inline-block;
 }
-.sw1 { background: #8b1a1a; }
-.sw2 { background: #b44a3a; }
-.sw3 { background: #c87a5a; }
-.sw4 { background: #c4956e; }
-.sw5 { background: #d4b898; }
+.sw1 { background: var(--depth-t1-bg); border: 1px solid var(--depth-t1-border); }
+.sw2 { background: var(--depth-t2-bg); border: 1px solid var(--depth-t2-border); }
+.sw3 { background: var(--depth-t3-bg); border: 1px solid var(--depth-t3-border); }
+.sw4 { background: var(--depth-t4-bg); border: 1px solid var(--depth-t4-border); }
+.sw5 { background: var(--depth-t5-bg); border: 1px solid var(--depth-t5-border); }
 
 /* Table wrapper */
 .depth-shell {
@@ -160,28 +243,28 @@ thead th.th-team {
 }
 thead th.th-rank { width: 40px; }
 
-tr { border-bottom: 1px solid #1a1a1c; }
-tr:hover { background: rgba(255,255,255,0.012); }
+tr { border-bottom: 1px solid var(--depth-row-border); }
+tr:hover { background: var(--depth-hover-bg); }
 tbody tr[data-team-slug] { scroll-margin-top: 94px; }
 tbody tr.team-target {
-  background: rgba(200,168,75,0.07);
-  outline: 1px solid rgba(200,168,75,0.4);
+  background: var(--depth-target-bg);
+  outline: 1px solid var(--depth-target-border);
   outline-offset: -1px;
 }
 
 .rank-num {
   font-family: var(--font-display);
   font-size: 28px;
-  color: #2a2a2c;
+  color: var(--depth-rank);
   padding: 16px 12px 16px 0;
   vertical-align: top;
   line-height: 1;
   width: 44px;
   text-align: right;
 }
-.rank-gold   { color: #c8a84b; }
-.rank-silver { color: #8a8680; }
-.rank-bronze { color: #7a5c38; }
+.rank-gold   { color: var(--gold); }
+.rank-silver { color: var(--depth-rank-silver); }
+.rank-bronze { color: var(--depth-rank-bronze); }
 
 .team-cell {
   padding: 16px 20px 16px 0;
@@ -191,14 +274,14 @@ tbody tr.team-target {
   font-family: var(--font-display);
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: #f0ede6;
+  color: var(--depth-team-name);
   display: block;
   line-height: 1.1;
   margin-bottom: 2px;
 }
 .tscore {
   font-size: 11px;
-  color: #4a4845;
+  color: var(--depth-score);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -210,7 +293,7 @@ tbody tr.team-target {
 }
 
 .pill {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -226,7 +309,7 @@ tbody tr.team-target {
 }
 .pill:hover { opacity: 0.8; }
 .pill:focus-visible {
-  outline: 2px solid #c8a84b;
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
@@ -237,10 +320,10 @@ tbody tr.team-target {
   z-index: 999;
   max-width: min(280px, calc(100vw - 24px));
   padding: 7px 9px;
-  border: 1px solid #2a2a2c;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: rgba(10, 10, 11, 0.96);
-  color: #f0ede6;
+  background: var(--depth-tooltip-bg);
+  color: var(--depth-tooltip-text);
   font-size: 11px;
   line-height: 1.35;
   letter-spacing: 0.01em;
@@ -257,29 +340,29 @@ tbody tr.team-target {
 }
 
 /* Tier colors */
-.t1 { background: #6b1212; color: #f5b8b8; border: 1px solid #8b2020; }
-.t2 { background: #7d2e1e; color: #f0c4a8; border: 1px solid #a03828; }
-.t3 { background: #6e4025; color: #e8c4a0; border: 1px solid #8a5030; }
-.t4 { background: #5a4030; color: #d4b898; border: 1px solid #7a5840; }
-.t5 { background: #2e2420; color: #8a7868; border: 1px solid #3e3028; }
+.t1 { background: var(--depth-t1-bg); color: var(--depth-t1-text); border: 1px solid var(--depth-t1-border); }
+.t2 { background: var(--depth-t2-bg); color: var(--depth-t2-text); border: 1px solid var(--depth-t2-border); }
+.t3 { background: var(--depth-t3-bg); color: var(--depth-t3-text); border: 1px solid var(--depth-t3-border); }
+.t4 { background: var(--depth-t4-bg); color: var(--depth-t4-text); border: 1px solid var(--depth-t4-border); }
+.t5 { background: var(--depth-t5-bg); color: var(--depth-t5-text); border: 1px solid var(--depth-t5-border); }
 
 /* Riser / faller pill indicators */
-.pill.big-riser { border-color: #5d7db5; }
-.pill.big-riser::after { content: ' ↑'; color: #5d7db5; font-size: 9px; }
-.pill.big-faller { border-color: #b55d5d; }
-.pill.big-faller::after { content: ' ↓'; color: #b55d5d; font-size: 9px; }
+.pill.big-riser { border-color: var(--depth-rise); }
+.pill.big-riser::after { content: ' ↑'; color: var(--depth-rise); font-size: 9px; }
+.pill.big-faller { border-color: var(--depth-fall); }
+.pill.big-faller::after { content: ' ↓'; color: var(--depth-fall); font-size: 9px; }
 
 /* Draft pick pills — same tier colors as player pills, cursor indicates navigation */
 .pill.pick-pill { cursor: pointer; }
 
 /* Trade block indicator */
-.pill.trade-block { border-color: #c8a84b; }
+.pill.trade-block { border-color: var(--depth-trade); }
 .trade-icon,
 .legend-swap,
 .footnote-swap {
   width: 10px;
   height: 10px;
-  color: #c8a84b;
+  color: var(--depth-trade);
   flex: 0 0 auto;
 }
 .footnote-swap {
@@ -289,20 +372,20 @@ tbody tr.team-target {
 
 /* Team rank delta badges */
 .team-delta        { font-size: 11px; font-weight: 600; margin-left: 8px; vertical-align: middle; font-family: var(--font-text); }
-.delta-up          { color: #5d7db5; }
-.delta-down        { color: #b55d5d; }
-.delta-same        { color: #3a3a3c; }
+.delta-up          { color: var(--depth-rise); }
+.delta-down        { color: var(--depth-fall); }
+.delta-same        { color: var(--text-dead); }
 
-.count-empty { color: #2a2a2c; font-size: 14px; }
+.count-empty { color: var(--text-dead); font-size: 14px; }
 
 .footnote {
   max-width: 1100px;
   margin: 24px auto 0;
   padding: 24px 40px;
   font-size: 12px;
-  color: #4a4845;
+  color: var(--text-dead);
   font-style: italic;
-  border-top: 1px solid #1e1e20;
+  border-top: 1px solid var(--border);
   line-height: 1.8;
 }
 
