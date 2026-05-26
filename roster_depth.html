@@ -516,6 +516,7 @@ tbody tr.team-target {
 </div>
 
 <script src="assets/site-shell.js" defer></script>
+<script src="assets/fangraphs-links.js"></script>
 <script>
 (() => {
   const sticky = document.getElementById('stickyBarScroll');
@@ -612,6 +613,19 @@ tbody tr.team-target {
   const oracleLinkHtml = (url) => url
     ? ` <span class="src-pills"><a class="src-pill src-pill-oracle" href="${escHtml(url)}" aria-label="Open Oracle rankings row">Oracle</a></span>`
     : '';
+  const fgSlug = (name) => String(name || '')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[.]/g, '').replace(/ /g, '-');
+  const fanGraphsLinkHtml = (player) => {
+    if (player.fg_id == null) return '';
+    const fg = window.fangraphsLinks || {};
+    const slug = fgSlug(player.display_name || '');
+    const url = fg.appAwareUrl
+      ? fg.appAwareUrl({ slug, id: player.fg_id, statType: player.fg_stat_type || 'batting' })
+      : `https://www.fangraphs.com/players/${encodeURIComponent(slug)}/${encodeURIComponent(player.fg_id)}/stats/${encodeURIComponent(player.fg_stat_type || 'batting')}`;
+    const target = fg.targetForDevice ? fg.targetForDevice() : '_blank';
+    return ` <span class="src-pills"><a class="src-pill src-pill-fg" href="${escHtml(url)}" target="${escHtml(target)}" rel="noopener noreferrer" title="View on FanGraphs">FanGraphs<span class="pill-sub"> stats &amp; projections ↗</span></a></span>`;
+  };
 
   const loadTrajectoryData = async () => {
     if (trajectoryData) return trajectoryData;
@@ -669,7 +683,7 @@ tbody tr.team-target {
   const renderPlayer = (player) => {
     modalTitle.textContent = player.display_name || 'Player';
     const metaText = `${player.owner || 'Rostered'}${player.positions ? ` · ${player.positions}` : ''}${player.team ? ` · ${player.team}` : ''}`;
-    modalMeta.innerHTML = escHtml(metaText) + oracleLinkHtml(player.rankings_url);
+    modalMeta.innerHTML = escHtml(metaText) + oracleLinkHtml(player.rankings_url) + fanGraphsLinkHtml(player);
     modalStats.innerHTML = [
       statHtml('Current', fmtRank(player.latest_rank || player.current_rank)),
       statHtml('YTD', fmtChange(player.change_ytd)),
