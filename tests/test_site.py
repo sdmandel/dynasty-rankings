@@ -321,6 +321,8 @@ def test_roster_depth_uses_shared_header_and_nav_fonts() -> None:
     assert "⇄" not in html
     assert 'class="card legend-card"' in html
     assert html.count('class="legend-row"') == 2
+    assert ".pill {\n  display: flex;" in html
+    assert ".pill {\n  display: inline-flex;" not in html
 
 
 def test_power_rankings_archive_uses_shared_list_markup() -> None:
