@@ -1,12 +1,12 @@
 {
   "generated": "2026-05-26",
-  "generated_at": "2026-05-26T20:00:03-05:00",
+  "generated_at": "2026-05-26T21:00:04-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 63,
   "snapshot_date": "2026-05-26",
   "sources": {
-    "standings": "2026-05-26T20:00:03-05:00",
+    "standings": "2026-05-26T21:00:04-05:00",
     "intelligence": "2026-05-26",
     "managers": "2026-05-26",
     "oracle_values": "data/rankings_latest.csv"
@@ -99,7 +99,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -1.0,
         "stock": "push",
         "summary": "Window open \u00b7 pressure in ERA",
         "rank_delta": null,
@@ -289,7 +289,7 @@
       },
       "public_archetypes": [
         "holding steady",
-        "speed pressure offense",
+        "ratio-first staff",
         "trade-aware"
       ],
       "trade_needs": [
@@ -298,7 +298,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": 2.0,
         "stock": "risk",
         "summary": "Protecting QS",
         "rank_delta": null,
@@ -496,7 +496,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.5,
         "stock": "risk",
         "summary": "Protecting RBI",
         "rank_delta": null,
@@ -515,7 +515,7 @@
     {
       "team": "Inkers",
       "oracle_rank": 6,
-      "standings_rank": 11,
+      "standings_rank": 10,
       "total_value": 29429.3,
       "mlb_value": 21968.0,
       "farm_value": 7461.3,
@@ -792,7 +792,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": -1.5,
+        "pts_change": -2.5,
         "stock": "edge",
         "summary": "One move from gaining RBI",
         "rank_delta": null,
@@ -811,7 +811,7 @@
     {
       "team": "Trazadone",
       "oracle_rank": 9,
-      "standings_rank": 10,
+      "standings_rank": 11,
       "total_value": 25059.8,
       "mlb_value": 21221.2,
       "farm_value": 3838.6,
@@ -891,7 +891,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": -2.5,
         "stock": "edge",
         "summary": "One move from gaining K",
         "rank_delta": null,
@@ -989,7 +989,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -2.5,
+        "pts_change": -2.0,
         "stock": "risk",
         "summary": "Protecting HR",
         "rank_delta": null,
@@ -1088,7 +1088,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1188,7 +1188,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -0.5,
         "stock": "edge",
         "summary": "One move from gaining HR",
         "rank_delta": null,
