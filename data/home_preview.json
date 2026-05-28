@@ -44,6 +44,16 @@
   "transactions": [
     {
       "type": "ADD",
+      "team": "Vin Mazzaro fan club",
+      "player": "Curtis Mead"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Jake McCarthy"
+    },
+    {
+      "type": "ADD",
       "team": "Philbell",
       "player": "Anthony Volpe"
     },
@@ -76,16 +86,6 @@
       "type": "ADD",
       "team": "Trazadone",
       "player": "Jacob Young"
-    },
-    {
-      "type": "DROP",
-      "team": "Trazadone",
-      "player": "Braxton Garrett"
-    },
-    {
-      "type": "ADD",
-      "team": "Inkers",
-      "player": "Spencer Miles"
     }
   ],
   "oracle_teams": [
