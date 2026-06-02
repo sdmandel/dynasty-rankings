@@ -95,6 +95,10 @@
     overflow-wrap: break-word;
   }
 
+  .feature-box table .player-pill {
+    white-space: nowrap;
+  }
+
   .feature-kicker {
     font-size: 11px;
     font-weight: 600;
@@ -245,7 +249,7 @@
 
   .rank-entry {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 0;
     border-bottom: 1px solid var(--sep-opaque);
     padding: 32px 0;
@@ -262,7 +266,9 @@
     color: var(--sep-nonopaque);
     line-height: 1;
     padding-top: 4px;
+    padding-right: 16px;
     user-select: none;
+    white-space: nowrap;
   }
 
   .rank-entry:nth-child(1) .rank-num { color: var(--gold-500); }
@@ -538,7 +544,6 @@
 
   @media (max-width: 600px) {
     .header, .rankings, .footnote, .legend, .whats-new { padding-left: 20px; padding-right: 20px; }
-    .rank-entry { grid-template-columns: 52px minmax(0, 1fr); }
     .rank-num { font-size: 40px; }
     .feature-strip { padding-left: 20px; padding-right: 20px; }
     .feature-grid { grid-template-columns: 1fr; }
@@ -824,6 +829,14 @@ html[data-theme="light"] .player-pill.ghost {
 }
 
 @media (max-width: 600px) {
+  /* Hide Moves + Trades columns on mobile — Team/Status/Avg/Wk 10 fit without scroll */
+  .feature-box table th:nth-child(5),
+  .feature-box table th:nth-child(6),
+  .feature-box table td:nth-child(5),
+  .feature-box table td:nth-child(6) {
+    display: none;
+  }
+
   .legend {
     flex-wrap: nowrap;
     align-items: stretch;
