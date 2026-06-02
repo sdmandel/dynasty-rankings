@@ -608,6 +608,8 @@
 
 .rank-num {
   color: var(--t-quaternary);
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .rank-entry:nth-child(1) .rank-num {
