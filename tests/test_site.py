@@ -75,7 +75,7 @@ def test_weekly_power_rankings_mobile_content_is_contained() -> None:
     css = _read(ROOT / "assets" / "power-rankings.css")
     week10 = _read(ROOT / "week10_power_rankings.html")
 
-    assert "grid-template-columns: auto minmax(0, 1fr);" in css
+    assert "grid-template-columns: min-content minmax(0, 1fr);" in css
     assert ".rank-content {\n    padding-left: 8px;\n    min-width: 0;" in css
     assert ".blurb a {\n    overflow-wrap: anywhere;" in css
     assert ".player-pill {\n    display: inline-block;" in css
