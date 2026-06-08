@@ -153,6 +153,24 @@
     color: var(--gold-500);
   }
 
+  .feature-card p a,
+  .feature-box p a,
+  .blurb a:not(.player-pill) {
+    color: var(--gold-500);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-tint-border);
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  .feature-card p a:hover,
+  .feature-box p a:hover,
+  .blurb a:not(.player-pill):hover {
+    color: var(--gold-700);
+    text-decoration-color: var(--gold-500);
+  }
+
   .feature-card-link:focus-visible {
     outline: 2px solid var(--gold-500);
     outline-offset: 2px;
