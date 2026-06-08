@@ -10,7 +10,7 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from statistics import median
+from statistics import median, pstdev
 
 
 SITE_ROOT = Path(__file__).resolve().parent.parent
@@ -168,6 +168,28 @@ def load_live_team_values(alias_to_display: dict[str, str], display_to_key: dict
             "avg_age": avg_age,
         }
     return result
+
+
+def load_active_projection(alias_to_display: dict[str, str]) -> dict[str, dict]:
+    """Map display team name -> active-roster projection row.
+
+    Reads the bot-side daily cache (data/active_projection.json). Returns {} when
+    the cache is missing so the public payload degrades gracefully.
+    """
+    path = BOT_ROOT / "data" / "active_projection.json"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+    rows = payload.get("teams", [])
+    by_display = {alias_to_display.get(r["team"], r["team"]): r for r in rows}
+    sgps = [r.get("active_sgp") for r in rows if isinstance(r.get("active_sgp"), (int, float))]
+    mean = sum(sgps) / len(sgps) if sgps else 0.0
+    std = pstdev(sgps) if len(sgps) > 1 else 0.0
+    for r in by_display.values():
+        sgp = r.get("active_sgp")
+        r["strength_z"] = round((sgp - mean) / std, 4) if std and sgp is not None else 0.0
+    return by_display
 
 
 def _category_points(categories: dict, labels: tuple[str, ...]) -> float:
@@ -440,6 +462,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     intel_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in intelligence["teams"]}
     manager_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in managers["managers"]}
     anchor_by_team = {row["team"]: row for row in anchor.get("teams", [])}
+    projection_by_team = load_active_projection(alias_to_display)
     median_total = median(team["total_value"] for team in value_input.values())
 
     CATEGORIES = CATEGORY_CODE_TO_LABEL
@@ -472,6 +495,17 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
         team["trade_needs"] = derive_trade_needs(team, standings_row)
         team["trend"] = derive_trend(team, standings_row)
         team["scatter_move"] = derive_scatter_move(team, anchor_by_team.get(team_name))
+        proj = projection_by_team.get(team_name)
+        team["active_projection"] = (
+            {
+                "active_sgp": proj.get("active_sgp"),
+                "active_players": proj.get("active_players"),
+                "strength_z": proj.get("strength_z"),
+                "top_contributors": proj.get("top_contributors", []),
+            }
+            if proj
+            else None
+        )
         teams.append(team)
 
     payload = {

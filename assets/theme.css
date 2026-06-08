@@ -522,7 +522,9 @@
 
 /* ─── Section 3: Link styles ─────────────────────────────────────────────── */
 
-.blurb a {
+.blurb a,
+.feature-card p a,
+.feature-box p a {
   color: var(--gold-500);
   text-decoration: underline;
   text-decoration-color: var(--gold-tint-border);
@@ -530,7 +532,9 @@
   text-underline-offset: 3px;
   transition: text-decoration-color var(--motion-base);
 }
-.blurb a:hover {
+.blurb a:hover,
+.feature-card p a:hover,
+.feature-box p a:hover {
   text-decoration-color: var(--gold-500);
 }
 

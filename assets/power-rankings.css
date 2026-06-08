@@ -334,6 +334,14 @@
     overflow-wrap: break-word;
   }
 
+  ul.blurb {
+    padding-left: 1.2em;
+  }
+
+  ul.blurb li {
+    margin-bottom: 7px;
+  }
+
   .blurb a {
     overflow-wrap: anywhere;
     word-break: normal;

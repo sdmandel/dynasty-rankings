@@ -650,18 +650,18 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
   </div>
   <div class="chart-block">
     <h3>Projected Final Standings</h3>
-    <p class="section-copy">Directional finish forecast built from current roto points, reachable category lanes, luck regression, volatility, and present MLB Oracle strength. It is a weighted read, not a simulation.</p>
+    <p class="section-copy">Directional finish forecast built from today’s roto points plus a rest-of-season projection of each team’s active roster. Injured-list and minor-league players are excluded, so paper depth does not inflate a this-year read. It is a weighted read, not a simulation.</p>
     <div class="intel-help">
       <div class="help-card"><div class="help-title">Baseline</div><div class="help-copy">Starts from today’s roto points, then moves each team up or down from that base.</div></div>
-      <div class="help-card"><div class="help-title">Upside</div><div class="help-copy">Reachable category points, recent roster-value gains, and standings momentum all add lift.</div></div>
-      <div class="help-card"><div class="help-title">Regression</div><div class="help-copy">Positive luck gets pulled back, while unlucky teams get a small rebound credit.</div></div>
-      <div class="help-card"><div class="help-title">Range</div><div class="help-copy">Higher volatility widens the finish band. MLB value matters more than farm depth for this-year projection.</div></div>
+      <div class="help-card"><div class="help-title">Projection</div><div class="help-copy">Rest-of-season SGP summed across active MLB players (IL and minors excluded) sets the direction and size of each team’s move.</div></div>
+      <div class="help-card"><div class="help-title">Regression</div><div class="help-copy">Luck and recent swings do not move the projected point; they only widen or tighten the finish range.</div></div>
+      <div class="help-card"><div class="help-title">Range</div><div class="help-copy">Higher volatility and bigger luck gaps widen the finish band around the projected point.</div></div>
     </div>
     <div class="intel-grid" id="projectionCards"></div>
     <div class="table-wrap">
       <table class="projected-table">
         <thead>
-          <tr><th>Proj</th><th>Team</th><th><span class="th-hint" tabindex="0" data-tooltip="Baseline starts from today&rsquo;s roto points, then moves each team up or down from that base.">Current</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Directional finish forecast built from current roto points, reachable category lanes, luck regression, volatility, and present MLB Oracle strength.">Projected</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Higher volatility widens the finish band. MLB value matters more than farm depth for this-year projection.">Range</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Net movement from the baseline after upside, regression, stability, momentum, and roster-strength components are applied.">Swing</span></th><th>Read</th></tr>
+          <tr><th>Proj</th><th>Team</th><th><span class="th-hint" tabindex="0" data-tooltip="Baseline starts from today&rsquo;s roto points, then moves each team up or down from that base.">Current</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Current roto points plus a rest-of-season projection of the active roster (IL and minors excluded).">Projected</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Finish band around the projected point. Higher volatility and bigger luck gaps widen it.">Range</span></th><th><span class="th-hint" tabindex="0" data-tooltip="Projected roto-point move from today, driven by the active-roster rest-of-season projection.">Swing</span></th><th>Read</th></tr>
         </thead>
         <tbody id="projectionBody"></tbody>
       </table>
@@ -1513,7 +1513,7 @@ function topProjectionTags(row) {
   const positives = [];
   const negatives = [];
 
-  if (row.components.mlb_strength >= 1.0) positives.push('strong MLB core');
+  if (row.components.mlb_strength >= 1.0) positives.push('strong projected active core');
   if (row.components.reach >= 2.6) positives.push('live category upside');
   if (row.components.momentum >= 0.8) positives.push('recent standings momentum');
   if (row.components.value_trend >= 0.35) positives.push('roster value rising');
@@ -1523,15 +1523,17 @@ function topProjectionTags(row) {
 
   if (row.components.luck <= -0.7) negatives.push('some luck giveback');
   if (row.components.stability <= -0.6) negatives.push('wide volatility');
-  if (row.components.mlb_strength <= -1.0) negatives.push('thin MLB base');
+  if (row.components.mlb_strength <= -1.0) negatives.push('thin active projection (value on IL/in the minors)');
   if (row.risk_lanes >= 5) negatives.push('several categories to defend');
   if (row.farm_share >= 0.38) negatives.push('farm-heavy for a current chase');
 
+  const lead = row.active_projection?.top_contributors?.[0]?.player;
+  const ledBy = lead ? ` Led by ${lead}.` : '';
   const positiveText = positives.slice(0, 2).join(' + ');
-  if (positiveText && negatives.length) return `${positiveText}; ${negatives[0]}.`;
-  if (positiveText) return `${positiveText}.`;
-  if (negatives.length) return `${negatives[0]}.`;
-  return 'Balanced profile with no single driver overwhelming the read.';
+  if (positiveText && negatives.length) return `${positiveText}; ${negatives[0]}.${ledBy}`;
+  if (positiveText) return `${positiveText}.${ledBy}`;
+  if (negatives.length) return `${negatives[0]}.${ledBy}`;
+  return `Balanced profile with no single driver overwhelming the read.${ledBy}`;
 }
 function computeProjectionRows(teams, standingsData) {
   const standingsMap = new Map((standingsData?.teams || []).map(team => [team.team, team]));
@@ -1552,26 +1554,33 @@ function computeProjectionRows(teams, standingsData) {
     const liveLanes = countCategoryLanes(team.category_gaps, 'to_gain', 1.0);
     const riskLanes = countCategoryLanes(team.category_gaps, 'to_loss', 1.0);
 
+    // Projection-based active-roster strength is the point-estimate driver.
+    // strength_z is the cross-team z-score of summed rest-of-season SGP over
+    // active (MLB, non-IL) players. Fall back to the dynasty MLB-value z-score
+    // when the projection cache is unavailable so the table never blanks.
+    const projection = team.active_projection || null;
+    const projZ = Number(projection?.strength_z);
+    const strengthZ = Number.isFinite(projZ)
+      ? projZ
+      : (mlbStd ? (mlbValue - mlbMean) / mlbStd : 0);
+    const PROJ_POINTS_PER_SD = 3.2; // roto points per standard deviation of active strength
+
+    // Components feed the band width and the written read only — not the point.
     const components = {
       reach: clamp(Number(team.reachable_points || 0) * 0.30, 0, 3.4),
       luck: clamp(-Number(team.luck_delta || 0) * 0.55, -2.2, 2.2),
       stability: clamp((45 - volatility) / 18, -1.4, 1.4),
-      mlb_strength: clamp(((mlbValue - mlbMean) / mlbStd) * 1.85, -2.4, 2.4),
+      mlb_strength: clamp(strengthZ * 1.85, -2.4, 2.4),
       momentum: clamp(ptsChange * 0.22, -1.6, 1.6),
       value_trend: clamp((valueDelta / 1000) * 0.28, -0.8, 0.8),
       category_edge: clamp((liveLanes * 0.18) - (riskLanes * 0.16), -1.2, 1.2),
       farm_penalty: clamp((farmShare - 0.33) * -4, -0.8, 0.6),
-      tier_bias: {
-        contender: 0.55,
-        fringe: 0.15,
-        stagnating: -0.2,
-        rebuilding: -0.55,
-      }[team.contention_tier] ?? 0,
     };
 
-    const swing = Object.values(components).reduce((sum, value) => sum + value, 0);
+    const swing = clamp(strengthZ * PROJ_POINTS_PER_SD, -7, 7);
     const projected = currentPoints + swing;
-    const band = clamp(volatility / 22, 1.8, 5.8);
+    // Luck and volatility only shape the range, not the projected point.
+    const band = clamp(volatility / 22 + Math.abs(Number(team.luck_delta || 0)) * 0.15, 1.8, 6.5);
 
     return {
       ...team,
