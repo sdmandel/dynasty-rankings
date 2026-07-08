@@ -19,6 +19,8 @@ SHELL_CSS_HTML_FILES = [p for p in HTML_FILES if p.name not in {"index.html", "4
 REQUIRED_META = {"og:title", "og:image"}
 FEEDBACK_ENDPOINT = "baseball-feedback.baseball-feedback.workers.dev"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "deploy-pages-on-release.yml"
+WEEKLY_FILE_RE = re.compile(r"week(\d+)_power_rankings\.html$")
+BANNED_BLURB_PHRASES = ("Make no mistake", "Here's the thing")
 
 
 class StrictHTMLParser(HTMLParser):
@@ -30,8 +32,114 @@ class StrictHTMLParser(HTMLParser):
         self.errors.append(message)
 
 
+class HtmlNode:
+    def __init__(self, tag: str, attrs: dict[str, str]) -> None:
+        self.tag = tag
+        self.attrs = attrs
+        self.children = []
+
+    def text(self) -> str:
+        return "".join(
+            child if isinstance(child, str) else child.text()
+            for child in self.children
+        )
+
+
+class MiniDOMParser(HTMLParser):
+    VOID_TAGS = {
+        "area",
+        "base",
+        "br",
+        "col",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr",
+    }
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.root = HtmlNode("document", {})
+        self.stack = [self.root]
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        node = HtmlNode(tag, {name: value or "" for name, value in attrs})
+        self.stack[-1].children.append(node)
+        if tag not in self.VOID_TAGS:
+            self.stack.append(node)
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        node = HtmlNode(tag, {name: value or "" for name, value in attrs})
+        self.stack[-1].children.append(node)
+
+    def handle_endtag(self, tag: str) -> None:
+        for i in range(len(self.stack) - 1, 0, -1):
+            if self.stack[i].tag == tag:
+                del self.stack[i:]
+                break
+
+    def handle_data(self, data: str) -> None:
+        self.stack[-1].children.append(data)
+
+
 def _read(p: Path) -> str:
     return p.read_text(encoding="utf-8")
+
+
+def _week_number(path: Path) -> int:
+    match = WEEKLY_FILE_RE.fullmatch(path.name)
+    assert match is not None, f"{path.name} is not a weekly power rankings file"
+    return int(match.group(1))
+
+
+def _newest_week_file() -> Path:
+    files = list(ROOT.glob("week*_power_rankings.html"))
+    assert files, "missing weekly power rankings files"
+    return max(files, key=_week_number)
+
+
+def _parse_dom(path: Path) -> HtmlNode:
+    parser = MiniDOMParser()
+    parser.feed(_read(path))
+    parser.close()
+    return parser.root
+
+
+def _has_class(node: HtmlNode, class_name: str) -> bool:
+    return class_name in node.attrs.get("class", "").split()
+
+
+def _find_all(node: HtmlNode, predicate) -> list[HtmlNode]:
+    matches = [node] if predicate(node) else []
+    for child in node.children:
+        if isinstance(child, HtmlNode):
+            matches.extend(_find_all(child, predicate))
+    return matches
+
+
+def _find_by_class(
+    node: HtmlNode,
+    class_name: str,
+    tag: str | None = None,
+) -> list[HtmlNode]:
+    return _find_all(
+        node,
+        lambda n: _has_class(n, class_name) and (tag is None or n.tag == tag),
+    )
+
+
+def _clean_text(node: HtmlNode) -> str:
+    return " ".join(node.text().split())
+
+
+def _weekly_href(week: int) -> str:
+    return f"week{week}_power_rankings.html"
 
 
 def test_theme_boot_is_external_and_before_stylesheets() -> None:
@@ -69,6 +177,76 @@ def test_weekly_power_rankings_use_canonical_stylesheet() -> None:
         assert 'href="assets/power-rankings-theme.css"' not in _read(html_file), (
             f"{html_file.name} still depends on compatibility shim"
         )
+
+
+def test_newest_power_rankings_champion_badge_is_on_seam_heads() -> None:
+    newest = _newest_week_file()
+    dom = _parse_dom(newest)
+    entries = _find_by_class(dom, "rank-entry")
+    seam_heads_entries = [
+        entry
+        for entry in entries
+        if any(
+            _clean_text(team) == "Seam Heads"
+            for team in _find_by_class(entry, "team-name")
+        )
+    ]
+
+    assert len(seam_heads_entries) == 1, (
+        f"{newest.name} must have exactly one Seam Heads entry"
+    )
+    assert dom.text().count("🏆 2025 Champion 105pts") == 1
+    assert seam_heads_entries[0].text().count("🏆 2025 Champion 105pts") == 1
+
+
+def test_newest_power_rankings_article_structure() -> None:
+    newest = _newest_week_file()
+    dom = _parse_dom(newest)
+    entries = _find_by_class(dom, "rank-entry")
+
+    assert len(entries) == 12, f"{newest.name} must have 12 team entries"
+    for entry in entries:
+        team_names = _find_by_class(entry, "team-name")
+        team_label = _clean_text(team_names[0]) if team_names else "<missing team>"
+        assert len(_find_by_class(entry, "rank-num")) == 1, f"{team_label} missing rank badge"
+        assert _find_by_class(entry, "player-pill"), f"{team_label} missing stat pill"
+        assert len(_find_by_class(entry, "blurb")) == 1, f"{team_label} missing blurb"
+
+
+def test_power_rankings_latest_links_match_newest_week() -> None:
+    newest_week = _week_number(_newest_week_file())
+    newest_href = _weekly_href(newest_week)
+
+    index_dom = _parse_dom(ROOT / "index.html")
+    featured_cards = [
+        node
+        for node in _find_by_class(index_dom, "featured", tag="a")
+        if _has_class(node, "card")
+    ]
+    assert [card.attrs.get("href") for card in featured_cards] == [newest_href]
+
+    archive_dom = _parse_dom(ROOT / "power_rankings.html")
+    featured_rows = _find_by_class(archive_dom, "list-row--featured", tag="a")
+    assert [row.attrs.get("href") for row in featured_rows] == [newest_href]
+
+    rows = _find_by_class(archive_dom, "list-row", tag="a")
+    row_weeks = [
+        _week_number(Path(row.attrs["href"]))
+        for row in rows
+        if WEEKLY_FILE_RE.fullmatch(row.attrs.get("href", ""))
+    ]
+    assert row_weeks == sorted(row_weeks, reverse=True)
+    assert row_weeks[0] == newest_week
+
+
+def test_newest_power_rankings_blurbs_avoid_banned_phrases() -> None:
+    newest = _newest_week_file()
+    dom = _parse_dom(newest)
+
+    for blurb in _find_by_class(dom, "blurb"):
+        text = _clean_text(blurb)
+        for phrase in BANNED_BLURB_PHRASES:
+            assert phrase not in text, f"{newest.name} blurb contains banned phrase: {phrase}"
 
 
 def test_weekly_power_rankings_mobile_content_is_contained() -> None:
