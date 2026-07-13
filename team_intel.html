@@ -34,7 +34,7 @@
   padding: 40px 40px 60px;
 }
 .chart-block { margin-bottom: 52px; }
-.chart-block h3 {
+.chart-block h2 {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -44,6 +44,41 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
+.intel-mode-nav {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 32px;
+  padding: 6px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg2);
+}
+.intel-mode-nav a {
+  flex: 1 0 auto;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.intel-mode-nav a:hover,
+.intel-mode-nav a:focus-visible,
+.intel-mode-nav a[aria-current="location"] {
+  color: var(--text);
+  background: var(--bg3);
+  outline: none;
+}
+.intel-mode-nav a:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+.intel-mode { scroll-margin-top: 20px; }
+.intel-mode + .intel-mode { padding-top: 4px; }
 .section-copy {
   font-size: 12px;
   color: var(--text-muted);
@@ -615,14 +650,21 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
 </div>
 
 <div class="charts-section">
+  <nav class="intel-mode-nav" aria-label="Team Intel sections">
+    <a href="#overview">Overview</a>
+    <a href="#contention">Contention</a>
+    <a href="#projection">Projection</a>
+    <a href="#trade-strategy">Trade Strategy</a>
+  </nav>
+  <section class="intel-mode" id="overview" aria-labelledby="overview-heading">
   <div class="chart-block">
-    <h3>Roster Age vs. Oracle Value — Team Intel Quadrant (Upper half is best)</h3>
+    <h2 id="overview-heading">Overview: Roster Age vs. Oracle Value</h2>
     <div class="scatter-wrap">
       <svg id="scatterSvg" class="scatter-canvas"></svg>
     </div>
   </div>
   <div class="chart-block">
-    <h3>League Analytics</h3>
+    <h2>League Analytics</h2>
     <p class="section-copy">Total Oracle roster value by team, split between active MLB roster value and farm-system depth.</p>
     <div class="bar-list" id="barChart"></div>
     <div class="bar-legend">
@@ -630,8 +672,10 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
       <span class="bar-legend-item"><span class="leg-dot leg-farm"></span>Farm system</span>
     </div>
   </div>
+  </section>
+  <section class="intel-mode" id="contention" aria-labelledby="contention-heading">
   <div class="chart-block">
-    <h3>Roto Contention Board</h3>
+    <h2 id="contention-heading">Contention: Roto Contention Board</h2>
     <div class="intel-help">
       <div class="help-card"><div class="help-title">Tier</div><div class="help-copy">Active chase band means close enough to first place to move into the title race: Contender, Fringe, Stagnating, or Rebuilding.</div></div>
       <div class="help-card"><div class="help-title">Reachable Points</div><div class="help-copy">Categories where a team is within 2.0 points of the next team up, making the next standings point realistically attainable. Higher totals usually mean a team is more live and competitive in the current race.</div></div>
@@ -648,8 +692,10 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
       </table>
     </div>
   </div>
+  </section>
+  <section class="intel-mode" id="projection" aria-labelledby="projection-heading">
   <div class="chart-block">
-    <h3>Projected Final Standings</h3>
+    <h2 id="projection-heading">Projection: Projected Final Standings</h2>
     <p class="section-copy">Directional finish forecast built from today’s roto points plus a rest-of-season projection of each team’s active roster. Injured-list and minor-league players are excluded, so paper depth does not inflate a this-year read. It is a weighted read, not a simulation.</p>
     <div class="intel-help">
       <div class="help-card"><div class="help-title">Baseline</div><div class="help-copy">Starts from today’s roto points, then moves each team up or down from that base.</div></div>
@@ -667,8 +713,10 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
       </table>
     </div>
   </div>
+  </section>
+  <section class="intel-mode" id="trade-strategy" aria-labelledby="trade-heading">
   <div class="chart-block">
-    <h3>Archetypes · Next Move · Trade Posture</h3>
+    <h2 id="trade-heading">Trade Strategy: Archetypes · Next Move · Trade Posture</h2>
     <p class="section-copy">One card per team with the cleanest editorial read on roster shape, the clearest action to consider next, and the most obvious deal angle.</p>
     <div class="intel-card-grid">
       <div class="card"><div class="help-title">Archetypes</div><div class="help-copy">Roster-shape tags only. These describe how the build behaves without repeating the contention tier.</div></div>
@@ -678,13 +726,14 @@ td { padding: 10px 10px 10px 0; color: var(--text-mid); border-bottom: 1px solid
     </div>
     <div class="team-board-grid" id="teamBoards"></div>
   </div>
+  </section>
 </div>
 
 <div class="site-footer" id="footerEl">
   Average age computed across active MLB-rostered players only. Oracle value reflects aggregate dynasty composite scores.
 </div>
 
-<div class="tooltip" id="tooltip">
+<div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true">
   <span class="tt-name" id="tt-name"></span>
   <span class="tt-line" id="tt-age"></span>
   <span class="tt-line" id="tt-val"></span>
@@ -801,6 +850,62 @@ function setMoveTooltip(move, team = null, { showMissing = true } = {}) {
   ttTrend.style.display = '';
   ttTrend.textContent = formatScatterMove(move, team);
 }
+
+let inspectedTooltipTarget = null;
+
+function isTouchInspection() {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function positionTooltip(target, pointerEvent = null) {
+  const rect = target.getBoundingClientRect();
+  const left = pointerEvent?.clientX ?? (rect.left + Math.min(rect.width / 2, 80));
+  const top = pointerEvent?.clientY ?? rect.bottom;
+  tooltip.style.left = `${clamp(left + 12, 8, window.innerWidth - 220)}px`;
+  tooltip.style.top = `${clamp(top + 8, 8, window.innerHeight - 130)}px`;
+}
+
+function showTeamTooltip(target, team, pointerEvent = null, valueSplit = false) {
+  ttName.textContent = team.name;
+  if (valueSplit) {
+    ttAge.textContent = `MLB value: ${formatWholeValue(team.mlb)}`;
+    ttVal.textContent = `Farm value: ${formatWholeValue(team.farm)} · Total value: ${formatWholeValue(team.total)}`;
+    setMoveTooltip(team.scatter_move, team, { showMissing: false });
+  } else {
+    ttAge.textContent = `Avg age: ${fmt(team.avg_age, 1)}`;
+    ttVal.textContent = `Oracle value: ${formatWholeValue(team.total)}`;
+    setMoveTooltip(team.scatter_move, team);
+  }
+  tooltip.style.display = 'block';
+  tooltip.setAttribute('aria-hidden', 'false');
+  positionTooltip(target, pointerEvent);
+}
+
+function hideTeamTooltip(target) {
+  if (inspectedTooltipTarget === target) inspectedTooltipTarget = null;
+  tooltip.style.display = 'none';
+  tooltip.setAttribute('aria-hidden', 'true');
+}
+
+function inspectBeforeFollowing(event, target, team) {
+  if (!isTouchInspection() || inspectedTooltipTarget === target) return false;
+  event.preventDefault();
+  if (inspectedTooltipTarget) hideTeamTooltip(inspectedTooltipTarget);
+  inspectedTooltipTarget = target;
+  showTeamTooltip(target, team);
+  return true;
+}
+
+function syncModeNavigation() {
+  const activeHash = window.location.hash || '#overview';
+  document.querySelectorAll('.intel-mode-nav a').forEach(link => {
+    if (link.getAttribute('href') === activeHash) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}
+
+window.addEventListener('hashchange', syncModeNavigation);
+syncModeNavigation();
 
 function resolveScatterLabels(dots, bounds, obstacles = []) {
   const LABEL_H = 18;
@@ -1194,17 +1299,13 @@ function buildScatter() {
     hit.setAttribute('fill', 'transparent');
     g.appendChild(hit);
 
-    g.addEventListener('mousemove', e => {
-      ttName.textContent = d.t.name;
-      ttAge.textContent  = `Avg age: ${fmt(d.t.avg_age, 1)}`;
-      ttVal.textContent  = `Oracle value: ${formatWholeValue(d.t.total)}`;
-      setMoveTooltip(d.move, d.t);
-      tooltip.style.display = 'block';
-      tooltip.style.left = (e.clientX + 14) + 'px';
-      tooltip.style.top  = (e.clientY - 10) + 'px';
+    g.addEventListener('mousemove', e => showTeamTooltip(g, d.t, e));
+    g.addEventListener('mouseleave', () => hideTeamTooltip(g));
+    g.addEventListener('focus', () => showTeamTooltip(g, d.t));
+    g.addEventListener('blur', () => hideTeamTooltip(g));
+    g.addEventListener('click', event => {
+      if (!inspectBeforeFollowing(event, g, d.t)) goToRosterDepth(d.t.name);
     });
-    g.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-    g.addEventListener('click', () => goToRosterDepth(d.t.name));
     g.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -1214,6 +1315,7 @@ function buildScatter() {
     g.setAttribute('tabindex', '0');
     g.setAttribute('role', 'link');
     g.setAttribute('aria-label', `View ${d.t.name} roster depth`);
+    g.setAttribute('aria-describedby', 'tooltip');
 
     svg.appendChild(g);
   });
@@ -1242,7 +1344,12 @@ function buildScatter() {
     lbl.setAttribute('tabindex', '0');
     lbl.setAttribute('role', 'link');
     lbl.setAttribute('aria-label', `View ${label.dot.t.name} roster depth`);
-    lbl.addEventListener('click', () => goToRosterDepth(label.dot.t.name));
+    lbl.setAttribute('aria-describedby', 'tooltip');
+    lbl.addEventListener('focus', () => showTeamTooltip(lbl, label.dot.t));
+    lbl.addEventListener('blur', () => hideTeamTooltip(lbl));
+    lbl.addEventListener('click', event => {
+      if (!inspectBeforeFollowing(event, lbl, label.dot.t)) goToRosterDepth(label.dot.t.name);
+    });
     lbl.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -1312,16 +1419,14 @@ function buildValueBars() {
     row.appendChild(labelDiv);
     row.appendChild(trackWrap);
     row.appendChild(valDiv);
-    row.addEventListener('mousemove', e => {
-      ttName.textContent = t.name;
-      ttAge.textContent = `MLB value: ${formatWholeValue(t.mlb)}`;
-      ttVal.textContent = `Farm value: ${formatWholeValue(t.farm)} · Total value: ${formatWholeValue(t.total)}`;
-      setMoveTooltip(t.scatter_move, t, { showMissing: false });
-      tooltip.style.display = 'block';
-      tooltip.style.left = (e.clientX + 14) + 'px';
-      tooltip.style.top = (e.clientY - 10) + 'px';
-    });
-    row.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    row.tabIndex = 0;
+    row.setAttribute('aria-label', `${t.name}: MLB value ${formatWholeValue(t.mlb)}, farm value ${formatWholeValue(t.farm)}, total ${formatWholeValue(t.total)}`);
+    row.setAttribute('aria-describedby', 'tooltip');
+    row.addEventListener('mousemove', e => showTeamTooltip(row, t, e, true));
+    row.addEventListener('mouseleave', () => hideTeamTooltip(row));
+    row.addEventListener('focus', () => showTeamTooltip(row, t, null, true));
+    row.addEventListener('blur', () => hideTeamTooltip(row));
+    row.addEventListener('click', event => inspectBeforeFollowing(event, row, t));
     barEl.appendChild(row);
   });
 }
