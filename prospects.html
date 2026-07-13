@@ -63,6 +63,11 @@
 }
 .mode-panel { display: none; }
 .mode-panel.active { display: block; }
+.mode-btn:focus-visible, .filter-btn:focus-visible, .tab-btn:focus-visible,
+.hot-row:focus-visible, .prospect-table tbody tr:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
 
 /* ── WINDOW LABEL ── */
 .window-label {
@@ -299,7 +304,22 @@
   transition: background 0.1s;
   cursor: pointer;
 }
-.prospect-table tbody tr:hover { background: var(--bg2); }
+.prospect-table tbody tr:hover,
+.prospect-table tbody tr:focus-visible { background: var(--bg2); }
+.player-detail-button {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.player-detail-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
 .prospect-table tbody tr.flash-row {
   background: rgba(200, 168, 75, 0.18);
   animation: flashRow 1.6s ease-out 1;
@@ -410,6 +430,7 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
   color: var(--text-muted);
   font-size: 14px;
 }
+.filter-status { margin: -6px 0 16px; color: var(--text-muted); font-size: 12px; }
 
 @media (max-width: 680px) {
   .site-header, .content, .site-footer {
@@ -446,13 +467,13 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
   <div id="loadingMsg" class="state-msg">Loading prospect data…</div>
   <div id="mainContent" style="display:none;">
 
-    <div class="mode-bar" id="modeBar">
-      <button class="mode-btn active" data-mode="desk">Desk</button>
-      <button class="mode-btn" data-mode="radar">Radar</button>
+    <div class="mode-bar" id="modeBar" role="tablist" aria-label="Prospect Desk views">
+      <button class="mode-btn active" id="tab-desk" type="button" role="tab" aria-selected="true" aria-controls="mode-desk" tabindex="0" data-mode="desk">Desk</button>
+      <button class="mode-btn" id="tab-radar" type="button" role="tab" aria-selected="false" aria-controls="mode-radar" tabindex="-1" data-mode="radar">Radar</button>
     </div>
 
     <!-- ── Desk ── -->
-    <div class="mode-panel active" id="mode-desk">
+    <div class="mode-panel active" id="mode-desk" role="tabpanel" aria-labelledby="tab-desk">
       <div class="window-label">14-day window<span class="window-range" id="windowRange"></span></div>
       <div class="tab-bar" id="categoryBar"></div>
       <div class="hot-grid single">
@@ -465,17 +486,18 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
     </div>
 
     <!-- ── Radar ── -->
-    <div class="mode-panel" id="mode-radar">
+    <div class="mode-panel" id="mode-radar" role="tabpanel" aria-labelledby="tab-radar" hidden>
       <div class="filter-bar">
         <span class="filter-label">Show</span>
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="hitting">Hitters</button>
-        <button class="filter-btn" data-filter="pitching">Pitchers</button>
+        <button class="filter-btn active" type="button" aria-pressed="true" data-filter="all">All</button>
+        <button class="filter-btn" type="button" aria-pressed="false" data-filter="hitting">Hitters</button>
+        <button class="filter-btn" type="button" aria-pressed="false" data-filter="pitching">Pitchers</button>
       </div>
       <div class="filter-bar owner-filter">
         <span class="filter-label">Owners</span>
         <div class="tab-bar" id="ownerBar"></div>
       </div>
+      <p class="filter-status" id="filterStatus" role="status" aria-live="polite"></p>
       <div id="panels"></div>
     </div>
 
@@ -510,6 +532,8 @@ let selectedCategory = 'OPS';
 const selectedOwners = new Set();
 let prospectData = null;
 let radarSort = { key: 'rank', dir: 'asc' };
+let activeMode = 'desk';
+let modalReturnFocus = null;
 
 const CATEGORY_META = {
   OPS:  { title: 'OPS Leaders',  sub: 'Top OPS · last 14 days · min 30 PA', group: 'hitting',  fmt: fmt3,  note: p => `${p.stats_last14?.pa ?? '—'} PA` },
@@ -551,13 +575,11 @@ function buildUI(data) {
 
   // Mode tabs
   document.querySelectorAll('.mode-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('mode-' + btn.dataset.mode).classList.add('active');
-    });
+    btn.addEventListener('click', () => setMode(btn.dataset.mode, true));
+    btn.addEventListener('keydown', handleModeKeydown);
   });
+  setMode(new URLSearchParams(window.location.search).get('view') === 'radar' ? 'radar' : 'desk', false);
+  window.addEventListener('popstate', syncModeFromUrl);
 
   // Desk category pills + leaders
   buildCategoryBar(categories);
@@ -567,6 +589,7 @@ function buildUI(data) {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
       btn.classList.add('active');
       currentFilter = btn.dataset.filter;
       renderRadarPanel();
@@ -579,6 +602,8 @@ function buildUI(data) {
   (prospectData.filters.owners || []).forEach(owner => {
     const btn = document.createElement('button');
     btn.className = 'tab-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', 'false');
     btn.dataset.owner = owner;
     const count = prospectData.players.filter(p => p.owner === owner).length;
     btn.innerHTML = esc(owner) + `<span class="tab-count">${count}</span>`;
@@ -631,11 +656,14 @@ function buildCategoryBar(categories) {
   categories.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'tab-btn' + (cat === selectedCategory ? ' active' : '');
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', String(cat === selectedCategory));
     btn.dataset.category = cat;
     btn.textContent = cat;
     btn.addEventListener('click', () => {
       selectedCategory = cat;
       document.querySelectorAll('#categoryBar .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.category === cat));
+      document.querySelectorAll('#categoryBar .tab-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.category === cat)));
       renderCategoryLeaders();
     });
     bar.appendChild(btn);
@@ -653,6 +681,7 @@ function renderCategoryLeaders() {
 function refreshOwnerButtons() {
   document.querySelectorAll('#ownerBar .tab-btn').forEach(btn => {
     btn.classList.toggle('active', selectedOwners.has(btn.dataset.owner));
+    btn.setAttribute('aria-pressed', String(selectedOwners.has(btn.dataset.owner)));
   });
 }
 
@@ -678,6 +707,7 @@ function renderRadarPanel() {
   const countTxt = (currentFilter === 'all')
     ? `${shown} of ${total} prospects`
     : `${shown} of ${total} ${currentFilter === 'hitting' ? 'hitters' : 'pitchers'}`;
+  document.getElementById('filterStatus').textContent = `${countTxt}. ${ownerLabel}.`;
   panel.innerHTML = `
     <div class="panel-header">
       <div class="panel-team">Radar</div>
@@ -685,6 +715,43 @@ function renderRadarPanel() {
       <div class="panel-count">${esc(ownerLabel)}</div>
     </div>
     ${buildTable(filtered, currentFilter, true)}`;
+}
+
+function setMode(mode, updateHistory = false) {
+  activeMode = mode === 'radar' ? 'radar' : 'desk';
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    const selected = btn.dataset.mode === activeMode;
+    btn.classList.toggle('active', selected);
+    btn.setAttribute('aria-selected', String(selected));
+    btn.tabIndex = selected ? 0 : -1;
+  });
+  document.querySelectorAll('.mode-panel').forEach(panel => {
+    const selected = panel.id === 'mode-' + activeMode;
+    panel.classList.toggle('active', selected);
+    panel.hidden = !selected;
+  });
+  if (updateHistory) {
+    const url = new URL(window.location.href);
+    if (activeMode === 'desk') url.searchParams.delete('view');
+    else url.searchParams.set('view', activeMode);
+    history.pushState({ view: activeMode }, '', url);
+  }
+}
+
+function syncModeFromUrl() {
+  setMode(new URLSearchParams(window.location.search).get('view') === 'radar' ? 'radar' : 'desk', false);
+}
+
+function handleModeKeydown(e) {
+  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+  e.preventDefault();
+  const tabs = [...document.querySelectorAll('.mode-btn')];
+  let index = tabs.indexOf(e.currentTarget);
+  if (e.key === 'Home') index = 0;
+  else if (e.key === 'End') index = tabs.length - 1;
+  else index = (index + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+  tabs[index].focus();
+  setMode(tabs[index].dataset.mode, true);
 }
 
 function applyRadarSort(key) {
@@ -861,11 +928,14 @@ function buildTable(prospects, filter, includeOwner) {
     const etaTxt = p.eta ? p.eta : '—';
     const etaClass = p.eta ? 'eta-cell' : 'eta-cell dim';
 
+    const playerLabel = `View Oracle rank history for ${p.name}, ${p.owner || 'unowned'}, ${p.positions || 'position unavailable'}, rank ${p.rank || 'unranked'}`;
     const identityCells = `
       <td><span class="p-rank ${rankClass}">${rankStr}</span></td>
       <td>
-        <span class="p-name">${esc(p.name)}</span>
-        <span class="p-org">${esc(p.org)}</span>
+        <button class="player-detail-button" type="button" aria-label="${esc(playerLabel)}" data-player-name="${esc(p.name)}">
+          <span class="p-name">${esc(p.name)}</span>
+          <span class="p-org">${esc(p.org)}</span>
+        </button>
       </td>
       ${includeOwner ? `<td class="owner">${esc(p.owner || '')}</td>` : ''}
       <td><span class="level-badge ${lvlClass}">${esc(p.level)}</span></td>
@@ -926,7 +996,7 @@ function buildTable(prospects, filter, includeOwner) {
       statCells = groupCell + opsCell + eraCell + l14Cell;
     }
 
-    return `<tr data-player-name="${esc(p.name)}" title="View Oracle rank history for ${esc(p.name)}">${identityCells}${statCells}</tr>`;
+    return `<tr>${identityCells}${statCells}</tr>`;
   }).join('');
 
   return `
@@ -1045,9 +1115,7 @@ function wireDeskToModal() {
 
 function goToRadarPlayer(playerName, teamName) {
   // Switch mode → Radar
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === 'radar'));
-  document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('mode-radar').classList.add('active');
+  setMode('radar', false);
 
   // Show the full pool so Desk row navigation never depends on a synthetic tab.
   selectedOwners.clear();
@@ -1105,9 +1173,9 @@ function wireRadarToModal() {
   const panels = document.getElementById('panels');
   if (!panels) return;
   panels.addEventListener('click', (e) => {
-    const tr = e.target.closest('tr[data-player-name]');
-    if (!tr) return;
-    openPlayerModal(tr.dataset.playerName);
+    const button = e.target.closest('.player-detail-button[data-player-name]');
+    if (!button) return;
+    openPlayerModal(button.dataset.playerName);
   });
 }
 
@@ -1116,8 +1184,21 @@ function wireModalCloseHandlers() {
     node.addEventListener('click', closePlayerModal);
   });
   window.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('playerModal');
+    if (!modal?.classList.contains('open')) return;
     if (e.key === 'Escape') closePlayerModal();
+    else if (e.key === 'Tab') trapModalFocus(e, modal);
   });
+}
+
+function trapModalFocus(e, modal) {
+  const focusable = [...modal.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')]
+    .filter(node => !node.hidden && node.offsetParent !== null);
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 }
 
 function closePlayerModal() {
@@ -1128,6 +1209,8 @@ function closePlayerModal() {
   if (window.location.hash.startsWith('#player=')) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
+  if (modalReturnFocus?.isConnected) modalReturnFocus.focus();
+  modalReturnFocus = null;
 }
 
 async function openPlayerModal(playerName, updateHash = true) {
@@ -1140,8 +1223,11 @@ async function openPlayerModal(playerName, updateHash = true) {
   const chart = document.getElementById('playerModalChart');
   if (!modal) return;
 
+  modalReturnFocus = document.activeElement;
+
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
+  document.querySelector('[data-close-player-modal]').focus();
   title.textContent = 'Loading';
   meta.textContent = '';
   stats.innerHTML = '';
