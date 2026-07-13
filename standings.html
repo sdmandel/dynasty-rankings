@@ -8,11 +8,11 @@
 <title>Standings — Backyard Dynasty Baseball 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<meta name="description" content="Live roto standings and category breakdown for all 12 teams in Backyard Dynasty Baseball 2026.">
+<meta name="description" content="Roto standings and category breakdown for all 12 teams in Backyard Dynasty Baseball 2026.">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Standings — Backyard Dynasty Baseball 2026">
-<meta property="og:description" content="Live roto standings and category breakdown for all 12 teams.">
+<meta property="og:description" content="Roto standings and category breakdown for all 12 teams.">
 <meta property="og:url" content="https://baseball.stephenmandella.com/standings.html">
 <meta property="og:image" content="https://baseball.stephenmandella.com/preview_hub.png">
 <meta property="og:site_name" content="Backyard Dynasty Baseball">
@@ -350,7 +350,8 @@ body {
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Roto<br><span>Standings</span></h1>
   <div class="divider"></div>
-  <p>5&times;5 roto points. Category leaders highlighted in gold. Updated hourly.</p>
+  <p>5&times;5 roto points. Category leaders highlighted in gold.</p>
+  <div class="freshness" id="freshnessEl"><span class="freshness__status">Checking status</span><span class="freshness__details">Update time unavailable</span></div>
 </div>
 
 <div class="content">
@@ -406,9 +407,10 @@ body {
 </div>
 
 <div class="site-footer" id="footerEl">
-  Standings data from Fantrax. Updated multiple times per day via automated snapshots.
+  Standings data from Fantrax automated snapshots.
 </div>
 
+<script src="assets/freshness.js"></script>
 <script>
 const standingsUrl = 'data/standings.json?ts=' + Date.now();
 
@@ -423,11 +425,13 @@ fetch(standingsUrl, { cache: 'no-store' })
     renderLeaders(data);
     renderSummary(data);
     renderCategories(data);
+    SiteFreshness.render('#freshnessEl', { timestamp: data.generated_at || data.generated, source: 'Fantrax', currentHours: 6, delayedHours: 24 });
     document.getElementById('footerEl').textContent =
       'Last updated: ' + (data.generated_at || data.generated) + (data.week ? '  ·  Scoring period ' + data.week : '') +
       '  ·  Standings from Fantrax.';
   })
   .catch(err => {
+    SiteFreshness.render('#freshnessEl', { source: 'Fantrax' });
     document.getElementById('loadingMsg').textContent = 'Could not load standings data. (' + err.message + ')';
   });
 

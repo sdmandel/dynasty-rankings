@@ -347,7 +347,8 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Trans<br><span>actions</span></h1>
   <div class="divider"></div>
-  <p>Recent adds, drops, and trades across all 12 teams. Updated every 6 hours. Minor leaguer adds are tagged as prospects.</p>
+  <p>Recent adds, drops, and trades across all 12 teams. Minor leaguer adds are tagged as prospects.</p>
+  <div class="freshness" id="freshnessEl"><span class="freshness__status">Checking status</span><span class="freshness__details">Update time unavailable</span></div>
 </div>
 
 <div class="content">
@@ -389,9 +390,10 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
 </div>
 
 <div class="site-footer" id="footerEl">
-  Transaction data from Fantrax. Updated every 6 hours via automated export.
+  Transaction data from Fantrax automated exports.
 </div>
 
+<script src="assets/freshness.js"></script>
 <script>
 const PAGE_SIZE = 50;
 let ALL_TXNS = [];
@@ -458,6 +460,7 @@ fetch('data/transactions.json')
     document.getElementById('mainContent').style.display = '';
     document.getElementById('footerEl').textContent =
       'Last updated: ' + data.generated + '  ·  ' + ALL_TXNS.length + ' transactions on record.';
+    SiteFreshness.render('#freshnessEl', { timestamp: data.generated_at || data.generated, source: 'Fantrax', currentHours: 12, delayedHours: 36 });
     renderList(filterTxns(ALL_TXNS, activeFilter));
     setupFilters();
     document.getElementById('showMoreBtn').addEventListener('click', () => {
@@ -466,6 +469,7 @@ fetch('data/transactions.json')
     });
   })
   .catch(err => {
+    SiteFreshness.render('#freshnessEl', { source: 'Fantrax' });
     document.getElementById('loadingMsg').textContent = 'Could not load transaction data. (' + err.message + ')';
   });
 

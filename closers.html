@@ -87,7 +87,8 @@ html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; borde
   <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; 2026 Season</div>
   <h1>Closer<br><span>Carousel</span></h1>
   <div class="divider"></div>
-  <p>Current save leaders by MLB bullpen. Confidence sourced from real-world projections.</p>
+  <p>Save leaders by MLB bullpen. Confidence sourced from real-world projections.</p>
+  <div class="freshness" id="freshnessEl"><span class="freshness__status">Checking status</span><span class="freshness__details">Update time unavailable</span></div>
 </div>
 <div class="content">
   <div id="loadingMsg" class="state-msg">Loading closer data...</div>
@@ -113,6 +114,7 @@ html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; borde
   </div>
 </div>
 <div class="site-footer" id="footerEl">Closer data from MLB Stats API season save leaders + FantasyPros/FanGraphs role confidence. Dynasty ownership from Oracle rankings.</div>
+<script src="assets/freshness.js"></script>
 <script>
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function pct(v){return Math.round(Number(v||0));}
@@ -142,6 +144,7 @@ function closerCard(item, highlight){
 }
 
 function render(data){
+  SiteFreshness.render('#freshnessEl', { timestamp: data.generated_at || data.generated || data.snapshot_date, source: 'MLB Stats API, FantasyPros and FanGraphs', currentHours: 24, delayedHours: 72 });
   const closers=data.closers||[];
   const topN=closers.filter(c=>!c.unstable_flag&&c.confidence_score>=65).slice(0,6);
   document.getElementById('topClosers').innerHTML=topN.map(c=>closerCard(c,true)).join('')||'<div class="state-msg">No high-confidence closers yet.</div>';
@@ -182,6 +185,7 @@ fetch('data/closers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status);
   document.getElementById('mainContent').style.display='';
   render(data);
 }).catch(err=>{
+  SiteFreshness.render('#freshnessEl', { source: 'MLB Stats API, FantasyPros and FanGraphs' });
   document.getElementById('loadingMsg').textContent='Could not load closer data. ('+err.message+')';
 });
 </script>

@@ -439,6 +439,7 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
   <h1>Prospect<br><span>Desk</span></h1>
   <div class="divider"></div>
   <p>The Desk surfaces category leaders across a 14-day MiLB momentum window; Radar filters the full prospect pool with ETA and rolling stats.</p>
+  <div class="freshness" id="freshnessEl"><span class="freshness__status">Checking status</span><span class="freshness__details">Update time unavailable</span></div>
 </div>
 
 <div class="content">
@@ -502,6 +503,7 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
 </div>
 
 <script src="assets/fangraphs-links.js"></script>
+<script src="assets/freshness.js"></script>
 <script>
 let currentFilter = 'all';
 let selectedCategory = 'OPS';
@@ -528,9 +530,11 @@ fetch('data/prospects.json')
     document.getElementById('mainContent').style.display = '';
     document.getElementById('footerEl').textContent =
       'Last updated: ' + data.generated + '  ·  Oracle prospect rankings & MLB Stats API (MiLB).';
+    SiteFreshness.render('#freshnessEl', { timestamp: data.generated_at || data.generated, source: 'Oracle rankings and MLB Stats API', currentHours: 192, delayedHours: 336 });
     buildUI(data);
   })
   .catch(err => {
+    SiteFreshness.render('#freshnessEl', { source: 'Oracle rankings and MLB Stats API' });
     document.getElementById('loadingMsg').textContent = 'Could not load prospect data. (' + err.message + ')';
   });
 
