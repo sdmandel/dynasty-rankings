@@ -551,6 +551,34 @@ def test_analytics_loader_is_present_everywhere() -> None:
             assert 'src="assets/analytics.js"' in html, f"{html_file.name} missing inline analytics tag"
 
 
+def test_shared_shell_exposes_accessible_grouped_navigation() -> None:
+    shell_js = _read(ROOT / "assets" / "site-shell.js")
+    nav_css = _read(ROOT / "assets" / "nav.css")
+
+    for section in ("Overview", "League", "Players", "Editorial"):
+        assert f'label: "{section}"' in shell_js
+    for destination in (
+        "index.html", "standings.html", "transactions.html", "team_intel.html",
+        "franchise_history.html", "rules.html", "roster_depth.html", "prospects.html",
+        "closers.html", "power_rankings.html",
+    ):
+        assert destination in shell_js
+    assert 'nav.setAttribute("aria-label", "Site navigation")' in shell_js
+    assert 'link.setAttribute("aria-current", "page")' in shell_js
+    assert 'skipLink.textContent = "Skip to main content"' in shell_js
+    assert 'event.key === "Escape"' in shell_js
+    assert "restoreFocus: true" in shell_js
+    assert "@media (prefers-reduced-motion: reduce)" in nav_css
+    assert "min-height: 44px" in nav_css
+
+
+def test_shared_shell_footer_is_only_a_fallback() -> None:
+    shell_js = _read(ROOT / "assets" / "site-shell.js")
+
+    assert 'document.querySelector("footer, .site-footer, .footer")' in shell_js
+    assert 'footer.className = "site-shell-footer"' in shell_js
+
+
 def test_standings_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "standings.json"))
     assert "generated" in data
