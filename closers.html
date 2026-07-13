@@ -40,6 +40,8 @@
 .fill-mid  { background:var(--gold); }
 .fill-low  { background:var(--text-dead); }
 .conf-value { font-family:var(--font-display); font-size:15px; line-height:1; color:var(--text-muted); text-align:right; }
+.role-state { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding-top:9px; border-top:1px solid var(--border); font-size:11px; color:var(--text-muted); }
+.role-state strong { color:var(--text); font-weight:700; }
 .tag-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
 .tag { font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--border2); border-radius:999px; padding:3px 8px; color:var(--text-muted); }
 .tag.unstable { color:var(--red); border-color:var(--danger-tint-border); background:var(--danger-tint-soft); }
@@ -50,20 +52,32 @@
 .dynasty-closers { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
 .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 0 -4px 30px; scrollbar-width:thin; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
+.table-caption { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 thead th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 8px 10px 0; border-bottom:1px solid var(--border2); white-space:nowrap; }
 thead th:first-child { padding-left:0; }
 thead th.right, tbody td.right { text-align:right; }
 tbody tr { border-bottom:1px solid var(--border); transition: background 0.1s; }
 tbody tr:hover { background: var(--bg2); }
-tbody td { padding:9px 8px 9px 0; color:var(--text); white-space:nowrap; }
+tbody td, tbody th { padding:9px 8px 9px 0; color:var(--text); white-space:nowrap; text-align:left; }
 tbody td:first-child { padding-left:0; }
+tbody th { font-weight:500; }
 tbody td.right { color:var(--text-muted); font-size:12px; font-variant-numeric: tabular-nums; }
 .board-row td:nth-child(2) { color:var(--text); font-weight:500; }
 .p-rank { font-family:var(--font-display); font-size:18px; color:var(--text-dead); min-width:44px; display:inline-block; text-align:right; }
 .p-rank.top100 { color:var(--gold); }
 .p-rank.top200 { color:var(--text-mid); }
 .p-rank.unranked { color:var(--text-dead); font-size:12px; }
-@media (max-width:680px){ table { font-size:12px; } thead th, tbody td { padding-right:6px; } }
+.retry-btn { margin-left:4px; border:1px solid var(--border2); border-radius:4px; padding:6px 10px; background:var(--bg2); color:var(--text); font:inherit; font-weight:700; cursor:pointer; }
+.retry-btn:hover { border-color:var(--gold); color:var(--gold); }
+.retry-btn:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+@media (max-width:680px){
+  table { min-width:760px; font-size:12px; }
+  thead th, tbody td { padding-right:6px; }
+  thead th:nth-child(2), tbody th:nth-child(2) { position:sticky; left:0; z-index:1; padding-left:8px; background:var(--bg); box-shadow:1px 0 0 var(--border2); }
+  thead th:nth-child(2) { z-index:2; }
+  tbody tr:hover th:nth-child(2) { background:var(--bg2); }
+  .table-wrap { margin-right:-20px; padding-right:20px; }
+}
 .owner-pill {
   display:inline-block;
   font-size:10px;
@@ -91,7 +105,7 @@ html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; borde
   <div class="freshness" id="freshnessEl"><span class="freshness__status">Checking status</span><span class="freshness__details">Update time unavailable</span></div>
 </div>
 <div class="content">
-  <div id="loadingMsg" class="state-msg">Loading closer data...</div>
+  <div id="loadingMsg" class="state-msg" role="status" aria-live="polite">Loading closer data...</div>
   <div id="mainContent" style="display:none;">
 
     <div class="section-label">High Confidence Closers</div>
@@ -103,9 +117,10 @@ html[data-theme="light"] .board-row.available .owner-pill { color:#2a7a4a; borde
     <div class="section-label">Full Board</div>
     <div class="table-wrap">
       <table class="table">
+        <caption class="table-caption">MLB closer roles, dynasty ownership, saves, confidence, role share, and bullpen stability.</caption>
         <thead><tr>
-          <th class="right">Rank</th><th>Closer</th><th>MLB Team</th><th>Dynasty Team</th>
-          <th class="right">Saves</th><th class="right">Confidence</th><th class="right">Role Share</th><th>Flags</th>
+          <th scope="col" class="right">Rank</th><th scope="col">Closer</th><th scope="col">MLB Team</th><th scope="col">Dynasty Team</th>
+          <th scope="col" class="right">Saves</th><th scope="col" class="right">Confidence</th><th scope="col" class="right">Role Share</th><th scope="col">Flags</th>
         </tr></thead>
         <tbody id="boardBody"></tbody>
       </table>
@@ -121,6 +136,7 @@ function pct(v){return Math.round(Number(v||0));}
 function confClass(c){ return c>=65?'high':c>=35?'mid':'low'; }
 function fillClass(c){ return 'fill-'+confClass(c); }
 function confLabel(c){ return c>=65?'Strong':c>=35?'Medium':'Weak'; }
+function roleLabel(share){ const value=pct(share); return value>=70?'Clear lead':value>=45?'Shared role':'Committee role'; }
 
 function closerCard(item, highlight){
   const cc=confClass(item.confidence_score);
@@ -139,6 +155,7 @@ function closerCard(item, highlight){
       <div class="track"><div class="fill ${fillClass(item.confidence_score)}" style="--confidence:${pct(item.confidence_score)}%"></div></div>
       <div class="conf-value">${pct(item.confidence_score)}</div>
     </div>
+    <div class="role-state"><span>Role state</span><strong>${confLabel(item.confidence_score)} confidence · ${roleLabel(item.role_share)}</strong></div>
     ${tags.length?`<div class="tag-row">${tags.join('')}</div>`:''}
   </div>`;
 }
@@ -167,7 +184,7 @@ function render(data){
     const rankTxt = rank == null ? '—' : '#' + rank;
     return `<tr class="board-row ${rowCls}">
     <td class="right"><span class="p-rank ${rankCls}">${rankTxt}</span></td>
-    <td>${esc(c.closer_name||'—')}</td>
+    <th scope="row">${esc(c.closer_name||'—')}</th>
     <td>${esc(c.bullpen_team||'—')}</td>
     <td><span class="owner-pill">${ownerTxt}</span></td>
     <td class="right">${c.recent_saves}</td>
@@ -180,14 +197,22 @@ function render(data){
   document.getElementById('footerEl').textContent=`Last updated: ${data.generated||'—'} · Save data from MLB Stats API with FantasyPros/FanGraphs confidence.`;
 }
 
-fetch('data/closers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
-  document.getElementById('loadingMsg').style.display='none';
-  document.getElementById('mainContent').style.display='';
-  render(data);
-}).catch(err=>{
-  SiteFreshness.render('#freshnessEl', { source: 'MLB Stats API, FantasyPros and FanGraphs' });
-  document.getElementById('loadingMsg').textContent='Could not load closer data. ('+err.message+')';
-});
+function loadClosers(){
+  const loading=document.getElementById('loadingMsg');
+  loading.setAttribute('role','status');
+  loading.textContent='Loading closer data...';
+  fetch('data/closers.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
+    loading.style.display='none';
+    document.getElementById('mainContent').style.display='';
+    render(data);
+  }).catch(err=>{
+    SiteFreshness.render('#freshnessEl', { source: 'MLB Stats API, FantasyPros and FanGraphs' });
+    loading.setAttribute('role','alert');
+    loading.innerHTML=`Could not load closer data. Check your connection, then <button type="button" class="retry-btn" id="retryClosers">retry</button>. <span class="sr-only">${esc(err.message)}</span>`;
+    document.getElementById('retryClosers').addEventListener('click',loadClosers,{once:true});
+  });
+}
+loadClosers();
 </script>
 <script src="assets/feedback.js"></script>
 <script src="assets/site-shell.js" defer></script>
