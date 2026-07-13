@@ -98,7 +98,7 @@ def _fetch_completed_game_pks(season: int) -> list[int]:
     ]
 
 
-def _boxscore_qs(game_pk: int) -> list[tuple[str, bool]]:
+def _boxscore_qs(game_pk: int) -> tuple[list[tuple[str, bool]], str | None]:
     """Return (normalize_name, is_qs) pairs for each starting pitcher in this game."""
     try:
         resp = requests.get(
@@ -108,8 +108,8 @@ def _boxscore_qs(game_pk: int) -> list[tuple[str, bool]]:
         )
         resp.raise_for_status()
         bs = resp.json()
-    except Exception:
-        return []
+    except (requests.RequestException, ValueError, TypeError, KeyError) as exc:
+        return [], f"{type(exc).__name__}: {exc}"
 
     results = []
     for side in ("home", "away"):
@@ -126,7 +126,7 @@ def _boxscore_qs(game_pk: int) -> list[tuple[str, bool]]:
             ip = _ip_to_float(ps.get("inningsPitched", "0"))
             er = int(ps.get("earnedRuns") or 0)
             results.append((normalize_name(name), ip >= 6.0 and er <= 3))
-    return results
+    return results, None
 
 
 def _compute_qs(season: int) -> dict[str, int]:
@@ -134,14 +134,27 @@ def _compute_qs(season: int) -> dict[str, int]:
     game_pks = _fetch_completed_game_pks(season)
     print(f"Computing QS from {len(game_pks)} completed games ({_QS_WORKERS} workers)...")
     qs: dict[str, int] = {}
+    failures: list[tuple[int, str]] = []
     with ThreadPoolExecutor(max_workers=_QS_WORKERS) as pool:
         futures = {pool.submit(_boxscore_qs, pk): pk for pk in game_pks}
         for i, future in enumerate(as_completed(futures), 1):
-            for key, is_qs in future.result():
+            rows, error = future.result()
+            if error:
+                failures.append((futures[future], error))
+            for key, is_qs in rows:
                 if is_qs:
                     qs[key] = qs.get(key, 0) + 1
             if i % 100 == 0:
                 print(f"  {i}/{len(game_pks)} boxscores processed")
+    failure_limit = max(3, round(len(game_pks) * 0.01))
+    if len(failures) > failure_limit:
+        sample = "; ".join(f"{game_pk}: {error}" for game_pk, error in failures[:3])
+        raise RuntimeError(
+            f"QS boxscore fetch failed for {len(failures)}/{len(game_pks)} games; "
+            f"refusing to publish partial data. Sample: {sample}"
+        )
+    if failures:
+        print(f"Warning: {len(failures)} boxscores failed within tolerance")
     print(f"QS computed: {len(qs)} pitchers with ≥1 QS")
     return qs
 

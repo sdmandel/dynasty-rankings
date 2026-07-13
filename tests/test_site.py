@@ -265,25 +265,26 @@ def test_weekly_power_rankings_mobile_content_is_contained() -> None:
     assert 'class="site-shell-back-link"' not in week10
 
 
-def test_pages_deploy_triggers_on_generated_public_payloads() -> None:
+def test_pages_deploy_triggers_cover_every_public_page_and_payload() -> None:
+    workflow = _read(DEPLOY_WORKFLOW)
+    assert '- "*.html"' in workflow, "all root HTML routes must trigger deployment"
+    assert '- "data/*.json"' in workflow, "all public JSON payloads must trigger deployment"
+
+    assert HTML_FILES, "expected at least one public HTML route"
+    assert list((ROOT / "data").glob("*.json")), "expected at least one public JSON payload"
+
+
+def test_pages_deploy_triggers_cover_public_assets_and_site_sources() -> None:
     workflow = _read(DEPLOY_WORKFLOW)
     for path in (
-        "data/standings.json",
-        "data/transactions.json",
-        "data/trade_block.json",
-        "data/franchises.json",
-        "data/home_preview.json",
-        "data/league_intelligence.json",
-        "data/managers.json",
-        "data/oracle_public.json",
-        "data/rivalries.json",
-        "data/rules.json",
-        "data/site_manifest.json",
-        "data/site_updates.json",
-        "llms.txt",
-        "robots.txt",
-        "sitemap.xml",
-        "index.html",
+        "*.txt",
+        "*.xml",
+        "assets/**",
+        "media/**",
+        "templates/**",
+        "scripts/**",
+        "tests/**",
+        ".github/workflows/deploy-pages-on-release.yml",
     ):
         assert f'- "{path}"' in workflow, f"Pages deploy workflow must include {path}"
 

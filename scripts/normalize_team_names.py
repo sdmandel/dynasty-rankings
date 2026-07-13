@@ -43,15 +43,14 @@ def normalize(value: object, mapping: dict[str, str]) -> object:
         out: dict[object, object] = {}
         for key, item in value.items():
             new_key = mapping.get(key, key) if isinstance(key, str) else key
+            if new_key in out:
+                raise ValueError(f"Team-name normalization would overwrite key: {new_key!r}")
             out[new_key] = normalize(item, mapping)
         return out
     if isinstance(value, list):
         return [normalize(item, mapping) for item in value]
     if isinstance(value, str):
-        text = value
-        for alias, display in mapping.items():
-            text = text.replace(alias, display)
-        return text
+        return mapping.get(value, value)
     return value
 
 
