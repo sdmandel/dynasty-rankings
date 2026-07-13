@@ -569,6 +569,7 @@ def test_shared_shell_exposes_accessible_grouped_navigation() -> None:
     assert 'skipLink.textContent = "Skip to main content"' in shell_js
     assert 'event.key === "Escape"' in shell_js
     assert "restoreFocus: true" in shell_js
+    assert "if (other !== group) other.open = false;" in shell_js
     assert "@media (prefers-reduced-motion: reduce)" in nav_css
     assert "min-height: 44px" in nav_css
 

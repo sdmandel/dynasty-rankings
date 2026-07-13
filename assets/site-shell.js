@@ -116,6 +116,14 @@
     group.append(summary, list);
     menu.appendChild(group);
   });
+  menu.querySelectorAll('.global-nav-group').forEach((group) => {
+    group.addEventListener('toggle', () => {
+      if (!group.open) return;
+      menu.querySelectorAll('.global-nav-group[open]').forEach((other) => {
+        if (other !== group) other.open = false;
+      });
+    });
+  });
   inner.appendChild(menu);
 
   const STORAGE_KEY = "pr-theme";
