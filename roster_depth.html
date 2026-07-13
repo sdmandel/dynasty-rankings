@@ -378,6 +378,58 @@ tbody tr.team-target {
 
 .count-empty { color: var(--text-dead); font-size: 14px; }
 
+.mobile-depth { display: none; }
+.mobile-team {
+  border-bottom: 1px solid var(--depth-row-border);
+}
+.mobile-team summary {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 52px;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.mobile-team summary::-webkit-details-marker { display: none; }
+.mobile-team summary::after {
+  content: '+';
+  color: var(--gold);
+  font-size: 20px;
+  line-height: 1;
+}
+.mobile-team[open] summary::after { content: '\2212'; }
+.mobile-team-rank {
+  color: var(--depth-rank);
+  font-family: var(--font-display);
+  font-size: 22px;
+  text-align: center;
+}
+.mobile-team-name { min-width: 0; }
+.mobile-team-name .tname { font-size: 16px; }
+.mobile-positions { padding: 2px 0 16px 46px; }
+.mobile-position {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid var(--depth-row-border);
+}
+.mobile-position-label {
+  padding-top: 4px;
+  color: var(--text-dead);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.mobile-position-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mobile-position-players .pill { margin: 0; min-height: 30px; }
+
 .footnote {
   max-width: 1100px;
   margin: 24px auto 0;
@@ -391,18 +443,20 @@ tbody tr.team-target {
 
 @media (max-width: 700px) {
   .site-header, .depth-shell, .legend-card, .footnote { padding-left: 16px; padding-right: 16px; }
-  .sticky-bar-wrap { top: 52px; }
+  .depth-shell { padding-top: 12px; }
+  .sticky-bar-wrap, .table-wrap { display: none; }
+  .mobile-depth { display: block; }
 }
 </style>
 </head>
 <body>
 
 <div class="site-header">
-  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Week 9 &nbsp;&#183;&nbsp; May 25, 2026</div>
+  <div class="eyebrow">Backyard Dynasty Baseball &nbsp;&#183;&nbsp; Updated July 12, 2026 &nbsp;&#183;&nbsp; Time unavailable</div>
   <h1>Roster<br><span>Depth</span></h1>
   <div class="divider"></div>
   <p>
-    Full positional breakdown for all 12 teams. Each badge is one rostered player; hover for name and Oracle rank.
+    Full positional breakdown for all 12 teams. Select any player for their name, Oracle rank, and rank history.
     Sorted by Oracle composite score, descending. <strong>Rankings powered by the Oracle.</strong>
   </p>
 </div>
@@ -425,6 +479,7 @@ tbody tr.team-target {
 </div>
 
 <div class="depth-shell">
+<div class="mobile-depth" id="mobileDepth" aria-label="Roster depth by team"></div>
 <div class="sticky-bar-wrap">
   <div class="sticky-bar-scroll" id="stickyBarScroll">
     <table class="sticky-bar" aria-hidden="true">
@@ -575,7 +630,7 @@ tbody tr.team-target {
 </div>
 
 <div class="footnote">
-  Generated May 25, 2026 &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings &nbsp;·&nbsp;
+  Roster snapshot updated July 12, 2026; exact time unavailable &nbsp;·&nbsp; Scores are Oracle composite dynasty rankings &nbsp;·&nbsp;
   Δ indicates week-over-week rank change &nbsp;·&nbsp;
   Risers <span style="color:#5d7db5;font-style:normal">↑</span> and
   fallers <span style="color:#b55d5d;font-style:normal">↓</span> shown on pills that moved 100+ spots &nbsp;·&nbsp;
@@ -627,6 +682,69 @@ tbody tr.team-target {
 
   let activePill = null;
   let trajectoryData = null;
+  let modalTrigger = null;
+
+  const positionNames = ['C', '1B', '2B', '3B', 'SS', 'OF', 'P', 'PICK'];
+  const tierNames = { t1: 'Elite', t2: 'Core', t3: 'Solid', t4: 'Depth', t5: 'Fringe' };
+  const describePill = (pill, position, team) => {
+    const base = pill.dataset.tooltip || pill.textContent.trim();
+    const tier = Object.keys(tierNames).find((name) => pill.classList.contains(name));
+    const kind = pill.classList.contains('pick-pill') ? 'draft pick' : 'player';
+    return `${base}; ${team}; ${position}; ${tier ? `${tierNames[tier]} tier; ` : ''}${kind}`;
+  };
+
+  const makeButton = (pill, position, team) => {
+    const button = document.createElement('button');
+    Array.from(pill.attributes).forEach((attr) => {
+      if (!['role', 'tabindex', 'aria-label'].includes(attr.name)) button.setAttribute(attr.name, attr.value);
+    });
+    button.type = 'button';
+    button.innerHTML = pill.innerHTML;
+    button.setAttribute('aria-label', describePill(button, position, team));
+    pill.replaceWith(button);
+    return button;
+  };
+
+  const buildMobileDepth = () => {
+    const mobile = document.getElementById('mobileDepth');
+    const rows = Array.from(document.querySelectorAll('#tableScroll tbody tr'));
+    if (!mobile || !rows.length) return;
+    rows.forEach((row, rowIndex) => {
+      const cells = Array.from(row.cells);
+      const team = row.querySelector('.tname')?.childNodes[0]?.textContent.trim() || 'Team';
+      const details = document.createElement('details');
+      details.className = 'mobile-team';
+      details.id = `mobile-${row.dataset.teamSlug || rowIndex}`;
+      const summary = document.createElement('summary');
+      summary.innerHTML = `<span class="mobile-team-rank">${cells[0].textContent.trim()}</span><span class="mobile-team-name">${cells[1].innerHTML}</span>`;
+      const positions = document.createElement('div');
+      positions.className = 'mobile-positions';
+      cells.slice(2).forEach((cell, index) => {
+        if (!cell.querySelector('.pill')) return;
+        const section = document.createElement('div');
+        section.className = 'mobile-position';
+        section.innerHTML = `<span class="mobile-position-label">${positionNames[index]}</span><div class="mobile-position-players"></div>`;
+        const players = section.querySelector('.mobile-position-players');
+        cell.querySelectorAll('.pill').forEach((pill) => players.appendChild(pill.cloneNode(true)));
+        positions.appendChild(section);
+      });
+      details.append(summary, positions);
+      mobile.appendChild(details);
+    });
+
+    document.querySelectorAll('.pill').forEach((pill) => {
+      const cell = pill.closest('.pos-cell');
+      const mobilePosition = pill.closest('.mobile-position');
+      const position = cell ? positionNames[cell.cellIndex - 2] : mobilePosition?.querySelector('.mobile-position-label')?.textContent || 'Roster';
+      const desktopRow = pill.closest('tr');
+      const mobileTeam = pill.closest('.mobile-team');
+      const team = desktopRow?.querySelector('.tname')?.childNodes[0]?.textContent.trim()
+        || mobileTeam?.querySelector('.tname')?.childNodes[0]?.textContent.trim() || 'Rostered';
+      makeButton(pill, position, team);
+    });
+  };
+
+  buildMobileDepth();
 
   const positionTooltip = (x, y) => {
     const gap = 14;
@@ -675,6 +793,7 @@ tbody tr.team-target {
   const modalChart = document.getElementById('playerModalChart');
   const modalNote = document.getElementById('playerModalNote');
   const modalError = document.getElementById('playerModalError');
+  const modalPanel = modal?.querySelector('[role="dialog"]');
 
   const fmtRank = (rank) => rank ? `#${rank}` : 'n/a';
   const fmtChange = (change) => {
@@ -790,11 +909,14 @@ tbody tr.team-target {
     window.location.href = url;
   };
 
-  const openPlayer = async (key, updateHash = true) => {
+  const openPlayer = async (key, updateHash = true, trigger = null) => {
     if (!key || !modal) return;
+    modalTrigger = trigger || document.activeElement;
     hideTooltip();
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.player-close')?.focus();
     modalTitle.textContent = 'Loading';
     modalMeta.textContent = '';
     modalStats.innerHTML = '';
@@ -819,9 +941,12 @@ tbody tr.team-target {
     if (!modal) return;
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
     if (window.location.hash.startsWith('#player=') || window.location.hash.startsWith('#pick=')) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
+    if (modalTrigger && document.contains(modalTrigger)) modalTrigger.focus();
+    modalTrigger = null;
   };
 
   document.querySelectorAll('.pill[data-tooltip]').forEach((pill) => {
@@ -834,20 +959,8 @@ tbody tr.team-target {
     pill.addEventListener('mouseleave', hideTooltip);
     if (pill.classList.contains('pick-pill')) {
       pill.addEventListener('click', () => openPick(pill));
-      pill.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openPick(pill);
-        }
-      });
     } else {
-      pill.addEventListener('click', () => openRankings(pill));
-      pill.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openRankings(pill);
-        }
-      });
+      pill.addEventListener('click', () => openPlayer(pill.dataset.playerKey, true, pill));
     }
   });
 
@@ -855,7 +968,25 @@ tbody tr.team-target {
     node.addEventListener('click', closePlayer);
   });
   window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closePlayer();
+    if (!modal?.classList.contains('open')) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closePlayer();
+      return;
+    }
+    if (event.key === 'Tab' && modalPanel) {
+      const focusable = Array.from(modalPanel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
   });
   window.addEventListener('scroll', hideTooltip, { passive: true });
 
