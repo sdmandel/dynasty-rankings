@@ -113,16 +113,14 @@
     if (sectionCurrent) {
       group.classList.add("has-current");
     }
-    group.append(summary, list);
-    menu.appendChild(group);
-  });
-  menu.querySelectorAll('.global-nav-group').forEach((group) => {
-    group.addEventListener('toggle', () => {
-      if (!group.open) return;
+    summary.addEventListener('click', () => {
+      if (group.open) return;
       menu.querySelectorAll('.global-nav-group[open]').forEach((other) => {
         if (other !== group) other.open = false;
       });
     });
+    group.append(summary, list);
+    menu.appendChild(group);
   });
   inner.appendChild(menu);
 
