@@ -84,6 +84,17 @@ html[data-theme="light"] .header-link:hover {
   color: var(--gold);
   transform: translateX(2px);
 }
+.card:focus-visible,
+.tool-tile:focus-visible,
+.leaderboard-title:focus-visible,
+.leaderboard-link:focus-visible,
+.header-link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+.leaderboard .freshness {
+  margin: 2px 0 10px;
+}
 
 /* ── NAV CARDS ── */
 .nav-section {
@@ -518,52 +529,17 @@ html[data-theme="light"] .header-link:hover {
     Power rankings drop every Monday. Depth chart updates after the weekly Oracle run.
     <strong>All rankings powered by the Oracle.</strong>
   </p>
-  <nav class="header-links" aria-label="League reference">
-    <a class="header-link" href="rules.html">
-      <span>
-        <span class="header-link-title">League Rules</span>
-        <span class="header-link-meta">Settings, rosters, scoring, payouts</span>
-      </span>
-      <span class="header-link-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="header-link" href="franchise_history.html">
-      <span>
-        <span class="header-link-title">Franchise History</span>
-        <span class="header-link-meta">Records, finishes, titles, eras</span>
-      </span>
-      <span class="header-link-arrow" aria-hidden="true">→</span>
-    </a>
-  </nav>
 </div>
 
-<div class="nav-section">
-  <div class="section-label">This Week</div>
-  <div class="this-week-grid">
-    <a href="week14_power_rankings.html" class="card featured">
-      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 14</div>
-      <div class="card-title">Power Rankings</div>
-      <div class="card-deck">Rollie Fingers and Seam Heads are still deadlocked at the top after a stretched 19-day window. Vin Mazzaro fan club's trade binge with Trazadone buys them two spots. Jonesin' takes the week&rsquo;s biggest fall, dropping three.</div>
-      <div class="card-meta">July 3, 2026</div>
-      <div class="card-arrow">Read →</div>
-    </a>
-
-    <a href="transactions.html" class="tool-tile">
-      <div class="tile-preview">
-        <div class="tx-list" id="transactionsPreview"></div>
-      </div>
-      <div class="tile-footer">
-        <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
-        <div class="tile-title">Transactions</div>
-        <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
-        <span class="tile-arrow">View transactions →</span>
-      </div>
-    </a>
-  </div>
-
+<main class="nav-section" id="main-content">
   <div class="section-label">The Standings</div>
   <div class="leaderboard">
     <div class="leaderboard-head">
-      <a class="leaderboard-title" href="standings.html">Live Standings</a>
+      <a class="leaderboard-title" href="standings.html">Current Standings</a>
+    </div>
+    <div id="standingsFreshness" class="freshness freshness--unknown" role="status" aria-label="Standings data freshness">
+      <span class="freshness__status">Freshness unknown</span>
+      <span class="freshness__details">Update time unavailable</span>
     </div>
     <div class="lb-list" id="leaderboardList">
       <div class="lb-row">
@@ -608,7 +584,30 @@ html[data-theme="light"] .header-link:hover {
     <a class="leaderboard-link" href="standings.html">View full standings →</a>
   </div>
 
-  <div class="section-label">Team Tools</div>
+  <div class="section-label">Latest Around the League</div>
+  <div class="this-week-grid">
+    <a href="week15_power_rankings.html" class="card featured">
+      <div class="card-eyebrow">Latest &nbsp;·&nbsp; Week 15</div>
+      <div class="card-title">Power Rankings</div>
+      <div class="card-deck">Seam Heads and Rollie Fingers are tied at 103, the chase pack is tightening, and recent form gets a one-week nudge. Trazadone rides the wedding bump up four while philbell jumps into the pressure tier.</div>
+      <div class="card-meta">July 12, 2026</div>
+      <div class="card-arrow">Read →</div>
+    </a>
+
+    <a href="transactions.html" class="tool-tile">
+      <div class="tile-preview">
+        <div class="tx-list" id="transactionsPreview"></div>
+      </div>
+      <div class="tile-footer">
+        <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
+        <div class="tile-title">Transactions</div>
+        <div class="tile-meta">Adds, drops, and trades. Prospect and notable badges.</div>
+        <span class="tile-arrow">View transactions →</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label">Strategic Tools</div>
   <div class="card-grid team-tools-grid">
     <a href="team_intel.html" class="card">
       <div class="card-eyebrow">Contention &nbsp;·&nbsp; Oracle Split</div>
@@ -618,7 +617,7 @@ html[data-theme="light"] .header-link:hover {
     </a>
 
     <a href="roster_depth.html" class="card">
-      <div class="card-eyebrow">Live &nbsp;·&nbsp; All 12 Teams</div>
+      <div class="card-eyebrow">Oracle Snapshot &nbsp;·&nbsp; All 12 Teams</div>
       <div class="card-title">Roster Depth Chart</div>
       <div class="card-meta">Positional breakdown by Oracle tier. Every rostered player.</div>
       <div class="card-arrow">Open →</div>
@@ -638,13 +637,32 @@ html[data-theme="light"] .header-link:hover {
       <div class="card-arrow">View →</div>
     </a>
   </div>
-</div>
+
+  <div class="section-label">League Reference</div>
+  <div class="header-links" aria-label="League reference">
+    <a class="header-link" href="rules.html">
+      <span>
+        <span class="header-link-title">League Rules</span>
+        <span class="header-link-meta">Settings, rosters, scoring, and payouts</span>
+      </span>
+      <span class="header-link-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="header-link" href="franchise_history.html">
+      <span>
+        <span class="header-link-title">Franchise History</span>
+        <span class="header-link-meta">Records, finishes, titles, and eras</span>
+      </span>
+      <span class="header-link-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</main>
 
 
 <div class="site-footer" id="footerEl">
   Data compiled using Oracle composite scores and public league snapshots.
 </div>
 
+<script src="assets/freshness.js"></script>
 <script>
 let TEAMS = [];
 
@@ -965,6 +983,15 @@ function loadHomePreview() {
   }).then(data => {
     renderSnapshot(data.leaderboard || []);
     renderTransactions(data.transactions || []);
+    if (window.SiteFreshness) {
+      window.SiteFreshness.render('#standingsFreshness', {
+        generatedAt: data.generated_at,
+        generated: data.generated,
+        currentHours: 6,
+        delayedHours: 24,
+        source: 'Fantrax standings snapshot',
+      });
+    }
     TEAMS = (data.oracle_teams || []).map(team => ({
       ...team,
       name: team.team,
