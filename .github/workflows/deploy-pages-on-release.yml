@@ -43,7 +43,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install test deps
-        run: python -m pip install --upgrade pip pytest
+        run: python -m pip install --upgrade pip pytest requests
       - name: Run site tests
         run: python -m pytest tests/ -x -q
       - name: Validate JSON data files
