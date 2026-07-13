@@ -70,6 +70,60 @@
     border-bottom: 1px solid var(--sep-opaque);
   }
 
+  .article-jumps {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 40px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+    border-bottom: 1px solid var(--sep-opaque);
+  }
+
+  .article-jumps-label {
+    color: var(--t-quaternary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .article-jumps a {
+    color: var(--t-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration-color: var(--gold-500);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .article-jumps a:hover,
+  .article-jumps a:focus-visible {
+    color: var(--gold-500);
+  }
+
+  .post-rankings {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 18px;
+  }
+
+  .post-rankings h2,
+  .footnote h2 {
+    color: var(--t-primary);
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+
+  .post-rankings video {
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+  }
+
   .feature-strip {
     max-width: 860px;
     margin: 0 auto;
@@ -263,6 +317,26 @@
     max-width: 860px;
     margin: 0 auto;
     padding: 8px 40px 80px;
+  }
+
+  .key-players a.player-pill {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: border-color 0.15s ease, color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  .key-players a.player-pill:hover,
+  .key-players a.player-pill:focus-visible {
+    border-color: currentColor;
+    text-decoration-color: currentColor;
+  }
+
+  .key-players a.player-pill:focus-visible,
+  .article-jumps a:focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: 3px;
   }
 
   .rank-entry {
@@ -857,6 +931,11 @@ html[data-theme="light"] .player-pill.ghost {
 }
 
 @media (max-width: 600px) {
+  .article-jumps,
+  .post-rankings {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   /* Hide Moves + Trades columns on mobile — Team/Status/Avg/Wk 10 fit without scroll */
   .feature-box table th:nth-child(5),
   .feature-box table th:nth-child(6),

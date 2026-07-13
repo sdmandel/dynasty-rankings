@@ -40,13 +40,38 @@
   </p>
 </div>
 
-<div style="max-width:860px; margin:0 auto; padding:32px 40px 0;">
-  <video autoplay loop muted playsinline preload="none" style="width:100%; border-radius:6px; display:block;">
-    <source src="https://baseball.stephenmandella.com/standings_race.mp4" type="video/mp4">
-  </video>
+<nav class="article-jumps" aria-label="On this page">
+  <span class="article-jumps-label">In this issue</span>
+  <a href="#rankings">Rankings</a>
+  <a href="#player-key">Player key</a>
+  <a href="#league-desk">League desk</a>
+  <a href="#methodology">Methodology</a>
+</nav>
+
+<div class="legend" id="player-key" aria-label="Player marker key">
+  <span class="legend-label">Player tiers:</span>
+  <span class="player-pill hot pill pill--hot">🔥 Hot week</span>
+  <span class="player-pill cold pill pill--cold">🧊 Cold week</span>
+  <span class="player-pill big-riser pill pill--hot">↑ Big riser</span>
+  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
+  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
+  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
+  <span class="player-pill pill">&#9679; Everyone else</span>
+  <span class="player-pill ghost pill pill--ghost">👻 Manager went dark</span>
 </div>
 
-<div class="feature-strip">
+<main class="rankings" id="rankings">
+{{RANK_ENTRIES}}
+</main>
+
+<section class="post-rankings" id="league-desk" aria-labelledby="league-desk-title">
+  <h2 id="league-desk-title">League desk</h2>
+  <video autoplay loop muted playsinline preload="none">
+    <source src="https://baseball.stephenmandella.com/standings_race.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section class="feature-strip" aria-label="League tools">
   <div class="feature-box card">
     <div class="feature-kicker">Site Tools</div>
     <div class="feature-grid">
@@ -74,27 +99,12 @@
       <a class="feature-feedback-button" href="#feedback" data-feedback-trigger data-feedback-type="idea">Click Feedback</a>
     </div>
   </div>
-</div>
+</section>
 
-<div class="legend">
-  <span class="legend-label">Player tiers:</span>
-  <span class="player-pill hot pill pill--hot">🔥 Hot week</span>
-  <span class="player-pill cold pill pill--cold">🧊 Cold week</span>
-  <span class="player-pill big-riser pill pill--hot">↑ Big riser</span>
-  <span class="player-pill top pill pill--gold">&#9679; Oracle top 30</span>
-  <span class="player-pill prospect pill pill--prospect">&#9679; Prospect (A–AAA)</span>
-  <span class="player-pill warning pill pill--warning">&#9679; Age 33+ / ranked 700+</span>
-  <span class="player-pill pill">&#9679; Everyone else</span>
-  <span class="player-pill ghost pill pill--ghost">👻 Manager went dark</span>
-</div>
-
-<div class="rankings">
-{{RANK_ENTRIES}}
-</div>
-
-<div class="footnote">
+<section class="footnote" id="methodology" aria-labelledby="methodology-title">
+  <h2 id="methodology-title">Methodology &amp; notes</h2>
   {{FOOTNOTE}}
-</div>
+</section>
 
 <script src="assets/feedback.js" defer></script>
 <script src="assets/site-shell.js" defer></script>
