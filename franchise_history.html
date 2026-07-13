@@ -33,6 +33,11 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-text);
 .picker button { font-size:12px; font-weight:500; letter-spacing:.02em; text-transform:none; padding:6px 14px; }
 .picker button.active,
 .filter-pill.active { background:var(--bg2); color:var(--text); box-shadow:var(--shadow-sm); }
+.picker button:focus-visible,.filter-pill:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.selection-status { margin:-10px 0 20px; color:var(--text-mid); font-size:13px; }
+.selection-status strong { color:var(--text); }
+.archive-status { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; padding:12px 14px; margin-bottom:22px; border:1px solid var(--border); border-radius:6px; background:var(--bg2); color:var(--text-mid); font-size:12px; }
+.archive-status strong { color:var(--text); }
 .section-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead); margin: 0 0 14px; }
 .summary-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:28px; }
 .summary-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px 18px; }
@@ -70,21 +75,24 @@ td:first-child, th:first-child { padding-left:0; }
 <div class="content">
   <div id="loadingMsg" class="state-msg">Loading franchise history…</div>
   <div id="mainContent" style="display:none;">
-    <div class="picker" id="teamPicker"></div>
+    <div class="archive-status" id="archiveStatus" role="status"></div>
+    <div class="section-label" id="franchisePickerLabel">Select franchise</div>
+    <div class="picker" id="teamPicker" role="group" aria-labelledby="franchisePickerLabel"></div>
     <div class="team-title" id="teamTitle"></div>
+    <p class="selection-status" id="selectionStatus" aria-live="polite"></p>
     <div class="summary-grid" id="summaryGrid"></div>
     <div class="section-label">2025 Records</div>
     <div class="insight-grid" id="insightGrid"></div>
     <div class="section-label">Season Summary</div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Season</th><th>Final</th><th>Best</th><th>Worst</th><th>Best Pts</th><th>Days In 1st</th><th>Days Top 3</th></tr></thead><tbody id="summaryBody"></tbody></table></div>
+    <div class="table-wrap"><table class="table"><caption class="sr-only">Selected franchise season summary</caption><thead><tr><th scope="col">Season</th><th scope="col">Final</th><th scope="col">Best</th><th scope="col">Worst</th><th scope="col">Best Pts</th><th scope="col">Days In 1st</th><th scope="col">Days Top 3</th></tr></thead><tbody id="summaryBody"></tbody></table></div>
     <div class="section-label">Standings Snapshots</div>
-    <div class="filter-bar" id="lookbackBar">
-      <button class="filter-pill active" data-lookback="7">7D</button>
-      <button class="filter-pill" data-lookback="14">14D</button>
-      <button class="filter-pill" data-lookback="30">30D</button>
-      <button class="filter-pill" data-lookback="YTD">YTD</button>
+    <div class="filter-bar" id="lookbackBar" role="group" aria-label="Snapshot date range">
+      <button class="filter-pill active" type="button" aria-pressed="true" data-lookback="7">7 days</button>
+      <button class="filter-pill" type="button" aria-pressed="false" data-lookback="14">14 days</button>
+      <button class="filter-pill" type="button" aria-pressed="false" data-lookback="30">30 days</button>
+      <button class="filter-pill" type="button" aria-pressed="false" data-lookback="YTD">Year to date</button>
     </div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Rank</th><th>Roto Pts</th><th>R</th><th>HR</th><th>RBI</th><th>SB</th><th>OPS</th><th>QS</th><th>K</th><th>ERA</th><th>WHIP</th><th>SVH</th></tr></thead><tbody id="snapshotBody"></tbody></table></div>
+    <div class="table-wrap"><table class="table"><caption class="sr-only">Selected franchise standings snapshots</caption><thead><tr><th scope="col">Date</th><th scope="col">Rank</th><th scope="col">Roto Pts</th><th scope="col">R</th><th scope="col">HR</th><th scope="col">RBI</th><th scope="col">SB</th><th scope="col">OPS</th><th scope="col">QS</th><th scope="col">K</th><th scope="col">ERA</th><th scope="col">WHIP</th><th scope="col">SVH</th></tr></thead><tbody id="snapshotBody"></tbody></table></div>
   </div>
 </div>
 <div class="site-footer" id="footerEl">Franchise history from local site metrics tables.</div>
@@ -92,6 +100,7 @@ td:first-child, th:first-child { padding-left:0; }
 let ALL_TEAMS = [];
 let ACTIVE_TEAM = null;
 let ACTIVE_LOOKBACK = '7';
+const VALID_LOOKBACKS = new Set(['7', '14', '30', 'YTD']);
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function filterByLookback(rows, key, lookback) {
   if (lookback === 'YTD' || !rows.length) return rows;
@@ -117,26 +126,61 @@ function renderTeam(team){
     : '<div class="insight-card"><div class="label">2025 Records</div><div class="value">N/A</div><div class="detail">No 2025 records are attached to this franchise name yet.</div></div>';
   document.getElementById('summaryBody').innerHTML = team.season_summaries.map(row => `<tr><td>${row.season}</td><td>#${row.final_rank ?? '-'}</td><td>#${row.best_rank ?? '-'}</td><td>#${row.worst_rank ?? '-'}</td><td>${row.best_roto_pts ?? '-'}</td><td>${row.days_in_first}</td><td>${row.days_in_top3}</td></tr>`).join('');
   const snapshots = filterByLookback(team.snapshots || [], 'snapshot_date', ACTIVE_LOOKBACK);
+  const rangeLabel = ACTIVE_LOOKBACK === 'YTD' ? 'year to date' : ACTIVE_LOOKBACK + ' days';
+  document.getElementById('selectionStatus').innerHTML = `Showing <strong>${esc(team.team)}</strong> · Standings range: <strong>${esc(rangeLabel)}</strong>`;
   document.getElementById('snapshotBody').innerHTML = snapshots.map(row => `<tr><td>${esc(row.snapshot_date)}</td><td>#${row.rank ?? '-'}</td><td>${row.roto_pts ?? '-'}</td><td>${row.cat_r ?? '-'}</td><td>${row.cat_hr ?? '-'}</td><td>${row.cat_rbi ?? '-'}</td><td>${row.cat_sb ?? '-'}</td><td>${row.cat_ops ?? '-'}</td><td>${row.cat_qs ?? '-'}</td><td>${row.cat_k ?? '-'}</td><td>${row.cat_era ?? '-'}</td><td>${row.cat_whip ?? '-'}</td><td>${row.cat_svh ?? '-'}</td></tr>`).join('') || '<tr><td colspan="13">No snapshots in this range.</td></tr>';
 }
 function renderPicker(){
   const picker=document.getElementById('teamPicker');
   picker.innerHTML='';
-  ALL_TEAMS.forEach((team, i)=>{ const btn=document.createElement('button'); btn.textContent=team.team; if(i===0) btn.classList.add('active'); btn.addEventListener('click', ()=>{ document.querySelectorAll('#teamPicker button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderTeam(team); }); picker.appendChild(btn); });
+  ALL_TEAMS.forEach(team=>{ const btn=document.createElement('button'); btn.type='button'; btn.textContent=team.team; btn.dataset.teamId=team.team_id || team.team; btn.setAttribute('aria-pressed', 'false'); btn.addEventListener('click', ()=>selectTeam(team, true)); picker.appendChild(btn); });
+}
+function selectTeam(team, pushHistory) {
+  if (!team) return;
+  document.querySelectorAll('#teamPicker button').forEach(btn => {
+    const selected = btn.dataset.teamId === (team.team_id || team.team);
+    btn.classList.toggle('active', selected);
+    btn.setAttribute('aria-pressed', String(selected));
+  });
+  renderTeam(team);
+  if (pushHistory) writeUrlState();
+}
+function writeUrlState() {
+  const params = new URLSearchParams(location.search);
+  params.set('team', ACTIVE_TEAM.team_id || ACTIVE_TEAM.team);
+  params.set('range', ACTIVE_LOOKBACK);
+  history.pushState(null, '', location.pathname + '?' + params.toString() + location.hash);
+}
+function syncFromUrl() {
+  if (!ALL_TEAMS.length) return;
+  const params = new URLSearchParams(location.search);
+  const requestedRange = params.get('range');
+  ACTIVE_LOOKBACK = VALID_LOOKBACKS.has(requestedRange) ? requestedRange : '7';
+  document.querySelectorAll('#lookbackBar .filter-pill').forEach(btn => {
+    const selected = btn.dataset.lookback === ACTIVE_LOOKBACK;
+    btn.classList.toggle('active', selected);
+    btn.setAttribute('aria-pressed', String(selected));
+  });
+  const requestedTeam = params.get('team');
+  const team = ALL_TEAMS.find(item => (item.team_id || item.team) === requestedTeam || item.team === requestedTeam) || ALL_TEAMS[0];
+  selectTeam(team, false);
 }
 function setupLookback() {
   document.querySelectorAll('#lookbackBar .filter-pill').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#lookbackBar .filter-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      document.querySelectorAll('#lookbackBar .filter-pill').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
       ACTIVE_LOOKBACK = btn.dataset.lookback;
       if (ACTIVE_TEAM) renderTeam(ACTIVE_TEAM);
+      writeUrlState();
     });
   });
 }
 
-fetch('data/franchises.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_TEAMS = data.teams || []; const seasons = Array.isArray(data.seasons) && data.seasons.length ? ' · Seasons: ' + data.seasons.join(', ') + '.' : '.'; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + seasons; renderPicker(); if (ALL_TEAMS.length) renderTeam(ALL_TEAMS[0]); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load franchise history. ('+err.message+')'; });
+fetch('data/franchises.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_TEAMS = data.teams || []; const years = Array.isArray(data.seasons) ? data.seasons.map(Number).filter(Number.isFinite).sort() : []; const range = years.length ? (years[0] === years[years.length - 1] ? String(years[0]) : years[0] + '–' + years[years.length - 1]) : 'Unknown'; const currentYear = new Date(data.generated + 'T00:00:00').getFullYear(); const includesCurrent = years.includes(currentYear); const seasons = years.length ? ' · Seasons: ' + years.join(', ') + '.' : '.'; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('archiveStatus').innerHTML = `<strong>${includesCurrent ? 'Current season + archive' : 'Archived snapshots'}</strong><span>Coverage: ${esc(range)}</span><span>Generated: ${esc(data.generated || 'Unknown')}</span>`; document.getElementById('footerEl').textContent='Last updated: ' + (data.generated || 'Unknown') + seasons; renderPicker(); syncFromUrl(); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load franchise history. ('+err.message+')'; });
 setupLookback();
+window.addEventListener('popstate', syncFromUrl);
 </script>
 <script src="assets/site-shell.js" defer></script>
 <script src="assets/feedback.js" defer></script>

@@ -84,6 +84,21 @@ body {
   color: var(--text-dead);
   margin-bottom: 14px;
 }
+.toc-toggle {
+  display: none;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.toc-toggle::after { content: "+"; color: var(--gold); font-size: 20px; }
+.toc-toggle[aria-expanded="true"]::after { content: "−"; }
 
 .toc-list {
   list-style: none;
@@ -172,6 +187,8 @@ body {
   border-radius: 10px;
   overflow: hidden;
 }
+.section-card,
+.block-title { scroll-margin-top: 24px; }
 
 .section-head {
   padding: 18px 20px 16px;
@@ -398,7 +415,12 @@ body {
   }
   .toc {
     position: static;
+    max-height: none;
+    overflow: visible;
   }
+  .toc > h2 { display: none; }
+  .toc-toggle { display: flex; }
+  .toc-list[hidden] { display: none; }
 }
 
 @media (max-width: 680px) {
@@ -434,8 +456,9 @@ body {
   <div id="loadingMsg" class="state-msg">Loading rulebook…</div>
 
   <div id="mainContent" class="rules-layout" style="display:none;">
-    <aside class="toc">
+    <aside class="toc" aria-label="Rulebook contents">
       <h2>Table Of Contents</h2>
+      <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="false" aria-controls="tocList">Table of contents</button>
       <ul class="toc-list" id="tocList"></ul>
     </aside>
 
@@ -519,7 +542,7 @@ function rowHtml(item) {
 
 function blockHtml(block) {
   const title = block.title
-    ? `<div class="block-title" id="${esc(block.anchor || '')}"><a href="#${esc(block.anchor || '')}">${esc(block.title)}</a></div>`
+    ? `<h3 class="block-title" id="${esc(block.anchor || '')}"><a href="#${esc(block.anchor || '')}">${esc(block.title)}</a></h3>`
     : '';
 
   if (block.type === 'table') {
@@ -529,7 +552,7 @@ function blockHtml(block) {
         <div class="matrix-wrap">
           <table class="matrix-table">
             <thead>
-              <tr>${block.columns.map(col => `<th>${esc(col)}</th>`).join('')}</tr>
+              <tr>${block.columns.map(col => `<th scope="col">${esc(col)}</th>`).join('')}</tr>
             </thead>
             <tbody>
               ${block.rows.map(row => `
@@ -607,6 +630,26 @@ fetch('data/rules.json')
   .catch(err => {
     document.getElementById('loadingMsg').textContent = 'Could not load rules. (' + err.message + ')';
   });
+
+const tocToggle = document.getElementById('tocToggle');
+const tocList = document.getElementById('tocList');
+const mobileToc = window.matchMedia('(max-width: 900px)');
+function syncTocVisibility() {
+  const collapsed = mobileToc.matches && tocToggle.getAttribute('aria-expanded') !== 'true';
+  tocList.hidden = collapsed;
+}
+tocToggle.addEventListener('click', () => {
+  tocToggle.setAttribute('aria-expanded', String(tocToggle.getAttribute('aria-expanded') !== 'true'));
+  syncTocVisibility();
+});
+tocList.addEventListener('click', event => {
+  if (mobileToc.matches && event.target.closest('a')) {
+    tocToggle.setAttribute('aria-expanded', 'false');
+    syncTocVisibility();
+  }
+});
+mobileToc.addEventListener('change', syncTocVisibility);
+syncTocVisibility();
 </script>
 
 <script src="assets/site-shell.js" defer></script>
