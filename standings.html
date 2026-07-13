@@ -104,6 +104,12 @@ body {
   color: var(--text);
   white-space: nowrap;
 }
+.summary-table tbody th {
+  padding: 9px 8px 9px 0;
+  color: var(--text);
+  text-align: left;
+  white-space: nowrap;
+}
 .summary-table tbody td:first-child { padding-left: 0; }
 .summary-table tbody td.right {
   text-align: right;
@@ -152,6 +158,7 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: 12px;
+  position: relative;
 }
 .cat-table {
   width: 100%;
@@ -160,6 +167,9 @@ body {
   font-size: 13px;
 }
 .cat-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   text-align: center;
   font-size: 10px;
   font-weight: 700;
@@ -168,21 +178,46 @@ body {
   color: var(--text-dead);
   padding: 0 8px 10px;
   border-bottom: 1px solid var(--border2);
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.12s;
   white-space: nowrap;
+  background: var(--bg2);
 }
-.cat-table thead th:hover { color: var(--text-muted); }
 .cat-table thead th.sort-active { color: var(--text); }
-.cat-table thead th.team-col { text-align: left; padding-left: 0; }
+.cat-table thead th.team-col {
+  left: 0;
+  z-index: 3;
+  text-align: left;
+  padding-left: 0;
+}
+.sort-button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+.sort-button:hover { color: var(--text-muted); }
+.sort-button:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--gold));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 .sort-arrow {
   display: inline-flex;
   width: 10px;
   height: 10px;
   margin-left: 4px;
   vertical-align: -1px;
+  opacity: 0.42;
 }
+.sort-active .sort-arrow { opacity: 1; }
 .sort-arrow svg {
   width: 10px;
   height: 10px;
@@ -199,14 +234,19 @@ body {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.cat-table tbody td.team-col {
+.cat-table tbody th.team-col {
+  position: sticky;
+  left: 0;
+  z-index: 1;
   text-align: left;
   padding-left: 0;
   color: var(--text);
   font-weight: 500;
   white-space: nowrap;
+  background: var(--bg2);
+  box-shadow: 1px 0 0 var(--border);
 }
-.cat-table tbody td .rank-sm {
+.cat-table tbody th .rank-sm {
   font-family: var(--font-display);
   font-size: 13px;
   color: var(--text-dead);
@@ -263,6 +303,13 @@ body {
 .legend-hint {
   font-size: 11px;
   color: var(--text-dead);
+}
+.table-caption {
+  caption-side: top;
+  padding: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: left;
 }
 
 /* ── CATEGORY LEADERS STRIP ── */
@@ -368,14 +415,15 @@ body {
     <div class="section-label">Overall Standings</div>
     <div class="table-card">
       <table class="summary-table" id="summaryTable">
+        <caption class="table-caption">Overall standings ranked by total roto points.</caption>
         <thead>
           <tr>
-            <th style="width:36px;"></th>
-            <th>Team</th>
-            <th class="right">Roto Pts</th>
-            <th class="right">Behind</th>
-            <th class="right">Change</th>
-            <th class="right">Waiver</th>
+            <th scope="col" style="width:36px;">Rank</th>
+            <th scope="col">Team</th>
+            <th scope="col" class="right">Roto Pts</th>
+            <th scope="col" class="right">Behind</th>
+            <th scope="col" class="right">Change</th>
+            <th scope="col" class="right">Waiver</th>
           </tr>
         </thead>
         <tbody id="summaryBody"></tbody>
@@ -393,10 +441,11 @@ body {
         <span class="legend-swatch" style="background:rgba(181,93,93,0.2);border:1px solid var(--red);"></span>
         Last in Category
       </div>
-      <span class="legend-hint">· Click a column to sort ·</span>
+      <span class="legend-hint">Values are roto points, not raw stats. Activate a column heading to sort.</span>
     </div>
-    <div class="cat-scroll table-card">
+    <div class="cat-scroll table-card" role="region" aria-label="Category roto points standings" tabindex="0">
       <table class="cat-table" id="catTable">
+        <caption class="table-caption">Roto points awarded in each scoring category.</caption>
         <thead id="catHead"></thead>
         <tbody id="catBody"></tbody>
       </table>
@@ -480,7 +529,7 @@ function renderSummary(data) {
     tbody.innerHTML += `
       <tr>
         <td><span class="rank-num${t.rank <= 3 ? ' top3' : ''}">#${t.rank}</span></td>
-        <td class="team-name"><a class="team-link" href="${rosterDepthHref(t.team)}">${esc(t.team)}</a></td>
+        <th scope="row" class="team-name"><a class="team-link" href="${rosterDepthHref(t.team)}">${esc(t.team)}</a></th>
         <td class="right"><span class="pts-val${isFirst ? ' pts-first' : ''}">${fmt(t.total_pts)}</span></td>
         <td class="right"><span class="pts-behind">${isFirst ? '—' : '-' + t.pts_behind.toFixed(1)}</span></td>
         <td class="right"><span class="pts-change ${changeClass}">${changeStr}</span></td>
@@ -501,19 +550,31 @@ function renderCategories(data) {
   const teamTh = document.createElement('th');
   teamTh.className = 'team-col';
   teamTh.dataset.col = 'rank';
-  teamTh.textContent = 'Team';
+  teamTh.scope = 'col';
   headRow.appendChild(teamTh);
   cats.forEach(c => {
     const th = document.createElement('th');
     th.dataset.col = c;
-    th.textContent = c;
+    th.scope = 'col';
     headRow.appendChild(th);
   });
   document.getElementById('catHead').appendChild(headRow);
 
   headRow.querySelectorAll('th').forEach(th => {
-    th.addEventListener('click', () => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'sort-button';
+    button.dataset.label = th.dataset.col === 'rank' ? 'Team' : th.dataset.col;
+    th.appendChild(button);
+    button.addEventListener('click', () => {
       const col = th.dataset.col;
+      if (col === 'rank') {
+        _sortCol = null;
+        _sortDir = -1;
+        _updateSortHeaders();
+        _renderCatBody();
+        return;
+      }
       if (_sortCol !== col) {
         // New column: start desc
         _sortCol = col; _sortDir = -1;
@@ -535,16 +596,26 @@ function renderCategories(data) {
 
 function _updateSortHeaders() {
   document.querySelectorAll('.cat-table thead th').forEach(th => {
-    const arrow = th.querySelector('.sort-arrow');
-    if (arrow) arrow.remove();
+    const button = th.querySelector('.sort-button');
+    const label = button.dataset.label;
+    const isDefault = !_sortCol && th.dataset.col === 'rank';
+    const isActive = isDefault || (_sortCol && th.dataset.col === _sortCol);
+    const direction = isDefault ? 'ascending' : (_sortDir < 0 ? 'descending' : 'ascending');
     th.classList.remove('sort-active');
-    if (_sortCol && th.dataset.col === _sortCol) {
+    th.setAttribute('aria-sort', isActive ? direction : 'none');
+    if (isActive) {
       th.classList.add('sort-active');
-      const sp = document.createElement('span');
-      sp.className = 'sort-arrow';
-      sp.innerHTML = `<svg aria-hidden="true"><use href="assets/icons.svg#${_sortDir < 0 ? 'icon-chevron-down' : 'icon-chevron-up'}"></use></svg>`;
-      th.appendChild(sp);
     }
+    const icon = isActive
+      ? (direction === 'descending' ? 'icon-chevron-down' : 'icon-chevron-up')
+      : 'icon-chevron-down';
+    button.innerHTML = `${esc(label)}<span class="sort-arrow"><svg aria-hidden="true"><use href="assets/icons.svg#${icon}"></use></svg></span>`;
+    const nextAction = th.dataset.col === 'rank'
+      ? 'restore overall rank order'
+      : !isActive ? `sort ${label} roto points descending`
+        : direction === 'descending' ? `sort ${label} roto points ascending`
+          : 'restore overall rank order';
+    button.setAttribute('aria-label', `${label}: ${nextAction}`);
   });
 }
 
@@ -580,7 +651,7 @@ function _renderCatBody() {
 
   rows.forEach(t => {
     const tr = document.createElement('tr');
-    let html = `<td class="team-col"><span class="rank-sm">#${t.rank}</span><a class="team-link" href="${rosterDepthHref(t.team)}">${esc(t.team)}</a></td>`;
+    let html = `<th scope="row" class="team-col"><span class="rank-sm">#${t.rank}</span><a class="team-link" href="${rosterDepthHref(t.team)}">${esc(t.team)}</a></th>`;
     cats.forEach(cat => {
       const info = (t.categories || {})[cat] || {};
       const val  = info.pts != null ? info.pts.toFixed(1) : '—';
