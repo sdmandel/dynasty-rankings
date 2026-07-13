@@ -2,8 +2,23 @@
 from __future__ import annotations
 
 from concurrent.futures import Future
+import sys
+from types import ModuleType
 
 import pytest
+
+try:
+    import src.shared.utils  # noqa: F401
+except ModuleNotFoundError:
+    src_module = ModuleType("src")
+    shared_module = ModuleType("src.shared")
+    utils_module = ModuleType("src.shared.utils")
+    utils_module.normalize_name = lambda value: value.casefold()
+    sys.modules.update({
+        "src": src_module,
+        "src.shared": shared_module,
+        "src.shared.utils": utils_module,
+    })
 
 from scripts import fetch_season_stats, normalize_team_names
 

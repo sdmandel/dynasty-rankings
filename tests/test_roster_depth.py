@@ -1,6 +1,8 @@
 """Responsive and accessible behavior for the roster-depth page and generator."""
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -35,7 +37,10 @@ def test_roster_depth_freshness_is_not_stale_week_nine_copy() -> None:
 
 
 def test_roster_depth_generator_keeps_mobile_and_modal_enhancements() -> None:
-    generator = (ROOT.parent / "scripts" / "update_depth_chart.py").read_text(encoding="utf-8")
+    generator_path = ROOT.parent / "scripts" / "update_depth_chart.py"
+    if not generator_path.exists():
+        pytest.skip("upstream bot generator is not present in the standalone site checkout")
+    generator = generator_path.read_text(encoding="utf-8")
     assert 'id="mobileDepth"' in generator
     assert "const buildMobileDepth = () =>" in generator
     assert "makeButton(pill, position, team)" in generator
