@@ -47,6 +47,7 @@ table { width:100%; min-width:760px; border-collapse:collapse; font-size:13px; }
 th { text-align:left; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dead); padding:0 10px 10px 0; border-bottom:1px solid var(--border2); }
 td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid var(--border); }
 .state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.state-msg button { margin-top:12px; background:var(--bg2); border:1px solid var(--border2); border-radius:4px; padding:8px 14px; color:var(--text); font:inherit; cursor:pointer; }
 .site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
 @media (max-width: 900px) { .leader-grid,.team-rivals{grid-template-columns:1fr;} }
 @media (max-width: 680px) { .content,.site-footer{padding-left:20px;padding-right:20px;} .metric-row{grid-template-columns:92px 1fr 36px;} }
@@ -60,7 +61,7 @@ td { padding:10px 10px 10px 0; color:var(--text-mid); border-bottom:1px solid va
   <p>Rivalry scores from rank proximity, category-point similarity, and repeated category pressure.</p>
 </div>
 <div class="content">
-  <div id="loadingMsg" class="state-msg">Loading rivalry board...</div>
+  <div id="loadingMsg" class="state-msg" role="status" aria-live="polite">Loading rivalry board...</div>
   <div id="mainContent" style="display:none;">
     <div class="section-label">Top Pairings</div>
     <div class="leader-grid" id="leaderGrid"></div>
@@ -87,15 +88,30 @@ function card(team, item, top){
   return `<div class="rival-card ${top ? 'top' : ''}"><div class="rival-title">${esc(team)} vs ${esc(item.rival_team)}</div><div class="rival-score">${pct(item.rivalry_score)}</div>${metricRows(item)}${tags(item)}</div>`;
 }
 function render(data){
+  const hasRivalries = (data.teams || []).some(team => (team.rivals || []).length);
   document.getElementById('leaderGrid').innerHTML = (data.leaders || []).slice(0,6).map(item => card(item.team, item, true)).join('') || '<div class="state-msg">No rivalry metrics available.</div>';
-  document.getElementById('teamSections').innerHTML = (data.teams || []).map(team => `<div class="team-section"><div class="team-title">${esc(team.team)}</div><div class="team-rivals">${team.rivals.map(item => card(team.team, item, false)).join('')}</div></div>`).join('');
+  document.getElementById('teamSections').innerHTML = hasRivalries ? (data.teams || []).map(team => `<div class="team-section"><div class="team-title">${esc(team.team)}</div><div class="team-rivals">${(team.rivals || []).map(item => card(team.team, item, false)).join('') || '<div class="state-msg">No rivalry metrics available for this team.</div>'}</div></div>`).join('') : '<div class="state-msg">No team rivalry matchups are available in this snapshot.</div>';
   const rows = [];
   (data.teams || []).forEach(team => (team.rivals || []).forEach(item => rows.push({team: team.team, ...item})));
   rows.sort((a,b) => Number(b.rivalry_score) - Number(a.rivalry_score) || a.team.localeCompare(b.team));
   document.getElementById('boardBody').innerHTML = rows.map(item => `<tr><td>${esc(item.team)}</td><td>${esc(item.rival_team)}</td><td>${pct(item.rivalry_score)}</td><td>${pct(item.finish_proximity_score)}</td><td>${pct(item.category_similarity_score)}</td><td>${pct(item.points_stolen_score)}</td><td>${esc((item.tags || []).join(', '))}</td></tr>`).join('') || '<tr><td colspan="7">No rivalry metrics available.</td></tr>';
   document.getElementById('footerEl').textContent = `Last updated: ${data.generated} · Season ${data.season || 'N/A'}.`;
 }
-fetch('data/rivalries.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; render(data); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load rivalries. ('+err.message+')'; });
+function loadRivalries(){
+  const status=document.getElementById('loadingMsg');
+  status.style.display='';
+  status.setAttribute('role','status');
+  status.textContent='Loading rivalry board...';
+  fetch('data/rivalries.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
+    status.style.display='none';
+    document.getElementById('mainContent').style.display='';
+    render(data);
+  }).catch(err=>{
+    status.setAttribute('role','alert');
+    status.innerHTML=`Could not load rivalries. ${esc(err.message)}<br><button type="button" onclick="loadRivalries()">Retry loading rivalries</button>`;
+  });
+}
+loadRivalries();
 </script>
 <script src="assets/site-shell.js" defer></script>
 <script src="assets/feedback.js" defer></script>

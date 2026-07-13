@@ -35,6 +35,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-text);
 .feed-detail { font-size:12px; color:var(--text-muted); margin-top:2px; }
 .feed-team { font-size:11px; color:var(--text-dead); text-align:right; }
 .state-msg { padding:40px 0; color:var(--text-muted); font-size:14px; }
+.state-msg button { margin-top:12px; background:var(--bg2); border:1px solid var(--border2); border-radius:4px; padding:8px 14px; color:var(--text); font:inherit; cursor:pointer; }
 .site-footer { padding-top:24px; font-size:12px; color:var(--text-dead); font-style:italic; border-top:1px solid var(--border); line-height:1.8; }
 @media (max-width: 680px) { .content,.site-footer{padding-left:20px;padding-right:20px;} .feed-row{grid-template-columns:1fr; gap:8px;} .feed-team{text-align:left;} }
 </style>
@@ -47,7 +48,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-text);
   <p>Chronological league feed covering transactions and standings movement. No realtime infra required; refreshed from local exports.</p>
 </div>
 <div class="content">
-  <div id="loadingMsg" class="state-msg">Loading feed…</div>
+  <div id="loadingMsg" class="state-msg" role="status" aria-live="polite">Loading feed…</div>
   <div id="mainContent" style="display:none;">
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="ALL">All</button>
@@ -80,7 +81,24 @@ function setupFilters(){
     render(filter === 'ALL' ? ALL_EVENTS : ALL_EVENTS.filter(event => normalizeEventType(event) === filter));
   }));
 }
-fetch('data/feed.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{ ALL_EVENTS = data.events || []; document.getElementById('loadingMsg').style.display='none'; document.getElementById('mainContent').style.display=''; document.getElementById('footerEl').textContent='Last updated: ' + data.generated + ' · ' + ALL_EVENTS.length + ' events shown.'; render(ALL_EVENTS); setupFilters(); }).catch(err=>{ document.getElementById('loadingMsg').textContent='Could not load feed. ('+err.message+')'; });
+function loadFeed(){
+  const status=document.getElementById('loadingMsg');
+  status.style.display='';
+  status.setAttribute('role','status');
+  status.textContent='Loading feed…';
+  fetch('data/feed.json').then(r=>{if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}).then(data=>{
+    ALL_EVENTS = Array.isArray(data.events) ? data.events : [];
+    status.style.display='none';
+    document.getElementById('mainContent').style.display='';
+    document.getElementById('footerEl').textContent='Last updated: ' + data.generated + ' · ' + ALL_EVENTS.length + ' events shown.';
+    render(ALL_EVENTS);
+    setupFilters();
+  }).catch(err=>{
+    status.setAttribute('role','alert');
+    status.innerHTML=`Could not load feed. ${esc(err.message)}<br><button type="button" onclick="loadFeed()">Retry loading feed</button>`;
+  });
+}
+loadFeed();
 </script>
 <script src="assets/site-shell.js" defer></script>
 </body>
