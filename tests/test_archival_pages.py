@@ -11,6 +11,7 @@ def test_rules_contents_is_sticky_and_collapsible() -> None:
     assert 'id="tocToggle"' in RULES
     assert 'aria-controls="tocList"' in RULES
     assert "syncTocVisibility" in RULES
+    assert ".rules-layout > main," in RULES
 
 
 def test_rules_generated_content_uses_semantic_headings_and_tables() -> None:
