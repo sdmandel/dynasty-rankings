@@ -560,7 +560,8 @@ def test_shared_shell_exposes_accessible_grouped_navigation() -> None:
     for destination in (
         "index.html", "standings.html", "transactions.html", "team_intel.html",
         "franchise_history.html", "rules.html", "roster_depth.html", "prospects.html",
-        "closers.html", "power_rankings.html",
+        "closers.html", "power_rankings.html", "dynasty_rankings.html", "feed.html",
+        "league_analytics.html", "win_window.html", "rivalries.html", "polls.html",
     ):
         assert destination in shell_js
     assert 'nav.setAttribute("aria-label", "Site navigation")' in shell_js
@@ -577,6 +578,16 @@ def test_shared_shell_footer_is_only_a_fallback() -> None:
 
     assert 'document.querySelector("footer, .site-footer, .footer")' in shell_js
     assert 'footer.className = "site-shell-footer"' in shell_js
+
+
+def test_public_routes_are_discoverable() -> None:
+    for html_file in HTML_FILES:
+        if html_file.name in {"404.html", "index.html"}:
+            continue
+        discoverable_text = _read(ROOT / "assets" / "site-shell.js") + "".join(
+            _read(path) for path in HTML_FILES if path != html_file
+        )
+        assert html_file.name in discoverable_text, f"{html_file.name} has no inbound discovery link"
 
 
 def test_standings_schema() -> None:
