@@ -355,14 +355,15 @@ body {
 }
 @media (max-width: 680px) {
   .leaders-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 5px;
   }
   .leader-chip {
     padding: 8px 8px;
+    min-width: 0;
   }
   .leader-chip .chip-cat { font-size: 9px; margin-bottom: 4px; }
-  .leader-chip .chip-team { font-size: 11px; }
+  .leader-chip .chip-team { font-size: 11px; overflow-wrap: anywhere; }
 }
 
 /* ── FOOTER ── */

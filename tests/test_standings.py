@@ -36,6 +36,7 @@ def test_category_table_keeps_headers_and_team_column_visible() -> None:
     assert ".cat-table thead th {\n  position: sticky;" in html
     assert ".cat-table tbody th.team-col {\n  position: sticky;" in html
     assert "overflow-x: auto" in html
+    assert "grid-template-columns: repeat(5, minmax(0, 1fr));" in html
 
 
 def test_standings_team_links_preserve_roster_depth_deep_link() -> None:
