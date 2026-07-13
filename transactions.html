@@ -43,6 +43,12 @@
   padding: 3px;
   margin-bottom: 10px;
 }
+.transaction-controls { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:end; margin-bottom:8px; }
+.filter-group { min-width:0; }
+.filter-label { display:block; margin-bottom:6px; color:var(--text-dead); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.filter-select { min-height:36px; min-width:170px; padding:6px 30px 6px 10px; border:1px solid var(--border); border-radius:var(--r-sm); background:var(--bg2); color:var(--text); font:inherit; }
+.filter-select:focus-visible, .filter-btn:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.result-status { margin:4px 0 18px; color:var(--text-muted); font-size:12px; }
 .filter-btn {
   font-size: 11px;
   font-weight: 600;
@@ -197,7 +203,7 @@
 }
 
 /* ── MANAGER PROFILES ── */
-.mgr-section { margin-bottom: 48px; }
+.mgr-section { margin: 48px 0; }
 .manager-profile-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -338,6 +344,11 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
     gap: 8px;
     padding: 10px 12px;
   }
+  .transaction-controls { display:block; }
+  .filter-group { margin-bottom:14px; }
+  .filter-bar { display:flex; }
+  .filter-btn { flex:1 1 auto; min-height:36px; padding-left:9px; padding-right:9px; }
+  .filter-select { width:100%; }
 }
 </style>
 </head>
@@ -352,11 +363,41 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
 </div>
 
 <div class="content">
-  <div id="loadingMsg" class="state-msg">Loading transactions…</div>
+  <div id="loadingMsg" class="state-msg" role="status">Loading transactions…</div>
+
+  <div id="mainContent" style="display:none;">
+    <h2 class="section-label" style="margin-bottom:16px;">Recent Transactions</h2>
+    <div class="transaction-controls" aria-label="Transaction filters">
+      <div class="filter-group">
+        <span class="filter-label" id="typeFilterLabel">Transaction type</span>
+        <div class="filter-bar" role="group" aria-labelledby="typeFilterLabel">
+          <button class="filter-btn active" data-filter="ALL" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="WAIVER" aria-pressed="false">Waivers</button>
+          <button class="filter-btn" data-filter="TRADE" aria-pressed="false">Trades</button>
+          <button class="filter-btn" data-filter="prospect" aria-pressed="false">Prospects</button>
+          <button class="filter-btn" data-filter="notable" aria-pressed="false">Notable</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="teamFilter">Team</label>
+        <select class="filter-select" id="teamFilter"><option value="ALL">All teams</option></select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="dateFilter">Date</label>
+        <select class="filter-select" id="dateFilter"><option value="ALL">All dates</option><option value="7">Latest 7 days</option><option value="30">Latest 30 days</option></select>
+      </div>
+    </div>
+    <div class="filter-note">Notable criteria: Oracle rank ≤ 300.</div>
+    <div class="result-status" id="resultStatus" role="status" aria-live="polite"></div>
+    <div class="txn-list" id="txnList" aria-label="Transaction results"></div>
+    <div id="showMoreWrap" style="margin-top:16px;text-align:center;display:none;">
+      <button id="showMoreBtn" class="filter-btn">Show More</button>
+    </div>
+  </div>
 
   <div class="mgr-section" id="mgrSection" style="display:none;">
-    <details class="manager-profile-card" open>
-      <summary class="manager-profile-summary"><span class="section-label">Manager Profiles</span></summary>
+    <details class="manager-profile-card">
+      <summary class="manager-profile-summary"><span class="section-label">How profiles work</span></summary>
       <div class="arch-def-grid">
         <div class="arch-def"><div class="arch-def-title" style="color:var(--blue)">Trader</div><div class="arch-def-desc">10+ trades this season.</div></div>
         <div class="arch-def"><div class="arch-def-title" style="color:#7e9ccc">Market Watcher</div><div class="arch-def-desc">5-9 trades this season.</div></div>
@@ -370,23 +411,6 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
       <div class="mgr-grid" id="mgrGrid"></div>
     </details>
   </div>
-
-  <div id="mainContent" style="display:none;">
-    <div class="section-label" style="margin-top:40px;margin-bottom:16px;">Recent Transactions</div>
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="ALL">All</button>
-      <button class="filter-btn" data-filter="WAIVER">Waivers</button>
-      <button class="filter-btn" data-filter="TRADE">Trades</button>
-      <button class="filter-btn" data-filter="prospect">Prospects</button>
-      <button class="filter-btn" data-filter="notable">Notable</button>
-    </div>
-    <div class="filter-note">Notable criteria: Oracle rank ≤ 300.</div>
-
-    <div class="txn-list" id="txnList"></div>
-    <div id="showMoreWrap" style="margin-top:16px;text-align:center;display:none;">
-      <button id="showMoreBtn" class="filter-btn">Show More</button>
-    </div>
-  </div>
 </div>
 
 <div class="site-footer" id="footerEl">
@@ -398,6 +422,8 @@ html[data-theme="light"] .arch-badge.ab-asleep-at-the-wheel { border-color:#e8b0
 const PAGE_SIZE = 50;
 let ALL_TXNS = [];
 let activeFilter = 'ALL';
+let activeTeam = 'ALL';
+let activeDate = 'ALL';
 let visibleCount = PAGE_SIZE;
 
 // ── MANAGER PROFILES ─────────────────────────────────────────────────────────
@@ -456,45 +482,109 @@ fetch('data/transactions.json')
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
   .then(data => {
     ALL_TXNS = data.transactions || [];
+    populateTeamFilter();
+    restoreFilterState();
     document.getElementById('loadingMsg').style.display = 'none';
     document.getElementById('mainContent').style.display = '';
     document.getElementById('footerEl').textContent =
       'Last updated: ' + data.generated + '  ·  ' + ALL_TXNS.length + ' transactions on record.';
     SiteFreshness.render('#freshnessEl', { timestamp: data.generated_at || data.generated, source: 'Fantrax', currentHours: 12, delayedHours: 36 });
-    renderList(filterTxns(ALL_TXNS, activeFilter));
     setupFilters();
+    applyFilterState(false);
     document.getElementById('showMoreBtn').addEventListener('click', () => {
       visibleCount += PAGE_SIZE;
-      renderList(filterTxns(ALL_TXNS, activeFilter));
+      renderFilteredList();
     });
   })
   .catch(err => {
     SiteFreshness.render('#freshnessEl', { source: 'Fantrax' });
-    document.getElementById('loadingMsg').textContent = 'Could not load transaction data. (' + err.message + ')';
+    document.getElementById('loadingMsg').innerHTML = 'Could not load transaction data. Check your connection, then <button type="button" class="filter-btn" onclick="location.reload()">retry</button>. (' + esc(err.message) + ')';
   });
 
 function setupFilters() {
   document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
       activeFilter = btn.dataset.filter;
       visibleCount = PAGE_SIZE;
-      renderList(filterTxns(ALL_TXNS, activeFilter));
+      applyFilterState(true);
     });
+  });
+  document.getElementById('teamFilter').addEventListener('change', event => {
+    activeTeam = event.target.value;
+    visibleCount = PAGE_SIZE;
+    applyFilterState(true);
+  });
+  document.getElementById('dateFilter').addEventListener('change', event => {
+    activeDate = event.target.value;
+    visibleCount = PAGE_SIZE;
+    applyFilterState(true);
+  });
+  window.addEventListener('popstate', () => {
+    restoreFilterState();
+    visibleCount = PAGE_SIZE;
+    applyFilterState(false);
   });
 }
 
-function filterTxns(txns, filter) {
-  if (filter === 'ALL') return txns;
+function populateTeamFilter() {
+  const teams = [...new Set(ALL_TXNS.flatMap(t => [t.team, t.from_team]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  const select = document.getElementById('teamFilter');
+  teams.forEach(team => select.add(new Option(team, team)));
+}
+
+function restoreFilterState() {
+  const params = new URLSearchParams(location.search);
+  const type = params.get('type') || 'ALL';
+  const team = params.get('team') || 'ALL';
+  const date = params.get('date') || 'ALL';
+  activeFilter = document.querySelector(`.filter-btn[data-filter="${CSS.escape(type)}"]`) ? type : 'ALL';
+  activeTeam = [...document.getElementById('teamFilter').options].some(o => o.value === team) ? team : 'ALL';
+  activeDate = ['ALL', '7', '30'].includes(date) ? date : 'ALL';
+}
+
+function applyFilterState(updateUrl) {
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+    const selected = btn.dataset.filter === activeFilter;
+    btn.classList.toggle('active', selected);
+    btn.setAttribute('aria-pressed', String(selected));
+  });
+  document.getElementById('teamFilter').value = activeTeam;
+  document.getElementById('dateFilter').value = activeDate;
+  if (updateUrl) {
+    const params = new URLSearchParams();
+    if (activeFilter !== 'ALL') params.set('type', activeFilter);
+    if (activeTeam !== 'ALL') params.set('team', activeTeam);
+    if (activeDate !== 'ALL') params.set('date', activeDate);
+    const query = params.toString();
+    history.pushState(null, '', location.pathname + (query ? '?' + query : '') + location.hash);
+  }
+  renderFilteredList();
+}
+
+function renderFilteredList() {
+  renderList(filterTxns(ALL_TXNS));
+}
+
+function filterTxns(txns) {
+  let filtered = txns;
+  const filter = activeFilter;
+  if (filter !== 'ALL') {
   if (filter === 'prospect' || filter === 'notable' || filter === 'trade') {
-    return txns.filter(t => t.badge === filter);
+      filtered = filtered.filter(t => t.badge === filter);
+    } else if (filter === 'WAIVER') {
+      filtered = filtered.filter(t => t.type === 'ADD' || t.type === 'DROP');
+    } else {
+      filtered = filtered.filter(t => t.type === filter);
+    }
   }
-  if (filter === 'WAIVER') {
-    // Waiver = all ADD/DROP (not TRADE)
-    return txns.filter(t => t.type === 'ADD' || t.type === 'DROP');
+  if (activeTeam !== 'ALL') filtered = filtered.filter(t => t.team === activeTeam || t.from_team === activeTeam);
+  if (activeDate !== 'ALL' && filtered.length) {
+    const latest = ALL_TXNS.reduce((max, t) => t.date > max ? t.date : max, '');
+    const cutoff = new Date(latest + 'T12:00:00');
+    cutoff.setDate(cutoff.getDate() - Number(activeDate) + 1);
+    filtered = filtered.filter(t => new Date(t.date + 'T12:00:00') >= cutoff);
   }
-  return txns.filter(t => t.type === filter);
+  return filtered;
 }
 
 // Collapse flat rows into grouped display items.
@@ -545,9 +635,12 @@ function renderList(txns) {
   list.innerHTML = '';
 
   const grouped = groupTransactions(txns);
+  const status = document.getElementById('resultStatus');
+  const resultLabel = grouped.length === 1 ? 'transaction' : 'transactions';
+  status.textContent = `${grouped.length} ${resultLabel} match the selected filters.`;
 
   if (!grouped.length) {
-    list.innerHTML = '<div class="empty-msg">No transactions match this filter.</div>';
+    list.innerHTML = '<div class="empty-msg">No transactions match these filters. Try a different type, team, or date range.</div>';
     showMoreWrap.style.display = 'none';
     return;
   }
