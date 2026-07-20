@@ -1,10 +1,11 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ARTICLE_FILES = (
-    ROOT / "templates" / "power_rankings_template.html",
-    ROOT / "week15_power_rankings.html",
+CURRENT_ARTICLE = max(
+    ROOT.glob("week*_power_rankings.html"),
+    key=lambda path: int(path.stem.split("_")[0].removeprefix("week")),
 )
+ARTICLE_FILES = (ROOT / "templates" / "power_rankings_template.html",)
 
 
 def _html(path: Path) -> str:
@@ -31,7 +32,7 @@ def test_article_jump_links_have_matching_section_targets():
 
 
 def test_current_issue_player_references_are_accessible_links():
-    html = _html(ROOT / "week15_power_rankings.html")
+    html = _html(CURRENT_ARTICLE)
     assert '<a class="player-pill' in html
     assert 'href="dynasty_rankings.html?player=' in html
     assert 'aria-label="' in html
