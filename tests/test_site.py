@@ -238,6 +238,9 @@ def test_power_rankings_latest_links_match_newest_week() -> None:
     assert row_weeks == sorted(row_weeks, reverse=True)
     assert row_weeks[0] == newest_week
 
+    shell = _read(ROOT / "assets" / "site-shell.js")
+    assert f'["Current Power Rankings", "{newest_href}", "rankings-current"]' in shell
+
 
 def test_newest_power_rankings_blurbs_avoid_banned_phrases() -> None:
     newest = _newest_week_file()
