@@ -31,7 +31,7 @@ def test_homepage_standings_freshness_is_truthful_and_data_driven() -> None:
 
 def test_homepage_cards_are_links_with_visible_keyboard_focus() -> None:
     for route in (
-        "week16_power_rankings.html",
+        "week17_power_rankings.html",
         "transactions.html",
         "team_intel.html",
         "roster_depth.html",

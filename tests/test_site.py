@@ -481,7 +481,7 @@ def test_relative_links_resolve(html_file: Path) -> None:
 def test_pages_include_shared_hub_shell(html_file: Path) -> None:
     html = _read(html_file)
     assert 'href="assets/nav.css"' in html, f"{html_file.name} missing shared nav CSS"
-    assert 'src="assets/site-shell.js?v=week16"' in html, f"{html_file.name} missing shared shell JS"
+    assert 'src="assets/site-shell.js?v=week17"' in html, f"{html_file.name} missing shared shell JS"
 
 
 @pytest.mark.parametrize("html_file", SHELL_CSS_HTML_FILES, ids=lambda p: p.name)
@@ -548,7 +548,7 @@ def test_analytics_loader_is_present_everywhere() -> None:
 
     for html_file in HTML_FILES:
         html = _read(html_file)
-        assert 'src="assets/site-shell.js?v=week16"' in html, f"{html_file.name} missing shared shell JS"
+        assert 'src="assets/site-shell.js?v=week17"' in html, f"{html_file.name} missing shared shell JS"
         assert "data-cf-beacon" not in html, f"{html_file.name} still embeds a beacon inline"
         if html_file.name in {"index.html", "404.html"}:
             assert 'src="assets/analytics.js"' in html, f"{html_file.name} missing inline analytics tag"
