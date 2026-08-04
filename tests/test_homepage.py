@@ -30,8 +30,12 @@ def test_homepage_standings_freshness_is_truthful_and_data_driven() -> None:
 
 
 def test_homepage_cards_are_links_with_visible_keyboard_focus() -> None:
+    newest_rankings_route = max(
+        ROOT.glob("week*_power_rankings.html"),
+        key=lambda path: int(path.name.split("_", 1)[0].removeprefix("week")),
+    ).name
     for route in (
-        "week17_power_rankings.html",
+        newest_rankings_route,
         "transactions.html",
         "team_intel.html",
         "roster_depth.html",
