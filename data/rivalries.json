@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-29",
+  "generated": "2026-08-24",
   "season": 2026,
   "seasons": [
     2025,
@@ -17,16 +17,47 @@
   },
   "teams": [
     {
+      "team": "Jonesin'",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Jonesin'",
+          "source_rival_team": "Jonesin'",
+          "finish_proximity_score": 100.0,
+          "category_similarity_score": 100.0,
+          "points_stolen_score": 100.0,
+          "rivalry_score": 100.0,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Mommy",
+          "source_rival_team": "Mommy",
+          "finish_proximity_score": 87.79,
+          "category_similarity_score": 70.78,
+          "points_stolen_score": 18.73,
+          "rivalry_score": 68.02,
+          "tags": [
+            "close standings"
+          ]
+        }
+      ]
+    },
+    {
       "team": "Philbell",
       "rivals": [
         {
           "season": 2026,
           "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 91.67,
-          "category_similarity_score": 99.17,
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 92.31,
+          "category_similarity_score": 99.23,
           "points_stolen_score": 100.0,
-          "rivalry_score": 95.96,
+          "rivalry_score": 96.27,
           "tags": [
             "close standings",
             "same-category build",
@@ -37,165 +68,13 @@
           "season": 2026,
           "rival_team": "Seam heads",
           "source_rival_team": "Seam heads",
-          "finish_proximity_score": 87.12,
-          "category_similarity_score": 75.0,
+          "finish_proximity_score": 88.11,
+          "category_similarity_score": 76.92,
           "points_stolen_score": 29.55,
-          "rivalry_score": 71.36,
+          "rivalry_score": 72.48,
           "tags": [
             "close standings",
             "same-category build",
-            "frequent category pressure"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Rollie Fingers",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Seam heads",
-          "source_rival_team": "Seam heads",
-          "finish_proximity_score": 87.96,
-          "category_similarity_score": 78.58,
-          "points_stolen_score": 32.38,
-          "rivalry_score": 73.56,
-          "tags": [
-            "close standings",
-            "same-category build",
-            "frequent category pressure"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 88.64,
-          "category_similarity_score": 69.73,
-          "points_stolen_score": 17.27,
-          "rivalry_score": 67.75,
-          "tags": [
-            "close standings"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Seam heads",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Rollie Fingers",
-          "source_rival_team": "Rollie Fingers",
-          "finish_proximity_score": 87.96,
-          "category_similarity_score": 78.58,
-          "points_stolen_score": 32.38,
-          "rivalry_score": 73.56,
-          "tags": [
-            "close standings",
-            "same-category build",
-            "frequent category pressure"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 87.12,
-          "category_similarity_score": 75.0,
-          "points_stolen_score": 29.55,
-          "rivalry_score": 71.36,
-          "tags": [
-            "close standings",
-            "same-category build",
-            "frequent category pressure"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Humongous Melonheads",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 86.31,
-          "category_similarity_score": 74.85,
-          "points_stolen_score": 20.0,
-          "rivalry_score": 69.04,
-          "tags": [
-            "close standings"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Rollie Fingers",
-          "source_rival_team": "Rollie Fingers",
-          "finish_proximity_score": 87.17,
-          "category_similarity_score": 67.71,
-          "points_stolen_score": 17.78,
-          "rivalry_score": 66.48,
-          "tags": [
-            "close standings"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "John Henry Fan Club",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 84.33,
-          "category_similarity_score": 71.73,
-          "points_stolen_score": 22.38,
-          "rivalry_score": 67.53,
-          "tags": [
-            "close standings"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Humongous Melonheads",
-          "source_rival_team": "Humongous Melonheads",
-          "finish_proximity_score": 80.82,
-          "category_similarity_score": 71.76,
-          "points_stolen_score": 19.37,
-          "rivalry_score": 65.36,
-          "tags": [
-            "close standings"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Jonesin'",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Mommy",
-          "source_rival_team": "Mommy",
-          "finish_proximity_score": 86.77,
-          "category_similarity_score": 68.35,
-          "points_stolen_score": 18.73,
-          "rivalry_score": 66.71,
-          "tags": [
-            "close standings"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Millville Meteors",
-          "source_rival_team": "Millville Meteors",
-          "finish_proximity_score": 75.26,
-          "category_similarity_score": 73.45,
-          "points_stolen_score": 28.57,
-          "rivalry_score": 65.29,
-          "tags": [
-            "close standings",
             "frequent category pressure"
           ]
         }
@@ -208,22 +87,218 @@
           "season": 2026,
           "rival_team": "Jonesin'",
           "source_rival_team": "Jonesin'",
-          "finish_proximity_score": 86.77,
-          "category_similarity_score": 68.35,
-          "points_stolen_score": 18.73,
-          "rivalry_score": 66.71,
+          "finish_proximity_score": 91.87,
+          "category_similarity_score": 83.2,
+          "points_stolen_score": 41.7,
+          "rivalry_score": 78.8,
           "tags": [
-            "close standings"
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
           ]
         },
         {
           "season": 2026,
           "rival_team": "Trazadone",
           "source_rival_team": "Trazadone",
-          "finish_proximity_score": 76.46,
-          "category_similarity_score": 73.11,
-          "points_stolen_score": 24.76,
-          "rivalry_score": 64.95,
+          "finish_proximity_score": 83.03,
+          "category_similarity_score": 77.14,
+          "points_stolen_score": 24.73,
+          "rivalry_score": 69.31,
+          "tags": [
+            "close standings",
+            "same-category build"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Rollie Fingers",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Seam heads",
+          "source_rival_team": "Seam heads",
+          "finish_proximity_score": 90.87,
+          "category_similarity_score": 82.46,
+          "points_stolen_score": 35.4,
+          "rivalry_score": 76.83,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 82.05,
+          "category_similarity_score": 80.17,
+          "points_stolen_score": 40.54,
+          "rivalry_score": 73.09,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Seam heads",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Rollie Fingers",
+          "source_rival_team": "Rollie Fingers",
+          "finish_proximity_score": 90.87,
+          "category_similarity_score": 82.46,
+          "points_stolen_score": 35.4,
+          "rivalry_score": 76.83,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Philbell",
+          "source_rival_team": "Acu\u00f1a Matata",
+          "finish_proximity_score": 88.11,
+          "category_similarity_score": 76.92,
+          "points_stolen_score": 29.55,
+          "rivalry_score": 72.48,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Trazadone",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Jonesin'",
+          "source_rival_team": "Jonesin'",
+          "finish_proximity_score": 88.46,
+          "category_similarity_score": 81.08,
+          "points_stolen_score": 40.23,
+          "rivalry_score": 76.23,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Millville Meteors",
+          "source_rival_team": "Millville Meteors",
+          "finish_proximity_score": 86.15,
+          "category_similarity_score": 75.58,
+          "points_stolen_score": 23.6,
+          "rivalry_score": 69.94,
+          "tags": [
+            "close standings",
+            "same-category build"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Humongous Melonheads",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 88.67,
+          "category_similarity_score": 79.95,
+          "points_stolen_score": 20.47,
+          "rivalry_score": 71.98,
+          "tags": [
+            "close standings",
+            "same-category build"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Rollie Fingers",
+          "source_rival_team": "Rollie Fingers",
+          "finish_proximity_score": 86.97,
+          "category_similarity_score": 75.36,
+          "points_stolen_score": 24.0,
+          "rivalry_score": 70.31,
+          "tags": [
+            "close standings",
+            "same-category build"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Millville Meteors",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Jonesin'",
+          "source_rival_team": "Jonesin'",
+          "finish_proximity_score": 85.14,
+          "category_similarity_score": 79.12,
+          "points_stolen_score": 26.7,
+          "rivalry_score": 71.34,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Pat",
+          "source_rival_team": "Pat",
+          "finish_proximity_score": 82.31,
+          "category_similarity_score": 78.36,
+          "points_stolen_score": 27.4,
+          "rivalry_score": 69.95,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Pat",
+      "rivals": [
+        {
+          "season": 2026,
+          "rival_team": "Millville Meteors",
+          "source_rival_team": "Millville Meteors",
+          "finish_proximity_score": 82.31,
+          "category_similarity_score": 78.36,
+          "points_stolen_score": 27.4,
+          "rivalry_score": 69.95,
+          "tags": [
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
+          ]
+        },
+        {
+          "season": 2026,
+          "rival_team": "Sam",
+          "source_rival_team": "Sam",
+          "finish_proximity_score": 88.51,
+          "category_similarity_score": 72.01,
+          "points_stolen_score": 17.33,
+          "rivalry_score": 68.5,
           "tags": [
             "close standings"
           ]
@@ -236,55 +311,29 @@
         {
           "season": 2026,
           "rival_team": "Philbell",
-          "source_rival_team": "Philbell",
-          "finish_proximity_score": 73.11,
-          "category_similarity_score": 78.18,
-          "points_stolen_score": 27.27,
-          "rivalry_score": 65.72,
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 83.78,
+          "category_similarity_score": 75.55,
+          "points_stolen_score": 26.98,
+          "rivalry_score": 69.54,
           "tags": [
+            "close standings",
             "same-category build",
             "frequent category pressure"
           ]
         },
         {
           "season": 2026,
-          "rival_team": "John Henry Fan Club",
-          "source_rival_team": "John Henry Fan Club",
-          "finish_proximity_score": 83.73,
-          "category_similarity_score": 66.57,
-          "points_stolen_score": 11.75,
-          "rivalry_score": 63.33,
+          "rival_team": "Humongous Melonheads",
+          "source_rival_team": "Humongous Melonheads",
+          "finish_proximity_score": 77.9,
+          "category_similarity_score": 75.31,
+          "points_stolen_score": 28.8,
+          "rivalry_score": 67.17,
           "tags": [
-            "close standings"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Pat",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Sam",
-          "source_rival_team": "Sam",
-          "finish_proximity_score": 83.07,
-          "category_similarity_score": 68.93,
-          "points_stolen_score": 20.32,
-          "rivalry_score": 65.57,
-          "tags": [
-            "close standings"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Millville Meteors",
-          "source_rival_team": "Millville Meteors",
-          "finish_proximity_score": 80.56,
-          "category_similarity_score": 72.52,
-          "points_stolen_score": 18.57,
-          "rivalry_score": 65.35,
-          "tags": [
-            "close standings"
+            "close standings",
+            "same-category build",
+            "frequent category pressure"
           ]
         }
       ]
@@ -296,22 +345,22 @@
           "season": 2026,
           "rival_team": "Pat",
           "source_rival_team": "Pat",
-          "finish_proximity_score": 83.07,
-          "category_similarity_score": 68.93,
-          "points_stolen_score": 20.32,
-          "rivalry_score": 65.57,
+          "finish_proximity_score": 88.51,
+          "category_similarity_score": 72.01,
+          "points_stolen_score": 17.33,
+          "rivalry_score": 68.5,
           "tags": [
             "close standings"
           ]
         },
         {
           "season": 2026,
-          "rival_team": "Jonesin'",
-          "source_rival_team": "Jonesin'",
-          "finish_proximity_score": 77.51,
-          "category_similarity_score": 69.36,
-          "points_stolen_score": 23.17,
-          "rivalry_score": 63.79,
+          "rival_team": "Millville Meteors",
+          "source_rival_team": "Millville Meteors",
+          "finish_proximity_score": 86.72,
+          "category_similarity_score": 71.33,
+          "points_stolen_score": 21.27,
+          "rivalry_score": 68.24,
           "tags": [
             "close standings"
           ]
@@ -319,46 +368,16 @@
       ]
     },
     {
-      "team": "Millville Meteors",
+      "team": "John Henry Fan Club",
       "rivals": [
         {
           "season": 2026,
-          "rival_team": "Pat",
-          "source_rival_team": "Pat",
-          "finish_proximity_score": 80.56,
-          "category_similarity_score": 72.52,
-          "points_stolen_score": 18.57,
-          "rivalry_score": 65.35,
-          "tags": [
-            "close standings"
-          ]
-        },
-        {
-          "season": 2026,
-          "rival_team": "Jonesin'",
-          "source_rival_team": "Jonesin'",
-          "finish_proximity_score": 75.26,
-          "category_similarity_score": 73.45,
-          "points_stolen_score": 28.57,
-          "rivalry_score": 65.29,
-          "tags": [
-            "close standings",
-            "frequent category pressure"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Trazadone",
-      "rivals": [
-        {
-          "season": 2026,
-          "rival_team": "Mommy",
-          "source_rival_team": "Mommy",
-          "finish_proximity_score": 76.46,
-          "category_similarity_score": 73.11,
-          "points_stolen_score": 24.76,
-          "rivalry_score": 64.95,
+          "rival_team": "Philbell",
+          "source_rival_team": "philbell",
+          "finish_proximity_score": 82.77,
+          "category_similarity_score": 72.79,
+          "points_stolen_score": 24.03,
+          "rivalry_score": 67.53,
           "tags": [
             "close standings"
           ]
@@ -367,10 +386,10 @@
           "season": 2026,
           "rival_team": "Pat",
           "source_rival_team": "Pat",
-          "finish_proximity_score": 80.95,
-          "category_similarity_score": 68.59,
-          "points_stolen_score": 21.9,
-          "rivalry_score": 64.81,
+          "finish_proximity_score": 84.51,
+          "category_similarity_score": 71.43,
+          "points_stolen_score": 14.33,
+          "rivalry_score": 65.9,
           "tags": [
             "close standings"
           ]
@@ -380,14 +399,29 @@
   ],
   "leaders": [
     {
+      "team": "Jonesin'",
+      "season": 2026,
+      "rival_team": "Jonesin'",
+      "source_rival_team": "Jonesin'",
+      "finish_proximity_score": 100.0,
+      "category_similarity_score": 100.0,
+      "points_stolen_score": 100.0,
+      "rivalry_score": 100.0,
+      "tags": [
+        "close standings",
+        "same-category build",
+        "frequent category pressure"
+      ]
+    },
+    {
       "team": "Philbell",
       "season": 2026,
       "rival_team": "Philbell",
-      "source_rival_team": "Philbell",
-      "finish_proximity_score": 91.67,
-      "category_similarity_score": 99.17,
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 92.31,
+      "category_similarity_score": 99.23,
       "points_stolen_score": 100.0,
-      "rivalry_score": 95.96,
+      "rivalry_score": 96.27,
       "tags": [
         "close standings",
         "same-category build",
@@ -399,10 +433,40 @@
       "season": 2026,
       "rival_team": "Seam heads",
       "source_rival_team": "Seam heads",
-      "finish_proximity_score": 87.96,
-      "category_similarity_score": 78.58,
-      "points_stolen_score": 32.38,
-      "rivalry_score": 73.56,
+      "finish_proximity_score": 90.87,
+      "category_similarity_score": 82.46,
+      "points_stolen_score": 35.4,
+      "rivalry_score": 76.83,
+      "tags": [
+        "close standings",
+        "same-category build",
+        "frequent category pressure"
+      ]
+    },
+    {
+      "team": "Trazadone",
+      "season": 2026,
+      "rival_team": "Jonesin'",
+      "source_rival_team": "Jonesin'",
+      "finish_proximity_score": 88.46,
+      "category_similarity_score": 81.08,
+      "points_stolen_score": 40.23,
+      "rivalry_score": 76.23,
+      "tags": [
+        "close standings",
+        "same-category build",
+        "frequent category pressure"
+      ]
+    },
+    {
+      "team": "Rollie Fingers",
+      "season": 2026,
+      "rival_team": "Philbell",
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 82.05,
+      "category_similarity_score": 80.17,
+      "points_stolen_score": 40.54,
+      "rivalry_score": 73.09,
       "tags": [
         "close standings",
         "same-category build",
@@ -414,10 +478,10 @@
       "season": 2026,
       "rival_team": "Seam heads",
       "source_rival_team": "Seam heads",
-      "finish_proximity_score": 87.12,
-      "category_similarity_score": 75.0,
+      "finish_proximity_score": 88.11,
+      "category_similarity_score": 76.92,
       "points_stolen_score": 29.55,
-      "rivalry_score": 71.36,
+      "rivalry_score": 72.48,
       "tags": [
         "close standings",
         "same-category build",
@@ -428,52 +492,29 @@
       "team": "Humongous Melonheads",
       "season": 2026,
       "rival_team": "Philbell",
-      "source_rival_team": "Philbell",
-      "finish_proximity_score": 86.31,
-      "category_similarity_score": 74.85,
-      "points_stolen_score": 20.0,
-      "rivalry_score": 69.04,
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 88.67,
+      "category_similarity_score": 79.95,
+      "points_stolen_score": 20.47,
+      "rivalry_score": 71.98,
       "tags": [
-        "close standings"
+        "close standings",
+        "same-category build"
       ]
     },
     {
-      "team": "Rollie Fingers",
+      "team": "Millville Meteors",
       "season": 2026,
-      "rival_team": "Philbell",
-      "source_rival_team": "Philbell",
-      "finish_proximity_score": 88.64,
-      "category_similarity_score": 69.73,
-      "points_stolen_score": 17.27,
-      "rivalry_score": 67.75,
+      "rival_team": "Jonesin'",
+      "source_rival_team": "Jonesin'",
+      "finish_proximity_score": 85.14,
+      "category_similarity_score": 79.12,
+      "points_stolen_score": 26.7,
+      "rivalry_score": 71.34,
       "tags": [
-        "close standings"
-      ]
-    },
-    {
-      "team": "John Henry Fan Club",
-      "season": 2026,
-      "rival_team": "Philbell",
-      "source_rival_team": "Philbell",
-      "finish_proximity_score": 84.33,
-      "category_similarity_score": 71.73,
-      "points_stolen_score": 22.38,
-      "rivalry_score": 67.53,
-      "tags": [
-        "close standings"
-      ]
-    },
-    {
-      "team": "Jonesin'",
-      "season": 2026,
-      "rival_team": "Mommy",
-      "source_rival_team": "Mommy",
-      "finish_proximity_score": 86.77,
-      "category_similarity_score": 68.35,
-      "points_stolen_score": 18.73,
-      "rivalry_score": 66.71,
-      "tags": [
-        "close standings"
+        "close standings",
+        "same-category build",
+        "frequent category pressure"
       ]
     },
     {
@@ -481,65 +522,57 @@
       "season": 2026,
       "rival_team": "Rollie Fingers",
       "source_rival_team": "Rollie Fingers",
-      "finish_proximity_score": 87.17,
-      "category_similarity_score": 67.71,
-      "points_stolen_score": 17.78,
-      "rivalry_score": 66.48,
+      "finish_proximity_score": 86.97,
+      "category_similarity_score": 75.36,
+      "points_stolen_score": 24.0,
+      "rivalry_score": 70.31,
       "tags": [
-        "close standings"
+        "close standings",
+        "same-category build"
+      ]
+    },
+    {
+      "team": "Millville Meteors",
+      "season": 2026,
+      "rival_team": "Pat",
+      "source_rival_team": "Pat",
+      "finish_proximity_score": 82.31,
+      "category_similarity_score": 78.36,
+      "points_stolen_score": 27.4,
+      "rivalry_score": 69.95,
+      "tags": [
+        "close standings",
+        "same-category build",
+        "frequent category pressure"
+      ]
+    },
+    {
+      "team": "Trazadone",
+      "season": 2026,
+      "rival_team": "Millville Meteors",
+      "source_rival_team": "Millville Meteors",
+      "finish_proximity_score": 86.15,
+      "category_similarity_score": 75.58,
+      "points_stolen_score": 23.6,
+      "rivalry_score": 69.94,
+      "tags": [
+        "close standings",
+        "same-category build"
       ]
     },
     {
       "team": "Vin Mazzaro fan club",
       "season": 2026,
       "rival_team": "Philbell",
-      "source_rival_team": "Philbell",
-      "finish_proximity_score": 73.11,
-      "category_similarity_score": 78.18,
-      "points_stolen_score": 27.27,
-      "rivalry_score": 65.72,
+      "source_rival_team": "philbell",
+      "finish_proximity_score": 83.78,
+      "category_similarity_score": 75.55,
+      "points_stolen_score": 26.98,
+      "rivalry_score": 69.54,
       "tags": [
+        "close standings",
         "same-category build",
         "frequent category pressure"
-      ]
-    },
-    {
-      "team": "Pat",
-      "season": 2026,
-      "rival_team": "Sam",
-      "source_rival_team": "Sam",
-      "finish_proximity_score": 83.07,
-      "category_similarity_score": 68.93,
-      "points_stolen_score": 20.32,
-      "rivalry_score": 65.57,
-      "tags": [
-        "close standings"
-      ]
-    },
-    {
-      "team": "John Henry Fan Club",
-      "season": 2026,
-      "rival_team": "Humongous Melonheads",
-      "source_rival_team": "Humongous Melonheads",
-      "finish_proximity_score": 80.82,
-      "category_similarity_score": 71.76,
-      "points_stolen_score": 19.37,
-      "rivalry_score": 65.36,
-      "tags": [
-        "close standings"
-      ]
-    },
-    {
-      "team": "Pat",
-      "season": 2026,
-      "rival_team": "Millville Meteors",
-      "source_rival_team": "Millville Meteors",
-      "finish_proximity_score": 80.56,
-      "category_similarity_score": 72.52,
-      "points_stolen_score": 18.57,
-      "rivalry_score": 65.35,
-      "tags": [
-        "close standings"
       ]
     }
   ]

@@ -1,14 +1,14 @@
 {
-  "generated": "2026-06-01",
-  "generated_at": "2026-06-01T21:00:03-05:00",
+  "generated": "2026-08-24",
+  "generated_at": "2026-08-24T16:07:26-05:00",
   "season": 2026,
   "season_label": "2026 Season",
-  "week": 70,
-  "snapshot_date": "2026-05-29",
+  "week": 153,
+  "snapshot_date": "2026-08-24",
   "sources": {
-    "standings": "2026-06-01T21:00:03-05:00",
-    "intelligence": "2026-05-29",
-    "managers": "2026-05-29",
+    "standings": "2026-08-24T16:07:26-05:00",
+    "intelligence": "2026-08-24",
+    "managers": "2026-08-24",
     "oracle_values": "data/rankings_latest.csv"
   },
   "notes": {
@@ -20,13 +20,13 @@
       "team": "Rollie Fingers",
       "oracle_rank": 1,
       "standings_rank": 2,
-      "total_value": 39458.7,
-      "mlb_value": 33420.4,
-      "farm_value": 6038.3,
-      "avg_age": 27.3,
-      "farm_share": 0.153,
+      "total_value": 36479.0,
+      "mlb_value": 31438.3,
+      "farm_value": 5040.7,
+      "avg_age": 27.6,
+      "farm_share": 0.1382,
       "contention_tier": "fringe",
-      "points_back": 10.5,
+      "points_back": 13.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "ERA",
@@ -59,7 +59,7 @@
           "to_loss": 1.0
         },
         "RBI": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "SB": {
@@ -75,8 +75,8 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 1.0,
-      "volatility": 29.49,
+      "luck_delta": 0.5,
+      "volatility": 29.42,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -91,7 +91,7 @@
       },
       "public_archetypes": [
         "fringe",
-        "power bat backbone",
+        "balanced build",
         "trade-driven"
       ],
       "trade_needs": [
@@ -107,37 +107,37 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 27.5,
-        "previous_total_value": 37525.5,
-        "age_delta": -0.2,
-        "value_delta": 1933.2,
+        "previous_avg_age": 27.3,
+        "previous_total_value": 39458.7,
+        "age_delta": 0.3,
+        "value_delta": -2979.7,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       },
       "active_projection": {
-        "active_sgp": 194.499,
+        "active_sgp": 25.553,
         "active_players": 10,
-        "strength_z": 1.2211,
+        "strength_z": -0.4936,
         "top_contributors": [
           {
-            "player": "Elly De La Cruz",
-            "sgp": 40.845
+            "player": "Kerry Carpenter",
+            "sgp": 6.349
           },
           {
-            "player": "Munetaka Murakami",
-            "sgp": 31.231
+            "player": "Tyler Soderstrom",
+            "sgp": 5.127
           },
           {
-            "player": "Garrett Crochet",
-            "sgp": 30.804
+            "player": "Joe Ryan",
+            "sgp": 5.103
           },
           {
-            "player": "Teoscar Hern\u00e1ndez",
-            "sgp": 30.126
+            "player": "Jacob Wilson",
+            "sgp": 3.852
           },
           {
-            "player": "Matthew Boyd",
-            "sgp": 23.82
+            "player": "Abner Uribe",
+            "sgp": 2.967
           }
         ]
       }
@@ -145,15 +145,15 @@
     {
       "team": "Humongous Melonheads",
       "oracle_rank": 2,
-      "standings_rank": 3,
-      "total_value": 36834.8,
-      "mlb_value": 30931.6,
-      "farm_value": 5903.2,
-      "avg_age": 28.5,
-      "farm_share": 0.1603,
-      "contention_tier": "fringe",
-      "points_back": 13.5,
-      "reachable_points": 7.0,
+      "standings_rank": 1,
+      "total_value": 36046.7,
+      "mlb_value": 30143.1,
+      "farm_value": 5903.6,
+      "avg_age": 29.2,
+      "farm_share": 0.1638,
+      "contention_tier": "contender",
+      "points_back": 0.0,
+      "reachable_points": 4.0,
       "tight_categories": [
         "ERA",
         "HR",
@@ -173,7 +173,7 @@
           "to_loss": 1.0
         },
         "OPS": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         },
         "QS": {
@@ -181,11 +181,11 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         },
         "RBI": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         },
         "SB": {
@@ -201,8 +201,8 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 1.5,
-      "volatility": 37.21,
+      "luck_delta": 3.0,
+      "volatility": 41.42,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -216,13 +216,139 @@
         "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
-        "fringe",
-        "volume arms",
+        "contender",
+        "balanced build",
         "trade-aware"
       ],
       "trade_needs": [
         "fragile SP depth",
         "surplus SB"
+      ],
+      "trend": {
+        "pts_change": 0.0,
+        "stock": "push",
+        "summary": "Window open \u00b7 pressure in ERA",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 28.5,
+        "previous_total_value": 36834.8,
+        "age_delta": 0.7,
+        "value_delta": -788.1,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      },
+      "active_projection": {
+        "active_sgp": 41.472,
+        "active_players": 15,
+        "strength_z": 1.2444,
+        "top_contributors": [
+          {
+            "player": "James Wood",
+            "sgp": 9.532
+          },
+          {
+            "player": "Ketel Marte",
+            "sgp": 9.121
+          },
+          {
+            "player": "Hunter Goodman",
+            "sgp": 8.5
+          },
+          {
+            "player": "Brent Rooker",
+            "sgp": 5.0
+          },
+          {
+            "player": "Matt Chapman",
+            "sgp": 4.416
+          }
+        ]
+      }
+    },
+    {
+      "team": "John Henry Fan Club",
+      "oracle_rank": 3,
+      "standings_rank": 7,
+      "total_value": 34367.9,
+      "mlb_value": 27867.8,
+      "farm_value": 6500.1,
+      "avg_age": 27.4,
+      "farm_share": 0.1891,
+      "contention_tier": "rebuilding",
+      "points_back": 57.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "K"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.5,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.0,
+      "volatility": 28.44,
+      "pressure": {
+        "score": 78.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "bat-first build",
+        "trade-aware"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
       ],
       "trend": {
         "pts_change": -1.0,
@@ -233,310 +359,57 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.5,
-        "previous_total_value": 35200.8,
-        "age_delta": 0.0,
-        "value_delta": 1634.0,
-        "previous_quadrant": "WIN NOW",
-        "current_quadrant": "WIN NOW"
-      },
-      "active_projection": {
-        "active_sgp": 166.111,
-        "active_players": 12,
-        "strength_z": 0.5814,
-        "top_contributors": [
-          {
-            "player": "Dylan Cease",
-            "sgp": 37.966
-          },
-          {
-            "player": "Logan Henderson",
-            "sgp": 22.423
-          },
-          {
-            "player": "Kris Bubic",
-            "sgp": 20.467
-          },
-          {
-            "player": "Addison Barger",
-            "sgp": 16.899
-          },
-          {
-            "player": "Mick Abel",
-            "sgp": 14.592
-          }
-        ]
-      }
-    },
-    {
-      "team": "John Henry Fan Club",
-      "oracle_rank": 3,
-      "standings_rank": 5,
-      "total_value": 36778.0,
-      "mlb_value": 30188.4,
-      "farm_value": 6589.6,
-      "avg_age": 27.3,
-      "farm_share": 0.1792,
-      "contention_tier": "fringe",
-      "points_back": 29.5,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "K"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.0,
-          "to_loss": 1.5
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": -1.0,
-      "volatility": 32.1,
-      "pressure": {
-        "score": 78.0,
-        "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
-      },
-      "public_archetypes": [
-        "fringe",
-        "ratio-first staff",
-        "trade-aware"
-      ],
-      "trade_needs": [
-        "needs saves",
-        "fragile SP depth",
-        "surplus SB"
-      ],
-      "trend": {
-        "pts_change": 0.0,
-        "stock": "hold",
-        "summary": "Holding current shape",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 27.4,
-        "previous_total_value": 34586.0,
-        "age_delta": -0.1,
-        "value_delta": 2192.0,
+        "previous_avg_age": 27.3,
+        "previous_total_value": 36778.0,
+        "age_delta": 0.1,
+        "value_delta": -2410.1,
         "previous_quadrant": "REBUILDING",
         "current_quadrant": "REBUILDING"
       },
       "active_projection": {
-        "active_sgp": 200.549,
-        "active_players": 16,
-        "strength_z": 1.3575,
+        "active_sgp": 46.592,
+        "active_players": 22,
+        "strength_z": 1.8034,
         "top_contributors": [
           {
-            "player": "Konnor Griffin",
-            "sgp": 31.175
-          },
-          {
-            "player": "Cole Ragans",
-            "sgp": 27.186
+            "player": "Riley Greene",
+            "sgp": 9.397
           },
           {
             "player": "Tyler Glasnow",
-            "sgp": 24.728
+            "sgp": 7.994
           },
           {
-            "player": "Francisco Alvarez",
-            "sgp": 17.662
+            "player": "Konnor Griffin",
+            "sgp": 6.448
           },
           {
-            "player": "Brady House",
-            "sgp": 16.408
-          }
-        ]
-      }
-    },
-    {
-      "team": "Seam heads",
-      "oracle_rank": 4,
-      "standings_rank": 1,
-      "total_value": 34917.9,
-      "mlb_value": 29110.2,
-      "farm_value": 5807.7,
-      "avg_age": 29.3,
-      "farm_share": 0.1663,
-      "contention_tier": "contender",
-      "points_back": 0.0,
-      "reachable_points": 5.0,
-      "tight_categories": [
-        "QS",
-        "RBI",
-        "SB"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": null,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
-        },
-        "R": {
-          "to_gain": null,
-          "to_loss": 1.0
-        },
-        "RBI": {
-          "to_gain": null,
-          "to_loss": 0.0
-        },
-        "SB": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
-        },
-        "SVH": {
-          "to_gain": null,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": null,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": 3.5,
-      "volatility": 25.57,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "HR",
-          "gap": 1.0
-        },
-        "loss_risk": {
-          "category": "QS",
-          "gap": 0.0
-        },
-        "summary": "closest gain: HR (1.0) \u00b7 closest loss: QS (0.0)"
-      },
-      "public_archetypes": [
-        "contender",
-        "volume arms",
-        "trade-aware"
-      ],
-      "trade_needs": [
-        "fragile SP depth",
-        "needs impact bats"
-      ],
-      "trend": {
-        "pts_change": -0.5,
-        "stock": "push",
-        "summary": "Window open \u00b7 pressure in HR",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 29.0,
-        "previous_total_value": 34059.8,
-        "age_delta": 0.3,
-        "value_delta": 858.1,
-        "previous_quadrant": "WIN NOW",
-        "current_quadrant": "WIN NOW"
-      },
-      "active_projection": {
-        "active_sgp": 179.624,
-        "active_players": 14,
-        "strength_z": 0.8859,
-        "top_contributors": [
-          {
-            "player": "Cal Raleigh",
-            "sgp": 33.336
+            "player": "Rhys Hoskins",
+            "sgp": 4.489
           },
           {
-            "player": "Tarik Skubal",
-            "sgp": 30.724
-          },
-          {
-            "player": "Roman Anthony",
-            "sgp": 26.12
-          },
-          {
-            "player": "Mickey Moniak",
-            "sgp": 26.06
-          },
-          {
-            "player": "Brenton Doyle",
-            "sgp": 22.523
+            "player": "Brice Matthews",
+            "sgp": 3.248
           }
         ]
       }
     },
     {
       "team": "Philbell",
-      "oracle_rank": 5,
+      "oracle_rank": 4,
       "standings_rank": 4,
-      "total_value": 32356.1,
-      "mlb_value": 28748.9,
-      "farm_value": 3607.2,
-      "avg_age": 28.1,
-      "farm_share": 0.1115,
+      "total_value": 33439.9,
+      "mlb_value": 30845.2,
+      "farm_value": 2594.7,
+      "avg_age": 28.7,
+      "farm_share": 0.0776,
       "contention_tier": "fringe",
-      "points_back": 27.0,
+      "points_back": 19.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "QS"
+        "SB"
       ],
       "category_gaps": {
         "ERA": {
@@ -556,8 +429,8 @@
           "to_loss": 1.0
         },
         "QS": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "R": {
           "to_gain": 1.0,
@@ -568,8 +441,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -580,19 +453,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
-      "volatility": 38.14,
+      "luck_delta": 0.5,
+      "volatility": 32.43,
       "pressure": {
         "score": 100.0,
         "gain_target": {
-          "category": "QS",
-          "gap": 0.0
-        },
-        "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: QS (0.0) \u00b7 closest loss: ERA (1.0)"
+        "loss_risk": {
+          "category": "SB",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.0)"
       },
       "public_archetypes": [
         "fringe",
@@ -600,191 +473,64 @@
         "waiver churn"
       ],
       "trade_needs": [
-        "fragile SP depth",
-        "surplus SB"
+        "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
-        "stock": "edge",
-        "summary": "One move from gaining QS",
+        "pts_change": 2.5,
+        "stock": "risk",
+        "summary": "Protecting SB",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 28.2,
-        "previous_total_value": 31694.9,
-        "age_delta": -0.1,
-        "value_delta": 661.2,
+        "previous_avg_age": 28.1,
+        "previous_total_value": 32356.1,
+        "age_delta": 0.6,
+        "value_delta": 1083.8,
         "previous_quadrant": "REBUILDING",
-        "current_quadrant": "REBUILDING"
+        "current_quadrant": "WIN NOW"
       },
       "active_projection": {
-        "active_sgp": 103.914,
-        "active_players": 15,
-        "strength_z": -0.8201,
+        "active_sgp": 20.378,
+        "active_players": 11,
+        "strength_z": -1.0586,
         "top_contributors": [
-          {
-            "player": "Wyatt Langford",
-            "sgp": 31.62
-          },
           {
             "player": "Trevor Story",
-            "sgp": 21.371
+            "sgp": 8.128
           },
           {
-            "player": "Nolan Schanuel",
-            "sgp": 21.18
+            "player": "Nick Kurtz",
+            "sgp": 5.987
           },
           {
-            "player": "Jasson Dom\u00ednguez",
-            "sgp": 15.855
+            "player": "Casey Schmitt",
+            "sgp": 4.0
           },
           {
-            "player": "Luis Morales",
-            "sgp": 6.338
+            "player": "Giancarlo Stanton",
+            "sgp": 1.548
+          },
+          {
+            "player": "JoJo Romero",
+            "sgp": 1.193
           }
         ]
       }
     },
     {
-      "team": "Jonesin'",
-      "oracle_rank": 6,
-      "standings_rank": 11,
-      "total_value": 31903.9,
-      "mlb_value": 24705.3,
-      "farm_value": 7198.6,
-      "avg_age": 26.6,
-      "farm_share": 0.2256,
-      "contention_tier": "rebuilding",
-      "points_back": 69.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "R"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.5,
-          "to_loss": 1.5
-        },
-        "R": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": -0.5,
-      "volatility": 24.66,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "R",
-          "gap": 0.0
-        },
-        "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "summary": "closest gain: R (0.0) \u00b7 closest loss: ERA (1.0)"
-      },
-      "public_archetypes": [
-        "rebuilding",
-        "prospect stockpile",
-        "offense-starved"
-      ],
-      "trade_needs": [
-        "fragile SP depth",
-        "can trade prospects"
-      ],
-      "trend": {
-        "pts_change": 1.0,
-        "stock": "build",
-        "summary": "Farm-forward build",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": null,
-        "previous_total_value": null,
-        "age_delta": null,
-        "value_delta": null,
-        "previous_quadrant": null,
-        "current_quadrant": "REBUILDING"
-      },
-      "active_projection": {
-        "active_sgp": 92.864,
-        "active_players": 10,
-        "strength_z": -1.0691,
-        "top_contributors": [
-          {
-            "player": "Drake Baldwin",
-            "sgp": 27.226
-          },
-          {
-            "player": "Steven Kwan",
-            "sgp": 25.504
-          },
-          {
-            "player": "Agust\u00edn Ram\u00edrez",
-            "sgp": 15.209
-          },
-          {
-            "player": "Noah Schultz",
-            "sgp": 14.885
-          },
-          {
-            "player": "Erik Sabrowski",
-            "sgp": 13.46
-          }
-        ]
-      }
-    },
-    {
-      "team": "Vin Mazzaro fan club",
-      "oracle_rank": 7,
-      "standings_rank": 6,
-      "total_value": 29410.0,
-      "mlb_value": 26450.7,
-      "farm_value": 2959.3,
-      "avg_age": 28.0,
-      "farm_share": 0.1006,
-      "contention_tier": "stagnating",
-      "points_back": 34.5,
-      "reachable_points": 10.0,
+      "team": "Seam heads",
+      "oracle_rank": 5,
+      "standings_rank": 3,
+      "total_value": 32854.8,
+      "mlb_value": 28424.7,
+      "farm_value": 4430.1,
+      "avg_age": 29.2,
+      "farm_share": 0.1348,
+      "contention_tier": "fringe",
+      "points_back": 19.0,
+      "reachable_points": 8.0,
       "tight_categories": [
         "ERA",
         "HR",
@@ -792,7 +538,7 @@
       ],
       "category_gaps": {
         "ERA": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         },
         "HR": {
@@ -809,10 +555,10 @@
         },
         "QS": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "RBI": {
@@ -828,31 +574,32 @@
           "to_loss": 1.0
         },
         "WHIP": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
-      "volatility": 45.44,
+      "luck_delta": 0.5,
+      "volatility": 26.64,
       "pressure": {
         "score": 78.0,
         "gain_target": {
-          "category": "ERA",
+          "category": "HR",
           "gap": 1.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: HR (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
-        "stagnating",
+        "fringe",
         "volume arms",
-        "trade-driven"
+        "trade-aware"
       ],
       "trade_needs": [
-        "fragile SP depth"
+        "fragile SP depth",
+        "needs impact bats"
       ],
       "trend": {
         "pts_change": 0.5,
@@ -863,62 +610,62 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 27.9,
-        "previous_total_value": 28213.4,
-        "age_delta": 0.1,
-        "value_delta": 1196.6,
-        "previous_quadrant": "REBUILDING",
-        "current_quadrant": "REBUILDING"
+        "previous_avg_age": 29.3,
+        "previous_total_value": 34917.9,
+        "age_delta": -0.1,
+        "value_delta": -2063.1,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
       },
       "active_projection": {
-        "active_sgp": 185.752,
-        "active_players": 19,
-        "strength_z": 1.024,
+        "active_sgp": 27.008,
+        "active_players": 12,
+        "strength_z": -0.3347,
         "top_contributors": [
           {
-            "player": "Francisco Lindor",
-            "sgp": 31.971
+            "player": "Roman Anthony",
+            "sgp": 6.711
           },
           {
-            "player": "Royce Lewis",
-            "sgp": 23.306
+            "player": "Aaron Judge",
+            "sgp": 6.554
           },
           {
-            "player": "Giancarlo Stanton",
-            "sgp": 20.292
+            "player": "Josh Jung",
+            "sgp": 6.427
           },
           {
-            "player": "Yainer Diaz",
-            "sgp": 16.228
+            "player": "Connelly Early",
+            "sgp": 2.425
           },
           {
-            "player": "Janson Junk",
-            "sgp": 14.925
+            "player": "Matt Brash",
+            "sgp": 1.585
           }
         ]
       }
     },
     {
-      "team": "Trazadone",
-      "oracle_rank": 8,
-      "standings_rank": 10,
-      "total_value": 26826.0,
-      "mlb_value": 22002.2,
-      "farm_value": 4823.8,
-      "avg_age": 28.6,
-      "farm_share": 0.1798,
+      "team": "Jonesin'",
+      "oracle_rank": 6,
+      "standings_rank": 12,
+      "total_value": 31059.1,
+      "mlb_value": 26085.5,
+      "farm_value": 4973.6,
+      "avg_age": 26.2,
+      "farm_share": 0.1601,
       "contention_tier": "rebuilding",
-      "points_back": 67.5,
+      "points_back": 92.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
-        "QS",
-        "R"
+        "HR",
+        "K"
       ],
       "category_gaps": {
         "ERA": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": null
         },
         "HR": {
           "to_gain": 1.0,
@@ -933,16 +680,267 @@
           "to_loss": 1.0
         },
         "QS": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": null
         },
         "RBI": {
           "to_gain": 1.0,
           "to_loss": null
+        },
+        "SB": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -2.5,
+      "volatility": 19.86,
+      "pressure": {
+        "score": 78.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "K",
+          "gap": 1.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: K (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "offense-starved"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "trend": {
+        "pts_change": 1.0,
+        "stock": "hold",
+        "summary": "Holding current shape",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 26.6,
+        "previous_total_value": 31903.9,
+        "age_delta": -0.4,
+        "value_delta": -844.8,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      },
+      "active_projection": {
+        "active_sgp": 29.937,
+        "active_players": 12,
+        "strength_z": -0.0149,
+        "top_contributors": [
+          {
+            "player": "Kyle Stowers",
+            "sgp": 7.133
+          },
+          {
+            "player": "Maikel Garcia",
+            "sgp": 5.556
+          },
+          {
+            "player": "Marcelo Mayer",
+            "sgp": 5.265
+          },
+          {
+            "player": "Jack Leiter",
+            "sgp": 4.882
+          },
+          {
+            "player": "Jeremiah Jackson",
+            "sgp": 2.428
+          }
+        ]
+      }
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "oracle_rank": 7,
+      "standings_rank": 5,
+      "total_value": 30756.0,
+      "mlb_value": 27512.6,
+      "farm_value": 3243.4,
+      "avg_age": 27.9,
+      "farm_share": 0.1055,
+      "contention_tier": "holding steady",
+      "points_back": 36.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "SB"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 0.0,
+          "to_loss": 1.5
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": -0.5,
+      "volatility": 36.07,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "SB",
+          "gap": 0.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: SB (0.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "holding steady",
+        "volume arms",
+        "trade-driven"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "trend": {
+        "pts_change": -3.0,
+        "stock": "edge",
+        "summary": "One move from gaining SB",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 28.0,
+        "previous_total_value": 29410.0,
+        "age_delta": -0.1,
+        "value_delta": 1346.0,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      },
+      "active_projection": {
+        "active_sgp": 37.835,
+        "active_players": 20,
+        "strength_z": 0.8474,
+        "top_contributors": [
+          {
+            "player": "Michael Soroka",
+            "sgp": 5.758
+          },
+          {
+            "player": "Matt Shaw",
+            "sgp": 4.653
+          },
+          {
+            "player": "Endy Rodr\u00edguez",
+            "sgp": 4.407
+          },
+          {
+            "player": "Kyle Teel",
+            "sgp": 4.114
+          },
+          {
+            "player": "Colt Emerson",
+            "sgp": 4.036
+          }
+        ]
+      }
+    },
+    {
+      "team": "Millville Meteors",
+      "oracle_rank": 8,
+      "standings_rank": 9,
+      "total_value": 25647.6,
+      "mlb_value": 21654.1,
+      "farm_value": 3993.5,
+      "avg_age": 29.2,
+      "farm_share": 0.1557,
+      "contention_tier": "rebuilding",
+      "points_back": 64.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "K"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "SB": {
           "to_gain": 1.0,
@@ -957,19 +955,144 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -1.0,
-      "volatility": 61.36,
+      "luck_delta": 0.0,
+      "volatility": 39.84,
       "pressure": {
-        "score": 100.0,
+        "score": 78.0,
         "gain_target": {
-          "category": "QS",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
         "loss_risk": {
-          "category": "R",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
-        "summary": "closest gain: QS (0.0) \u00b7 closest loss: R (0.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "waiver churn"
+      ],
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "trend": {
+        "pts_change": 0.0,
+        "stock": "hold",
+        "summary": "Holding current shape",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 29.2,
+        "previous_total_value": 26450.1,
+        "age_delta": 0.0,
+        "value_delta": -802.5,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      },
+      "active_projection": {
+        "active_sgp": 17.867,
+        "active_players": 12,
+        "strength_z": -1.3327,
+        "top_contributors": [
+          {
+            "player": "J.P. Crawford",
+            "sgp": 6.917
+          },
+          {
+            "player": "Reynaldo L\u00f3pez",
+            "sgp": 4.036
+          },
+          {
+            "player": "Kyle Manzardo",
+            "sgp": 3.694
+          },
+          {
+            "player": "Carson Williams",
+            "sgp": 2.599
+          },
+          {
+            "player": "Jhostynxon Garcia",
+            "sgp": 1.55
+          }
+        ]
+      }
+    },
+    {
+      "team": "Trazadone",
+      "oracle_rank": 9,
+      "standings_rank": 10,
+      "total_value": 25603.2,
+      "mlb_value": 20681.3,
+      "farm_value": 4921.9,
+      "avg_age": 27.4,
+      "farm_share": 0.1922,
+      "contention_tier": "rebuilding",
+      "points_back": 71.0,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "K"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.5,
+          "to_loss": 1.0
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.5,
+      "volatility": 47.46,
+      "pressure": {
+        "score": 78.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -981,132 +1104,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 1.0,
-        "stock": "edge",
-        "summary": "One move from gaining QS",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 28.6,
-        "previous_total_value": 25059.8,
-        "age_delta": 0.0,
-        "value_delta": 1766.2,
-        "previous_quadrant": "WIN NOW",
-        "current_quadrant": "WIN NOW"
-      },
-      "active_projection": {
-        "active_sgp": 162.062,
-        "active_players": 19,
-        "strength_z": 0.4902,
-        "top_contributors": [
-          {
-            "player": "Aaron Nola",
-            "sgp": 28.649
-          },
-          {
-            "player": "Jose Altuve",
-            "sgp": 27.779
-          },
-          {
-            "player": "Jorge Polanco",
-            "sgp": 21.252
-          },
-          {
-            "player": "Casey Mize",
-            "sgp": 20.351
-          },
-          {
-            "player": "Brendan Donovan",
-            "sgp": 17.393
-          }
-        ]
-      }
-    },
-    {
-      "team": "Millville Meteors",
-      "oracle_rank": 9,
-      "standings_rank": 9,
-      "total_value": 26450.1,
-      "mlb_value": 24967.5,
-      "farm_value": 1482.6,
-      "avg_age": 29.2,
-      "farm_share": 0.0561,
-      "contention_tier": "rebuilding",
-      "points_back": 63.5,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "K"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.5,
-          "to_loss": 1.0
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.5
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": -1.0,
-      "volatility": 55.82,
-      "pressure": {
-        "score": 78.0,
-        "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "loss_risk": {
-          "category": "HR",
-          "gap": 1.0
-        },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: HR (1.0)"
-      },
-      "public_archetypes": [
-        "rebuilding",
-        "waiver churn"
-      ],
-      "trade_needs": [
-        "needs saves",
-        "fragile SP depth"
-      ],
-      "trend": {
-        "pts_change": 0.5,
+        "pts_change": -0.5,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1114,307 +1112,56 @@
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 29.4,
-        "previous_total_value": 25843.6,
-        "age_delta": -0.2,
-        "value_delta": 606.5,
+        "previous_avg_age": 28.6,
+        "previous_total_value": 26826.0,
+        "age_delta": -1.2,
+        "value_delta": -1222.8,
         "previous_quadrant": "WIN NOW",
-        "current_quadrant": "WIN NOW"
+        "current_quadrant": "REBUILDING"
       },
       "active_projection": {
-        "active_sgp": 124.998,
-        "active_players": 13,
-        "strength_z": -0.345,
+        "active_sgp": 26.88,
+        "active_players": 16,
+        "strength_z": -0.3487,
         "top_contributors": [
           {
-            "player": "Corey Seager",
-            "sgp": 30.276
+            "player": "Brendan Donovan",
+            "sgp": 6.272
           },
           {
-            "player": "Gleyber Torres",
-            "sgp": 26.675
+            "player": "Davis Martin",
+            "sgp": 5.024
           },
           {
-            "player": "Jacob Wilson",
-            "sgp": 21.105
+            "player": "Nathan Eovaldi",
+            "sgp": 3.705
           },
           {
-            "player": "Brandon Woodruff",
-            "sgp": 20.026
+            "player": "Tommy Troy",
+            "sgp": 2.347
           },
           {
-            "player": "Carson Williams",
-            "sgp": 16.536
-          }
-        ]
-      }
-    },
-    {
-      "team": "Sam",
-      "oracle_rank": 10,
-      "standings_rank": 7,
-      "total_value": 25478.1,
-      "mlb_value": 22910.6,
-      "farm_value": 2567.5,
-      "avg_age": 29.8,
-      "farm_share": 0.1008,
-      "contention_tier": "rebuilding",
-      "points_back": 43.0,
-      "reachable_points": 9.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "QS"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "OPS": {
-          "to_gain": null,
-          "to_loss": 1.0
-        },
-        "QS": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": 1.0,
-      "volatility": 39.77,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "loss_risk": {
-          "category": "QS",
-          "gap": 0.0
-        },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: QS (0.0)"
-      },
-      "public_archetypes": [
-        "rebuilding",
-        "bullpen-backed",
-        "waiver-active"
-      ],
-      "trade_needs": [
-        "fragile SP depth"
-      ],
-      "trend": {
-        "pts_change": -0.5,
-        "stock": "age",
-        "summary": "Aging core under pressure",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 29.7,
-        "previous_total_value": 24876.4,
-        "age_delta": 0.1,
-        "value_delta": 601.7,
-        "previous_quadrant": "AGING OUT",
-        "current_quadrant": "WIN NOW"
-      },
-      "active_projection": {
-        "active_sgp": 77.198,
-        "active_players": 12,
-        "strength_z": -1.4221,
-        "top_contributors": [
-          {
-            "player": "Jake Cronenworth",
-            "sgp": 17.701
-          },
-          {
-            "player": "Nathan Church",
-            "sgp": 14.705
-          },
-          {
-            "player": "Ryan Jeffers",
-            "sgp": 13.691
-          },
-          {
-            "player": "Ryan Helsley",
-            "sgp": 11.911
-          },
-          {
-            "player": "Javier B\u00e1ez",
-            "sgp": 11.378
-          }
-        ]
-      }
-    },
-    {
-      "team": "Mommy",
-      "oracle_rank": 11,
-      "standings_rank": 12,
-      "total_value": 23913.7,
-      "mlb_value": 22856.3,
-      "farm_value": 1057.4,
-      "avg_age": 30.9,
-      "farm_share": 0.0442,
-      "contention_tier": "rebuilding",
-      "points_back": 86.0,
-      "reachable_points": 10.0,
-      "tight_categories": [
-        "ERA",
-        "HR",
-        "QS"
-      ],
-      "category_gaps": {
-        "ERA": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "HR": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "K": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "OPS": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "QS": {
-          "to_gain": 0.0,
-          "to_loss": null
-        },
-        "R": {
-          "to_gain": 1.0,
-          "to_loss": null
-        },
-        "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "SB": {
-          "to_gain": 1.5,
-          "to_loss": 1.0
-        },
-        "SVH": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        },
-        "WHIP": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
-        }
-      },
-      "luck_delta": -1.5,
-      "volatility": 48.33,
-      "pressure": {
-        "score": 100.0,
-        "gain_target": {
-          "category": "QS",
-          "gap": 0.0
-        },
-        "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
-        },
-        "summary": "closest gain: QS (0.0) \u00b7 closest loss: ERA (1.0)"
-      },
-      "public_archetypes": [
-        "rebuilding",
-        "aging core",
-        "offense-starved"
-      ],
-      "trade_needs": [
-        "needs saves",
-        "fragile SP depth"
-      ],
-      "trend": {
-        "pts_change": 0.0,
-        "stock": "age",
-        "summary": "Aging core under pressure",
-        "rank_delta": null,
-        "tier_change": null,
-        "farm_delta": null
-      },
-      "scatter_move": {
-        "previous_avg_age": 30.8,
-        "previous_total_value": 22681.7,
-        "age_delta": 0.1,
-        "value_delta": 1232.0,
-        "previous_quadrant": "AGING OUT",
-        "current_quadrant": "AGING OUT"
-      },
-      "active_projection": {
-        "active_sgp": 119.909,
-        "active_players": 9,
-        "strength_z": -0.4596,
-        "top_contributors": [
-          {
-            "player": "Hunter Brown",
-            "sgp": 31.231
-          },
-          {
-            "player": "Edward Cabrera",
-            "sgp": 24.208
-          },
-          {
-            "player": "Heliot Ramos",
-            "sgp": 23.135
-          },
-          {
-            "player": "Max Fried",
-            "sgp": 21.792
-          },
-          {
-            "player": "Blake Snell",
-            "sgp": 17.532
+            "player": "Curtis Mead",
+            "sgp": 2.235
           }
         ]
       }
     },
     {
       "team": "Pat",
-      "oracle_rank": 12,
-      "standings_rank": 8,
-      "total_value": 23168.8,
-      "mlb_value": 22148.0,
-      "farm_value": 1020.8,
-      "avg_age": 29.5,
-      "farm_share": 0.0441,
+      "oracle_rank": 10,
+      "standings_rank": 6,
+      "total_value": 23655.5,
+      "mlb_value": 22880.1,
+      "farm_value": 775.4,
+      "avg_age": 29.1,
+      "farm_share": 0.0328,
       "contention_tier": "rebuilding",
-      "points_back": 54.0,
+      "points_back": 49.5,
       "reachable_points": 10.0,
       "tight_categories": [
-        "QS",
-        "RBI",
+        "ERA",
+        "HR",
         "SB"
       ],
       "category_gaps": {
@@ -1435,16 +1182,266 @@
           "to_loss": 1.0
         },
         "QS": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "R": {
           "to_gain": 1.0,
           "to_loss": 1.0
         },
         "RBI": {
-          "to_gain": 0.0,
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.5,
+          "to_loss": 0.0
+        },
+        "SVH": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.5,
+      "volatility": 30.81,
+      "pressure": {
+        "score": 100.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "SB",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "waiver churn"
+      ],
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "trend": {
+        "pts_change": -1.0,
+        "stock": "risk",
+        "summary": "Protecting SB",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 29.5,
+        "previous_total_value": 23168.8,
+        "age_delta": -0.4,
+        "value_delta": 486.7,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
+      },
+      "active_projection": {
+        "active_sgp": 27.464,
+        "active_players": 15,
+        "strength_z": -0.2849,
+        "top_contributors": [
+          {
+            "player": "Jack Flaherty",
+            "sgp": 5.594
+          },
+          {
+            "player": "Andy Pages",
+            "sgp": 4.356
+          },
+          {
+            "player": "Samad Taylor",
+            "sgp": 3.257
+          },
+          {
+            "player": "Max Meyer",
+            "sgp": 2.5
+          },
+          {
+            "player": "Devin Williams",
+            "sgp": 2.152
+          }
+        ]
+      }
+    },
+    {
+      "team": "Sam",
+      "oracle_rank": 11,
+      "standings_rank": 8,
+      "total_value": 23259.7,
+      "mlb_value": 21491.2,
+      "farm_value": 1768.5,
+      "avg_age": 30.3,
+      "farm_share": 0.076,
+      "contention_tier": "rebuilding",
+      "points_back": 58.0,
+      "reachable_points": 9.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "K"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "SB": {
+          "to_gain": 1.0,
           "to_loss": 1.5
+        },
+        "SVH": {
+          "to_gain": null,
+          "to_loss": 1.0
+        },
+        "WHIP": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        }
+      },
+      "luck_delta": 0.0,
+      "volatility": 27.96,
+      "pressure": {
+        "score": 78.0,
+        "gain_target": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "loss_risk": {
+          "category": "ERA",
+          "gap": 1.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+      },
+      "public_archetypes": [
+        "rebuilding",
+        "aging core",
+        "bullpen-backed"
+      ],
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "trend": {
+        "pts_change": 0.0,
+        "stock": "age",
+        "summary": "Aging core under pressure",
+        "rank_delta": null,
+        "tier_change": null,
+        "farm_delta": null
+      },
+      "scatter_move": {
+        "previous_avg_age": 29.8,
+        "previous_total_value": 25478.1,
+        "age_delta": 0.5,
+        "value_delta": -2218.4,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "AGING OUT"
+      },
+      "active_projection": {
+        "active_sgp": 18.685,
+        "active_players": 18,
+        "strength_z": -1.2434,
+        "top_contributors": [
+          {
+            "player": "Shea Langeliers",
+            "sgp": 5.416
+          },
+          {
+            "player": "Ryan Weathers",
+            "sgp": 3.911
+          },
+          {
+            "player": "Ryan O'Hearn",
+            "sgp": 3.419
+          },
+          {
+            "player": "Jake Meyers",
+            "sgp": 2.179
+          },
+          {
+            "player": "Masataka Yoshida",
+            "sgp": 2.163
+          }
+        ]
+      }
+    },
+    {
+      "team": "Mommy",
+      "oracle_rank": 12,
+      "standings_rank": 11,
+      "total_value": 21613.2,
+      "mlb_value": 20562.4,
+      "farm_value": 1050.8,
+      "avg_age": 31.2,
+      "farm_share": 0.0486,
+      "contention_tier": "rebuilding",
+      "points_back": 84.5,
+      "reachable_points": 10.0,
+      "tight_categories": [
+        "ERA",
+        "HR",
+        "SB"
+      ],
+      "category_gaps": {
+        "ERA": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "HR": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "K": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "OPS": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "QS": {
+          "to_gain": 1.0,
+          "to_loss": null
+        },
+        "R": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
+        },
+        "RBI": {
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "SB": {
           "to_gain": 0.0,
@@ -1459,70 +1456,68 @@
           "to_loss": null
         }
       },
-      "luck_delta": -1.0,
-      "volatility": 38.36,
+      "luck_delta": -2.5,
+      "volatility": 35.76,
       "pressure": {
         "score": 100.0,
         "gain_target": {
-          "category": "RBI",
+          "category": "SB",
           "gap": 0.0
         },
         "loss_risk": {
-          "category": "QS",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
-        "summary": "closest gain: RBI (0.0) \u00b7 closest loss: QS (0.0)"
+        "summary": "closest gain: SB (0.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
-        "bat-first build",
-        "waiver churn"
+        "aging core",
+        "offense-starved"
       ],
       "trade_needs": [
-        "needs saves",
-        "fragile SP depth",
-        "needs impact bats"
+        "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
-        "stock": "edge",
-        "summary": "One move from gaining RBI",
+        "pts_change": 1.5,
+        "stock": "age",
+        "summary": "Aging core under pressure",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
       },
       "scatter_move": {
-        "previous_avg_age": 29.5,
-        "previous_total_value": 21932.6,
-        "age_delta": 0.0,
-        "value_delta": 1236.2,
+        "previous_avg_age": 30.9,
+        "previous_total_value": 23913.7,
+        "age_delta": 0.3,
+        "value_delta": -2300.5,
         "previous_quadrant": "AGING OUT",
         "current_quadrant": "AGING OUT"
       },
       "active_projection": {
-        "active_sgp": 76.205,
-        "active_players": 10,
-        "strength_z": -1.4444,
+        "active_sgp": 41.215,
+        "active_players": 9,
+        "strength_z": 1.2164,
         "top_contributors": [
           {
-            "player": "Dean Kremer",
-            "sgp": 19.519
+            "player": "Kyle Karros",
+            "sgp": 7.371
           },
           {
-            "player": "Kodai Senga",
-            "sgp": 18.379
+            "player": "Max Fried",
+            "sgp": 6.888
           },
           {
-            "player": "Amed Rosario",
-            "sgp": 15.331
+            "player": "Ryan McMahon",
+            "sgp": 5.832
           },
           {
-            "player": "Zach Cole",
-            "sgp": 11.253
+            "player": "Dansby Swanson",
+            "sgp": 4.949
           },
           {
-            "player": "Gage Workman",
-            "sgp": 5.956
+            "player": "Spencer Steer",
+            "sgp": 4.549
           }
         ]
       }
