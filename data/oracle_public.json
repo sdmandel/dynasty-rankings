@@ -1,12 +1,12 @@
 {
   "generated": "2026-08-24",
-  "generated_at": "2026-08-24T17:07:44-05:00",
+  "generated_at": "2026-08-24T18:07:50-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 153,
   "snapshot_date": "2026-08-24",
   "sources": {
-    "standings": "2026-08-24T17:07:44-05:00",
+    "standings": "2026-08-24T18:07:50-05:00",
     "intelligence": "2026-08-24",
     "managers": "2026-08-24",
     "oracle_values": "data/rankings_latest.csv"
@@ -351,7 +351,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -397,7 +397,7 @@
     {
       "team": "Philbell",
       "oracle_rank": 4,
-      "standings_rank": 4,
+      "standings_rank": 3,
       "total_value": 33439.9,
       "mlb_value": 30845.2,
       "farm_value": 2594.7,
@@ -441,8 +441,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 0.5,
+          "to_loss": 1.5
         },
         "SVH": {
           "to_gain": 1.0,
@@ -453,19 +453,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": -0.5,
       "volatility": 32.43,
       "pressure": {
-        "score": 100.0,
+        "score": 89.0,
         "gain_target": {
+          "category": "SB",
+          "gap": 0.5
+        },
+        "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "loss_risk": {
-          "category": "SB",
-          "gap": 0.0
-        },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.0)"
+        "summary": "closest gain: SB (0.5) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "fringe",
@@ -476,9 +476,9 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 2.5,
-        "stock": "risk",
-        "summary": "Protecting SB",
+        "pts_change": -0.5,
+        "stock": "edge",
+        "summary": "One move from gaining SB",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -522,14 +522,14 @@
     {
       "team": "Seam heads",
       "oracle_rank": 5,
-      "standings_rank": 3,
+      "standings_rank": 4,
       "total_value": 32854.8,
       "mlb_value": 28424.7,
       "farm_value": 4430.1,
       "avg_age": 29.2,
       "farm_share": 0.1348,
       "contention_tier": "fringe",
-      "points_back": 19.0,
+      "points_back": 20.0,
       "reachable_points": 8.0,
       "tight_categories": [
         "ERA",
@@ -579,7 +579,7 @@
         }
       },
       "luck_delta": 0.5,
-      "volatility": 26.64,
+      "volatility": 26.87,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -602,7 +602,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": -1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -727,7 +727,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": 0.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -780,7 +780,7 @@
       "avg_age": 27.9,
       "farm_share": 0.1055,
       "contention_tier": "holding steady",
-      "points_back": 36.5,
+      "points_back": 35.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -817,8 +817,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 0.5
         },
         "SVH": {
           "to_gain": 1.0,
@@ -829,19 +829,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
-      "volatility": 36.07,
+      "luck_delta": 0.0,
+      "volatility": 36.09,
       "pressure": {
-        "score": 100.0,
+        "score": 89.0,
         "gain_target": {
-          "category": "SB",
-          "gap": 0.0
-        },
-        "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: SB (0.0) \u00b7 closest loss: ERA (1.0)"
+        "loss_risk": {
+          "category": "SB",
+          "gap": 0.5
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.5)"
       },
       "public_archetypes": [
         "holding steady",
@@ -853,9 +853,9 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -3.0,
-        "stock": "edge",
-        "summary": "One move from gaining SB",
+        "pts_change": 1.5,
+        "stock": "risk",
+        "summary": "Protecting SB",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -1104,7 +1104,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": 0.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1228,7 +1228,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "risk",
         "summary": "Protecting SB",
         "rank_delta": null,
@@ -1319,7 +1319,7 @@
         },
         "SB": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": null,
@@ -1330,7 +1330,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
+      "luck_delta": 0.5,
       "volatility": 27.96,
       "pressure": {
         "score": 78.0,
@@ -1479,7 +1479,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 1.5,
+        "pts_change": 0.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
