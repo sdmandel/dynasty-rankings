@@ -1,12 +1,12 @@
 {
   "generated": "2026-08-24",
-  "generated_at": "2026-08-24T18:07:50-05:00",
+  "generated_at": "2026-08-24T19:07:56-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 153,
   "snapshot_date": "2026-08-24",
   "sources": {
-    "standings": "2026-08-24T18:07:50-05:00",
+    "standings": "2026-08-24T19:07:56-05:00",
     "intelligence": "2026-08-24",
     "managers": "2026-08-24",
     "oracle_values": "data/rankings_latest.csv"
@@ -315,7 +315,7 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "SVH": {
@@ -327,7 +327,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
+      "luck_delta": -0.5,
       "volatility": 28.44,
       "pressure": {
         "score": 78.0,
@@ -397,19 +397,19 @@
     {
       "team": "Philbell",
       "oracle_rank": 4,
-      "standings_rank": 3,
+      "standings_rank": 4,
       "total_value": 33439.9,
       "mlb_value": 30845.2,
       "farm_value": 2594.7,
       "avg_age": 28.7,
       "farm_share": 0.0776,
       "contention_tier": "fringe",
-      "points_back": 19.5,
+      "points_back": 20.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "SB"
+        "K"
       ],
       "category_gaps": {
         "ERA": {
@@ -441,8 +441,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 0.5,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -453,19 +453,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
-      "volatility": 32.43,
+      "luck_delta": 0.0,
+      "volatility": 32.42,
       "pressure": {
-        "score": 89.0,
+        "score": 78.0,
         "gain_target": {
-          "category": "SB",
-          "gap": 0.5
+          "category": "ERA",
+          "gap": 1.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: SB (0.5) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "fringe",
@@ -477,8 +477,8 @@
       ],
       "trend": {
         "pts_change": -0.5,
-        "stock": "edge",
-        "summary": "One move from gaining SB",
+        "stock": "hold",
+        "summary": "Holding current shape",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -522,7 +522,7 @@
     {
       "team": "Seam heads",
       "oracle_rank": 5,
-      "standings_rank": 4,
+      "standings_rank": 3,
       "total_value": 32854.8,
       "mlb_value": 28424.7,
       "farm_value": 4430.1,
@@ -534,7 +534,7 @@
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "OPS"
       ],
       "category_gaps": {
         "ERA": {
@@ -550,8 +550,8 @@
           "to_loss": 1.0
         },
         "OPS": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 2.0,
+          "to_loss": 0.0
         },
         "QS": {
           "to_gain": 1.0,
@@ -578,19 +578,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": 1.0,
       "volatility": 26.87,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
           "category": "HR",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "OPS",
+          "gap": 0.0
         },
-        "summary": "closest gain: HR (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: HR (1.0) \u00b7 closest loss: OPS (0.0)"
       },
       "public_archetypes": [
         "fringe",
@@ -598,13 +598,12 @@
         "trade-aware"
       ],
       "trade_needs": [
-        "fragile SP depth",
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": -1.0,
-        "stock": "hold",
-        "summary": "Holding current shape",
+        "pts_change": 0.0,
+        "stock": "risk",
+        "summary": "Protecting OPS",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -780,12 +779,12 @@
       "avg_age": 27.9,
       "farm_share": 0.1055,
       "contention_tier": "holding steady",
-      "points_back": 35.0,
+      "points_back": 36.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "SB"
+        "OPS"
       ],
       "category_gaps": {
         "ERA": {
@@ -801,7 +800,7 @@
           "to_loss": 1.0
         },
         "OPS": {
-          "to_gain": 1.0,
+          "to_gain": 0.0,
           "to_loss": 1.0
         },
         "QS": {
@@ -818,7 +817,7 @@
         },
         "SB": {
           "to_gain": 1.0,
-          "to_loss": 0.5
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -830,18 +829,18 @@
         }
       },
       "luck_delta": 0.0,
-      "volatility": 36.09,
+      "volatility": 36.08,
       "pressure": {
-        "score": 89.0,
+        "score": 100.0,
         "gain_target": {
+          "category": "OPS",
+          "gap": 0.0
+        },
+        "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "loss_risk": {
-          "category": "SB",
-          "gap": 0.5
-        },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.5)"
+        "summary": "closest gain: OPS (0.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "holding steady",
@@ -850,12 +849,13 @@
       ],
       "trade_needs": [
         "needs saves",
-        "fragile SP depth"
+        "fragile SP depth",
+        "surplus SB"
       ],
       "trend": {
-        "pts_change": 1.5,
-        "stock": "risk",
-        "summary": "Protecting SB",
+        "pts_change": 0.5,
+        "stock": "edge",
+        "summary": "One move from gaining OPS",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -928,7 +928,7 @@
         },
         "OPS": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 2.0
         },
         "QS": {
           "to_gain": 1.0,
@@ -955,7 +955,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
+      "luck_delta": -0.5,
       "volatility": 39.84,
       "pressure": {
         "score": 78.0,
