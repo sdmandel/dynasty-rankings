@@ -3056,8 +3056,7 @@
       "Trazadone",
       "Vin Mazzaro fan club",
       "philbell",
-      "FA",
-      "Waivers"
+      "FA"
     ],
     "types": [
       "all",
@@ -9465,6 +9464,59 @@
         "bb_pct": 0.085
       },
       "delta": 0.027
+    },
+    {
+      "name": "Luke Adams",
+      "name_key": "luke adams",
+      "player_id": "06582",
+      "org": "MIL",
+      "level": "AAA",
+      "level_raw": "AAA",
+      "positions": "1B, 3B, CI, UT",
+      "age": "22",
+      "rank": 625,
+      "eta": "2028",
+      "reason": "FP bull #359; FP imputed",
+      "owner": "FA",
+      "owner_team_id": null,
+      "availability": "FA",
+      "fantrax_status": "FA",
+      "group": "hitting",
+      "stats_season": {
+        "name": "Luke Adams",
+        "mlbam_id": 702726,
+        "level": "AAA",
+        "pa": 286,
+        "ab": 221,
+        "hr": 16,
+        "r": 50,
+        "rbi": 43,
+        "sb": 8,
+        "avg": 0.267,
+        "obp": 0.415,
+        "slg": 0.552,
+        "ops": 0.967,
+        "k_pct": 0.143,
+        "bb_pct": 0.133
+      },
+      "stats_last14": {
+        "name": "Luke Adams",
+        "mlbam_id": 702726,
+        "level": "AAA",
+        "pa": 9,
+        "ab": 6,
+        "hr": 0,
+        "r": 2,
+        "rbi": 1,
+        "sb": 0,
+        "avg": 0.5,
+        "obp": 0.667,
+        "slg": 0.833,
+        "ops": 1.5,
+        "k_pct": 0.111,
+        "bb_pct": 0.333
+      },
+      "delta": 0.533
     },
     {
       "name": "miguel ullola",
@@ -21058,65 +21110,12 @@
         "bb_pct": 0.111
       },
       "delta": -0.047
-    },
-    {
-      "name": "Luke Adams",
-      "name_key": "luke adams",
-      "player_id": "06582",
-      "org": "MIL",
-      "level": "AAA",
-      "level_raw": "AAA",
-      "positions": "1B, 3B, CI, UT",
-      "age": "22",
-      "rank": 625,
-      "eta": "2028",
-      "reason": "FP bull #359; FP imputed",
-      "owner": "Waivers",
-      "owner_team_id": null,
-      "availability": "WAIVERS",
-      "fantrax_status": "W (Wed)",
-      "group": "hitting",
-      "stats_season": {
-        "name": "Luke Adams",
-        "mlbam_id": 702726,
-        "level": "AAA",
-        "pa": 286,
-        "ab": 221,
-        "hr": 16,
-        "r": 50,
-        "rbi": 43,
-        "sb": 8,
-        "avg": 0.267,
-        "obp": 0.415,
-        "slg": 0.552,
-        "ops": 0.967,
-        "k_pct": 0.143,
-        "bb_pct": 0.133
-      },
-      "stats_last14": {
-        "name": "Luke Adams",
-        "mlbam_id": 702726,
-        "level": "AAA",
-        "pa": 9,
-        "ab": 6,
-        "hr": 0,
-        "r": 2,
-        "rbi": 1,
-        "sb": 0,
-        "avg": 0.5,
-        "obp": 0.667,
-        "slg": 0.833,
-        "ops": 1.5,
-        "k_pct": 0.111,
-        "bb_pct": 0.333
-      },
-      "delta": 0.533
     }
   ],
   "teams": [
     {
       "team": "FA",
-      "count": 286,
+      "count": 287,
       "prospects": [
         {
           "name": "Felnin Celesten",
@@ -23438,6 +23437,59 @@
             "bb_pct": 0.085
           },
           "delta": 0.027
+        },
+        {
+          "name": "Luke Adams",
+          "name_key": "luke adams",
+          "player_id": "06582",
+          "org": "MIL",
+          "level": "AAA",
+          "level_raw": "AAA",
+          "positions": "1B, 3B, CI, UT",
+          "age": "22",
+          "rank": 625,
+          "eta": "2028",
+          "reason": "FP bull #359; FP imputed",
+          "owner": "FA",
+          "owner_team_id": null,
+          "availability": "FA",
+          "fantrax_status": "FA",
+          "group": "hitting",
+          "stats_season": {
+            "name": "Luke Adams",
+            "mlbam_id": 702726,
+            "level": "AAA",
+            "pa": 286,
+            "ab": 221,
+            "hr": 16,
+            "r": 50,
+            "rbi": 43,
+            "sb": 8,
+            "avg": 0.267,
+            "obp": 0.415,
+            "slg": 0.552,
+            "ops": 0.967,
+            "k_pct": 0.143,
+            "bb_pct": 0.133
+          },
+          "stats_last14": {
+            "name": "Luke Adams",
+            "mlbam_id": 702726,
+            "level": "AAA",
+            "pa": 9,
+            "ab": 6,
+            "hr": 0,
+            "r": 2,
+            "rbi": 1,
+            "sb": 0,
+            "avg": 0.5,
+            "obp": 0.667,
+            "slg": 0.833,
+            "ops": 1.5,
+            "k_pct": 0.111,
+            "bb_pct": 0.333
+          },
+          "delta": 0.533
         },
         {
           "name": "miguel ullola",
@@ -39171,65 +39223,6 @@
             "bb_pct": 0.118
           },
           "delta": -0.226
-        }
-      ]
-    },
-    {
-      "team": "Waivers",
-      "count": 1,
-      "prospects": [
-        {
-          "name": "Luke Adams",
-          "name_key": "luke adams",
-          "player_id": "06582",
-          "org": "MIL",
-          "level": "AAA",
-          "level_raw": "AAA",
-          "positions": "1B, 3B, CI, UT",
-          "age": "22",
-          "rank": 625,
-          "eta": "2028",
-          "reason": "FP bull #359; FP imputed",
-          "owner": "Waivers",
-          "owner_team_id": null,
-          "availability": "WAIVERS",
-          "fantrax_status": "W (Wed)",
-          "group": "hitting",
-          "stats_season": {
-            "name": "Luke Adams",
-            "mlbam_id": 702726,
-            "level": "AAA",
-            "pa": 286,
-            "ab": 221,
-            "hr": 16,
-            "r": 50,
-            "rbi": 43,
-            "sb": 8,
-            "avg": 0.267,
-            "obp": 0.415,
-            "slg": 0.552,
-            "ops": 0.967,
-            "k_pct": 0.143,
-            "bb_pct": 0.133
-          },
-          "stats_last14": {
-            "name": "Luke Adams",
-            "mlbam_id": 702726,
-            "level": "AAA",
-            "pa": 9,
-            "ab": 6,
-            "hr": 0,
-            "r": 2,
-            "rbi": 1,
-            "sb": 0,
-            "avg": 0.5,
-            "obp": 0.667,
-            "slg": 0.833,
-            "ops": 1.5,
-            "k_pct": 0.111,
-            "bb_pct": 0.333
-          },
-          "delta": 0.533
         }
       ]
     }
