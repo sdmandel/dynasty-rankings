@@ -1,12 +1,12 @@
 {
   "generated": "2026-08-27",
-  "generated_at": "2026-08-27T13:16:27-05:00",
+  "generated_at": "2026-08-27T14:16:33-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 156,
   "snapshot_date": "2026-08-27",
   "sources": {
-    "standings": "2026-08-27T13:16:27-05:00",
+    "standings": "2026-08-27T14:16:33-05:00",
     "intelligence": "2026-08-27",
     "managers": "2026-08-27",
     "oracle_values": "data/rankings_latest.csv"
@@ -853,7 +853,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1104,7 +1104,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 0.5,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1222,14 +1222,13 @@
       },
       "public_archetypes": [
         "rebuilding",
-        "pitching-led build",
         "waiver churn"
       ],
       "trade_needs": [
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": 1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1480,7 +1479,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": -0.5,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
