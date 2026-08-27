@@ -205,7 +205,7 @@
           "to_loss": 1.0
         },
         "cat_sb": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_svh": {
@@ -219,9 +219,9 @@
       },
       "luck": {
         "actual_points": 94.5,
-        "expected_points": 93.5,
-        "delta": 1.0,
-        "cluster_sensitivity": 80.0,
+        "expected_points": 94.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -244,12 +244,12 @@
       "team": "Philbell",
       "source_team": "philbell",
       "tier": "fringe",
-      "points_back": 20.5,
+      "points_back": 20.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_sb"
+        "cat_k"
       ],
       "category_gaps": {
         "cat_era": {
@@ -281,8 +281,8 @@
           "to_loss": 1.0
         },
         "cat_sb": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_svh": {
           "to_gain": 1.0,
@@ -294,10 +294,10 @@
         }
       },
       "luck": {
-        "actual_points": 91.5,
-        "expected_points": 91.5,
-        "delta": 0.0,
-        "cluster_sensitivity": 90.0,
+        "actual_points": 92.0,
+        "expected_points": 92.5,
+        "delta": -0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -310,7 +310,7 @@
           "cat_qs": 0.876,
           "cat_r": 2.559,
           "cat_rbi": 2.626,
-          "cat_sb": 1.224,
+          "cat_sb": 1.221,
           "cat_svh": 0.718,
           "cat_whip": 1.448
         }
@@ -358,7 +358,7 @@
         },
         "cat_sb": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "cat_svh": {
           "to_gain": 1.0,
@@ -371,9 +371,9 @@
       },
       "luck": {
         "actual_points": 73.0,
-        "expected_points": 73.5,
-        "delta": -0.5,
-        "cluster_sensitivity": 95.0,
+        "expected_points": 73.0,
+        "delta": 0.0,
+        "cluster_sensitivity": 100.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -472,12 +472,12 @@
       "team": "John Henry Fan Club",
       "source_team": "John Henry Fan Club",
       "tier": "rebuilding",
-      "points_back": 54.5,
+      "points_back": 55.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_sb"
+        "cat_k"
       ],
       "category_gaps": {
         "cat_era": {
@@ -509,8 +509,8 @@
           "to_loss": 1.0
         },
         "cat_sb": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_svh": {
           "to_gain": 1.0,
@@ -522,14 +522,14 @@
         }
       },
       "luck": {
-        "actual_points": 57.5,
-        "expected_points": 58.5,
-        "delta": -1.0,
-        "cluster_sensitivity": 90.0,
+        "actual_points": 57.0,
+        "expected_points": 57.5,
+        "delta": -0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 28.89,
+        "team_volatility_score": 28.9,
         "category_volatility": {
           "cat_era": 1.921,
           "cat_hr": 1.132,
@@ -538,7 +538,7 @@
           "cat_qs": 2.725,
           "cat_r": 1.08,
           "cat_rbi": 0.804,
-          "cat_sb": 0.959,
+          "cat_sb": 0.967,
           "cat_svh": 0.434,
           "cat_whip": 1.825
         }
@@ -962,12 +962,12 @@
     {
       "team": "Philbell",
       "tier": "fringe",
-      "points_back": 20.5,
+      "points_back": 20.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_sb"
+        "cat_k"
       ]
     },
     {
@@ -995,12 +995,12 @@
     {
       "team": "John Henry Fan Club",
       "tier": "rebuilding",
-      "points_back": 54.5,
+      "points_back": 55.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_sb"
+        "cat_k"
       ]
     },
     {
@@ -1079,29 +1079,29 @@
       "badge": "positive-variance"
     },
     {
-      "team": "John Henry Fan Club",
-      "actual_points": 57.5,
-      "expected_points": 58.5,
-      "delta": -1.0,
-      "cluster_sensitivity": 90.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Vin Mazzaro fan club",
-      "actual_points": 73.0,
-      "expected_points": 73.5,
+      "team": "Philbell",
+      "actual_points": 92.0,
+      "expected_points": 92.5,
       "delta": -0.5,
       "cluster_sensitivity": 95.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
-      "team": "Philbell",
-      "actual_points": 91.5,
-      "expected_points": 91.5,
+      "team": "John Henry Fan Club",
+      "actual_points": 57.0,
+      "expected_points": 57.5,
+      "delta": -0.5,
+      "cluster_sensitivity": 95.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "actual_points": 73.0,
+      "expected_points": 73.0,
       "delta": 0.0,
-      "cluster_sensitivity": 90.0,
+      "cluster_sensitivity": 100.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1120,6 +1120,15 @@
       "expected_points": 42.0,
       "delta": 0.0,
       "cluster_sensitivity": 100.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Seam heads",
+      "actual_points": 94.5,
+      "expected_points": 94.0,
+      "delta": 0.5,
+      "cluster_sensitivity": 85.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1147,15 +1156,6 @@
       "expected_points": 97.5,
       "delta": 1.0,
       "cluster_sensitivity": 90.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Seam heads",
-      "actual_points": 94.5,
-      "expected_points": 93.5,
-      "delta": 1.0,
-      "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1261,7 +1261,7 @@
         "cat_qs": 0.876,
         "cat_r": 2.559,
         "cat_rbi": 2.626,
-        "cat_sb": 1.224,
+        "cat_sb": 1.221,
         "cat_svh": 0.718,
         "cat_whip": 1.448
       }
@@ -1300,7 +1300,7 @@
     },
     {
       "team": "John Henry Fan Club",
-      "team_volatility_score": 28.89,
+      "team_volatility_score": 28.9,
       "category_volatility": {
         "cat_era": 1.921,
         "cat_hr": 1.132,
@@ -1309,7 +1309,7 @@
         "cat_qs": 2.725,
         "cat_r": 1.08,
         "cat_rbi": 0.804,
-        "cat_sb": 0.959,
+        "cat_sb": 0.967,
         "cat_svh": 0.434,
         "cat_whip": 1.825
       }
