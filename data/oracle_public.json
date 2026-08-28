@@ -1,12 +1,12 @@
 {
   "generated": "2026-08-27",
-  "generated_at": "2026-08-27T18:17:12-05:00",
+  "generated_at": "2026-08-27T19:17:19-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 156,
   "snapshot_date": "2026-08-27",
   "sources": {
-    "standings": "2026-08-27T18:17:12-05:00",
+    "standings": "2026-08-27T19:17:19-05:00",
     "intelligence": "2026-08-27",
     "managers": "2026-08-27",
     "oracle_values": "data/rankings_latest.csv"
@@ -283,7 +283,7 @@
       "tight_categories": [
         "ERA",
         "HR",
-        "SB"
+        "R"
       ],
       "category_gaps": {
         "ERA": {
@@ -307,16 +307,16 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": 1.5
         },
         "RBI": {
           "to_gain": 1.0,
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -332,14 +332,14 @@
       "pressure": {
         "score": 100.0,
         "gain_target": {
-          "category": "SB",
+          "category": "R",
           "gap": 0.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: SB (0.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: R (0.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -351,9 +351,9 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": 0.0,
         "stock": "edge",
-        "summary": "One move from gaining SB",
+        "summary": "One move from gaining R",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -404,12 +404,12 @@
       "avg_age": 28.7,
       "farm_share": 0.0776,
       "contention_tier": "fringe",
-      "points_back": 20.5,
+      "points_back": 21.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "SB"
+        "K"
       ],
       "category_gaps": {
         "ERA": {
@@ -441,8 +441,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -453,19 +453,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
-      "volatility": 32.09,
+      "luck_delta": -0.5,
+      "volatility": 32.08,
       "pressure": {
-        "score": 100.0,
+        "score": 78.0,
         "gain_target": {
           "category": "ERA",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "SB",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "fringe",
@@ -476,9 +476,9 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.5,
-        "stock": "risk",
-        "summary": "Protecting SB",
+        "pts_change": 0.0,
+        "stock": "hold",
+        "summary": "Holding current shape",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -566,7 +566,7 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "SVH": {
@@ -578,7 +578,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 1.0,
+      "luck_delta": 0.5,
       "volatility": 26.88,
       "pressure": {
         "score": 100.0,
@@ -809,7 +809,7 @@
         },
         "R": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 1.5
         },
         "RBI": {
           "to_gain": 1.0,
@@ -817,7 +817,7 @@
         },
         "SB": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -935,7 +935,7 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "RBI": {
@@ -955,7 +955,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": 1.0,
       "volatility": 39.45,
       "pressure": {
         "score": 78.0,
@@ -1157,12 +1157,12 @@
       "avg_age": 29.1,
       "farm_share": 0.0328,
       "contention_tier": "rebuilding",
-      "points_back": 48.0,
+      "points_back": 47.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "R"
       ],
       "category_gaps": {
         "ERA": {
@@ -1186,8 +1186,8 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -1206,19 +1206,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
+      "luck_delta": 0.5,
       "volatility": 30.85,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
           "category": "ERA",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "R",
+          "gap": 0.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: R (0.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -1229,8 +1229,8 @@
       ],
       "trend": {
         "pts_change": 1.0,
-        "stock": "hold",
-        "summary": "Holding current shape",
+        "stock": "risk",
+        "summary": "Protecting R",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
