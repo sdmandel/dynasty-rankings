@@ -1,15 +1,15 @@
 {
-  "generated": "2026-08-29",
-  "snapshot_date": "2026-08-29",
+  "generated": "2026-08-30",
+  "snapshot_date": "2026-08-30",
   "closers": [
     {
       "closer_name": "Bryan Baker",
       "bullpen_team": "Tampa Bay Rays",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 38,
+      "recent_saves": 39,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 71.7,
+      "role_share": 72.2,
       "oracle_rank": 587
     },
     {
@@ -53,6 +53,16 @@
       "oracle_rank": 269
     },
     {
+      "closer_name": "Louis Varland",
+      "bullpen_team": "Toronto Blue Jays",
+      "dynasty_team": "Trazadone",
+      "recent_saves": 31,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 52.5,
+      "oracle_rank": 334
+    },
+    {
       "closer_name": "Aroldis Chapman",
       "bullpen_team": "Boston Red Sox",
       "dynasty_team": "Rollie Fingers",
@@ -61,16 +71,6 @@
       "unstable_flag": false,
       "role_share": 83.3,
       "oracle_rank": 358
-    },
-    {
-      "closer_name": "Louis Varland",
-      "bullpen_team": "Toronto Blue Jays",
-      "dynasty_team": "Trazadone",
-      "recent_saves": 30,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 51.7,
-      "oracle_rank": 334
     },
     {
       "closer_name": "Jhoan Duran",
@@ -96,10 +96,10 @@
       "closer_name": "Trevor Megill",
       "bullpen_team": "Milwaukee Brewers",
       "dynasty_team": "Rollie Fingers",
-      "recent_saves": 24,
+      "recent_saves": 25,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 50.0,
+      "role_share": 51.0,
       "oracle_rank": 384
     },
     {
@@ -203,14 +203,14 @@
       "oracle_rank": 523
     },
     {
-      "closer_name": "Ryan Helsley",
+      "closer_name": "Andrew Kittredge",
       "bullpen_team": "Baltimore Orioles",
-      "dynasty_team": "Sam",
+      "dynasty_team": "Seam heads",
       "recent_saves": 8,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 27.6,
-      "oracle_rank": 382
+      "role_share": 26.7,
+      "oracle_rank": 898
     },
     {
       "closer_name": "Grant Taylor",
@@ -219,7 +219,7 @@
       "recent_saves": 8,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 44.4,
+      "role_share": 42.1,
       "oracle_rank": 199
     },
     {
@@ -239,7 +239,7 @@
       "recent_saves": 29,
       "confidence_score": 80.0,
       "unstable_flag": false,
-      "role_share": 82.9,
+      "role_share": 80.6,
       "oracle_rank": 478
     },
     {
@@ -309,10 +309,10 @@
         "closer_name": "Bryan Baker",
         "bullpen_team": "Tampa Bay Rays",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 38,
+        "recent_saves": 39,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 71.7,
+        "role_share": 72.2,
         "oracle_rank": 587
       },
       {
@@ -378,13 +378,23 @@
         "oracle_rank": 500
       },
       {
+        "closer_name": "Andrew Kittredge",
+        "bullpen_team": "Baltimore Orioles",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 8,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 26.7,
+        "oracle_rank": 898
+      },
+      {
         "closer_name": "Grant Taylor",
         "bullpen_team": "Chicago White Sox",
         "dynasty_team": "Seam heads",
         "recent_saves": 8,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 44.4,
+        "role_share": 42.1,
         "oracle_rank": 199
       }
     ],
@@ -430,16 +440,6 @@
         "unstable_flag": true,
         "role_share": 48.3,
         "oracle_rank": 670
-      },
-      {
-        "closer_name": "Ryan Helsley",
-        "bullpen_team": "Baltimore Orioles",
-        "dynasty_team": "Sam",
-        "recent_saves": 8,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 27.6,
-        "oracle_rank": 382
       }
     ],
     "Philbell": [
@@ -462,6 +462,28 @@
         "unstable_flag": false,
         "role_share": 44.8,
         "oracle_rank": 655
+      }
+    ],
+    "Trazadone": [
+      {
+        "closer_name": "Louis Varland",
+        "bullpen_team": "Toronto Blue Jays",
+        "dynasty_team": "Trazadone",
+        "recent_saves": 31,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 52.5,
+        "oracle_rank": 334
+      },
+      {
+        "closer_name": "Tanner Scott",
+        "bullpen_team": "Los Angeles Dodgers",
+        "dynasty_team": "Trazadone",
+        "recent_saves": 20,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 62.5,
+        "oracle_rank": 534
       }
     ],
     "Rollie Fingers": [
@@ -489,10 +511,10 @@
         "closer_name": "Trevor Megill",
         "bullpen_team": "Milwaukee Brewers",
         "dynasty_team": "Rollie Fingers",
-        "recent_saves": 24,
+        "recent_saves": 25,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 50.0,
+        "role_share": 51.0,
         "oracle_rank": 384
       },
       {
@@ -504,28 +526,6 @@
         "unstable_flag": false,
         "role_share": 61.5,
         "oracle_rank": 114
-      }
-    ],
-    "Trazadone": [
-      {
-        "closer_name": "Louis Varland",
-        "bullpen_team": "Toronto Blue Jays",
-        "dynasty_team": "Trazadone",
-        "recent_saves": 30,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 51.7,
-        "oracle_rank": 334
-      },
-      {
-        "closer_name": "Tanner Scott",
-        "bullpen_team": "Los Angeles Dodgers",
-        "dynasty_team": "Trazadone",
-        "recent_saves": 20,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 62.5,
-        "oracle_rank": 534
       }
     ],
     "Pat": [
@@ -580,7 +580,7 @@
         "recent_saves": 29,
         "confidence_score": 80.0,
         "unstable_flag": false,
-        "role_share": 82.9,
+        "role_share": 80.6,
         "oracle_rank": 478
       }
     ]
