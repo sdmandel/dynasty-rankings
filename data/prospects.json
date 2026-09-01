@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-31",
+  "generated": "2026-09-01",
   "window_days": 14,
-  "window_start": "2026-08-17",
-  "window_end": "2026-08-31",
+  "window_start": "2026-08-18",
+  "window_end": "2026-09-01",
   "hot_hitters": [
     {
       "name": "Robert Calaz",
@@ -6294,24 +6294,7 @@
         "k_pct": 0.153,
         "bb_pct": 0.144
       },
-      "stats_last14": {
-        "name": "Francisco Renteria",
-        "mlbam_id": 836353,
-        "level": "Rk",
-        "pa": 3,
-        "ab": 3,
-        "hr": 0,
-        "r": 0,
-        "rbi": 1,
-        "sb": 0,
-        "avg": 0.333,
-        "obp": 0.333,
-        "slg": 0.333,
-        "ops": 0.667,
-        "k_pct": 0.0,
-        "bb_pct": 0.0
-      },
-      "delta": -0.485
+      "stats_last14": null
     },
     {
       "name": "Gavin Fien",
@@ -10247,20 +10230,20 @@
         "name": "Angeibel Gomez",
         "mlbam_id": 825412,
         "level": "Rk",
-        "pa": 6,
-        "ab": 5,
+        "pa": 3,
+        "ab": 2,
         "hr": 0,
         "r": 2,
-        "rbi": 3,
+        "rbi": 1,
         "sb": 1,
-        "avg": 0.4,
+        "avg": 0.5,
         "obp": 0.333,
-        "slg": 0.4,
-        "ops": 0.733,
+        "slg": 0.5,
+        "ops": 0.833,
         "k_pct": 0.0,
         "bb_pct": 0.0
       },
-      "delta": -0.386
+      "delta": -0.286
     },
     {
       "name": "Henry Lalane",
@@ -11306,6 +11289,42 @@
         "bb_pct": 0.105
       },
       "delta": 0.058
+    },
+    {
+      "name": "Robby Ahlstrom",
+      "name_key": "robby ahlstrom",
+      "player_id": "05y7j",
+      "org": "TEX",
+      "level": "AAA",
+      "level_raw": "",
+      "positions": "SIRP",
+      "age": "26",
+      "rank": 787,
+      "eta": "2025",
+      "reason": "projZ 0.38; p_age 25; FP imputed",
+      "owner": "FA",
+      "owner_team_id": null,
+      "availability": "FA",
+      "fantrax_status": "FA",
+      "group": "pitching",
+      "stats_season": {
+        "name": "Robby Ahlstrom",
+        "mlbam_id": 695239,
+        "level": "AAA",
+        "ip": 29.3,
+        "g": 21,
+        "gs": 0,
+        "w": 1,
+        "l": 2,
+        "sv": 2,
+        "hld": 3,
+        "so": 33,
+        "era": 2.76,
+        "whip": 0.95,
+        "k_pct": 0.284,
+        "bb_pct": 0.069
+      },
+      "stats_last14": null
     },
     {
       "name": "Ky Bush",
@@ -18692,20 +18711,20 @@
         "name": "Johenssy Colome",
         "mlbam_id": 836584,
         "level": "Rk",
-        "pa": 10,
-        "ab": 7,
+        "pa": 4,
+        "ab": 4,
         "hr": 1,
-        "r": 4,
+        "r": 2,
         "rbi": 2,
-        "sb": 1,
-        "avg": 0.571,
-        "obp": 0.7,
-        "slg": 1.429,
-        "ops": 2.129,
-        "k_pct": 0.1,
-        "bb_pct": 0.1
+        "sb": 0,
+        "avg": 0.75,
+        "obp": 0.75,
+        "slg": 2.0,
+        "ops": 2.75,
+        "k_pct": 0.0,
+        "bb_pct": 0.0
       },
-      "delta": 1.173
+      "delta": 1.794
     },
     {
       "name": "Jared Serna",
@@ -19962,24 +19981,7 @@
         "k_pct": 0.182,
         "bb_pct": 0.242
       },
-      "stats_last14": {
-        "name": "Emanuel Luna",
-        "mlbam_id": 836587,
-        "level": "Rk",
-        "pa": 5,
-        "ab": 4,
-        "hr": 0,
-        "r": 1,
-        "rbi": 0,
-        "sb": 0,
-        "avg": 0.25,
-        "obp": 0.4,
-        "slg": 0.25,
-        "ops": 0.65,
-        "k_pct": 0.0,
-        "bb_pct": 0.2
-      },
-      "delta": -0.801
+      "stats_last14": null
     },
     {
       "name": "Orelvis Martinez",
@@ -20905,7 +20907,7 @@
   "teams": [
     {
       "team": "FA",
-      "count": 286,
+      "count": 287,
       "prospects": [
         {
           "name": "Felnin Celesten",
@@ -24080,20 +24082,20 @@
             "name": "Angeibel Gomez",
             "mlbam_id": 825412,
             "level": "Rk",
-            "pa": 6,
-            "ab": 5,
+            "pa": 3,
+            "ab": 2,
             "hr": 0,
             "r": 2,
-            "rbi": 3,
+            "rbi": 1,
             "sb": 1,
-            "avg": 0.4,
+            "avg": 0.5,
             "obp": 0.333,
-            "slg": 0.4,
-            "ops": 0.733,
+            "slg": 0.5,
+            "ops": 0.833,
             "k_pct": 0.0,
             "bb_pct": 0.0
           },
-          "delta": -0.386
+          "delta": -0.286
         },
         {
           "name": "Henry Lalane",
@@ -25139,6 +25141,42 @@
             "bb_pct": 0.105
           },
           "delta": 0.058
+        },
+        {
+          "name": "Robby Ahlstrom",
+          "name_key": "robby ahlstrom",
+          "player_id": "05y7j",
+          "org": "TEX",
+          "level": "AAA",
+          "level_raw": "",
+          "positions": "SIRP",
+          "age": "26",
+          "rank": 787,
+          "eta": "2025",
+          "reason": "projZ 0.38; p_age 25; FP imputed",
+          "owner": "FA",
+          "owner_team_id": null,
+          "availability": "FA",
+          "fantrax_status": "FA",
+          "group": "pitching",
+          "stats_season": {
+            "name": "Robby Ahlstrom",
+            "mlbam_id": 695239,
+            "level": "AAA",
+            "ip": 29.3,
+            "g": 21,
+            "gs": 0,
+            "w": 1,
+            "l": 2,
+            "sv": 2,
+            "hld": 3,
+            "so": 33,
+            "era": 2.76,
+            "whip": 0.95,
+            "k_pct": 0.284,
+            "bb_pct": 0.069
+          },
+          "stats_last14": null
         },
         {
           "name": "Ky Bush",
@@ -32525,20 +32563,20 @@
             "name": "Johenssy Colome",
             "mlbam_id": 836584,
             "level": "Rk",
-            "pa": 10,
-            "ab": 7,
+            "pa": 4,
+            "ab": 4,
             "hr": 1,
-            "r": 4,
+            "r": 2,
             "rbi": 2,
-            "sb": 1,
-            "avg": 0.571,
-            "obp": 0.7,
-            "slg": 1.429,
-            "ops": 2.129,
-            "k_pct": 0.1,
-            "bb_pct": 0.1
+            "sb": 0,
+            "avg": 0.75,
+            "obp": 0.75,
+            "slg": 2.0,
+            "ops": 2.75,
+            "k_pct": 0.0,
+            "bb_pct": 0.0
           },
-          "delta": 1.173
+          "delta": 1.794
         },
         {
           "name": "Jared Serna",
@@ -33795,24 +33833,7 @@
             "k_pct": 0.182,
             "bb_pct": 0.242
           },
-          "stats_last14": {
-            "name": "Emanuel Luna",
-            "mlbam_id": 836587,
-            "level": "Rk",
-            "pa": 5,
-            "ab": 4,
-            "hr": 0,
-            "r": 1,
-            "rbi": 0,
-            "sb": 0,
-            "avg": 0.25,
-            "obp": 0.4,
-            "slg": 0.25,
-            "ops": 0.65,
-            "k_pct": 0.0,
-            "bb_pct": 0.2
-          },
-          "delta": -0.801
+          "stats_last14": null
         },
         {
           "name": "Orelvis Martinez",
@@ -35825,24 +35846,7 @@
             "k_pct": 0.153,
             "bb_pct": 0.144
           },
-          "stats_last14": {
-            "name": "Francisco Renteria",
-            "mlbam_id": 836353,
-            "level": "Rk",
-            "pa": 3,
-            "ab": 3,
-            "hr": 0,
-            "r": 0,
-            "rbi": 1,
-            "sb": 0,
-            "avg": 0.333,
-            "obp": 0.333,
-            "slg": 0.333,
-            "ops": 0.667,
-            "k_pct": 0.0,
-            "bb_pct": 0.0
-          },
-          "delta": -0.485
+          "stats_last14": null
         }
       ]
     },
