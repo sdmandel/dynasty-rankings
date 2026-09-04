@@ -1,12 +1,12 @@
 {
   "generated": "2026-09-03",
-  "generated_at": "2026-09-03T19:42:33-05:00",
+  "generated_at": "2026-09-03T20:42:45-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 163,
   "snapshot_date": "2026-09-03",
   "sources": {
-    "standings": "2026-09-03T19:42:33-05:00",
+    "standings": "2026-09-03T20:42:45-05:00",
     "intelligence": "2026-09-03",
     "managers": "2026-09-03",
     "oracle_values": "data/rankings_latest.csv"
@@ -64,7 +64,7 @@
         },
         "SB": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 1.5
         },
         "SVH": {
           "to_gain": 1.0,
@@ -75,7 +75,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 1.0,
+      "luck_delta": 0.5,
       "volatility": 28.51,
       "pressure": {
         "score": 78.0,
@@ -99,7 +99,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -225,7 +225,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": null,
         "stock": "push",
         "summary": "Window open \u00b7 pressure in ERA",
         "rank_delta": null,
@@ -351,7 +351,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -441,7 +441,7 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "SVH": {
@@ -453,7 +453,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
+      "luck_delta": 0.5,
       "volatility": 31.35,
       "pressure": {
         "score": 78.0,
@@ -476,7 +476,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -602,7 +602,7 @@
         "needs impact bats"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -655,12 +655,12 @@
       "avg_age": 26.2,
       "farm_share": 0.1598,
       "contention_tier": "rebuilding",
-      "points_back": 89.0,
+      "points_back": 89.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "RBI"
       ],
       "category_gaps": {
         "ERA": {
@@ -688,8 +688,8 @@
           "to_loss": null
         },
         "RBI": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": null
         },
         "SB": {
           "to_gain": 1.0,
@@ -704,19 +704,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -2.0,
-      "volatility": 20.22,
+      "luck_delta": -2.5,
+      "volatility": 20.23,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "RBI",
+          "gap": 0.0
         },
         "loss_risk": {
           "category": "K",
           "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: K (1.0)"
+        "summary": "closest gain: RBI (0.0) \u00b7 closest loss: K (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -724,12 +724,13 @@
       ],
       "trade_needs": [
         "needs saves",
-        "fragile SP depth"
+        "fragile SP depth",
+        "needs impact bats"
       ],
       "trend": {
-        "pts_change": 0.0,
-        "stock": "hold",
-        "summary": "Holding current shape",
+        "pts_change": null,
+        "stock": "edge",
+        "summary": "One move from gaining RBI",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -780,12 +781,12 @@
       "avg_age": 28.0,
       "farm_share": 0.095,
       "contention_tier": "holding steady",
-      "points_back": 36.0,
+      "points_back": 35.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "SB"
       ],
       "category_gaps": {
         "ERA": {
@@ -817,8 +818,8 @@
           "to_loss": 1.0
         },
         "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "SVH": {
           "to_gain": 1.0,
@@ -829,19 +830,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.0,
-      "volatility": 35.44,
+      "luck_delta": 0.5,
+      "volatility": 35.45,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
           "category": "ERA",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "SB",
+          "gap": 0.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: SB (0.0)"
       },
       "public_archetypes": [
         "holding steady",
@@ -854,9 +855,9 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.0,
-        "stock": "hold",
-        "summary": "Holding current shape",
+        "pts_change": null,
+        "stock": "risk",
+        "summary": "Protecting SB",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -937,7 +938,7 @@
         },
         "R": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -956,7 +957,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
+      "luck_delta": 0.0,
       "volatility": 38.58,
       "pressure": {
         "score": 78.0,
@@ -979,7 +980,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1032,12 +1033,12 @@
       "avg_age": 27.4,
       "farm_share": 0.1916,
       "contention_tier": "rebuilding",
-      "points_back": 64.5,
+      "points_back": 64.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "R"
+        "K"
       ],
       "category_gaps": {
         "ERA": {
@@ -1061,8 +1062,8 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -1081,19 +1082,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": 0.0,
       "volatility": 46.06,
       "pressure": {
-        "score": 100.0,
+        "score": 78.0,
         "gain_target": {
           "category": "ERA",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "R",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: R (0.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -1105,9 +1106,9 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
-        "stock": "risk",
-        "summary": "Protecting R",
+        "pts_change": null,
+        "stock": "hold",
+        "summary": "Holding current shape",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -1230,7 +1231,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": null,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1283,12 +1284,12 @@
       "avg_age": 30.4,
       "farm_share": 0.0766,
       "contention_tier": "rebuilding",
-      "points_back": 59.0,
+      "points_back": 59.5,
       "reachable_points": 9.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "K"
+        "SB"
       ],
       "category_gaps": {
         "ERA": {
@@ -1312,16 +1313,16 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 1.5
         },
         "SB": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": 1.5
         },
         "SVH": {
           "to_gain": null,
@@ -1332,19 +1333,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 1.0,
+      "luck_delta": -0.5,
       "volatility": 27.24,
       "pressure": {
-        "score": 78.0,
+        "score": 100.0,
         "gain_target": {
-          "category": "ERA",
-          "gap": 1.0
+          "category": "SB",
+          "gap": 0.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: SB (0.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -1356,7 +1357,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": null,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1414,7 +1415,7 @@
       "tight_categories": [
         "ERA",
         "HR",
-        "R"
+        "RBI"
       ],
       "category_gaps": {
         "ERA": {
@@ -1438,12 +1439,12 @@
           "to_loss": null
         },
         "R": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "RBI": {
-          "to_gain": 1.0,
-          "to_loss": null
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "SB": {
           "to_gain": 1.0,
@@ -1458,19 +1459,19 @@
           "to_loss": null
         }
       },
-      "luck_delta": -3.0,
+      "luck_delta": -1.5,
       "volatility": 34.78,
       "pressure": {
         "score": 100.0,
         "gain_target": {
-          "category": "R",
-          "gap": 0.0
-        },
-        "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: R (0.0) \u00b7 closest loss: ERA (1.0)"
+        "loss_risk": {
+          "category": "RBI",
+          "gap": 0.0
+        },
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: RBI (0.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -1481,7 +1482,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.0,
+        "pts_change": null,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
