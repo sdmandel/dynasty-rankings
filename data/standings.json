@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-03",
-  "generated_at": "2026-09-03T20:42:45-05:00",
-  "week": 163,
+  "generated_at": "2026-09-03T21:42:52-05:00",
+  "week": 164,
   "category_order": [
     "R",
     "HR",
@@ -19,10 +19,10 @@
     "HR": "Rollie Fingers",
     "RBI": "Humongous Melonheads",
     "SB": "Humongous Melonheads",
-    "OPS": "Humongous Melonheads",
+    "OPS": "Rollie Fingers",
     "QS": "Humongous Melonheads",
     "ERA": "Seam heads",
-    "WHIP": "Seam heads",
+    "WHIP": "Humongous Melonheads",
     "K": "Humongous Melonheads",
     "SVH": "Sam"
   },
@@ -43,7 +43,7 @@
       "rank": 1,
       "team": "Humongous Melonheads",
       "total_pts": 111.0,
-      "pts_change": null,
+      "pts_change": 1.0,
       "pts_behind": 0.0,
       "waiver_order": 10,
       "categories": {
@@ -68,8 +68,8 @@
           "last": false
         },
         "OPS": {
-          "pts": 12.0,
-          "leader": true,
+          "pts": 11.0,
+          "leader": false,
           "last": false
         },
         "QS": {
@@ -83,8 +83,8 @@
           "last": false
         },
         "WHIP": {
-          "pts": 11.0,
-          "leader": false,
+          "pts": 12.0,
+          "leader": true,
           "last": false
         },
         "K": {
@@ -101,10 +101,70 @@
     },
     {
       "rank": 2,
+      "team": "Rollie Fingers",
+      "total_pts": 97.0,
+      "pts_change": 0.0,
+      "pts_behind": 14.0,
+      "waiver_order": 4,
+      "categories": {
+        "R": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "RBI": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "QS": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        }
+      }
+    },
+    {
+      "rank": 3,
       "team": "Seam heads",
-      "total_pts": 96.0,
-      "pts_change": null,
-      "pts_behind": 15.0,
+      "total_pts": 95.0,
+      "pts_change": 0.0,
+      "pts_behind": 16.0,
       "waiver_order": 12,
       "categories": {
         "R": {
@@ -143,8 +203,8 @@
           "last": false
         },
         "WHIP": {
-          "pts": 12.0,
-          "leader": true,
+          "pts": 11.0,
+          "leader": false,
           "last": false
         },
         "K": {
@@ -154,66 +214,6 @@
         },
         "SVH": {
           "pts": 11.0,
-          "leader": false,
-          "last": false
-        }
-      }
-    },
-    {
-      "rank": 3,
-      "team": "Rollie Fingers",
-      "total_pts": 96.0,
-      "pts_change": null,
-      "pts_behind": 15.0,
-      "waiver_order": 4,
-      "categories": {
-        "R": {
-          "pts": 11.0,
-          "leader": false,
-          "last": false
-        },
-        "HR": {
-          "pts": 12.0,
-          "leader": true,
-          "last": false
-        },
-        "RBI": {
-          "pts": 8.0,
-          "leader": false,
-          "last": false
-        },
-        "SB": {
-          "pts": 11.0,
-          "leader": false,
-          "last": false
-        },
-        "OPS": {
-          "pts": 11.0,
-          "leader": false,
-          "last": false
-        },
-        "QS": {
-          "pts": 8.0,
-          "leader": false,
-          "last": false
-        },
-        "ERA": {
-          "pts": 9.0,
-          "leader": false,
-          "last": false
-        },
-        "WHIP": {
-          "pts": 8.0,
-          "leader": false,
-          "last": false
-        },
-        "K": {
-          "pts": 9.0,
-          "leader": false,
-          "last": false
-        },
-        "SVH": {
-          "pts": 9.0,
           "leader": false,
           "last": false
         }
@@ -223,7 +223,7 @@
       "rank": 4,
       "team": "philbell",
       "total_pts": 91.0,
-      "pts_change": null,
+      "pts_change": 0.0,
       "pts_behind": 20.0,
       "waiver_order": 9,
       "categories": {
@@ -283,7 +283,7 @@
       "rank": 5,
       "team": "Vin Mazzaro fan club",
       "total_pts": 74.5,
-      "pts_change": null,
+      "pts_change": 0.5,
       "pts_behind": 36.5,
       "waiver_order": 6,
       "categories": {
@@ -343,7 +343,7 @@
       "rank": 6,
       "team": "Pat",
       "total_pts": 65.0,
-      "pts_change": null,
+      "pts_change": 0.0,
       "pts_behind": 46.0,
       "waiver_order": 3,
       "categories": {
@@ -402,9 +402,9 @@
     {
       "rank": 7,
       "team": "John Henry Fan Club",
-      "total_pts": 56.0,
-      "pts_change": null,
-      "pts_behind": 55.0,
+      "total_pts": 57.0,
+      "pts_change": 0.0,
+      "pts_behind": 54.0,
       "waiver_order": 1,
       "categories": {
         "R": {
@@ -428,7 +428,7 @@
           "last": false
         },
         "OPS": {
-          "pts": 8.0,
+          "pts": 9.0,
           "leader": false,
           "last": false
         },
@@ -462,9 +462,9 @@
     {
       "rank": 8,
       "team": "Sam",
-      "total_pts": 50.5,
-      "pts_change": null,
-      "pts_behind": 60.5,
+      "total_pts": 49.5,
+      "pts_change": -0.5,
+      "pts_behind": 61.5,
       "waiver_order": 2,
       "categories": {
         "R": {
@@ -488,7 +488,7 @@
           "last": false
         },
         "OPS": {
-          "pts": 9.0,
+          "pts": 8.0,
           "leader": false,
           "last": false
         },
@@ -523,7 +523,7 @@
       "rank": 9,
       "team": "Millville Meteors",
       "total_pts": 47.0,
-      "pts_change": null,
+      "pts_change": -1.0,
       "pts_behind": 64.0,
       "waiver_order": 11,
       "categories": {
@@ -582,13 +582,13 @@
     {
       "rank": 10,
       "team": "Trazadone",
-      "total_pts": 45.5,
-      "pts_change": null,
-      "pts_behind": 65.5,
+      "total_pts": 46.0,
+      "pts_change": 0.5,
+      "pts_behind": 65.0,
       "waiver_order": 5,
       "categories": {
         "R": {
-          "pts": 3.5,
+          "pts": 4.0,
           "leader": false,
           "last": false
         },
@@ -643,12 +643,12 @@
       "rank": 11,
       "team": "Mommy",
       "total_pts": 26.5,
-      "pts_change": null,
+      "pts_change": 0.0,
       "pts_behind": 84.5,
       "waiver_order": 7,
       "categories": {
         "R": {
-          "pts": 3.5,
+          "pts": 3.0,
           "leader": false,
           "last": false
         },
@@ -658,7 +658,7 @@
           "last": false
         },
         "RBI": {
-          "pts": 1.0,
+          "pts": 1.5,
           "leader": false,
           "last": true
         },
@@ -702,9 +702,9 @@
     {
       "rank": 12,
       "team": "Jonesin'",
-      "total_pts": 21.0,
-      "pts_change": null,
-      "pts_behind": 90.0,
+      "total_pts": 20.5,
+      "pts_change": -0.5,
+      "pts_behind": 90.5,
       "waiver_order": 8,
       "categories": {
         "R": {
@@ -718,7 +718,7 @@
           "last": true
         },
         "RBI": {
-          "pts": 2.0,
+          "pts": 1.5,
           "leader": false,
           "last": false
         },
