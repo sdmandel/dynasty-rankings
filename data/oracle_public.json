@@ -1,12 +1,12 @@
 {
   "generated": "2026-09-04",
-  "generated_at": "2026-09-04T13:44:58-05:00",
+  "generated_at": "2026-09-04T14:45:07-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 164,
   "snapshot_date": "2026-09-04",
   "sources": {
-    "standings": "2026-09-04T13:44:58-05:00",
+    "standings": "2026-09-04T14:45:07-05:00",
     "intelligence": "2026-09-04",
     "managers": "2026-09-04",
     "oracle_values": "data/rankings_latest.csv"
@@ -225,7 +225,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 1.0,
+        "pts_change": 0.0,
         "stock": "push",
         "summary": "Window open \u00b7 pressure in ERA",
         "rank_delta": null,
@@ -655,7 +655,7 @@
       "avg_age": 26.2,
       "farm_share": 0.1598,
       "contention_tier": "rebuilding",
-      "points_back": 91.0,
+      "points_back": 90.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -689,7 +689,7 @@
         },
         "RBI": {
           "to_gain": 1.0,
-          "to_loss": null
+          "to_loss": 1.0
         },
         "SB": {
           "to_gain": 1.0,
@@ -704,8 +704,8 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -2.5,
-      "volatility": 20.26,
+      "luck_delta": -2.0,
+      "volatility": 20.25,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -727,7 +727,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 1.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -854,7 +854,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": 0.0,
         "stock": "risk",
         "summary": "Protecting SB",
         "rank_delta": null,
@@ -979,7 +979,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": -1.0,
+        "pts_change": 0.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1105,7 +1105,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": 0.0,
         "stock": "hold",
         "summary": "Holding current shape",
         "rank_delta": null,
@@ -1356,7 +1356,7 @@
         "surplus SB"
       ],
       "trend": {
-        "pts_change": -0.5,
+        "pts_change": 0.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
@@ -1409,7 +1409,7 @@
       "avg_age": 31.2,
       "farm_share": 0.0484,
       "contention_tier": "rebuilding",
-      "points_back": 84.0,
+      "points_back": 85.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -1443,7 +1443,7 @@
         },
         "RBI": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": null
         },
         "SB": {
           "to_gain": 1.0,
@@ -1458,7 +1458,7 @@
           "to_loss": null
         }
       },
-      "luck_delta": -2.0,
+      "luck_delta": -2.5,
       "volatility": 34.69,
       "pressure": {
         "score": 78.0,
@@ -1481,7 +1481,7 @@
         "fragile SP depth"
       ],
       "trend": {
-        "pts_change": 0.5,
+        "pts_change": -1.0,
         "stock": "age",
         "summary": "Aging core under pressure",
         "rank_delta": null,
