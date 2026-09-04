@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-03",
-  "snapshot_date": "2026-09-03",
+  "generated": "2026-09-04",
+  "snapshot_date": "2026-09-04",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -43,6 +43,26 @@
       "oracle_rank": 43
     },
     {
+      "closer_name": "Louis Varland",
+      "bullpen_team": "Toronto Blue Jays",
+      "dynasty_team": "Trazadone",
+      "recent_saves": 32,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 53.3,
+      "oracle_rank": 331
+    },
+    {
+      "closer_name": "Aroldis Chapman",
+      "bullpen_team": "Boston Red Sox",
+      "dynasty_team": "Rollie Fingers",
+      "recent_saves": 31,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 83.8,
+      "oracle_rank": 360
+    },
+    {
       "closer_name": "David Bednar",
       "bullpen_team": "New York Yankees",
       "dynasty_team": "Philbell",
@@ -51,26 +71,6 @@
       "unstable_flag": false,
       "role_share": 77.5,
       "oracle_rank": 288
-    },
-    {
-      "closer_name": "Louis Varland",
-      "bullpen_team": "Toronto Blue Jays",
-      "dynasty_team": "Trazadone",
-      "recent_saves": 31,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 52.5,
-      "oracle_rank": 331
-    },
-    {
-      "closer_name": "Aroldis Chapman",
-      "bullpen_team": "Boston Red Sox",
-      "dynasty_team": "Rollie Fingers",
-      "recent_saves": 30,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 83.3,
-      "oracle_rank": 360
     },
     {
       "closer_name": "Jhoan Duran",
@@ -179,7 +179,7 @@
       "recent_saves": 14,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 46.7,
+      "role_share": 45.2,
       "oracle_rank": 688
     },
     {
@@ -246,10 +246,10 @@
       "closer_name": "Hogan Harris",
       "bullpen_team": "Athletics",
       "dynasty_team": "Philbell",
-      "recent_saves": 13,
+      "recent_saves": 14,
       "confidence_score": 60.0,
       "unstable_flag": false,
-      "role_share": 44.8,
+      "role_share": 46.7,
       "oracle_rank": 644
     },
     {
@@ -259,7 +259,7 @@
       "recent_saves": 9,
       "confidence_score": 50.0,
       "unstable_flag": false,
-      "role_share": 34.6,
+      "role_share": 32.1,
       "oracle_rank": 811
     },
     {
@@ -416,7 +416,7 @@
         "recent_saves": 9,
         "confidence_score": 50.0,
         "unstable_flag": false,
-        "role_share": 34.6,
+        "role_share": 32.1,
         "oracle_rank": 811
       }
     ],
@@ -438,30 +438,8 @@
         "recent_saves": 14,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 46.7,
+        "role_share": 45.2,
         "oracle_rank": 688
-      }
-    ],
-    "Philbell": [
-      {
-        "closer_name": "David Bednar",
-        "bullpen_team": "New York Yankees",
-        "dynasty_team": "Philbell",
-        "recent_saves": 31,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 77.5,
-        "oracle_rank": 288
-      },
-      {
-        "closer_name": "Hogan Harris",
-        "bullpen_team": "Athletics",
-        "dynasty_team": "Philbell",
-        "recent_saves": 13,
-        "confidence_score": 60.0,
-        "unstable_flag": false,
-        "role_share": 44.8,
-        "oracle_rank": 644
       }
     ],
     "Trazadone": [
@@ -469,10 +447,10 @@
         "closer_name": "Louis Varland",
         "bullpen_team": "Toronto Blue Jays",
         "dynasty_team": "Trazadone",
-        "recent_saves": 31,
+        "recent_saves": 32,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 52.5,
+        "role_share": 53.3,
         "oracle_rank": 331
       },
       {
@@ -491,10 +469,10 @@
         "closer_name": "Aroldis Chapman",
         "bullpen_team": "Boston Red Sox",
         "dynasty_team": "Rollie Fingers",
-        "recent_saves": 30,
+        "recent_saves": 31,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 83.3,
+        "role_share": 83.8,
         "oracle_rank": 360
       },
       {
@@ -526,6 +504,28 @@
         "unstable_flag": false,
         "role_share": 61.5,
         "oracle_rank": 117
+      }
+    ],
+    "Philbell": [
+      {
+        "closer_name": "David Bednar",
+        "bullpen_team": "New York Yankees",
+        "dynasty_team": "Philbell",
+        "recent_saves": 31,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 77.5,
+        "oracle_rank": 288
+      },
+      {
+        "closer_name": "Hogan Harris",
+        "bullpen_team": "Athletics",
+        "dynasty_team": "Philbell",
+        "recent_saves": 14,
+        "confidence_score": 60.0,
+        "unstable_flag": false,
+        "role_share": 46.7,
+        "oracle_rank": 644
       }
     ],
     "Pat": [
