@@ -1,12 +1,12 @@
 {
   "generated": "2026-09-05",
-  "generated_at": "2026-09-05T16:48:27-05:00",
+  "generated_at": "2026-09-05T17:48:39-05:00",
   "season": 2026,
   "season_label": "2026 Season",
   "week": 165,
   "snapshot_date": "2026-09-05",
   "sources": {
-    "standings": "2026-09-05T16:48:27-05:00",
+    "standings": "2026-09-05T17:48:39-05:00",
     "intelligence": "2026-09-05",
     "managers": "2026-09-05",
     "oracle_values": "data/rankings_latest.csv"
@@ -780,7 +780,7 @@
       "avg_age": 28.0,
       "farm_share": 0.095,
       "contention_tier": "holding steady",
-      "points_back": 36.0,
+      "points_back": 37.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -937,7 +937,7 @@
         },
         "R": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -956,7 +956,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": -0.5,
+      "luck_delta": 0.0,
       "volatility": 38.35,
       "pressure": {
         "score": 78.0,
@@ -1032,12 +1032,12 @@
       "avg_age": 27.4,
       "farm_share": 0.1916,
       "contention_tier": "rebuilding",
-      "points_back": 68.0,
+      "points_back": 67.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "R"
+        "K"
       ],
       "category_gaps": {
         "ERA": {
@@ -1061,8 +1061,8 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -1081,19 +1081,19 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": 0.0,
       "volatility": 45.8,
       "pressure": {
-        "score": 100.0,
+        "score": 78.0,
         "gain_target": {
           "category": "ERA",
           "gap": 1.0
         },
         "loss_risk": {
-          "category": "R",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
-        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: R (0.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
@@ -1106,8 +1106,8 @@
       ],
       "trend": {
         "pts_change": null,
-        "stock": "risk",
-        "summary": "Protecting R",
+        "stock": "hold",
+        "summary": "Holding current shape",
         "rank_delta": null,
         "tier_change": null,
         "farm_delta": null
@@ -1158,7 +1158,7 @@
       "avg_age": 29.1,
       "farm_share": 0.0333,
       "contention_tier": "rebuilding",
-      "points_back": 44.5,
+      "points_back": 43.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
@@ -1208,7 +1208,7 @@
         }
       },
       "luck_delta": 0.0,
-      "volatility": 31.0,
+      "volatility": 31.01,
       "pressure": {
         "score": 78.0,
         "gain_target": {
@@ -1312,7 +1312,7 @@
           "to_loss": 1.0
         },
         "R": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "RBI": {
@@ -1332,7 +1332,7 @@
           "to_loss": 1.0
         }
       },
-      "luck_delta": 0.5,
+      "luck_delta": 0.0,
       "volatility": 27.12,
       "pressure": {
         "score": 100.0,
@@ -1409,12 +1409,12 @@
       "avg_age": 31.2,
       "farm_share": 0.0484,
       "contention_tier": "rebuilding",
-      "points_back": 84.0,
+      "points_back": 84.5,
       "reachable_points": 10.0,
       "tight_categories": [
         "ERA",
         "HR",
-        "R"
+        "K"
       ],
       "category_gaps": {
         "ERA": {
@@ -1438,8 +1438,8 @@
           "to_loss": null
         },
         "R": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "RBI": {
           "to_gain": 1.0,
@@ -1458,19 +1458,19 @@
           "to_loss": null
         }
       },
-      "luck_delta": -3.0,
+      "luck_delta": -2.5,
       "volatility": 34.6,
       "pressure": {
-        "score": 100.0,
+        "score": 78.0,
         "gain_target": {
-          "category": "R",
-          "gap": 0.0
+          "category": "ERA",
+          "gap": 1.0
         },
         "loss_risk": {
           "category": "ERA",
           "gap": 1.0
         },
-        "summary": "closest gain: R (0.0) \u00b7 closest loss: ERA (1.0)"
+        "summary": "closest gain: ERA (1.0) \u00b7 closest loss: ERA (1.0)"
       },
       "public_archetypes": [
         "rebuilding",
