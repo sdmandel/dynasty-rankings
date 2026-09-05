@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-04",
-  "snapshot_date": "2026-09-04",
+  "generated": "2026-09-05",
+  "snapshot_date": "2026-09-05",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -9,8 +9,18 @@
       "recent_saves": 39,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 72.2,
+      "role_share": 70.9,
       "oracle_rank": 585
+    },
+    {
+      "closer_name": "Riley O'Brien",
+      "bullpen_team": "St. Louis Cardinals",
+      "dynasty_team": "Vin Mazzaro fan club",
+      "recent_saves": 36,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 90.0,
+      "oracle_rank": 460
     },
     {
       "closer_name": "Cade Smith",
@@ -23,14 +33,14 @@
       "oracle_rank": 131
     },
     {
-      "closer_name": "Riley O'Brien",
-      "bullpen_team": "St. Louis Cardinals",
-      "dynasty_team": "Vin Mazzaro fan club",
-      "recent_saves": 35,
+      "closer_name": "Aroldis Chapman",
+      "bullpen_team": "Boston Red Sox",
+      "dynasty_team": "Rollie Fingers",
+      "recent_saves": 32,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 89.7,
-      "oracle_rank": 460
+      "role_share": 84.2,
+      "oracle_rank": 360
     },
     {
       "closer_name": "Mason Miller",
@@ -51,16 +61,6 @@
       "unstable_flag": false,
       "role_share": 53.3,
       "oracle_rank": 331
-    },
-    {
-      "closer_name": "Aroldis Chapman",
-      "bullpen_team": "Boston Red Sox",
-      "dynasty_team": "Rollie Fingers",
-      "recent_saves": 31,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 83.8,
-      "oracle_rank": 360
     },
     {
       "closer_name": "David Bednar",
@@ -96,10 +96,10 @@
       "closer_name": "Trevor Megill",
       "bullpen_team": "Milwaukee Brewers",
       "dynasty_team": "Rollie Fingers",
-      "recent_saves": 25,
+      "recent_saves": 26,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 51.0,
+      "role_share": 52.0,
       "oracle_rank": 392
     },
     {
@@ -116,10 +116,10 @@
       "closer_name": "Josh Hader",
       "bullpen_team": "Houston Astros",
       "dynasty_team": "Pat",
-      "recent_saves": 22,
+      "recent_saves": 23,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 53.7,
+      "role_share": 54.8,
       "oracle_rank": 181
     },
     {
@@ -139,7 +139,7 @@
       "recent_saves": 20,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 62.5,
+      "role_share": 58.8,
       "oracle_rank": 536
     },
     {
@@ -179,7 +179,7 @@
       "recent_saves": 14,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 45.2,
+      "role_share": 43.8,
       "oracle_rank": 688
     },
     {
@@ -236,20 +236,20 @@
       "closer_name": "Raisel Iglesias",
       "bullpen_team": "Atlanta Braves",
       "dynasty_team": "Mommy",
-      "recent_saves": 29,
+      "recent_saves": 30,
       "confidence_score": 80.0,
       "unstable_flag": false,
-      "role_share": 80.6,
+      "role_share": 81.1,
       "oracle_rank": 480
     },
     {
       "closer_name": "Hogan Harris",
       "bullpen_team": "Athletics",
       "dynasty_team": "Philbell",
-      "recent_saves": 14,
+      "recent_saves": 15,
       "confidence_score": 60.0,
       "unstable_flag": false,
-      "role_share": 46.7,
+      "role_share": 48.4,
       "oracle_rank": 644
     },
     {
@@ -259,7 +259,7 @@
       "recent_saves": 9,
       "confidence_score": 50.0,
       "unstable_flag": false,
-      "role_share": 32.1,
+      "role_share": 30.0,
       "oracle_rank": 811
     },
     {
@@ -312,7 +312,7 @@
         "recent_saves": 39,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 72.2,
+        "role_share": 70.9,
         "oracle_rank": 585
       },
       {
@@ -354,6 +354,28 @@
         "unstable_flag": false,
         "role_share": 54.1,
         "oracle_rank": 665
+      }
+    ],
+    "Vin Mazzaro fan club": [
+      {
+        "closer_name": "Riley O'Brien",
+        "bullpen_team": "St. Louis Cardinals",
+        "dynasty_team": "Vin Mazzaro fan club",
+        "recent_saves": 36,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 90.0,
+        "oracle_rank": 460
+      },
+      {
+        "closer_name": "Jacob Webb",
+        "bullpen_team": "Chicago Cubs",
+        "dynasty_team": "Vin Mazzaro fan club",
+        "recent_saves": 9,
+        "confidence_score": 50.0,
+        "unstable_flag": false,
+        "role_share": 30.0,
+        "oracle_rank": 811
       }
     ],
     "Seam heads": [
@@ -398,26 +420,46 @@
         "oracle_rank": 212
       }
     ],
-    "Vin Mazzaro fan club": [
+    "Rollie Fingers": [
       {
-        "closer_name": "Riley O'Brien",
-        "bullpen_team": "St. Louis Cardinals",
-        "dynasty_team": "Vin Mazzaro fan club",
-        "recent_saves": 35,
+        "closer_name": "Aroldis Chapman",
+        "bullpen_team": "Boston Red Sox",
+        "dynasty_team": "Rollie Fingers",
+        "recent_saves": 32,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 89.7,
-        "oracle_rank": 460
+        "role_share": 84.2,
+        "oracle_rank": 360
       },
       {
-        "closer_name": "Jacob Webb",
-        "bullpen_team": "Chicago Cubs",
-        "dynasty_team": "Vin Mazzaro fan club",
-        "recent_saves": 9,
-        "confidence_score": 50.0,
+        "closer_name": "Jhoan Duran",
+        "bullpen_team": "Philadelphia Phillies",
+        "dynasty_team": "Rollie Fingers",
+        "recent_saves": 29,
+        "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 32.1,
-        "oracle_rank": 811
+        "role_share": 65.9,
+        "oracle_rank": 93
+      },
+      {
+        "closer_name": "Trevor Megill",
+        "bullpen_team": "Milwaukee Brewers",
+        "dynasty_team": "Rollie Fingers",
+        "recent_saves": 26,
+        "confidence_score": 90.0,
+        "unstable_flag": true,
+        "role_share": 52.0,
+        "oracle_rank": 392
+      },
+      {
+        "closer_name": "Andr\u00e9s Mu\u00f1oz",
+        "bullpen_team": "Seattle Mariners",
+        "dynasty_team": "Rollie Fingers",
+        "recent_saves": 24,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 61.5,
+        "oracle_rank": 117
       }
     ],
     "Sam": [
@@ -438,7 +480,7 @@
         "recent_saves": 14,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 45.2,
+        "role_share": 43.8,
         "oracle_rank": 688
       }
     ],
@@ -460,50 +502,8 @@
         "recent_saves": 20,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 62.5,
+        "role_share": 58.8,
         "oracle_rank": 536
-      }
-    ],
-    "Rollie Fingers": [
-      {
-        "closer_name": "Aroldis Chapman",
-        "bullpen_team": "Boston Red Sox",
-        "dynasty_team": "Rollie Fingers",
-        "recent_saves": 31,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 83.8,
-        "oracle_rank": 360
-      },
-      {
-        "closer_name": "Jhoan Duran",
-        "bullpen_team": "Philadelphia Phillies",
-        "dynasty_team": "Rollie Fingers",
-        "recent_saves": 29,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 65.9,
-        "oracle_rank": 93
-      },
-      {
-        "closer_name": "Trevor Megill",
-        "bullpen_team": "Milwaukee Brewers",
-        "dynasty_team": "Rollie Fingers",
-        "recent_saves": 25,
-        "confidence_score": 90.0,
-        "unstable_flag": true,
-        "role_share": 51.0,
-        "oracle_rank": 392
-      },
-      {
-        "closer_name": "Andr\u00e9s Mu\u00f1oz",
-        "bullpen_team": "Seattle Mariners",
-        "dynasty_team": "Rollie Fingers",
-        "recent_saves": 24,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 61.5,
-        "oracle_rank": 117
       }
     ],
     "Philbell": [
@@ -521,10 +521,10 @@
         "closer_name": "Hogan Harris",
         "bullpen_team": "Athletics",
         "dynasty_team": "Philbell",
-        "recent_saves": 14,
+        "recent_saves": 15,
         "confidence_score": 60.0,
         "unstable_flag": false,
-        "role_share": 46.7,
+        "role_share": 48.4,
         "oracle_rank": 644
       }
     ],
@@ -533,10 +533,10 @@
         "closer_name": "Josh Hader",
         "bullpen_team": "Houston Astros",
         "dynasty_team": "Pat",
-        "recent_saves": 22,
+        "recent_saves": 23,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 53.7,
+        "role_share": 54.8,
         "oracle_rank": 181
       },
       {
@@ -577,10 +577,10 @@
         "closer_name": "Raisel Iglesias",
         "bullpen_team": "Atlanta Braves",
         "dynasty_team": "Mommy",
-        "recent_saves": 29,
+        "recent_saves": 30,
         "confidence_score": 80.0,
         "unstable_flag": false,
-        "role_share": 80.6,
+        "role_share": 81.1,
         "oracle_rank": 480
       }
     ]
