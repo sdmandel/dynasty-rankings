@@ -5,3 +5,15 @@ compatibility_date = "2026-05-11"
 [vars]
 GITHUB_REPO = "sdmandel/dynasty-rankings"
 ALLOWED_ORIGINS = "https://baseball.stephenmandella.com"
+
+# Anonymous feedback: modest per-IP and aggregate limits, per Cloudflare location.
+# Dedicated namespaces; do not reuse for unrelated endpoints.
+[[ratelimits]]
+name = "FEEDBACK_RATE"
+namespace_id = "2026090501"
+simple = { limit = 5, period = 60 }
+
+[[ratelimits]]
+name = "FEEDBACK_TOTAL_RATE"
+namespace_id = "2026090502"
+simple = { limit = 30, period = 60 }
