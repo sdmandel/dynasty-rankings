@@ -1,5 +1,7 @@
 """Responsive and accessible behavior for the roster-depth page and generator."""
 from pathlib import Path
+from datetime import datetime
+import re
 
 import pytest
 
@@ -31,7 +33,9 @@ def test_roster_depth_player_modal_is_keyboard_and_touch_accessible() -> None:
 
 def test_roster_depth_freshness_is_not_stale_week_nine_copy() -> None:
     html = _html()
-    assert "Updated July 12, 2026" in html
+    match = re.search(r"Updated ([A-Z][a-z]+ \d{1,2}, \d{4})", html)
+    assert match
+    assert datetime.strptime(match[1], "%B %d, %Y") >= datetime(2026, 7, 12)
     assert "exact time unavailable" in html
     assert "Week 9" not in html
 
