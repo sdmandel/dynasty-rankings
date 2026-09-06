@@ -1437,7 +1437,7 @@ function fmt(v, digits = 1) {
   return Number(v).toFixed(digits);
 }
 function fetchStandingsData() {
-  return fetch(`data/standings.json?ts=${Date.now()}`, { cache: 'no-store' }).then((response) => {
+  return fetch('data/standings.json', { cache: 'no-cache' }).then((response) => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.json();
   });

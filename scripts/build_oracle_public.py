@@ -17,6 +17,7 @@ SITE_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATA_DIR = SITE_ROOT / "data"
 BOT_ROOT = SITE_ROOT.parent
 RANKINGS_CSV = BOT_ROOT / "data" / "rankings_latest.csv"
+BUILD_API_VERSION = 2
 
 SEASON = 2026
 MID_AGE = 28.5
@@ -39,9 +40,9 @@ def load_json(name: str, data_dir: Path = DEFAULT_DATA_DIR) -> dict:
     return json.loads((data_dir / name).read_text(encoding="utf-8"))
 
 
-def _csv_hash() -> str | None:
+def _csv_hash(path: Path | None = None) -> str | None:
     try:
-        return hashlib.md5(RANKINGS_CSV.read_bytes()).hexdigest()
+        return hashlib.md5((path or RANKINGS_CSV).read_bytes()).hexdigest()
     except FileNotFoundError:
         return None
 
@@ -53,10 +54,10 @@ def load_oracle_anchor(data_dir: Path = DEFAULT_DATA_DIR) -> dict:
         return {}
 
 
-def save_oracle_anchor(teams: list[dict], data_dir: Path = DEFAULT_DATA_DIR, *, captured_at: str | None = None) -> None:
+def save_oracle_anchor(teams: list[dict], data_dir: Path = DEFAULT_DATA_DIR, *, captured_at: str | None = None, rankings_csv: Path | None = None) -> None:
     anchor = {
         "captured_at": captured_at or datetime.now(timezone.utc).isoformat(),
-        "rankings_csv_hash": _csv_hash(),
+        "rankings_csv_hash": _csv_hash(rankings_csv),
         "teams": [
             {"team": t["team"], "total_value": t["total_value"], "avg_age": t["avg_age"]}
             for t in teams
@@ -88,8 +89,8 @@ def load_public_payload_anchor(output_path: Path) -> dict:
     }
 
 
-def _should_update_anchor(anchor: dict) -> bool:
-    return anchor.get("rankings_csv_hash") != _csv_hash()
+def _should_update_anchor(anchor: dict, rankings_csv: Path | None = None) -> bool:
+    return anchor.get("rankings_csv_hash") != _csv_hash(rankings_csv)
 
 
 def _has_usable_scatter_move(move: dict | None) -> bool:
@@ -112,16 +113,17 @@ def load_team_registry(data_dir: Path = DEFAULT_DATA_DIR) -> tuple[dict[str, str
     return alias_to_display, display_to_key
 
 
-def load_live_team_values(alias_to_display: dict[str, str], display_to_key: dict[str, str]) -> dict[str, dict]:
-    if not RANKINGS_CSV.exists():
-        raise FileNotFoundError(f"rankings_latest.csv not found at {RANKINGS_CSV}")
+def load_live_team_values(alias_to_display: dict[str, str], display_to_key: dict[str, str], rankings_csv: Path | None = None) -> dict[str, dict]:
+    rankings_csv = rankings_csv or RANKINGS_CSV
+    if not rankings_csv.exists():
+        raise FileNotFoundError(f"rankings_latest.csv not found at {rankings_csv}")
 
     accum: dict[str, dict] = {
         display_name: {"total_value": 0.0, "mlb_value": 0.0, "ages": []}
         for display_name in display_to_key
     }
 
-    with RANKINGS_CSV.open(newline="", encoding="utf-8") as handle:
+    with rankings_csv.open(newline="", encoding="utf-8") as handle:
         rows = csv.DictReader(handle)
         for row in rows:
             owner = (row.get("Owned By") or "").strip()
@@ -170,13 +172,13 @@ def load_live_team_values(alias_to_display: dict[str, str], display_to_key: dict
     return result
 
 
-def load_active_projection(alias_to_display: dict[str, str]) -> dict[str, dict]:
+def load_active_projection(alias_to_display: dict[str, str], source_data: Path | None = None) -> dict[str, dict]:
     """Map display team name -> active-roster projection row.
 
     Reads the bot-side daily cache (data/active_projection.json). Returns {} when
     the cache is missing so the public payload degrades gracefully.
     """
-    path = BOT_ROOT / "data" / "active_projection.json"
+    path = (source_data or BOT_ROOT / "data") / "active_projection.json"
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
@@ -443,7 +445,7 @@ def derive_scatter_move(team: dict, previous_row: dict | None) -> dict:
     }
 
 
-def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None = None) -> dict:
+def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None = None, *, source_data: Path | None = None) -> dict:
     global CATEGORIES
     data_dir = site_root / "data"
     output = output_path or (data_dir / "oracle_public.json")
@@ -455,14 +457,15 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     anchor = load_oracle_anchor(data_dir)
     if not anchor.get("teams"):
         anchor = load_public_payload_anchor(output)
-    alias_to_display, _display_to_key = load_team_registry(DEFAULT_DATA_DIR)
-    value_input = load_live_team_values(alias_to_display, _display_to_key)
+    rankings_csv = source_data / "rankings_latest.csv" if source_data else RANKINGS_CSV
+    alias_to_display, _display_to_key = load_team_registry(data_dir)
+    value_input = load_live_team_values(alias_to_display, _display_to_key, rankings_csv)
 
     standings_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in standings["teams"]}
     intel_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in intelligence["teams"]}
     manager_by_team = {alias_to_display.get(row["team"], row["team"]): row for row in managers["managers"]}
     anchor_by_team = {row["team"]: row for row in anchor.get("teams", [])}
-    projection_by_team = load_active_projection(alias_to_display)
+    projection_by_team = load_active_projection(alias_to_display, source_data)
     median_total = median(team["total_value"] for team in value_input.values())
 
     CATEGORIES = CATEGORY_CODE_TO_LABEL
@@ -519,7 +522,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
             "standings": standings.get("generated_at") or standings.get("generated"),
             "intelligence": intelligence.get("generated"),
             "managers": managers.get("generated"),
-            "oracle_values": str(RANKINGS_CSV.relative_to(BOT_ROOT)),
+            "oracle_values": "data/rankings_latest.csv",
         },
         "notes": {
             "privacy": "Private rankings CSV remains unpublished. This payload contains only derived/public summaries.",
@@ -532,7 +535,7 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
     # the current week's values (set on the first rankings run), so
     # derive_scatter_move returns zero deltas.  Preserve the scatter_move that
     # was computed on the actual rankings run instead of overwriting with zeros.
-    if not _should_update_anchor(anchor) and output.exists():
+    if not _should_update_anchor(anchor, rankings_csv) and output.exists():
         try:
             old_payload = json.loads(output.read_text(encoding="utf-8"))
             old_scatter = {t["team"]: t.get("scatter_move") for t in old_payload.get("teams", [])}
@@ -544,8 +547,8 @@ def export_oracle_public(site_root: Path = SITE_ROOT, output_path: Path | None =
 
     output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
-    if _should_update_anchor(anchor):
-        save_oracle_anchor(teams, data_dir, captured_at=payload.get("generated_at"))
+    if _should_update_anchor(anchor, rankings_csv):
+        save_oracle_anchor(teams, data_dir, captured_at=payload.get("generated_at"), rankings_csv=rankings_csv)
 
     return payload
 

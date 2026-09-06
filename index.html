@@ -597,6 +597,7 @@ html[data-theme="light"] .header-link:hover {
     <a href="transactions.html" class="tool-tile">
       <div class="tile-preview">
         <div class="tx-list" id="transactionsPreview"></div>
+        <div id="transactionsFreshness" class="freshness freshness--unknown" role="status"></div>
       </div>
       <div class="tile-footer">
         <div class="tile-eyebrow">Recent &nbsp;·&nbsp; All Teams</div>
@@ -984,6 +985,10 @@ function loadHomePreview() {
     renderSnapshot(data.leaderboard || []);
     renderTransactions(data.transactions || []);
     if (window.SiteFreshness) {
+      window.SiteFreshness.render('#transactionsFreshness', {
+        timestamp: (data.source_dates || {}).transactions,
+        currentHours: 6, delayedHours: 24, source: 'Fantrax transactions',
+      });
       window.SiteFreshness.render('#standingsFreshness', {
         generatedAt: data.generated_at,
         generated: data.generated,

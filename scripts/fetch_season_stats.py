@@ -21,7 +21,7 @@ from pathlib import Path
 
 import requests
 
-sys.path.insert(0, "/Users/stevemandella/Documents/Making/fantrax")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.shared.utils import normalize_name
 
 SEASON = datetime.date.today().year
@@ -32,6 +32,7 @@ SITE_DATA = Path(__file__).resolve().parent.parent / "data"
 _STATS_URL = "https://statsapi.mlb.com/api/v1/stats"
 _HEADERS = {"User-Agent": "fantrax-dynasty-bot/season-stats"}
 _QS_WORKERS = 20
+BUILD_API_VERSION = 2
 
 
 def _ip_to_float(s) -> float:
@@ -129,21 +130,42 @@ def _boxscore_qs(game_pk: int) -> tuple[list[tuple[str, bool]], str | None]:
     return results, None
 
 
-def _compute_qs(season: int) -> dict[str, int]:
-    """Concurrently fetch boxscores and tally QS per pitcher."""
+def _compute_qs(season: int, cache_path: Path | None = None) -> dict[str, int]:
+    """Reuse successful boxscores for seven days, then refresh for corrections."""
     game_pks = _fetch_completed_game_pks(season)
+    today = datetime.date.today()
+    cached = {}
+    if cache_path and cache_path.exists():
+        try:
+            payload = json.loads(cache_path.read_text())
+            if payload.get("season") == season:
+                cached = payload.get("games", {})
+        except (ValueError, OSError):
+            pass
+    results = {}
+    for pk in game_pks:
+        entry = cached.get(str(pk), {})
+        try:
+            age = (today - datetime.date.fromisoformat(entry["fetched"])).days
+            if 0 <= age < 7 and isinstance(entry["rows"], list):
+                results[pk] = entry["rows"]
+        except (KeyError, TypeError, ValueError):
+            pass
+    missing = [pk for pk in game_pks if pk not in results]
+    print(f"QS cache: {len(results)} reused, {len(missing)} boxscores to fetch")
     print(f"Computing QS from {len(game_pks)} completed games ({_QS_WORKERS} workers)...")
     qs: dict[str, int] = {}
     failures: list[tuple[int, str]] = []
     with ThreadPoolExecutor(max_workers=_QS_WORKERS) as pool:
-        futures = {pool.submit(_boxscore_qs, pk): pk for pk in game_pks}
+        futures = {pool.submit(_boxscore_qs, pk): pk for pk in missing}
         for i, future in enumerate(as_completed(futures), 1):
             rows, error = future.result()
             if error:
                 failures.append((futures[future], error))
-            for key, is_qs in rows:
-                if is_qs:
-                    qs[key] = qs.get(key, 0) + 1
+            else:
+                pk = futures[future]
+                results[pk] = rows
+                cached[str(pk)] = {"fetched": today.isoformat(), "rows": rows}
             if i % 100 == 0:
                 print(f"  {i}/{len(game_pks)} boxscores processed")
     failure_limit = max(3, round(len(game_pks) * 0.01))
@@ -155,11 +177,23 @@ def _compute_qs(season: int) -> dict[str, int]:
         )
     if failures:
         print(f"Warning: {len(failures)} boxscores failed within tolerance")
+    for rows in results.values():
+        for key, is_qs in rows:
+            if is_qs:
+                qs[key] = qs.get(key, 0) + 1
+    if cache_path:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = cache_path.with_suffix(".tmp")
+        temporary.write_text(json.dumps({"season": season, "games": cached}, separators=(",", ":")))
+        temporary.replace(cache_path)
     print(f"QS computed: {len(qs)} pitchers with ≥1 QS")
     return qs
 
 
-def build() -> None:
+def build(*, source_data: Path | None = None, site_data: Path | None = None) -> None:
+    source_data = source_data or BOT_ROOT / "data"
+    site_data = site_data or SITE_DATA
+    milb_path = source_data / "milb_stats.json"
     # MLB hitting
     mlb_batting: dict[str, dict] = {}
     for sp in _fetch_mlb("hitting"):
@@ -208,7 +242,7 @@ def build() -> None:
         }
 
     # Compute QS from boxscores
-    qs_counts = _compute_qs(SEASON)
+    qs_counts = _compute_qs(SEASON, source_data / "mlb_qs_cache.json")
     for key, rec in mlb_pitching.items():
         if gs_by_key.get(key, 0) > 0:
             # Has at least one start — show actual QS count (may be 0)
@@ -218,8 +252,8 @@ def build() -> None:
     # MiLB stats from milb_stats.json
     milb_batting: dict[str, dict] = {}
     milb_pitching: dict[str, dict] = {}
-    if MILB_STATS_PATH.exists():
-        milb_data = json.loads(MILB_STATS_PATH.read_text(encoding="utf-8"))
+    if milb_path.exists():
+        milb_data = json.loads(milb_path.read_text(encoding="utf-8"))
         for key, rec in milb_data.get("players", {}).items():
             s = rec.get("season") or {}
             if not s:
@@ -250,7 +284,7 @@ def build() -> None:
                         "gp":   _si(s.get("g")),
                     }
     else:
-        print(f"Warning: {MILB_STATS_PATH} not found — MiLB columns will be empty")
+        print(f"Warning: {milb_path} not found — MiLB columns will be empty")
 
     out = {
         "generated":    str(datetime.date.today()),
@@ -260,8 +294,8 @@ def build() -> None:
         "milb_batting": milb_batting,
         "milb_pitching": milb_pitching,
     }
-    path = SITE_DATA / "season_stats.json"
-    path.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    path = site_data / "season_stats.json"
+    path.write_text(json.dumps(out, separators=(",", ":")), encoding="utf-8")
     print(
         f"Wrote {len(mlb_batting)} MLB batters, {len(mlb_pitching)} MLB pitchers "
         f"({sum(1 for r in mlb_pitching.values() if r['qs'] is not None)} with QS data), "

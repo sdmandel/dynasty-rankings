@@ -66,6 +66,13 @@ def build_home_preview(site_root: Path = ROOT) -> dict:
         "generated_at": standings.get("generated_at"),
         "week": standings.get("week"),
         "snapshot_date": oracle.get("snapshot_date"),
+        "source_dates": {
+            "standings": standings.get("generated_at") or standings.get("generated"),
+            "transactions": transactions.get("generated_at") or transactions.get("generated"),
+            "rankings": oracle.get("source_dates", {}).get("rankings"),
+            "ownership": oracle.get("source_dates", {}).get("ownership"),
+            "stats": oracle.get("source_dates", {}).get("stats"),
+        },
         "leaderboard": leaderboard,
         "transactions": recent_transactions,
         "oracle_teams": oracle_teams,

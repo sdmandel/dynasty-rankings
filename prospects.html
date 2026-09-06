@@ -525,6 +525,7 @@ html[data-theme="light"] .level-Ap  { color: #5a4a8a; border-color: #a090c8; bac
 </div>
 
 <script src="assets/fangraphs-links.js"></script>
+<script src="assets/player-history.js"></script>
 <script src="assets/freshness.js"></script>
 <script>
 let currentFilter = 'all';
@@ -1159,13 +1160,8 @@ function cssEsc(s) {
 }
 
 // ── Radar → Oracle rank histogram modal ──
-let _trajectoryData = null;
-async function loadTrajectoryData() {
-  if (_trajectoryData) return _trajectoryData;
-  const r = await fetch('data/player_rank_trajectories.json', { cache: 'no-cache' });
-  if (!r.ok) throw new Error('Could not load player rank history.');
-  _trajectoryData = await r.json();
-  return _trajectoryData;
+async function loadTrajectoryData(key) {
+  return window.PlayerHistory.load('player_rank_trajectories', key);
 }
 
 function wireRadarToModal() {
@@ -1236,8 +1232,8 @@ async function openPlayerModal(playerName, updateHash = true) {
   while (chart.firstChild) chart.removeChild(chart.firstChild);
 
   try {
-    const data = await loadTrajectoryData();
     const key = normalizeName(playerName);
+    const data = await loadTrajectoryData(key);
     const player = data.players && data.players[key];
     if (!player) {
       title.textContent = playerName || 'Player';

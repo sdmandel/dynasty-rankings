@@ -1,5 +1,5 @@
 async function fetchOraclePublic() {
-  const response = await fetch(`data/oracle_public.json?ts=${Date.now()}`, { cache: 'no-store' });
+  const response = await fetch('data/oracle_public.json', { cache: 'no-cache' });
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
   }
@@ -39,4 +39,3 @@ function renderOracleFreshness(target, data, extras = []) {
 
   target.innerHTML = chips.map(item => `<span class="meta-chip">${escHtml(item)}</span>`).join('');
 }
-

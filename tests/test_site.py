@@ -372,7 +372,7 @@ def test_dynasty_rankings_advanced_row_cells_match_header_order() -> None:
     start = html.index("function _buildRow")
     end = html.index("return tr;", start)
     create_row = html[start:end]
-    assert "COLS.forEach(col => tr.appendChild(_cellForColumn(p, col)));" in create_row
+    assert "_renderCols.forEach(col => tr.appendChild(_cellForColumn(p, col)));" in create_row
     assert "const _numericCols = new Set(COLS.filter(col => col.numeric).map(col => col.key));" in html
     assert "const _descFirstCols = new Set(COLS.filter(col => col.descFirst).map(col => col.key));" in html
     assert "window.rankingsFieldSchema = RANKINGS_FIELD_SCHEMA;" in html
@@ -695,7 +695,7 @@ def test_league_intelligence_schema() -> None:
             assert key in first
 
 
-def test_oracle_public_schema() -> None:
+def test_oracle_public_pressure_and_trend_schema() -> None:
     data = json.loads(_read(ROOT / "data" / "oracle_public.json"))
     assert "generated" in data
     assert "season" in data
@@ -724,6 +724,19 @@ def test_oracle_public_schema() -> None:
         assert key in first["pressure"], f"oracle_public pressure missing {key}"
     for key in ("pts_change", "stock", "summary"):
         assert key in first["trend"], f"oracle_public trend missing {key}"
+
+
+def test_every_oracle_team_has_complete_contract() -> None:
+    teams = json.loads(_read(ROOT / "data/oracle_public.json"))["teams"]
+    assert teams
+    for team in teams:
+        assert {"team", "oracle_rank", "standings_rank", "total_value", "mlb_value",
+                "farm_value", "avg_age", "contention_tier", "public_archetypes",
+                "pressure", "trade_needs", "trend"} <= team.keys(), team.get("team")
+        assert {"score", "gain_target", "loss_risk", "summary"} <= team["pressure"].keys()
+        assert {"pts_change", "stock", "summary"} <= team["trend"].keys()
+        assert isinstance(team["public_archetypes"], list)
+        assert isinstance(team["trade_needs"], list)
 
 
 def test_home_preview_schema_and_freshness() -> None:

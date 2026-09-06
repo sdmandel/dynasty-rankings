@@ -621,6 +621,7 @@ tbody tr.team-target {
 
 <script src="assets/site-shell.js" defer></script>
 <script src="assets/fangraphs-links.js"></script>
+<script src="assets/player-history.js"></script>
 <script>
 (() => {
   const sticky = document.getElementById('stickyBarScroll');
@@ -647,7 +648,6 @@ tbody tr.team-target {
   document.body.appendChild(tooltip);
 
   let activePill = null;
-  let trajectoryData = null;
   let modalTrigger = null;
 
   const positionNames = ['C', '1B', '2B', '3B', 'SS', 'OF', 'P', 'PICK'];
@@ -790,13 +790,7 @@ tbody tr.team-target {
     return ` <span class="src-pills"><a class="src-pill src-pill-fg" href="${escHtml(url)}" target="${escHtml(target)}" rel="noopener noreferrer" title="View on FanGraphs">FanGraphs<span class="pill-sub"> stats &amp; projections ↗</span></a></span>`;
   };
 
-  const loadTrajectoryData = async () => {
-    if (trajectoryData) return trajectoryData;
-    const response = await fetch('data/player_rank_trajectories.json', { cache: 'no-cache' });
-    if (!response.ok) throw new Error('Could not load player rank history.');
-    trajectoryData = await response.json();
-    return trajectoryData;
-  };
+  const loadTrajectoryData = key => window.PlayerHistory.load('player_rank_trajectories', key);
 
   const clearChart = () => {
     while (modalChart.firstChild) modalChart.removeChild(modalChart.firstChild);
@@ -886,7 +880,7 @@ tbody tr.team-target {
     clearChart();
 
     try {
-      const data = await loadTrajectoryData();
+      const data = await loadTrajectoryData(key);
       const player = data.players && data.players[key];
       if (!player) throw new Error('No rank history found for this player.');
       renderPlayer(player);

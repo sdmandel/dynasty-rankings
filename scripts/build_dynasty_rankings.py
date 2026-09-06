@@ -17,6 +17,8 @@ Run manually after each rankings update:
 from __future__ import annotations
 
 import csv
+import hashlib
+import importlib.util
 import json
 import re
 import unicodedata
@@ -47,25 +49,26 @@ CSV_PATH            = FANTRAX_DATA / "rankings_latest.csv"
 OWNERSHIP_CACHE_PATH = FANTRAX_DATA / "ownership_cache.json"
 
 
-def _load_history() -> list[dict]:
-    return json.loads(HISTORY_PATH.read_text(encoding="utf-8"))
+def _load_history(path=None) -> list[dict]:
+    return json.loads((path or HISTORY_PATH).read_text(encoding="utf-8"))
 
 
-def _load_ownership_cache() -> dict[str, str]:
+def _load_ownership_cache(path=None) -> dict[str, str]:
     """Return {normalized_name: team_name} from the hourly ownership cache, or {}."""
-    if not OWNERSHIP_CACHE_PATH.exists():
+    path = path or OWNERSHIP_CACHE_PATH
+    if not path.exists():
         return {}
     try:
-        raw = json.loads(OWNERSHIP_CACHE_PATH.read_text(encoding="utf-8"))
+        raw = json.loads(path.read_text(encoding="utf-8"))
         return {_normalize(name): team for name, team in raw.get("owners", {}).items()}
     except (json.JSONDecodeError, KeyError):
         return {}
 
 
-def _load_csv() -> dict[str, dict]:
+def _load_csv(path=None) -> dict[str, dict]:
     """Return {normalized_name: row_dict} from rankings_latest.csv."""
     out: dict[str, dict] = {}
-    with open(CSV_PATH, newline="", encoding="utf-8") as f:
+    with open(path or CSV_PATH, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             name = _normalize(row.get("Player", ""))
             if name:
@@ -84,10 +87,11 @@ STATS_PATH      = SITE_DATA / "season_stats.json"
 FG_ID_CACHE_PATH = FANTRAX_DATA / "fg_id_cache.json"
 
 
-def _load_fg_id_cache() -> dict:
-    if not FG_ID_CACHE_PATH.exists():
+def _load_fg_id_cache(path=None) -> dict:
+    path = path or FG_ID_CACHE_PATH
+    if not path.exists():
         return {}
-    return json.loads(FG_ID_CACHE_PATH.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 _PITCHER_POS = {"SP", "RP", "P", "SIRP", "MIRP"}
@@ -96,10 +100,11 @@ def _stat_type(positions: list[str]) -> str:
     return "pitching" if positions and all(p in _PITCHER_POS for p in positions) else "batting"
 
 
-def _load_season_stats() -> tuple:
-    if not STATS_PATH.exists():
+def _load_season_stats(path=None) -> tuple:
+    path = path or STATS_PATH
+    if not path.exists():
         return {}, {}, {}, {}, None
-    data = json.loads(STATS_PATH.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
     return (
         data.get("mlb_batting", {}),
         data.get("mlb_pitching", {}),
@@ -109,15 +114,20 @@ def _load_season_stats() -> tuple:
     )
 
 
-def build() -> None:
-    history = _load_history()
+BUILD_API_VERSION = 2
+
+
+def build(*, source_data=None, site_data=None) -> None:
+    source_data = source_data or FANTRAX_DATA
+    site_data = site_data or SITE_DATA
+    history = _load_history(source_data / "dynasty_history.json")
     if not history:
         raise SystemExit("dynasty_history.json is empty")
 
-    csv_by_name    = _load_csv()
-    fg_cache       = _load_fg_id_cache()
-    ownership_cache = _load_ownership_cache()
-    mlb_bat, mlb_pit, milb_bat, milb_pit, stats_generated = _load_season_stats()
+    csv_by_name    = _load_csv(source_data / "rankings_latest.csv")
+    fg_cache       = _load_fg_id_cache(source_data / "fg_id_cache.json")
+    ownership_cache = _load_ownership_cache(source_data / "ownership_cache.json")
+    mlb_bat, mlb_pit, milb_bat, milb_pit, stats_generated = _load_season_stats(site_data / "season_stats.json")
 
     latest   = history[-1]
     previous = history[-2] if len(history) >= 2 else None
@@ -218,7 +228,7 @@ def build() -> None:
         })
 
     # ── Inject draft pick rows ────────────────────────────────────────────────
-    picks_path = FANTRAX_DATA / "draft_picks.json"
+    picks_path = source_data / "draft_picks.json"
     if picks_path.exists():
         pick_data = json.loads(picks_path.read_text(encoding="utf-8"))
         _null_stats = {k: None for k in (
@@ -258,8 +268,11 @@ def build() -> None:
         "stats_generated": stats_generated,
         "rankings":        rankings_out,
     }
-    out_path = SITE_DATA / "dynasty_rankings_latest.json"
-    out_path.write_text(json.dumps(latest_json, indent=2), encoding="utf-8")
+    owner_path = source_data / "ownership_cache.json"
+    latest_json["source_dates"] = {"rankings": latest["date"], "stats": stats_generated,
+        "ownership": json.loads(owner_path.read_text()).get("generated_at") if owner_path.exists() else None}
+    out_path = site_data / "dynasty_rankings_latest.json"
+    out_path.write_text(json.dumps(latest_json, separators=(",", ":")), encoding="utf-8")
     print(f"Wrote {len(rankings_out)} rows → {out_path}")
 
     # ── rosters.json — compact per-team roster for agent/tool use ─────────────
@@ -282,11 +295,20 @@ def build() -> None:
             for team, players in sorted(roster_map.items())
         ],
     }
-    rosters_path = SITE_DATA / "rosters.json"
-    rosters_path.write_text(json.dumps(rosters_json, indent=2), encoding="utf-8")
+    rosters_json["source_dates"] = latest_json["source_dates"]
+    rosters_path = site_data / "rosters.json"
+    rosters_path.write_text(json.dumps(rosters_json, separators=(",", ":")), encoding="utf-8")
     print(f"Wrote {len(roster_map)} team rosters → {rosters_path}")
 
     # ── dynasty_player_trajectories.json ─────────────────────────────────────
+
+    history_hash = hashlib.sha256((source_data / "dynasty_history.json").read_bytes() + Path(__file__).read_bytes()).hexdigest()
+    manifest_path = site_data / "dynasty_player_trajectories.manifest.json"
+    if manifest_path.exists() and (site_data / "dynasty_player_trajectories.json").exists():
+        manifest = json.loads(manifest_path.read_text())
+        if manifest.get("source_hash") == history_hash:
+            print("Unchanged dynasty history; reused published buckets")
+            return
 
     players: dict[str, dict] = {}
     for snapshot in history:
@@ -315,10 +337,16 @@ def build() -> None:
 
     traj_json = {
         "generated": latest["date"],
+        "source_hash": history_hash,
         "players":   players,
     }
-    traj_path = SITE_DATA / "dynasty_player_trajectories.json"
-    traj_path.write_text(json.dumps(traj_json, indent=2), encoding="utf-8")
+    traj_path = site_data / "dynasty_player_trajectories.json"
+    traj_path.write_text(json.dumps(traj_json, separators=(",", ":")), encoding="utf-8")
+    helper_path = Path(__file__).with_name("build_history_shards.py")
+    spec = importlib.util.spec_from_file_location("history_shards", helper_path)
+    helper = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(helper)
+    helper.write_history_shards(site_data.parent, "dynasty_player_trajectories", traj_json)
     print(f"Wrote {len(players)} player trajectories → {traj_path}")
 
 

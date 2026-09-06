@@ -422,6 +422,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
 
 <script src="assets/site-shell.js?v=week17" defer></script>
 <script src="assets/fangraphs-links.js"></script>
+<script src="assets/player-history.js"></script>
 <script>
 (() => {
   // ── Column definitions ─────────────────────────────────────────────────────
@@ -551,16 +552,23 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
 
   // ── Simple / Advanced toggle ───────────────────────────────────────────────
   const _tableWrap = document.querySelector('.table-wrap');
+  let _renderCols = [];
+  const _visibleCols = () => COLS.filter(col =>
+    !(_tableWrap.classList.contains('simple-view') && col.adv) &&
+    !(_PIT_POS.has(_posFilter) && col.statType === 'bat') &&
+    !(_BAT_POS.has(_posFilter) && col.statType === 'pit'));
   _tableWrap.classList.add('simple-view');  // default: simple
   document.getElementById('btnSimple').addEventListener('click', () => {
     _tableWrap.classList.add('simple-view');
     document.getElementById('btnSimple').classList.add('active');
     document.getElementById('btnAdvanced').classList.remove('active');
+    _renderTable(_filteredRows());
   });
   document.getElementById('btnAdvanced').addEventListener('click', () => {
     _tableWrap.classList.remove('simple-view');
     document.getElementById('btnAdvanced').classList.add('active');
     document.getElementById('btnSimple').classList.remove('active');
+    _renderTable(_filteredRows());
   });
 
   // ── Advanced access lock (Cmd+Shift+0 to toggle) ──────────────────────────
@@ -574,6 +582,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
       _tableWrap.classList.add('simple-view');
       document.getElementById('btnSimple').classList.add('active');
       btn.classList.remove('active');
+      if (_allRows.length) _renderTable(_filteredRows());
     }
   }
   _applyAdvLock();
@@ -607,12 +616,13 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   // ── Headers ────────────────────────────────────────────────────────────────
   function _buildHeaders() {
     const tr = document.getElementById('tableHead');
+    tr.replaceChildren();
     // Pin column (always first, not in COLS)
     const thPin = document.createElement('th');
     thPin.className = 'col-pin';
     tr.appendChild(thPin);
 
-    COLS.forEach(col => {
+    _renderCols.forEach(col => {
       const th = document.createElement('th');
       th.dataset.col = col.key;
       const sub = STAT_SUB[col.key];
@@ -781,6 +791,8 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   }
 
   function _renderTable(rows) {
+    _renderCols = _visibleCols();
+    _buildHeaders();
     const sorted = [...rows].sort((a, b) => {
       let av = a[_sortCol], bv = b[_sortCol];
       if (_numericCols.has(_sortCol)) {
@@ -819,7 +831,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
       // Separator row after pinned section
       const sep = document.createElement('tr');
       sep.className = 'pin-sep';
-      const colCount = COLS.length + 1; // +1 for pin column
+      const colCount = _renderCols.length + 1; // +1 for pin column
       for (let i = 0; i < colCount; i++) sep.appendChild(document.createElement('td'));
       tbody.appendChild(sep);
     }
@@ -892,7 +904,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     tr.appendChild(pinTd);
 
     tr.dataset.rank = p.rank;
-    COLS.forEach(col => tr.appendChild(_cellForColumn(p, col)));
+    _renderCols.forEach(col => tr.appendChild(_cellForColumn(p, col)));
 
     return tr;
   }
@@ -1189,7 +1201,6 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   }
 
   // ── Player modal ───────────────────────────────────────────────────────────
-  let trajectoryData = null;
   const modal      = document.getElementById('playerModal');
   const modalTitle = document.getElementById('playerModalTitle');
   const modalMeta  = document.getElementById('playerModalMeta');
@@ -1202,13 +1213,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
   const fmtChange = c => !Number.isFinite(c)||c===0 ? '0' : c>0 ? `+${c}` : `${c}`;
   const statHtml  = (label,value) => `<div class="player-stat"><div class="player-stat-label">${label}</div><div class="player-stat-value">${value}</div></div>`;
 
-  const loadTraj = async () => {
-    if (trajectoryData) return trajectoryData;
-    const r = await fetch('data/dynasty_player_trajectories.json', { cache: 'no-cache' });
-    if (!r.ok) throw new Error('Could not load rank history.');
-    trajectoryData = await r.json();
-    return trajectoryData;
-  };
+  const loadTraj = key => window.PlayerHistory.load('dynasty_player_trajectories', key);
 
   const clearChart = () => { while (modalChart.firstChild) modalChart.removeChild(modalChart.firstChild); };
 
@@ -1296,7 +1301,7 @@ html[data-theme="light"] .level-pick-badge { background: #718096; color: #fff; }
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
     modalTitle.textContent='Loading'; modalMeta.textContent=''; modalStats.innerHTML=''; modalNote.textContent=''; modalError.hidden=true; clearChart();
     try {
-      const data=await loadTraj();
+      const data=await loadTraj(key);
       const player=data.players&&data.players[key];
       if (!player) throw new Error('No rank history found.');
       const rowData = _allRows.find(r => r.name === key) || {};
