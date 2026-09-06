@@ -1,1 +1,292 @@
-{"generated":"2026-09-05","generated_at":"2026-09-05T21:00:06-05:00","week":166,"snapshot_date":"2026-09-05","source_dates":{"standings":"2026-09-05T21:00:06-05:00","transactions":"2026-09-05T23:12:04.105402-05:00","rankings":"2026-08-31","stats":"2026-09-05","ownership":"2026-09-06T04:05:04.850307+00:00"},"leaderboard":[{"rank":1,"team":"Humongous Melonheads","total_pts":111.0,"pts_change":0.5},{"rank":2,"team":"Rollie Fingers","total_pts":99.5,"pts_change":2.0},{"rank":3,"team":"Seam heads","total_pts":96.0,"pts_change":0.0},{"rank":4,"team":"philbell","total_pts":90.5,"pts_change":-0.5},{"rank":5,"team":"Vin Mazzaro fan club","total_pts":74.5,"pts_change":0.0},{"rank":6,"team":"Pat","total_pts":64.0,"pts_change":-2.0}],"transactions":[{"type":"ADD","team":"Rollie Fingers","player":"Max Scherzer"},{"type":"DROP","team":"Rollie Fingers","player":"Kumar Rocker"},{"type":"DROP","team":"Vin Mazzaro fan club","player":"Masyn Winn"},{"type":"DROP","team":"Trazadone","player":"Jonathan Bowlan"},{"type":"DROP","team":"Vin Mazzaro fan club","player":"Rafael Flores"},{"type":"ADD","team":"Seam heads","player":"Pedro Ramirez"},{"type":"DROP","team":"Seam heads","player":"Tyler O'Neill"},{"type":"ADD","team":"Vin Mazzaro fan club","player":"Bryce Mayer"},{"type":"DROP","team":"Vin Mazzaro fan club","player":"Rhett Lowder"}],"oracle_teams":[{"team":"Rollie Fingers","oracle_rank":1,"total_value":38075.5,"mlb_value":32950.9,"farm_value":5124.6,"avg_age":27.5,"scatter_move":{"previous_avg_age":27.6,"previous_total_value":36479.0,"age_delta":-0.1,"value_delta":1596.5,"previous_quadrant":"REBUILDING","current_quadrant":"REBUILDING"}},{"team":"Humongous Melonheads","oracle_rank":2,"total_value":36544.7,"mlb_value":30556.7,"farm_value":5988.0,"avg_age":29.2,"scatter_move":{"previous_avg_age":29.2,"previous_total_value":36046.7,"age_delta":0.0,"value_delta":498.0,"previous_quadrant":"WIN NOW","current_quadrant":"WIN NOW"}},{"team":"John Henry Fan Club","oracle_rank":3,"total_value":34836.4,"mlb_value":29022.6,"farm_value":5813.8,"avg_age":27.3,"scatter_move":{"previous_avg_age":27.4,"previous_total_value":34367.9,"age_delta":-0.1,"value_delta":468.5,"previous_quadrant":"REBUILDING","current_quadrant":"REBUILDING"}},{"team":"Philbell","oracle_rank":4,"total_value":33695.4,"mlb_value":31049.0,"farm_value":2646.4,"avg_age":28.7,"scatter_move":{"previous_avg_age":28.7,"previous_total_value":33439.9,"age_delta":0.0,"value_delta":255.5,"previous_quadrant":"WIN NOW","current_quadrant":"WIN NOW"}},{"team":"Seam heads","oracle_rank":5,"total_value":33520.5,"mlb_value":29025.3,"farm_value":4495.2,"avg_age":29.2,"scatter_move":{"previous_avg_age":29.2,"previous_total_value":32854.8,"age_delta":0.0,"value_delta":665.7,"previous_quadrant":"WIN NOW","current_quadrant":"WIN NOW"}},{"team":"Jonesin'","oracle_rank":6,"total_value":31480.3,"mlb_value":26450.1,"farm_value":5030.2,"avg_age":26.2,"scatter_move":{"previous_avg_age":26.2,"previous_total_value":31059.1,"age_delta":0.0,"value_delta":421.2,"previous_quadrant":"REBUILDING","current_quadrant":"REBUILDING"}},{"team":"Vin Mazzaro fan club","oracle_rank":7,"total_value":30691.3,"mlb_value":27775.6,"farm_value":2915.7,"avg_age":28.0,"scatter_move":{"previous_avg_age":27.9,"previous_total_value":30756.0,"age_delta":0.1,"value_delta":-64.7,"previous_quadrant":"REBUILDING","current_quadrant":"REBUILDING"}},{"team":"Millville Meteors","oracle_rank":8,"total_value":26247.7,"mlb_value":22197.7,"farm_value":4050.0,"avg_age":29.3,"scatter_move":{"previous_avg_age":29.2,"previous_total_value":25647.6,"age_delta":0.1,"value_delta":600.1,"previous_quadrant":"WIN NOW","current_quadrant":"WIN NOW"}},{"team":"Trazadone","oracle_rank":9,"total_value":25902.8,"mlb_value":20939.3,"farm_value":4963.5,"avg_age":27.4,"scatter_move":{"previous_avg_age":27.4,"previous_total_value":25603.2,"age_delta":0.0,"value_delta":299.6,"previous_quadrant":"REBUILDING","current_quadrant":"REBUILDING"}},{"team":"Pat","oracle_rank":10,"total_value":23929.0,"mlb_value":23132.0,"farm_value":797.0,"avg_age":29.1,"scatter_move":{"previous_avg_age":29.1,"previous_total_value":23655.5,"age_delta":0.0,"value_delta":273.5,"previous_quadrant":"AGING OUT","current_quadrant":"AGING OUT"}},{"team":"Sam","oracle_rank":11,"total_value":23553.8,"mlb_value":21748.6,"farm_value":1805.2,"avg_age":30.4,"scatter_move":{"previous_avg_age":30.3,"previous_total_value":23259.7,"age_delta":0.1,"value_delta":294.1,"previous_quadrant":"AGING OUT","current_quadrant":"AGING OUT"}},{"team":"Mommy","oracle_rank":12,"total_value":21851.1,"mlb_value":20793.5,"farm_value":1057.6,"avg_age":31.2,"scatter_move":{"previous_avg_age":31.2,"previous_total_value":21613.2,"age_delta":0.0,"value_delta":237.9,"previous_quadrant":"AGING OUT","current_quadrant":"AGING OUT"}}]}
+{
+  "generated": "2026-09-05",
+  "generated_at": "2026-09-05T23:44:33-05:00",
+  "week": 166,
+  "snapshot_date": "2026-09-05",
+  "source_dates": {
+    "standings": "2026-09-05T23:44:33-05:00",
+    "transactions": "2026-09-05T23:12:04.105402-05:00",
+    "rankings": "2026-08-31",
+    "ownership": "2026-09-06T04:05:04.850307+00:00",
+    "stats": "2026-09-05"
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "team": "Humongous Melonheads",
+      "total_pts": 111.0,
+      "pts_change": null
+    },
+    {
+      "rank": 2,
+      "team": "Rollie Fingers",
+      "total_pts": 99.0,
+      "pts_change": null
+    },
+    {
+      "rank": 3,
+      "team": "Seam heads",
+      "total_pts": 97.0,
+      "pts_change": null
+    },
+    {
+      "rank": 4,
+      "team": "philbell",
+      "total_pts": 90.5,
+      "pts_change": null
+    },
+    {
+      "rank": 5,
+      "team": "Vin Mazzaro fan club",
+      "total_pts": 74.5,
+      "pts_change": null
+    },
+    {
+      "rank": 6,
+      "team": "Pat",
+      "total_pts": 65.5,
+      "pts_change": null
+    }
+  ],
+  "transactions": [
+    {
+      "type": "ADD",
+      "team": "Rollie Fingers",
+      "player": "Max Scherzer"
+    },
+    {
+      "type": "DROP",
+      "team": "Rollie Fingers",
+      "player": "Kumar Rocker"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Masyn Winn"
+    },
+    {
+      "type": "DROP",
+      "team": "Trazadone",
+      "player": "Jonathan Bowlan"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Rafael Flores"
+    },
+    {
+      "type": "ADD",
+      "team": "Seam heads",
+      "player": "Pedro Ramirez"
+    },
+    {
+      "type": "DROP",
+      "team": "Seam heads",
+      "player": "Tyler O'Neill"
+    },
+    {
+      "type": "ADD",
+      "team": "Vin Mazzaro fan club",
+      "player": "Bryce Mayer"
+    },
+    {
+      "type": "DROP",
+      "team": "Vin Mazzaro fan club",
+      "player": "Rhett Lowder"
+    }
+  ],
+  "oracle_teams": [
+    {
+      "team": "Rollie Fingers",
+      "oracle_rank": 1,
+      "total_value": 38075.5,
+      "mlb_value": 32950.9,
+      "farm_value": 5124.6,
+      "avg_age": 27.5,
+      "scatter_move": {
+        "previous_avg_age": 27.6,
+        "previous_total_value": 36479.0,
+        "age_delta": -0.1,
+        "value_delta": 1596.5,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Humongous Melonheads",
+      "oracle_rank": 2,
+      "total_value": 36544.7,
+      "mlb_value": 30556.7,
+      "farm_value": 5988.0,
+      "avg_age": 29.2,
+      "scatter_move": {
+        "previous_avg_age": 29.2,
+        "previous_total_value": 36046.7,
+        "age_delta": 0.0,
+        "value_delta": 498.0,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      }
+    },
+    {
+      "team": "John Henry Fan Club",
+      "oracle_rank": 3,
+      "total_value": 34836.4,
+      "mlb_value": 29022.6,
+      "farm_value": 5813.8,
+      "avg_age": 27.3,
+      "scatter_move": {
+        "previous_avg_age": 27.4,
+        "previous_total_value": 34367.9,
+        "age_delta": -0.1,
+        "value_delta": 468.5,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Philbell",
+      "oracle_rank": 4,
+      "total_value": 33695.4,
+      "mlb_value": 31049.0,
+      "farm_value": 2646.4,
+      "avg_age": 28.7,
+      "scatter_move": {
+        "previous_avg_age": 28.7,
+        "previous_total_value": 33439.9,
+        "age_delta": 0.0,
+        "value_delta": 255.5,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      }
+    },
+    {
+      "team": "Seam heads",
+      "oracle_rank": 5,
+      "total_value": 33520.5,
+      "mlb_value": 29025.3,
+      "farm_value": 4495.2,
+      "avg_age": 29.2,
+      "scatter_move": {
+        "previous_avg_age": 29.2,
+        "previous_total_value": 32854.8,
+        "age_delta": 0.0,
+        "value_delta": 665.7,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      }
+    },
+    {
+      "team": "Jonesin'",
+      "oracle_rank": 6,
+      "total_value": 31480.3,
+      "mlb_value": 26450.1,
+      "farm_value": 5030.2,
+      "avg_age": 26.2,
+      "scatter_move": {
+        "previous_avg_age": 26.2,
+        "previous_total_value": 31059.1,
+        "age_delta": 0.0,
+        "value_delta": 421.2,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Vin Mazzaro fan club",
+      "oracle_rank": 7,
+      "total_value": 30691.3,
+      "mlb_value": 27775.6,
+      "farm_value": 2915.7,
+      "avg_age": 28.0,
+      "scatter_move": {
+        "previous_avg_age": 27.9,
+        "previous_total_value": 30756.0,
+        "age_delta": 0.1,
+        "value_delta": -64.7,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Millville Meteors",
+      "oracle_rank": 8,
+      "total_value": 26247.7,
+      "mlb_value": 22197.7,
+      "farm_value": 4050.0,
+      "avg_age": 29.3,
+      "scatter_move": {
+        "previous_avg_age": 29.2,
+        "previous_total_value": 25647.6,
+        "age_delta": 0.1,
+        "value_delta": 600.1,
+        "previous_quadrant": "WIN NOW",
+        "current_quadrant": "WIN NOW"
+      }
+    },
+    {
+      "team": "Trazadone",
+      "oracle_rank": 9,
+      "total_value": 25902.8,
+      "mlb_value": 20939.3,
+      "farm_value": 4963.5,
+      "avg_age": 27.4,
+      "scatter_move": {
+        "previous_avg_age": 27.4,
+        "previous_total_value": 25603.2,
+        "age_delta": 0.0,
+        "value_delta": 299.6,
+        "previous_quadrant": "REBUILDING",
+        "current_quadrant": "REBUILDING"
+      }
+    },
+    {
+      "team": "Pat",
+      "oracle_rank": 10,
+      "total_value": 23929.0,
+      "mlb_value": 23132.0,
+      "farm_value": 797.0,
+      "avg_age": 29.1,
+      "scatter_move": {
+        "previous_avg_age": 29.1,
+        "previous_total_value": 23655.5,
+        "age_delta": 0.0,
+        "value_delta": 273.5,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
+      }
+    },
+    {
+      "team": "Sam",
+      "oracle_rank": 11,
+      "total_value": 23553.8,
+      "mlb_value": 21748.6,
+      "farm_value": 1805.2,
+      "avg_age": 30.4,
+      "scatter_move": {
+        "previous_avg_age": 30.3,
+        "previous_total_value": 23259.7,
+        "age_delta": 0.1,
+        "value_delta": 294.1,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
+      }
+    },
+    {
+      "team": "Mommy",
+      "oracle_rank": 12,
+      "total_value": 21851.1,
+      "mlb_value": 20793.5,
+      "farm_value": 1057.6,
+      "avg_age": 31.2,
+      "scatter_move": {
+        "previous_avg_age": 31.2,
+        "previous_total_value": 21613.2,
+        "age_delta": 0.0,
+        "value_delta": 237.9,
+        "previous_quadrant": "AGING OUT",
+        "current_quadrant": "AGING OUT"
+      }
+    }
+  ]
+}
