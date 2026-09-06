@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-05",
-  "snapshot_date": "2026-09-05",
+  "generated": "2026-09-06",
+  "snapshot_date": "2026-09-06",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -33,6 +33,16 @@
       "oracle_rank": 131
     },
     {
+      "closer_name": "Louis Varland",
+      "bullpen_team": "Toronto Blue Jays",
+      "dynasty_team": "Trazadone",
+      "recent_saves": 33,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 54.1,
+      "oracle_rank": 331
+    },
+    {
       "closer_name": "Aroldis Chapman",
       "bullpen_team": "Boston Red Sox",
       "dynasty_team": "Rollie Fingers",
@@ -53,16 +63,6 @@
       "oracle_rank": 43
     },
     {
-      "closer_name": "Louis Varland",
-      "bullpen_team": "Toronto Blue Jays",
-      "dynasty_team": "Trazadone",
-      "recent_saves": 32,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 53.3,
-      "oracle_rank": 331
-    },
-    {
       "closer_name": "David Bednar",
       "bullpen_team": "New York Yankees",
       "dynasty_team": "Philbell",
@@ -76,10 +76,10 @@
       "closer_name": "Jhoan Duran",
       "bullpen_team": "Philadelphia Phillies",
       "dynasty_team": "Rollie Fingers",
-      "recent_saves": 29,
+      "recent_saves": 30,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 65.9,
+      "role_share": 66.7,
       "oracle_rank": 93
     },
     {
@@ -99,7 +99,7 @@
       "recent_saves": 26,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 52.0,
+      "role_share": 59.1,
       "oracle_rank": 392
     },
     {
@@ -126,20 +126,20 @@
       "closer_name": "Emilio Pag\u00e1n",
       "bullpen_team": "Cincinnati Reds",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 20,
+      "recent_saves": 21,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 69.0,
+      "role_share": 70.0,
       "oracle_rank": 523
     },
     {
       "closer_name": "Tanner Scott",
       "bullpen_team": "Los Angeles Dodgers",
       "dynasty_team": "Trazadone",
-      "recent_saves": 20,
+      "recent_saves": 21,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 58.8,
+      "role_share": 60.0,
       "oracle_rank": 536
     },
     {
@@ -259,47 +259,47 @@
       "recent_saves": 9,
       "confidence_score": 50.0,
       "unstable_flag": false,
-      "role_share": 30.0,
+      "role_share": 29.0,
       "oracle_rank": 811
     },
     {
       "closer_name": "Brandyn Garcia",
       "bullpen_team": "Arizona Diamondbacks",
       "dynasty_team": "Pat",
-      "recent_saves": 4,
+      "recent_saves": 5,
       "confidence_score": 35.0,
       "unstable_flag": false,
-      "role_share": 36.4,
+      "role_share": 41.7,
       "oracle_rank": 739
     },
     {
       "closer_name": "Jordan Romano",
       "bullpen_team": "Colorado Rockies",
       "dynasty_team": null,
-      "recent_saves": 14,
+      "recent_saves": 15,
       "confidence_score": 25.0,
       "unstable_flag": false,
-      "role_share": 56.0,
+      "role_share": 57.7,
       "oracle_rank": 1420
     },
     {
-      "closer_name": "Dylan Smith",
+      "closer_name": "Joel Kuhnel",
       "bullpen_team": "San Francisco Giants",
       "dynasty_team": null,
-      "recent_saves": 4,
+      "recent_saves": 6,
       "confidence_score": 12.0,
       "unstable_flag": false,
-      "role_share": 44.4,
-      "oracle_rank": 1288
+      "role_share": 40.0,
+      "oracle_rank": 1386
     },
     {
       "closer_name": "Yoendrys G\u00f3mez",
       "bullpen_team": "Minnesota Twins",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 20,
+      "recent_saves": 21,
       "confidence_score": 0.0,
       "unstable_flag": false,
-      "role_share": 54.1,
+      "role_share": 55.3,
       "oracle_rank": 665
     }
   ],
@@ -319,10 +319,10 @@
         "closer_name": "Emilio Pag\u00e1n",
         "bullpen_team": "Cincinnati Reds",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 20,
+        "recent_saves": 21,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 69.0,
+        "role_share": 70.0,
         "oracle_rank": 523
       },
       {
@@ -349,10 +349,10 @@
         "closer_name": "Yoendrys G\u00f3mez",
         "bullpen_team": "Minnesota Twins",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 20,
+        "recent_saves": 21,
         "confidence_score": 0.0,
         "unstable_flag": false,
-        "role_share": 54.1,
+        "role_share": 55.3,
         "oracle_rank": 665
       }
     ],
@@ -374,7 +374,7 @@
         "recent_saves": 9,
         "confidence_score": 50.0,
         "unstable_flag": false,
-        "role_share": 30.0,
+        "role_share": 29.0,
         "oracle_rank": 811
       }
     ],
@@ -420,6 +420,28 @@
         "oracle_rank": 212
       }
     ],
+    "Trazadone": [
+      {
+        "closer_name": "Louis Varland",
+        "bullpen_team": "Toronto Blue Jays",
+        "dynasty_team": "Trazadone",
+        "recent_saves": 33,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 54.1,
+        "oracle_rank": 331
+      },
+      {
+        "closer_name": "Tanner Scott",
+        "bullpen_team": "Los Angeles Dodgers",
+        "dynasty_team": "Trazadone",
+        "recent_saves": 21,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 60.0,
+        "oracle_rank": 536
+      }
+    ],
     "Rollie Fingers": [
       {
         "closer_name": "Aroldis Chapman",
@@ -435,10 +457,10 @@
         "closer_name": "Jhoan Duran",
         "bullpen_team": "Philadelphia Phillies",
         "dynasty_team": "Rollie Fingers",
-        "recent_saves": 29,
+        "recent_saves": 30,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 65.9,
+        "role_share": 66.7,
         "oracle_rank": 93
       },
       {
@@ -448,7 +470,7 @@
         "recent_saves": 26,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 52.0,
+        "role_share": 59.1,
         "oracle_rank": 392
       },
       {
@@ -482,28 +504,6 @@
         "unstable_flag": true,
         "role_share": 43.8,
         "oracle_rank": 688
-      }
-    ],
-    "Trazadone": [
-      {
-        "closer_name": "Louis Varland",
-        "bullpen_team": "Toronto Blue Jays",
-        "dynasty_team": "Trazadone",
-        "recent_saves": 32,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 53.3,
-        "oracle_rank": 331
-      },
-      {
-        "closer_name": "Tanner Scott",
-        "bullpen_team": "Los Angeles Dodgers",
-        "dynasty_team": "Trazadone",
-        "recent_saves": 20,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 58.8,
-        "oracle_rank": 536
       }
     ],
     "Philbell": [
@@ -553,10 +553,10 @@
         "closer_name": "Brandyn Garcia",
         "bullpen_team": "Arizona Diamondbacks",
         "dynasty_team": "Pat",
-        "recent_saves": 4,
+        "recent_saves": 5,
         "confidence_score": 35.0,
         "unstable_flag": false,
-        "role_share": 36.4,
+        "role_share": 41.7,
         "oracle_rank": 739
       }
     ],
