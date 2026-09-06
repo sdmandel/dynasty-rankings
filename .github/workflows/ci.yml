@@ -1,45 +1,44 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: ""
+      upload_pages:
+        type: boolean
+        default: false
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.sha }}
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Install test dependencies
-        run: python -m pip install --upgrade pip pytest requests
+        run: python -m pip install pytest requests
       - name: Run tests
         run: python -m pytest tests/ -x -q
 
-  json-validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
       - name: Validate JSON data files
-        run: |
-          python3 - <<'PY'
-          import json
-          import sys
-          from pathlib import Path
-
-          errors = []
-          for f in Path("data").glob("*.json"):
-              try:
-                  json.loads(f.read_text(encoding="utf-8"))
-              except json.JSONDecodeError as e:
-                  errors.append(f"{f.name}: {e}")
-
-          if errors:
-              print("\n".join(errors))
-              sys.exit(1)
-
-          print(f"OK: {len(list(Path('data').glob('*.json')))} JSON files valid")
-          PY
+        run: python scripts/validate_json.py
+      - name: Test feedback without external requests
+        run: node --test feedback-worker/worker.test.mjs
+      - name: Setup Pages
+        if: inputs.upload_pages
+        uses: actions/configure-pages@v6
+      - name: Upload the exact tested checkout
+        if: inputs.upload_pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
