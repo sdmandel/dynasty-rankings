@@ -122,7 +122,7 @@
         },
         "cat_r": {
           "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_loss": 2.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -168,12 +168,12 @@
       "team": "Seam heads",
       "source_team": "Seam heads",
       "tier": "fringe",
-      "points_back": 15.5,
+      "points_back": 15.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_k"
+        "cat_r"
       ],
       "category_gaps": {
         "cat_era": {
@@ -197,8 +197,8 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 2.0,
+          "to_loss": 0.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -218,10 +218,10 @@
         }
       },
       "luck": {
-        "actual_points": 95.0,
+        "actual_points": 95.5,
         "expected_points": 94.5,
-        "delta": 0.5,
-        "cluster_sensitivity": 85.0,
+        "delta": 1.0,
+        "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -232,7 +232,7 @@
           "cat_k": 0.74,
           "cat_ops": 2.232,
           "cat_qs": 0.829,
-          "cat_r": 1.492,
+          "cat_r": 1.488,
           "cat_rbi": 1.892,
           "cat_sb": 1.178,
           "cat_svh": 0.705,
@@ -244,11 +244,11 @@
       "team": "Philbell",
       "source_team": "philbell",
       "tier": "fringe",
-      "points_back": 18.5,
+      "points_back": 19.0,
       "reachable_points": 10.0,
       "tight_categories": [
-        "cat_era",
         "cat_qs",
+        "cat_r",
         "cat_svh"
       ],
       "category_gaps": {
@@ -273,8 +273,8 @@
           "to_loss": 0.0
         },
         "cat_r": {
-          "to_gain": 1.5,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": 1.5
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -294,9 +294,9 @@
         }
       },
       "luck": {
-        "actual_points": 92.0,
-        "expected_points": 91.0,
-        "delta": 1.0,
+        "actual_points": 91.5,
+        "expected_points": 91.5,
+        "delta": 0.0,
         "cluster_sensitivity": 80.0,
         "efficiency_score": null
       },
@@ -308,7 +308,7 @@
           "cat_k": 1.031,
           "cat_ops": 2.897,
           "cat_qs": 0.847,
-          "cat_r": 2.549,
+          "cat_r": 2.546,
           "cat_rbi": 2.58,
           "cat_sb": 1.212,
           "cat_svh": 0.709,
@@ -349,7 +349,7 @@
           "to_loss": 1.5
         },
         "cat_r": {
-          "to_gain": 1.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "cat_rbi": {
@@ -371,9 +371,9 @@
       },
       "luck": {
         "actual_points": 74.0,
-        "expected_points": 74.0,
-        "delta": 0.0,
-        "cluster_sensitivity": 90.0,
+        "expected_points": 73.5,
+        "delta": 0.5,
+        "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -951,22 +951,22 @@
     {
       "team": "Seam heads",
       "tier": "fringe",
-      "points_back": 15.5,
+      "points_back": 15.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_k"
+        "cat_r"
       ]
     },
     {
       "team": "Philbell",
       "tier": "fringe",
-      "points_back": 18.5,
+      "points_back": 19.0,
       "reachable_points": 10.0,
       "tight_categories": [
-        "cat_era",
         "cat_qs",
+        "cat_r",
         "cat_svh"
       ]
     },
@@ -1097,11 +1097,11 @@
       "badge": "neutral"
     },
     {
-      "team": "Vin Mazzaro fan club",
-      "actual_points": 74.0,
-      "expected_points": 74.0,
+      "team": "Philbell",
+      "actual_points": 91.5,
+      "expected_points": 91.5,
       "delta": 0.0,
-      "cluster_sensitivity": 90.0,
+      "cluster_sensitivity": 80.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1115,9 +1115,9 @@
       "badge": "neutral"
     },
     {
-      "team": "Seam heads",
-      "actual_points": 95.0,
-      "expected_points": 94.5,
+      "team": "Vin Mazzaro fan club",
+      "actual_points": 74.0,
+      "expected_points": 73.5,
       "delta": 0.5,
       "cluster_sensitivity": 85.0,
       "efficiency_score": null,
@@ -1151,9 +1151,9 @@
       "badge": "neutral"
     },
     {
-      "team": "Philbell",
-      "actual_points": 92.0,
-      "expected_points": 91.0,
+      "team": "Seam heads",
+      "actual_points": 95.5,
+      "expected_points": 94.5,
       "delta": 1.0,
       "cluster_sensitivity": 80.0,
       "efficiency_score": null,
@@ -1259,7 +1259,7 @@
         "cat_k": 1.031,
         "cat_ops": 2.897,
         "cat_qs": 0.847,
-        "cat_r": 2.549,
+        "cat_r": 2.546,
         "cat_rbi": 2.58,
         "cat_sb": 1.212,
         "cat_svh": 0.709,
@@ -1323,7 +1323,7 @@
         "cat_k": 0.74,
         "cat_ops": 2.232,
         "cat_qs": 0.829,
-        "cat_r": 1.492,
+        "cat_r": 1.488,
         "cat_rbi": 1.892,
         "cat_sb": 1.178,
         "cat_svh": 0.705,
