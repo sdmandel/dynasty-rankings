@@ -1,0 +1,1597 @@
+{
+  "version": 1,
+  "week": 20,
+  "window_end": "2026-09-06",
+  "window_start": "2026-08-30",
+  "published_at": "2026-09-07T10:46:35.113376-05:00",
+  "previous_week": 19,
+  "ranking_profile": {
+    "weights": {
+      "season": 0.4,
+      "recent": 0.3,
+      "outlook": 0.25,
+      "narrative": 0.05
+    },
+    "recent_effective_n": 7.0,
+    "recent_shrink_k": 6.0
+  },
+  "source_dates": {
+    "rankings": "2026-09-07",
+    "standings": "2026-09-07T10:00:05-05:00",
+    "stats": "2026-09-07",
+    "active_projection": "2026-09-07T13:40:01+00:00"
+  },
+  "teams": [
+    {
+      "team_key": "rollie fingers",
+      "team": "Rollie Fingers",
+      "rank": 1,
+      "score": 0.8593,
+      "components": {
+        "season_signal": 0.8959,
+        "recent_signal": 0.7562,
+        "outlook_signal": 0.9283,
+        "arc_signal": 0.8397
+      },
+      "previous_rank": 2,
+      "movement": 1,
+      "standings_rank": 2,
+      "roto_points": 99.0,
+      "categories": {
+        "R": {
+          "pts": 11.5,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "RBI": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 9.5,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 2,
+        "current_roto_pts": 99.0,
+        "days_in_first": 46,
+        "days_in_top3": 156,
+        "best_rank": 1,
+        "worst_rank": 6,
+        "best_roto_pts": 106.5,
+        "worst_roto_pts": 68.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 2.0,
+        "category_surge_last_7": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -0.5,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 0.5
+        },
+        "category_slide_last_14": {
+          "category": "ERA",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -1.0,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 0.5
+        },
+        "category_slide_last_21": {
+          "category": "ERA",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 1,
+      "trade_needs": [
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Luis Robert Jr.",
+          "sgp": 4.9
+        },
+        {
+          "player": "Joe Ryan",
+          "sgp": 3.924
+        },
+        {
+          "player": "Byron Buxton",
+          "sgp": 3.837
+        }
+      ],
+      "prior_blurb": "Two points back, and Rollie should consider dropping the act about second place being fine, because that might be where he ends up for the second year in a row. Wilyer Abreu posted a 1.636 OPS with four homers, Pete Crow-Armstrong stole four bags, and the club picked up another roto point in RBI. Then Michael Busch arrived from Vin at the deadline for Luke Keaschall and Tate Southisene, a trade with extremely clear opinions about the present. The Oracle says No. 2 as well. Rare bipartisan moment."
+    },
+    {
+      "team_key": "seam heads",
+      "team": "Seam Heads",
+      "rank": 2,
+      "score": 0.8274,
+      "components": {
+        "season_signal": 0.8212,
+        "recent_signal": 0.6629,
+        "outlook_signal": 1.0,
+        "arc_signal": 1.0
+      },
+      "previous_rank": 3,
+      "movement": 1,
+      "standings_rank": 3,
+      "roto_points": 95.0,
+      "categories": {
+        "R": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 3,
+        "current_roto_pts": 95.0,
+        "days_in_first": 74,
+        "days_in_top3": 163,
+        "best_rank": 1,
+        "worst_rank": 5,
+        "best_roto_pts": 108.0,
+        "worst_roto_pts": 68.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 1.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "WHIP",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 2.0,
+        "category_surge_last_14": {
+          "category": "OPS",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "WHIP",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 3.0,
+        "category_surge_last_21": {
+          "category": "OPS",
+          "delta": 3.0
+        },
+        "category_slide_last_21": {
+          "category": "WHIP",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 4,
+      "trade_needs": [
+        "fragile SP depth",
+        "needs impact bats"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Aaron Judge",
+          "sgp": 5.368
+        },
+        {
+          "player": "Josh Jung",
+          "sgp": 4.019
+        },
+        {
+          "player": "Xavier Edwards",
+          "sgp": 3.92
+        }
+      ],
+      "prior_blurb": "Lost 3.5 points and kept third anyway, because twelve points apiece in ERA, WHIP and SVH will cover a lot of household damage. Julio Rodríguez carried a 1.048 OPS, Daylen Lile chipped in two homers, and Ben Rice went two for... thirty. Forty-six lineup sessions rule out neglect. This was active, artisanal backsliding, performed by hand, by me. The Oracle sees the roster fourth, so the repeat bid now has critics in both carbon and silicon."
+    },
+    {
+      "team_key": "humongous melonheads",
+      "team": "Humongous Melonheads",
+      "rank": 3,
+      "score": 0.6714,
+      "components": {
+        "season_signal": 1.0,
+        "recent_signal": 0.6573,
+        "outlook_signal": 0.1778,
+        "arc_signal": 0.5952
+      },
+      "previous_rank": 1,
+      "movement": -2,
+      "standings_rank": 1,
+      "roto_points": 110.5,
+      "categories": {
+        "R": {
+          "pts": 11.5,
+          "leader": true,
+          "last": false
+        },
+        "HR": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "SB": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "OPS": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "QS": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "ERA": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "K": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "SVH": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 1,
+        "current_roto_pts": 110.5,
+        "days_in_first": 39,
+        "days_in_top3": 103,
+        "best_rank": 1,
+        "worst_rank": 10,
+        "best_roto_pts": 112.0,
+        "worst_roto_pts": 47.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -0.5,
+        "category_surge_last_7": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "SVH",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -1.5,
+        "category_surge_last_14": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "ERA",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -0.5,
+        "category_surge_last_21": {
+          "category": "RBI",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "ERA",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 2,
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Ceddanne Rafaela",
+          "sgp": 5.602
+        },
+        {
+          "player": "Brent Rooker",
+          "sgp": 3.058
+        },
+        {
+          "player": "Matt Chapman",
+          "sgp": 2.469
+        }
+      ],
+      "prior_blurb": "Seven more days in first and Humongous already treats the penthouse like a rent-controlled unit. The lead grew 3.5 points, most of it out of ERA, while Jackson Merrill and Cam Smith hit five homers between them and made an empty transaction log look like a strategy. Ketel Marte's .493 OPS is the smoke alarm nobody has bothered to replace. The Oracle only has this as the third-best roster. Rude thing to say to a team holding 107 points, but the machine has never had to say anything to anyone's face."
+    },
+    {
+      "team_key": "philbell",
+      "team": "Philbell",
+      "rank": 4,
+      "score": 0.519,
+      "components": {
+        "season_signal": 0.7504,
+        "recent_signal": 0.5715,
+        "outlook_signal": 0.1722,
+        "arc_signal": 0.086
+      },
+      "previous_rank": 6,
+      "movement": 2,
+      "standings_rank": 4,
+      "roto_points": 92.0,
+      "categories": {
+        "R": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 10.5,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 9.5,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 4,
+        "current_roto_pts": 92.0,
+        "days_in_first": 3,
+        "days_in_top3": 18,
+        "best_rank": 1,
+        "worst_rank": 4,
+        "best_roto_pts": 94.5,
+        "worst_roto_pts": 82.5,
+        "snapshots_count": 165,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 0.0,
+        "category_surge_last_7": {
+          "category": "QS",
+          "delta": 0.5
+        },
+        "category_slide_last_7": {
+          "category": "SVH",
+          "delta": -0.5
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 0.5,
+        "category_surge_last_14": {
+          "category": "QS",
+          "delta": 0.5
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 2.5,
+        "category_surge_last_21": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": 0.0
+        }
+      },
+      "oracle_rank": 5,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Nick Kurtz",
+          "sgp": 3.334
+        },
+        {
+          "player": "Casey Schmitt",
+          "sgp": 2.328
+        },
+        {
+          "player": "Giancarlo Stanton",
+          "sgp": 1.651
+        }
+      ],
+      "prior_blurb": "Fourth in the standings, sixth here. A clerical insult, but one well deserved. Runs gained a point, steals handed it right back, Dillon Dingler and Josh Bell combined for five homers, and Jeremy Peña hit .107. Can you start to see the math behind the rank? Twenty-eight lineup sessions suggest the author still has the rent-free penthouse."
+    },
+    {
+      "team_key": "pat",
+      "team": "Pat",
+      "rank": 5,
+      "score": 0.4725,
+      "components": {
+        "season_signal": 0.5344,
+        "recent_signal": 0.6774,
+        "outlook_signal": 0.2212,
+        "arc_signal": 0.004
+      },
+      "previous_rank": 7,
+      "movement": 2,
+      "standings_rank": 6,
+      "roto_points": 67.0,
+      "categories": {
+        "R": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 6,
+        "current_roto_pts": 67.0,
+        "days_in_first": 0,
+        "days_in_top3": 1,
+        "best_rank": 3,
+        "worst_rank": 12,
+        "best_roto_pts": 79.0,
+        "worst_roto_pts": 42.5,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 3.5,
+        "category_surge_last_7": {
+          "category": "SB",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 4.5,
+        "category_surge_last_14": {
+          "category": "ERA",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 4.5,
+        "category_surge_last_21": {
+          "category": "ERA",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "QS",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 10,
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Andy Pages",
+          "sgp": 2.738
+        },
+        {
+          "player": "Jack Flaherty",
+          "sgp": 2.654
+        },
+        {
+          "player": "Blaze Jordan",
+          "sgp": 1.515
+        }
+      ],
+      "prior_blurb": "Sixth in the standings, seventh here. It feels like those numbers have just switched places every other week for most of the season. Matt Olson hit four homers, Jesús Luzardo allowed two earned runs across 15 innings, and between them they were worth two roto points while steals climbed another rung. Corbin Carroll spent the same week at a .432 OPS, because no good development around here arrives without paperwork."
+    },
+    {
+      "team_key": "vin mazzaro fan club",
+      "team": "Vin Mazzaro fan club",
+      "rank": 6,
+      "score": 0.452,
+      "components": {
+        "season_signal": 0.6209,
+        "recent_signal": 0.3943,
+        "outlook_signal": 0.3416,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 4,
+      "movement": -2,
+      "standings_rank": 5,
+      "roto_points": 74.0,
+      "categories": {
+        "R": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 9.5,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 10.5,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 5,
+        "current_roto_pts": 74.0,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 4,
+        "worst_rank": 12,
+        "best_roto_pts": 81.5,
+        "worst_roto_pts": 42.5,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -2.0,
+        "category_surge_last_7": {
+          "category": "SB",
+          "delta": 0.5
+        },
+        "category_slide_last_7": {
+          "category": "R",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -2.0,
+        "category_surge_last_14": {
+          "category": "SB",
+          "delta": 0.5
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -7.5,
+        "category_surge_last_21": {
+          "category": "SB",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "WHIP",
+          "delta": -3.0
+        }
+      },
+      "oracle_rank": 7,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Trent Grisham",
+          "sgp": 3.783
+        },
+        {
+          "player": "Jonah Tong",
+          "sgp": 2.547
+        },
+        {
+          "player": "Colt Emerson",
+          "sgp": 2.152
+        }
+      ],
+      "prior_blurb": "Fourth here, fifth in the standings, and Vin earned the gap with two new steals points and a week of extremely loud bats. Jake McCarthy went 1.299 with three homers and three steals. Alec Burleson added four more bombs. Luke Keaschall and Tate Southisene went back the other way for Michael Busch, extending a deadline receipt already too long for CVS to print."
+    },
+    {
+      "team_key": "john henry fan club",
+      "team": "John Henry Fan Club",
+      "rank": 7,
+      "score": 0.3426,
+      "components": {
+        "season_signal": 0.4323,
+        "recent_signal": 0.3366,
+        "outlook_signal": 0.2708,
+        "arc_signal": 0.0199
+      },
+      "previous_rank": 5,
+      "movement": -2,
+      "standings_rank": 7,
+      "roto_points": 56.0,
+      "categories": {
+        "R": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 7,
+        "current_roto_pts": 56.0,
+        "days_in_first": 0,
+        "days_in_top3": 5,
+        "best_rank": 3,
+        "worst_rank": 10,
+        "best_roto_pts": 82.5,
+        "worst_roto_pts": 55.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -1.5,
+        "category_surge_last_7": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "WHIP",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 1.0,
+        "category_surge_last_14": {
+          "category": "OPS",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -3.5,
+        "category_surge_last_21": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "category_slide_last_21": {
+          "category": "SB",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 3,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Rhys Hoskins",
+          "sgp": 2.815
+        },
+        {
+          "player": "Nick Pivetta",
+          "sgp": 2.048
+        },
+        {
+          "player": "Brice Matthews",
+          "sgp": 1.746
+        }
+      ],
+      "prior_blurb": "Fifth place is being held in trust for the Oracle's No. 1 roster, since the standings say seventh and 59.5. Chase Meidroth and Kyle Schwarber gave the offense a mostly useful week. Freddy Peralta gave back a 17.18 ERA in 3.2 innings. Two lineup sessions brought the ghost back, and a lost steals point suggests it found the correct address."
+    },
+    {
+      "team_key": "sam",
+      "team": "Sam",
+      "rank": 8,
+      "score": 0.2986,
+      "components": {
+        "season_signal": 0.3478,
+        "recent_signal": 0.2976,
+        "outlook_signal": 0.2806,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 8,
+      "movement": 0,
+      "standings_rank": 8,
+      "roto_points": 49.5,
+      "categories": {
+        "R": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 9.5,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 8,
+        "current_roto_pts": 49.5,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 5,
+        "worst_rank": 11,
+        "best_roto_pts": 70.5,
+        "worst_roto_pts": 43.5,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -1.5,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "OPS",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -4.5,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_14": {
+          "category": "OPS",
+          "delta": -2.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -2.5,
+        "category_surge_last_21": {
+          "category": "SVH",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "HR",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 11,
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Ryan O'Hearn",
+          "sgp": 2.843
+        },
+        {
+          "player": "Shea Langeliers",
+          "sgp": 2.052
+        },
+        {
+          "player": "Zac Gallen",
+          "sgp": 1.248
+        }
+      ],
+      "prior_blurb": "Three lineup cards submitted. Two spots gained. A real triumph for remote work. Runs surged, WHIP sagged by the same amount, and two roto points showed up anyway. Bryce Harper and Marcus Semien both cleared a .900 OPS, while CJ Abrams stole three bases and struck out 15 times, keeping every constituency represented."
+    },
+    {
+      "team_key": "jonesin",
+      "team": "Jonesin'",
+      "rank": 9,
+      "score": 0.2857,
+      "components": {
+        "season_signal": 0.325,
+        "recent_signal": 0.3752,
+        "outlook_signal": 0.1726,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 11,
+      "movement": 2,
+      "standings_rank": 12,
+      "roto_points": 21.0,
+      "categories": {
+        "R": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "HR": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "RBI": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "OPS": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "WHIP": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 12,
+        "current_roto_pts": 21.0,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 8,
+        "worst_rank": 12,
+        "best_roto_pts": 56.0,
+        "worst_roto_pts": 26.5,
+        "snapshots_count": 165,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 0.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 1.0,
+        "category_surge_last_14": {
+          "category": "RBI",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 0.5,
+        "category_surge_last_21": {
+          "category": "SVH",
+          "delta": 0.5
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": 0.0
+        }
+      },
+      "oracle_rank": 6,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Maikel Garcia",
+          "sgp": 3.206
+        },
+        {
+          "player": "Marcelo Mayer",
+          "sgp": 2.292
+        },
+        {
+          "player": "Dalton Rushing",
+          "sgp": 1.316
+        }
+      ],
+      "prior_blurb": "Gained 1.5 roto points, lost three power-ranking places. That kind of accounting is only available in the bad place. Carson Benge and Jonathan Aranda gave the offense a pulse, then Jared Jones allowed eleven earned runs in seven innings and took it back. Relying on Pirates pitching in late summer is never recommended. Eleventh in the standings at 23, while the Oracle keeps insisting this is the sixth-best roster, which makes this the biggest short squeeze since GME in 2021. As for me, I like the stock."
+    },
+    {
+      "team_key": "millville meteors",
+      "team": "Millville Meteors",
+      "rank": 10,
+      "score": 0.2403,
+      "components": {
+        "season_signal": 0.2809,
+        "recent_signal": 0.3842,
+        "outlook_signal": 0.0459,
+        "arc_signal": 0.0247
+      },
+      "previous_rank": 9,
+      "movement": -1,
+      "standings_rank": 9,
+      "roto_points": 47.5,
+      "categories": {
+        "R": {
+          "pts": 4.5,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 9,
+        "current_roto_pts": 47.5,
+        "days_in_first": 1,
+        "days_in_top3": 5,
+        "best_rank": 1,
+        "worst_rank": 12,
+        "best_roto_pts": 81.0,
+        "worst_roto_pts": 34.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 0.5,
+        "category_surge_last_7": {
+          "category": "ERA",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "R",
+          "delta": -0.5
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -0.5,
+        "category_surge_last_14": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "OPS",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 0.5,
+        "category_surge_last_21": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": -0.5
+        }
+      },
+      "oracle_rank": 8,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Willson Contreras",
+          "sgp": 4.693
+        },
+        {
+          "player": "Reynaldo López",
+          "sgp": 2.424
+        },
+        {
+          "player": "Carson Williams",
+          "sgp": 1.424
+        }
+      ],
+      "prior_blurb": "The deadline sugar rush wore off and the bill arrived four places later. The week itself was fine: 2.5 roto points gained, another one in ERA, Brandon Nimmo and Jac Caglianone combining for five homers. Mike Trout hit .115 with 14 strikeouts to keep the renovation honest. The Oracle still has the rebuilt roster eighth and the standings have it ninth."
+    },
+    {
+      "team_key": "mommy",
+      "team": "Mommy",
+      "rank": 11,
+      "score": 0.2247,
+      "components": {
+        "season_signal": 0.0806,
+        "recent_signal": 0.2917,
+        "outlook_signal": 0.4188,
+        "arc_signal": 0.004
+      },
+      "previous_rank": 10,
+      "movement": -1,
+      "standings_rank": 11,
+      "roto_points": 26.5,
+      "categories": {
+        "R": {
+          "pts": 4.5,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "SB": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "QS": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "ERA": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "K": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "SVH": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 11,
+        "current_roto_pts": 26.5,
+        "days_in_first": 0,
+        "days_in_top3": 1,
+        "best_rank": 3,
+        "worst_rank": 12,
+        "best_roto_pts": 77.5,
+        "worst_roto_pts": 19.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 0.5,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 1.5
+        },
+        "category_slide_last_7": {
+          "category": "SB",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -1.5,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 0.5
+        },
+        "category_slide_last_14": {
+          "category": "RBI",
+          "delta": -1.5
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 3.0,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 1.5
+        },
+        "category_slide_last_21": {
+          "category": "SB",
+          "delta": -0.5
+        }
+      },
+      "oracle_rank": 12,
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Willy Adames",
+          "sgp": 3.156
+        },
+        {
+          "player": "Dansby Swanson",
+          "sgp": 2.98
+        },
+        {
+          "player": "Spencer Steer",
+          "sgp": 2.879
+        }
+      ],
+      "prior_blurb": "The model hauls Mommy out of the basement and the standings immediately file a complaint, because 22.5 points is still twelfth. Fernando Tatis Jr. hit three homers and Jung Hoo Lee paired two homers with two steals, all of it perfectly credible work hiding inside a three-point team loss. Garrett Mitchell's .398 OPS and a two-point slide in steals account for the smell. The Oracle still ranks the roster twelfth. Enjoy the supervised outing."
+    },
+    {
+      "team_key": "trazadone",
+      "team": "Trazadone",
+      "rank": 12,
+      "score": 0.1406,
+      "components": {
+        "season_signal": 0.2003,
+        "recent_signal": 0.2001,
+        "outlook_signal": 0.0,
+        "arc_signal": 0.008
+      },
+      "previous_rank": 12,
+      "movement": 0,
+      "standings_rank": 10,
+      "roto_points": 42.0,
+      "categories": {
+        "R": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-07",
+        "current_rank": 10,
+        "current_roto_pts": 42.0,
+        "days_in_first": 0,
+        "days_in_top3": 2,
+        "best_rank": 3,
+        "worst_rank": 11,
+        "best_roto_pts": 80.0,
+        "worst_roto_pts": 30.0,
+        "snapshots_count": 164,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -2.0,
+        "category_surge_last_7": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "R",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 1.5,
+        "category_surge_last_14": {
+          "category": "RBI",
+          "delta": 1.5
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 1.0,
+        "category_surge_last_21": {
+          "category": "QS",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 9,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Brendan Donovan",
+          "sgp": 3.519
+        },
+        {
+          "player": "Curtis Mead",
+          "sgp": 1.28
+        },
+        {
+          "player": "Emerson Hancock",
+          "sgp": 1.006
+        }
+      ],
+      "prior_blurb": "Thirty-seven roto points, tenth in the standings, and the worst week on the board at minus four . Troy Melton threw 13 scoreless innings as a personal objection. Casey Mize answered with a 21.60 ERA, and Tyler Stephenson's two homers vanished somewhere inside the argument. One single point in homers and two in OPS. Fourteen lineup sessions confirm this was a consensual encounter/disaster."
+    }
+  ],
+  "snapshot_id": "e2dfc156c77c6b58ab9c58fb5a8adbed3dd13c4727ea8dd3f61612e64aa4fc79"
+}
