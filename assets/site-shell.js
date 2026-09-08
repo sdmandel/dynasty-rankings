@@ -16,6 +16,25 @@
 
   const page = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
   const isRankingsArticle = /^week\d+_power_rankings\.html$/.test(page);
+  if (page === "index.html") {
+    // Reconcile a cached homepage with the authoritative weekly publication.
+    fetch("data/power_rankings_publications.json", { cache: "no-store" })
+      .then(response => { if (!response.ok) throw new Error("Rankings unavailable"); return response.json(); })
+      .then(manifest => {
+        const latest = Object.entries(manifest.weeks || {}).sort(([a], [b]) => b.localeCompare(a))[0];
+        const card = document.querySelector('a.card.featured[href*="_power_rankings.html"]');
+        if (!latest || !card || !Number.isInteger(latest[1].week)) return;
+        const week = latest[1].week;
+        if (card.getAttribute("href") === `week${week}_power_rankings.html`) return;
+        card.href = `week${week}_power_rankings.html`;
+        card.querySelector(".card-eyebrow").textContent = `Latest · Week ${week}`;
+        card.querySelector(".card-deck").textContent = "Calculated rankings for all 12 teams, with movement and standings points.";
+        if (latest[1].published_at) {
+          const published = new Date(latest[1].published_at);
+          card.querySelector(".card-meta").textContent = published.toLocaleDateString("en-US", { timeZone: "America/Chicago", month: "long", day: "numeric", year: "numeric" });
+        }
+      }).catch(() => {}); // Retain the server-rendered card when offline.
+  }
   const sections = [
     { label: "Overview", items: [
       ["Hub", "index.html"],
@@ -39,7 +58,7 @@
       ["Closer Carousel", "closers.html"],
     ] },
     { label: "Editorial", items: [
-      ["Current Power Rankings", "week20_power_rankings.html", "rankings-current"],
+      ["Current Power Rankings", "week23_power_rankings.html", "rankings-current"],
       ["Rankings Archive", "power_rankings.html", "rankings-archive"],
     ] },
   ];

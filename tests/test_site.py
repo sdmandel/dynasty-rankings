@@ -10,8 +10,9 @@ from urllib.parse import urlparse
 import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
-HTML_FILES = sorted(ROOT.glob("*.html"))
-WEEKLY_HTML_FILES = sorted(ROOT.glob("week*_power_rankings.html"))
+REDIRECT_FILES = [p for p in sorted(ROOT.glob("*.html")) if 'http-equiv="refresh"' in p.read_text()]
+HTML_FILES = [p for p in sorted(ROOT.glob("*.html")) if p not in REDIRECT_FILES]
+WEEKLY_HTML_FILES = [p for p in HTML_FILES if re.fullmatch(r"week\d+_power_rankings\.html", p.name)]
 WEEKLY_TEMPLATE = ROOT / "templates" / "power_rankings_template.html"
 META_HTML_FILES = [p for p in HTML_FILES if p.name != "404.html"]
 SHELL_HTML_FILES = HTML_FILES
@@ -21,6 +22,17 @@ FEEDBACK_ENDPOINT = "baseball-feedback.baseball-feedback.workers.dev"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "deploy-pages-on-release.yml"
 WEEKLY_FILE_RE = re.compile(r"week(\d+)_power_rankings\.html$")
 BANNED_BLURB_PHRASES = ("Make no mistake", "Here's the thing")
+
+
+@pytest.mark.parametrize("path", REDIRECT_FILES, ids=lambda p: p.name)
+def test_legacy_redirect_resolves_to_canonical_article(path):
+    html = path.read_text()
+    target = re.search(r'content="0; url=([^"<>]+)"', html)
+    assert target, "Expected immediate local redirect"
+    destination = ROOT / target[1]
+    assert destination in HTML_FILES, "Redirect must resolve directly to a public page"
+    assert f'href="{target[1]}"' in html, "Redirect needs a fallback link"
+    assert f'rel="canonical" href="https://baseball.stephenmandella.com/{target[1]}"' in html
 
 
 class StrictHTMLParser(HTMLParser):
@@ -933,3 +945,19 @@ def test_roster_depth_supports_team_deep_links() -> None:
     assert "new URLSearchParams(window.location.search).get('team')" in html
     assert "targetRow.scrollIntoView({ block: 'start', behavior: 'auto' });" in html
     assert "tbody tr.team-target" in html
+
+
+def test_latest_publication_is_featured_and_matches_article():
+    import hashlib
+    manifest = json.loads((ROOT / 'data/power_rankings_publications.json').read_text())
+    window, entry = max(manifest['weeks'].items())
+    route = f"week{entry['week']}_power_rankings.html"
+    article = (ROOT / route).read_bytes()
+    assert hashlib.sha256(article).hexdigest() == entry['article_sha256']
+    assert f'Week {entry["week"]} Power Rankings' in article.decode()
+    assert re.search(rf'<a href="{route}" class="card featured">', (ROOT / 'index.html').read_text())
+    assert re.search(rf'<a href="{route}" class="list-row list-row--featured">', (ROOT / 'power_rankings.html').read_text())
+    assert f'["Current Power Rankings", "{route}"' in (ROOT / 'assets/site-shell.js').read_text()
+    snapshot = json.loads((ROOT / entry['snapshot']).read_text())
+    assert snapshot['window_end'] == window
+    assert snapshot['snapshot_id'] == entry['snapshot_id']
