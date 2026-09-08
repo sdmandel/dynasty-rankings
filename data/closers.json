@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-07",
-  "snapshot_date": "2026-09-07",
+  "generated": "2026-09-08",
+  "snapshot_date": "2026-09-08",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -33,24 +33,24 @@
       "oracle_rank": 123
     },
     {
+      "closer_name": "Mason Miller",
+      "bullpen_team": "San Diego Padres",
+      "dynasty_team": "Sam",
+      "recent_saves": 34,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 85.0,
+      "oracle_rank": 40
+    },
+    {
       "closer_name": "Aroldis Chapman",
       "bullpen_team": "Boston Red Sox",
       "dynasty_team": "Rollie Fingers",
       "recent_saves": 33,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 84.6,
+      "role_share": 82.5,
       "oracle_rank": 371
-    },
-    {
-      "closer_name": "Mason Miller",
-      "bullpen_team": "San Diego Padres",
-      "dynasty_team": "Sam",
-      "recent_saves": 33,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 84.6,
-      "oracle_rank": 40
     },
     {
       "closer_name": "Louis Varland",
@@ -96,10 +96,10 @@
       "closer_name": "Trevor Megill",
       "bullpen_team": "Milwaukee Brewers",
       "dynasty_team": "Rollie Fingers",
-      "recent_saves": 26,
+      "recent_saves": 27,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 59.1,
+      "role_share": 60.0,
       "oracle_rank": 393
     },
     {
@@ -143,6 +143,16 @@
       "oracle_rank": 544
     },
     {
+      "closer_name": "Kenley Jansen",
+      "bullpen_team": "Detroit Tigers",
+      "dynasty_team": "Humongous Melonheads",
+      "recent_saves": 18,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 69.2,
+      "oracle_rank": 597
+    },
+    {
       "closer_name": "Pete Fairbanks",
       "bullpen_team": "Miami Marlins",
       "dynasty_team": "Seam heads",
@@ -151,16 +161,6 @@
       "unstable_flag": false,
       "role_share": 62.1,
       "oracle_rank": 514
-    },
-    {
-      "closer_name": "Kenley Jansen",
-      "bullpen_team": "Detroit Tigers",
-      "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 17,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 68.0,
-      "oracle_rank": 597
     },
     {
       "closer_name": "Devin Williams",
@@ -269,7 +269,7 @@
       "recent_saves": 5,
       "confidence_score": 35.0,
       "unstable_flag": false,
-      "role_share": 38.5,
+      "role_share": 35.7,
       "oracle_rank": 734
     },
     {
@@ -329,10 +329,10 @@
         "closer_name": "Kenley Jansen",
         "bullpen_team": "Detroit Tigers",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 17,
+        "recent_saves": 18,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 68.0,
+        "role_share": 69.2,
         "oracle_rank": 597
       },
       {
@@ -420,6 +420,28 @@
         "oracle_rank": 220
       }
     ],
+    "Sam": [
+      {
+        "closer_name": "Mason Miller",
+        "bullpen_team": "San Diego Padres",
+        "dynasty_team": "Sam",
+        "recent_saves": 34,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 85.0,
+        "oracle_rank": 40
+      },
+      {
+        "closer_name": "Gregory Soto",
+        "bullpen_team": "Pittsburgh Pirates",
+        "dynasty_team": "Sam",
+        "recent_saves": 14,
+        "confidence_score": 90.0,
+        "unstable_flag": true,
+        "role_share": 42.4,
+        "oracle_rank": 679
+      }
+    ],
     "Rollie Fingers": [
       {
         "closer_name": "Aroldis Chapman",
@@ -428,7 +450,7 @@
         "recent_saves": 33,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 84.6,
+        "role_share": 82.5,
         "oracle_rank": 371
       },
       {
@@ -445,10 +467,10 @@
         "closer_name": "Trevor Megill",
         "bullpen_team": "Milwaukee Brewers",
         "dynasty_team": "Rollie Fingers",
-        "recent_saves": 26,
+        "recent_saves": 27,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 59.1,
+        "role_share": 60.0,
         "oracle_rank": 393
       },
       {
@@ -460,28 +482,6 @@
         "unstable_flag": false,
         "role_share": 62.5,
         "oracle_rank": 115
-      }
-    ],
-    "Sam": [
-      {
-        "closer_name": "Mason Miller",
-        "bullpen_team": "San Diego Padres",
-        "dynasty_team": "Sam",
-        "recent_saves": 33,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 84.6,
-        "oracle_rank": 40
-      },
-      {
-        "closer_name": "Gregory Soto",
-        "bullpen_team": "Pittsburgh Pirates",
-        "dynasty_team": "Sam",
-        "recent_saves": 14,
-        "confidence_score": 90.0,
-        "unstable_flag": true,
-        "role_share": 42.4,
-        "oracle_rank": 679
       }
     ],
     "Trazadone": [
@@ -556,7 +556,7 @@
         "recent_saves": 5,
         "confidence_score": 35.0,
         "unstable_flag": false,
-        "role_share": 38.5,
+        "role_share": 35.7,
         "oracle_rank": 734
       }
     ],
