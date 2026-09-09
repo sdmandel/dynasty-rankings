@@ -577,7 +577,7 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_rbi": {
@@ -599,9 +599,9 @@
       },
       "luck": {
         "actual_points": 49.0,
-        "expected_points": 48.0,
-        "delta": 1.0,
-        "cluster_sensitivity": 90.0,
+        "expected_points": 48.5,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -624,12 +624,12 @@
       "team": "Millville Meteors",
       "source_team": "Millville Meteors",
       "tier": "rebuilding",
-      "points_back": 63.5,
+      "points_back": 63.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_r"
+        "cat_k"
       ],
       "category_gaps": {
         "cat_era": {
@@ -653,8 +653,8 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -674,10 +674,10 @@
         }
       },
       "luck": {
-        "actual_points": 45.5,
-        "expected_points": 45.5,
-        "delta": 0.0,
-        "cluster_sensitivity": 90.0,
+        "actual_points": 46.0,
+        "expected_points": 46.5,
+        "delta": -0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -688,7 +688,7 @@
           "cat_k": 1.504,
           "cat_ops": 1.346,
           "cat_qs": 1.495,
-          "cat_r": 0.95,
+          "cat_r": 0.945,
           "cat_rbi": 1.247,
           "cat_sb": 1.118,
           "cat_svh": 1.434,
@@ -700,12 +700,12 @@
       "team": "Trazadone",
       "source_team": "Trazadone",
       "tier": "rebuilding",
-      "points_back": 66.5,
+      "points_back": 67.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_r"
+        "cat_k"
       ],
       "category_gaps": {
         "cat_era": {
@@ -729,8 +729,8 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -750,10 +750,10 @@
         }
       },
       "luck": {
-        "actual_points": 42.5,
-        "expected_points": 43.0,
-        "delta": -0.5,
-        "cluster_sensitivity": 95.0,
+        "actual_points": 42.0,
+        "expected_points": 42.0,
+        "delta": 0.0,
+        "cluster_sensitivity": 100.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -764,7 +764,7 @@
           "cat_k": 1.466,
           "cat_ops": 2.662,
           "cat_qs": 1.222,
-          "cat_r": 2.288,
+          "cat_r": 2.289,
           "cat_rbi": 2.648,
           "cat_sb": 1.476,
           "cat_svh": 0.717,
@@ -806,7 +806,7 @@
         },
         "cat_r": {
           "to_gain": 1.0,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -827,9 +827,9 @@
       },
       "luck": {
         "actual_points": 27.0,
-        "expected_points": 30.0,
-        "delta": -3.0,
-        "cluster_sensitivity": 70.0,
+        "expected_points": 29.5,
+        "delta": -2.5,
+        "cluster_sensitivity": 75.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -1017,23 +1017,23 @@
     {
       "team": "Millville Meteors",
       "tier": "rebuilding",
-      "points_back": 63.5,
+      "points_back": 63.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_r"
+        "cat_k"
       ]
     },
     {
       "team": "Trazadone",
       "tier": "rebuilding",
-      "points_back": 66.5,
+      "points_back": 67.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_r"
+        "cat_k"
       ]
     },
     {
@@ -1063,9 +1063,9 @@
     {
       "team": "Mommy",
       "actual_points": 27.0,
-      "expected_points": 30.0,
-      "delta": -3.0,
-      "cluster_sensitivity": 70.0,
+      "expected_points": 29.5,
+      "delta": -2.5,
+      "cluster_sensitivity": 75.0,
       "efficiency_score": null,
       "badge": "positive-variance"
     },
@@ -1088,9 +1088,9 @@
       "badge": "neutral"
     },
     {
-      "team": "Trazadone",
-      "actual_points": 42.5,
-      "expected_points": 43.0,
+      "team": "Millville Meteors",
+      "actual_points": 46.0,
+      "expected_points": 46.5,
       "delta": -0.5,
       "cluster_sensitivity": 95.0,
       "efficiency_score": null,
@@ -1124,11 +1124,11 @@
       "badge": "neutral"
     },
     {
-      "team": "Millville Meteors",
-      "actual_points": 45.5,
-      "expected_points": 45.5,
+      "team": "Trazadone",
+      "actual_points": 42.0,
+      "expected_points": 42.0,
       "delta": 0.0,
-      "cluster_sensitivity": 90.0,
+      "cluster_sensitivity": 100.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1144,9 +1144,9 @@
     {
       "team": "Sam",
       "actual_points": 49.0,
-      "expected_points": 48.0,
-      "delta": 1.0,
-      "cluster_sensitivity": 90.0,
+      "expected_points": 48.5,
+      "delta": 0.5,
+      "cluster_sensitivity": 95.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1179,7 +1179,7 @@
         "cat_k": 1.466,
         "cat_ops": 2.662,
         "cat_qs": 1.222,
-        "cat_r": 2.288,
+        "cat_r": 2.289,
         "cat_rbi": 2.648,
         "cat_sb": 1.476,
         "cat_svh": 0.717,
@@ -1211,7 +1211,7 @@
         "cat_k": 1.504,
         "cat_ops": 1.346,
         "cat_qs": 1.495,
-        "cat_r": 0.95,
+        "cat_r": 0.945,
         "cat_rbi": 1.247,
         "cat_sb": 1.118,
         "cat_svh": 1.434,
