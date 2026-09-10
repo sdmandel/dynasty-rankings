@@ -168,8 +168,8 @@
       "team": "Seam heads",
       "source_team": "Seam heads",
       "tier": "fringe",
-      "points_back": 13.0,
-      "reachable_points": 10.0,
+      "points_back": 12.0,
+      "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
@@ -177,7 +177,7 @@
       ],
       "category_gaps": {
         "cat_era": {
-          "to_gain": 1.0,
+          "to_gain": null,
           "to_loss": 1.0
         },
         "cat_hr": {
@@ -218,16 +218,16 @@
         }
       },
       "luck": {
-        "actual_points": 96.0,
-        "expected_points": 96.5,
-        "delta": -0.5,
-        "cluster_sensitivity": 95.0,
+        "actual_points": 97.0,
+        "expected_points": 97.0,
+        "delta": 0.0,
+        "cluster_sensitivity": 90.0,
         "efficiency_score": null
       },
       "volatility": {
         "team_volatility_score": 26.52,
         "category_volatility": {
-          "cat_era": 2.546,
+          "cat_era": 2.548,
           "cat_hr": 1.461,
           "cat_k": 0.74,
           "cat_ops": 2.213,
@@ -396,8 +396,8 @@
       "team": "Pat",
       "source_team": "Pat",
       "tier": "rebuilding",
-      "points_back": 40.5,
-      "reachable_points": 9.0,
+      "points_back": 41.5,
+      "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
@@ -405,7 +405,7 @@
       ],
       "category_gaps": {
         "cat_era": {
-          "to_gain": null,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_hr": {
@@ -446,16 +446,16 @@
         }
       },
       "luck": {
-        "actual_points": 68.5,
-        "expected_points": 67.5,
-        "delta": 1.0,
-        "cluster_sensitivity": 90.0,
+        "actual_points": 67.5,
+        "expected_points": 67.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
-        "team_volatility_score": 29.99,
+        "team_volatility_score": 29.97,
         "category_volatility": {
-          "cat_era": 3.043,
+          "cat_era": 3.033,
           "cat_hr": 1.552,
           "cat_k": 1.741,
           "cat_ops": 2.387,
@@ -951,8 +951,8 @@
     {
       "team": "Seam heads",
       "tier": "fringe",
-      "points_back": 13.0,
-      "reachable_points": 10.0,
+      "points_back": 12.0,
+      "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
@@ -984,8 +984,8 @@
     {
       "team": "Pat",
       "tier": "rebuilding",
-      "points_back": 40.5,
-      "reachable_points": 9.0,
+      "points_back": 41.5,
+      "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
         "cat_hr",
@@ -1079,15 +1079,6 @@
       "badge": "neutral"
     },
     {
-      "team": "Seam heads",
-      "actual_points": 96.0,
-      "expected_points": 96.5,
-      "delta": -0.5,
-      "cluster_sensitivity": 95.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
       "team": "John Henry Fan Club",
       "actual_points": 57.0,
       "expected_points": 57.5,
@@ -1102,6 +1093,15 @@
       "expected_points": 45.5,
       "delta": -0.5,
       "cluster_sensitivity": 95.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Seam heads",
+      "actual_points": 97.0,
+      "expected_points": 97.0,
+      "delta": 0.0,
+      "cluster_sensitivity": 90.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1124,6 +1124,15 @@
       "badge": "neutral"
     },
     {
+      "team": "Pat",
+      "actual_points": 67.5,
+      "expected_points": 67.0,
+      "delta": 0.5,
+      "cluster_sensitivity": 95.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
       "team": "Sam",
       "actual_points": 49.0,
       "expected_points": 48.5,
@@ -1138,15 +1147,6 @@
       "expected_points": 42.5,
       "delta": 0.5,
       "cluster_sensitivity": 95.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Pat",
-      "actual_points": 68.5,
-      "expected_points": 67.5,
-      "delta": 1.0,
-      "cluster_sensitivity": 90.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1284,9 +1284,9 @@
     },
     {
       "team": "Pat",
-      "team_volatility_score": 29.99,
+      "team_volatility_score": 29.97,
       "category_volatility": {
-        "cat_era": 3.043,
+        "cat_era": 3.033,
         "cat_hr": 1.552,
         "cat_k": 1.741,
         "cat_ops": 2.387,
@@ -1318,7 +1318,7 @@
       "team": "Seam heads",
       "team_volatility_score": 26.52,
       "category_volatility": {
-        "cat_era": 2.546,
+        "cat_era": 2.548,
         "cat_hr": 1.461,
         "cat_k": 0.74,
         "cat_ops": 2.213,
