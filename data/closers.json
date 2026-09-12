@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-11",
-  "snapshot_date": "2026-09-11",
+  "generated": "2026-09-12",
+  "snapshot_date": "2026-09-12",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -13,6 +13,16 @@
       "oracle_rank": 596
     },
     {
+      "closer_name": "Cade Smith",
+      "bullpen_team": "Cleveland Guardians",
+      "dynasty_team": "Seam heads",
+      "recent_saves": 36,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 100.0,
+      "oracle_rank": 123
+    },
+    {
       "closer_name": "Riley O'Brien",
       "bullpen_team": "St. Louis Cardinals",
       "dynasty_team": "Vin Mazzaro fan club",
@@ -23,23 +33,13 @@
       "oracle_rank": 469
     },
     {
-      "closer_name": "Cade Smith",
-      "bullpen_team": "Cleveland Guardians",
-      "dynasty_team": "Seam heads",
-      "recent_saves": 35,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 100.0,
-      "oracle_rank": 123
-    },
-    {
       "closer_name": "Mason Miller",
       "bullpen_team": "San Diego Padres",
       "dynasty_team": "Sam",
-      "recent_saves": 34,
+      "recent_saves": 35,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 82.9,
+      "role_share": 83.3,
       "oracle_rank": 40
     },
     {
@@ -53,6 +53,16 @@
       "oracle_rank": 371
     },
     {
+      "closer_name": "David Bednar",
+      "bullpen_team": "New York Yankees",
+      "dynasty_team": "Philbell",
+      "recent_saves": 33,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 78.6,
+      "oracle_rank": 299
+    },
+    {
       "closer_name": "Louis Varland",
       "bullpen_team": "Toronto Blue Jays",
       "dynasty_team": "Trazadone",
@@ -61,16 +71,6 @@
       "unstable_flag": false,
       "role_share": 52.4,
       "oracle_rank": 340
-    },
-    {
-      "closer_name": "David Bednar",
-      "bullpen_team": "New York Yankees",
-      "dynasty_team": "Philbell",
-      "recent_saves": 32,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 78.0,
-      "oracle_rank": 299
     },
     {
       "closer_name": "Jhoan Duran",
@@ -146,10 +146,10 @@
       "closer_name": "Kenley Jansen",
       "bullpen_team": "Detroit Tigers",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 18,
+      "recent_saves": 19,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 69.2,
+      "role_share": 70.4,
       "oracle_rank": 597
     },
     {
@@ -189,7 +189,7 @@
       "recent_saves": 12,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 37.5,
+      "role_share": 36.4,
       "oracle_rank": 1161
     },
     {
@@ -199,7 +199,7 @@
       "recent_saves": 12,
       "confidence_score": 90.0,
       "unstable_flag": true,
-      "role_share": 44.4,
+      "role_share": 41.4,
       "oracle_rank": 530
     },
     {
@@ -209,7 +209,7 @@
       "recent_saves": 9,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 27.3,
+      "role_share": 26.5,
       "oracle_rank": 896
     },
     {
@@ -329,10 +329,10 @@
         "closer_name": "Kenley Jansen",
         "bullpen_team": "Detroit Tigers",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 18,
+        "recent_saves": 19,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 69.2,
+        "role_share": 70.4,
         "oracle_rank": 597
       },
       {
@@ -354,6 +354,48 @@
         "unstable_flag": false,
         "role_share": 56.4,
         "oracle_rank": 680
+      }
+    ],
+    "Seam heads": [
+      {
+        "closer_name": "Cade Smith",
+        "bullpen_team": "Cleveland Guardians",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 36,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 100.0,
+        "oracle_rank": 123
+      },
+      {
+        "closer_name": "Pete Fairbanks",
+        "bullpen_team": "Miami Marlins",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 18,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 62.1,
+        "oracle_rank": 514
+      },
+      {
+        "closer_name": "Andrew Kittredge",
+        "bullpen_team": "Baltimore Orioles",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 9,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 26.5,
+        "oracle_rank": 896
+      },
+      {
+        "closer_name": "Grant Taylor",
+        "bullpen_team": "Chicago White Sox",
+        "dynasty_team": "Seam heads",
+        "recent_saves": 8,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 42.1,
+        "oracle_rank": 220
       }
     ],
     "Vin Mazzaro fan club": [
@@ -378,57 +420,15 @@
         "oracle_rank": 810
       }
     ],
-    "Seam heads": [
-      {
-        "closer_name": "Cade Smith",
-        "bullpen_team": "Cleveland Guardians",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 35,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 100.0,
-        "oracle_rank": 123
-      },
-      {
-        "closer_name": "Pete Fairbanks",
-        "bullpen_team": "Miami Marlins",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 18,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 62.1,
-        "oracle_rank": 514
-      },
-      {
-        "closer_name": "Andrew Kittredge",
-        "bullpen_team": "Baltimore Orioles",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 9,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 27.3,
-        "oracle_rank": 896
-      },
-      {
-        "closer_name": "Grant Taylor",
-        "bullpen_team": "Chicago White Sox",
-        "dynasty_team": "Seam heads",
-        "recent_saves": 8,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 42.1,
-        "oracle_rank": 220
-      }
-    ],
     "Sam": [
       {
         "closer_name": "Mason Miller",
         "bullpen_team": "San Diego Padres",
         "dynasty_team": "Sam",
-        "recent_saves": 34,
+        "recent_saves": 35,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 82.9,
+        "role_share": 83.3,
         "oracle_rank": 40
       },
       {
@@ -484,6 +484,28 @@
         "oracle_rank": 115
       }
     ],
+    "Philbell": [
+      {
+        "closer_name": "David Bednar",
+        "bullpen_team": "New York Yankees",
+        "dynasty_team": "Philbell",
+        "recent_saves": 33,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 78.6,
+        "oracle_rank": 299
+      },
+      {
+        "closer_name": "Hogan Harris",
+        "bullpen_team": "Athletics",
+        "dynasty_team": "Philbell",
+        "recent_saves": 15,
+        "confidence_score": 60.0,
+        "unstable_flag": false,
+        "role_share": 46.9,
+        "oracle_rank": 617
+      }
+    ],
     "Trazadone": [
       {
         "closer_name": "Louis Varland",
@@ -504,28 +526,6 @@
         "unstable_flag": false,
         "role_share": 57.9,
         "oracle_rank": 544
-      }
-    ],
-    "Philbell": [
-      {
-        "closer_name": "David Bednar",
-        "bullpen_team": "New York Yankees",
-        "dynasty_team": "Philbell",
-        "recent_saves": 32,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 78.0,
-        "oracle_rank": 299
-      },
-      {
-        "closer_name": "Hogan Harris",
-        "bullpen_team": "Athletics",
-        "dynasty_team": "Philbell",
-        "recent_saves": 15,
-        "confidence_score": 60.0,
-        "unstable_flag": false,
-        "role_share": 46.9,
-        "oracle_rank": 617
       }
     ],
     "Pat": [
@@ -568,7 +568,7 @@
         "recent_saves": 12,
         "confidence_score": 90.0,
         "unstable_flag": true,
-        "role_share": 44.4,
+        "role_share": 41.4,
         "oracle_rank": 530
       }
     ],
