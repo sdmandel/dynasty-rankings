@@ -198,7 +198,7 @@
         },
         "cat_r": {
           "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_loss": 1.5
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -219,9 +219,9 @@
       },
       "luck": {
         "actual_points": 97.0,
-        "expected_points": 96.5,
-        "delta": 0.5,
-        "cluster_sensitivity": 95.0,
+        "expected_points": 97.0,
+        "delta": 0.0,
+        "cluster_sensitivity": 90.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -244,11 +244,11 @@
       "team": "Philbell",
       "source_team": "philbell",
       "tier": "fringe",
-      "points_back": 20.5,
+      "points_back": 20.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
+        "cat_r",
         "cat_sb"
       ],
       "category_gaps": {
@@ -273,8 +273,8 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 1.5,
+          "to_loss": 0.0
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -294,10 +294,10 @@
         }
       },
       "luck": {
-        "actual_points": 89.5,
+        "actual_points": 90.0,
         "expected_points": 89.0,
-        "delta": 0.5,
-        "cluster_sensitivity": 95.0,
+        "delta": 1.0,
+        "cluster_sensitivity": 90.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -308,7 +308,7 @@
           "cat_k": 1.02,
           "cat_ops": 2.854,
           "cat_qs": 0.833,
-          "cat_r": 2.51,
+          "cat_r": 2.511,
           "cat_rbi": 2.536,
           "cat_sb": 1.198,
           "cat_svh": 0.708,
@@ -320,11 +320,11 @@
       "team": "Vin Mazzaro fan club",
       "source_team": "Vin Mazzaro fan club",
       "tier": "holding steady",
-      "points_back": 34.5,
+      "points_back": 35.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
+        "cat_r",
         "cat_sb"
       ],
       "category_gaps": {
@@ -349,8 +349,8 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.0,
-          "to_loss": 1.0
+          "to_gain": 0.0,
+          "to_loss": 1.5
         },
         "cat_rbi": {
           "to_gain": 1.0,
@@ -370,10 +370,10 @@
         }
       },
       "luck": {
-        "actual_points": 75.5,
+        "actual_points": 75.0,
         "expected_points": 76.0,
-        "delta": -0.5,
-        "cluster_sensitivity": 95.0,
+        "delta": -1.0,
+        "cluster_sensitivity": 90.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -384,7 +384,7 @@
           "cat_k": 1.73,
           "cat_ops": 1.802,
           "cat_qs": 1.932,
-          "cat_r": 2.606,
+          "cat_r": 2.602,
           "cat_rbi": 1.953,
           "cat_sb": 1.568,
           "cat_svh": 1.205,
@@ -425,7 +425,7 @@
           "to_loss": 1.0
         },
         "cat_r": {
-          "to_gain": 1.0,
+          "to_gain": 1.5,
           "to_loss": 1.0
         },
         "cat_rbi": {
@@ -447,9 +447,9 @@
       },
       "luck": {
         "actual_points": 67.0,
-        "expected_points": 67.0,
-        "delta": 0.0,
-        "cluster_sensitivity": 100.0,
+        "expected_points": 66.5,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -962,22 +962,22 @@
     {
       "team": "Philbell",
       "tier": "fringe",
-      "points_back": 20.5,
+      "points_back": 20.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
+        "cat_r",
         "cat_sb"
       ]
     },
     {
       "team": "Vin Mazzaro fan club",
       "tier": "holding steady",
-      "points_back": 34.5,
+      "points_back": 35.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
-        "cat_hr",
+        "cat_r",
         "cat_sb"
       ]
     },
@@ -1080,10 +1080,10 @@
     },
     {
       "team": "Vin Mazzaro fan club",
-      "actual_points": 75.5,
+      "actual_points": 75.0,
       "expected_points": 76.0,
-      "delta": -0.5,
-      "cluster_sensitivity": 95.0,
+      "delta": -1.0,
+      "cluster_sensitivity": 90.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1106,11 +1106,11 @@
       "badge": "neutral"
     },
     {
-      "team": "Pat",
-      "actual_points": 67.0,
-      "expected_points": 67.0,
+      "team": "Seam heads",
+      "actual_points": 97.0,
+      "expected_points": 97.0,
       "delta": 0.0,
-      "cluster_sensitivity": 100.0,
+      "cluster_sensitivity": 90.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1124,18 +1124,9 @@
       "badge": "neutral"
     },
     {
-      "team": "Seam heads",
-      "actual_points": 97.0,
-      "expected_points": 96.5,
-      "delta": 0.5,
-      "cluster_sensitivity": 95.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
-      "team": "Philbell",
-      "actual_points": 89.5,
-      "expected_points": 89.0,
+      "team": "Pat",
+      "actual_points": 67.0,
+      "expected_points": 66.5,
       "delta": 0.5,
       "cluster_sensitivity": 95.0,
       "efficiency_score": null,
@@ -1147,6 +1138,15 @@
       "expected_points": 100.0,
       "delta": 1.0,
       "cluster_sensitivity": 80.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Philbell",
+      "actual_points": 90.0,
+      "expected_points": 89.0,
+      "delta": 1.0,
+      "cluster_sensitivity": 90.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1227,7 +1227,7 @@
         "cat_k": 1.73,
         "cat_ops": 1.802,
         "cat_qs": 1.932,
-        "cat_r": 2.606,
+        "cat_r": 2.602,
         "cat_rbi": 1.953,
         "cat_sb": 1.568,
         "cat_svh": 1.205,
@@ -1259,7 +1259,7 @@
         "cat_k": 1.02,
         "cat_ops": 2.854,
         "cat_qs": 0.833,
-        "cat_r": 2.51,
+        "cat_r": 2.511,
         "cat_rbi": 2.536,
         "cat_sb": 1.198,
         "cat_svh": 0.708,
