@@ -58,7 +58,7 @@
       ["Closer Carousel", "closers.html"],
     ] },
     { label: "Editorial", items: [
-      ["Current Power Rankings", "week23_power_rankings.html", "rankings-current"],
+      ["Current Power Rankings", "week24_power_rankings.html", "rankings-current"],
       ["Rankings Archive", "power_rankings.html", "rankings-archive"],
     ] },
   ];

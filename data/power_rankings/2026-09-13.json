@@ -1,0 +1,1774 @@
+{
+  "version": 1,
+  "week": 24,
+  "window_end": "2026-09-13",
+  "window_start": "2026-09-06",
+  "published_at": "2026-09-14T09:30:01.194284-05:00",
+  "previous_week": 23,
+  "ranking_profile": {
+    "weights": {
+      "season": 0.4,
+      "recent": 0.3,
+      "outlook": 0.25,
+      "narrative": 0.05
+    },
+    "recent_effective_n": 7.0,
+    "recent_shrink_k": 6.0
+  },
+  "source_dates": {
+    "rankings": "2026-09-14",
+    "standings": "2026-09-14T09:00:09-05:00",
+    "stats": "2026-09-14",
+    "active_projection": "2026-09-14T13:40:01+00:00"
+  },
+  "teams": [
+    {
+      "team_key": "rollie fingers",
+      "team": "Rollie Fingers",
+      "rank": 1,
+      "score": 0.8567,
+      "components": {
+        "season_signal": 0.9034,
+        "recent_signal": 0.6777,
+        "outlook_signal": 1.0,
+        "arc_signal": 0.8408
+      },
+      "previous_rank": 1,
+      "movement": 0,
+      "standings_rank": 2,
+      "roto_points": 100.0,
+      "categories": {
+        "R": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "HR": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "RBI": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "QS": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 2,
+        "current_roto_pts": 100.0,
+        "days_in_first": 46,
+        "days_in_top3": 163,
+        "best_rank": 1,
+        "worst_rank": 6,
+        "best_roto_pts": 106.5,
+        "worst_roto_pts": 68.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 0.0,
+        "category_surge_last_7": {
+          "category": "RBI",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "ERA",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 3.0,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "ERA",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 0.5,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "ERA",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 1,
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Ty France",
+          "sgp": 4.434
+        },
+        {
+          "player": "JJ Wetherholt",
+          "sgp": 2.848
+        },
+        {
+          "player": "Luis Robert Jr.",
+          "sgp": 2.546
+        }
+      ],
+      "prior_blurb": "99 standings points · Standings rank 2 · Oracle rank 1."
+    },
+    {
+      "team_key": "humongous melonheads",
+      "team": "Humongous Melonheads",
+      "rank": 2,
+      "score": 0.6885,
+      "components": {
+        "season_signal": 1.0,
+        "recent_signal": 0.6883,
+        "outlook_signal": 0.2004,
+        "arc_signal": 0.6382
+      },
+      "previous_rank": 3,
+      "movement": 1,
+      "standings_rank": 1,
+      "roto_points": 109.0,
+      "categories": {
+        "R": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "SB": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "OPS": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "ERA": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "K": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "SVH": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 1,
+        "current_roto_pts": 109.0,
+        "days_in_first": 46,
+        "days_in_top3": 110,
+        "best_rank": 1,
+        "worst_rank": 10,
+        "best_roto_pts": 112.0,
+        "worst_roto_pts": 47.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -1.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "OPS",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -2.0,
+        "category_surge_last_14": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -3.0,
+        "category_surge_last_21": {
+          "category": "WHIP",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 2,
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Ceddanne Rafaela",
+          "sgp": 3.004
+        },
+        {
+          "player": "Brent Rooker",
+          "sgp": 1.952
+        },
+        {
+          "player": "Matt Chapman",
+          "sgp": 1.637
+        }
+      ],
+      "prior_blurb": "110.5 standings points · Standings rank 1 · Oracle rank 2."
+    },
+    {
+      "team_key": "philbell",
+      "team": "Philbell",
+      "rank": 3,
+      "score": 0.6708,
+      "components": {
+        "season_signal": 0.7477,
+        "recent_signal": 0.7079,
+        "outlook_signal": 0.6208,
+        "arc_signal": 0.083
+      },
+      "previous_rank": 4,
+      "movement": 1,
+      "standings_rank": 4,
+      "roto_points": 91.0,
+      "categories": {
+        "R": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 4,
+        "current_roto_pts": 91.0,
+        "days_in_first": 3,
+        "days_in_top3": 18,
+        "best_rank": 1,
+        "worst_rank": 4,
+        "best_roto_pts": 94.5,
+        "worst_roto_pts": 82.5,
+        "snapshots_count": 172,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 3.0,
+        "category_surge_last_7": {
+          "category": "SVH",
+          "delta": 2.0
+        },
+        "category_slide_last_7": {
+          "category": "RBI",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -1.0,
+        "category_surge_last_14": {
+          "category": "SB",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "RBI",
+          "delta": -2.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -0.5,
+        "category_surge_last_21": {
+          "category": "SVH",
+          "delta": 1.5
+        },
+        "category_slide_last_21": {
+          "category": "RBI",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 4,
+      "trade_needs": [
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Shohei Ohtani",
+          "sgp": 4.356
+        },
+        {
+          "player": "Nick Kurtz",
+          "sgp": 2.374
+        },
+        {
+          "player": "Roki Sasaki",
+          "sgp": 1.535
+        }
+      ],
+      "prior_blurb": "92 standings points · Standings rank 4 · Oracle rank 5."
+    },
+    {
+      "team_key": "seam heads",
+      "team": "Seam Heads",
+      "rank": 4,
+      "score": 0.6626,
+      "components": {
+        "season_signal": 0.8235,
+        "recent_signal": 0.6068,
+        "outlook_signal": 0.4048,
+        "arc_signal": 1.0
+      },
+      "previous_rank": 2,
+      "movement": -2,
+      "standings_rank": 3,
+      "roto_points": 95.0,
+      "categories": {
+        "R": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 3,
+        "current_roto_pts": 95.0,
+        "days_in_first": 74,
+        "days_in_top3": 170,
+        "best_rank": 1,
+        "worst_rank": 5,
+        "best_roto_pts": 108.0,
+        "worst_roto_pts": 68.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -1.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "SVH",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 1.0,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "K",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 2.0,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "K",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 5,
+      "trade_needs": [
+        "fragile SP depth",
+        "needs impact bats"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Willi Castro",
+          "sgp": 1.094
+        },
+        {
+          "player": "Julio Rodriguez",
+          "sgp": 0.677
+        },
+        {
+          "player": "Julio Rodriguez",
+          "sgp": 0.677
+        }
+      ],
+      "prior_blurb": "95 standings points · Standings rank 3 · Oracle rank 4."
+    },
+    {
+      "team_key": "vin mazzaro fan club",
+      "team": "Vin Mazzaro fan club",
+      "rank": 5,
+      "score": 0.5065,
+      "components": {
+        "season_signal": 0.6178,
+        "recent_signal": 0.4779,
+        "outlook_signal": 0.4643,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 6,
+      "movement": 1,
+      "standings_rank": 5,
+      "roto_points": 74.0,
+      "categories": {
+        "R": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 5,
+        "current_roto_pts": 74.0,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 4,
+        "worst_rank": 12,
+        "best_roto_pts": 81.5,
+        "worst_roto_pts": 42.5,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -2.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_7": {
+          "category": "OPS",
+          "delta": -2.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -2.0,
+        "category_surge_last_14": {
+          "category": "SB",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "OPS",
+          "delta": -2.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -2.0,
+        "category_surge_last_21": {
+          "category": "SB",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "OPS",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 7,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth",
+        "surplus SB"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Trent Grisham",
+          "sgp": 1.679
+        },
+        {
+          "player": "Esmerlyn Valdez",
+          "sgp": 1.638
+        },
+        {
+          "player": "Colt Emerson",
+          "sgp": 1.475
+        }
+      ],
+      "prior_blurb": "74 standings points · Standings rank 5 · Oracle rank 7."
+    },
+    {
+      "team_key": "pat",
+      "team": "Pat",
+      "rank": 6,
+      "score": 0.4558,
+      "components": {
+        "season_signal": 0.5379,
+        "recent_signal": 0.56,
+        "outlook_signal": 0.2898,
+        "arc_signal": 0.0038
+      },
+      "previous_rank": 5,
+      "movement": -1,
+      "standings_rank": 6,
+      "roto_points": 69.0,
+      "categories": {
+        "R": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 11.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 6,
+        "current_roto_pts": 69.0,
+        "days_in_first": 0,
+        "days_in_top3": 1,
+        "best_rank": 3,
+        "worst_rank": 12,
+        "best_roto_pts": 79.0,
+        "worst_roto_pts": 42.5,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 1.5,
+        "category_surge_last_7": {
+          "category": "OPS",
+          "delta": 2.0
+        },
+        "category_slide_last_7": {
+          "category": "WHIP",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 5.5,
+        "category_surge_last_14": {
+          "category": "OPS",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "HR",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 6.5,
+        "category_surge_last_21": {
+          "category": "OPS",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": 0.0
+        }
+      },
+      "oracle_rank": 10,
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Andy Pages",
+          "sgp": 1.994
+        },
+        {
+          "player": "Jack Flaherty",
+          "sgp": 1.827
+        },
+        {
+          "player": "Blaze Jordan",
+          "sgp": 0.97
+        }
+      ],
+      "prior_blurb": "67 standings points · Standings rank 6 · Oracle rank 10."
+    },
+    {
+      "team_key": "john henry fan club",
+      "team": "John Henry Fan Club",
+      "rank": 7,
+      "score": 0.4454,
+      "components": {
+        "season_signal": 0.433,
+        "recent_signal": 0.5116,
+        "outlook_signal": 0.4713,
+        "arc_signal": 0.0191
+      },
+      "previous_rank": 7,
+      "movement": 0,
+      "standings_rank": 7,
+      "roto_points": 58.0,
+      "categories": {
+        "R": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 10.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 9.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 7,
+        "current_roto_pts": 58.0,
+        "days_in_first": 0,
+        "days_in_top3": 5,
+        "best_rank": 3,
+        "worst_rank": 10,
+        "best_roto_pts": 82.5,
+        "worst_roto_pts": 55.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 1.5,
+        "category_surge_last_7": {
+          "category": "RBI",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "HR",
+          "delta": -0.5
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 0.5,
+        "category_surge_last_14": {
+          "category": "RBI",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "WHIP",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 3.0,
+        "category_surge_last_21": {
+          "category": "OPS",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": 0.0
+        }
+      },
+      "oracle_rank": 3,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Rafael Devers",
+          "sgp": 2.649
+        },
+        {
+          "player": "Jazz Chisholm Jr.",
+          "sgp": 1.945
+        },
+        {
+          "player": "Rhys Hoskins",
+          "sgp": 1.729
+        }
+      ],
+      "prior_blurb": "56 standings points · Standings rank 7 · Oracle rank 3."
+    },
+    {
+      "team_key": "jonesin",
+      "team": "Jonesin'",
+      "rank": 8,
+      "score": 0.4019,
+      "components": {
+        "season_signal": 0.325,
+        "recent_signal": 0.5808,
+        "outlook_signal": 0.3908,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 9,
+      "movement": 1,
+      "standings_rank": 12,
+      "roto_points": 25.0,
+      "categories": {
+        "R": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "HR": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "WHIP": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 12,
+        "current_roto_pts": 25.0,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 8,
+        "worst_rank": 12,
+        "best_roto_pts": 56.0,
+        "worst_roto_pts": 26.5,
+        "snapshots_count": 172,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 5.0,
+        "category_surge_last_7": {
+          "category": "RBI",
+          "delta": 2.0
+        },
+        "category_slide_last_7": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 4.0,
+        "category_surge_last_14": {
+          "category": "HR",
+          "delta": 1.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 5.0,
+        "category_surge_last_21": {
+          "category": "RBI",
+          "delta": 2.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": 0.0
+        }
+      },
+      "oracle_rank": 6,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Maikel Garcia",
+          "sgp": 3.174
+        },
+        {
+          "player": "Dalton Rushing",
+          "sgp": 1.504
+        },
+        {
+          "player": "Marcelo Mayer",
+          "sgp": 1.079
+        }
+      ],
+      "prior_blurb": "21 standings points · Standings rank 12 · Oracle rank 6."
+    },
+    {
+      "team_key": "trazadone",
+      "team": "Trazadone",
+      "rank": 9,
+      "score": 0.2901,
+      "components": {
+        "season_signal": 0.1932,
+        "recent_signal": 0.3839,
+        "outlook_signal": 0.3893,
+        "arc_signal": 0.0076
+      },
+      "previous_rank": 12,
+      "movement": 3,
+      "standings_rank": 10,
+      "roto_points": 43.0,
+      "categories": {
+        "R": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "RBI": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 10,
+        "current_roto_pts": 43.0,
+        "days_in_first": 0,
+        "days_in_top3": 2,
+        "best_rank": 3,
+        "worst_rank": 11,
+        "best_roto_pts": 80.0,
+        "worst_roto_pts": 30.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": 1.0,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "HR",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -1.0,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_14": {
+          "category": "HR",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": 2.5,
+        "category_surge_last_21": {
+          "category": "RBI",
+          "delta": 1.5
+        },
+        "category_slide_last_21": {
+          "category": "HR",
+          "delta": -1.0
+        }
+      },
+      "oracle_rank": 9,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Brendan Donovan",
+          "sgp": 2.544
+        },
+        {
+          "player": "Curtis Mead",
+          "sgp": 0.91
+        },
+        {
+          "player": "Keider Montero",
+          "sgp": 0.665
+        }
+      ],
+      "prior_blurb": "42 standings points · Standings rank 10 · Oracle rank 9."
+    },
+    {
+      "team_key": "sam",
+      "team": "Sam",
+      "rank": 10,
+      "score": 0.2804,
+      "components": {
+        "season_signal": 0.3197,
+        "recent_signal": 0.4139,
+        "outlook_signal": 0.1134,
+        "arc_signal": 0.0
+      },
+      "previous_rank": 8,
+      "movement": -2,
+      "standings_rank": 8,
+      "roto_points": 45.0,
+      "categories": {
+        "R": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 8.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 2.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 12.0,
+          "leader": true,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 8,
+        "current_roto_pts": 45.0,
+        "days_in_first": 0,
+        "days_in_top3": 0,
+        "best_rank": 5,
+        "worst_rank": 11,
+        "best_roto_pts": 70.5,
+        "worst_roto_pts": 43.5,
+        "snapshots_count": 171,
+        "rank_change_last_7": 1,
+        "points_change_last_7": -3.0,
+        "category_surge_last_7": {
+          "category": "OPS",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "ERA",
+          "delta": -2.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -6.0,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_14": {
+          "category": "SB",
+          "delta": -2.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -9.0,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 0.0
+        },
+        "category_slide_last_21": {
+          "category": "RBI",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 11,
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Masataka Yoshida",
+          "sgp": 1.231
+        },
+        {
+          "player": "Hyeseong Kim",
+          "sgp": 0.697
+        },
+        {
+          "player": "Jake Meyers",
+          "sgp": 0.62
+        }
+      ],
+      "prior_blurb": "49.5 standings points · Standings rank 8 · Oracle rank 11."
+    },
+    {
+      "team_key": "mommy",
+      "team": "Mommy",
+      "rank": 11,
+      "score": 0.2201,
+      "components": {
+        "season_signal": 0.0674,
+        "recent_signal": 0.2748,
+        "outlook_signal": 0.442,
+        "arc_signal": 0.0038
+      },
+      "previous_rank": 11,
+      "movement": 0,
+      "standings_rank": 11,
+      "roto_points": 27.0,
+      "categories": {
+        "R": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "SB": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "OPS": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "QS": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "ERA": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "K": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "SVH": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 11,
+        "current_roto_pts": 27.0,
+        "days_in_first": 0,
+        "days_in_top3": 1,
+        "best_rank": 3,
+        "worst_rank": 12,
+        "best_roto_pts": 77.5,
+        "worst_roto_pts": 19.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": 0,
+        "points_change_last_7": -0.5,
+        "category_surge_last_7": {
+          "category": "R",
+          "delta": 0.5
+        },
+        "category_slide_last_7": {
+          "category": "RBI",
+          "delta": -1.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": 1.0,
+        "category_surge_last_14": {
+          "category": "R",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "SB",
+          "delta": -1.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -1.0,
+        "category_surge_last_21": {
+          "category": "R",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "RBI",
+          "delta": -1.5
+        }
+      },
+      "oracle_rank": 12,
+      "trade_needs": [
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Dansby Swanson",
+          "sgp": 2.713
+        },
+        {
+          "player": "Willy Adames",
+          "sgp": 2.184
+        },
+        {
+          "player": "Spencer Steer",
+          "sgp": 2.064
+        }
+      ],
+      "prior_blurb": "26.5 standings points · Standings rank 11 · Oracle rank 12."
+    },
+    {
+      "team_key": "millville meteors",
+      "team": "Millville Meteors",
+      "rank": 12,
+      "score": 0.1393,
+      "components": {
+        "season_signal": 0.2564,
+        "recent_signal": 0.1184,
+        "outlook_signal": 0.0,
+        "arc_signal": 0.0238
+      },
+      "previous_rank": 10,
+      "movement": -2,
+      "standings_rank": 9,
+      "roto_points": 44.0,
+      "categories": {
+        "R": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        },
+        "HR": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "RBI": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "SB": {
+          "pts": 1.0,
+          "leader": false,
+          "last": true
+        },
+        "OPS": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "QS": {
+          "pts": 7.0,
+          "leader": false,
+          "last": false
+        },
+        "ERA": {
+          "pts": 6.0,
+          "leader": false,
+          "last": false
+        },
+        "WHIP": {
+          "pts": 4.0,
+          "leader": false,
+          "last": false
+        },
+        "K": {
+          "pts": 5.0,
+          "leader": false,
+          "last": false
+        },
+        "SVH": {
+          "pts": 3.0,
+          "leader": false,
+          "last": false
+        }
+      },
+      "season_arc": {
+        "season": 2026,
+        "latest_snapshot_date": "2026-09-14",
+        "current_rank": 9,
+        "current_roto_pts": 44.0,
+        "days_in_first": 1,
+        "days_in_top3": 5,
+        "best_rank": 1,
+        "worst_rank": 12,
+        "best_roto_pts": 81.0,
+        "worst_roto_pts": 34.0,
+        "snapshots_count": 171,
+        "rank_change_last_7": -1,
+        "points_change_last_7": -4.5,
+        "category_surge_last_7": {
+          "category": "ERA",
+          "delta": 1.0
+        },
+        "category_slide_last_7": {
+          "category": "OPS",
+          "delta": -2.0
+        },
+        "rank_change_last_14": 0,
+        "points_change_last_14": -3.0,
+        "category_surge_last_14": {
+          "category": "ERA",
+          "delta": 2.0
+        },
+        "category_slide_last_14": {
+          "category": "R",
+          "delta": -2.0
+        },
+        "rank_change_last_21": 0,
+        "points_change_last_21": -4.0,
+        "category_surge_last_21": {
+          "category": "ERA",
+          "delta": 1.0
+        },
+        "category_slide_last_21": {
+          "category": "R",
+          "delta": -2.0
+        }
+      },
+      "oracle_rank": 8,
+      "trade_needs": [
+        "needs saves",
+        "fragile SP depth"
+      ],
+      "outlook_contributors": [
+        {
+          "player": "Carson Williams",
+          "sgp": 0.923
+        },
+        {
+          "player": "Jhostynxon Garcia",
+          "sgp": 0.649
+        },
+        {
+          "player": "Brandon Woodruff",
+          "sgp": -0.147
+        }
+      ],
+      "prior_blurb": "47.5 standings points · Standings rank 9 · Oracle rank 8."
+    }
+  ],
+  "player_details": {
+    "shohei ohtani": {
+      "rank": 5,
+      "age": 32,
+      "level": "MLB"
+    },
+    "julio rodriguez": {
+      "rank": 11,
+      "age": 26,
+      "level": "MLB"
+    },
+    "nick kurtz": {
+      "rank": 29,
+      "age": 24,
+      "level": "MLB"
+    },
+    "jazz chisholm": {
+      "rank": 34,
+      "age": 29,
+      "level": "MLB"
+    },
+    "jj wetherholt": {
+      "rank": 44,
+      "age": 24,
+      "level": "MLB"
+    },
+    "rafael devers": {
+      "rank": 49,
+      "age": 30,
+      "level": "MLB"
+    },
+    "maikel garcia": {
+      "rank": 63,
+      "age": 26,
+      "level": "MLB"
+    },
+    "andy pages": {
+      "rank": 72,
+      "age": 26,
+      "level": "MLB"
+    },
+    "colt emerson": {
+      "rank": 98,
+      "age": 21,
+      "level": "MLB"
+    },
+    "ceddanne rafaela": {
+      "rank": 113,
+      "age": 26,
+      "level": "MLB"
+    },
+    "brent rooker": {
+      "rank": 139,
+      "age": 32,
+      "level": "MLB"
+    },
+    "marcelo mayer": {
+      "rank": 192,
+      "age": 24,
+      "level": "MLB"
+    },
+    "roki sasaki": {
+      "rank": 198,
+      "age": 25,
+      "level": "MLB"
+    },
+    "esmerlyn valdez": {
+      "rank": 214,
+      "age": 23,
+      "level": "MLB"
+    },
+    "willy adames": {
+      "rank": 225,
+      "age": 31,
+      "level": "MLB"
+    },
+    "luis robert": {
+      "rank": 228,
+      "age": 29,
+      "level": "MLB"
+    },
+    "dalton rushing": {
+      "rank": 241,
+      "age": 26,
+      "level": "MLB"
+    },
+    "carson williams": {
+      "rank": 367,
+      "age": 23,
+      "level": "MLB"
+    },
+    "brandon woodruff": {
+      "rank": 369,
+      "age": 34,
+      "level": "MLB"
+    },
+    "brendan donovan": {
+      "rank": 373,
+      "age": 30,
+      "level": "MLB"
+    },
+    "dansby swanson": {
+      "rank": 379,
+      "age": 33,
+      "level": "MLB"
+    },
+    "matt chapman": {
+      "rank": 392,
+      "age": 33,
+      "level": "MLB"
+    },
+    "spencer steer": {
+      "rank": 414,
+      "age": 29,
+      "level": "MLB"
+    },
+    "trent grisham": {
+      "rank": 416,
+      "age": 30,
+      "level": "MLB"
+    },
+    "jack flaherty": {
+      "rank": 439,
+      "age": 31,
+      "level": "MLB"
+    },
+    "curtis mead": {
+      "rank": 497,
+      "age": 26,
+      "level": "MLB"
+    },
+    "willi castro": {
+      "rank": 551,
+      "age": 29,
+      "level": "MLB"
+    },
+    "blaze jordan": {
+      "rank": 578,
+      "age": 24,
+      "level": "MLB"
+    },
+    "jhostynxon garcia": {
+      "rank": 597,
+      "age": 24,
+      "level": "MLB"
+    },
+    "keider montero": {
+      "rank": 628,
+      "age": 26,
+      "level": "MLB"
+    },
+    "jake meyers": {
+      "rank": 784,
+      "age": 30,
+      "level": "MLB"
+    },
+    "hyeseong kim": {
+      "rank": 819,
+      "age": 28,
+      "level": "MLB"
+    },
+    "rhys hoskins": {
+      "rank": 820,
+      "age": 34,
+      "level": "MLB"
+    },
+    "ty france": {
+      "rank": 875,
+      "age": 32,
+      "level": "MLB"
+    },
+    "masataka yoshida": {
+      "rank": 1493,
+      "age": 33,
+      "level": "MLB"
+    }
+  },
+  "snapshot_id": "395073f7c57bfcfe471b7ee17933b4bb2c9c6f18f15659f19250009607dd7e5b"
+}
