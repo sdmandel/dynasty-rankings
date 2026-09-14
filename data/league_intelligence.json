@@ -21,7 +21,7 @@
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_ops"
+        "cat_k"
       ],
       "category_gaps": {
         "cat_era": {
@@ -34,7 +34,7 @@
         },
         "cat_k": {
           "to_gain": null,
-          "to_loss": 1.5
+          "to_loss": 1.0
         },
         "cat_ops": {
           "to_gain": 1.0,
@@ -67,9 +67,9 @@
       },
       "luck": {
         "actual_points": 109.0,
-        "expected_points": 107.0,
-        "delta": 2.0,
-        "cluster_sensitivity": 70.0,
+        "expected_points": 106.5,
+        "delta": 2.5,
+        "cluster_sensitivity": 75.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -109,7 +109,7 @@
           "to_loss": 1.0
         },
         "cat_k": {
-          "to_gain": 1.5,
+          "to_gain": 1.0,
           "to_loss": 1.0
         },
         "cat_ops": {
@@ -143,9 +143,9 @@
       },
       "luck": {
         "actual_points": 100.0,
-        "expected_points": 98.0,
-        "delta": 2.0,
-        "cluster_sensitivity": 80.0,
+        "expected_points": 98.5,
+        "delta": 1.5,
+        "cluster_sensitivity": 85.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -168,7 +168,7 @@
       "team": "Seam heads",
       "source_team": "Seam heads",
       "tier": "fringe",
-      "points_back": 13.5,
+      "points_back": 14.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
@@ -185,8 +185,8 @@
           "to_loss": 1.0
         },
         "cat_k": {
-          "to_gain": 1.5,
-          "to_loss": 0.0
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_ops": {
           "to_gain": 1.0,
@@ -218,10 +218,10 @@
         }
       },
       "luck": {
-        "actual_points": 95.5,
+        "actual_points": 95.0,
         "expected_points": 94.5,
-        "delta": 1.0,
-        "cluster_sensitivity": 90.0,
+        "delta": 0.5,
+        "cluster_sensitivity": 95.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -320,7 +320,7 @@
       "team": "Vin Mazzaro fan club",
       "source_team": "Vin Mazzaro fan club",
       "tier": "holding steady",
-      "points_back": 35.5,
+      "points_back": 35.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -337,8 +337,8 @@
           "to_loss": 1.0
         },
         "cat_k": {
-          "to_gain": 0.0,
-          "to_loss": 1.5
+          "to_gain": 1.0,
+          "to_loss": 1.0
         },
         "cat_ops": {
           "to_gain": 1.0,
@@ -370,10 +370,10 @@
         }
       },
       "luck": {
-        "actual_points": 73.5,
+        "actual_points": 74.0,
         "expected_points": 74.0,
-        "delta": -0.5,
-        "cluster_sensitivity": 95.0,
+        "delta": 0.0,
+        "cluster_sensitivity": 100.0,
         "efficiency_score": null
       },
       "volatility": {
@@ -381,7 +381,7 @@
         "category_volatility": {
           "cat_era": 2.07,
           "cat_hr": 1.579,
-          "cat_k": 1.725,
+          "cat_k": 1.727,
           "cat_ops": 1.797,
           "cat_qs": 1.928,
           "cat_r": 2.6,
@@ -934,7 +934,7 @@
       "tight_categories": [
         "cat_era",
         "cat_hr",
-        "cat_ops"
+        "cat_k"
       ]
     },
     {
@@ -951,7 +951,7 @@
     {
       "team": "Seam heads",
       "tier": "fringe",
-      "points_back": 13.5,
+      "points_back": 14.0,
       "reachable_points": 9.0,
       "tight_categories": [
         "cat_era",
@@ -973,7 +973,7 @@
     {
       "team": "Vin Mazzaro fan club",
       "tier": "holding steady",
-      "points_back": 35.5,
+      "points_back": 35.0,
       "reachable_points": 10.0,
       "tight_categories": [
         "cat_era",
@@ -1079,15 +1079,6 @@
       "badge": "neutral"
     },
     {
-      "team": "Vin Mazzaro fan club",
-      "actual_points": 73.5,
-      "expected_points": 74.0,
-      "delta": -0.5,
-      "cluster_sensitivity": 95.0,
-      "efficiency_score": null,
-      "badge": "neutral"
-    },
-    {
       "team": "John Henry Fan Club",
       "actual_points": 58.0,
       "expected_points": 58.5,
@@ -1124,11 +1115,29 @@
       "badge": "neutral"
     },
     {
+      "team": "Vin Mazzaro fan club",
+      "actual_points": 74.0,
+      "expected_points": 74.0,
+      "delta": 0.0,
+      "cluster_sensitivity": 100.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
       "team": "Pat",
       "actual_points": 69.0,
       "expected_points": 69.0,
       "delta": 0.0,
       "cluster_sensitivity": 100.0,
+      "efficiency_score": null,
+      "badge": "neutral"
+    },
+    {
+      "team": "Seam heads",
+      "actual_points": 95.0,
+      "expected_points": 94.5,
+      "delta": 0.5,
+      "cluster_sensitivity": 95.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
@@ -1142,29 +1151,20 @@
       "badge": "neutral"
     },
     {
-      "team": "Seam heads",
-      "actual_points": 95.5,
-      "expected_points": 94.5,
-      "delta": 1.0,
-      "cluster_sensitivity": 90.0,
+      "team": "Rollie Fingers",
+      "actual_points": 100.0,
+      "expected_points": 98.5,
+      "delta": 1.5,
+      "cluster_sensitivity": 85.0,
       "efficiency_score": null,
       "badge": "neutral"
     },
     {
       "team": "Humongous Melonheads",
       "actual_points": 109.0,
-      "expected_points": 107.0,
-      "delta": 2.0,
-      "cluster_sensitivity": 70.0,
-      "efficiency_score": null,
-      "badge": "negative-variance"
-    },
-    {
-      "team": "Rollie Fingers",
-      "actual_points": 100.0,
-      "expected_points": 98.0,
-      "delta": 2.0,
-      "cluster_sensitivity": 80.0,
+      "expected_points": 106.5,
+      "delta": 2.5,
+      "cluster_sensitivity": 75.0,
       "efficiency_score": null,
       "badge": "negative-variance"
     }
@@ -1224,7 +1224,7 @@
       "category_volatility": {
         "cat_era": 2.07,
         "cat_hr": 1.579,
-        "cat_k": 1.725,
+        "cat_k": 1.727,
         "cat_ops": 1.797,
         "cat_qs": 1.928,
         "cat_r": 2.6,
