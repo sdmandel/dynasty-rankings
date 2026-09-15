@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-14",
-  "snapshot_date": "2026-09-14",
+  "generated": "2026-09-15",
+  "snapshot_date": "2026-09-15",
   "closers": [
     {
       "closer_name": "Bryan Baker",
@@ -13,6 +13,26 @@
       "oracle_rank": 592
     },
     {
+      "closer_name": "Mason Miller",
+      "bullpen_team": "San Diego Padres",
+      "dynasty_team": "Sam",
+      "recent_saves": 37,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 84.1,
+      "oracle_rank": 45
+    },
+    {
+      "closer_name": "Riley O'Brien",
+      "bullpen_team": "St. Louis Cardinals",
+      "dynasty_team": "Vin Mazzaro fan club",
+      "recent_saves": 37,
+      "confidence_score": 90.0,
+      "unstable_flag": false,
+      "role_share": 86.0,
+      "oracle_rank": 464
+    },
+    {
       "closer_name": "Cade Smith",
       "bullpen_team": "Cleveland Guardians",
       "dynasty_team": "Seam heads",
@@ -21,26 +41,6 @@
       "unstable_flag": false,
       "role_share": 100.0,
       "oracle_rank": 156
-    },
-    {
-      "closer_name": "Mason Miller",
-      "bullpen_team": "San Diego Padres",
-      "dynasty_team": "Sam",
-      "recent_saves": 36,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 83.7,
-      "oracle_rank": 45
-    },
-    {
-      "closer_name": "Riley O'Brien",
-      "bullpen_team": "St. Louis Cardinals",
-      "dynasty_team": "Vin Mazzaro fan club",
-      "recent_saves": 36,
-      "confidence_score": 90.0,
-      "unstable_flag": false,
-      "role_share": 85.7,
-      "oracle_rank": 464
     },
     {
       "closer_name": "Aroldis Chapman",
@@ -59,7 +59,7 @@
       "recent_saves": 34,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 79.1,
+      "role_share": 75.6,
       "oracle_rank": 262
     },
     {
@@ -146,10 +146,10 @@
       "closer_name": "Kenley Jansen",
       "bullpen_team": "Detroit Tigers",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 19,
+      "recent_saves": 20,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 70.4,
+      "role_share": 71.4,
       "oracle_rank": 612
     },
     {
@@ -209,7 +209,7 @@
       "recent_saves": 9,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 26.5,
+      "role_share": 25.7,
       "oracle_rank": 916
     },
     {
@@ -226,10 +226,10 @@
       "closer_name": "Ben Joyce",
       "bullpen_team": "Los Angeles Angels",
       "dynasty_team": "Humongous Melonheads",
-      "recent_saves": 4,
+      "recent_saves": 5,
       "confidence_score": 90.0,
       "unstable_flag": false,
-      "role_share": 44.4,
+      "role_share": 50.0,
       "oracle_rank": 472
     },
     {
@@ -329,20 +329,20 @@
         "closer_name": "Kenley Jansen",
         "bullpen_team": "Detroit Tigers",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 19,
+        "recent_saves": 20,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 70.4,
+        "role_share": 71.4,
         "oracle_rank": 612
       },
       {
         "closer_name": "Ben Joyce",
         "bullpen_team": "Los Angeles Angels",
         "dynasty_team": "Humongous Melonheads",
-        "recent_saves": 4,
+        "recent_saves": 5,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 44.4,
+        "role_share": 50.0,
         "oracle_rank": 472
       },
       {
@@ -354,6 +354,40 @@
         "unstable_flag": false,
         "role_share": 56.4,
         "oracle_rank": 681
+      }
+    ],
+    "Sam": [
+      {
+        "closer_name": "Mason Miller",
+        "bullpen_team": "San Diego Padres",
+        "dynasty_team": "Sam",
+        "recent_saves": 37,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 84.1,
+        "oracle_rank": 45
+      },
+      {
+        "closer_name": "Gregory Soto",
+        "bullpen_team": "Pittsburgh Pirates",
+        "dynasty_team": "Sam",
+        "recent_saves": 14,
+        "confidence_score": 90.0,
+        "unstable_flag": true,
+        "role_share": 38.9,
+        "oracle_rank": 685
+      }
+    ],
+    "Vin Mazzaro fan club": [
+      {
+        "closer_name": "Riley O'Brien",
+        "bullpen_team": "St. Louis Cardinals",
+        "dynasty_team": "Vin Mazzaro fan club",
+        "recent_saves": 37,
+        "confidence_score": 90.0,
+        "unstable_flag": false,
+        "role_share": 86.0,
+        "oracle_rank": 464
       }
     ],
     "Seam heads": [
@@ -384,42 +418,8 @@
         "recent_saves": 9,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 26.5,
+        "role_share": 25.7,
         "oracle_rank": 916
-      }
-    ],
-    "Sam": [
-      {
-        "closer_name": "Mason Miller",
-        "bullpen_team": "San Diego Padres",
-        "dynasty_team": "Sam",
-        "recent_saves": 36,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 83.7,
-        "oracle_rank": 45
-      },
-      {
-        "closer_name": "Gregory Soto",
-        "bullpen_team": "Pittsburgh Pirates",
-        "dynasty_team": "Sam",
-        "recent_saves": 14,
-        "confidence_score": 90.0,
-        "unstable_flag": true,
-        "role_share": 38.9,
-        "oracle_rank": 685
-      }
-    ],
-    "Vin Mazzaro fan club": [
-      {
-        "closer_name": "Riley O'Brien",
-        "bullpen_team": "St. Louis Cardinals",
-        "dynasty_team": "Vin Mazzaro fan club",
-        "recent_saves": 36,
-        "confidence_score": 90.0,
-        "unstable_flag": false,
-        "role_share": 85.7,
-        "oracle_rank": 464
       }
     ],
     "Rollie Fingers": [
@@ -472,7 +472,7 @@
         "recent_saves": 34,
         "confidence_score": 90.0,
         "unstable_flag": false,
-        "role_share": 79.1,
+        "role_share": 75.6,
         "oracle_rank": 262
       },
       {
