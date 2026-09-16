@@ -23,3 +23,5 @@ In the combined workspace, start with `../CONTEXT.md` and parent `AGENTS.md`.
 
 For the September 2026 audit and repair checkpoint, see
 `../docs/audit-2026-09-05.md` (in the bot repository).
+
+Power-ranking editorial policy (September 15): current ranks only, no prior-week/issue comparisons or movement badges/arrows. Never expose methodology, weights, data sources, frozen snapshots, drafting, or production notes. Footnotes contain the publication date only. Applies to Week 24 and all future articles; historical examples are not permission to restore these elements.
