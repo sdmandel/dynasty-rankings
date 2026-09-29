@@ -261,6 +261,31 @@
   text-transform: uppercase;
 }
 
+.season-rank-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: -3px 0 15px;
+}
+
+.season-rank-pills > span {
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .025em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.season-rank-pills strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
 .award h3 {
   margin: 0 0 15px;
   color: var(--text);
@@ -285,6 +310,17 @@
   margin-top: 13px;
   color: var(--text-muted);
   font-size: 11px;
+}
+
+#record-book .record::before {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  content: "League record";
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
 .record-list {
