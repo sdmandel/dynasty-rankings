@@ -58,6 +58,7 @@
       ["Closer Carousel", "closers.html"],
     ] },
     { label: "Editorial", items: [
+      ["2026 Season Recap", "season_2026.html"],
       ["Current Power Rankings", "week24_power_rankings.html", "rankings-current"],
       ["Rankings Archive", "power_rankings.html", "rankings-archive"],
     ] },

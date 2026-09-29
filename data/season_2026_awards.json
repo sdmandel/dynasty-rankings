@@ -1,0 +1,330 @@
+{
+  "standings": {
+    "league": "Backyard Dynasty Baseball",
+    "coverage": {
+      "start": "2026-03-27",
+      "end": "2026-09-27",
+      "recorded_dates": 184,
+      "calendar_dates": 185,
+      "missing_dates": [
+        "2026-04-15"
+      ]
+    },
+    "methodology": [
+      "Use the latest archived snapshot on each recorded date, with no interpolation.",
+      "Points are cumulative roto standings points, not player fantasy production or points scored within a week. Changes measure movement in the standings.",
+      "Seven-day changes compare exact calendar-date endpoints, not seven rows. Intervening missing dates do not invalidate a measured endpoint change.",
+      "Daily movements compare exactly adjacent calendar dates; Apr14\u2192Apr16 is excluded.",
+      "Months compare the last snapshot of the previous month to month end; September ends Sep27. March is only a partial opening sample and is excluded from monthly awards.",
+      "Displayed ranks are archived order, including arbitrary or externally defined ordering among equal point totals. Do not infer a tiebreak rule.",
+      "Days-in-first and top-three counts mean observed daily snapshots. They exclude missing Apr15 and do not measure intraday time.",
+      "A personal highlight is a supported team milestone, not an assertion of unique league superiority.",
+      "Least lineup changes cannot be determined from standings snapshots. Requires separate lineup-history coverage and a definition of change."
+    ],
+    "caveats": [
+      "Final snapshot has Seam heads and Rollie Fingers tied at 98 points, with archived displayed ranks 2 and 3. Also Millville Meteors and Sam tie at 44 points, displayed ranks 8 and 9. Preserve display order without inventing a tiebreak explanation.",
+      "Beginning Mar27 may exclude an earlier real opening-day result if the archive starts late; phrase start-to-finish using the archive date range.",
+      "Large early-season point changes reflect volatile cumulative category standings."
+    ],
+    "balanced_awards": [
+      {
+        "team": "Humongous Melonheads",
+        "title": "From Tenth to the Throne",
+        "kind": "league_superlative",
+        "stat": "+64 points",
+        "description": "Started 10th. Finished champion. The league\u2019s biggest start-to-finish climb ended with 111 points.",
+        "method": "Last snapshot minus first snapshot; +64 points and 9 displayed places, both outright league records.",
+        "start": "2026-03-27",
+        "end": "2026-09-27"
+      },
+      {
+        "team": "Seam heads",
+        "title": "The Pace Setter",
+        "kind": "league_superlative",
+        "stat": "74 days in first",
+        "description": "More recorded days at No. 1 than anyone else\u2014and a podium spot on 183 of 184 recorded dates.",
+        "method": "Count archived displayed rank 1 and rank <=3. Missing Apr15 is not counted.",
+        "observed_days": 74,
+        "denominator": 184
+      },
+      {
+        "team": "Rollie Fingers",
+        "title": "Steady on the Podium",
+        "kind": "league_superlative",
+        "stat": "176 podium days",
+        "description": "The league\u2019s steadiest displayed rank, with a top-three spot on 176 recorded dates.",
+        "method": "Lowest population standard deviation of archived displayed ranks over 184 dates: 0.7623432933. Podium count itself is second-highest.",
+        "rank_standard_deviation": 0.7623432932651729,
+        "observed_days": 176,
+        "denominator": 184
+      },
+      {
+        "team": "Philbell",
+        "title": "April Belonged to Philbell",
+        "kind": "league_superlative",
+        "stat": "+26 in April",
+        "description": "Nobody gained more standings points in April. June belonged to Philbell, too: another league-best +11.",
+        "method": "Month-end points minus previous month-end points: Mar31\u2192Apr30 and May31\u2192Jun30.",
+        "start": "2026-03-31",
+        "end": "2026-04-30"
+      },
+      {
+        "team": "Vin Mazzaro fan club",
+        "title": "The Long Climb",
+        "kind": "personal_highlight",
+        "stat": "12th \u2192 5th",
+        "description": "From 12th in early April to a fifth-place finish, recovering 31.5 points from the season low.",
+        "method": "Worst archived rank was 12; minimum points 42.5; final rank 5 and points 74. Personal recovery; not claimed as the largest in the league.",
+        "end": "2026-09-27"
+      },
+      {
+        "team": "Pat",
+        "title": "Seven-Day Surge",
+        "kind": "league_superlative",
+        "stat": "+29 in 7 days",
+        "description": "The season\u2019s biggest seven-day points gain: 11th to fifth in one week.",
+        "method": "Compare pairs of snapshots exactly 7 calendar days apart. Mar30 42.5 points, rank11 \u2192 Apr6 71.5 points, rank5.",
+        "start": "2026-03-30",
+        "end": "2026-04-06"
+      },
+      {
+        "team": "John Henry Fan Club",
+        "title": "The Express Elevator",
+        "kind": "shared_league_superlative",
+        "stat": "\u2191 7 places",
+        "description": "Tenth to third in seven days\u2014tied with Trazadone for the season\u2019s biggest one-week rank climb.",
+        "method": "Maximum displayed-rank improvement between dates exactly 7 calendar days apart. Both winners gain 7 places.",
+        "start": "2026-03-29",
+        "end": "2026-04-05",
+        "tied_with": [
+          "Trazadone"
+        ]
+      },
+      {
+        "team": "Millville Meteors",
+        "title": "Meteoric Rise",
+        "kind": "league_superlative",
+        "stat": "\u2191 8 places overnight",
+        "description": "Eleventh to third in a day. A 31-point burst delivered the biggest daily leap in both points and places.",
+        "method": "Compare consecutive calendar-date snapshots. Mar27 46.5 points, rank11 \u2192 Mar28 77.5 points, rank3.",
+        "start": "2026-03-27",
+        "end": "2026-03-28"
+      },
+      {
+        "team": "Sam",
+        "title": "May Magic",
+        "kind": "personal_highlight",
+        "stat": "+17.5 in 7 days",
+        "description": "A 17.5-point burst from May 14\u201321 was Sam\u2019s best week of the season.",
+        "method": "Maximum personal points improvement between dates exactly 7 calendar days apart; not presented as the full-season league record.",
+        "start": "2026-05-14",
+        "end": "2026-05-21"
+      },
+      {
+        "team": "Trazadone",
+        "title": "The Scenic Route",
+        "kind": "league_superlative",
+        "stat": "68 places traveled",
+        "description": "The busiest line on the atlas: 68 places of daily movement, plus a shared record seven-place weekly climb.",
+        "method": "Sum absolute displayed-rank changes between consecutive calendar dates. Excludes Apr14\u2192Apr16 because Apr15 is missing. 49 rank-changing daily intervals, also league-high.",
+        "daily_places_traveled": 68,
+        "rank_changing_intervals": 49
+      },
+      {
+        "team": "Jonesin'",
+        "title": "The September Spark",
+        "kind": "league_superlative",
+        "stat": "+7.5 in September",
+        "description": "The league\u2019s biggest September points gain belonged to Jonesin\u2019. Strong all the way to the finish.",
+        "method": "Sep27 standings points minus Aug31 standings points. September is measured only through the requested Sep27 cutoff.",
+        "start": "2026-08-31",
+        "end": "2026-09-27"
+      },
+      {
+        "team": "Mommy",
+        "title": "Summer Revival",
+        "kind": "personal_highlight",
+        "stat": "3 improving months",
+        "description": "June, July, and August all finished in the black: a seven-point summer recovery, including +5 in August.",
+        "method": "Points increased +1.5 in June, +0.5 in July, +5 in August, comparing month-end snapshots. Personal milestone; not a unique league record.",
+        "start": "2026-05-31",
+        "end": "2026-08-31"
+      }
+    ],
+    "extra_awards": [
+      {
+        "team": "Humongous Melonheads",
+        "title": "The Closing Argument",
+        "kind": "league_superlative",
+        "stat": "53 straight days at No. 1",
+        "description": "Led every recorded date from August 6 through September 27.",
+        "method": "Longest contiguous calendar-date streak at displayed rank 1; missing dates break streaks.",
+        "start": "2026-08-06",
+        "end": "2026-09-27"
+      },
+      {
+        "team": "Humongous Melonheads",
+        "title": "Peak of the Season",
+        "kind": "league_superlative",
+        "stat": "113 points",
+        "description": "The highest points total recorded by any team all season.",
+        "method": "Maximum points across all team-date snapshots.",
+        "dates": [
+          "2026-09-26"
+        ]
+      },
+      {
+        "team": "Humongous Melonheads",
+        "title": "Every Month Up",
+        "kind": "personal_highlight",
+        "stat": "5 improving months",
+        "description": "Added standings points in each full month from April through August.",
+        "method": "Month-end point changes Apr +6.5, May +4, Jun +2, Jul +13.5, Aug +8. September through Sep27 was flat."
+      },
+      {
+        "team": "Seam heads",
+        "title": "Podium Permanent Resident",
+        "kind": "league_superlative",
+        "stat": "183 / 184 dates",
+        "description": "Finished a recorded day outside the top three only once.",
+        "method": "Maximum count of archived displayed rank <=3; these are recorded dates, not complete calendar coverage."
+      },
+      {
+        "team": "Philbell",
+        "title": "June Bloom",
+        "kind": "league_superlative",
+        "stat": "+11 in June",
+        "description": "The league\u2019s largest June standings-points gain.",
+        "method": "Jun30 points minus May31 points.",
+        "start": "2026-05-31",
+        "end": "2026-06-30"
+      },
+      {
+        "team": "Humongous Melonheads",
+        "title": "July Takeoff",
+        "kind": "league_superlative",
+        "stat": "+13.5 in July",
+        "description": "The league\u2019s largest July standings-points gain.",
+        "method": "Jul31 points minus Jun30 points.",
+        "start": "2026-06-30",
+        "end": "2026-07-31"
+      },
+      {
+        "team": "Seam heads",
+        "title": "May Momentum",
+        "kind": "league_superlative",
+        "stat": "+12.5 in May",
+        "description": "The league\u2019s largest May standings-points gain.",
+        "method": "May31 points minus Apr30 points.",
+        "start": "2026-04-30",
+        "end": "2026-05-31"
+      },
+      {
+        "team": "Trazadone",
+        "title": "Seven Rungs in Seven Days",
+        "kind": "shared_league_superlative",
+        "stat": "11th \u2192 4th",
+        "description": "Matched John Henry Fan Club\u2019s seven-place weekly climb, with a 24-point gain.",
+        "method": "Maximum displayed-rank improvement between exact seven-calendar-day endpoints.",
+        "start": "2026-03-28",
+        "end": "2026-04-04",
+        "tied_with": [
+          "John Henry Fan Club"
+        ]
+      },
+      {
+        "team": "Humongous Melonheads",
+        "title": "August Accelerator",
+        "kind": "league_superlative",
+        "stat": "+8 in August",
+        "description": "The league\u2019s largest August standings-points gain.",
+        "method": "Aug31 points minus Jul31 points.",
+        "start": "2026-07-31",
+        "end": "2026-08-31"
+      },
+      {
+        "team": "Mommy",
+        "title": "August Upswing",
+        "kind": "personal_highlight",
+        "stat": "+5 in August",
+        "description": "The second-biggest August points gain in the league.",
+        "method": "Aug31 points minus Jul31 points; +5 ranks second behind Humongous Melonheads +8.",
+        "start": "2026-07-31",
+        "end": "2026-08-31"
+      }
+    ]
+  },
+  "activity": {
+    "league": "Backyard Dynasty Baseball",
+    "coverage": {
+      "start": "2026-03-27",
+      "end": "2026-09-27",
+      "lineup_submissions": 5835,
+      "lineup_player_changes": 14831,
+      "claim_drop_submissions": 938,
+      "trade_deals": 36
+    },
+    "methodology": [
+      "Lineup submissions are distinct executed Fantrax lineup-change groups. One submission can contain several player-slot changes.",
+      "Player changes count the individual player-slot rows contained in those executed submissions.",
+      "Adds, drops, and trades are separate executed Fantrax transaction-history views.",
+      "All figures use March 27 through September 27, matching the standings animation."
+    ],
+    "awards": [
+      {
+        "team": "Seam heads",
+        "title": "The Daily Tinkerer",
+        "stat": "3,006 lineup moves",
+        "description": "Nobody moved more players between lineup slots. Those moves came in 1,502 executed lineup submissions, also the league high."
+      },
+      {
+        "team": "Millville Meteors",
+        "title": "The Lineup Minimalist",
+        "stat": "299 lineup moves",
+        "description": "The fewest individual player-slot changes in the league, across 135 executed lineup submissions."
+      },
+      {
+        "team": "Mommy",
+        "title": "Set It and Let It Ride",
+        "stat": "134 lineup submissions",
+        "description": "The fewest executed lineup submissions in the league\u2014one fewer than Millville Meteors."
+      },
+      {
+        "team": "Seam heads",
+        "title": "Waiver Wire Workhorse",
+        "stat": "187 add/drop submissions",
+        "description": "The busiest waiver desk: 130 adds and 132 drops across the season window."
+      },
+      {
+        "team": "Sam",
+        "title": "Waiver Wire Minimalist",
+        "stat": "23 add/drop submissions",
+        "description": "The league\u2019s lightest touch on the player pool: 22 adds and 11 drops."
+      },
+      {
+        "team": "Vin Mazzaro fan club",
+        "title": "The Deal Maker",
+        "stat": "13 trades",
+        "description": "The most trades in the league, with 22 players sent and 22 received."
+      },
+      {
+        "team": "Vin Mazzaro fan club",
+        "title": "The Position Puzzle",
+        "stat": "290 position switches",
+        "description": "The most same-status position changes\u2014moves between active slots without an Active, Reserve, Minors, or Injured Reserve change."
+      },
+      {
+        "team": "John Henry Fan Club",
+        "title": "The Consolidator",
+        "stat": "13 out, 7 in",
+        "description": "No team sent away more players than it received across its completed trades."
+      },
+      {
+        "team": "Vin Mazzaro fan club",
+        "title": "Injury-Room Traffic Controller",
+        "stat": "75 IL moves",
+        "description": "The most player moves into or out of Injured Reserve during the season window."
+      }
+    ]
+  }
+}
