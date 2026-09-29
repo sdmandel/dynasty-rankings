@@ -4,6 +4,12 @@ This is the independent `sdmandel/dynasty-rankings` Git repository, deployed to
 https://baseball.stephenmandella.com/. The parent is the Python bot repository.
 In the combined workspace, start with `../CONTEXT.md` and parent `AGENTS.md`.
 
+The nested `powerrankings/` directory is the only persistent site checkout.
+Temporary site worktrees must be created below
+`../.claude/worktrees/site-<task>` and removed after their commits are integrated
+or preserved on a branch. Do not create sibling project directories in
+`Developer/`.
+
 - Keep public HTML routes flat and stable. Preserve historical weekly articles.
 - Read `CLAUDE.md` for team rename rules. `data/team_registry.json` owns stable
   team identity; old article names are historical, not rename targets.
